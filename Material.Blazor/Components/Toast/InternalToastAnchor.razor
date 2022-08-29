@@ -7,42 +7,9 @@
     <aside class="mb-toast-container mdc-snackbar mdc-snackbar--open @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
-            @*<div @key="@toast.Id" class="mdc-elevation--z5 mb-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
-
-                @if (toast.Settings.AppliedShowIcon)
-                {
-                    var iconHelper = new MBIconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
-                    var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
-
-                    <div class="mb-toast-icon @filterClass">
-                        <MBIcon aria-hidden="true"
-                                IconFoundry="@toast.Settings.IconFoundry"
-                                IconName="@toast.Settings.AppliedIconName" />
-                    </div>
-                }
-
-                <div class="mb-toast-body">
-                    <div class="mb-toast-header">
-                        <div class="mb-toast-heading-container">
-                            <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
-                        </div>
-
-                        @if (toast.Settings.CloseMethod != MBNotifierCloseMethod.Timeout)
-                        {
-                            <MBButton ButtonStyle="@MBButtonStyle.Text"
-                                      class="mb-toast-close-button"
-                                      LeadingIcon="close"
-                                       />
-                        }
-                    </div>
-
-                    <p class="mdc-typography--body2">@((MarkupString)toast.Settings.AppliedMessage)</p>
-                </div>
-            </div>*@
-
             <div aria-relevant="additions"
-                    class="mdc-snackbar__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
-                    role="status">
+                 class="mdc-snackbar__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
+                 role="status">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
@@ -69,6 +36,7 @@
                 {
                     <button class="mdc-icon-button mdc-snackbar__dismiss material-icons"
                             title="Dismiss"
+                            type="button"
                             @onclick="@(() => CloseToast(toast.Id))">
                         close
                     </button>

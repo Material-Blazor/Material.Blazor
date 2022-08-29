@@ -25,6 +25,11 @@ $icon-horizontal-padding: 12px;
 .mb-toast-container {
     flex-direction: column;
 
+    .mdc-snackbar__surface {
+        transition: unset !important;
+        transition-property: unset !important;
+    }
+
     h5 {
         margin: 0 0 $heading-margin-bottom 0;
     }
@@ -103,8 +108,8 @@ $icon-horizontal-padding: 12px;
 
     40% {
         opacity: 0;
-        max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;
+        /*max-height: $toast-height;
+        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -124,8 +129,8 @@ $icon-horizontal-padding: 12px;
 
     40% {
         opacity: 0;
-        max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;
+        /*max-height: $toast-height;
+        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -139,15 +144,15 @@ $icon-horizontal-padding: 12px;
 @keyframes mbToastFadeOut {
     0% {
         opacity: 1;
-        max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;
+        /*max-height: $toast-height;
+        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
-        max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;
+        /*max-height: $toast-height;
+        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -168,15 +173,15 @@ $icon-horizontal-padding: 12px;
 @-webkit-keyframes mbToastFadeOut {
     0% {
         opacity: 1;
-        max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;
+        /*max-height: $toast-height;
+        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
-        max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;
+        /*max-height: $toast-height;
+        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -201,24 +206,40 @@ $icon-horizontal-padding: 12px;
     color: var(--mb-toast-color-info);
     background-color: var(--mb-toast-background-color-info);
     --mdc-theme-primary: var(--mb-toast-color-info);
+
+    .mdc-snackbar__label, .mdc-snackbar__dismiss {
+        color: var(--mb-toast-color-info);
+    }
 }
 
 .mb-toast__success {
     color: var(--mb-toast-color-success);
     background-color: var(--mb-toast-background-color-success);
     --mdc-theme-primary: var(--mb-toast-color-success);
+
+    .mdc-snackbar__label, .mdc-snackbar__dismiss {
+        color: var(--mb-toast-color-success);
+    }
 }
 
 .mb-toast__warning {
     color: var(--mb-toast-color-warning);
     background-color: var(--mb-toast-background-color-warning);
     --mdc-theme-primary: var(--mb-toast-color-warning);
+
+    .mdc-snackbar__label, .mdc-snackbar__dismiss {
+        color: var(--mb-toast-color-warning);
+    }
 }
 
 .mb-toast__error {
     color: var(--mb-toast-color-error);
     background-color: var(--mb-toast-background-color-error);
     --mdc-theme-primary: var(--mb-toast-color-error);
+
+    .mdc-snackbar__label, .mdc-snackbar__dismiss {
+        color: var(--mb-toast-color-error);
+    }
 }
 
 .mb-toast-icon {
