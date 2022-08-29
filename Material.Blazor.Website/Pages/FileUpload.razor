@@ -27,15 +27,11 @@
     <PageContent>
         <div class="mdc-layout-grid__cell--span-6">
             <MBCard AutoStyled="true"
-                    style="min-height: 220px;">
+                    style="min-height: 200px;">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Button Style
                     </h2>
-
-                    <p class="mdc-typography--body2">
-                        Accepts any file type
-                    </p>
 
                     <div>
                         <p>
@@ -52,20 +48,15 @@
 
         <div class="mdc-layout-grid__cell--span-6">
             <MBCard AutoStyled="true"
-                    style="min-height: 220px;">
+                    style="min-height: 200px;">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Drag and Drop Style
                     </h2>
 
-                    <p class="mdc-typography--body2">
-                        Accepts only Microsoft Word documents
-                    </p>
-
                     <div>
                         <p>
-                            <MBFileUploadDragAndDrop accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                                     Label="@Label"
+                            <MBFileUploadDragAndDrop Label="@Label"
                                                      LeadingIcon="file_upload"
                                                      multiple="@Multiple"
                                                      OnLoadFiles="@OnLoadFiles" />

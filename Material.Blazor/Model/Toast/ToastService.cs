@@ -24,6 +24,7 @@ internal class ToastService : IMBToastService
     private event Action<MBToastLevel, MBToastSettings> OnAdd;
     private event Action OnTriggerStateHasChanged;
 
+
     ///<inheritdoc/>
     event Action<MBToastLevel, MBToastSettings> IMBToastService.OnAdd
     {

@@ -61,6 +61,18 @@ $alpha: 0.4;
     --mb-grid-even-row-color-hover: rgba(#{red($even-row-color-hover)}, #{green($even-row-color-hover)}, #{blue($even-row-color-hover)}, #{$alpha}) !important;
     --mb-grid-selected-row-color: rgba(#{red($selected-row-color)}, #{green($selected-row-color)}, #{blue($selected-row-color)}, #{$alpha}) !important;
     --mb-grid-selected-row-color-hover: rgba(#{red($selected-row-color-hover)}, #{green($selected-row-color-hover)}, #{blue($selected-row-color-hover)}, #{$alpha}) !important;
+    --mb-toast-color-info: black !important;
+    --mb-toast-color-success: black !important;
+    --mb-toast-color-warning: black !important;
+    --mb-toast-color-error: black !important;
+    /*    --mb-toast-filter-info: contrast(4) invert(1);
+    --mb-toast-filter-success: contrast(4) invert(1);
+    --mb-toast-filter-warning: contrast(4) invert(1);
+    --mb-toast-filter-error: contrast(4) invert(1);*/
+    --mb-toast-background-color-info: var(--mb-color-light-blue-200) !important;
+    --mb-toast-background-color-success: var(--mb-color-green-200) !important;
+    --mb-toast-background-color-warning: var(--mb-color-amber-200) !important;
+    --mb-toast-background-color-error: var(--mb-color-red-200) !important;
 }
 
 .mdc-top-app-bar {
