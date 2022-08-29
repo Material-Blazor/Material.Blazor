@@ -2,7 +2,7 @@
 @inherits ComponentFoundation
 
 
-@if (DisplayedToasts.Any() || true)
+@if (DisplayedToasts.Any())
 {
     <aside class="mb-toast-container mdc-snackbar mdc-snackbar--open @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
