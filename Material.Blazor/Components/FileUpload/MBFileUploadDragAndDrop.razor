@@ -18,7 +18,7 @@
                     <MBIcon class="mb-file-upload__leading-icon" IconFoundry="@IconFoundry" IconName="@LeadingIcon" />
                 }
 
-                @Label
+                <label for="@labelId">@Label</label>
 
                 @if (!string.IsNullOrWhiteSpace(TrailingIcon))
                 {
@@ -26,7 +26,8 @@
                 }
             </div>
 
-            <InputFile OnChange="@OnLoadFiles"
+            <InputFile OnChange="@LocalOnLoadFiles"
+                       id="@labelId"
                        multiple="@Multiple"
                        accept="@Accept" />
 

@@ -75,11 +75,12 @@ public partial class MBFileUploadDragAndDrop : ComponentBase
     private string HoverClass { get; set; } = string.Empty;
     private string CardClass => "mb-file-upload--drag-and-drop" + HoverClass;
     private string Filename { get; set; } = string.Empty;
+    private readonly string labelId = Utilities.GenerateUniqueElementName();
 
 
     private void OnDragEnter(DragEventArgs _)
     {
-        HoverClass = " mb-file-upload--hover";
+        HoverClass = " mb-file-upload--hover mdc-elevation--z7";
     }
 
 
