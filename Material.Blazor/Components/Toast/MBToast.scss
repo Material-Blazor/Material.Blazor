@@ -108,8 +108,6 @@ $icon-horizontal-padding: 12px;
 
     40% {
         opacity: 0;
-        /*max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -129,8 +127,6 @@ $icon-horizontal-padding: 12px;
 
     40% {
         opacity: 0;
-        /*max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -144,15 +140,11 @@ $icon-horizontal-padding: 12px;
 @keyframes mbToastFadeOut {
     0% {
         opacity: 1;
-        /*max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
-        /*max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
@@ -173,15 +165,11 @@ $icon-horizontal-padding: 12px;
 @-webkit-keyframes mbToastFadeOut {
     0% {
         opacity: 1;
-        /*max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
-        /*max-height: $toast-height;
-        margin: $toast-spacing*0.5 0;*/
         animation-timing-function: ease-in-out;
     }
 

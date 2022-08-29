@@ -38,7 +38,7 @@
                     <button class="mdc-icon-button mdc-snackbar__dismiss material-icons"
                             title="Dismiss"
                             type="button"
-                            @onclick="@(() => CloseToast(toast.Id))">
+                @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))">
                         close
                     </button>
                 }

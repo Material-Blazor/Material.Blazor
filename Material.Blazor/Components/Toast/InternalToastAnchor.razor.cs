@@ -31,15 +31,15 @@ public partial class InternalToastAnchor : ComponentFoundation
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        ToastService.OnAdd += AddToast;
-        ToastService.OnTriggerStateHasChanged += OnTriggerStateHasChanged;
+        ToastService.OnAdd += async (level, settings) => await AddToastAsync(level, settings).ConfigureAwait(false);
+        ToastService.OnTriggerStateHasChanged += InvokeStateHasChanged;
     }
 
 
     protected override void Dispose(bool disposing)
     {
-        ToastService.OnAdd -= AddToast;
-        ToastService.OnTriggerStateHasChanged -= OnTriggerStateHasChanged;
+        ToastService.OnAdd -= async (level, settings) => await AddToastAsync(level, settings).ConfigureAwait(false);
+        ToastService.OnTriggerStateHasChanged -= InvokeStateHasChanged;
 
         base.Dispose(disposing);
     }
@@ -50,48 +50,48 @@ public partial class InternalToastAnchor : ComponentFoundation
     /// </summary>
     /// <param name="level"></param>
     /// <param name="settings"></param>
-    private void AddToast(MBToastLevel level, MBToastSettings settings)
+    private async Task AddToastAsync(MBToastLevel level, MBToastSettings settings)
     {
-        InvokeAsync(async () =>
+        settings.Configuration = ToastService.Configuration;
+        settings.Level = level;
+
+        var toastInstance = new ToastInstance
         {
-            settings.Configuration = ToastService.Configuration;
-            settings.Level = level;
+            Id = Guid.NewGuid(),
+            TimeStamp = DateTime.Now,
+            Settings = settings
+        };
 
-            var toastInstance = new ToastInstance
-            {
-                Id = Guid.NewGuid(),
-                TimeStamp = DateTime.Now,
-                Settings = settings
-            };
+        await pendingToastsSemaphore.WaitAsync();
 
-            await pendingToastsSemaphore.WaitAsync();
+        try
+        {
+            PendingToasts.Enqueue(toastInstance);
+
+            await displayedToastsSemaphore.WaitAsync();
 
             try
             {
-                PendingToasts.Enqueue(toastInstance);
-
-                await displayedToastsSemaphore.WaitAsync();
-
-                try
-                {
-                    FlushPendingToasts();
-                }
-                finally
-                {
-                    displayedToastsSemaphore.Release();
-                }
+                FlushPendingToasts();
             }
             finally
             {
-                pendingToastsSemaphore.Release();
+                _ = displayedToastsSemaphore.Release();
             }
+        }
+        finally
+        {
+            pendingToastsSemaphore.Release();
+        }
 
-            StateHasChanged();
-        });
+        InvokeStateHasChanged();
     }
 
 
-    private void OnTriggerStateHasChanged() => _ = InvokeAsync(StateHasChanged);
+    private void InvokeStateHasChanged()
+    {
+        _ = InvokeAsync(StateHasChanged);
+    }
 
 
     private void FlushPendingToasts()
@@ -106,17 +106,14 @@ public partial class InternalToastAnchor : ComponentFoundation
 
             if (toastInstance.Settings.AppliedCloseMethod != MBNotifierCloseMethod.DismissButton)
             {
-                InvokeAsync(() =>
-                {
-                    var toastTimer = new System.Timers.Timer(toastInstance.Settings.AppliedTimeout);
-                    toastTimer.Elapsed += (sender, args) => CloseToast(toastInstance.Id);
-                    toastTimer.AutoReset = false;
-                    toastTimer.Start();
-                });
+                var toastTimer = new System.Timers.Timer(toastInstance.Settings.AppliedTimeout);
+                toastTimer.Elapsed += async (sender, args) => await CloseToastAsync(toastInstance.Id).ConfigureAwait(false);
+                toastTimer.AutoReset = false;
+                toastTimer.Start();
             }
         }
 
-        StateHasChanged();
+        InvokeStateHasChanged();
     }
 
 
@@ -125,70 +122,61 @@ public partial class InternalToastAnchor : ComponentFoundation
     /// Closes a toast and removes it from the anchor, with a fade out routine.
     /// </summary>
     /// <param name="toastId"></param>
-    public void CloseToast(Guid toastId)
+    public async Task CloseToastAsync(Guid toastId)
     {
-        InvokeAsync(async () =>
+        await displayedToastsSemaphore.WaitAsync();
+
+        try
         {
+            var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
 
-            await displayedToastsSemaphore.WaitAsync();
-
-            try
+            if (toastInstance is null)
             {
-                var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
-
-                if (toastInstance is null)
-                {
-                    return;
-                }
-
-                toastInstance.Settings.Status = ToastStatus.FadeOut;
-                StateHasChanged();
-            }
-            finally
-            {
-                displayedToastsSemaphore.Release();
+                return;
             }
 
-            var toastTimer = new System.Timers.Timer(500);
-            toastTimer.Elapsed += (sender, args) => RemoveToast(toastId);
-            toastTimer.AutoReset = false;
-            toastTimer.Start();
+            toastInstance.Settings.Status = ToastStatus.FadeOut;
+            InvokeStateHasChanged();
+        }
+        finally
+        {
+            _ = displayedToastsSemaphore.Release();
+        }
 
-            StateHasChanged();
-        });
+        var toastTimer = new System.Timers.Timer(500);
+        toastTimer.Elapsed += async (sender, args) => await RemoveToastAsync(toastId).ConfigureAwait(false);
+        toastTimer.AutoReset = false;
+        toastTimer.Start();
     }
 
 
-    private void RemoveToast(Guid toastId)
+    private async Task RemoveToastAsync(Guid toastId)
     {
-        InvokeAsync(async () =>
+        await displayedToastsSemaphore.WaitAsync();
+
+        try
         {
-            await displayedToastsSemaphore.WaitAsync();
+            var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
 
-            try
+            if (toastInstance is null)
             {
-                var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
-
-                if (toastInstance is null)
-                {
-                    return;
-                }
-
-                toastInstance.Settings.Status = ToastStatus.Hide;
-
-                if (!DisplayedToasts.Any(x => x.Settings.Status == ToastStatus.FadeOut))
-                {
-                    DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
-                }
-
-                StateHasChanged();
-
-                FlushPendingToasts();
+                return;
             }
-            finally
+
+            toastInstance.Settings.Status = ToastStatus.Hide;
+
+            if (!DisplayedToasts.Any(x => x.Settings.Status == ToastStatus.FadeOut))
             {
-                displayedToastsSemaphore.Release();
+                DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
             }
-        });
+
+            InvokeStateHasChanged();
+
+            FlushPendingToasts();
+        }
+        finally
+        {
+            displayedToastsSemaphore.Release();
+        }
     }
 }
