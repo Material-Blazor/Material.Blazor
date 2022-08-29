@@ -93,7 +93,7 @@ public partial class InternalToastAnchor : ComponentFoundation
         }
         finally
         {
-            pendingToastsSemaphore.Release();
+            _ = pendingToastsSemaphore.Release();
         }
 
         InvokeStateHasChanged();
@@ -108,7 +108,7 @@ public partial class InternalToastAnchor : ComponentFoundation
 
     private void FlushPendingToasts()
     {
-        bool FlushNext() => PendingToasts.Count > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Count(t => t.Settings.Status != ToastStatus.Hide) < ToastService.Configuration.MaxToastsShowing);
+        bool FlushNext() => PendingToasts.Any() && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Count(t => t.Settings.Status != ToastStatus.Hide) < ToastService.Configuration.MaxToastsShowing);
 
         while (FlushNext())
         {
@@ -155,10 +155,10 @@ public partial class InternalToastAnchor : ComponentFoundation
             _ = displayedToastsSemaphore.Release();
         }
 
-        var toastTimer = new System.Timers.Timer(500);
-        toastTimer.Elapsed += async (sender, args) => await RemoveToastAsync(toastId).ConfigureAwait(false);
-        toastTimer.AutoReset = false;
-        toastTimer.Start();
+        var removeTimer = new System.Timers.Timer(500);
+        removeTimer.Elapsed += async (sender, args) => await RemoveToastAsync(toastId).ConfigureAwait(false);
+        removeTimer.AutoReset = false;
+        removeTimer.Start();
     }
 
 
@@ -179,7 +179,7 @@ public partial class InternalToastAnchor : ComponentFoundation
 
             if (!DisplayedToasts.Any(x => x.Settings.Status == ToastStatus.FadeOut))
             {
-                DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
+                _ = DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
             }
 
             InvokeStateHasChanged();

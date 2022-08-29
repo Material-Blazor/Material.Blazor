@@ -95,6 +95,10 @@ $icon-horizontal-padding: 12px;
 .mb-toast--hide {
     max-height: 0;
     visibility: hidden;
+    
+    .mdc-snackbar__label {
+        visibility: hidden;
+    }
 }
 
 
