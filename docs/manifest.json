@@ -436,7 +436,6 @@
     },
     {
       "log_codes": [
-        "DuplicateUids",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -707,6 +706,7 @@
     },
     {
       "log_codes": [
+        "DuplicateUids",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -936,7 +936,7 @@
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/toc.html",
-          "hash": "CHBwkXmtr0C/i4RcxzOg1dWWSV+zghYvf1msWuCc5b0="
+          "hash": "n2vrzgKMQGaP47gNspvZPspez6h1kuvQ9JqNFxPO6Rc="
         }
       },
       "is_incremental": false,
@@ -1197,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "r4ZQL3J8uW2cuNwHCP4KxkBqzv6It6VmG63CAxcj+Ls="
+          "hash": "2IjeL6Buoiv4DjGwYWoA2ShH9wMz41X5jFWK2xeHyDA="
         }
       },
       "is_incremental": false,
