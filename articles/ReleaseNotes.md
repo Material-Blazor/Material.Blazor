@@ -4,11 +4,28 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.12](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.12)
+
+Released 2022-08-29
+
+**Updates**
+- Improved UX and accessibility for `MBFormFieldDragAndDrop`.
+- Removed `Accept` and `Multiple` parameters in favour of using attribute splatting to allow use of `accept` and `multiple` attributes for the `MBFormFieldButton` and `MBFormFieldDragAndDrop` components.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.11)
 
 Released 2022-08-27
 
 **Updates**
+- Fixed `MBNumericDoubleField` bug.
 
 **New components**
 - File upload plus components added.
