@@ -44,6 +44,18 @@
                     class="mdc-snackbar__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
                     role="status">
 
+                @if (toast.Settings.AppliedShowIcon)
+                {
+                    var iconHelper = new MBIconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
+                    var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
+
+                    <div class="mb-toast-icon @filterClass">
+                        <MBIcon aria-hidden="true"
+                                IconFoundry="@toast.Settings.IconFoundry"
+                                IconName="@toast.Settings.AppliedIconName" />
+                    </div>
+                }
+
                 <div aria-atomic="false" class="mdc-snackbar__label">
                     @if (!string.IsNullOrWhiteSpace(toast.Settings.Heading))
                     {
