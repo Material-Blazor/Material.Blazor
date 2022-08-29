@@ -1,11 +1,9 @@
 using Bunit;
-using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using Xunit;
 
 namespace Material.Blazor.Test;
@@ -15,6 +13,11 @@ public class Mocking
     private TestContext ctx;
     private void InjectMockedServices()
     {
+        var cultureInfo = new CultureInfo("en-US");
+
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
         ctx = new();
         _ = ctx.Services
             .AddSingleton(new Mock<IMBLoggingService>().Object)
