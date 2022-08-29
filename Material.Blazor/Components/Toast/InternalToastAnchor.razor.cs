@@ -20,7 +20,7 @@ public partial class InternalToastAnchor : ComponentFoundation
 
     private List<ToastInstance> DisplayedToasts { get; set; } = new List<ToastInstance>();
     private Queue<ToastInstance> PendingToasts { get; set; } = new Queue<ToastInstance>();
-    private string PositionClass => $"mb-toast__{ToastService.Configuration?.Position.ToString().ToLower().Replace("_top", "_top-").Replace("_center", "_center-").Replace("_bottom", "_bottom-" ?? "")}";
+    private string PositionClass => $"mb-toast__{ToastService.Configuration?.Position.ToString().ToLower()?? ""}".Replace("_top", "_top-").Replace("_center", "_center-").Replace("_bottom", "_bottom-");
 
 
     private readonly SemaphoreSlim displayedToastsSemaphore = new SemaphoreSlim(1);

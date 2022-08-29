@@ -27,9 +27,14 @@
 
 
 @use "@material/button";
+@use "@material/snackbar";
+
 .mdc-button {
     @include button.shape-radius(12px 4px);
 }
 
+.mdc-snackbar {
+    @include snackbar.shape-radius(12px 4px);
+}
 
 @include app.app-classes();

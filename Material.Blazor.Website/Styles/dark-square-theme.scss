@@ -30,6 +30,12 @@
 @use '@material/theme/color-palette';
 @use 'sass:string';
 
+@use "@material/snackbar";
+
+.mdc-snackbar {
+    @include snackbar.shape-radius(0px);
+}
+
 /* Don't use alpha channel for $border-color or $header-color, because this will make sticky headers partially transparent to whatever scrolls underneath them */
 $border-color: color-palette.$blue-grey-300;
 $header-color: color-palette.$blue-grey-900;
@@ -65,10 +71,6 @@ $alpha: 0.4;
     --mb-toast-color-success: black !important;
     --mb-toast-color-warning: black !important;
     --mb-toast-color-error: black !important;
-    /*    --mb-toast-filter-info: contrast(4) invert(1);
-    --mb-toast-filter-success: contrast(4) invert(1);
-    --mb-toast-filter-warning: contrast(4) invert(1);
-    --mb-toast-filter-error: contrast(4) invert(1);*/
     --mb-toast-background-color-info: var(--mb-color-light-blue-200) !important;
     --mb-toast-background-color-success: var(--mb-color-green-200) !important;
     --mb-toast-background-color-warning: var(--mb-color-amber-200) !important;
