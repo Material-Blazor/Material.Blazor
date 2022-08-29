@@ -31,18 +31,30 @@ public partial class InternalToastAnchor : ComponentFoundation
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        ToastService.OnAdd += async (level, settings) => await AddToastAsync(level, settings).ConfigureAwait(false);
+        ToastService.OnAdd += AddToast;
         ToastService.OnTriggerStateHasChanged += InvokeStateHasChanged;
     }
 
 
     protected override void Dispose(bool disposing)
     {
-        ToastService.OnAdd -= async (level, settings) => await AddToastAsync(level, settings).ConfigureAwait(false);
+        ToastService.OnAdd -= AddToast;
         ToastService.OnTriggerStateHasChanged -= InvokeStateHasChanged;
 
         base.Dispose(disposing);
     }
+
+
+    /// <summary>
+    /// Adds a toast to the anchor, enqueuing it ready for future display if the maximum number of toasts has been reached.
+    /// </summary>
+    /// <param name="level"></param>
+    /// <param name="settings"></param>
+    private void AddToast(MBToastLevel level, MBToastSettings settings)
+    {
+        InvokeAsync(async () => await AddToastAsync(level, settings).ConfigureAwait(false));
+    }
+
 
 
     /// <summary>
