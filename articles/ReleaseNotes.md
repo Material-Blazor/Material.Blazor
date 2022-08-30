@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.13](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.13)
+
+Released 2022-08-30
+
+**Updates**
+- Add [ASP.NET options pattern](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-6.0) as the preferred way to pass options to the `builder.Services.AddMBServices()` function.
+- Deprecate the existing `builder.Services.AddMBServices()` function that takes specific options as parameters. Will be deleted in future major Material.Blazor releases.
+- Minor `MBFileUploadDragAndDrop` styling improvements.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.12](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.12)
 
 Released 2022-08-29

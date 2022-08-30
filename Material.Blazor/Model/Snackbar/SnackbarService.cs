@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 
 namespace Material.Blazor.Internal;
 
@@ -42,9 +43,15 @@ internal class SnackbarService : IMBSnackbarService
     }
 
 
-    public SnackbarService(MBSnackbarServiceConfiguration configuration)
+    public SnackbarService(IOptions<MBServicesOptions> options) : this(options.Value)
     {
-        Configuration = configuration;
+
+    }
+
+
+    public SnackbarService(MBServicesOptions options)
+    {
+        Configuration = options.SnackbarServiceConfiguration;
     }
 
 
