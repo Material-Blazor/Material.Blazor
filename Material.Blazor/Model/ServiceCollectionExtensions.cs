@@ -1,112 +1,89 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System;
+using System.Threading;
 
 namespace Material.Blazor;
 
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Adds Snackbar, Toast, and Logging services for Material.Blazor. This is required for any app that uses one or more
+    /// DEPRECATED. Adds Snackbar, Toast, and Logging services for Material.Blazor. This is required for any app that uses one or more
     /// of these components. The configurations are optional.
     /// </summary>
-    /// <param name="services"></param>
+    /// <param name="serviceCollection"></param>
     /// <param name="snackbarServiceConfiguration"></param>
     /// <param name="toastServiceConfiguration"></param>
     /// <param name="loggingServiceConfiguration"></param>
     /// <returns></returns>
+    [Obsolete]
     public static IServiceCollection AddMBServices(
-        this IServiceCollection services,
+        this IServiceCollection serviceCollection,
         MBLoggingServiceConfiguration loggingServiceConfiguration = null,
-        MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, 
-        MBToastServiceConfiguration toastServiceConfiguration = null) 
+        MBSnackbarServiceConfiguration snackbarServiceConfiguration = null,
+        MBToastServiceConfiguration toastServiceConfiguration = null)
     {
-        return services
-            .AddMBLoggingService(loggingServiceConfiguration)
-            .AddMBSnackbarService(snackbarServiceConfiguration)
-            .AddMBToastService(toastServiceConfiguration)
-            .AddMBTooltipService();
+        return serviceCollection.AddMBServices(options =>
+        {
+            options.LoggingServiceConfiguration = loggingServiceConfiguration ?? new();
+            options.SnackbarServiceConfiguration = snackbarServiceConfiguration ?? new();
+            options.ToastServiceConfiguration = toastServiceConfiguration ?? new();
+        });
     }
 
 
     /// <summary>
-    /// Adds a Material.Blazor <see cref="IMBLoggingService"/> to the service collection
-    /// <example>
-    /// <para>You can optionally add configuration:</para>
-    /// <code>
-    /// services.AddMBLoggingService(new MBLoggingServiceConfiguration()
-    /// {
-    ///     Level = Trace
-    /// });
-    /// </code>
-    /// </example>
+    /// Adds Snackbar, Toast, and Logging services for Material.Blazor. This is required for any app that uses one or more
+    /// of these components.
     /// </summary>
-    private static IServiceCollection AddMBLoggingService(this IServiceCollection services, MBLoggingServiceConfiguration configuration = null)
+    /// <param name="serviceCollection"></param>
+    /// <returns></returns>
+    public static IServiceCollection AddMBServices(this IServiceCollection serviceCollection)
     {
-        if (configuration == null)
+        if (serviceCollection == null)
         {
-            configuration = new MBLoggingServiceConfiguration();
+            throw new ArgumentNullException(nameof(serviceCollection));
         }
 
-        return services.AddScoped<IMBLoggingService, LoggingService>(serviceProvider => new LoggingService(configuration));
+        return
+            serviceCollection
+            .AddScoped<IMBLoggingService>(serviceProvider => ActivatorUtilities.CreateInstance<LoggingService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
+            .AddScoped<IMBSnackbarService>(serviceProvider => ActivatorUtilities.CreateInstance<SnackbarService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
+            .AddScoped<IMBToastService>(serviceProvider => ActivatorUtilities.CreateInstance<ToastService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
+            .AddScoped<IMBTooltipService>(serviceProvider => new TooltipService());
     }
 
 
     /// <summary>
-    /// Adds a Material.Blazor <see cref="IMBSnackbarService"/> to the service collection to manage snackbar messages.
-    /// <example>
-    /// <para>You can optionally add configuration:</para>
-    /// <code>
-    /// services.AddMBSnackbarService(new MBSnackbarServiceConfiguration()
-    /// {
-    ///     Postion = MBSnackbarPosition.TopRight,
-    ///     CloseMethod = MBSnackbarCloseMethod.Timeout,
-    ///     ... etc
-    /// });
-    /// </code>
-    /// </example>
+    /// Adds Snackbar, Toast, and Logging services for Material.Blazor. This is required for any app that uses one or more
+    /// of these components.
     /// </summary>
-    private static IServiceCollection AddMBSnackbarService(this IServiceCollection services, MBSnackbarServiceConfiguration configuration = null)
+    /// <param name="serviceCollection"></param>
+    /// <param name="configureOptions"></param>
+    /// <returns></returns>
+    public static IServiceCollection AddMBServices(this IServiceCollection serviceCollection, Action<MBServicesOptions> configureOptions)
     {
-        if (configuration == null)
+        if (serviceCollection == null)
         {
-            configuration = new MBSnackbarServiceConfiguration();
+            throw new ArgumentNullException(nameof(serviceCollection));
         }
 
-        return services.AddScoped<IMBSnackbarService, SnackbarService>(serviceProvider => new SnackbarService(configuration));
-    }
-
-
-    /// <summary>
-    /// Adds a Material.Blazor <see cref="IMBToastService"/> to the service collection to manage toast messages.
-    /// <example>
-    /// <para>You can optionally add configuration:</para>
-    /// <code>
-    /// services.AddMBToastService(new MBToastServiceConfiguration()
-    /// {
-    ///     Postion = MBToastPosition.TopRight,
-    ///     CloseMethod = MBToastCloseMethod.Timeout,
-    ///     ... etc
-    /// });
-    /// </code>
-    /// </example>
-    /// </summary>
-    private static IServiceCollection AddMBToastService(this IServiceCollection services, MBToastServiceConfiguration configuration = null)
-    {
-        if (configuration == null)
+        if (configureOptions == null)
         {
-            configuration = new MBToastServiceConfiguration();
+            throw new ArgumentNullException(nameof(configureOptions));
         }
 
-        return services.AddScoped<IMBToastService, ToastService>(serviceProvider => new ToastService(configuration));
-    }
+        MBServicesOptions options = new();
 
+        configureOptions.Invoke(options);
 
-    /// <summary>
-    /// Adds a Material.Blazor <see cref="IMBTooltipService"/> to the service collection to manage tooltips.
-    /// </summary>
-    private static IServiceCollection AddMBTooltipService(this IServiceCollection services)
-    {
-        return services.AddScoped<IMBTooltipService, TooltipService>(serviceProvider => new TooltipService());
+        return
+            serviceCollection
+            .AddScoped<IMBLoggingService>(serviceProvider => new LoggingService(options))
+            .AddScoped<IMBSnackbarService>(serviceProvider => new SnackbarService(options))
+            .AddScoped<IMBToastService>(serviceProvider => new ToastService(options))
+            .AddScoped<IMBTooltipService>(serviceProvider => new TooltipService());
     }
 }

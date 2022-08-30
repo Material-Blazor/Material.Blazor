@@ -258,9 +258,9 @@ public class MBCascadingDefaults
 
 
 
-    private MBSelectInputStyle _selectInputStyle = MBSelectInputStyle.Filled;
+    private MBSelectInputStyle _selectInputStyle = MBSelectInputStyle.Outlined;
     /// <summary>
-    /// The default style for an <see cref="MBSelect{TItem}"/>, initialized to <see cref="MBSelectInputStyle.Filled"/> if not explicitly set.
+    /// The default style for an <see cref="MBSelect{TItem}"/>, initialized to <see cref="MBSelectInputStyle.Outlined"/> if not explicitly set.
     /// </summary>
     /// <remarks>
     /// Also applied to <seealso cref="MBDatePicker"/>.
@@ -294,9 +294,9 @@ public class MBCascadingDefaults
 
 
 
-    private MBTextInputStyle _textInputStyle = MBTextInputStyle.Filled;
+    private MBTextInputStyle _textInputStyle = MBTextInputStyle.Outlined;
     /// <summary>
-    /// The default style for an <see cref="MBTextField"/> or an <see cref="MBTextArea"/>, initialized to <see cref="MBTextInputStyle.Filled"/> if not explicitly set.
+    /// The default style for an <see cref="MBTextField"/> or an <see cref="MBTextArea"/>, initialized to <see cref="MBTextInputStyle.Outlined"/> if not explicitly set.
     /// </summary>
     /// <remarks>
     /// Also applied to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/>.
@@ -576,7 +576,7 @@ public class MBCascadingDefaults
                 MBDensity.Compact => "dense-compact",
                 MBDensity.Minus4 => "dense--4",
                 MBDensity.Minus5 => "dense--5",
-                _ => throw new System.NotImplementedException(),
+                _ => throw new NotImplementedException(),
             }
         };
     }

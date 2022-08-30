@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 
 namespace Material.Blazor.Internal;
 
@@ -41,10 +42,17 @@ internal class ToastService : IMBToastService
     }
 
 
-    public ToastService(MBToastServiceConfiguration configuration)
+    public ToastService(IOptions<MBServicesOptions> options) : this(options.Value)
     {
-        Configuration = configuration;
+        
     }
+
+
+    public ToastService(MBServicesOptions options)
+    {
+        Configuration = options.ToastServiceConfiguration;
+    }
+
 
     private void ConfigurationChanged() => OnTriggerStateHasChanged?.Invoke();
 

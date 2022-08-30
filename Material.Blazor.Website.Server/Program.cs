@@ -38,11 +38,24 @@ try
     // Add services to the container.
     builder.Services.AddRazorPages();
     builder.Services.AddServerSideBlazor();
-    builder.Services.AddMBServices(
-        loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
-        toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
-        snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
-    );
+
+    // Option 1: add options to services, which are then accessed by the Material Blazor services.
+    builder.Services.AddOptions<MBServicesOptions>().Configure(options =>
+    {
+        options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
+        options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
+        options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
+    });
+
+    builder.Services.AddMBServices();
+
+    // Option 2: add options within the call to add the Material.Blazor services.
+    //builder.Services.AddMBServices(options =>
+    //{
+    //    options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
+    //    options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
+    //    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
+    //});
 
     builder.Services.AddGBService("G-TRLQX48ZSY");
 

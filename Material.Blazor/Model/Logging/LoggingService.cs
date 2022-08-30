@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Material.Blazor.Internal;
 
@@ -10,10 +11,18 @@ internal class LoggingService : IMBLoggingService
     public MBLoggingServiceConfiguration Configuration { get; set; }
     private ILogger<ComponentFoundation> Logger { get; set; } = null;
 
-    public LoggingService(MBLoggingServiceConfiguration configuration)
+
+    public LoggingService(IOptions<MBServicesOptions> options) : this(options.Value)
     {
-        Configuration = configuration;
+
     }
+
+
+    public LoggingService(MBServicesOptions options)
+    {
+        Configuration = options.LoggingServiceConfiguration;
+    }
+
 
     /// <summary>
     /// CurrentLevel returns the logging level (as an int to make comparisons easier)
