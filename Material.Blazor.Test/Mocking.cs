@@ -248,7 +248,7 @@ public class Mocking
     </div>
   </div>
 </div>
-            ");
+        ");
     }
 
     [Fact]
@@ -261,7 +261,7 @@ public class Mocking
     <div class=""mdc-dialog__container""></div>
     <div class=""mdc-dialog__scrim""></div>
 </div>
-            ");
+        ");
     }
 
     [Fact]
@@ -277,7 +277,7 @@ public class Mocking
     </table>
   </div>
 </div>
-            ");
+        ");
     }
 
     [Fact]
@@ -286,9 +286,12 @@ public class Mocking
         InjectMockedServices();
         var cut = ctx.RenderComponent<MBDatePicker>();
         cut.MarkupMatches(@"
-<div class=""mdc-select mdc-select--filled mdc-select--no-label  "" >
+<div class=""mdc-select   mdc-select--outlined mdc-select--no-label  "" >
   <div class=""mdc-select__anchor"" role=""button"" aria-haspopup:ignore aria-expanded=""false"" aria-labelledby:ignore>
-    <span class=""mdc-select__ripple""></span>
+    <span class=""mdc-notched-outline"">
+      <span class=""mdc-notched-outline__leading""></span>
+      <span class=""mdc-notched-outline__trailing""></span>
+    </span>
     <span class=""mdc-select__selected-text-container"">
       <span id:ignore class=""mdc-select__selected-text"" style=""""></span>
     </span>
@@ -298,7 +301,6 @@ public class Mocking
         <polygon class=""mdc-select__dropdown-icon-active"" stroke=""none"" fill-rule=""evenodd"" points=""7 15 12 10 17 15""></polygon>
       </svg>
     </span>
-    <span class=""mdc-line-ripple""></span>
   </div>
   <div id:ignore class=""mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust  mb-dp-menu__day-menu"" >
     <div class=""mdc-typography--body2 mb-dp-container"">
@@ -311,7 +313,8 @@ public class Mocking
       <div class=""mb-dp-blank-filler""></div>
     </div>
   </div>
-</div>            ");
+</div>
+        ");
     }
 
     [Fact]
@@ -320,12 +323,14 @@ public class Mocking
         InjectMockedServices();
         var cut = ctx.RenderComponent<MBDebouncedTextField>();
         cut.MarkupMatches(@"
-<label class=""mdc-text-field   mdc-text-field--filled  mdc-text-field--no-label    "" >
-  <span class=""mdc-text-field__ripple""></span>
-  <input id:ignore class=""mdc-text-field__input  "" >
-  <span class=""mdc-line-ripple""></span>
+<label class=""mdc-text-field    mdc-text-field--outlined mdc-text-field--no-label     "" >
+  <span class=""mdc-notched-outline"">
+    <span class=""mdc-notched-outline__leading""></span>
+    <span class=""mdc-notched-outline__trailing""></span>
+  </span>
+  <input  id:ignore class=""mdc-text-field__input  ""  >
 </label>
-            ");
+        ");
     }
 
     [Fact]
@@ -434,10 +439,12 @@ public class Mocking
         InjectMockedServices();
         var cut = ctx.RenderComponent<MBNumericDecimalField>();
         cut.MarkupMatches(@"
-<label class=""mdc-text-field  mdc-text-field--filled mdc-text-field--no-label"" >
-  <span class=""mdc-text-field__ripple""></span>
-  <input step = ""0.01"" id:ignore class=""mdc-text-field__input  mb-align-right "" value=""0""  >
-  <span class=""mdc-line-ripple""></span>
+<label class=""mdc-text-field    mdc-text-field--outlined mdc-text-field--no-label     "" >
+  <span class=""mdc-notched-outline"">
+    <span class=""mdc-notched-outline__leading""></span>
+    <span class=""mdc-notched-outline__trailing""></span>
+  </span>
+  <input   step=""0.01"" id:ignore class=""mdc-text-field__input  mb-align-right "" value=""0""  >
 </label>
             ");
     }
@@ -479,9 +486,12 @@ public class Mocking
             (nameof(MBSelect<string>.Items),@KittenBreeds),
             (nameof(MBSelect<string>.ItemValidation), MBItemValidation.NoSelection));
         cut.MarkupMatches(@"
-<div class=""mdc-select mdc-select--filled  mdc-select--no-label"" >
+<div class=""mdc-select   mdc-select--outlined mdc-select--no-label   "" >
   <div class=""mdc-select__anchor"" role=""button"" aria-haspopup:ignore aria-expanded=""false"" aria-labelledby:ignore>
-    <span class=""mdc-select__ripple""></span>
+    <span class=""mdc-notched-outline"">
+      <span class=""mdc-notched-outline__leading""></span>
+      <span class=""mdc-notched-outline__trailing""></span>
+    </span>
     <span class=""mdc-select__selected-text-container"">
       <span id:ignore class=""mdc-select__selected-text""></span>
     </span>
@@ -491,7 +501,6 @@ public class Mocking
         <polygon class=""mdc-select__dropdown-icon-active"" stroke=""none"" fill-rule=""evenodd"" points=""7 15 12 10 17 15""></polygon>
       </svg>
     </span>
-    <span class=""mdc-line-ripple""></span>
   </div>
   <div id:ignore class=""mdc-select__menu mdc-menu mdc-menu-surface "">
     <ul class=""mdc-deprecated-list"">
