@@ -57,7 +57,10 @@ try
     //    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
     //});
 
-    builder.Services.AddGBService("G-TRLQX48ZSY");
+    builder.Services.AddGBService(options =>
+    {
+        options.TrackingId = "G-TRLQX48ZSY";
+    });
 
     var app = builder.Build();
 
