@@ -4,6 +4,21 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.14](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.14)
+
+Released 2022-09-??
+
+**Updates**
+- Delete deprecated `builder.Services.AddMBServices()` function that takes specific options as parameters.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.13](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.13)
 
 Released 2022-08-30
