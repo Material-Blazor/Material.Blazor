@@ -436,7 +436,6 @@
     },
     {
       "log_codes": [
-        "DuplicateUids",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -707,6 +706,7 @@
     },
     {
       "log_codes": [
+        "DuplicateUids",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -1197,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "eCFSbuu5iYS8p6nG4NuI4PJIhsJI15oGKMvPB4W4fAM="
+          "hash": "0m68zYQ6I5MPeHtsKOjaIPtwRHvD1j3E5xyE3PfhnM0="
         }
       },
       "is_incremental": false,

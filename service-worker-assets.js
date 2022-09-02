@@ -49,23 +49,23 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-0mZtGP0rGhXO72c1NwfJWw1DLfV\/N5EAcSUTzILVph0=",
+      "hash": "sha256-Lx4UlTp3+YqfkL6nVJgeKRyzKI1rW864w+wFt0AGyXo=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-JjPMTSvhHAp0hsenJfJhq85rtpyirvkdlkS82vFh3BU=",
+      "hash": "sha256-B\/1G84ea7Iv5J53THA9w9pPocwKONbI0+vWwmO3s8I0=",
       "url": "_framework\/GoogleAnalytics.Blazor.dll"
     },
     {
-      "hash": "sha256-lgIWvJcbM6OBNvf8ZlpExtxJg1lbJNdYWSD5HyHDZvs=",
+      "hash": "sha256-I28erBiU2G6aLi7H3PHDNw2Gby8E9xjJBZhnqMlmfFM=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-o0GlgmQWAhyiOiCGDaaX6mR5rxUhKP\/5R4DaThtJGFw=",
+      "hash": "sha256-Zi6n0AGJ1oTwDNk9K6RZOXPKAgiVL2\/iNVSJB0cWbhY=",
       "url": "_framework\/Material.Blazor.Website.dll"
     },
     {
-      "hash": "sha256-aBfG1vf95ZIIPLjEIA+H68ABS14yyPYfmqdsPVS7cYE=",
+      "hash": "sha256-N7BaCUmjhsGROXDKvmquWfhvpix3cEZfDQEVuul\/ri0=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -229,7 +229,7 @@
       "url": "_framework\/System.Collections.dll"
     },
     {
-      "hash": "sha256-6wNcNKJLnPZ5AuwmoLXsVRI7wSBHyx\/HAaOe4vm95ro=",
+      "hash": "sha256-LZUkMY2CvSzQXCuWbr+zN2ZUxCWuY+Lr8xNP7MG9VeE=",
       "url": "_framework\/System.Collections.Immutable.dll"
     },
     {
@@ -313,7 +313,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-w9e408rAsoK4t6ye4O30vpBjlBMYpgtbjGAVGO\/6Xbc=",
+      "hash": "sha256-lmsKd8ynd52aulKtUZt1emkmUZCwhXm5MkdGEv5dyC4=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -333,7 +333,7 @@
       "url": "_framework\/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "hash": "sha256-eBVfWa11vMm6qAGfgM\/KlSSnwZtrCC5twFCthLMAtlk=",
+      "hash": "sha256-irjITxEOV6vcFJ5NZFhuwY2NsjuREg2ZSFHu1PVc9gc=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -521,5 +521,5 @@
       "url": "_content\/Material.Blazor\/material.blazor.min.js"
     }
   ],
-  "version": "ujc6wmJf"
+  "version": "a5h\/k1o4"
 };
