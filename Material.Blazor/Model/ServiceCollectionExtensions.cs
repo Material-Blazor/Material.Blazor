@@ -10,31 +10,6 @@ namespace Material.Blazor;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// DEPRECATED. Adds Snackbar, Toast, and Logging services for Material.Blazor. This is required for any app that uses one or more
-    /// of these components. The configurations are optional.
-    /// </summary>
-    /// <param name="serviceCollection"></param>
-    /// <param name="snackbarServiceConfiguration"></param>
-    /// <param name="toastServiceConfiguration"></param>
-    /// <param name="loggingServiceConfiguration"></param>
-    /// <returns></returns>
-    [Obsolete]
-    public static IServiceCollection AddMBServices(
-        this IServiceCollection serviceCollection,
-        MBLoggingServiceConfiguration loggingServiceConfiguration = null,
-        MBSnackbarServiceConfiguration snackbarServiceConfiguration = null,
-        MBToastServiceConfiguration toastServiceConfiguration = null)
-    {
-        return serviceCollection.AddMBServices(options =>
-        {
-            options.LoggingServiceConfiguration = loggingServiceConfiguration ?? new();
-            options.SnackbarServiceConfiguration = snackbarServiceConfiguration ?? new();
-            options.ToastServiceConfiguration = toastServiceConfiguration ?? new();
-        });
-    }
-
-
-    /// <summary>
     /// Adds Snackbar, Toast, and Logging services for Material.Blazor. This is required for any app that uses one or more
     /// of these components.
     /// </summary>
