@@ -50,6 +50,9 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Logging.AddProvider(new SerilogLoggerProvider());
 
-builder.Services.AddGBService("G-TRLQX48ZSY");
+builder.Services.AddGBService(options =>
+{
+    options.TrackingId = "G-TRLQX48ZSY";
+});
 
 await builder.Build().RunAsync();

@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0)
+
+Released 2022-09-02
+
+**Updates**
+- Delete deprecated `builder.Services.AddMBServices()` function that takes specific options as parameters.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [3.0.0-preview.13](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.13)
 
 Released 2022-08-30
@@ -21,6 +38,8 @@ Released 2022-08-30
 
 **Known issues**
 
+<br />
+
 #### [3.0.0-preview.12](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.12)
 
 Released 2022-08-29
@@ -36,6 +55,8 @@ Released 2022-08-29
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [3.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.11)
 
@@ -55,6 +76,8 @@ Released 2022-08-27
 
 **Known issues**
 
+<br />
+
 #### [3.0.0-preview.10](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.10)
 
 Released 2022-08-17
@@ -70,6 +93,8 @@ Released 2022-08-17
 
 **Known issues**
 
+<br />
+
 #### [3.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.9)
 
 Released 2022-07-20
@@ -84,6 +109,8 @@ Released 2022-07-20
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [3.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.8)
 
@@ -102,6 +129,8 @@ Delisted 2022-07-19
 
 **Known issues**
 
+<br />
+
 #### [3.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.7)
 
 Released 2022-07-19
@@ -116,6 +145,8 @@ Released 2022-07-19
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [3.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.6)
 
@@ -132,6 +163,8 @@ Released 2022-07-04
 
 **Known issues**
 
+<br />
+
 #### [3.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.5)
 
 Released 2022-07-04
@@ -146,6 +179,8 @@ Released 2022-07-04
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [3.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.4)
 
@@ -162,6 +197,8 @@ Released 2022-06-25
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [3.0.0-preview.3](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.3)
 
@@ -181,6 +218,8 @@ Released 2022-06-25
 
 #### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.2)
 
+<br />
+
 Released 2022-05-26
 
 **Updates**
@@ -196,6 +235,8 @@ Released 2022-05-26
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.1)
 
@@ -214,6 +255,8 @@ Released 2022-05-02
 
 **Known issues**
 
+<br />
+
 #### [2.5.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.5.0)
 
 Released 2022-05-02
@@ -228,6 +271,8 @@ Released 2022-05-02
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [2.4.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.4.1)
 
@@ -244,6 +289,8 @@ Released 2022-04-19
 
 **Known issues**
 
+<br />
+
 #### [2.4.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.4.0)
 
 Released 2022-04-18
@@ -259,6 +306,8 @@ Released 2022-04-18
 **Deprecated Components**
 
 **Known issues**
+
+<br />
 
 #### [2.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.3.10)
 
@@ -410,6 +459,8 @@ Released 2021-11-10
 
 **Known issues**
 
+<br />
+
 #### [2.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
 2021-10-20
 
@@ -423,6 +474,8 @@ Released 2021-11-10
 - All parameters with the word "Supress" are renamed "Suppress" - good spelling helps.
 
 **Known issues**
+
+<br />
 
 #### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.8)
 2021-09-20
@@ -439,6 +492,8 @@ Released 2021-11-10
 - `MBFloatingActionButton` re-implemented extended variant.
 
 **Known issues**
+
+<br />
 
 #### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.7)
 2021-08-19
@@ -464,6 +519,7 @@ Released 2021-11-10
 - MBBatchingWrapper does not work inside a dialog or with content that includes MBSlidingContent.
  This is an experimental component and we do not recommend its use.
 
+<br />
 
 #### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.6)
 2021-04-26
@@ -482,6 +538,7 @@ Released 2021-11-10
 
 **Breaking Changes**
 
+<br />
 
 #### [2.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 2021-04-19
@@ -493,6 +550,8 @@ Released 2021-11-10
 **New components**
 
 **Breaking Changes**
+
+<br />
 
 
 #### [2.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.4)
