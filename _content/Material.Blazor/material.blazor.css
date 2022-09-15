@@ -6164,6 +6164,9 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   transition: unset !important;
   transition-property: unset !important;
 }
+.mb-toast-container .mdc-snackbar__label {
+  word-break: break-word;
+}
 .mb-toast-container h5 {
   margin: 0 0 6px 0;
 }
