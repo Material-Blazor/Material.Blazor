@@ -9,7 +9,7 @@ title: ReleaseNotes
 Released 2022-09-15
 
 **Updates**
-- Resoles github issues.
+- Resolves github issues.
 - Update packages via dependabot.
 
 **New components**
