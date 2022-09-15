@@ -30,6 +30,10 @@ $icon-horizontal-padding: 12px;
         transition-property: unset !important;
     }
 
+    .mdc-snackbar__label {
+        word-break: break-word;
+    }
+
     h5 {
         margin: 0 0 $heading-margin-bottom 0;
     }
