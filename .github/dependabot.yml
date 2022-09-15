@@ -35,3 +35,5 @@ updates:
     ignore:
       - dependency-name: "Microsoft.*"
         versions: ["7.x"]
+      - dependency-name: "Nager.Date"
+
