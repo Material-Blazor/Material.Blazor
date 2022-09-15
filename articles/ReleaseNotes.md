@@ -4,6 +4,24 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.1)
+
+Released 2022-09-15
+
+**Updates**
+- Resoles github issues.
+- Update packages via dependabot.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [3.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0)
 
 Released 2022-09-02
