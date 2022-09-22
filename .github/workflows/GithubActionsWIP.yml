@@ -38,22 +38,13 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
-  perform-deployment:
-    name: Perform deployment
+  is-not-dependabot:
+    name: Is not dependabot
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor' && github.actor != 'dependabot[bot]'
+    if: github.actor != 'dependabot[bot]'
     steps:
     - name: Nothing to see here
       run: echo ""
-
-  skip-deployment:
-    name: Skip deployment because not running on Dioptra/Website.2203 or user is dependabot?
-    runs-on: ubuntu-latest
-    if: github.repository != 'Material-Blazor/Material.Blazor' || github.actor == 'dependabot[bot]'
-    steps:
-    - name: Nothing to see here
-      run: echo ""
-
 
 ############################################################################################################
 # This job is only to display some CI information
@@ -253,7 +244,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, is-on-fork, perform-deployment]
+    needs: [test, build-documentation, build-website, is-on-fork, is-not-dependabot]
 
     runs-on: ubuntu-latest
 
@@ -297,7 +288,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
-    needs: [test, build-documentation, build-website, is-on-material-blazor, perform-deployment]
+    needs: [test, build-documentation, build-website, is-on-material-blazor, is-not-dependabot]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
