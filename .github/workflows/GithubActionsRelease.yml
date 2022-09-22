@@ -55,11 +55,8 @@ jobs:
 
     steps:
 
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -105,10 +102,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -134,8 +129,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -160,8 +153,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -190,8 +181,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
