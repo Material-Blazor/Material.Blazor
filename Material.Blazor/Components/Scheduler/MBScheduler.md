@@ -2,7 +2,7 @@
 uid: C.MBScheduler
 title: MBScheduler
 ---
-# MBScheduler&lt;TRowData&gt;
+# MBScheduler
 
 ## Summary
 
@@ -21,4 +21,4 @@ This is a preview version of the scheduler. The expectation must be that impleme
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBScheduler&color=brightgreen)](xref:Material.Blazor.MBScheduler`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBScheduler&color=brightgreen)](xref:Material.Blazor.MBScheduler)
