@@ -1,8 +1,8 @@
 ﻿---
-uid: C.MBGrid
-title: MBGrid
+uid: C.MBScheduler
+title: MBScheduler
 ---
-# MBSchedule&lt;TRowData&gt;
+# MBScheduler&lt;TRowData&gt;
 
 ## Summary
 
@@ -21,4 +21,4 @@ This is a preview version of the scheduler. The expectation must be that impleme
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBGrid&color=brightgreen)](xref:Material.Blazor.MBGrid`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBScheduler&color=brightgreen)](xref:Material.Blazor.MBScheduler`1)

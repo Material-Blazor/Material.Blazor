@@ -1,6 +1,6 @@
 ﻿---
-uid: C.MBDateField
-title: MBDateField
+uid: C.MBDateTimeField
+title: MBDateTimeField
 ---
 # MBDateTimeField
 
