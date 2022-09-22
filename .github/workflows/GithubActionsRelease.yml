@@ -54,13 +54,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Use prelease dotnet
-      uses: actions/setup-dotnet@v2
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
@@ -105,10 +104,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
 
     - name: Create documentation 🔧
@@ -132,10 +129,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
 
     - name: Build and Publish Website 🔧
@@ -158,10 +153,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
 
     - name: Build Material.Blazor 🔧
@@ -188,10 +181,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
