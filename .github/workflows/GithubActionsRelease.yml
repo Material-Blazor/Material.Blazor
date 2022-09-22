@@ -54,16 +54,14 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
     - name: Use prelease dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
         include-prerelease: true
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
@@ -108,14 +106,11 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -138,14 +133,11 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
 
     - name: Build and Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{needs.version.outputs.identifier}} -p:BlazorEnableCompression=false      
@@ -167,14 +159,11 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
 
     - name: Build Material.Blazor 🔧
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
@@ -200,14 +189,11 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
       uses: actions/download-artifact@v2

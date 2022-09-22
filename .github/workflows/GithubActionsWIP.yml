@@ -120,20 +120,14 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-      if: github.event_name != 'workflow_dispatch'
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
-      if: github.event_name != 'workflow_dispatch'
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
-      if: github.event_name != 'workflow_dispatch'
       
 ############################################################################################################
 # Build documentation
@@ -147,29 +141,23 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-      if: github.event_name != 'workflow_dispatch'
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
-      if: github.event_name != 'workflow_dispatch'
+
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
-      if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v2
       with:
         name: siteDocFx
         path: siteDocFx
-      if: github.event_name != 'workflow_dispatch' 
 
 ############################################################################################################
 # Build website
@@ -184,31 +172,24 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-      if: github.event_name != 'workflow_dispatch'
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
-      if: github.event_name != 'workflow_dispatch'
+
 
     - name: Build Website 🔧
       run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
-      if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{needs.version.outputs.suffix}} -p:BlazorEnableCompression=false
-      if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
       with:
         name: siteWeb
         path: siteWeb
-      if: github.event_name != 'workflow_dispatch'
 
 ############################################################################################################
 # Build nuget package
@@ -224,15 +205,11 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
-    - name: Use prelease dotnet
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
-      if: github.event_name != 'workflow_dispatch'
 
     - name: Build Material.Blazor 🔧
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
@@ -282,9 +259,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-      if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v2
@@ -302,7 +276,6 @@ jobs:
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: github.event_name != 'workflow_dispatch'
 
     # this step rewrites the base href
     - name: Base Href Rewrite 👉
@@ -310,7 +283,6 @@ jobs:
       with:
         html_path: 'deployroot/index.html'
         base_href: '/Material.Blazor/'
-      if: github.event_name != 'workflow_dispatch'
 
     # this step deploys to the current repo's gh-pages branch
     - name: Deploy 🚀
@@ -319,7 +291,6 @@ jobs:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
         folder: 'deployroot'
-      if: github.event_name != 'workflow_dispatch'
 
 ############################################################################################################
 # deployghpages-mbcurrent

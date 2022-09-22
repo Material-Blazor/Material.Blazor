@@ -124,6 +124,9 @@
 - name: MBRadioButtonGroup
   topicUid: C.MBRadioButtonGroup
 
+- name: MBScheduler
+  topicUid: C.MBScheduler
+
 - name: MBSegmentedButtonMulti
   topicUid: C.MBSegmentedButtonMulti
 

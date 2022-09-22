@@ -4,7 +4,7 @@ namespace Material.Blazor;
 
 
 /// <summary>
-/// Options for <see cref="IServiceCollection.AddMBServices"/> following the ASP.Net Options Pattern.
+/// Options for <see cref="ServiceCollectionExtensions.AddMBServices"/> following the ASP.Net Options Pattern.
 /// </summary>
 public class MBServicesOptions
 {
