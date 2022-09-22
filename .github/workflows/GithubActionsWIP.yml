@@ -115,7 +115,7 @@ jobs:
 ############################################################################################################
   test:
     name: Run .NET tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
