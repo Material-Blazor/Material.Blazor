@@ -118,10 +118,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
 
-    - name: Setup dotnet
+    - name: Setup .NET SDK
       uses: actions/setup-dotnet@v2
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
