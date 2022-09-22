@@ -11,8 +11,8 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
-  outputMB: ${{github.workspace}}/siteMB
-  outputWeb: ${{github.workspace}}/siteWeb
+  outputMB: ${{github.workspace}}\siteMB
+  outputWeb: ${{github.workspace}}\siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
@@ -108,13 +108,11 @@ jobs:
 ############################################################################################################
   test:
     name: Run .NET tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -132,8 +130,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -160,8 +156,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -190,8 +184,6 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
