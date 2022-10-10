@@ -1,0 +1,12 @@
+﻿@namespace Material.Blazor.Internal
+@inherits ComponentFoundation
+
+
+<div class="mb-drag-and-drop-list__separator">
+    <div class="mb-drag-and-drop-list__drop-target @HoverClass"
+            @ondragenter="@OnDragEnter"
+            @ondragleave="@OnDragLeave"
+            @ondragover="@OnDragEnter"
+            @ondrop="@OnDragLeave">
+    </div>
+</div>

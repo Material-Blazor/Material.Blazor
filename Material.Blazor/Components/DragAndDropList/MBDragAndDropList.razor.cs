@@ -50,16 +50,24 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     }
 
 
-    private void OnDragEnter(DragEventArgs _)
+    private void OnDragStart()
     {
-        HoverClass = " mb-drag-and-drop-list__hover";
-        InvokeAsync(StateHasChanged);
+        Console.Write("START!!!!!!");
+        HoverClass = string.Empty;
+        _ = InvokeAsync(StateHasChanged);
     }
 
 
-    private void OnDragLeave(DragEventArgs _)
+    private void OnDragEnd()
     {
-        HoverClass = string.Empty;
-        InvokeAsync(StateHasChanged);
+        Console.Write("END!!!!!!");
+        HoverClass = " mb-drag-and-drop-list__hover";
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+
+    private void DropNotifier(int index)
+    {
+
     }
 }

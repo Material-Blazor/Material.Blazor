@@ -9,21 +9,21 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
-    <div class="mb-drag-and-drop-list__separator @HoverClass">
-        <div class="mb-drag-and-drop-list__drop-target"
-             @ondragenter="@OnDragEnter"
-             @ondragleave="@OnDragLeave"
-             @ondragover="@OnDragEnter"
-             @ondrop="@OnDragLeave">
-        </div>
-    </div>
+    <InternalDragAndDropSpacer Index="0" DropNotifier="@DropNotifier" />
+
+    @{
+        var index = 1;
+    }
 
     @foreach (var item in Value)
     {
         <MBCard CardStyle="@MBCardStyle.Outlined">
             <Primary>
                 <div class="mb-drag-and-drop-list__card-contents">
-                    <div class="mb-drag-and-drop-list__drag-zone" draggable="true">
+                    <div class="mb-drag-and-drop-list__draggable"
+                         draggable="true"
+                         @ondrag="@OnDragStart"
+                         @ondragend="@OnDragEnd">
                         <MBIcon IconName="drag_indicator" />
                     </div>
                     <div class="mb-drag-and-drop-list__user-content mb-card__autostyled">
@@ -33,13 +33,6 @@
             </Primary>
         </MBCard>
 
-        <div class="mb-drag-and-drop-list__separator @HoverClass">
-            <div class="mb-drag-and-drop-list__drop-target"
-                 @ondragenter="@OnDragEnter"
-                 @ondragleave="@OnDragLeave"
-                 @ondragover="@OnDragEnter"
-                 @ondrop="@OnDragLeave">
-            </div>
-        </div>
+        <InternalDragAndDropSpacer Index="@(index++)" DropNotifier="@DropNotifier" />
     }
 </div>

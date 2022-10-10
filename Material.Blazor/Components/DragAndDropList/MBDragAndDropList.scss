@@ -1,5 +1,5 @@
-﻿$separator-height: 12px;
-$drop-zone-overlap: 24px;
+﻿$separator-height: 24px;
+$drop-zone-overlap: 12px;
 $drop-zone-height: $separator-height + 2 * $drop-zone-overlap;
 $drag-zone-width: 60px;
 
@@ -15,7 +15,7 @@ $drag-zone-width: 60px;
     align-items: center;
 }
 
-.mb-drag-and-drop-list__drag-zone {
+.mb-drag-and-drop-list__draggable {
     height: 100%;
     width: $drag-zone-width;
     display: flex;
@@ -33,20 +33,18 @@ $drag-zone-width: 60px;
 .mb-drag-and-drop-list__separator {
     height: $separator-height;
     width: 100%;
-    position: relative;
+    z-index: 1;
 
     & > .mb-drag-and-drop-list__drop-target {
-        position: absolute;
         width: 100%;
         height: $drop-zone-height;
-        margin-top: -$drop-zone-overlap;
-        background-color: rgba(255, 0, 0, 0.05);
-        pointer-events: none;
-        z-index: 1;
-        transition: ease-in-out 1000ms;
+        margin: -$drop-zone-overlap 0px;
+        background-color: var(--mdc-theme-on-surface);
+        opacity: 0;
+        transition: ease-in-out 50ms;
 
         &.mb-drag-and-drop-list__hover {
-            background-color: rgba(0, 0, 255, 0.05);
+            opacity: var(--mdc-ripple-hover-opacity, 0.04);
         }
     }
 }
