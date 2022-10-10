@@ -24,6 +24,12 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     [Parameter] public RenderFragment<TItem> Content { get; set; }
 
 
+    /// <summary>
+    /// Render fragment for each displayable item.
+    /// </summary>
+    [Parameter] public string DragButtonTooltip { get; set; } = "Click and drag to re-order";
+
+
     private ElementReference ElementReference { get; set; }
     private Func<TItem, object> KeyGenerator { get; set; }
 

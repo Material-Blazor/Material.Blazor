@@ -9,6 +9,11 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
+    <div class="mb-drag-and-drop-list__separator">
+        <div class="mb-drag-and-drop-list__drop-target">
+        </div>
+    </div>
+
     @foreach (var item in Value)
     {
         <MBCard AutoStyled="true"
@@ -16,7 +21,15 @@
             <Primary>
                 <div class="mb-drag-and-drop-list__card-contents">
                     <div class="mb-drag-and-drop-list__button">
-                        <MBIconButton Icon="drag_indicator" />
+                        <MBTooltip>
+                            <Target>
+                                <MBIconButton Icon="drag_indicator" />
+                            </Target>
+                            <Content>
+                                @DragButtonTooltip
+                            </Content>
+                        </MBTooltip>
+                        
                     </div>
                     <div class="mb-drag-and-drop-list__user-content">
                         @Content(item)
@@ -24,5 +37,10 @@
                 </div>
             </Primary>
         </MBCard>
+
+        <div class="mb-drag-and-drop-list__separator">
+            <div class="mb-drag-and-drop-list__drop-target">
+            </div>
+        </div>
     }
 </div>

@@ -1,56 +1,52 @@
-﻿/*@use "@material/data-table";
-
-.mdc-data-table {
-    &.dense--5,
-    &.dense--4 {
-        @include data-table.density(-4);
-    }
-
-    &.dense--3,
-    &.dense-compact {
-        @include data-table.density(-3);
-    }
-
-    &.dense--2,
-    &.dense-comfortable {
-        @include data-table.density(-2);
-    }
-
-    &.dense--1 {
-        @include data-table.density(-1);
-    }
-
-    &.dense--0,
-    &.dense-default {
-        @include data-table.density(0);
-    }
-}
-*/
+﻿$separator-height: 12px;
+$drop-zone-overlap: 24px;
+$drop-zone-height: $separator-height + 2 * $drop-zone-overlap;
 
 .mb-drag-and-drop-list {
     display: flex;
     flex-flow: column nowrap;
-    max-height: 600px;
-    overflow: auto;
 }
 
 .mb-drag-and-drop-list__card-contents {
-    display: flex;
-    flex-flow: row nowrap;
-    max-height: 600px;
-    overflow: auto;
-}
-
-.mb-drag-and-drop-list__button {
-    margin-left: 12px;
-    margin-right: 12px;
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
-    align-content: center;
+    align-items: center;
+}
+
+.mb-drag-and-drop-list__button {
+    margin-right: 24px;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    & .mdc-icon-button {
+        cursor: grab !important;
+
+        &:active {
+            cursor: grabbing !important;
+        }
+    }
 }
 
 .mb-drag-and-drop-list__user-content {
     height: fit-content;
     width: fit-content;
+}
+
+.mb-drag-and-drop-list__separator {
+    height: $separator-height;
+    width: 100%;
+    position: relative;
+
+    & > .mb-drag-and-drop-list__drop-target {
+        position: absolute;
+        width: 100%;
+        height: $drop-zone-height;
+        margin-top: -$drop-zone-overlap;
+        background-color: rgba(255, 0, 0, 0.05);
+        pointer-events: none;
+        z-index: 1;
+    }
 }
