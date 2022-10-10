@@ -1,6 +1,7 @@
 ﻿$separator-height: 12px;
 $drop-zone-overlap: 24px;
 $drop-zone-height: $separator-height + 2 * $drop-zone-overlap;
+$drag-zone-width: 60px;
 
 .mb-drag-and-drop-list {
     display: flex;
@@ -14,20 +15,14 @@ $drop-zone-height: $separator-height + 2 * $drop-zone-overlap;
     align-items: center;
 }
 
-.mb-drag-and-drop-list__button {
-    margin-right: 24px;
+.mb-drag-and-drop-list__drag-zone {
     height: 100%;
+    width: $drag-zone-width;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-
-    & .mdc-icon-button {
-        cursor: grab !important;
-
-        &:active {
-            cursor: grabbing !important;
-        }
-    }
+    justify-content: center;
+    cursor: move;
 }
 
 .mb-drag-and-drop-list__user-content {
@@ -48,5 +43,10 @@ $drop-zone-height: $separator-height + 2 * $drop-zone-overlap;
         background-color: rgba(255, 0, 0, 0.05);
         pointer-events: none;
         z-index: 1;
+        transition: ease-in-out 1000ms;
+
+        &.mb-drag-and-drop-list__hover {
+            background-color: rgba(0, 0, 255, 0.05);
+        }
     }
 }

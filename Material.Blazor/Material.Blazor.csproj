@@ -98,6 +98,8 @@
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<InputStaticAssetsScripts Remove="Components\DragAndDropList\MBDragAndDropList.ts" />
 		<InputStaticAssetsStyles Remove="Components\DragAndDropList\MBDragAndDropList.scss" />
+		<Content Remove="wwwroot\material.blazor.min.css" />
+		<Content Remove="wwwroot\material.blazor.css" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 

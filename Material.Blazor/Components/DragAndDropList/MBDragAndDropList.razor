@@ -9,37 +9,36 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
-    <div class="mb-drag-and-drop-list__separator">
-        <div class="mb-drag-and-drop-list__drop-target">
+    <div class="mb-drag-and-drop-list__separator @HoverClass">
+        <div class="mb-drag-and-drop-list__drop-target"
+             @ondragenter="@OnDragEnter"
+             @ondragleave="@OnDragLeave"
+             @ondragover="@OnDragEnter"
+             @ondrop="@OnDragLeave">
         </div>
     </div>
 
     @foreach (var item in Value)
     {
-        <MBCard AutoStyled="true"
-                CardStyle="@MBCardStyle.Outlined">
+        <MBCard CardStyle="@MBCardStyle.Outlined">
             <Primary>
                 <div class="mb-drag-and-drop-list__card-contents">
-                    <div class="mb-drag-and-drop-list__button">
-                        <MBTooltip>
-                            <Target>
-                                <MBIconButton Icon="drag_indicator" />
-                            </Target>
-                            <Content>
-                                @DragButtonTooltip
-                            </Content>
-                        </MBTooltip>
-                        
+                    <div class="mb-drag-and-drop-list__drag-zone" draggable="true">
+                        <MBIcon IconName="drag_indicator" />
                     </div>
-                    <div class="mb-drag-and-drop-list__user-content">
+                    <div class="mb-drag-and-drop-list__user-content mb-card__autostyled">
                         @Content(item)
                     </div>
                 </div>
             </Primary>
         </MBCard>
 
-        <div class="mb-drag-and-drop-list__separator">
-            <div class="mb-drag-and-drop-list__drop-target">
+        <div class="mb-drag-and-drop-list__separator @HoverClass">
+            <div class="mb-drag-and-drop-list__drop-target"
+                 @ondragenter="@OnDragEnter"
+                 @ondragleave="@OnDragLeave"
+                 @ondragover="@OnDragEnter"
+                 @ondrop="@OnDragLeave">
             </div>
         </div>
     }
