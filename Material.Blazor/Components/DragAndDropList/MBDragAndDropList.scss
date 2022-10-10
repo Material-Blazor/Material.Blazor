@@ -1,0 +1,56 @@
+﻿/*@use "@material/data-table";
+
+.mdc-data-table {
+    &.dense--5,
+    &.dense--4 {
+        @include data-table.density(-4);
+    }
+
+    &.dense--3,
+    &.dense-compact {
+        @include data-table.density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include data-table.density(-2);
+    }
+
+    &.dense--1 {
+        @include data-table.density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include data-table.density(0);
+    }
+}
+*/
+
+.mb-drag-and-drop-list {
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.mb-drag-and-drop-list__card-contents {
+    display: flex;
+    flex-flow: row nowrap;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.mb-drag-and-drop-list__button {
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+}
+
+.mb-drag-and-drop-list__user-content {
+    height: fit-content;
+    width: fit-content;
+}

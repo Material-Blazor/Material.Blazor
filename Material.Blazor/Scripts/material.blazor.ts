@@ -9,6 +9,7 @@ import * as MBDataTable from '../Components/DataTable/MBDataTable';
 import * as MBDatePicker from '../Components/DatePicker/MBDatePicker';
 import * as MBDialog from '../Components/Dialog/MBDialog';
 import * as MBDrawer from '../Components/Drawer/MBDrawer';
+import * as MBDragAndDropList from '../Components/DragAndDropList/MBDragAndDropList';
 import * as MBFileUpload from '../Components/FileUpload/MBFileUpload';
 import * as MBFloatingActionButton from '../Components/FloatingActionButton/MBFloatingActionButton';
 import * as MBGrid from '../Components/Grid/MBGrid';
@@ -42,6 +43,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBDatePicker,
     MBDialog,
     MBDrawer,
+    MBDragAndDropList,
     MBFileUpload,
     MBFloatingActionButton,
     MBGrid,

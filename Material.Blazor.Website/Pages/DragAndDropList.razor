@@ -1,0 +1,79 @@
+﻿@page "/draganddroplist"
+
+@using Humanizer
+@inject IMBToastService ToastService
+
+
+<style>
+    .my-container {
+        margin-bottom: 1rem;
+    }
+
+    .my-float-right {
+        float: right;
+    }
+
+        .my-float-right .mb-paginator {
+            justify-content: flex-end;
+        }
+
+    .my-full-width {
+        min-width: 100%;
+    }
+
+    .my-header-bold {
+        font-weight: bold;
+    }
+
+    .my-half-list {
+        width: 50%;
+        padding: 0 0.3rem 0 0.3rem;
+        float: left;
+        box-sizing: border-box;
+    }
+</style>
+
+<DemonstrationPage ComponentName="DragAndDropList"
+                   DemoComponent="@this"
+                   IsGeneric="true"
+                   Title="Drag and Drop List Demonstration">
+    <Description>
+        <p>
+            Demonstrates a drag and drop data list, which is a Material.Blazor Plus component. Presents content in a vertical set of cards that can be re-ordered by dragging and dropping.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBDragAndDropList Value="@Items" Context="item">
+                <Content>
+                    @* You can put anything you like in this render fragment, including images and components *@
+                    @item.Text
+                </Content>
+            </MBDragAndDropList>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    class Datum
+    {
+        public int Value { get; set; }
+
+        public string Text => Value.ToWords();
+    }
+
+    private List<Datum> Items = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        for (int i = 1; i <= 10; i++)
+        {
+            Items.Add(new() { Value = i });
+        }
+    }
+}

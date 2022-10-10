@@ -1,0 +1,28 @@
+﻿@namespace Material.Blazor
+@inherits InputComponent<List<TItem>>
+@typeparam TItem
+
+
+<div @ref="@ElementReference"
+     class="mb-drag-and-drop-list @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+
+    @foreach (var item in Value)
+    {
+        <MBCard AutoStyled="true"
+                CardStyle="@MBCardStyle.Outlined">
+            <Primary>
+                <div class="mb-drag-and-drop-list__card-contents">
+                    <div class="mb-drag-and-drop-list__button">
+                        <MBIconButton Icon="drag_indicator" />
+                    </div>
+                    <div class="mb-drag-and-drop-list__user-content">
+                        @Content(item)
+                    </div>
+                </div>
+            </Primary>
+        </MBCard>
+    }
+</div>
