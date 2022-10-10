@@ -6,7 +6,7 @@
     <div class="mb-drag-and-drop-list__drop-target @HoverClass"
             @ondragenter="@OnDragEnter"
             @ondragleave="@OnDragLeave"
-            @ondragover="@OnDragEnter"
-            @ondrop="@OnDragLeave">
+            @ondragover="@(() => { })"
+            @ondrop="@OnDrop">
     </div>
 </div>

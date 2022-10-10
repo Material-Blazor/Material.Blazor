@@ -1,14 +1,8 @@
-﻿import { MDCDataTable } from '@material/data-table';
-
-//export function init(elem, hasProgress, showProgress) {
-//    if (!elem) {
-//        return;
-//    }
-//    elem._dataTable = MDCDataTable.attachTo(elem);
-//    if (hasProgress) {
-//       setProgress(elem, showProgress);
-//    }
-//}
+﻿export function dragoverHandler(ev): void {
+    console.log("boo");
+    ev.preventDefault();
+    ev.dataTransfer.dropEffect = "move";
+}
 
 //export function setProgress(elem, showProgress) {
 //    if (!elem) {

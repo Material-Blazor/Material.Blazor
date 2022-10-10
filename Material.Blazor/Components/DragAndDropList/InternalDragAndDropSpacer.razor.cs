@@ -26,7 +26,6 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
     private void OnDragEnter()
     {
-        Console.Write("enter");
         HoverClass = " mb-drag-and-drop-list__hover";
         _ = InvokeAsync(StateHasChanged);
     }
@@ -34,8 +33,13 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
     private void OnDragLeave()
     {
-        Console.Write("left");
         HoverClass = string.Empty;
         _ = InvokeAsync(StateHasChanged);
+    }
+
+
+    private void OnDrop()
+    {
+        DropNotifier(Index);
     }
 }
