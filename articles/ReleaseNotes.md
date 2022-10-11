@@ -22,6 +22,40 @@ Released 2022-10-11
 
 <br />
 
+#### [3.1.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.1.2)
+
+Released 2022-10-11
+
+**Updates**
+- Migrated inline JavaScript in `MBDragAndDropList` to Typescript event listeners in order to pass strict Content Security Policies.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
+#### [3.1.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.1.1)
+
+Released 2022-10-11
+
+**Updates**
+- Improvements to layout of `MBDragAndDropList`.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [3.0.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.1)
 
 Released 2022-09-15
