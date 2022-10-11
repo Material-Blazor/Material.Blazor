@@ -16,7 +16,7 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-8">
-            <MBDragAndDropList Value="@Amounts" Context="amount">
+            <MBDragAndDropList @bind-Value="@Amounts" Context="amount">
                 <Content>
                     <div class="mdc-layout-grid__inner" style="width: 100%;">
                         <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
@@ -51,7 +51,7 @@
         </div>
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBDragAndDropList Value="@Colors" Context="color">
+            <MBDragAndDropList @bind-Value="@Colors" Context="color">
                 <Content>
                     <div class="mdc-layout-grid__inner" style="width: 100%;">
                         <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
@@ -81,8 +81,29 @@
 
 
 @code {
-    private List<decimal> Amounts = new();
-    private List<string> Colors = new() { "Red", "Green", "Blue" };
+    private List<decimal> amounts = new();
+    private List<decimal> Amounts
+    {
+        get => amounts;
+        set
+        {
+            amounts = value;
+            _ = InvokeAsync(StateHasChanged);
+        }
+    }
+
+
+    private List<string> colors = new() { "Red", "Green", "Blue" };
+    private List<string> Colors
+    {
+        get => colors;
+        set
+        {
+            colors = value;
+            _ = InvokeAsync(StateHasChanged);
+        }
+    }
+
 
     protected override void OnInitialized()
     {
@@ -90,7 +111,7 @@
 
         for (int i = 1; i <= 10; i++)
         {
-            Amounts.Add(i);
+            amounts.Add(i);
         }
     }
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -69,7 +70,6 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     {
         DraggedItemIndex = index;
         IsDragging = true;
-        Console.WriteLine($"Dragging {DraggedItemIndex}, {IsDragging}");
         _ = InvokeAsync(StateHasChanged);
     }
 
@@ -78,13 +78,44 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     {
         DraggedItemIndex = -1;
         IsDragging = false;
-        Console.WriteLine($"Dragging {DraggedItemIndex}, {IsDragging}");
         _ = InvokeAsync(StateHasChanged);
     }
 
 
-    private void ReOrderItems(int index)
+    private bool ShowDropZone(int index)
     {
-        Console.WriteLine($" '{index}' ");
+        return IsDragging && index != DraggedItemIndex && index != DraggedItemIndex + 1;
+    }
+
+
+    private void ReOrderItems(int selectedIndex)
+    {
+        Console.WriteLine($"Move item {DraggedItemIndex} to location {selectedIndex} ");
+
+        SortedDictionary<int, TItem> newDict = new();
+
+        var newIndex = 0;
+
+        foreach (var (index, item) in ItemDict.Where(x => x.Key < selectedIndex))
+        {
+            if (index != DraggedItemIndex)
+            {
+                newDict[newIndex++] = item;
+            }
+        }
+
+        newDict[newIndex++] = ItemDict[DraggedItemIndex];
+
+        foreach (var (index, item) in ItemDict.Where(x => x.Key > selectedIndex))
+        {
+            if (index != DraggedItemIndex)
+            {
+                newDict[newIndex++] = item;
+            }
+        }
+
+        ItemDict = newDict;
+
+        ComponentValue = ItemDict.Values.ToList();
     }
 }

@@ -9,10 +9,7 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
-    @{
-        Console.WriteLine($"Parent: {IsDragging}");
-    }
-    <InternalDragAndDropSpacer Index="0" IsDragging="@IsDragging" DropNotifier="@ReOrderItems" />
+    <InternalDragAndDropSpacer Index="0" ShowDropZone="@ShowDropZone(0)" DropNotifier="@ReOrderItems" />
 
     @foreach (var (index, item) in ItemDict)
     {
@@ -24,6 +21,6 @@
             </Primary>
         </MBCard>
 
-        <InternalDragAndDropSpacer Index="@(index + 1)" IsDragging="@IsDragging" DropNotifier="@ReOrderItems" />
+        <InternalDragAndDropSpacer Index="@(index + 1)" ShowDropZone="@ShowDropZone(index + 1)" DropNotifier="@ReOrderItems" />
     }
 </div>

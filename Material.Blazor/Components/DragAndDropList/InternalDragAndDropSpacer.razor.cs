@@ -16,9 +16,9 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
 
     /// <summary>
-    /// True if an item is being dragged.
+    /// True to show the drop zone.
     /// </summary>
-    [Parameter] public bool IsDragging { get; set; }
+    [Parameter] public bool ShowDropZone { get; set; }
 
 
     /// <summary>

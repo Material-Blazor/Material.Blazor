@@ -3,10 +3,7 @@
 
 
 <div class="mb-drag-and-drop-list__separator">
-    @{
-        Console.WriteLine($"{Index}: {IsDragging}");
-    }
-    @if (IsDragging)
+    @if (ShowDropZone)
     {
         <div class="mb-drag-and-drop-list__drop-target @HoverClass"
          ondragover="event.preventDefault(); ev.dataTransfer.dropEffect = 'move';"
