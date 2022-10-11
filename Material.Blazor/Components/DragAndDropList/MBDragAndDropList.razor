@@ -17,7 +17,7 @@
 
         <MBCard class="@hasMovedClass" @key="@KeyGenerator(item)" CardStyle="@MBCardStyle.Outlined">
             <Primary>
-                <InternalDragAndDropItem Index="@index" DragStartNotifier="SetDraggedItemIndex" DragEndNotifier="ClearDraggedItemIndex">
+                <InternalDragAndDropItem Index="@index" Disabled="@AppliedDisabled" DragStartNotifier="SetDraggedItemIndex" DragEndNotifier="ClearDraggedItemIndex">
                     @Content(item)
                 </InternalDragAndDropItem>
             </Primary>

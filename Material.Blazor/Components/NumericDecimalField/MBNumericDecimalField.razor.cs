@@ -200,7 +200,7 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
         //      UnfocusedMagnitude
         await base.OnInitializedAsync();
 
-        var allowSign = !(Min != null && Min >= 0);
+        var allowSign = Min is not (not null and >= 0);
 
         FocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)FocusedMagnitude));
         UnfocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)UnfocusedMagnitude));

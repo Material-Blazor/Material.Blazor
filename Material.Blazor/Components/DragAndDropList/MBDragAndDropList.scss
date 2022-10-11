@@ -40,6 +40,14 @@ $animation-time: 3000ms;
     & > i {
         margin: auto;
     }
+
+    &.mb-drag-and-drop-list__disabled {
+        cursor: default;
+
+        & > i {
+            color: var(--mdc-theme-text-disabled-on-light);
+        }
+    }
 }
 
 .mb-drag-and-drop-list__user-content {

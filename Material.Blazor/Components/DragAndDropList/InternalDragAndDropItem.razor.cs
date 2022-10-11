@@ -33,6 +33,15 @@ public partial class InternalDragAndDropItem : ComponentFoundation
     [Parameter] public Action DragEndNotifier { get; set; }
 
 
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+
+
+    }
+
+
     private void OnDragStart()
     {
         DragStartNotifier(Index);
