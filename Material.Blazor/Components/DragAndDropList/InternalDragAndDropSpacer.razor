@@ -1,0 +1,18 @@
+﻿@namespace Material.Blazor.Internal
+@inherits ComponentFoundation
+
+
+<div class="mb-drag-and-drop-list__separator">
+    @if (ShowDropZone)
+    {
+        <div class="mb-drag-and-drop-list__drop-target @HoverClass"
+             ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'move';"
+             ondragstart="event.dataTransfer.setData('', event.target.id);"
+             @ondragenter="@OnDragEnter"
+             @ondragleave="@OnDragLeave"
+             @ondrop="@OnDropAsync">
+
+            <hr />
+        </div>
+    }
+</div>

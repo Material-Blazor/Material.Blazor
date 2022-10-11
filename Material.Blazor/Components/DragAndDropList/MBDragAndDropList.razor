@@ -1,0 +1,28 @@
+﻿@namespace Material.Blazor
+@inherits InputComponent<List<TItem>>
+@typeparam TItem
+
+
+<div @ref="@ElementReference"
+     class="mb-drag-and-drop-list @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+
+    <InternalDragAndDropSpacer Index="0" ShowDropZone="@ShowDropZone(0)" DropNotifier="@ReOrderItems" />
+
+    @foreach (var (index, item) in ItemDict)
+    {
+        var hasMovedClass = index >= FirstHasMovedIndex && index <= LastHasMovedIndex ? "mb-drag-and-drop__has-moved" : "";
+
+        <MBCard class="@hasMovedClass" @key="@KeyGenerator(item)" CardStyle="@MBCardStyle.Outlined">
+            <Primary>
+                <InternalDragAndDropItem Index="@index" DragStartNotifier="SetDraggedItemIndex" DragEndNotifier="ClearDraggedItemIndex">
+                    @Content(item)
+                </InternalDragAndDropItem>
+            </Primary>
+        </MBCard>
+
+        <InternalDragAndDropSpacer Index="@(index + 1)" ShowDropZone="@ShowDropZone(index + 1)" DropNotifier="@ReOrderItems" />
+    }
+</div>

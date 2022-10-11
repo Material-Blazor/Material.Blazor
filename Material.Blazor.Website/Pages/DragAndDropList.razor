@@ -1,0 +1,124 @@
+﻿@page "/draganddroplist"
+
+@using Humanizer
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="DragAndDropList"
+                   DemoComponent="@this"
+                   IsGeneric="true"
+                   Title="Drag and Drop List Demonstration">
+    <Description>
+        <p>
+            Demonstrates a drag and drop data list, which is a Material.Blazor Plus component. Presents content in a vertical set of cards that can be re-ordered by dragging and dropping.
+            Note that deliberately you cannot drag an item from one list to another.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-8">
+            <MBDragAndDropList @bind-Value="@Amounts" Context="amount">
+                <Content>
+                    <div class="mdc-layout-grid__inner" style="width: 100%;">
+                        <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
+                            @(GetText(amount))
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-3">
+                            <MBButton Label="Button" ButtonStyle="@MBButtonStyle.ContainedUnelevated" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-3">
+                            <MBCheckbox Label="Checkbox" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-3">
+                            <MBTextField Label="Text Field" TextInputStyle="@MBTextInputStyle.Outlined" />
+                        </div>
+                    </div>
+                </Content>
+            </MBDragAndDropList>
+
+            <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
+                <span>Check order: </span>
+
+                @{
+                    var dash = "";
+                }
+
+                @foreach (var amount in Amounts)
+                {
+                    <span>@dash @(GetText(amount))</span>
+                    dash = " - ";
+                }
+            </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBDragAndDropList @bind-Value="@Colors" Context="color">
+                <Content>
+                    <div class="mdc-layout-grid__inner" style="width: 100%;">
+                        <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
+                            @color
+                        </div>
+                    </div>
+                </Content>
+            </MBDragAndDropList>
+
+            <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
+                <span>Check order: </span>
+
+                @{
+                    dash = "";
+                }
+
+                @foreach (var color in Colors)
+                {
+                    <span>@dash @color</span>
+                    dash = " - ";
+                }
+            </div>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private List<decimal> amounts = new();
+    private List<decimal> Amounts
+    {
+        get => amounts;
+        set
+        {
+            amounts = value;
+            _ = InvokeAsync(StateHasChanged);
+        }
+    }
+
+
+    private List<string> colors = new() { "Red", "Green", "Blue" };
+    private List<string> Colors
+    {
+        get => colors;
+        set
+        {
+            colors = value;
+            _ = InvokeAsync(StateHasChanged);
+        }
+    }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        for (int i = 1; i <= 10; i++)
+        {
+            amounts.Add(i);
+        }
+    }
+
+
+    string GetText(decimal amount)
+    {
+        return Convert.ToInt32(amount).ToWords().Titleize();
+    }
+}
