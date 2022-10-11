@@ -1675,6 +1675,19 @@ references:
   commentId: T:Material.Blazor.Internal.InternalDragAndDropItem
   fullName: Material.Blazor.Internal.InternalDragAndDropItem
   nameWithType: InternalDragAndDropItem
+- uid: Material.Blazor.Internal.InternalDragAndDropItem.AutospaceContent
+  name: AutospaceContent
+  href: api/Material.Blazor.Internal.InternalDragAndDropItem.html#Material_Blazor_Internal_InternalDragAndDropItem_AutospaceContent
+  commentId: P:Material.Blazor.Internal.InternalDragAndDropItem.AutospaceContent
+  fullName: Material.Blazor.Internal.InternalDragAndDropItem.AutospaceContent
+  nameWithType: InternalDragAndDropItem.AutospaceContent
+- uid: Material.Blazor.Internal.InternalDragAndDropItem.AutospaceContent*
+  name: AutospaceContent
+  href: api/Material.Blazor.Internal.InternalDragAndDropItem.html#Material_Blazor_Internal_InternalDragAndDropItem_AutospaceContent_
+  commentId: Overload:Material.Blazor.Internal.InternalDragAndDropItem.AutospaceContent
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDragAndDropItem.AutospaceContent
+  nameWithType: InternalDragAndDropItem.AutospaceContent
 - uid: Material.Blazor.Internal.InternalDragAndDropItem.ChildContent
   name: ChildContent
   href: api/Material.Blazor.Internal.InternalDragAndDropItem.html#Material_Blazor_Internal_InternalDragAndDropItem_ChildContent
@@ -1727,12 +1740,38 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDragAndDropItem.Index
   nameWithType: InternalDragAndDropItem.Index
+- uid: Material.Blazor.Internal.InternalDragAndDropItem.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.Internal.InternalDragAndDropItem.html#Material_Blazor_Internal_InternalDragAndDropItem_OnInitializedAsync
+  commentId: M:Material.Blazor.Internal.InternalDragAndDropItem.OnInitializedAsync
+  fullName: Material.Blazor.Internal.InternalDragAndDropItem.OnInitializedAsync()
+  nameWithType: InternalDragAndDropItem.OnInitializedAsync()
+- uid: Material.Blazor.Internal.InternalDragAndDropItem.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.Internal.InternalDragAndDropItem.html#Material_Blazor_Internal_InternalDragAndDropItem_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.Internal.InternalDragAndDropItem.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDragAndDropItem.OnInitializedAsync
+  nameWithType: InternalDragAndDropItem.OnInitializedAsync
 - uid: Material.Blazor.Internal.InternalDragAndDropSpacer
   name: InternalDragAndDropSpacer
   href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html
   commentId: T:Material.Blazor.Internal.InternalDragAndDropSpacer
   fullName: Material.Blazor.Internal.InternalDragAndDropSpacer
   nameWithType: InternalDragAndDropSpacer
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.AutospaceContent
+  name: AutospaceContent
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_AutospaceContent
+  commentId: P:Material.Blazor.Internal.InternalDragAndDropSpacer.AutospaceContent
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.AutospaceContent
+  nameWithType: InternalDragAndDropSpacer.AutospaceContent
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.AutospaceContent*
+  name: AutospaceContent
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_AutospaceContent_
+  commentId: Overload:Material.Blazor.Internal.InternalDragAndDropSpacer.AutospaceContent
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.AutospaceContent
+  nameWithType: InternalDragAndDropSpacer.AutospaceContent
 - uid: Material.Blazor.Internal.InternalDragAndDropSpacer.DropNotifier
   name: DropNotifier
   href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_DropNotifier
@@ -1759,6 +1798,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.Index
   nameWithType: InternalDragAndDropSpacer.Index
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnInitializedAsync
+  commentId: M:Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync()
+  nameWithType: InternalDragAndDropSpacer.OnInitializedAsync()
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync
+  nameWithType: InternalDragAndDropSpacer.OnInitializedAsync
 - uid: Material.Blazor.Internal.InternalDragAndDropSpacer.ShowDropZone
   name: ShowDropZone
   href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_ShowDropZone
@@ -5581,6 +5633,23 @@ references:
   fullName.vb: Material.Blazor.MBDragAndDropList(Of TItem).Content
   nameWithType: MBDragAndDropList<TItem>.Content
   nameWithType.vb: MBDragAndDropList(Of TItem).Content
+- uid: Material.Blazor.MBDragAndDropList`1.DisplayCards
+  name: DisplayCards
+  href: api/Material.Blazor.MBDragAndDropList-1.html#Material_Blazor_MBDragAndDropList_1_DisplayCards
+  commentId: P:Material.Blazor.MBDragAndDropList`1.DisplayCards
+  fullName: Material.Blazor.MBDragAndDropList<TItem>.DisplayCards
+  fullName.vb: Material.Blazor.MBDragAndDropList(Of TItem).DisplayCards
+  nameWithType: MBDragAndDropList<TItem>.DisplayCards
+  nameWithType.vb: MBDragAndDropList(Of TItem).DisplayCards
+- uid: Material.Blazor.MBDragAndDropList`1.DisplayCards*
+  name: DisplayCards
+  href: api/Material.Blazor.MBDragAndDropList-1.html#Material_Blazor_MBDragAndDropList_1_DisplayCards_
+  commentId: Overload:Material.Blazor.MBDragAndDropList`1.DisplayCards
+  isSpec: "True"
+  fullName: Material.Blazor.MBDragAndDropList<TItem>.DisplayCards
+  fullName.vb: Material.Blazor.MBDragAndDropList(Of TItem).DisplayCards
+  nameWithType: MBDragAndDropList<TItem>.DisplayCards
+  nameWithType.vb: MBDragAndDropList(Of TItem).DisplayCards
 - uid: Material.Blazor.MBDragAndDropList`1.GetKeysFunc
   name: GetKeysFunc
   href: api/Material.Blazor.MBDragAndDropList-1.html#Material_Blazor_MBDragAndDropList_1_GetKeysFunc
