@@ -33,7 +33,8 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     private int DraggedItemIndex { get; set; } = -1;
     private bool IsDragging { get; set; } = false;
     private SortedDictionary<int, TItem> ItemDict { get; set; } = new();
-    private int HasMovedIndex { get; set; } = -1;
+    private int FirstHasMovedIndex { get; set; } = -1;
+    private int LastHasMovedIndex { get; set; } = -1;
 
 
     protected override async Task OnInitializedAsync()
@@ -116,12 +117,14 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
         ItemDict = newDict;
         ComponentValue = ItemDict.Values.ToList();
 
-        HasMovedIndex = selectedIndex;
+        FirstHasMovedIndex = selectedIndex > DraggedItemIndex ? DraggedItemIndex : selectedIndex;
+        LastHasMovedIndex = selectedIndex > DraggedItemIndex ? selectedIndex - 1 : DraggedItemIndex;
         _ = InvokeAsync(StateHasChanged);
 
         await Task.Delay(300);
 
-        HasMovedIndex = -1;
+        FirstHasMovedIndex = -1;
+        LastHasMovedIndex = -1;
         _ = InvokeAsync(StateHasChanged);
     }
 }
