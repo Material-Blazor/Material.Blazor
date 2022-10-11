@@ -96,12 +96,8 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
 		<!--Keep this Removes-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<Content Remove="wwwroot\material.blazor.js" />
-		<Content Remove="wwwroot\material.blazor.min.js" />
 		<InputStaticAssetsScripts Remove="Components\DragAndDropList\MBDragAndDropList.ts" />
 		<InputStaticAssetsStyles Remove="Components\DragAndDropList\MBDragAndDropList.scss" />
-		<Content Remove="wwwroot\material.blazor.min.css" />
-		<Content Remove="wwwroot\material.blazor.css" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
