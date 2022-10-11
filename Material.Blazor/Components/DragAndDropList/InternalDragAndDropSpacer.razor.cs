@@ -35,6 +35,8 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
     private string HoverClass { get; set; } = "";
     private string SeparatorClass { get; set; } = "";
+    private ElementReference ElementReference { get; set; }
+    private bool InitiateDropTarget { get; set; } = false;
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -43,6 +45,28 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
         await base.OnInitializedAsync().ConfigureAwait(false);
 
         SeparatorClass = "mb-drag-and-drop-list__separator" + (AutospaceContent ? " mb-drag-and-drop-list__autospaced" : "");
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        InitiateDropTarget = ShowDropZone;
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnInitializedAsync().ConfigureAwait(false);
+
+        if (InitiateDropTarget)
+        {
+            await InvokeJsVoidAsync("MaterialBlazor.MBDragAndDropList.initDropTarget", ElementReference).ConfigureAwait(false);
+            InitiateDropTarget = false;
+        }
     }
 
 
