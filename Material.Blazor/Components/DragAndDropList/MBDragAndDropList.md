@@ -10,7 +10,9 @@ A list of user provided render fragments that can be re-ordered with drag and dr
 
 ## Details
 
-- TBD.
+- Represents a list type `TItem` as a vertical series of cards with a `RenderFragment` for each item that can be dragged and dropped to re-order the list.
+- Items can only be dropped within their own containing list, and other `MBDragAndDropList` components on the same page will not accept the item being dragged.
+- Items also cannot be moved to the same position.
 
 ## Assisting Blazor Rendering with `@key`
 
