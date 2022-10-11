@@ -15,7 +15,7 @@
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-12">
+        <div class="mdc-layout-grid__cell--span-8">
             <MBDragAndDropList Value="@Amounts" Context="amount">
                 <Content>
                     <div class="mdc-layout-grid__inner" style="width: 100%;">
@@ -34,18 +34,46 @@
                     </div>
                 </Content>
             </MBDragAndDropList>
+
+            <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
+                <span>Check order: </span>
+
+                @{
+                    var dash = "";
+                }
+
+                @foreach (var amount in Amounts)
+                {
+                    <span>@dash @(GetText(amount))</span>
+                    dash = " - ";
+                }
+            </div>
         </div>
 
-        <div class="mdc-layout-grid__cell--span-12">
-            @{
-                var dash = "";
-            }
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBDragAndDropList Value="@Colors" Context="color">
+                <Content>
+                    <div class="mdc-layout-grid__inner" style="width: 100%;">
+                        <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
+                            @color
+                        </div>
+                    </div>
+                </Content>
+            </MBDragAndDropList>
 
-            @foreach (var amount in Amounts)
-            {
-                <span>@dash @(GetText(amount))</span>
-                dash = " - ";
-            }
+            <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
+                <span>Check order: </span>
+
+                @{
+                    dash = "";
+                }
+
+                @foreach (var color in Colors)
+                {
+                    <span>@dash @color</span>
+                    dash = " - ";
+                }
+            </div>
         </div>
     </PageContent>
 </DemonstrationPage>
@@ -54,6 +82,7 @@
 
 @code {
     private List<decimal> Amounts = new();
+    private List<string> Colors = new() { "Red", "Green", "Blue" };
 
     protected override void OnInitialized()
     {

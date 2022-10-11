@@ -12,7 +12,7 @@
     @{
         Console.WriteLine($"Parent: {IsDragging}");
     }
-    <InternalDragAndDropSpacer Index="0" ParentId="_id" DropNotifier="@ReOrderItems" />
+    <InternalDragAndDropSpacer Index="0" IsDragging="@IsDragging" DropNotifier="@ReOrderItems" />
 
     @foreach (var (index, item) in ItemDict)
     {
