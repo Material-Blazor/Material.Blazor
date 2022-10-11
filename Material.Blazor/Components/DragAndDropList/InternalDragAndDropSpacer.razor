@@ -3,11 +3,17 @@
 
 
 <div class="mb-drag-and-drop-list__separator">
-    <div @ref="@ElementReference" class="mb-drag-and-drop-list__drop-target @HoverClass"
+    @{
+        Console.WriteLine($"{Index}: {IsDragging}");
+    }
+    @if (IsDragging)
+    {
+        <div class="mb-drag-and-drop-list__drop-target @HoverClass"
          ondragover="event.preventDefault(); ev.dataTransfer.dropEffect = 'move';"
          ondragstart="event.dataTransfer.setData('', event.target.id);"
          @ondragenter="@OnDragEnter"
          @ondragleave="@OnDragLeave"
          @ondrop="@OnDrop">
-    </div>
+        </div>
+    }
 </div>

@@ -16,13 +16,18 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
 
     /// <summary>
+    /// True if an item is being dragged.
+    /// </summary>
+    [Parameter] public bool IsDragging { get; set; }
+
+
+    /// <summary>
     /// Action called when item is dropped on this spacer.
     /// </summary>
     [Parameter] public Action<int> DropNotifier { get; set; }
 
 
     private string HoverClass { get; set; } = "";
-    private ElementReference ElementReference { get; set; }
 
 
     private void OnDragEnter()
@@ -43,8 +48,4 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
     {
         DropNotifier(Index);
     }
-
-
-    /// <inheritdoc/>
-    //internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDragAndDrop.init", ElementReference);
 }

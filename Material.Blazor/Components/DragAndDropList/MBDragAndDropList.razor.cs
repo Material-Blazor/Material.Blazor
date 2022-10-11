@@ -28,17 +28,10 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     private ElementReference ElementReference { get; set; }
     private Func<TItem, object> KeyGenerator { get; set; }
     private string HoverClass { get; set; } = "";
+    private int DraggedItemIndex { get; set; } = -1;
+    private bool IsDragging { get; set; } = false;
+    private SortedDictionary<int, TItem> ItemDict { get; set; } = new();
 
-
-    //// Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    await base.OnInitializedAsync();
-
-    //    ConditionalCssClasses
-    //        .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-    //        .AddIf("mdc-data-table--sticky-header", () => StickyHeader);
-    //}
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -47,11 +40,44 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
         await base.OnParametersSetAsync();
 
         KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
+
+        BuildItemDict();
     }
 
 
-    private void DropNotifier(int index)
+    private void BuildItemDict()
     {
-        Console.Write($" '{index}' ");
+        ItemDict.Clear();
+
+        var index = 0;
+
+        foreach (var item in Value)
+        {
+            ItemDict.Add(index++, item);
+        }
+    }
+
+
+    private void SetDraggedItemIndex(int index)
+    {
+        DraggedItemIndex = index;
+        IsDragging = true;
+        Console.WriteLine($"Dragging {DraggedItemIndex}, {IsDragging}");
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+
+    private void ClearDraggedItemIndex()
+    {
+        DraggedItemIndex = -1;
+        IsDragging = false;
+        Console.WriteLine($"Dragging {DraggedItemIndex}, {IsDragging}");
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+
+    private void ReOrderItems(int index)
+    {
+        Console.WriteLine($" '{index}' ");
     }
 }

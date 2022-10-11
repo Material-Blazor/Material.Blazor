@@ -9,28 +9,21 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
-    <InternalDragAndDropSpacer Index="0" DropNotifier="@DropNotifier" />
-
     @{
-        var index = 1;
+        Console.WriteLine($"Parent: {IsDragging}");
     }
+    <InternalDragAndDropSpacer Index="0" ParentId="_id" DropNotifier="@ReOrderItems" />
 
-    @foreach (var item in Value)
+    @foreach (var (index, item) in ItemDict)
     {
-        <MBCard CardStyle="@MBCardStyle.Outlined">
+        <MBCard @key="@KeyGenerator(item)" CardStyle="@MBCardStyle.Outlined">
             <Primary>
-                <div class="mb-drag-and-drop-list__card-contents">
-                    <div class="mb-drag-and-drop-list__draggable"
-                         draggable="true">
-                        <MBIcon IconName="drag_indicator" />
-                    </div>
-                    <div class="mb-drag-and-drop-list__user-content mb-card__autostyled">
-                        @Content(item)
-                    </div>
-                </div>
+                <InternalDragAndDropItem Index="@index" DragStartNotifier="SetDraggedItemIndex" DragEndNotifier="ClearDraggedItemIndex">
+                    @Content(item)
+                </InternalDragAndDropItem>
             </Primary>
         </MBCard>
 
-        <InternalDragAndDropSpacer Index="@(index++)" DropNotifier="@DropNotifier" />
+        <InternalDragAndDropSpacer Index="@(index + 1)" IsDragging="@IsDragging" DropNotifier="@ReOrderItems" />
     }
 </div>
