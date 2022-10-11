@@ -8,6 +8,10 @@ $drag-zone-width: 60px;
     flex-flow: column nowrap;
 }
 
+.mb-drag-and-drop__has-moved {
+    animation: mbDragAndDropHasMoved 3000ms;
+}
+
 .mb-drag-and-drop-list__card-contents {
     height: 100%;
     display: flex;
@@ -46,5 +50,39 @@ $drag-zone-width: 60px;
         &.mb-drag-and-drop-list__hover {
             opacity: var(--mdc-ripple-hover-opacity, 0.04);
         }
+    }
+}
+
+@keyframes mbDragAndDropHasMoved {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+@-webkit-keyframes mbDragAndDropHasMoved {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
     }
 }

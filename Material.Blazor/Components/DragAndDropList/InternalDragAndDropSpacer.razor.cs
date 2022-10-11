@@ -24,7 +24,7 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
     /// <summary>
     /// Action called when item is dropped on this spacer.
     /// </summary>
-    [Parameter] public Action<int> DropNotifier { get; set; }
+    [Parameter] public Func<int, Task> DropNotifier { get; set; }
 
 
     private string HoverClass { get; set; } = "";
@@ -32,7 +32,7 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
     private void OnDragEnter()
     {
-        HoverClass = " mb-drag-and-drop-list__hover";
+        HoverClass = "mb-drag-and-drop-list__hover";
         _ = InvokeAsync(StateHasChanged);
     }
 
@@ -44,8 +44,9 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
     }
 
 
-    private void OnDrop()
+    private async Task OnDropAsync()
     {
-        DropNotifier(Index);
+        HoverClass = string.Empty;
+        await DropNotifier(Index).ConfigureAwait(false);
     }
 }
