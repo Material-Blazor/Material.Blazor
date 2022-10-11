@@ -1504,6 +1504,114 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   padding-left: 0px;
 }
 
+.mb-drag-and-drop-list {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.mb-drag-and-drop__has-moved {
+  animation: mbDragAndDropHasMoved 3000ms;
+}
+
+.mb-drag-and-drop-list__card-contents {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.mb-drag-and-drop-list__draggable {
+  height: 48px;
+  width: 60px;
+  margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
+}
+.mb-drag-and-drop-list__draggable > i {
+  margin: auto;
+}
+
+.mb-drag-and-drop-list__user-content {
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+}
+
+.mb-drag-and-drop-list__separator {
+  height: 24px;
+  width: 100%;
+  z-index: 1;
+}
+.mb-drag-and-drop-list__separator > .mb-drag-and-drop-list__drop-target {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  margin: -12px 0px;
+  background-color: rgba(0, 0, 0, 0);
+  border: dotted;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 4px;
+  transition: ease-in-out 120ms;
+}
+.mb-drag-and-drop-list__separator > .mb-drag-and-drop-list__drop-target > hr {
+  margin: auto 0;
+  width: 100%;
+  border-top: 2px dashed var(--mdc-theme-secondary);
+  pointer-events: none;
+  transition: ease-in-out 120ms;
+}
+.mb-drag-and-drop-list__separator > .mb-drag-and-drop-list__drop-target.mb-drag-and-drop-list__hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: var(--mdc-theme-secondary);
+}
+.mb-drag-and-drop-list__separator > .mb-drag-and-drop-list__drop-target.mb-drag-and-drop-list__hover > hr {
+  border-top: 2px dashed rgba(0, 0, 0, 0);
+}
+.mb-drag-and-drop-list__separator > .mb-drag-and-drop-list__rule {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  align-items: center;
+}
+.mb-drag-and-drop-list__separator > .mb-drag-and-drop-list__rule.mb-drag-and-drop-list__hover {
+  opacity: 0;
+}
+
+@keyframes mbDragAndDropHasMoved {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+}
+@-webkit-keyframes mbDragAndDropHasMoved {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+}
 .mb-file-upload--button {
   position: relative;
   width: fit-content;
