@@ -6,7 +6,7 @@
     @if (ShowDropZone)
     {
         <div class="mb-drag-and-drop-list__drop-target @HoverClass"
-         ondragover="event.preventDefault(); ev.dataTransfer.dropEffect = 'move';"
+         ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'move';"
          ondragstart="event.dataTransfer.setData('', event.target.id);"
          @ondragenter="@OnDragEnter"
          @ondragleave="@OnDragLeave"
