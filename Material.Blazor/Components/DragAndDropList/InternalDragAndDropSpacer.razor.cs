@@ -22,6 +22,7 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
 
     private string HoverClass { get; set; } = "";
+    private ElementReference ElementReference { get; set; }
 
 
     private void OnDragEnter()
@@ -42,4 +43,8 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
     {
         DropNotifier(Index);
     }
+
+
+    /// <inheritdoc/>
+    //internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDragAndDrop.init", ElementReference);
 }

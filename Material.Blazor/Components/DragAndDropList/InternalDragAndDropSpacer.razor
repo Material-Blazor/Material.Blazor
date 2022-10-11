@@ -3,10 +3,11 @@
 
 
 <div class="mb-drag-and-drop-list__separator">
-    <div class="mb-drag-and-drop-list__drop-target @HoverClass"
-            @ondragenter="@OnDragEnter"
-            @ondragleave="@OnDragLeave"
-            @ondragover="@(() => { })"
-            @ondrop="@OnDrop">
+    <div @ref="@ElementReference" class="mb-drag-and-drop-list__drop-target @HoverClass"
+         ondragover="event.preventDefault(); ev.dataTransfer.dropEffect = 'move';"
+         ondragstart="event.dataTransfer.setData('', event.target.id);"
+         @ondragenter="@OnDragEnter"
+         @ondragleave="@OnDragLeave"
+         @ondrop="@OnDrop">
     </div>
 </div>
