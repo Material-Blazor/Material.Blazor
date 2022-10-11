@@ -90,8 +90,6 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
 
     private void ReOrderItems(int selectedIndex)
     {
-        Console.WriteLine($"Move item {DraggedItemIndex} to location {selectedIndex} ");
-
         SortedDictionary<int, TItem> newDict = new();
 
         var newIndex = 0;
@@ -106,7 +104,7 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
 
         newDict[newIndex++] = ItemDict[DraggedItemIndex];
 
-        foreach (var (index, item) in ItemDict.Where(x => x.Key > selectedIndex))
+        foreach (var (index, item) in ItemDict.Where(x => x.Key >= selectedIndex))
         {
             if (index != DraggedItemIndex)
             {
