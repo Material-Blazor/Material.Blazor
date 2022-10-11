@@ -18,64 +18,81 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-8">
-            <MBDragAndDropList @bind-Value="@Amounts" Context="amount">
-                <Content>
-                    <div class="mdc-layout-grid__inner" style="width: 100%;">
-                        <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
-                            @(GetText(amount))
-                        </div>
-                        <div class="mdc-layout-grid__cell--span-3">
-                            <MBButton Label="Button" ButtonStyle="@MBButtonStyle.ContainedUnelevated" />
-                        </div>
-                        <div class="mdc-layout-grid__cell--span-3">
-                            <MBCheckbox Label="Checkbox" />
-                        </div>
-                        <div class="mdc-layout-grid__cell--span-3">
-                            <MBTextField Label="Text Field" TextInputStyle="@MBTextInputStyle.Outlined" />
-                        </div>
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Cards With Embedded Controls
+                    </h2>
+
+                    <MBDragAndDropList @bind-Value="@Amounts" DisplayCards="true" Context="amount">
+                        <Content>
+                            <div class="mdc-layout-grid__inner" style="width: 100%;">
+                                <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
+                                    @(GetText(amount))
+                                </div>
+                                <div class="mdc-layout-grid__cell--span-3">
+                                    <MBButton Label="Button" ButtonStyle="@MBButtonStyle.ContainedUnelevated" />
+                                </div>
+                                <div class="mdc-layout-grid__cell--span-3">
+                                    <MBCheckbox Label="Checkbox" />
+                                </div>
+                                <div class="mdc-layout-grid__cell--span-3">
+                                    <MBTextField Label="Text Field" TextInputStyle="@MBTextInputStyle.Outlined" />
+                                </div>
+                            </div>
+                        </Content>
+                    </MBDragAndDropList>
+
+                    <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
+                        <span>Check order: </span>
+
+                        @{
+                            var dash = "";
+                        }
+
+                        @foreach (var amount in Amounts)
+                        {
+                            <span>@dash @(GetText(amount))</span>
+                            dash = " - ";
+                        }
                     </div>
-                </Content>
-            </MBDragAndDropList>
-
-            <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
-                <span>Check order: </span>
-
-                @{
-                    var dash = "";
-                }
-
-                @foreach (var amount in Amounts)
-                {
-                    <span>@dash @(GetText(amount))</span>
-                    dash = " - ";
-                }
-            </div>
+                </Primary>
+            </MBCard>
         </div>
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBDragAndDropList @bind-Value="@Colors" Context="color">
-                <Content>
-                    <div class="mdc-layout-grid__inner" style="width: 100%;">
-                        <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
-                            @color
-                        </div>
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Simple List Without Spacing
+                    </h2>
+
+                    <MBDragAndDropList @bind-Value="@Colors" Context="color">
+                        <Content>
+                            <div class="mdc-layout-grid__inner" style="width: 100%;">
+                                <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
+                                    @color
+                                </div>
+                            </div>
+                        </Content>
+                    </MBDragAndDropList>
+
+                    <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
+                        <span>Check order: </span>
+
+                        @{
+                            var dash = "";
+                        }
+
+                        @foreach (var color in Colors)
+                        {
+                            <span>@dash @color</span>
+                            dash = " - ";
+                        }
                     </div>
-                </Content>
-            </MBDragAndDropList>
+                </Primary>
+            </MBCard>
 
-            <div class="mdc-typography--body2" style="color: var(--mb-badge-background-color);">
-                <span>Check order: </span>
-
-                @{
-                    dash = "";
-                }
-
-                @foreach (var color in Colors)
-                {
-                    <span>@dash @color</span>
-                    dash = " - ";
-                }
-            </div>
         </div>
     </PageContent>
 </DemonstrationPage>

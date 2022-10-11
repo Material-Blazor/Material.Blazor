@@ -1,13 +1,16 @@
 ﻿@use "@material/theme";
 @use 'sass:color';
 
-$separator-height: 24px;
+$autospaced-separator-height: 24px;
+
 $drop-zone-overlap: 12px;
-$drop-zone-height: $separator-height + 2 * $drop-zone-overlap;
+$drop-zone-height: $autospaced-separator-height + 2 * $drop-zone-overlap;
 $drop-zone-rule-width: 2px;
 $drop-zone-border-width: 4px;
+$drop-zone-hr-top-margin: $drop-zone-rule-width  / 2;
 $drag-zone-height: 48px;
 $drag-zone-width: 60px;
+
 $hover-transition-time: 120ms;
 $animation-time: 3000ms;
 
@@ -57,9 +60,16 @@ $animation-time: 3000ms;
 }
 
 .mb-drag-and-drop-list__separator {
-    height: $separator-height;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: 0px;
     width: 100%;
     z-index: 1;
+
+    &.mb-drag-and-drop-list__autospaced {
+        height: $autospaced-separator-height;
+    }
 
     & > .mb-drag-and-drop-list__drop-target {
         display: flex;
@@ -69,7 +79,6 @@ $animation-time: 3000ms;
         -webkit-box-sizing: border-box;
         width: 100%;
         height: $drop-zone-height;
-        margin: -$drop-zone-overlap 0px;
         background-color: rgba(0, 0, 0, 0);
         border: dotted;
         border-color: rgba(0, 0, 0, 0);
@@ -77,9 +86,13 @@ $animation-time: 3000ms;
         transition: ease-in-out $hover-transition-time;
 
         & > hr {
-            margin: auto 0;
+            margin: $drop-zone-hr-top-margin 0 0 0;
             width: 100%;
-            border-top: $drop-zone-rule-width dashed var(--mdc-theme-secondary);
+            border: none;
+            border-top: $drop-zone-rule-width dotted var(--mdc-theme-secondary);
+            color: rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0);
+            height: $drop-zone-rule-width;
             pointer-events: none;
             transition: ease-in-out $hover-transition-time;
         }
@@ -89,7 +102,7 @@ $animation-time: 3000ms;
             border-color: var(--mdc-theme-secondary);
 
             & > hr {
-                border-top: $drop-zone-rule-width dashed rgba(0, 0, 0, 0);
+                border-top-color: rgba(0, 0, 0, 0);
             }
         }
     }

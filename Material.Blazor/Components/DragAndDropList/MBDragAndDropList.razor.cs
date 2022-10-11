@@ -22,6 +22,12 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
 
 
     /// <summary>
+    /// Displays each list item in cards if true.
+    /// </summary>
+    [Parameter] public bool DisplayCards { get; set; }
+
+
+    /// <summary>
     /// Render fragment for each displayable item.
     /// </summary>
     [Parameter] public RenderFragment<TItem> Content { get; set; }
