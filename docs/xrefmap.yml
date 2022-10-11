@@ -1798,6 +1798,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.Index
   nameWithType: InternalDragAndDropSpacer.Index
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnAfterRenderAsync(System.Boolean)
+  name: OnAfterRenderAsync(Boolean)
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnAfterRenderAsync_System_Boolean_
+  commentId: M:Material.Blazor.Internal.InternalDragAndDropSpacer.OnAfterRenderAsync(System.Boolean)
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnAfterRenderAsync(System.Boolean)
+  nameWithType: InternalDragAndDropSpacer.OnAfterRenderAsync(Boolean)
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnAfterRenderAsync*
+  name: OnAfterRenderAsync
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnAfterRenderAsync_
+  commentId: Overload:Material.Blazor.Internal.InternalDragAndDropSpacer.OnAfterRenderAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnAfterRenderAsync
+  nameWithType: InternalDragAndDropSpacer.OnAfterRenderAsync
 - uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync
   name: OnInitializedAsync()
   href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnInitializedAsync
@@ -1811,6 +1824,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnInitializedAsync
   nameWithType: InternalDragAndDropSpacer.OnInitializedAsync
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnParametersSetAsync
+  commentId: M:Material.Blazor.Internal.InternalDragAndDropSpacer.OnParametersSetAsync
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnParametersSetAsync()
+  nameWithType: InternalDragAndDropSpacer.OnParametersSetAsync()
+- uid: Material.Blazor.Internal.InternalDragAndDropSpacer.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.Internal.InternalDragAndDropSpacer.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDragAndDropSpacer.OnParametersSetAsync
+  nameWithType: InternalDragAndDropSpacer.OnParametersSetAsync
 - uid: Material.Blazor.Internal.InternalDragAndDropSpacer.ShowDropZone
   name: ShowDropZone
   href: api/Material.Blazor.Internal.InternalDragAndDropSpacer.html#Material_Blazor_Internal_InternalDragAndDropSpacer_ShowDropZone
