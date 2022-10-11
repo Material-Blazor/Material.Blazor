@@ -3,15 +3,26 @@
 
 
 <div class="mb-drag-and-drop-list__card-contents">
-    <div class="mb-drag-and-drop-list__draggable"
-         draggable="true"
-         @ondragstart="@OnDragStart"
-         @ondragend="@OnDragEnd">
+    @if (AppliedDisabled)
+    {
+        <div class="mb-drag-and-drop-list__draggable mb-drag-and-drop-list__disabled"
+             disabled>
 
-        <MBIcon IconName="drag_indicator" />
-    </div>
+            <MBIcon IconName="drag_indicator" />
+        </div>
+    }
+    else
+    {
+        <div class="mb-drag-and-drop-list__draggable"
+             draggable="true"
+             @ondragstart="@OnDragStart"
+             @ondragend="@OnDragEnd">
 
-    <div class="mb-drag-and-drop-list__user-content mb-card__autostyled">
+            <MBIcon IconName="drag_indicator" />
+        </div>
+    }
+
+    <div class="@UserContentClass">
         @ChildContent
     </div>
 </div>

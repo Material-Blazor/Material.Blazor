@@ -22,6 +22,12 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
 
 
     /// <summary>
+    /// Displays each list item in cards if true.
+    /// </summary>
+    [Parameter] public bool DisplayCards { get; set; }
+
+
+    /// <summary>
     /// Render fragment for each displayable item.
     /// </summary>
     [Parameter] public RenderFragment<TItem> Content { get; set; }
@@ -37,12 +43,14 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     private int LastHasMovedIndex { get; set; } = -1;
 
 
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
         ForceShouldRenderToTrue = true;
     }
+
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnParametersSetAsync()

@@ -16,6 +16,12 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
 
     /// <summary>
+    /// Gives the separator a distinct with for use between cards.
+    /// </summary>
+    [Parameter] public bool AutospaceContent { get; set; }
+
+
+    /// <summary>
     /// True to show the drop zone.
     /// </summary>
     [Parameter] public bool ShowDropZone { get; set; }
@@ -28,6 +34,16 @@ public partial class InternalDragAndDropSpacer : ComponentFoundation
 
 
     private string HoverClass { get; set; } = "";
+    private string SeparatorClass { get; set; } = "";
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync().ConfigureAwait(false);
+
+        SeparatorClass = "mb-drag-and-drop-list__separator" + (AutospaceContent ? " mb-drag-and-drop-list__autospaced" : "");
+    }
 
 
     private void OnDragEnter()

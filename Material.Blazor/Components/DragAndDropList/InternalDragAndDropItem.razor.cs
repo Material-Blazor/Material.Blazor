@@ -16,6 +16,12 @@ public partial class InternalDragAndDropItem : ComponentFoundation
 
 
     /// <summary>
+    /// Adds padding to user supplied content if true.
+    /// </summary>
+    [Parameter] public bool AutospaceContent { get; set; }
+
+
+    /// <summary>
     /// The item's render fragment.
     /// </summary>
     [Parameter] public RenderFragment ChildContent { get; set; }
@@ -31,6 +37,18 @@ public partial class InternalDragAndDropItem : ComponentFoundation
     /// Action called when item is dropped on this spacer.
     /// </summary>
     [Parameter] public Action DragEndNotifier { get; set; }
+
+
+    private string UserContentClass { get; set; } = "";
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync().ConfigureAwait(false);
+
+        UserContentClass = "mb-drag-and-drop-list__user-content" + (AutospaceContent ? " mb-card__autostyled" : "");
+    }
 
 
     private void OnDragStart()
