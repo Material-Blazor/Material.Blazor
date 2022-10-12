@@ -192,6 +192,12 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="Components\IntSlider\MBIntSlider.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	</ItemGroup>
+
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
 		<MakeDir Directories="wwwroot" />
