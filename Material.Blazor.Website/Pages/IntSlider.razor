@@ -1,0 +1,100 @@
+﻿@page "/intslider"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="IntSlider"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-slider#slider"
+                   RequiresDisableSelection="true"
+                   Title="Single Thumb Integer Slider">
+    <Description>
+        <p>
+            Single thumb sliders, responding to user events in three ways:
+
+            <ol>
+                <li><strong>Thumb-up</strong> emits events when the user lets releases the slider after movement.</li>
+                <li><strong>Continuous Debounced</strong> emits events while the user is holding the thumb, but only after pausing motion.</li>
+                <li><strong>Continuous Throttled</strong> emits events while the user is moving the thumb, but throttled against the specified delay.</li>
+            </ol>
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Integer Sliders
+                    </h2>
+
+                    <p>With non-continuous input, tickmarks on the second slider, 0-10 range, yielding a value of @ValueA.ToString("N0")</p>
+                    <p>
+                        <MBIntSlider AriaLabel="Discrete Slider"
+                                     @bind-Value="@ValueA"
+                                     ShowTickmarks="false"
+                                     ValueMax="10"
+                                     ValueMin="0" />
+                    </p>
+                    <p>
+                        <MBIntSlider AriaLabel="Discrete Slider"
+                                     @bind-Value="@ValueA"
+                                     ShowTickmarks="true"
+                                     ValueMax="10"
+                                     ValueMin="0" />
+                    </p>
+
+                    <p>With continuous input, tickmarks on the second slider, 0-10 range and 300ms debounce delay, yielding a value of @ValueB.ToString("N0")</p>
+                    <p>
+                        <MBIntSlider AriaLabel="Discrete Slider"
+                                     @bind-Value="@ValueB"
+                                     ContinuousInputDelay="@DebounceDelay"
+                                     EventType="@MBInputEventType.OnInputDebounced"
+                                     ShowTickmarks="false"
+                                     ValueMax="10"
+                                     ValueMin="0" />
+                    </p>
+                    <p>
+                        <MBIntSlider AriaLabel="Discrete Slider"
+                                     @bind-Value="@ValueB"
+                                     ContinuousInputDelay="@DebounceDelay"
+                                     EventType="@MBInputEventType.OnInputDebounced"
+                                     ShowTickmarks="true"
+                                     ValueMax="10"
+                                     ValueMin="0" />
+                    </p>
+
+                    <p>With continuous input, tickmarks on the second slider, 0-10 range and 300ms throttle delay, yielding a value of @ValueC.ToString("N0")</p>
+                    <p>
+                        <MBIntSlider AriaLabel="Discrete Slider"
+                                     @bind-Value="@ValueC"
+                                     ContinuousInputDelay="@DebounceDelay"
+                                     EventType="@MBInputEventType.OnInputThrottled"
+                                     ShowTickmarks="false"
+                                     ValueMax="10"
+                                     ValueMin="0" />
+                    </p>
+                    <p>
+                        <MBIntSlider AriaLabel="Discrete Slider"
+                                     @bind-Value="@ValueC"
+                                     ContinuousInputDelay="@DebounceDelay"
+                                     EventType="@MBInputEventType.OnInputThrottled"
+                                     ShowTickmarks="true"
+                                     ValueMax="10"
+                                     ValueMin="0" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    int ValueA = 5;
+    int ValueB = 3;
+    int ValueC = 8;
+
+    uint DebounceDelay = 300;
+}

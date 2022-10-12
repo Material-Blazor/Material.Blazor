@@ -88,6 +88,9 @@
 - name: MBIconButtonToggle
   topicUid: C.MBIconButtonToggle
 
+- name: MBIntSlider
+  topicUid: C.MBIntSlider
+
 - name: MBLinearProgress
   topicUid: C.MBLinearProgress
 
