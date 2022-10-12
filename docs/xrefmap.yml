@@ -151,6 +151,9 @@ references:
 - uid: C.MBIconButtonToggle
   name: MBIconButtonToggle
   href: Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.html
+- uid: C.MBIntSlider
+  name: MBIntSlider
+  href: Material.Blazor/Components/IntSlider/MBIntSlider.html
 - uid: C.MBLinearProgress
   name: MBLinearProgress
   href: Material.Blazor/Components/LinearProgress/MBLinearProgress.html
@@ -7710,6 +7713,103 @@ references:
   commentId: F:Material.Blazor.MBInputEventType.OnInputThrottled
   fullName: Material.Blazor.MBInputEventType.OnInputThrottled
   nameWithType: MBInputEventType.OnInputThrottled
+- uid: Material.Blazor.MBIntSlider
+  name: MBIntSlider
+  href: api/Material.Blazor.MBIntSlider.html
+  commentId: T:Material.Blazor.MBIntSlider
+  fullName: Material.Blazor.MBIntSlider
+  nameWithType: MBIntSlider
+- uid: Material.Blazor.MBIntSlider.AriaLabel
+  name: AriaLabel
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_AriaLabel
+  commentId: P:Material.Blazor.MBIntSlider.AriaLabel
+  fullName: Material.Blazor.MBIntSlider.AriaLabel
+  nameWithType: MBIntSlider.AriaLabel
+- uid: Material.Blazor.MBIntSlider.AriaLabel*
+  name: AriaLabel
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_AriaLabel_
+  commentId: Overload:Material.Blazor.MBIntSlider.AriaLabel
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.AriaLabel
+  nameWithType: MBIntSlider.AriaLabel
+- uid: Material.Blazor.MBIntSlider.ContinuousInputDelay
+  name: ContinuousInputDelay
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ContinuousInputDelay
+  commentId: P:Material.Blazor.MBIntSlider.ContinuousInputDelay
+  fullName: Material.Blazor.MBIntSlider.ContinuousInputDelay
+  nameWithType: MBIntSlider.ContinuousInputDelay
+- uid: Material.Blazor.MBIntSlider.ContinuousInputDelay*
+  name: ContinuousInputDelay
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ContinuousInputDelay_
+  commentId: Overload:Material.Blazor.MBIntSlider.ContinuousInputDelay
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.ContinuousInputDelay
+  nameWithType: MBIntSlider.ContinuousInputDelay
+- uid: Material.Blazor.MBIntSlider.EventType
+  name: EventType
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_EventType
+  commentId: P:Material.Blazor.MBIntSlider.EventType
+  fullName: Material.Blazor.MBIntSlider.EventType
+  nameWithType: MBIntSlider.EventType
+- uid: Material.Blazor.MBIntSlider.EventType*
+  name: EventType
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_EventType_
+  commentId: Overload:Material.Blazor.MBIntSlider.EventType
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.EventType
+  nameWithType: MBIntSlider.EventType
+- uid: Material.Blazor.MBIntSlider.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_OnInitializedAsync
+  commentId: M:Material.Blazor.MBIntSlider.OnInitializedAsync
+  fullName: Material.Blazor.MBIntSlider.OnInitializedAsync()
+  nameWithType: MBIntSlider.OnInitializedAsync()
+- uid: Material.Blazor.MBIntSlider.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBIntSlider.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.OnInitializedAsync
+  nameWithType: MBIntSlider.OnInitializedAsync
+- uid: Material.Blazor.MBIntSlider.ShowTickmarks
+  name: ShowTickmarks
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ShowTickmarks
+  commentId: P:Material.Blazor.MBIntSlider.ShowTickmarks
+  fullName: Material.Blazor.MBIntSlider.ShowTickmarks
+  nameWithType: MBIntSlider.ShowTickmarks
+- uid: Material.Blazor.MBIntSlider.ShowTickmarks*
+  name: ShowTickmarks
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ShowTickmarks_
+  commentId: Overload:Material.Blazor.MBIntSlider.ShowTickmarks
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.ShowTickmarks
+  nameWithType: MBIntSlider.ShowTickmarks
+- uid: Material.Blazor.MBIntSlider.ValueMax
+  name: ValueMax
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ValueMax
+  commentId: P:Material.Blazor.MBIntSlider.ValueMax
+  fullName: Material.Blazor.MBIntSlider.ValueMax
+  nameWithType: MBIntSlider.ValueMax
+- uid: Material.Blazor.MBIntSlider.ValueMax*
+  name: ValueMax
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ValueMax_
+  commentId: Overload:Material.Blazor.MBIntSlider.ValueMax
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.ValueMax
+  nameWithType: MBIntSlider.ValueMax
+- uid: Material.Blazor.MBIntSlider.ValueMin
+  name: ValueMin
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ValueMin
+  commentId: P:Material.Blazor.MBIntSlider.ValueMin
+  fullName: Material.Blazor.MBIntSlider.ValueMin
+  nameWithType: MBIntSlider.ValueMin
+- uid: Material.Blazor.MBIntSlider.ValueMin*
+  name: ValueMin
+  href: api/Material.Blazor.MBIntSlider.html#Material_Blazor_MBIntSlider_ValueMin_
+  commentId: Overload:Material.Blazor.MBIntSlider.ValueMin
+  isSpec: "True"
+  fullName: Material.Blazor.MBIntSlider.ValueMin
+  nameWithType: MBIntSlider.ValueMin
 - uid: Material.Blazor.MBItemValidation
   name: MBItemValidation
   href: api/Material.Blazor.MBItemValidation.html
