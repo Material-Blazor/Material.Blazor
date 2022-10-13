@@ -1,5 +1,6 @@
 ﻿@use "@material/theme";
 @use 'sass:color';
+@use "sass:math";
 
 $autospaced-separator-height: 24px;
 
@@ -7,7 +8,7 @@ $drop-zone-overlap: 12px;
 $drop-zone-height: $autospaced-separator-height + 2 * $drop-zone-overlap;
 $drop-zone-rule-width: 2px;
 $drop-zone-border-width: 4px;
-$drop-zone-hr-top-margin: $drop-zone-rule-width  / 2;
+$drop-zone-hr-top-margin: math.div($drop-zone-rule-width, 2);
 $drag-zone-height: 48px;
 $drag-zone-width: 60px;
 
