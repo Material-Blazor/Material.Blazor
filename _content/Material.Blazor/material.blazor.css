@@ -1523,6 +1523,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 .mb-drag-and-drop-list__draggable {
   height: 48px;
   width: 60px;
+  flex-grow: 0;
   margin: 0;
   display: flex;
   flex-flow: row nowrap;
@@ -1543,7 +1544,8 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 .mb-drag-and-drop-list__user-content {
   height: fit-content;
   width: fit-content;
-  margin: auto;
+  flex-grow: 1;
+  margin: 0px;
 }
 
 .mb-drag-and-drop-list__separator {
