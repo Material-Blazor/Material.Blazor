@@ -34,6 +34,7 @@ $animation-time: 3000ms;
 .mb-drag-and-drop-list__draggable {
     height: $drag-zone-height;
     width: $drag-zone-width;
+    flex-grow: 0;
     margin: 0;
     display: flex;
     flex-flow: row nowrap;
@@ -57,7 +58,8 @@ $animation-time: 3000ms;
 .mb-drag-and-drop-list__user-content {
     height: fit-content;
     width: fit-content;
-    margin: auto;
+    flex-grow: 1;
+    margin: 0px;
 }
 
 .mb-drag-and-drop-list__separator {
