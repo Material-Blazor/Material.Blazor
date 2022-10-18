@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.2.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.2.1)
+
+Released 2022-10-18
+
+**Updates**
+- Improve `MBDragAndDropList` CSS.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [3.2.0](https://github.com/Material-Blazor/Material.Blazor/tree/3.2.0)
 
 Released 2022-10-12
