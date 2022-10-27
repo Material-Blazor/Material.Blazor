@@ -12,8 +12,6 @@ on:
   push:
     tags:
       - '*' # Push events to matching *, i.e. 1.0, 20.15.10
-    branches:
-      - experimental-release-workflow
 
 env:
   buildPlatform: 'Any CPU'
@@ -66,37 +64,6 @@ jobs:
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
 ############################################################################################################
-# Store the version information
-############################################################################################################
-  version:
-    name: Set version identifier
-    runs-on: ubuntu-latest
-
-    steps:
-    - id: get
-      run: |
-        echo "::set-output name=identifier::${GITHUB_REF/refs\/tags\//}"
-    - id: show
-      run: |
-        echo "${{ steps.get.outputs.identifier }}"
-    outputs:
-      identifier: ${{ steps.get.outputs.identifier }}
-############################################################################################################
-# Store the branch information
-############################################################################################################
-  branch:
-    name: Set branch identifier
-    runs-on: ubuntu-latest
-    steps:
-    - id: get
-      run: |
-        echo "::set-output name=identifier::${GITHUB_REF/refs\/heads\//}"
-    - id: show
-      run: |
-        echo "${{ steps.get.outputs.identifier }}"
-    outputs:
-      identifier: ${{ steps.get.outputs.identifier }}
-############################################################################################################
 # Build documentation
 ############################################################################################################
   build-documentation:
@@ -126,11 +93,15 @@ jobs:
 # Build website
 ############################################################################################################
   build-website:
-    needs: [test, version]
+    needs: [test]
     name: Build website
     runs-on: windows-latest
 
     steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
 
@@ -140,7 +111,7 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Build and Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{needs.version.outputs.identifier}} -p:BlazorEnableCompression=false      
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
@@ -152,11 +123,15 @@ jobs:
 ############################################################################################################
   build-and-deploy-package:
     name: Build nuget package & deploy to nuget
-    needs: [test, version, branch, is-on-material-blazor]
+    needs: [test, is-on-material-blazor]
 
     runs-on: windows-latest
 
     steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
 
@@ -166,23 +141,22 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
+      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{env.version}}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{needs.version.outputs.identifier}}
+      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
 
     - name: Upload Package 🚀
       run: dotnet nuget push ${{env.outputMB}}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
 ############################################################################################################
 # deployghpages
 ############################################################################################################
   deployghpages:
     name: Deploy to material-blazor.com
-    needs: [test, build-documentation, build-website, branch, is-on-material-blazor]
+    needs: [test, build-documentation, build-website, is-on-material-blazor]
 
     runs-on: ubuntu-latest
 
@@ -218,24 +192,26 @@ jobs:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
         folder: 'deployroot'
-      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
 ############################################################################################################
 # Create release
 ############################################################################################################
   create-release:
     name: Create release
-    needs: [deployghpages, build-and-deploy-package, branch, version, is-on-material-blazor]
+    needs: [deployghpages, build-and-deploy-package, is-on-material-blazor]
 
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
     - name: Create Release
-      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{needs.version.outputs.identifier}}
-        release_name: Release ${{needs.version.outputs.identifier}}
+        tag_name: ${{env.version}}
+        release_name: Release ${{env.version}}
         draft: false
         prerelease: false
