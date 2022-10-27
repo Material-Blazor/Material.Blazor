@@ -47,71 +47,6 @@ jobs:
       run: echo ""
 
 ############################################################################################################
-# This job is only to display some CI information
-############################################################################################################
-  info:
-    name: Display CI information
-    runs-on: windows-latest
-
-    steps:
-
-    - name: DotNet info
-      run: dotnet --info
-
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Echo ciSuffix
-      run: echo "CI suffix is $ciSuffix"
-      shell: bash
-
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-      shell: bash
-
-    - name: Get the pullrequest
-      id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-      shell: bash
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-      shell: bash
-
-    - name: Show branch name Ꙫ
-      run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
-      if: contains(github.ref, 'refs/heads')
-
-    - name: Show PR name Ꙫ
-      run: echo GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}
-      if: contains(github.ref, 'refs/pull')
-
-    - name: Show Tag name Ꙫ
-      run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
-      if: contains(github.ref, 'refs/tag')
-
-############################################################################################################
-# Store the version information
-############################################################################################################
-  version:
-    name: Set version suffix
-    runs-on: ubuntu-latest
-
-    steps:
-    - id: get
-      run: |
-        echo "::set-output name=suffix::ci.$(date +'%Y-%m-%d--%H-%M-%S')"
-    - id: show
-      run: |
-        echo "${{ steps.get.outputs.suffix }}"
-    outputs:
-      suffix: ${{ steps.get.outputs.suffix }}
-      
-      
-############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
 ############################################################################################################
   test:
@@ -163,10 +98,14 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
-    needs: [test, version]
+    needs: [test]
     runs-on: windows-latest
 
     steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=3.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
 
@@ -177,10 +116,10 @@ jobs:
 
 
     - name: Build Website 🔧
-      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
+      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
       
     - name: Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{needs.version.outputs.suffix}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
@@ -193,11 +132,15 @@ jobs:
 ############################################################################################################
   build-package:
     name: Build nuget package
-    needs: [test, version]
+    needs: [test]
 
     runs-on: windows-latest
 
     steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=3.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
 
@@ -207,31 +150,13 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
+      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{needs.version.outputs.suffix}}
+      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
-
-# We'd like to push to a the main repository but now getting errors of authorization
-
-    - name: Upload Package (Main repository) 🔺
-      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false
-
-# We'd like to push to a forked repository; The push appears to work but the packages are not visible
-# Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
-
-    - name: Upload Package (Forked repository) 🔺
-      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: (github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false
-
 
 
 ############################################################################################################
