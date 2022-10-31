@@ -74,7 +74,7 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
 
     private string badgeValue;
     /// <summary>
-    /// The button's density.
+    /// The badge's value.
     /// </summary>
     [Parameter]
     public string BadgeValue
