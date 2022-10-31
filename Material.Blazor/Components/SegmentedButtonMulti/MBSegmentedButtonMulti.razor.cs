@@ -24,6 +24,70 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     [Parameter] public bool? TouchTarget { get; set; }
 
 
+    /// <summary>
+    /// Determines whether the button has a badge - defaults to false.
+    /// </summary>
+    [Parameter] public bool HasBadge { get; set; }
+
+
+    /// <summary>
+    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
+    /// </summary>
+    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
+
+    private string badgeValue;
+    /// <summary>
+    /// The badge's value.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue
+    {
+        get => badgeValue;
+        set
+        {
+            if (value != badgeValue)
+            {
+                badgeValue = value;
+
+                if (Badge != null)
+                {
+                    Badge.SetValueAndExited(badgeValue, badgeExited);
+                }
+            }
+        }
+    }
+
+
+    private bool badgeExited;
+    /// <summary>
+    /// When true collapses the badge.
+    /// </summary>
+    [Parameter]
+    public bool BadgeExited
+    {
+        get => badgeExited;
+        set
+        {
+            if (value != badgeExited)
+            {
+                badgeExited = value;
+
+                if (Badge != null)
+                {
+                    Badge.SetValueAndExited(badgeValue, badgeExited);
+                }
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// The badge for use by <see cref="MBSegmentedButtonSingle{TItem}"/>.
+    /// </summary>
+    internal MBBadge Badge { get; set; }
+    
+    
     private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
     private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
     private bool IsSingleSelect { get; set; }

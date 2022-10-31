@@ -172,6 +172,24 @@
                                       Label="Select"
                                       SelectInputStyle="MBSelectInputStyle.Outlined" />
                         </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBSegmentedButtonSingle @bind-Value="@SegmentedButtonValue"
+                                                     Items="@ThisThat"
+                                                     ItemValidation="@MBItemValidation.NoSelection"
+                                                     HasBadge="true"
+                                                     BadgeValue="@ButtonValue"
+                                                     BadgeExited="@Exited" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBSegmentedButtonSingle @bind-Value="@SegmentedButtonValue"
+                                                     Items="@ThisThat"
+                                                     ItemValidation="@MBItemValidation.NoSelection"
+                                                     HasBadge="true"
+                                                     BadgeStyle="@MBBadgeStyle.Dot"
+                                                     BadgeExited="@Exited" />
+                        </div>
+
                         <div class="mdc-layout-grid__cell--span-6">
                             <MBDatePicker @bind-Value="@Date"
                                           Label="Filled"
@@ -219,6 +237,14 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+    };
+
+    private string SegmentedButtonValue { get; set; } = ThisThat[0].SelectedValue;
+
+    private static MBIconBearingSelectElement<string>[] ThisThat = new MBIconBearingSelectElement<string>[]
+    {
+        new MBIconBearingSelectElement<string> { SelectedValue = "this", Label = "This" },
+        new MBIconBearingSelectElement<string> { SelectedValue = "that", Label = "That" }
     };
 
     private DateTime Min { get; set; } = new DateTime(2019, 12, 14);

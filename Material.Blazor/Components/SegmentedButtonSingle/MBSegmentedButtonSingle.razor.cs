@@ -1,5 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,64 @@ public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TIte
     /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
     /// </summary>
     [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
+
+
+    /// <summary>
+    /// Determines whether the button has a badge - defaults to false.
+    /// </summary>
+    [Parameter] public bool HasBadge { get; set; }
+
+
+    /// <summary>
+    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
+    /// </summary>
+    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
+
+    private string badgeValue;
+    /// <summary>
+    /// The badge's value.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue
+    {
+        get => badgeValue;
+        set
+        {
+            if (value != badgeValue)
+            {
+                badgeValue = value;
+
+                if (SegmentedButtonMulti?.Badge != null)
+                {
+                    SegmentedButtonMulti.Badge.SetValueAndExited(badgeValue, badgeExited);
+                }
+            }
+        }
+    }
+
+
+    private bool badgeExited;
+    /// <summary>
+    /// When true collapses the badge.
+    /// </summary>
+    [Parameter]
+    public bool BadgeExited
+    {
+        get => badgeExited;
+        set
+        {
+            if (value != badgeExited)
+            {
+                badgeExited = value;
+
+                if (SegmentedButtonMulti?.Badge != null)
+                {
+                    SegmentedButtonMulti.Badge.SetValueAndExited(badgeValue, badgeExited);
+                }
+            }
+        }
+    }
 #nullable restore annotations
 
 
