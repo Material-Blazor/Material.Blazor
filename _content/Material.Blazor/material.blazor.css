@@ -2663,6 +2663,14 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   cursor: grabbing;
 }
 
+.mb-segmented-button__container {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  overflow: visible;
+}
+
 .mdc-select.dense--5--filled .mdc-select__anchor, .mdc-select.dense--4--filled .mdc-select__anchor {
   height: 40px;
   display: flex;

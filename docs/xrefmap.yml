@@ -10884,6 +10884,57 @@ references:
   fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem)
   nameWithType: MBSegmentedButtonMulti<TItem>
   nameWithType.vb: MBSegmentedButtonMulti(Of TItem)
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_BadgeExited
+  commentId: P:Material.Blazor.MBSegmentedButtonMulti`1.BadgeExited
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.BadgeExited
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).BadgeExited
+  nameWithType: MBSegmentedButtonMulti<TItem>.BadgeExited
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).BadgeExited
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_BadgeExited_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonMulti`1.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.BadgeExited
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).BadgeExited
+  nameWithType: MBSegmentedButtonMulti<TItem>.BadgeExited
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).BadgeExited
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_BadgeStyle
+  commentId: P:Material.Blazor.MBSegmentedButtonMulti`1.BadgeStyle
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.BadgeStyle
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).BadgeStyle
+  nameWithType: MBSegmentedButtonMulti<TItem>.BadgeStyle
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).BadgeStyle
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonMulti`1.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.BadgeStyle
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).BadgeStyle
+  nameWithType: MBSegmentedButtonMulti<TItem>.BadgeStyle
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).BadgeStyle
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_BadgeValue
+  commentId: P:Material.Blazor.MBSegmentedButtonMulti`1.BadgeValue
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.BadgeValue
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).BadgeValue
+  nameWithType: MBSegmentedButtonMulti<TItem>.BadgeValue
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).BadgeValue
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_BadgeValue_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonMulti`1.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.BadgeValue
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).BadgeValue
+  nameWithType: MBSegmentedButtonMulti<TItem>.BadgeValue
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).BadgeValue
 - uid: Material.Blazor.MBSegmentedButtonMulti`1.Dispose(System.Boolean)
   name: Dispose(Boolean)
   href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_Dispose_System_Boolean_
@@ -10901,6 +10952,23 @@ references:
   fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).Dispose
   nameWithType: MBSegmentedButtonMulti<TItem>.Dispose
   nameWithType.vb: MBSegmentedButtonMulti(Of TItem).Dispose
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_HasBadge
+  commentId: P:Material.Blazor.MBSegmentedButtonMulti`1.HasBadge
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.HasBadge
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).HasBadge
+  nameWithType: MBSegmentedButtonMulti<TItem>.HasBadge
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).HasBadge
+- uid: Material.Blazor.MBSegmentedButtonMulti`1.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_HasBadge_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonMulti`1.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonMulti<TItem>.HasBadge
+  fullName.vb: Material.Blazor.MBSegmentedButtonMulti(Of TItem).HasBadge
+  nameWithType: MBSegmentedButtonMulti<TItem>.HasBadge
+  nameWithType.vb: MBSegmentedButtonMulti(Of TItem).HasBadge
 - uid: Material.Blazor.MBSegmentedButtonMulti`1.NotifyMultiSelected(System.Boolean[])
   name: NotifyMultiSelected(Boolean[])
   href: api/Material.Blazor.MBSegmentedButtonMulti-1.html#Material_Blazor_MBSegmentedButtonMulti_1_NotifyMultiSelected_System_Boolean___
@@ -11013,6 +11081,74 @@ references:
   fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem)
   nameWithType: MBSegmentedButtonSingle<TItem>
   nameWithType.vb: MBSegmentedButtonSingle(Of TItem)
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_BadgeExited
+  commentId: P:Material.Blazor.MBSegmentedButtonSingle`1.BadgeExited
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.BadgeExited
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).BadgeExited
+  nameWithType: MBSegmentedButtonSingle<TItem>.BadgeExited
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).BadgeExited
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_BadgeExited_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonSingle`1.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.BadgeExited
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).BadgeExited
+  nameWithType: MBSegmentedButtonSingle<TItem>.BadgeExited
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).BadgeExited
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_BadgeStyle
+  commentId: P:Material.Blazor.MBSegmentedButtonSingle`1.BadgeStyle
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.BadgeStyle
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).BadgeStyle
+  nameWithType: MBSegmentedButtonSingle<TItem>.BadgeStyle
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).BadgeStyle
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonSingle`1.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.BadgeStyle
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).BadgeStyle
+  nameWithType: MBSegmentedButtonSingle<TItem>.BadgeStyle
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).BadgeStyle
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_BadgeValue
+  commentId: P:Material.Blazor.MBSegmentedButtonSingle`1.BadgeValue
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.BadgeValue
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).BadgeValue
+  nameWithType: MBSegmentedButtonSingle<TItem>.BadgeValue
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).BadgeValue
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_BadgeValue_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonSingle`1.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.BadgeValue
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).BadgeValue
+  nameWithType: MBSegmentedButtonSingle<TItem>.BadgeValue
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).BadgeValue
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_HasBadge
+  commentId: P:Material.Blazor.MBSegmentedButtonSingle`1.HasBadge
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.HasBadge
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).HasBadge
+  nameWithType: MBSegmentedButtonSingle<TItem>.HasBadge
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).HasBadge
+- uid: Material.Blazor.MBSegmentedButtonSingle`1.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_HasBadge_
+  commentId: Overload:Material.Blazor.MBSegmentedButtonSingle`1.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBSegmentedButtonSingle<TItem>.HasBadge
+  fullName.vb: Material.Blazor.MBSegmentedButtonSingle(Of TItem).HasBadge
+  nameWithType: MBSegmentedButtonSingle<TItem>.HasBadge
+  nameWithType.vb: MBSegmentedButtonSingle(Of TItem).HasBadge
 - uid: Material.Blazor.MBSegmentedButtonSingle`1.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBSegmentedButtonSingle-1.html#Material_Blazor_MBSegmentedButtonSingle_1_IconFoundry
