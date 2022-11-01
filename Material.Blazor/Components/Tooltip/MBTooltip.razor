@@ -1,9 +1,12 @@
 ﻿@namespace Material.Blazor
 
-@inherits ComponentBase
+@inherits ComponentFoundation
 
 
-<a class="mb-tooltip-anchor" aria-describedby="mb-tooltip-@id">
+<a aria-describedby="mb-tooltip-@id"
+   class="mb-tooltip-anchor @(@class)"
+   style="@style"
+   @attributes="@AttributesToSplat()">
     @if (Target != null)
     {
         @Target
