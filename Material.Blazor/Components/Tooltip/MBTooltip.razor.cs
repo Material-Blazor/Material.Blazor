@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor;
 
-public partial class MBTooltip : ComponentBase, IDisposable
+public partial class MBTooltip : ComponentFoundation, IDisposable
 {
     [Inject] private IMBTooltipService TooltipService { get; set; }
 

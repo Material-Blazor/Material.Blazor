@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.3.1)
+
+Released 2022-11-01
+
+**Updates**
+- Add `class`, `style` and other unmatched attributes to `MBTooltip`.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [3.3.0](https://github.com/Material-Blazor/Material.Blazor/tree/3.3.0)
 
 Released 2022-10-31
