@@ -10,6 +10,7 @@
 
 on:
   push:
+    branches: [ LTS-DN6 ]
     tags:
       - '*' # Push events to matching *, i.e. 1.0, 20.15.10
 
@@ -54,6 +55,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
+      with:
+        ref: LTS-DN6
 
     - name: Use prelease dotnet
       uses: actions/setup-dotnet@v2
@@ -73,6 +76,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
+      with:
+        ref: LTS-DN6
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -104,6 +109,8 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
+      with:
+        ref: LTS-DN6
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -134,6 +141,8 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
+      with:
+        ref: LTS-DN6
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
@@ -163,6 +172,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
+      with:
+        ref: LTS-DN6
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
