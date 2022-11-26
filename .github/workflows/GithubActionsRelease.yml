@@ -10,6 +10,7 @@
 
 on:
   push:
+    branches: [ main ]
     tags:
       - '*' # Push events to matching *, i.e. 1.0, 20.15.10
 
@@ -58,7 +59,7 @@ jobs:
     - name: Use prelease dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
         include-prerelease: true
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
@@ -77,7 +78,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -108,7 +109,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
 
     - name: Build and Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
@@ -138,7 +139,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
 
     - name: Build Material.Blazor 🔧
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{env.version}}
@@ -167,7 +168,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
       uses: actions/download-artifact@v2

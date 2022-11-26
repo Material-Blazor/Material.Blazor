@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 
 		<Configurations>Debug;Release</Configurations>
 	</PropertyGroup>
@@ -45,11 +45,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0" />
 		<PackageReference Include="Humanizer " Version="2.14.1" />
 		<PackageReference Include="Nager.Date" Version="1.33.1" />
-		<PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
