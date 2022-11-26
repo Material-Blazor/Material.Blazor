@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.1)
+
+Released 2022-11-01
+
+**Updates**
+- Upgraded to DN7 in the main branch. There is a branch called LTS-DN6 which is the maintenance branch for 3.x. Needless to say. LTS-DN6 shold NEVER be merged into main.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [3.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.3.1)
 
 Released 2022-11-01
