@@ -10,7 +10,6 @@
 
 on:
   push:
-    branches: [ LTS-DN6 ]
     tags:
       - '*' # Push events to matching *, i.e. 1.0, 20.15.10
 
@@ -29,14 +28,6 @@ jobs:
 ############################################################################################################
 # These jobs are used to gate actions. By creating these jobs we don't need to proliferate the repo checks
 ############################################################################################################
-  is-on-fork:
-    name: Running on a fork?
-    runs-on: ubuntu-latest
-    if: github.repository != 'Material-Blazor/Material.Blazor'
-    steps:
-    - name: Nothing to see here
-      run: echo ""
-
   is-on-material-blazor:
     name: Running on Material-Blazor/Material.Blazor?
     runs-on: ubuntu-latest
@@ -66,65 +57,6 @@ jobs:
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
-############################################################################################################
-# Build documentation
-############################################################################################################
-  build-documentation:
-    name: Build documentation
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-      with:
-        ref: LTS-DN6
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '6.0.x'
-
-    - name: Create documentation 🔧
-      run: .\docfx\docfx docfx.json
-      env:
-        DOCFX_SOURCE_BRANCH_NAME: main   
-
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v2
-      with:
-        name: siteDocFx
-        path: siteDocFx       
-############################################################################################################
-# Build website
-############################################################################################################
-  build-website:
-    needs: [test]
-    name: Build website
-    runs-on: windows-latest
-
-    steps:
-    - name: Get the version
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-      with:
-        ref: LTS-DN6
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '6.0.x'
-
-    - name: Build and Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
-
-    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v2
-      with:
-        name: siteWeb
-        path: siteWeb      
 ############################################################################################################
 # Build package and deploy
 ############################################################################################################
@@ -161,54 +93,11 @@ jobs:
     - name: Upload Package 🚀
       run: dotnet nuget push ${{env.outputMB}}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
 ############################################################################################################
-# deployghpages
-############################################################################################################
-  deployghpages:
-    name: Deploy to material-blazor.com
-    needs: [test, build-documentation, build-website, is-on-material-blazor]
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-      with:
-        ref: LTS-DN6
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '6.0.x'
-
-    - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
-      uses: actions/download-artifact@v2
-      with:
-        name: siteDocFx
-        path: siteDocFx
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v2
-      with:
-        name: siteWeb
-        path: siteWeb
-
-    - name: Configure deployment directory structure Ꙫ
-      run: |
-        mv siteWeb/wwwroot deployroot
-        mv siteDocFx deployroot/docs
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        token: ${{secrets.GH_PAT}}
-        branch: gh-pages
-        folder: 'deployroot'
-############################################################################################################
 # Create release
 ############################################################################################################
   create-release:
     name: Create release
-    needs: [deployghpages, build-and-deploy-package, is-on-material-blazor]
+    needs: [build-and-deploy-package, is-on-material-blazor]
 
     runs-on: ubuntu-latest
 
