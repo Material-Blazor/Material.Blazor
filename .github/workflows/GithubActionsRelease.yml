@@ -11,7 +11,7 @@
 on:
   push:
     tags:
-      - '*' # Push events to matching *, i.e. 1.0, 20.15.10
+      - '3.*' # Push events to matching pattern, i.e. 3.1.0, 3.1.1
 
 env:
   buildPlatform: 'Any CPU'
@@ -49,11 +49,10 @@ jobs:
       with:
         ref: LTS-DN6
 
-    - name: Use prelease dotnet
+    - name: Use dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '6.0.x'
-        include-prerelease: true
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
