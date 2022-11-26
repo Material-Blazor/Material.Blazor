@@ -11,7 +11,7 @@
 on:
   push:
     tags:
-      - '4.*' # Push events to matching pattern, i.e. 4.0.0, 4.1.0
+      - 4.** # Push events to matching pattern, i.e. 4.0.0, 4.1.0
 
 env:
   buildPlatform: 'Any CPU'
