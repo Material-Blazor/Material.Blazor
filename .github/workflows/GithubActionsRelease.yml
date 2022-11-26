@@ -10,9 +10,8 @@
 
 on:
   push:
-    branches: [ main ]
     tags:
-      - '*' # Push events to matching *, i.e. 1.0, 20.15.10
+      - 4.** # Push events to matching pattern, i.e. 4.0.0, 4.1.0
 
 env:
   buildPlatform: 'Any CPU'
@@ -56,11 +55,10 @@ jobs:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v3
 
-    - name: Use prelease dotnet
+    - name: Use dotnet
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '7.0.x'
-        include-prerelease: true
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
