@@ -2425,7 +2425,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   align-self: flex-start;
 }
 
-.mb-list--three-line .mdc-deprecated-list-item {
+.mb-list--three-line .mb-list-item {
   height: 88px;
 }
 

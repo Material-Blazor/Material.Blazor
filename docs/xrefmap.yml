@@ -8121,6 +8121,23 @@ references:
   fullName.vb: Material.Blazor.MBList(Of TItem).ListType
   nameWithType: MBList<TItem>.ListType
   nameWithType.vb: MBList(Of TItem).ListType
+- uid: Material.Blazor.MBList`1.MultiLevelElements
+  name: MultiLevelElements
+  href: api/Material.Blazor.MBList-1.html#Material_Blazor_MBList_1_MultiLevelElements
+  commentId: P:Material.Blazor.MBList`1.MultiLevelElements
+  fullName: Material.Blazor.MBList<TItem>.MultiLevelElements
+  fullName.vb: Material.Blazor.MBList(Of TItem).MultiLevelElements
+  nameWithType: MBList<TItem>.MultiLevelElements
+  nameWithType.vb: MBList(Of TItem).MultiLevelElements
+- uid: Material.Blazor.MBList`1.MultiLevelElements*
+  name: MultiLevelElements
+  href: api/Material.Blazor.MBList-1.html#Material_Blazor_MBList_1_MultiLevelElements_
+  commentId: Overload:Material.Blazor.MBList`1.MultiLevelElements
+  isSpec: "True"
+  fullName: Material.Blazor.MBList<TItem>.MultiLevelElements
+  fullName.vb: Material.Blazor.MBList(Of TItem).MultiLevelElements
+  nameWithType: MBList<TItem>.MultiLevelElements
+  nameWithType.vb: MBList(Of TItem).MultiLevelElements
 - uid: Material.Blazor.MBList`1.NonInteractive
   name: NonInteractive
   href: api/Material.Blazor.MBList-1.html#Material_Blazor_MBList_1_NonInteractive
