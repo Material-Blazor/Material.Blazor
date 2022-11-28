@@ -78,6 +78,12 @@ public partial class MBList<TItem> : ComponentFoundation
 
 
     /// <summary>
+    /// Extra elements (must be <code>div</code> elements) for a material multilevel list.
+    /// </summary>
+    [Parameter] public RenderFragment<TItem> MultiLevelElements { get; set; }
+
+
+    /// <summary>
     /// An @onclick event handler returning the index of the relevant list item.
     /// </summary>
     [Parameter] public EventCallback<int> OnClick { get; set; }

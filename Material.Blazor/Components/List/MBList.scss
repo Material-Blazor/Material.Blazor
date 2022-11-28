@@ -28,15 +28,15 @@
 
 
 .mb-list--three-line .mdc-deprecated-list-item__text {
-    align-self: flex-start
+    align-self: flex-start;
 }
 
-.mb-list--three-line .mdc-deprecated-list-item {
-    height: 88px
+.mb-list--three-line .mb-list-item {
+    height: 88px;
 }
 
 .mb-list--three-line.mdc-deprecated-list--dense .mdc-deprecated-list-item, .mdc-deprecated-list--avatar-list.mdc-deprecated-list--dense .mdc-deprecated-list-item {
-    height: 72px
+    height: 72px;
 }
 
 .mdc-deprecated-list-item__secondary-text.line-three {
