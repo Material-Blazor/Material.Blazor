@@ -26,49 +26,56 @@
             <li role="separator" class="mdc-deprecated-list-divider"></li>
         }
 
-        <li @key="@KeyGenerator(item)"
-            class="mdc-deprecated-list-item"
-            tabindex="@tabIndex"
-            @onclick="@(() => OnItemClickAsync(clickIndex))"
-            @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
-            @onkeydown="@(() => OnItemKeyDownAsync(clickIndex))"
-            @ontouchstart="@(() => OnItemTouchStartAsync(clickIndex))">
+        <li class="mdc-deprecated-list-item__wrapper" role="presentation">
+            <div @key="@KeyGenerator(item)"
+                 class="mdc-deprecated-list-item mb-list-item"
+                 tabindex="@tabIndex"
+                 @onclick="@(() => OnItemClickAsync(clickIndex))"
+                 @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
+                 @onkeydown="@(() => OnItemKeyDownAsync(clickIndex))"
+                 @ontouchstart="@(() => OnItemTouchStartAsync(clickIndex))">
 
-            @if (PrimaryActions != null)
-            {
-                <span class="mdc-deprecated-list-item__graphic" aria-hidden="true">@PrimaryActions(item)</span>
-            }
-
-            @if (!SuppressIcons && Icon != null)
-            {
-                <span class="mdc-deprecated-list-item__graphic" aria-hidden="true">@Icon(item)</span>
-            }
-
-            @if (!AppliedDisabled && KeyboardInteractions && Ripple)
-            {
-                <span class="mdc-deprecated-list-item__ripple"></span>
-            }
-
-            <span class="mdc-deprecated-list-item__text mb-full-width @ListItemClass " disabled="@AppliedDisabled">
-                @if (Title != null)
+                @if (PrimaryActions != null)
                 {
-                    <span class="@TitleClass">@Title(item)</span>
+                    <span class="mdc-deprecated-list-item__graphic" aria-hidden="true">@PrimaryActions(item)</span>
                 }
 
-                @if (HasLineTwo && (LineTwo != null))
+                @if (!SuppressIcons && Icon != null)
                 {
-                    <span class="@LineTwoClass">@LineTwo(item)</span>
+                    <span class="mdc-deprecated-list-item__graphic" aria-hidden="true">@Icon(item)</span>
                 }
 
-                @if (HasLineThree && (LineThree != null))
+                @if (!AppliedDisabled && KeyboardInteractions && Ripple)
                 {
-                    <span class="@LineThreeClass">@LineThree(item)</span>
+                    <span class="mdc-deprecated-list-item__ripple"></span>
                 }
-            </span>
 
-            @if (SecondaryActions != null)
+                <span class="mdc-deprecated-list-item__text mb-full-width @ListItemClass " disabled="@AppliedDisabled">
+                    @if (Title != null)
+                    {
+                        <span class="@TitleClass">@Title(item)</span>
+                    }
+
+                    @if (HasLineTwo && (LineTwo != null))
+                    {
+                        <span class="@LineTwoClass">@LineTwo(item)</span>
+                    }
+
+                    @if (HasLineThree && (LineThree != null))
+                    {
+                        <span class="@LineThreeClass">@LineThree(item)</span>
+                    }
+                </span>
+
+                @if (SecondaryActions != null)
+                {
+                    <span class="mdc-deprecated-list-item__meta" aria-hidden="true">@SecondaryActions(item)</span>
+                }
+            </div>
+
+            @if (MultiLevelElements != null)
             {
-                <span class="mdc-deprecated-list-item__meta" aria-hidden="true">@SecondaryActions(item)</span>
+                @MultiLevelElements(item)
             }
         </li>
     }

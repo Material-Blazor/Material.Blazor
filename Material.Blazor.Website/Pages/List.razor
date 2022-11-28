@@ -221,6 +221,61 @@
             </MBCard>
         </div>
 
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Multilevel List with Sub Menu
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A multilevel list opening a submenu when a list item is clicked.
+                    </h3>
+
+                    <div class="overflow-auto">
+                        <p>
+                            <MBList Items="@MultiLevelProducts"
+                                    Context="product"
+                                    GetKeysFunc="@((item) => item.ProductId)"
+                                    HideLineThree="@HideLineThree"
+                                    HideLineTwo="@HideLineTwo"
+                                    KeyboardInteractions="@KeyboardInteractions"
+                                    ListStyle="MBListStyle.Outlined"
+                                    ListType="@ListType"
+                                    OnClick="@OnMenuToggle"
+                                    Ripple="@Ripple"
+                                    ShowSeparators="true">
+
+                                <Icon>
+                                    <MBIcon IconName="local_grocery_store" />
+                                </Icon>
+                                <Title>@product.DisplayName</Title>
+                                <LineTwo>@product.LineTwo</LineTwo>
+                                <LineThree>@product.LineThree</LineThree>
+                                <SecondaryActions>
+                                    <div style="width: 10rem">
+                                        <MBSwitch @bind-Value="@product.IsInStock"
+                                                  Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                                    </div>
+                                </SecondaryActions>
+                                <MultiLevelElements>
+                                    <div class="mdc-menu-surface--anchor">
+                                        <MBMenu @ref="@product.Menu"
+                                                MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed">
+                                            <MBListItem Label="Action Item One" />
+                                            <MBListItem Label="Action Item Two" />
+                                            <MBListItem Label="Action Item Three" />
+                                        </MBMenu>
+                                    </div>
+                                </MultiLevelElements>
+                            </MBList>
+                        </p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
     </PageContent>
 </DemonstrationPage>
 
@@ -238,7 +293,7 @@
 
 
     private IEnumerable<Product> SingleLineProducts = new System.Collections.Generic.List<Product>
-{
+    {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
@@ -246,7 +301,7 @@
 
 
     private IEnumerable<Product> TwoLineProducts = new System.Collections.Generic.List<Product>
-{
+    {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
@@ -254,7 +309,15 @@
 
 
     private IEnumerable<Product> ThreeLineProducts = new System.Collections.Generic.List<Product>
-{
+    {
+        new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
+        new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
+        new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
+    };
+
+
+    private IEnumerable<Product> MultiLevelProducts = new System.Collections.Generic.List<Product>
+    {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
@@ -268,6 +331,7 @@
         public string LineTwo { get; set; }
         public string LineThree { get; set; }
         public bool IsInStock { get; set; }
+        public MBMenu Menu { get; set; }
     }
 
 
@@ -299,5 +363,11 @@
     private void OnThreeLineClick(int index)
     {
         ToastService.ShowToast(heading: "Three Line Click", message: $"Line {index} clicked", level: MBToastLevel.Success, showIcon: false);
+    }
+
+
+    private async Task OnMenuToggle(int index)
+    {
+        await MultiLevelProducts.ElementAt(index).Menu.ToggleAsync().ConfigureAwait(false);
     }
 }
