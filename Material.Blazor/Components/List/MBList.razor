@@ -26,9 +26,8 @@
             <li role="separator" class="mdc-deprecated-list-divider"></li>
         }
 
-        <li class="mdc-deprecated-list-item__wrapper" role="presentation">
-            <div @key="@KeyGenerator(item)"
-                 class="mdc-deprecated-list-item mb-list-item"
+        <li @key="@KeyGenerator(item)" class="mdc-deprecated-list-item__wrapper" role="presentation">
+            <div class="mdc-deprecated-list-item mb-list-item"
                  tabindex="@tabIndex"
                  @onclick="@(() => OnItemClickAsync(clickIndex))"
                  @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
