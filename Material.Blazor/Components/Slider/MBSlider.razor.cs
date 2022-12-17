@@ -106,7 +106,10 @@ public partial class MBSlider : InputComponent<decimal>
             .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
             .AddIf("mdc-slider--disabled", () => AppliedDisabled);
 
-        InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{Value.ToString(Format)}\" step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
+        var disabledClassMarkup = AppliedDisabled ? " mdc-slider--disabled" : "";
+        var disabledAttributeMarkup = AppliedDisabled ? "disabled " : "";
+
+        InputMarkup = new($"<input class=\"mdc-slider__input{disabledClassMarkup}\" type=\"range\" value=\"{Value.ToString(Format)}\" {disabledAttributeMarkup}step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
 
         SetComponentValue += OnValueSetCallback;
         OnDisabledSet += OnDisabledSetCallback;
@@ -161,5 +164,5 @@ public partial class MBSlider : InputComponent<decimal>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay);
+    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
 }
