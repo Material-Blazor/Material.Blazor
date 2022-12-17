@@ -1,7 +1,7 @@
 ﻿import { MDCSlider } from '@material/slider';
 import { debounce, throttle } from '../../Scripts/lodashparts';
 
-export function init(elem, dotNetObject, eventType, delay) {
+export function init(elem, dotNetObject, eventType, delay, disabled) {
     if (!elem) {
         return;
     }
@@ -26,6 +26,8 @@ export function init(elem, dotNetObject, eventType, delay) {
         }, delay, {});
         elem._slider.listen('MDCSlider:input', throttleNotify);
     }
+
+    elem._slider.setDisabled(disabled);
 }
 
 export function setValue(elem, value) {
@@ -35,9 +37,9 @@ export function setValue(elem, value) {
     elem._slider.setValue(value);
 }
 
-export function setDisabled(elem, value) {
+export function setDisabled(elem, disabled) {
     if (!elem) {
         return;
     }
-    elem._slider.setDisabled(value);
+    elem._slider.setDisabled(disabled);
 }
