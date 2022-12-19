@@ -1,0 +1,540 @@
+﻿@page "/autocompletetextfieldasync"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+@using System.Text.RegularExpressions
+
+
+<DemonstrationPage ComponentName="AutocompleteTextFieldAsync"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Asynchronous Autocomplete Text Field Demonstration">
+    <Description>
+        <p>
+            Shows asynchronous autocomplete text fields which are Plus components.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Asynchronous autocomplete
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An asynchronous autocomplete that searches large US cities by name or state. The search function adds a minor delay to simulate
+                        an async method, such as a database search.
+                    </h3>
+
+                    <p>
+                        <MBAutocompleteTextFieldAsync AllowBlankResult="false"
+                                                      @bind-Value="@Autocomplete1"
+                                                      DebounceInterval="1000"
+                                                      GetMatchingSelection="@GetCitiesList"
+                                                      Label="Blanks disallowed"
+                                                      LeadingIcon="alarm"
+                                                      TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-8">
+            <MBCard>
+                <Primary>
+                    <MBLinearProgress LinearProgressType="@MBLinearProgressType.Indeterminate" />
+
+                    <div style="margin: 12px;">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            Your chosen location
+                        </h2>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        All matching cities returned from the "database"
+                    </h2>
+
+                    <div class="mdc-layout-grid__inner">
+                        @foreach (var cityName in AllMatchingCityNames)
+                        {
+                            <div class="mdc-layout-grid__cell--span-3 mdc-typography--body2">
+                                @cityName
+                            </div>
+                        }
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private const double SqMPerSqKm = 2.58999;
+
+    class City
+    {
+        public string Name { get; set; } = "";
+        public string State { get; set; } = "";
+        public int Population { get; set; } = 0;
+        public double AreaSqKm { get; set; } = 0.0;
+        public double LongitudeNorth { get; set; } = 0.0;
+        public double LatitudeWest { get; set; } = 0.0;
+
+        public string FullName => Name + ", " + State;
+        public double AreaSqM => AreaSqKm / SqMPerSqKm;
+        public double PopulationDensityPerSqKm => AreaSqKm < 1e-6 ? 0.0 : Population / AreaSqKm;
+        public double PopulationDensityPerSqM => AreaSqKm < 1e-6 ? 0.0 : Population / AreaSqM;
+        public string Location => $"{LongitudeNorth:N2}°N {LatitudeWest:N2}°W";
+        public string GoogleMapsUrl => $"https://www.google.com/maps/@{LongitudeNorth:N2},{LatitudeWest:N2},14z";
+        public string SearchTarget => Regex.Replace(FullName, @"\s+", string.Empty);
+    }
+
+
+    private string _autocomplete1;
+    private string Autocomplete1
+    {
+        get => _autocomplete1;
+        set
+        {
+            _autocomplete1 = value;
+
+            ToastService.ShowToast(
+                heading: "Autocomplete blanks disallowed",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_autocomplete1}'",
+                showIcon: false);
+        }
+    }
+
+
+
+    private string _autocomplete2;
+    private string Autocomplete2
+    {
+        get => _autocomplete2;
+        set
+        {
+            _autocomplete2 = value;
+
+            ToastService.ShowToast(
+                heading: "Autocomplete blanks allowed",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_autocomplete2}'",
+                showIcon: false);
+        }
+    }
+
+
+    private City SelectedCity { get; set; } = null;
+    private List<string> AllMatchingCityNames { get; set; } = new();
+
+
+    private async Task<MBAutocompleteTextFieldAsync.SearchResult> GetCitiesList(string searchString)
+    {
+        // A delay to mimic waiting for a database to respond
+        await Task.Delay(200);
+
+        var regexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
+
+        var fullMatchRegex = new Regex($"^{searchString}$", regexOptions);
+        var fullMatchCity = _citiesDict.Where(x => fullMatchRegex.Matches(x.Key).Any()).Select(x => x.Value.FullName).FirstOrDefault();
+
+        if (fullMatchCity != default)
+        {
+            AllMatchingCityNames = new() { fullMatchCity };
+            _ = InvokeAsync(StateHasChanged);
+
+            SelectedCity = _citiesDict[fullMatchCity];
+            return new()
+                {
+                    MatchingItems = new List<string>() { fullMatchCity },
+                    SearchResultType = MBSearchResultTypes.MatchesFound,
+                };
+        }
+
+        SelectedCity = null;
+
+        var partialMatchRegex = new Regex(searchString, regexOptions);
+        var partialMatchCities = _citiesDict.Where(x => partialMatchRegex.Matches(x.Key).Any()).Select(x => x.Value.FullName).ToList();
+        AllMatchingCityNames = partialMatchCities;
+        _ = InvokeAsync(StateHasChanged);
+
+        if (!partialMatchCities.Any())
+        {
+            return new()
+                {
+                    MatchingItems = new List<string>(),
+                    SearchResultType = MBSearchResultTypes.NoItemsFound,
+                };
+        }
+        else if (partialMatchCities.Count > 5) // as a demonstration, we decide that more than 5 items is "too many"
+        {
+            return new()
+                {
+                    MatchingItems = new List<string>(),
+                    SearchResultType = MBSearchResultTypes.TooManyItemsFound,
+                };
+        }
+
+        return new()
+            {
+                MatchingItems = partialMatchCities.OrderBy(x => x).ToList(),
+                SearchResultType = MBSearchResultTypes.MatchesFound,
+            };
+    }
+
+
+
+    static AutocompleteTextFieldAsync()
+    {
+        _citiesDict = _cities.ToDictionary(x => x.SearchTarget, x => x);
+    }
+
+
+    private static Dictionary<string, City> _citiesDict = new();
+    private static List<City> _cities = new()
+    {
+        new() { Name = "Abilene", State = "Texas", Population = 125182, AreaSqKm = 276.4, LongitudeNorth = 32.45, LatitudeWest = 99.73,  },
+        new() { Name = "Akron", State = "Ohio", Population = 190469, AreaSqKm = 160.3, LongitudeNorth = 41.08, LatitudeWest = 81.52,  },
+        new() { Name = "Albuquerque", State = "New Mexico", Population = 564559, AreaSqKm = 485.1, LongitudeNorth = 35.1, LatitudeWest = 106.64,  },
+        new() { Name = "Alexandria", State = "Virginia", Population = 159467, AreaSqKm = 38.6, LongitudeNorth = 38.82, LatitudeWest = 77.08,  },
+        new() { Name = "Allen", State = "Texas", Population = 104627, AreaSqKm = 68.4, LongitudeNorth = 33.09, LatitudeWest = 96.66,  },
+        new() { Name = "Allentown", State = "Pennsylvania", Population = 125845, AreaSqKm = 45.6, LongitudeNorth = 40.59, LatitudeWest = 75.47,  },
+        new() { Name = "Amarillo", State = "Texas", Population = 200393, AreaSqKm = 265, LongitudeNorth = 35.19, LatitudeWest = 101.83,  },
+        new() { Name = "Anaheim", State = "California", Population = 346824, AreaSqKm = 130.3, LongitudeNorth = 33.85, LatitudeWest = 117.76,  },
+        new() { Name = "Anchorage", State = "Alaska", Population = 291247, AreaSqKm = 4420.6, LongitudeNorth = 61.17, LatitudeWest = 149.28,  },
+        new() { Name = "Ann Arbor", State = "Michigan", Population = 123851, AreaSqKm = 73, LongitudeNorth = 42.27, LatitudeWest = 83.73,  },
+        new() { Name = "Antioch", State = "California", Population = 115291, AreaSqKm = 75.6, LongitudeNorth = 37.97, LatitudeWest = 121.79,  },
+        new() { Name = "Arlington", State = "Texas", Population = 394266, AreaSqKm = 248.4, LongitudeNorth = 32.7, LatitudeWest = 97.12,  },
+        new() { Name = "Arvada", State = "Colorado", Population = 124402, AreaSqKm = 100.8, LongitudeNorth = 39.83, LatitudeWest = 105.15,  },
+        new() { Name = "Athens", State = "Georgia", Population = 127315, AreaSqKm = 301.2, LongitudeNorth = 33.94, LatitudeWest = 83.37,  },
+        new() { Name = "Atlanta", State = "Georgia", Population = 498715, AreaSqKm = 350.4, LongitudeNorth = 33.76, LatitudeWest = 84.42,  },
+        new() { Name = "Augusta", State = "Georgia", Population = 202081, AreaSqKm = 783, LongitudeNorth = 33.36, LatitudeWest = 82.07,  },
+        new() { Name = "Aurora", State = "Colorado", Population = 386261, AreaSqKm = 414.7, LongitudeNorth = 39.68, LatitudeWest = 104.68,  },
+        new() { Name = "Aurora", State = "Illinois", Population = 180542, AreaSqKm = 116.5, LongitudeNorth = 41.76, LatitudeWest = 88.29,  },
+        new() { Name = "Austin", State = "Texas", Population = 961855, AreaSqKm = 828.5, LongitudeNorth = 30.3, LatitudeWest = 97.75,  },
+        new() { Name = "Bakersfield", State = "California", Population = 403455, AreaSqKm = 388, LongitudeNorth = 35.32, LatitudeWest = 119.01,  },
+        new() { Name = "Baltimore", State = "Maryland", Population = 585708, AreaSqKm = 209.5, LongitudeNorth = 39.3, LatitudeWest = 76.61,  },
+        new() { Name = "Baton Rouge", State = "Louisiana", Population = 227470, AreaSqKm = 223.5, LongitudeNorth = 30.44, LatitudeWest = 91.13,  },
+        new() { Name = "Beaumont", State = "Texas", Population = 115282, AreaSqKm = 213.7, LongitudeNorth = 30.08, LatitudeWest = 94.14,  },
+        new() { Name = "Bellevue", State = "Washington", Population = 151854, AreaSqKm = 86.8, LongitudeNorth = 47.59, LatitudeWest = 122.15,  },
+        new() { Name = "Bend", State = "Oregon", Population = 99178, AreaSqKm = 87, LongitudeNorth = 44.3, LatitudeWest = 121.18,  },
+        new() { Name = "Berkeley", State = "California", Population = 124321, AreaSqKm = 26.9, LongitudeNorth = 37.86, LatitudeWest = 122.29,  },
+        new() { Name = "Billings", State = "Montana", Population = 117116, AreaSqKm = 116, LongitudeNorth = 45.78, LatitudeWest = 108.54,  },
+        new() { Name = "Birmingham", State = "Alabama", Population = 200733, AreaSqKm = 380.7, LongitudeNorth = 33.52, LatitudeWest = 86.79,  },
+        new() { Name = "Boise", State = "Idaho", Population = 235684, AreaSqKm = 217.6, LongitudeNorth = 43.6, LatitudeWest = 116.23,  },
+        new() { Name = "Boston", State = "Massachusetts", Population = 675647, AreaSqKm = 125.1, LongitudeNorth = 42.33, LatitudeWest = 71.02,  },
+        new() { Name = "Boulder", State = "Colorado", Population = 108250, AreaSqKm = 68.1, LongitudeNorth = 40.02, LatitudeWest = 105.25,  },
+        new() { Name = "Bridgeport", State = "Connecticut", Population = 148654, AreaSqKm = 41.7, LongitudeNorth = 41.18, LatitudeWest = 73.19,  },
+        new() { Name = "Brockton", State = "Massachusetts", Population = 105643, AreaSqKm = 55.2, LongitudeNorth = 42.08, LatitudeWest = 71.02,  },
+        new() { Name = "Broken Arrow", State = "Oklahoma", Population = 113540, AreaSqKm = 163.2, LongitudeNorth = 36.03, LatitudeWest = 95.78,  },
+        new() { Name = "Brownsville", State = "Texas", Population = 186738, AreaSqKm = 340.6, LongitudeNorth = 25.99, LatitudeWest = 97.45,  },
+        new() { Name = "Buckeye", State = "Arizona", Population = 91502, AreaSqKm = 1017.9, LongitudeNorth = 33.37, LatitudeWest = 112.59,  },
+        new() { Name = "Buffalo", State = "New York", Population = 278349, AreaSqKm = 104.6, LongitudeNorth = 42.89, LatitudeWest = 78.85,  },
+        new() { Name = "Burbank", State = "California", Population = 107337, AreaSqKm = 44.8, LongitudeNorth = 34.19, LatitudeWest = 118.32,  },
+        new() { Name = "Cambridge", State = "Massachusetts", Population = 118403, AreaSqKm = 16.6, LongitudeNorth = 42.37, LatitudeWest = 71.11,  },
+        new() { Name = "Cape Coral", State = "Florida", Population = 194016, AreaSqKm = 274.5, LongitudeNorth = 26.64, LatitudeWest = 81.99,  },
+        new() { Name = "Carlsbad", State = "California", Population = 114746, AreaSqKm = 97.9, LongitudeNorth = 33.12, LatitudeWest = 117.28,  },
+        new() { Name = "Carmel", State = "Indiana", Population = 99757, AreaSqKm = 127.2, LongitudeNorth = 39.58, LatitudeWest = 86.6,  },
+        new() { Name = "Carrollton", State = "Texas", Population = 133434, AreaSqKm = 95.1, LongitudeNorth = 32.98, LatitudeWest = 96.89,  },
+        new() { Name = "Cary", State = "North Carolina", Population = 174721, AreaSqKm = 153.3, LongitudeNorth = 35.78, LatitudeWest = 78.81,  },
+        new() { Name = "Cedar Rapids", State = "Iowa", Population = 137710, AreaSqKm = 186.7, LongitudeNorth = 41.96, LatitudeWest = 91.67,  },
+        new() { Name = "Centennial", State = "Colorado", Population = 108418, AreaSqKm = 76.9, LongitudeNorth = 39.59, LatitudeWest = 104.86,  },
+        new() { Name = "Chandler", State = "Arizona", Population = 275987, AreaSqKm = 169.1, LongitudeNorth = 33.28, LatitudeWest = 111.85,  },
+        new() { Name = "Charleston", State = "South Carolina", Population = 150227, AreaSqKm = 297.3, LongitudeNorth = 32.81, LatitudeWest = 79.95,  },
+        new() { Name = "Charlotte", State = "North Carolina", Population = 874579, AreaSqKm = 798.5, LongitudeNorth = 35.2, LatitudeWest = 80.83,  },
+        new() { Name = "Chattanooga", State = "Tennessee", Population = 181099, AreaSqKm = 368.8, LongitudeNorth = 35.06, LatitudeWest = 85.24,  },
+        new() { Name = "Chesapeake", State = "Virginia", Population = 249422, AreaSqKm = 876.7, LongitudeNorth = 36.67, LatitudeWest = 76.3,  },
+        new() { Name = "Chicago", State = "Illinois", Population = 2746388, AreaSqKm = 589.7, LongitudeNorth = 41.83, LatitudeWest = 87.68,  },
+        new() { Name = "Chico", State = "California", Population = 101475, AreaSqKm = 88.3, LongitudeNorth = 39.74, LatitudeWest = 121.83,  },
+        new() { Name = "Chula Vista", State = "California", Population = 275487, AreaSqKm = 128.5, LongitudeNorth = 32.62, LatitudeWest = 117.01,  },
+        new() { Name = "Cincinnati", State = "Ohio", Population = 309317, AreaSqKm = 201.5, LongitudeNorth = 39.14, LatitudeWest = 84.5,  },
+        new() { Name = "Clarksville", State = "Tennessee", Population = 166722, AreaSqKm = 257.4, LongitudeNorth = 36.56, LatitudeWest = 87.34,  },
+        new() { Name = "Clearwater", State = "Florida", Population = 117292, AreaSqKm = 67.6, LongitudeNorth = 27.97, LatitudeWest = 82.76,  },
+        new() { Name = "Cleveland", State = "Ohio", Population = 372624, AreaSqKm = 201.2, LongitudeNorth = 41.47, LatitudeWest = 81.67,  },
+        new() { Name = "Clovis", State = "California", Population = 120124, AreaSqKm = 65.8, LongitudeNorth = 36.82, LatitudeWest = 119.68,  },
+        new() { Name = "College Station", State = "Texas", Population = 120511, AreaSqKm = 132.6, LongitudeNorth = 30.58, LatitudeWest = 96.29,  },
+        new() { Name = "Colorado Springs", State = "Colorado", Population = 478961, AreaSqKm = 506.1, LongitudeNorth = 38.86, LatitudeWest = 104.76,  },
+        new() { Name = "Columbia", State = "South Carolina", Population = 136632, AreaSqKm = 354.3, LongitudeNorth = 34.02, LatitudeWest = 80.89,  },
+        new() { Name = "Columbia", State = "Missouri", Population = 126254, AreaSqKm = 172.2, LongitudeNorth = 38.95, LatitudeWest = 92.32,  },
+        new() { Name = "Columbus", State = "Ohio", Population = 905748, AreaSqKm = 569.8, LongitudeNorth = 39.98, LatitudeWest = 82.98,  },
+        new() { Name = "Columbus", State = "Georgia", Population = 206922, AreaSqKm = 560.7, LongitudeNorth = 32.51, LatitudeWest = 84.87,  },
+        new() { Name = "Concord", State = "North Carolina", Population = 105240, AreaSqKm = 164.5, LongitudeNorth = 35.4, LatitudeWest = 80.6,  },
+        new() { Name = "Concord", State = "California", Population = 125410, AreaSqKm = 79.3, LongitudeNorth = 37.97, LatitudeWest = 122,  },
+        new() { Name = "Coral Springs", State = "Florida", Population = 134394, AreaSqKm = 59.3, LongitudeNorth = 26.27, LatitudeWest = 80.25,  },
+        new() { Name = "Corona", State = "California", Population = 157136, AreaSqKm = 103.3, LongitudeNorth = 33.86, LatitudeWest = 117.56,  },
+        new() { Name = "Corpus Christi", State = "Texas", Population = 317863, AreaSqKm = 420.1, LongitudeNorth = 27.75, LatitudeWest = 97.17,  },
+        new() { Name = "Costa Mesa", State = "California", Population = 111918, AreaSqKm = 40.9, LongitudeNorth = 33.66, LatitudeWest = 117.91,  },
+        new() { Name = "Dallas", State = "Texas", Population = 1304379, AreaSqKm = 879.6, LongitudeNorth = 32.79, LatitudeWest = 96.76,  },
+        new() { Name = "Daly City", State = "California", Population = 104901, AreaSqKm = 19.7, LongitudeNorth = 37.7, LatitudeWest = 122.46,  },
+        new() { Name = "Davenport", State = "Iowa", Population = 101724, AreaSqKm = 165.2, LongitudeNorth = 41.55, LatitudeWest = 90.6,  },
+        new() { Name = "Davie", State = "Florida", Population = 105691, AreaSqKm = 90.4, LongitudeNorth = 26.07, LatitudeWest = 80.28,  },
+        new() { Name = "Dayton", State = "Ohio", Population = 137644, AreaSqKm = 144.5, LongitudeNorth = 39.77, LatitudeWest = 84.19,  },
+        new() { Name = "Dearborn", State = "Michigan", Population = 109976, AreaSqKm = 62.7, LongitudeNorth = 42.31, LatitudeWest = 83.21,  },
+        new() { Name = "Denton", State = "Texas", Population = 139869, AreaSqKm = 249.7, LongitudeNorth = 33.21, LatitudeWest = 97.14,  },
+        new() { Name = "Denver", State = "Colorado", Population = 715522, AreaSqKm = 396.5, LongitudeNorth = 39.76, LatitudeWest = 104.88,  },
+        new() { Name = "Des Moines", State = "Iowa", Population = 214133, AreaSqKm = 228.4, LongitudeNorth = 41.57, LatitudeWest = 93.61,  },
+        new() { Name = "Detroit", State = "Michigan", Population = 639111, AreaSqKm = 359.2, LongitudeNorth = 42.38, LatitudeWest = 83.1,  },
+        new() { Name = "Downey", State = "California", Population = 114355, AreaSqKm = 32.1, LongitudeNorth = 33.93, LatitudeWest = 118.13,  },
+        new() { Name = "Durham", State = "North Carolina", Population = 283506, AreaSqKm = 292.2, LongitudeNorth = 35.98, LatitudeWest = 78.9,  },
+        new() { Name = "Edinburg", State = "Texas", Population = 100243, AreaSqKm = 115.8, LongitudeNorth = 26.3, LatitudeWest = 98.16,  },
+        new() { Name = "Edison", State = "New Jersey", Population = 107588, AreaSqKm = 78, LongitudeNorth = 40.52, LatitudeWest = 74.41,  },
+        new() { Name = "El Cajon", State = "California", Population = 106215, AreaSqKm = 37.6, LongitudeNorth = 32.8, LatitudeWest = 116.96,  },
+        new() { Name = "El Monte", State = "California", Population = 109450, AreaSqKm = 24.9, LongitudeNorth = 34.07, LatitudeWest = 118.02,  },
+        new() { Name = "El Paso", State = "Texas", Population = 678815, AreaSqKm = 669.3, LongitudeNorth = 31.84, LatitudeWest = 106.42,  },
+        new() { Name = "Elgin", State = "Illinois", Population = 114797, AreaSqKm = 98.4, LongitudeNorth = 42.03, LatitudeWest = 88.32,  },
+        new() { Name = "Elizabeth", State = "New Jersey", Population = 137298, AreaSqKm = 31.9, LongitudeNorth = 40.66, LatitudeWest = 74.19,  },
+        new() { Name = "Elk Grove", State = "California", Population = 176124, AreaSqKm = 108.8, LongitudeNorth = 38.41, LatitudeWest = 121.38,  },
+        new() { Name = "Escondido", State = "California", Population = 151038, AreaSqKm = 96.6, LongitudeNorth = 33.13, LatitudeWest = 117.07,  },
+        new() { Name = "Eugene", State = "Oregon", Population = 176654, AreaSqKm = 114.5, LongitudeNorth = 44.05, LatitudeWest = 123.11,  },
+        new() { Name = "Evansville", State = "Indiana", Population = 117298, AreaSqKm = 122.8, LongitudeNorth = 37.98, LatitudeWest = 87.53,  },
+        new() { Name = "Everett", State = "Washington", Population = 110629, AreaSqKm = 86, LongitudeNorth = 47.95, LatitudeWest = 122.19,  },
+        new() { Name = "Fairfield", State = "California", Population = 119881, AreaSqKm = 107.7, LongitudeNorth = 38.25, LatitudeWest = 122.03,  },
+        new() { Name = "Fargo", State = "North Dakota", Population = 125990, AreaSqKm = 129, LongitudeNorth = 46.86, LatitudeWest = 96.82,  },
+        new() { Name = "Fayetteville", State = "North Carolina", Population = 208501, AreaSqKm = 384.1, LongitudeNorth = 35.08, LatitudeWest = 78.97,  },
+        new() { Name = "Fishers", State = "Indiana", Population = 98977, AreaSqKm = 92.2, LongitudeNorth = 39.96, LatitudeWest = 86.01,  },
+        new() { Name = "Fontana", State = "California", Population = 208393, AreaSqKm = 111.6, LongitudeNorth = 34.1, LatitudeWest = 117.46,  },
+        new() { Name = "Fort Collins", State = "Colorado", Population = 169810, AreaSqKm = 148.1, LongitudeNorth = 40.54, LatitudeWest = 105.06,  },
+        new() { Name = "Fort Lauderdale", State = "Florida", Population = 182760, AreaSqKm = 89.6, LongitudeNorth = 26.14, LatitudeWest = 80.14,  },
+        new() { Name = "Fort Wayne", State = "Indiana", Population = 263886, AreaSqKm = 286.7, LongitudeNorth = 41.08, LatitudeWest = 85.14,  },
+        new() { Name = "Fort Worth", State = "Texas", Population = 918915, AreaSqKm = 888.1, LongitudeNorth = 32.78, LatitudeWest = 97.34,  },
+        new() { Name = "Fremont", State = "California", Population = 230504, AreaSqKm = 202.8, LongitudeNorth = 37.49, LatitudeWest = 121.94,  },
+        new() { Name = "Fresno", State = "California", Population = 542107, AreaSqKm = 298.4, LongitudeNorth = 36.78, LatitudeWest = 119.79,  },
+        new() { Name = "Frisco", State = "Texas", Population = 200509, AreaSqKm = 177.7, LongitudeNorth = 33.15, LatitudeWest = 96.82,  },
+        new() { Name = "Fullerton", State = "California", Population = 143617, AreaSqKm = 58, LongitudeNorth = 33.88, LatitudeWest = 117.92,  },
+        new() { Name = "Gainesville", State = "Florida", Population = 141085, AreaSqKm = 163.7, LongitudeNorth = 29.67, LatitudeWest = 82.34,  },
+        new() { Name = "Garden Grove", State = "California", Population = 171949, AreaSqKm = 46.6, LongitudeNorth = 33.77, LatitudeWest = 117.96,  },
+        new() { Name = "Garland", State = "Texas", Population = 246018, AreaSqKm = 147.9, LongitudeNorth = 32.9, LatitudeWest = 96.63,  },
+        new() { Name = "Gilbert", State = "Arizona", Population = 267918, AreaSqKm = 177.7, LongitudeNorth = 33.31, LatitudeWest = 111.74,  },
+        new() { Name = "Glendale", State = "Arizona", Population = 248325, AreaSqKm = 159.5, LongitudeNorth = 33.53, LatitudeWest = 112.18,  },
+        new() { Name = "Glendale", State = "California", Population = 196543, AreaSqKm = 79, LongitudeNorth = 34.18, LatitudeWest = 118.24,  },
+        new() { Name = "Goodyear", State = "Arizona", Population = 95294, AreaSqKm = 495.5, LongitudeNorth = 33.45, LatitudeWest = 112.36,  },
+        new() { Name = "Grand Prairie", State = "Texas", Population = 196100, AreaSqKm = 188, LongitudeNorth = 32.68, LatitudeWest = 97.02,  },
+        new() { Name = "Grand Rapids", State = "Michigan", Population = 198917, AreaSqKm = 116, LongitudeNorth = 42.96, LatitudeWest = 85.65,  },
+        new() { Name = "Greeley", State = "Colorado", Population = 108795, AreaSqKm = 126.7, LongitudeNorth = 40.41, LatitudeWest = 104.76,  },
+        new() { Name = "Green Bay", State = "Wisconsin", Population = 107395, AreaSqKm = 117.8, LongitudeNorth = 44.52, LatitudeWest = 87.98,  },
+        new() { Name = "Greensboro", State = "North Carolina", Population = 299035, AreaSqKm = 335.7, LongitudeNorth = 36.09, LatitudeWest = 79.82,  },
+        new() { Name = "Gresham", State = "Oregon", Population = 114247, AreaSqKm = 60.9, LongitudeNorth = 45.5, LatitudeWest = 122.44,  },
+        new() { Name = "Hampton", State = "Virginia", Population = 137148, AreaSqKm = 133.4, LongitudeNorth = 37.04, LatitudeWest = 76.29,  },
+        new() { Name = "Hartford", State = "Connecticut", Population = 121054, AreaSqKm = 45.1, LongitudeNorth = 41.76, LatitudeWest = 72.68,  },
+        new() { Name = "Hayward", State = "California", Population = 162954, AreaSqKm = 118.6, LongitudeNorth = 37.62, LatitudeWest = 122.1,  },
+        new() { Name = "Henderson", State = "Nevada", Population = 317610, AreaSqKm = 275.1, LongitudeNorth = 36, LatitudeWest = 115.03,  },
+        new() { Name = "Hesperia", State = "California", Population = 99818, AreaSqKm = 188.3, LongitudeNorth = 34.41, LatitudeWest = 117.31,  },
+        new() { Name = "Hialeah", State = "Florida", Population = 223109, AreaSqKm = 55.9, LongitudeNorth = 25.86, LatitudeWest = 80.3,  },
+        new() { Name = "High Point", State = "North Carolina", Population = 114059, AreaSqKm = 146.1, LongitudeNorth = 35.99, LatitudeWest = 79.99,  },
+        new() { Name = "Hillsboro", State = "Oregon", Population = 106447, AreaSqKm = 66.6, LongitudeNorth = 45.52, LatitudeWest = 122.93,  },
+        new() { Name = "Hollywood", State = "Florida", Population = 153067, AreaSqKm = 70.7, LongitudeNorth = 26.03, LatitudeWest = 80.16,  },
+        new() { Name = "Honolulu", State = "Hawaii", Population = 350964, AreaSqKm = 156.7, LongitudeNorth = 21.32, LatitudeWest = 157.84,  },
+        new() { Name = "Houston", State = "Texas", Population = 2304580, AreaSqKm = 1658.6, LongitudeNorth = 29.78, LatitudeWest = 95.39,  },
+        new() { Name = "Huntington Beach", State = "California", Population = 198711, AreaSqKm = 69.9, LongitudeNorth = 33.69, LatitudeWest = 118,  },
+        new() { Name = "Huntsville", State = "Alabama", Population = 215006, AreaSqKm = 564.9, LongitudeNorth = 34.69, LatitudeWest = 86.67,  },
+        new() { Name = "Independence", State = "Missouri", Population = 123011, AreaSqKm = 202, LongitudeNorth = 39.08, LatitudeWest = 94.35,  },
+        new() { Name = "Indianapolis", State = "Indiana", Population = 887642, AreaSqKm = 936.5, LongitudeNorth = 39.77, LatitudeWest = 86.14,  },
+        new() { Name = "Inglewood", State = "California", Population = 107762, AreaSqKm = 23.6, LongitudeNorth = 33.95, LatitudeWest = 118.34,  },
+        new() { Name = "Irvine", State = "California", Population = 307670, AreaSqKm = 169.9, LongitudeNorth = 33.67, LatitudeWest = 117.77,  },
+        new() { Name = "Irving", State = "Texas", Population = 256684, AreaSqKm = 173.5, LongitudeNorth = 32.85, LatitudeWest = 96.97,  },
+        new() { Name = "Jackson", State = "Mississippi", Population = 153701, AreaSqKm = 289.3, LongitudeNorth = 32.31, LatitudeWest = 90.21,  },
+        new() { Name = "Jacksonville", State = "Florida", Population = 949611, AreaSqKm = 1935.5, LongitudeNorth = 30.33, LatitudeWest = 81.66,  },
+        new() { Name = "Jersey City", State = "New Jersey", Population = 292449, AreaSqKm = 38.1, LongitudeNorth = 40.71, LatitudeWest = 74.06,  },
+        new() { Name = "Joliet", State = "Illinois", Population = 150362, AreaSqKm = 167.1, LongitudeNorth = 41.51, LatitudeWest = 88.14,  },
+        new() { Name = "Jurupa Valley", State = "California", Population = 105053, AreaSqKm = 111.1, LongitudeNorth = 34, LatitudeWest = 117.46,  },
+        new() { Name = "Kansas City", State = "Missouri", Population = 508090, AreaSqKm = 815.1, LongitudeNorth = 39.12, LatitudeWest = 94.55,  },
+        new() { Name = "Kansas City", State = "Kansas", Population = 156607, AreaSqKm = 323, LongitudeNorth = 39.12, LatitudeWest = 94.74,  },
+        new() { Name = "Kent", State = "Washington", Population = 136588, AreaSqKm = 87.5, LongitudeNorth = 47.38, LatitudeWest = 122.21,  },
+        new() { Name = "Killeen", State = "Texas", Population = 153095, AreaSqKm = 141.9, LongitudeNorth = 31.07, LatitudeWest = 97.73,  },
+        new() { Name = "Knoxville", State = "Tennessee", Population = 190740, AreaSqKm = 255.6, LongitudeNorth = 35.97, LatitudeWest = 83.94,  },
+        new() { Name = "Lafayette", State = "Louisiana", Population = 121374, AreaSqKm = 144.5, LongitudeNorth = 30.2, LatitudeWest = 92.02,  },
+        new() { Name = "Lakeland", State = "Florida", Population = 112641, AreaSqKm = 171.5, LongitudeNorth = 28.05, LatitudeWest = 81.95,  },
+        new() { Name = "Lakewood", State = "Colorado", Population = 155984, AreaSqKm = 112.7, LongitudeNorth = 39.69, LatitudeWest = 105.11,  },
+        new() { Name = "Lakewood", State = "New Jersey", Population = 135158, AreaSqKm = 64, LongitudeNorth = 40.08, LatitudeWest = 74.21,  },
+        new() { Name = "Lancaster", State = "California", Population = 173516, AreaSqKm = 244.2, LongitudeNorth = 34.69, LatitudeWest = 118.17,  },
+        new() { Name = "Lansing", State = "Michigan", Population = 112644, AreaSqKm = 101.3, LongitudeNorth = 42.71, LatitudeWest = 84.55,  },
+        new() { Name = "Laredo", State = "Texas", Population = 255205, AreaSqKm = 275.8, LongitudeNorth = 27.56, LatitudeWest = 99.48,  },
+        new() { Name = "Las Cruces", State = "New Mexico", Population = 111385, AreaSqKm = 199.2, LongitudeNorth = 32.32, LatitudeWest = 106.78,  },
+        new() { Name = "Las Vegas", State = "Nevada", Population = 641903, AreaSqKm = 367.3, LongitudeNorth = 36.22, LatitudeWest = 115.26,  },
+        new() { Name = "League City", State = "Texas", Population = 114392, AreaSqKm = 132.9, LongitudeNorth = 29.49, LatitudeWest = 95.1,  },
+        new() { Name = "Lee's Summit", State = "Missouri", Population = 101108, AreaSqKm = 165.5, LongitudeNorth = 38.92, LatitudeWest = 94.37,  },
+        new() { Name = "Lewisville", State = "Texas", Population = 111822, AreaSqKm = 95.8, LongitudeNorth = 33.04, LatitudeWest = 96.98,  },
+        new() { Name = "Lexington", State = "Kentucky", Population = 322570, AreaSqKm = 734.5, LongitudeNorth = 38.04, LatitudeWest = 84.45,  },
+        new() { Name = "Lincoln", State = "Nebraska", Population = 291082, AreaSqKm = 253, LongitudeNorth = 40.81, LatitudeWest = 96.68,  },
+        new() { Name = "Little Rock", State = "Arkansas", Population = 202591, AreaSqKm = 310.8, LongitudeNorth = 34.72, LatitudeWest = 92.35,  },
+        new() { Name = "Long Beach", State = "California", Population = 466742, AreaSqKm = 131.3, LongitudeNorth = 33.8, LatitudeWest = 118.15,  },
+        new() { Name = "Longmont", State = "Colorado", Population = 98885, AreaSqKm = 74.6, LongitudeNorth = 40.17, LatitudeWest = 105.11,  },
+        new() { Name = "Los Angeles", State = "California", Population = 3898747, AreaSqKm = 1216, LongitudeNorth = 34.01, LatitudeWest = 118.41,  },
+        new() { Name = "Louisville", State = "Kentucky", Population = 633045, AreaSqKm = 841.5, LongitudeNorth = 38.16, LatitudeWest = 85.64,  },
+        new() { Name = "Lowell", State = "Massachusetts", Population = 115554, AreaSqKm = 35.2, LongitudeNorth = 42.63, LatitudeWest = 71.32,  },
+        new() { Name = "Lubbock", State = "Texas", Population = 257141, AreaSqKm = 348.6, LongitudeNorth = 33.56, LatitudeWest = 101.88,  },
+        new() { Name = "Lynn", State = "Massachusetts", Population = 101253, AreaSqKm = 27.7, LongitudeNorth = 42.47, LatitudeWest = 70.95,  },
+        new() { Name = "Macon", State = "Georgia", Population = 157346, AreaSqKm = 645.9, LongitudeNorth = 32.8, LatitudeWest = 83.69,  },
+        new() { Name = "Madison", State = "Wisconsin", Population = 269840, AreaSqKm = 206.2, LongitudeNorth = 43.08, LatitudeWest = 89.42,  },
+        new() { Name = "Manchester", State = "New Hampshire", Population = 115644, AreaSqKm = 85.7, LongitudeNorth = 42.98, LatitudeWest = 71.44,  },
+        new() { Name = "McAllen", State = "Texas", Population = 142210, AreaSqKm = 161.4, LongitudeNorth = 26.23, LatitudeWest = 98.24,  },
+        new() { Name = "McKinney", State = "Texas", Population = 195308, AreaSqKm = 173.5, LongitudeNorth = 33.19, LatitudeWest = 96.66,  },
+        new() { Name = "Memphis", State = "Tennessee", Population = 633104, AreaSqKm = 769.2, LongitudeNorth = 35.1, LatitudeWest = 89.97,  },
+        new() { Name = "Menifee", State = "California", Population = 102527, AreaSqKm = 120.4, LongitudeNorth = 33.69, LatitudeWest = 117.19,  },
+        new() { Name = "Meridian", State = "Idaho", Population = 117635, AreaSqKm = 90.9, LongitudeNorth = 43.61, LatitudeWest = 116.39,  },
+        new() { Name = "Mesa", State = "Arizona", Population = 504258, AreaSqKm = 359.2, LongitudeNorth = 33.4, LatitudeWest = 111.71,  },
+        new() { Name = "Mesquite", State = "Texas", Population = 150108, AreaSqKm = 125.6, LongitudeNorth = 32.76, LatitudeWest = 96.58,  },
+        new() { Name = "Miami", State = "Florida", Population = 442241, AreaSqKm = 93.2, LongitudeNorth = 25.77, LatitudeWest = 80.2,  },
+        new() { Name = "Miami Gardens", State = "Florida", Population = 111640, AreaSqKm = 47.1, LongitudeNorth = 25.94, LatitudeWest = 80.24,  },
+        new() { Name = "Midland", State = "Texas", Population = 132524, AreaSqKm = 195.5, LongitudeNorth = 32.02, LatitudeWest = 102.11,  },
+        new() { Name = "Milwaukee", State = "Wisconsin", Population = 577222, AreaSqKm = 249.2, LongitudeNorth = 43.06, LatitudeWest = 87.96,  },
+        new() { Name = "Minneapolis", State = "Minnesota", Population = 429954, AreaSqKm = 139.9, LongitudeNorth = 44.96, LatitudeWest = 93.26,  },
+        new() { Name = "Miramar", State = "Florida", Population = 134721, AreaSqKm = 74.9, LongitudeNorth = 25.97, LatitudeWest = 80.33,  },
+        new() { Name = "Mobile", State = "Alabama", Population = 187041, AreaSqKm = 361.3, LongitudeNorth = 30.66, LatitudeWest = 88.1,  },
+        new() { Name = "Modesto", State = "California", Population = 218464, AreaSqKm = 111.4, LongitudeNorth = 37.63, LatitudeWest = 121,  },
+        new() { Name = "Montgomery", State = "Alabama", Population = 200603, AreaSqKm = 414.1, LongitudeNorth = 32.34, LatitudeWest = 86.26,  },
+        new() { Name = "Moreno Valley", State = "California", Population = 208634, AreaSqKm = 132.9, LongitudeNorth = 33.92, LatitudeWest = 117.2,  },
+        new() { Name = "Murfreesboro", State = "Tennessee", Population = 152769, AreaSqKm = 162.9, LongitudeNorth = 35.85, LatitudeWest = 86.41,  },
+        new() { Name = "Murrieta", State = "California", Population = 110949, AreaSqKm = 87, LongitudeNorth = 33.57, LatitudeWest = 117.19,  },
+        new() { Name = "Nampa", State = "Idaho", Population = 100200, AreaSqKm = 86.8, LongitudeNorth = 43.57, LatitudeWest = 116.56,  },
+        new() { Name = "Naperville", State = "Illinois", Population = 149540, AreaSqKm = 101.3, LongitudeNorth = 41.74, LatitudeWest = 88.16,  },
+        new() { Name = "Nashville", State = "Tennessee", Population = 689447, AreaSqKm = 1232.3, LongitudeNorth = 36.17, LatitudeWest = 86.78,  },
+        new() { Name = "New Bedford", State = "Massachusetts", Population = 101079, AreaSqKm = 51.8, LongitudeNorth = 41.64, LatitudeWest = 70.93,  },
+        new() { Name = "New Haven", State = "Connecticut", Population = 134023, AreaSqKm = 48.4, LongitudeNorth = 41.31, LatitudeWest = 72.92,  },
+        new() { Name = "New Orleans", State = "Louisiana", Population = 383997, AreaSqKm = 439, LongitudeNorth = 30.05, LatitudeWest = 89.93,  },
+        new() { Name = "New York", State = "New York", Population = 8804190, AreaSqKm = 778.3, LongitudeNorth = 40.66, LatitudeWest = 73.93,  },
+        new() { Name = "Newark", State = "New Jersey", Population = 311549, AreaSqKm = 62.4, LongitudeNorth = 40.72, LatitudeWest = 74.17,  },
+        new() { Name = "Newport News", State = "Virginia", Population = 186247, AreaSqKm = 178.7, LongitudeNorth = 37.07, LatitudeWest = 76.52,  },
+        new() { Name = "Norfolk", State = "Virginia", Population = 238005, AreaSqKm = 138, LongitudeNorth = 36.92, LatitudeWest = 76.24,  },
+        new() { Name = "Norman", State = "Oklahoma", Population = 128026, AreaSqKm = 463.1, LongitudeNorth = 35.24, LatitudeWest = 97.34,  },
+        new() { Name = "North Charleston", State = "South Carolina", Population = 114852, AreaSqKm = 201, LongitudeNorth = 32.91, LatitudeWest = 80.06,  },
+        new() { Name = "North Las Vegas", State = "Nevada", Population = 262527, AreaSqKm = 262.4, LongitudeNorth = 36.28, LatitudeWest = 115.09,  },
+        new() { Name = "Norwalk", State = "California", Population = 102773, AreaSqKm = 25.1, LongitudeNorth = 33.9, LatitudeWest = 118.08,  },
+        new() { Name = "Oakland", State = "California", Population = 440646, AreaSqKm = 144.8, LongitudeNorth = 37.76, LatitudeWest = 122.22,  },
+        new() { Name = "Oceanside", State = "California", Population = 174068, AreaSqKm = 107, LongitudeNorth = 33.22, LatitudeWest = 117.3,  },
+        new() { Name = "Odessa", State = "Texas", Population = 114428, AreaSqKm = 132.3, LongitudeNorth = 31.88, LatitudeWest = 102.34,  },
+        new() { Name = "Oklahoma City", State = "Oklahoma", Population = 681054, AreaSqKm = 1570.1, LongitudeNorth = 35.46, LatitudeWest = 97.51,  },
+        new() { Name = "Olathe", State = "Kansas", Population = 141290, AreaSqKm = 160.3, LongitudeNorth = 38.88, LatitudeWest = 94.81,  },
+        new() { Name = "Omaha", State = "Nebraska", Population = 486051, AreaSqKm = 345, LongitudeNorth = 41.26, LatitudeWest = 96.04,  },
+        new() { Name = "Ontario", State = "California", Population = 175265, AreaSqKm = 129.5, LongitudeNorth = 34.03, LatitudeWest = 117.6,  },
+        new() { Name = "Orange", State = "California", Population = 139911, AreaSqKm = 66.6, LongitudeNorth = 33.78, LatitudeWest = 117.86,  },
+        new() { Name = "Orlando", State = "Florida", Population = 307573, AreaSqKm = 286.5, LongitudeNorth = 28.41, LatitudeWest = 81.27,  },
+        new() { Name = "Overland Park", State = "Kansas", Population = 197238, AreaSqKm = 194.8, LongitudeNorth = 38.88, LatitudeWest = 94.69,  },
+        new() { Name = "Oxnard", State = "California", Population = 202063, AreaSqKm = 68.6, LongitudeNorth = 34.2, LatitudeWest = 119.2,  },
+        new() { Name = "Palm Bay", State = "Florida", Population = 119760, AreaSqKm = 223.8, LongitudeNorth = 27.98, LatitudeWest = 80.66,  },
+        new() { Name = "Palmdale", State = "California", Population = 169450, AreaSqKm = 274.8, LongitudeNorth = 34.59, LatitudeWest = 118.1,  },
+        new() { Name = "Pasadena", State = "Texas", Population = 151950, AreaSqKm = 113.2, LongitudeNorth = 29.65, LatitudeWest = 95.15,  },
+        new() { Name = "Pasadena", State = "California", Population = 138699, AreaSqKm = 59.6, LongitudeNorth = 34.16, LatitudeWest = 118.13,  },
+        new() { Name = "Paterson", State = "New Jersey", Population = 159732, AreaSqKm = 21.8, LongitudeNorth = 40.91, LatitudeWest = 74.16,  },
+        new() { Name = "Pearland", State = "Texas", Population = 125828, AreaSqKm = 126.1, LongitudeNorth = 29.55, LatitudeWest = 95.32,  },
+        new() { Name = "Pembroke Pines", State = "Florida", Population = 171178, AreaSqKm = 84.7, LongitudeNorth = 26.02, LatitudeWest = 80.34,  },
+        new() { Name = "Peoria", State = "Arizona", Population = 190985, AreaSqKm = 456.1, LongitudeNorth = 33.78, LatitudeWest = 112.3,  },
+        new() { Name = "Peoria", State = "Illinois", Population = 113150, AreaSqKm = 124.3, LongitudeNorth = 40.75, LatitudeWest = 89.61,  },
+        new() { Name = "Philadelphia", State = "Pennsylvania", Population = 1603797, AreaSqKm = 348.1, LongitudeNorth = 40, LatitudeWest = 75.13,  },
+        new() { Name = "Phoenix", State = "Arizona", Population = 1608139, AreaSqKm = 1341.6, LongitudeNorth = 33.57, LatitudeWest = 112.09,  },
+        new() { Name = "Pittsburgh", State = "Pennsylvania", Population = 302971, AreaSqKm = 143.5, LongitudeNorth = 40.43, LatitudeWest = 79.97,  },
+        new() { Name = "Plano", State = "Texas", Population = 285494, AreaSqKm = 185.7, LongitudeNorth = 33.05, LatitudeWest = 96.74,  },
+        new() { Name = "Pomona", State = "California", Population = 151713, AreaSqKm = 59.6, LongitudeNorth = 34.05, LatitudeWest = 117.76,  },
+        new() { Name = "Pompano Beach", State = "Florida", Population = 112046, AreaSqKm = 62.2, LongitudeNorth = 26.24, LatitudeWest = 80.13,  },
+        new() { Name = "Port St. Lucie", State = "Florida", Population = 204851, AreaSqKm = 308.7, LongitudeNorth = 27.28, LatitudeWest = 80.38,  },
+        new() { Name = "Portland", State = "Oregon", Population = 652503, AreaSqKm = 345.8, LongitudeNorth = 45.53, LatitudeWest = 122.65,  },
+        new() { Name = "Providence", State = "Rhode Island", Population = 190934, AreaSqKm = 47.7, LongitudeNorth = 41.82, LatitudeWest = 71.41,  },
+        new() { Name = "Provo", State = "Utah", Population = 115162, AreaSqKm = 108, LongitudeNorth = 40.24, LatitudeWest = 111.64,  },
+        new() { Name = "Pueblo", State = "Colorado", Population = 111876, AreaSqKm = 143.5, LongitudeNorth = 38.26, LatitudeWest = 104.61,  },
+        new() { Name = "Quincy", State = "Massachusetts", Population = 101636, AreaSqKm = 43, LongitudeNorth = 42.25, LatitudeWest = 71,  },
+        new() { Name = "Raleigh", State = "North Carolina", Population = 467665, AreaSqKm = 375.8, LongitudeNorth = 35.83, LatitudeWest = 78.64,  },
+        new() { Name = "Rancho Cucamonga", State = "California", Population = 174453, AreaSqKm = 103.9, LongitudeNorth = 34.12, LatitudeWest = 117.56,  },
+        new() { Name = "Reno", State = "Nevada", Population = 264165, AreaSqKm = 281.8, LongitudeNorth = 39.54, LatitudeWest = 119.84,  },
+        new() { Name = "Renton", State = "Washington", Population = 106785, AreaSqKm = 60.9, LongitudeNorth = 47.47, LatitudeWest = 122.19,  },
+        new() { Name = "Rialto", State = "California", Population = 104026, AreaSqKm = 62.4, LongitudeNorth = 34.11, LatitudeWest = 117.38,  },
+        new() { Name = "Richardson", State = "Texas", Population = 119469, AreaSqKm = 74.1, LongitudeNorth = 32.97, LatitudeWest = 96.7,  },
+        new() { Name = "Richmond", State = "Virginia", Population = 226610, AreaSqKm = 155.1, LongitudeNorth = 37.53, LatitudeWest = 77.47,  },
+        new() { Name = "Richmond", State = "California", Population = 116448, AreaSqKm = 78, LongitudeNorth = 37.95, LatitudeWest = 122.36,  },
+        new() { Name = "Rio Rancho", State = "New Mexico", Population = 104046, AreaSqKm = 267.8, LongitudeNorth = 35.29, LatitudeWest = 106.67,  },
+        new() { Name = "Riverside", State = "California", Population = 314998, AreaSqKm = 210.3, LongitudeNorth = 33.93, LatitudeWest = 117.39,  },
+        new() { Name = "Rochester", State = "Minnesota", Population = 121395, AreaSqKm = 143.7, LongitudeNorth = 44.01, LatitudeWest = 92.47,  },
+        new() { Name = "Rochester", State = "New York", Population = 211328, AreaSqKm = 92.7, LongitudeNorth = 43.16, LatitudeWest = 77.61,  },
+        new() { Name = "Rockford", State = "Illinois", Population = 148655, AreaSqKm = 167.1, LongitudeNorth = 42.25, LatitudeWest = 89.06,  },
+        new() { Name = "Roseville", State = "California", Population = 147773, AreaSqKm = 114.2, LongitudeNorth = 38.76, LatitudeWest = 121.31,  },
+        new() { Name = "Round Rock", State = "Texas", Population = 119468, AreaSqKm = 97.4, LongitudeNorth = 30.52, LatitudeWest = 97.66,  },
+        new() { Name = "Sacramento", State = "California", Population = 524943, AreaSqKm = 255.4, LongitudeNorth = 38.56, LatitudeWest = 121.46,  },
+        new() { Name = "Saint Paul", State = "Minnesota", Population = 311527, AreaSqKm = 134.7, LongitudeNorth = 44.94, LatitudeWest = 93.1,  },
+        new() { Name = "Salem", State = "Oregon", Population = 175535, AreaSqKm = 126.4, LongitudeNorth = 44.92, LatitudeWest = 123.02,  },
+        new() { Name = "Salinas", State = "California", Population = 163542, AreaSqKm = 60.9, LongitudeNorth = 36.69, LatitudeWest = 121.63,  },
+        new() { Name = "Salt Lake City", State = "Utah", Population = 199723, AreaSqKm = 285.7, LongitudeNorth = 40.77, LatitudeWest = 111.93,  },
+        new() { Name = "San Antonio", State = "Texas", Population = 1434625, AreaSqKm = 1291.9, LongitudeNorth = 29.47, LatitudeWest = 98.52,  },
+        new() { Name = "San Bernardino", State = "California", Population = 222101, AreaSqKm = 160.8, LongitudeNorth = 34.14, LatitudeWest = 117.29,  },
+        new() { Name = "San Diego", State = "California", Population = 1386932, AreaSqKm = 844.1, LongitudeNorth = 32.81, LatitudeWest = 117.13,  },
+        new() { Name = "San Francisco", State = "California", Population = 873965, AreaSqKm = 121.5, LongitudeNorth = 37.72, LatitudeWest = 123.03,  },
+        new() { Name = "San Jose", State = "California", Population = 1013240, AreaSqKm = 461.8, LongitudeNorth = 37.29, LatitudeWest = 121.81,  },
+        new() { Name = "San Mateo", State = "California", Population = 105661, AreaSqKm = 31.3, LongitudeNorth = 37.56, LatitudeWest = 122.31,  },
+        new() { Name = "Sandy Springs", State = "Georgia", Population = 108080, AreaSqKm = 97.6, LongitudeNorth = 33.93, LatitudeWest = 84.36,  },
+        new() { Name = "Santa Ana", State = "California", Population = 310227, AreaSqKm = 70.7, LongitudeNorth = 33.73, LatitudeWest = 117.88,  },
+        new() { Name = "Santa Clara", State = "California", Population = 127647, AreaSqKm = 47.4, LongitudeNorth = 37.36, LatitudeWest = 121.96,  },
+        new() { Name = "Santa Clarita", State = "California", Population = 228673, AreaSqKm = 183.4, LongitudeNorth = 34.4, LatitudeWest = 118.5,  },
+        new() { Name = "Santa Maria", State = "California", Population = 109707, AreaSqKm = 59.1, LongitudeNorth = 34.93, LatitudeWest = 120.44,  },
+        new() { Name = "Santa Rosa", State = "California", Population = 178127, AreaSqKm = 110.1, LongitudeNorth = 38.44, LatitudeWest = 122.7,  },
+        new() { Name = "Savannah", State = "Georgia", Population = 147780, AreaSqKm = 276.6, LongitudeNorth = 32, LatitudeWest = 81.15,  },
+        new() { Name = "Scottsdale", State = "Arizona", Population = 241361, AreaSqKm = 476.6, LongitudeNorth = 33.68, LatitudeWest = 111.86,  },
+        new() { Name = "Seattle", State = "Washington", Population = 737015, AreaSqKm = 217, LongitudeNorth = 47.62, LatitudeWest = 122.35,  },
+        new() { Name = "Shreveport", State = "Louisiana", Population = 187593, AreaSqKm = 279.2, LongitudeNorth = 32.46, LatitudeWest = 93.79,  },
+        new() { Name = "Simi Valley", State = "California", Population = 126356, AreaSqKm = 107.5, LongitudeNorth = 34.26, LatitudeWest = 118.74,  },
+        new() { Name = "Sioux Falls", State = "South Dakota", Population = 192517, AreaSqKm = 204.9, LongitudeNorth = 43.53, LatitudeWest = 96.73,  },
+        new() { Name = "South Bend", State = "Indiana", Population = 103453, AreaSqKm = 108.8, LongitudeNorth = 41.67, LatitudeWest = 86.26,  },
+        new() { Name = "South Fulton", State = "Georgia", Population = 107436, AreaSqKm = 220.7, LongitudeNorth = 33.59, LatitudeWest = 84.67,  },
+        new() { Name = "Sparks", State = "Nevada", Population = 108445, AreaSqKm = 94.3, LongitudeNorth = 39.55, LatitudeWest = 119.73,  },
+        new() { Name = "Spokane", State = "Washington", Population = 228989, AreaSqKm = 178.2, LongitudeNorth = 47.66, LatitudeWest = 117.43,  },
+        new() { Name = "Spokane Valley", State = "Washington", Population = 102976, AreaSqKm = 97.6, LongitudeNorth = 47.67, LatitudeWest = 117.23,  },
+        new() { Name = "Springfield", State = "Missouri", Population = 169176, AreaSqKm = 213.4, LongitudeNorth = 37.19, LatitudeWest = 93.29,  },
+        new() { Name = "Springfield", State = "Illinois", Population = 114394, AreaSqKm = 158.2, LongitudeNorth = 39.79, LatitudeWest = 89.64,  },
+        new() { Name = "Springfield", State = "Massachusetts", Population = 155929, AreaSqKm = 82.6, LongitudeNorth = 42.11, LatitudeWest = 72.54,  },
+        new() { Name = "St. Louis", State = "Missouri", Population = 301578, AreaSqKm = 159.8, LongitudeNorth = 38.63, LatitudeWest = 90.24,  },
+        new() { Name = "St. Petersburg", State = "Florida", Population = 258308, AreaSqKm = 160.1, LongitudeNorth = 27.76, LatitudeWest = 82.64,  },
+        new() { Name = "Stamford", State = "Connecticut", Population = 135470, AreaSqKm = 97.4, LongitudeNorth = 41.07, LatitudeWest = 73.54,  },
+        new() { Name = "Sterling Heights", State = "Michigan", Population = 134346, AreaSqKm = 94.3, LongitudeNorth = 42.58, LatitudeWest = 83.03,  },
+        new() { Name = "Stockton", State = "California", Population = 320804, AreaSqKm = 161.1, LongitudeNorth = 37.97, LatitudeWest = 121.31,  },
+        new() { Name = "Sugar Land", State = "Texas", Population = 111026, AreaSqKm = 104.9, LongitudeNorth = 29.59, LatitudeWest = 95.61,  },
+        new() { Name = "Sunnyvale", State = "California", Population = 155805, AreaSqKm = 57.2, LongitudeNorth = 37.38, LatitudeWest = 122.02,  },
+        new() { Name = "Surprise", State = "Arizona", Population = 143148, AreaSqKm = 285.7, LongitudeNorth = 33.67, LatitudeWest = 112.45,  },
+        new() { Name = "Syracuse", State = "New York", Population = 148620, AreaSqKm = 65, LongitudeNorth = 43.04, LatitudeWest = 76.14,  },
+        new() { Name = "Tacoma", State = "Washington", Population = 219346, AreaSqKm = 128.7, LongitudeNorth = 47.25, LatitudeWest = 122.45,  },
+        new() { Name = "Tallahassee", State = "Florida", Population = 196169, AreaSqKm = 261.3, LongitudeNorth = 30.45, LatitudeWest = 84.25,  },
+        new() { Name = "Tampa", State = "Florida", Population = 384959, AreaSqKm = 295.3, LongitudeNorth = 27.97, LatitudeWest = 82.47,  },
+        new() { Name = "Temecula", State = "California", Population = 110003, AreaSqKm = 96.6, LongitudeNorth = 33.49, LatitudeWest = 117.13,  },
+        new() { Name = "Tempe", State = "Arizona", Population = 180587, AreaSqKm = 103.3, LongitudeNorth = 33.38, LatitudeWest = 111.93,  },
+        new() { Name = "Thornton", State = "Colorado", Population = 141867, AreaSqKm = 93, LongitudeNorth = 39.91, LatitudeWest = 104.94,  },
+        new() { Name = "Thousand Oaks", State = "California", Population = 126966, AreaSqKm = 143.2, LongitudeNorth = 34.19, LatitudeWest = 118.87,  },
+        new() { Name = "Toledo", State = "Ohio", Population = 270871, AreaSqKm = 208.5, LongitudeNorth = 41.66, LatitudeWest = 83.58,  },
+        new() { Name = "Topeka", State = "Kansas", Population = 126587, AreaSqKm = 159, LongitudeNorth = 39.03, LatitudeWest = 95.69,  },
+        new() { Name = "Torrance", State = "California", Population = 147067, AreaSqKm = 53.1, LongitudeNorth = 33.83, LatitudeWest = 118.34,  },
+        new() { Name = "Tucson", State = "Arizona", Population = 542629, AreaSqKm = 624.2, LongitudeNorth = 32.15, LatitudeWest = 110.87,  },
+        new() { Name = "Tulsa", State = "Oklahoma", Population = 413066, AreaSqKm = 511.5, LongitudeNorth = 36.12, LatitudeWest = 95.9,  },
+        new() { Name = "Tuscaloosa", State = "Alabama", Population = 99600, AreaSqKm = 160.3, LongitudeNorth = 33.21, LatitudeWest = 87.53,  },
+        new() { Name = "Tyler", State = "Texas", Population = 105995, AreaSqKm = 148.9, LongitudeNorth = 32.31, LatitudeWest = 95.3,  },
+        new() { Name = "Vacaville", State = "California", Population = 102386, AreaSqKm = 77.4, LongitudeNorth = 38.35, LatitudeWest = 121.97,  },
+        new() { Name = "Vallejo", State = "California", Population = 126090, AreaSqKm = 78.7, LongitudeNorth = 38.1, LatitudeWest = 122.26,  },
+        new() { Name = "Vancouver", State = "Washington", Population = 190915, AreaSqKm = 126.1, LongitudeNorth = 45.63, LatitudeWest = 122.59,  },
+        new() { Name = "Ventura", State = "California", Population = 110763, AreaSqKm = 56.7, LongitudeNorth = 34.26, LatitudeWest = 119.25,  },
+        new() { Name = "Victorville", State = "California", Population = 134810, AreaSqKm = 190.9, LongitudeNorth = 34.52, LatitudeWest = 117.35,  },
+        new() { Name = "Virginia Beach", State = "Virginia", Population = 459470, AreaSqKm = 633.8, LongitudeNorth = 36.78, LatitudeWest = 76.02,  },
+        new() { Name = "Visalia", State = "California", Population = 141384, AreaSqKm = 98.2, LongitudeNorth = 36.32, LatitudeWest = 119.32,  },
+        new() { Name = "Waco", State = "Texas", Population = 138486, AreaSqKm = 229.7, LongitudeNorth = 31.56, LatitudeWest = 97.18,  },
+        new() { Name = "Warren", State = "Michigan", Population = 139387, AreaSqKm = 89.1, LongitudeNorth = 42.49, LatitudeWest = 83.02,  },
+        new() { Name = "Washington", State = "District of Columbia", Population = 689545, AreaSqKm = 158.2, LongitudeNorth = 38.9, LatitudeWest = 77.01,  },
+        new() { Name = "Waterbury", State = "Connecticut", Population = 114403, AreaSqKm = 73.8, LongitudeNorth = 41.55, LatitudeWest = 73.03,  },
+        new() { Name = "West Covina", State = "California", Population = 109501, AreaSqKm = 41.4, LongitudeNorth = 34.05, LatitudeWest = 117.9,  },
+        new() { Name = "West Jordan", State = "Utah", Population = 116961, AreaSqKm = 83.7, LongitudeNorth = 40.6, LatitudeWest = 112,  },
+        new() { Name = "West Palm Beach", State = "Florida", Population = 117415, AreaSqKm = 139.3, LongitudeNorth = 26.74, LatitudeWest = 80.12,  },
+        new() { Name = "West Valley City", State = "Utah", Population = 140230, AreaSqKm = 92.7, LongitudeNorth = 40.68, LatitudeWest = 112.01,  },
+        new() { Name = "Westminster", State = "Colorado", Population = 116317, AreaSqKm = 81.8, LongitudeNorth = 39.88, LatitudeWest = 105.06,  },
+        new() { Name = "Wichita", State = "Kansas", Population = 397532, AreaSqKm = 419.6, LongitudeNorth = 37.69, LatitudeWest = 97.34,  },
+        new() { Name = "Wichita Falls", State = "Texas", Population = 102316, AreaSqKm = 186.5, LongitudeNorth = 33.9, LatitudeWest = 98.52,  },
+        new() { Name = "Wilmington", State = "North Carolina", Population = 115451, AreaSqKm = 133.1, LongitudeNorth = 34.2, LatitudeWest = 77.88,  },
+        new() { Name = "Winston–Salem", State = "North Carolina", Population = 249545, AreaSqKm = 343.7, LongitudeNorth = 36.1, LatitudeWest = 80.26,  },
+        new() { Name = "Woodbridge", State = "New Jersey", Population = 103639, AreaSqKm = 60.3, LongitudeNorth = 40.56, LatitudeWest = 74.28,  },
+        new() { Name = "Worcester", State = "Massachusetts", Population = 206518, AreaSqKm = 96.9, LongitudeNorth = 42.26, LatitudeWest = 71.8,  },
+        new() { Name = "Yonkers", State = "New York", Population = 211569, AreaSqKm = 46.6, LongitudeNorth = 40.94, LatitudeWest = 73.86,  },
+    };
+}

@@ -1,0 +1,54 @@
+﻿@namespace Material.Blazor
+@inherits InputComponent<string>
+
+
+<div class="mb-autocomplete @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id">
+    <MBTextField @attributes="@AttributesToSplat()"
+                 @bind-Value="@SearchText"
+                 Density="@Density"
+                 Disabled="@AppliedDisabled"
+                 HelperText="@HelperText"
+                 HelperTextPersistent="@HelperTextPersistent"
+                 IconFoundry="@IconFoundry"
+                 Label="@Label"
+                 LeadingIcon="@LeadingIcon"
+                 @onchange="@OnTextChangeAsync"
+                 @onfocusout="@OnTextFocusOutAsync"
+                 @oninput="@OnInput"
+                 @ref="@TextField"
+                 TextAlignStyle="@TextAlignStyle"
+                 TextInputStyle="@TextInputStyle"
+                 TrailingIcon="@TrailingIcon"
+                 ValidationMessageFor="@ValidationMessageFor" />
+
+    <div class="mdc-menu-surface--anchor">
+        <div @ref="@MenuReference"
+             class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
+             @onfocusin="OnMenuFocusIn"
+             @onfocusout="OnMenuFocusOut"
+             tabindex="-1">
+
+            <ul class="mdc-deprecated-list"
+                tabindex="-1">
+
+                @foreach (var item in SelectItems)
+                {
+                    var listClass = "mdc-deprecated-list-item" + (item.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
+                    var ariaSelected = item.Equals(Value);
+
+                    <li @key="@item"
+                        class="@listClass"
+                        data-value="@item"
+                        aria-selected="@ariaSelected"
+                        role="option"
+                        tabindex="0">
+                        <span class="mdc-deprecated-list-item__ripple"></span>
+                        <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

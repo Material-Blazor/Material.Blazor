@@ -970,7 +970,7 @@ public class MBScheduler : ComponentFoundation
             SemaphoreSlim.Release();
         }
 
-        //            return base.SetParametersAsync(ParameterView.Empty);
+        //            return base.GetSelectionAsync(ParameterView.Empty);
 
         return base.SetParametersAsync(parameters);
     }

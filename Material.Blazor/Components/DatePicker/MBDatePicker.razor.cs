@@ -225,7 +225,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
 
         OnDisabledSet += OnDisabledSetCallback;
 
-        // SuppressDefaultDate is only used here and not in SetParametersAsync
+        // SuppressDefaultDate is only used here and not in GetSelectionAsync
         // therefore a change will not be detected (and makes little sense
         // for the component).
 

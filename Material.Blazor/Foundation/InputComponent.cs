@@ -319,7 +319,7 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor.
     //
-    // This implementation of SetParametersAsync is largely untouched from our original fork of Steve Sanderson's
+    // This implementation of GetSelectionAsync is largely untouched from our original fork of Steve Sanderson's
     // RazorComponents.MaterialDesign repo. We've added the storage of a cached Value for use in
     // OnSetParameters/OnSetParametersAsync.
     public override async Task SetParametersAsync(ParameterView parameters)

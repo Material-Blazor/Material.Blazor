@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -14,29 +14,28 @@ namespace Material.Blazor;
 /// An autocomplete built using an <see cref="MBTextField"/> with the anchor and drop
 /// down list implementation from a Material Theme select.
 /// </summary>
-public partial class MBAutocompleteTextField : InputComponent<string>
+public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 {
-    private IEnumerable<string> selectItems;
-    private IEnumerable<string> newSelectItems = null;
-
-    private class SelectionInfo
+    /// <summary>
+    /// The results of a search calling <see cref="GetMatchingSelection"/>. Both parameters
+    /// must be set to enable the autocomplete to know if there is an overflow condition due to too many items being returned,
+    /// an exact match or no items were found.
+    /// </summary>
+    public class SearchResult
     {
-        public string SelectedText { get; set; }
-        public string[] SelectList { get; set; }
-        public bool FirstValueIsCustomValue { get; set; }
-        public bool FullMatchFound => (SelectList.Length == 1) && SelectList.Contains(SelectedText);
-    }
+        /// <summary>
+        /// Returned list of select items. Can be empty either
+        /// because no items matching search criteria were found, or
+        /// because the item list is too long, signfied by setting the 
+        /// <see cref="ItemListTooLong"/> parameter to true.
+        /// </summary>
+        public IEnumerable<string> MatchingItems { get; set; }
 
 
-    private partial class SelectionItem
-    {
-        public string Item { get; set; }
-        public bool IgnoreWhitespace { get; set; }
-        public string SearchTarget => IgnoreWhitespace ? SearchTargetRegex().Replace(Item, string.Empty) : Item;
-
-        
-        [GeneratedRegex("\\s+")]
-        private static partial Regex SearchTargetRegex();
+        /// <summary>
+        /// Describes the contents of <see cref="MatchingItems"/>.
+        /// </summary>
+        public MBSearchResultTypes SearchResultType { get; set; }
     }
 
 
@@ -110,9 +109,10 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
 
     /// <summary>
-    /// Ignores whitespace when searching the items list.
+    /// Debounce interval in milliseconds.
     /// </summary>
-    [Parameter] public bool IgnoreWhitespace { get; set; } = false;
+    [Parameter] public int? DebounceInterval { get; set; }
+#nullable restore annotations
 
 
     /// <summary>
@@ -122,45 +122,26 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
 
     /// <summary>
-    /// Forces the search string to match only from the start of each select item.
-    /// </summary>
-    [Parameter] public bool MatchFromItemStart { get; set; } = false;
-
-
-    /// <summary>
-    /// List of items to select from.
+    /// An async method returning an enumerated selection list.
     /// </summary>
     [Parameter]
-    public IEnumerable<string> SelectItems
-    {
-        get => selectItems;
-        set
-        {
-            if (IsOpen)
-            {
-                newSelectItems = value;
-            }
-            else
-            {
-                selectItems = value;
-            }
-        }
-    }
-#nullable restore annotations
+    public Func<string, Task<SearchResult>> GetMatchingSelection { get; set; }
 
-    /// <summary>
-    /// When set, the value that the user enters does not have to match any of the selectable items.
-    /// </summary>
-    [Parameter] public bool AllowCustomValue { get; set; }
 
 
     private bool IsOpen { get; set; } = false;
-    private DotNetObjectReference<MBAutocompleteTextField> ObjectReference { get; set; }
+    private DotNetObjectReference<MBAutocompleteTextFieldAsync> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
-    private SelectionItem[] MySelectItems { get; set; }
-    private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();
+    private string SearchText { get; set; } = "";
+    private string[] SelectItems { get; set; } = Array.Empty<string>();
+    private MBSearchResultTypes SearchResultType { get; set; }
+    public bool FullMatchFound => SelectItems.Length == 1 && SelectItems[0] == ComponentValue;
     private MBTextField TextField { get; set; }
+    private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
+    private string CurrentValue { get; set; } = "";
+    private Timer Timer { get; set; }
+
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -174,13 +155,13 @@ public partial class MBAutocompleteTextField : InputComponent<string>
     }
 
 
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
+    //// Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    //protected override async Task OnParametersSetAsync()
+    //{
+    //    await base.OnParametersSetAsync();
 
-        SetParameters();
-    }
+    //    await GetSelectionAsync(ComponentValue);
+    //}
 
 
     private bool _disposed = false;
@@ -194,6 +175,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
         if (disposing)
         {
             ObjectReference?.Dispose();
+            Timer?.Dispose();
         }
 
         _disposed = true;
@@ -202,71 +184,47 @@ public partial class MBAutocompleteTextField : InputComponent<string>
     }
 
 
-    private void SetParameters()
+    private async Task GetSelectionAsync(string searchString)
     {
-        MySelectItems = (from i in SelectItems
-                         select new SelectionItem
-                         {
-                             Item = i,
-                             IgnoreWhitespace = IgnoreWhitespace
-                         }).ToArray();
+        if (GetMatchingSelection is null)
+        {
+            SelectItems = Array.Empty<string>();
+            SearchResultType = MBSearchResultTypes.NoItemsFound;
+        }
+        else
+        {
+            var searchResult = await GetMatchingSelection.Invoke(searchString ?? "");
 
-        SelectInfo = BuildSelectList(ComponentValue);
+            SelectItems = searchResult.MatchingItems.ToArray();
+            SearchResultType = searchResult.SearchResultType;
+        }
 
-        StateHasChanged();
+        await InvokeAsync(StateHasChanged);
     }
 
 
-    private SelectionInfo BuildSelectList(string fieldText)
+    private void OnInput(ChangeEventArgs args)
     {
-        var regexOptions = RegexOptions.IgnoreCase | (IgnoreWhitespace ? RegexOptions.IgnorePatternWhitespace : 0);
+        Timer?.Dispose();
+        var autoReset = new AutoResetEvent(false);
+        Timer = new Timer(OnTimerComplete, autoReset, AppliedDebounceInterval, Timeout.Infinite);
 
-        var fullMatchRegex = new Regex($"^{fieldText}$", regexOptions);
-        var fullMatches = (from f in MySelectItems
-                           where fullMatchRegex.Matches(f.SearchTarget).Count > 0
-                           select f.Item).ToArray();
 
-        if (fullMatches.Any())
+        async void OnTimerComplete(object stateInfo)
         {
-            return new SelectionInfo()
+            Console.WriteLine(args.Value.ToString());
+            await GetSelectionAsync(args.Value.ToString());
+
+            var trimmedSearchText = SearchText.Trim();
+
+            if (FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
             {
-                SelectedText = fullMatches.FirstOrDefault(),
-                SelectList = fullMatches
-            };
+                await CloseMenuAsync();
+                ComponentValue = trimmedSearchText;
+            }
+
+            await OpenMenuAsync();
         }
-
-        var startMatch = MatchFromItemStart ? "^" : "";
-        var partialMatchRegex = new Regex($"{startMatch}{fieldText}", regexOptions);
-        var partialMatches = (from f in MySelectItems
-                              where partialMatchRegex.Matches(f.SearchTarget).Count > 0
-                              select f.Item).ToArray();
-        var firstValueIsCustomValue = AllowCustomValue && fieldText != null && !partialMatches.Contains(fieldText);
-        if (firstValueIsCustomValue)
-        {
-            partialMatches = partialMatches.Prepend(fieldText).ToArray();
-        }
-
-        return new SelectionInfo()
-        {
-            SelectedText = fieldText,
-            SelectList = partialMatches,
-            FirstValueIsCustomValue = firstValueIsCustomValue
-        };
-    }
-
-
-    private async Task OnInput(ChangeEventArgs args)
-    {
-        SelectInfo = BuildSelectList((string)args.Value);
-
-        if (SelectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(SelectInfo.SelectedText)))
-        {
-            await CloseMenuAsync();
-            ComponentValue = SelectInfo.SelectedText.Trim();
-            SetParameters();
-        }
-
-        await OpenMenuAsync();
     }
 
 
@@ -274,21 +232,23 @@ public partial class MBAutocompleteTextField : InputComponent<string>
     {
         await CloseMenuAsync(true);
 
+        var trimmedSearchText = SearchText.Trim();
+
         if (!MenuHasFocus)
         {
-            if (SelectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(SelectInfo.SelectedText)))
+            if (FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
             {
-                ComponentValue = SelectInfo.SelectedText.Trim();
+                ComponentValue = trimmedSearchText;
             }
 
-            SetParameters();
+            await GetSelectionAsync(trimmedSearchText);
         }
     }
 
 
     private async Task OnTextFocusOutAsync()
     {
-        if (!SelectInfo.SelectList.Any())
+        if (!SelectItems.Any())
         {
             await CloseMenuAsync();
         }
@@ -316,13 +276,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
     {
         IsOpen = false;
 
-        SelectInfo.SelectedText = Value;
-
-        if (newSelectItems != null)
-        {
-            selectItems = newSelectItems;
-            newSelectItems = null;
-        }
+        SearchText = Value?.Trim() ?? "";
 
         StateHasChanged();
     }
