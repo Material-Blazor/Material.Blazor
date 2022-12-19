@@ -14,7 +14,7 @@ namespace Material.Blazor;
 /// An autocomplete built using an <see cref="MBTextField"/> with the anchor and drop
 /// down list implementation from a Material Theme select.
 /// </summary>
-public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
+public partial class MBAutocompleteSelectField : InputComponent<string>
 {
 #nullable enable annotations
     /// <summary>
@@ -107,7 +107,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 
 
     private bool IsOpen { get; set; } = false;
-    private DotNetObjectReference<MBAutocompleteTextFieldAsync> ObjectReference { get; set; }
+    private DotNetObjectReference<MBAutocompleteSelectField> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
     private string[] SelectItems { get; set; } = Array.Empty<string>();

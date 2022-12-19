@@ -3,7 +3,7 @@
 namespace Material.Blazor;
 
 /// <summary>
-/// The results of a search calling <see cref="MBAutocompleteTextFieldAsync.GetMatchingSelection"/>. Both parameters
+/// The results of a search calling <see cref="MBAutocompleteSelectField.GetMatchingSelection"/>. Both parameters
 /// must be set to enable the autocomplete to know if there is an overflow condition due to too many items being returned,
 /// an exact match or no items were found.
 /// </summary>

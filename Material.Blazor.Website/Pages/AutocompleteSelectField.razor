@@ -1,4 +1,4 @@
-﻿@page "/autocompletetextfieldasync"
+﻿@page "/autocompleteselectfield"
 
 @inject IMBToastService ToastService
 
@@ -6,14 +6,14 @@
 @using System.Text.RegularExpressions
 
 
-<DemonstrationPage ComponentName="AutocompleteTextFieldAsync"
+<DemonstrationPage ComponentName="AutocompleteSelectField"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
-                   Title="Asynchronous Autocomplete Text Field Demonstration">
+                   Title="Autocomplete Select Field Demonstration">
     <Description>
         <p>
-            Shows asynchronous autocomplete text fields which are Plus components.
+            Shows autocomplete select fields which are Plus components.
         </p>
     </Description>
 
@@ -48,7 +48,7 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Asynchronous autocomplete
+                        Autcomplete select field
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
@@ -57,24 +57,24 @@
                     </h3>
 
                     <p>
-                        <MBAutocompleteTextFieldAsync AllowBlankResult="false"
-                                                      @bind-Value="@Autocomplete"
-                                                      DebounceInterval="1000"
-                                                      GetMatchingSelection="@GetCitiesList"
-                                                      Label="Blanks disallowed"
-                                                      LeadingIcon="alarm"
-                                                      TextInputStyle="MBTextInputStyle.Outlined" />
+                        <MBAutocompleteSelectField AllowBlankResult="false"
+                                                   @bind-Value="@Autocomplete"
+                                                   DebounceInterval="1000"
+                                                   GetMatchingSelection="@GetCitiesList"
+                                                   Label="Blanks disallowed"
+                                                   LeadingIcon="alarm"
+                                                   TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBAutocompleteTextFieldAsync AllowBlankResult="false"
-                                                      @bind-Value="@Autocomplete"
-                                                      DebounceInterval="1000"
-                                                      GetMatchingSelection="@GetCitiesList"
-                                                      Label="Blanks disallowed"
-                                                      LeadingIcon="alarm"
-                                                      TextInputStyle="MBTextInputStyle.Outlined"
-                                                      Disabled="true"/>
+                        <MBAutocompleteSelectField AllowBlankResult="false"
+                                                   @bind-Value="@Autocomplete"
+                                                   DebounceInterval="1000"
+                                                   GetMatchingSelection="@GetCitiesList"
+                                                   Label="Blanks disallowed"
+                                                   LeadingIcon="alarm"
+                                                   TextInputStyle="MBTextInputStyle.Outlined"
+                                                   Disabled="true"/>
                     </p>
                 </Primary>
             </MBCard>
@@ -252,7 +252,7 @@
     }
 
 
-    static AutocompleteTextFieldAsync()
+    static AutocompleteSelectField()
     {
         _citiesDict = _cities.ToDictionary(x => x.SearchTarget, x => x);
     }
