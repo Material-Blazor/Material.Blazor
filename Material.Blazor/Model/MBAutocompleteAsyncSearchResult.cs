@@ -22,4 +22,16 @@ public class MBAutocompleteAsyncSearchResult
     /// Describes the contents of <see cref="MatchingItems"/>.
     /// </summary>
     public MBSearchResultTypes SearchResultType { get; set; }
+
+
+    /// <summary>
+    /// The total number of matching items, irrespective of whether <see cref="MatchingItems"/> is populated.
+    /// </summary>
+    public int MatchingItemCount { get; set; }
+
+
+    /// <summary>
+    /// The maximum number of items that the query will return before setting <see cref="SearchResultType"/> to <see cref="MBSearchResultTypes.TooManyItemsFound"/>.
+    /// </summary>
+    public int MaxItemCount { get; set; }
 }

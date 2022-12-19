@@ -177,7 +177,7 @@ public partial class MBTextField : InputComponent<string>
     private string DisplayLabel => Label + LabelSuffix;
     private string FloatingLabelClass { get; set; }
     private ElementReference InputReference { get; set; }
-    private MarkupString HelperTextMarkup => new MarkupString(HelperText);
+    private MarkupString HelperTextMarkup => new(HelperText);
     private ElementReference HelperTextReference { get; set; }
     private ElementReference ErrorTextReference { get; set; }
     private string DateFieldErrorMessage { get; set; }

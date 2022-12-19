@@ -32,6 +32,7 @@
                     <p>
                         <MBIntSlider AriaLabel="Query Limit"
                                      @bind-Value="@QueryLimit"
+                                     ContinuousInputDelay="300"
                                      EventType="@MBInputEventType.OnChange"
                                      ShowTickmarks="true"
                                      ValueMax="40"
@@ -166,7 +167,6 @@
 
     private int QueryLimit { get; set; } = 10;
     private City ClientSideSelectedCity { get; set; } = null;
-    private City ServerSideSelectedCity { get; set; } = null;
     private List<string> AllMatchingCityNames { get; set; } = new();
     private MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Closed;
     private RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
@@ -185,15 +185,14 @@
             AllMatchingCityNames = new() { fullMatchCity };
             _ = InvokeAsync(StateHasChanged);
 
-            ServerSideSelectedCity = _citiesDict[fullMatchCity];
             return new()
                 {
                     MatchingItems = new List<string>() { fullMatchCity },
                     SearchResultType = MBSearchResultTypes.FullMatchFound,
+                    MatchingItemCount = 1,
+                    MaxItemCount = QueryLimit,
                 };
         }
-
-        ServerSideSelectedCity = null;
 
         var partialMatchRegex = new Regex(searchString, RegexOptions);
         var partialMatchCities = _citiesDict.Where(x => partialMatchRegex.Matches(x.Key).Any()).Select(x => x.Value.FullName).ToList();
@@ -206,6 +205,8 @@
                 {
                     MatchingItems = new List<string>(),
                     SearchResultType = MBSearchResultTypes.NoMatchesFound,
+                    MatchingItemCount = 0,
+                    MaxItemCount = QueryLimit,
                 };
         }
         else if (partialMatchCities.Count > QueryLimit) // as a demonstration, we decide that more than the query limit number of items is "too many"
@@ -214,6 +215,8 @@
                 {
                     MatchingItems = new List<string>(),
                     SearchResultType = MBSearchResultTypes.TooManyItemsFound,
+                    MatchingItemCount = partialMatchCities.Count,
+                    MaxItemCount = QueryLimit,
                 };
         }
 
@@ -221,6 +224,8 @@
             {
                 MatchingItems = partialMatchCities.OrderBy(x => x).ToList(),
                 SearchResultType = MBSearchResultTypes.PartialMatchesFound,
+                MatchingItemCount = partialMatchCities.Count,
+                MaxItemCount = QueryLimit,
             };
     }
 

@@ -33,20 +33,37 @@
             <ul class="mdc-deprecated-list"
                 tabindex="-1">
 
-                @foreach (var item in SelectItems)
+                @if (SearchResultType == MBSearchResultTypes.NoMatchesFound || SearchResultType == MBSearchResultTypes.TooManyItemsFound)
                 {
-                    var listClass = "mdc-deprecated-list-item" + (item.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
-                    var ariaSelected = item.Equals(Value);
+                    var item = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to {MaxItemCount:N0}";
 
-                    <li @key="@item"
-                        class="@listClass"
+                    <li class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled"
                         data-value="@item"
-                        aria-selected="@ariaSelected"
+                        aria-disabled="true"
+                        aria-selected="false"
                         role="option"
                         tabindex="0">
                         <span class="mdc-deprecated-list-item__ripple"></span>
                         <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
                     </li>
+                }
+                else
+                {
+                    foreach (var item in SelectItems)
+                    {
+                        var listClass = "mdc-deprecated-list-item" + (item.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
+                        var ariaSelected = item.Equals(Value);
+
+                        <li @key="@item"
+                            class="@listClass"
+                            data-value="@item"
+                            aria-selected="@ariaSelected"
+                            role="option"
+                            tabindex="0">
+                            <span class="mdc-deprecated-list-item__ripple"></span>
+                            <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
+                        </li>
+                    }
                 }
             </ul>
         </div>

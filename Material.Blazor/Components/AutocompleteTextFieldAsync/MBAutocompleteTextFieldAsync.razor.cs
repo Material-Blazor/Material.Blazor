@@ -112,7 +112,9 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
     private ElementReference MenuReference { get; set; }
     private string SearchText { get; set; } = "";
     private string[] SelectItems { get; set; } = Array.Empty<string>();
-    private MBSearchResultTypes SearchResultType { get; set; }
+    private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
+    public int MatchingItemCount { get; set; }
+    public int MaxItemCount { get; set; }
     private MBTextField TextField { get; set; }
     private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
     private string CurrentValue { get; set; } = "";
@@ -157,6 +159,8 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
         {
             SelectItems = Array.Empty<string>();
             SearchResultType = MBSearchResultTypes.NoMatchesFound;
+            MatchingItemCount = 0;
+            MaxItemCount = 0;
         }
         else
         {
@@ -164,6 +168,8 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 
             SelectItems = searchResult.MatchingItems.ToArray();
             SearchResultType = searchResult.SearchResultType;
+            MatchingItemCount = searchResult.MatchingItemCount;
+            MaxItemCount = searchResult.MaxItemCount;
         }
 
         await InvokeAsync(StateHasChanged);
@@ -195,7 +201,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
             }
             else
             {
-                await CloseMenuAsync();
+                await OpenMenuAsync();
             }
         }
     }
