@@ -110,7 +110,6 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
     private DotNetObjectReference<MBAutocompleteTextFieldAsync> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
-    private string SearchText { get; set; } = "";
     private string[] SelectItems { get; set; } = Array.Empty<string>();
     private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
     public int MatchingItemCount { get; set; }
@@ -188,9 +187,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
             Console.WriteLine(args.Value.ToString());
             await GetSelectionAsync(args.Value.ToString());
 
-            var trimmedSearchText = SearchText.Trim();
-
-            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
+            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(ComponentValue)))
             {
                 await CloseMenuAsync();
                 ComponentValue = SelectItems[0];
@@ -211,16 +208,9 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
     {
         await CloseMenuAsync(true);
 
-        var trimmedSearchText = SearchText.Trim();
-
         if (!MenuHasFocus)
         {
-            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
-            {
-                ComponentValue = trimmedSearchText;
-            }
-
-            await GetSelectionAsync(trimmedSearchText);
+            await GetSelectionAsync(ComponentValue);
         }
     }
 
@@ -255,7 +245,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
     {
         IsOpen = false;
 
-        SearchText = Value?.Trim() ?? "";
+        ComponentValue = Value?.Trim() ?? "";
 
         StateHasChanged();
     }

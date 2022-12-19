@@ -58,12 +58,23 @@
 
                     <p>
                         <MBAutocompleteTextFieldAsync AllowBlankResult="false"
-                                                      @bind-Value="@Autocomplete1"
+                                                      @bind-Value="@Autocomplete"
                                                       DebounceInterval="1000"
                                                       GetMatchingSelection="@GetCitiesList"
                                                       Label="Blanks disallowed"
                                                       LeadingIcon="alarm"
                                                       TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBAutocompleteTextFieldAsync AllowBlankResult="false"
+                                                      @bind-Value="@Autocomplete"
+                                                      DebounceInterval="1000"
+                                                      GetMatchingSelection="@GetCitiesList"
+                                                      Label="Blanks disallowed"
+                                                      LeadingIcon="alarm"
+                                                      TextInputStyle="MBTextInputStyle.Outlined"
+                                                      Disabled="true"/>
                     </p>
                 </Primary>
             </MBCard>
@@ -138,18 +149,18 @@
     }
 
 
-    private string _autocomplete1;
-    private string Autocomplete1
+    private string _autocomplete;
+    private string Autocomplete
     {
-        get => _autocomplete1;
+        get => _autocomplete;
         set
         {
-            _autocomplete1 = value;
+            _autocomplete = value;
 
             ToastService.ShowToast(
                 heading: "Autocomplete blanks disallowed",
                 level: MBToastLevel.Success,
-                message: $"Value: '{_autocomplete1}'",
+                message: $"Value: '{_autocomplete}'",
                 showIcon: false);
 
             _ = Task.Run(async () =>
@@ -157,7 +168,7 @@
                 LinearProgressType = MBLinearProgressType.Indeterminate;
                 await InvokeAsync(StateHasChanged);
 
-                ClientSideSelectedCity = await GetSelectedCity(_autocomplete1);
+                ClientSideSelectedCity = await GetSelectedCity(_autocomplete);
                 LinearProgressType = MBLinearProgressType.Closed;
                 await InvokeAsync(StateHasChanged);
             });
@@ -169,7 +180,7 @@
     private City ClientSideSelectedCity { get; set; } = null;
     private List<string> AllMatchingCityNames { get; set; } = new();
     private MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Closed;
-    private RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
+    private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
     private async Task<MBAutocompleteAsyncSearchResult> GetCitiesList(string searchString)
