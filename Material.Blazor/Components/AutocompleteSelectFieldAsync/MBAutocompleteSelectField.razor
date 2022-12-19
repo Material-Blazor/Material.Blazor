@@ -1,12 +1,14 @@
 ﻿@namespace Material.Blazor
-@inherits InputComponent<string>
+
+@inherits SingleSelectComponent<TItem, MBSelectElement<TItem>>
+@typeparam TItem
 
 
 <div class="mb-autocomplete @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id">
     <MBTextField @attributes="@AttributesToSplat()"
-                 @bind-Value="@ComponentValue"
+                 @bind-Value="@SearchText"
                  Density="@Density"
                  Disabled="@AppliedDisabled"
                  HelperText="@HelperText"
@@ -51,17 +53,17 @@
                 {
                     foreach (var item in SelectItems)
                     {
-                        var listClass = "mdc-deprecated-list-item" + (item.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
+                        var listClass = "mdc-deprecated-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
                         var ariaSelected = item.Equals(Value);
 
-                        <li @key="@item"
+                        <li @key="@item.SelectedValue"
                             class="@listClass"
-                            data-value="@item"
+                            data-value="@item.Label"
                             aria-selected="@ariaSelected"
                             role="option"
                             tabindex="0">
                             <span class="mdc-deprecated-list-item__ripple"></span>
-                            <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
+                            <span class="mdc-deprecated-list-item__text mb-full-width">@item.Label</span>
                         </li>
                     }
                 }

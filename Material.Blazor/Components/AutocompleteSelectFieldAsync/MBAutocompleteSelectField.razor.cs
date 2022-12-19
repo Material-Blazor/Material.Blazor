@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -14,7 +13,7 @@ namespace Material.Blazor;
 /// An autocomplete built using an <see cref="MBTextField"/> with the anchor and drop
 /// down list implementation from a Material Theme select.
 /// </summary>
-public partial class MBAutocompleteSelectField : InputComponent<string>
+public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TItem, MBSelectElement<TItem>>
 {
 #nullable enable annotations
     /// <summary>
@@ -102,15 +101,16 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
     /// An async method returning an enumerated selection list.
     /// </summary>
     [Parameter]
-    public Func<string, Task<MBAutocompleteAsyncSearchResult>> GetMatchingSelection { get; set; }
+    public Func<string, Task<MBAutocompleteAsyncSearchResult<TItem>>> GetMatchingSelection { get; set; }
 
 
 
     private bool IsOpen { get; set; } = false;
-    private DotNetObjectReference<MBAutocompleteSelectField> ObjectReference { get; set; }
+    private DotNetObjectReference<MBAutocompleteSelectField<TItem>> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
-    private string[] SelectItems { get; set; } = Array.Empty<string>();
+    private MBSelectElement<TItem>[] SelectItems { get; set; } = Array.Empty<MBSelectElement<TItem>>();
+    private string SearchText { get; set; } = "";
     private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
     public int MatchingItemCount { get; set; }
     public int MaxItemCount { get; set; }
@@ -156,7 +156,7 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
     {
         if (GetMatchingSelection is null)
         {
-            SelectItems = Array.Empty<string>();
+            SelectItems = Array.Empty<MBSelectElement<TItem>>();
             SearchResultType = MBSearchResultTypes.NoMatchesFound;
             MatchingItemCount = 0;
             MaxItemCount = 0;
@@ -187,10 +187,11 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
             Console.WriteLine(args.Value.ToString());
             await GetSelectionAsync(args.Value.ToString());
 
-            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(ComponentValue)))
+            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && ComponentValue.Equals(default)))
             {
                 await CloseMenuAsync();
-                ComponentValue = SelectItems[0];
+                ComponentValue = SelectItems[0].SelectedValue;
+                SearchText = SelectItems[0].Label;
             }
             else if (SelectItems.Any())
             {
@@ -200,6 +201,8 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
             {
                 await OpenMenuAsync();
             }
+
+            await InvokeAsync(StateHasChanged);
         }
     }
 
@@ -210,7 +213,7 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
 
         if (!MenuHasFocus)
         {
-            await GetSelectionAsync(ComponentValue);
+            await GetSelectionAsync(SearchText);
         }
     }
 
@@ -245,7 +248,7 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
     {
         IsOpen = false;
 
-        ComponentValue = Value?.Trim() ?? "";
+        //ComponentValue = Value?.Trim() ?? "";
 
         StateHasChanged();
     }
@@ -256,9 +259,13 @@ public partial class MBAutocompleteSelectField : InputComponent<string>
     /// </summary>
     /// <returns></returns>
     [JSInvokable]
-    public void NotifySelected(string value)
+    public void NotifySelected(TItem value)
     {
-        ComponentValue = value;
+        var selectedElement = SelectItems.Where(x => x.SelectedValue.Equals(value)).First();
+
+        ComponentValue = selectedElement.SelectedValue;
+
+        SearchText = selectedElement.Label;
 
         NotifyClosed();
     }

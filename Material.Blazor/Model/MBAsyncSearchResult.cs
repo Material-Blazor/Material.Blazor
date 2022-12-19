@@ -7,7 +7,7 @@ namespace Material.Blazor;
 /// must be set to enable the autocomplete to know if there is an overflow condition due to too many items being returned,
 /// an exact match or no items were found.
 /// </summary>
-public class MBAutocompleteAsyncSearchResult
+public class MBAutocompleteAsyncSearchResult<TItem>
 {
     /// <summary>
     /// Returned list of select items. Can be empty either
@@ -15,7 +15,7 @@ public class MBAutocompleteAsyncSearchResult
     /// because the item list is too long, signfied by setting the 
     /// <see cref="ItemListTooLong"/> parameter to true.
     /// </summary>
-    public IEnumerable<string> MatchingItems { get; set; }
+    public IEnumerable<MBSelectElement<TItem>> MatchingItems { get; set; }
 
 
     /// <summary>
