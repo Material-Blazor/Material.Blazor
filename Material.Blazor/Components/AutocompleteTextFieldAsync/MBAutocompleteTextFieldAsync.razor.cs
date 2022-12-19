@@ -16,29 +16,6 @@ namespace Material.Blazor;
 /// </summary>
 public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 {
-    /// <summary>
-    /// The results of a search calling <see cref="GetMatchingSelection"/>. Both parameters
-    /// must be set to enable the autocomplete to know if there is an overflow condition due to too many items being returned,
-    /// an exact match or no items were found.
-    /// </summary>
-    public class SearchResult
-    {
-        /// <summary>
-        /// Returned list of select items. Can be empty either
-        /// because no items matching search criteria were found, or
-        /// because the item list is too long, signfied by setting the 
-        /// <see cref="ItemListTooLong"/> parameter to true.
-        /// </summary>
-        public IEnumerable<string> MatchingItems { get; set; }
-
-
-        /// <summary>
-        /// Describes the contents of <see cref="MatchingItems"/>.
-        /// </summary>
-        public MBSearchResultTypes SearchResultType { get; set; }
-    }
-
-
 #nullable enable annotations
     /// <summary>
     /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
@@ -125,7 +102,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
     /// An async method returning an enumerated selection list.
     /// </summary>
     [Parameter]
-    public Func<string, Task<SearchResult>> GetMatchingSelection { get; set; }
+    public Func<string, Task<MBAutocompleteAsyncSearchResult>> GetMatchingSelection { get; set; }
 
 
 
@@ -136,7 +113,6 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
     private string SearchText { get; set; } = "";
     private string[] SelectItems { get; set; } = Array.Empty<string>();
     private MBSearchResultTypes SearchResultType { get; set; }
-    public bool FullMatchFound => SelectItems.Length == 1 && SelectItems[0] == ComponentValue;
     private MBTextField TextField { get; set; }
     private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
     private string CurrentValue { get; set; } = "";
@@ -153,15 +129,6 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 
         ForceShouldRenderToTrue = true;
     }
-
-
-    //// Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    //protected override async Task OnParametersSetAsync()
-    //{
-    //    await base.OnParametersSetAsync();
-
-    //    await GetSelectionAsync(ComponentValue);
-    //}
 
 
     private bool _disposed = false;
@@ -189,7 +156,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
         if (GetMatchingSelection is null)
         {
             SelectItems = Array.Empty<string>();
-            SearchResultType = MBSearchResultTypes.NoItemsFound;
+            SearchResultType = MBSearchResultTypes.NoMatchesFound;
         }
         else
         {
@@ -217,13 +184,19 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 
             var trimmedSearchText = SearchText.Trim();
 
-            if (FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
+            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
             {
                 await CloseMenuAsync();
-                ComponentValue = trimmedSearchText;
+                ComponentValue = SelectItems[0];
             }
-
-            await OpenMenuAsync();
+            else if (SelectItems.Any())
+            {
+                await OpenMenuAsync();
+            }
+            else
+            {
+                await CloseMenuAsync();
+            }
         }
     }
 
@@ -236,7 +209,7 @@ public partial class MBAutocompleteTextFieldAsync : InputComponent<string>
 
         if (!MenuHasFocus)
         {
-            if (FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
+            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(trimmedSearchText)))
             {
                 ComponentValue = trimmedSearchText;
             }

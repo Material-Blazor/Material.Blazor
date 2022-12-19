@@ -547,13 +547,18 @@ public enum MBSearchResultTypes
     /// <summary>
     /// No items were found that match the search string.
     /// </summary>
-    NoItemsFound,
+    NoMatchesFound,
+
+    /// <summary>
+    /// A full match has been found.
+    /// </summary>
+    FullMatchFound,
 
     /// <summary>
     /// One or more matches were found, but fewer than the threshold for too many items
     /// to be indicated.
     /// </summary>
-    MatchesFound,
+    PartialMatchesFound,
 
     /// <summary>
     /// Too many items were found, resulting in a zero length search result list.

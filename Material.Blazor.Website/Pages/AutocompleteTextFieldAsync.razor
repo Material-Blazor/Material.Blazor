@@ -172,7 +172,7 @@
     private RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
-    private async Task<MBAutocompleteTextFieldAsync.SearchResult> GetCitiesList(string searchString)
+    private async Task<MBAutocompleteAsyncSearchResult> GetCitiesList(string searchString)
     {
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
@@ -189,7 +189,7 @@
             return new()
                 {
                     MatchingItems = new List<string>() { fullMatchCity },
-                    SearchResultType = MBSearchResultTypes.MatchesFound,
+                    SearchResultType = MBSearchResultTypes.FullMatchFound,
                 };
         }
 
@@ -205,7 +205,7 @@
             return new()
                 {
                     MatchingItems = new List<string>(),
-                    SearchResultType = MBSearchResultTypes.NoItemsFound,
+                    SearchResultType = MBSearchResultTypes.NoMatchesFound,
                 };
         }
         else if (partialMatchCities.Count > QueryLimit) // as a demonstration, we decide that more than the query limit number of items is "too many"
@@ -220,7 +220,7 @@
         return new()
             {
                 MatchingItems = partialMatchCities.OrderBy(x => x).ToList(),
-                SearchResultType = MBSearchResultTypes.MatchesFound,
+                SearchResultType = MBSearchResultTypes.PartialMatchesFound,
             };
     }
 
