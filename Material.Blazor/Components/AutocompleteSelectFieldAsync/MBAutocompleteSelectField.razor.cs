@@ -184,7 +184,6 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
 
         async void OnTimerComplete(object stateInfo)
         {
-            Console.WriteLine(args.Value.ToString());
             await GetSelectionAsync(args.Value.ToString());
 
             if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && ComponentValue.Equals(default)))

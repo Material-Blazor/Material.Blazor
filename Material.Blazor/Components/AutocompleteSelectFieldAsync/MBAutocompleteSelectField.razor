@@ -37,16 +37,17 @@
 
                 @if (SearchResultType == MBSearchResultTypes.NoMatchesFound || SearchResultType == MBSearchResultTypes.TooManyItemsFound)
                 {
-                    var item = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to {MaxItemCount:N0}";
+                    Guid value = default;
+                    var label = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to {MaxItemCount:N0}";
 
                     <li class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled"
-                        data-value="@item"
+                        data-value="@value"
                         aria-disabled="true"
                         aria-selected="false"
                         role="option"
                         tabindex="0">
                         <span class="mdc-deprecated-list-item__ripple"></span>
-                        <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
+                        <span class="mdc-deprecated-list-item__text mb-full-width">@label</span>
                     </li>
                 }
                 else
@@ -58,7 +59,7 @@
 
                         <li @key="@item.SelectedValue"
                             class="@listClass"
-                            data-value="@item.Label"
+                            data-value="@item.SelectedValue"
                             aria-selected="@ariaSelected"
                             role="option"
                             tabindex="0">
