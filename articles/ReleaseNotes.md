@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.5)
+
+Released 2022-12-20
+
+**Updates**
+- Added `MBAutoCompleteSelectField` which is a single item select using asynchronous methods supplied as parameters to search for items matching user entered text.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.4)
 
 Released 2022-12-18
