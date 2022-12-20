@@ -11,7 +11,7 @@ export function init(textElem, menuElem, dotNetObject): any {
 
     menuElem._menu.foundation.handleItemAction = listItem => {
         menuElem._menu.open = false;
-        dotNetObject.invokeMethodAsync('NotifySelected', listItem.innerText);
+        dotNetObject.invokeMethodAsync('NotifySelected', listItem.getAttribute('data-value'));
     };
 
     menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = () => {

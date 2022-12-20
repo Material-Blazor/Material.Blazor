@@ -1,4 +1,4 @@
-﻿import * as MBAutoCompleteTextField from '../Components/AutocompleteTextField/MBAutocompleteTextField';
+﻿import * as MBAutocompleteTextField from '../Components/AutocompleteTextField/MBAutocompleteTextField';
 import * as MBBladeSet from '../Components/BladeSet/MBBladeSet';
 import * as MBButton from '../Components/Button/MBButton';
 import * as MBCard from '../Components/Card/MBCard';
@@ -32,7 +32,7 @@ import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
-    MBAutoCompleteTextField,
+    MBAutocompleteTextField,
     MBBladeSet,
     MBButton,
     MBCard,

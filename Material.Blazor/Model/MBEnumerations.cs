@@ -538,6 +538,35 @@ public enum MBNumericInputMagnitude
 }
 
 
+///// Describes the result of a search from the <see cref="MBAutocompleteSelectField{TItem}"/> component.
+/// <summary>
+/// Describes the result of a search from the <see cref="MBAutocompleteSelectField{TItem}"/> component.
+/// </summary>
+public enum MBSearchResultTypes
+{
+    /// <summary>
+    /// No items were found that match the search string.
+    /// </summary>
+    NoMatchesFound,
+
+    /// <summary>
+    /// A full match has been found.
+    /// </summary>
+    FullMatchFound,
+
+    /// <summary>
+    /// One or more matches were found, but fewer than the threshold for too many items
+    /// to be indicated.
+    /// </summary>
+    PartialMatchesFound,
+
+    /// <summary>
+    /// Too many items were found, resulting in a zero length search result list.
+    /// </summary>
+    TooManyItemsFound,
+}
+
+
 /// <summary>
 /// Material Theme select input style applied to <see cref="MBSelect{TItem}"/>.
 /// <para>Applied also to <seealso cref="MBDatePicker"/></para>
