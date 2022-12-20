@@ -9,7 +9,7 @@ title: FormValidation
 Material.Blazor integrates native Blazor form validation with Material Theme's validation methodology. Usually in Blazor apps you use the `ValidationMessage` component
 to display validation results and you can still do this.
 
-We have given you an alternative however, with a `ValidationMessageFor` parameter on MBAutocompleteTextField, MBNumericDoubleField, MBNumericIntField, MBTextArea and MBTextField.
+We have given you an alternative however, with a `ValidationMessageFor` parameter on MBAutocompleteTextField, SelectField, MBAutocompleteTextField, TextField, MBNumericDoubleField, MBNumericIntField, MBTextArea and MBTextField.
 This parameter takes the same value as the one you would pass to the vanilla Blazor `ValidationMessage` component. Your options are below.
 
 ## Material.Blazor Validation Messages

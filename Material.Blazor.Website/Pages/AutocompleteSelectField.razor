@@ -57,20 +57,22 @@
                     </h3>
 
                     <p>
-                        <MBAutocompleteSelectField AllowBlankResult="false"
+                        <MBAutocompleteTextField, SelectField AllowBlankResult="false"
                                                    @bind-Value="@CityId"
                                                    DebounceInterval="1000"
                                                    GetMatchingSelection="@GetCitiesList"
+                                                   GetSelectElement="@GetSelectElement"
                                                    Label="Blanks disallowed"
                                                    LeadingIcon="alarm"
                                                    TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBAutocompleteSelectField AllowBlankResult="false"
+                        <MBAutocompleteTextField, SelectField AllowBlankResult="false"
                                                    @bind-Value="@CityId"
                                                    DebounceInterval="1000"
                                                    GetMatchingSelection="@GetCitiesList"
+                                                   GetSelectElement="@GetSelectElement"
                                                    Label="Blanks disallowed"
                                                    LeadingIcon="alarm"
                                                    TextInputStyle="MBTextInputStyle.Outlined"
@@ -150,7 +152,7 @@
     }
 
 
-    private Guid _cityId;
+    private Guid _cityId = _cities[0].Id;
     private Guid CityId
     {
         get => _cityId;
@@ -184,7 +186,7 @@
     private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
-    private async Task<MBAutocompleteAsyncSearchResult<Guid>> GetCitiesList(string searchString)
+    private async Task<MBAutocompleteTextField, AsyncSearchResult<Guid>> GetCitiesList(string searchString)
     {
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
@@ -242,12 +244,24 @@
     }
 
 
+    private async Task<MBSelectElement<Guid>> GetSelectElement(Guid id)
+    {
+        // A short delay to simulate a simple query
+        await Task.Delay(100);
+
+        return new()
+            {
+                SelectedValue = id,
+                Label = _citiesDict[id].FullName
+            };
+    }
+
+
     private async Task<City> GetSelectedCity(Guid id)
     {
         // A long delay to simulate a complex query
         await Task.Delay(2000);
 
-        // We'll ignore the city name, because this method is only a simulated search
         return _citiesDict[id];
     }
 

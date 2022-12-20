@@ -275,7 +275,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
         if (!IsOpen || forceOpen)
         {
             IsOpen = true;
-            await InvokeJsVoidAsync("MaterialBlazor.MBAutoCompleteTextField.open", MenuReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.open", MenuReference);
         }
     }
 
@@ -285,11 +285,11 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
         if (IsOpen || forceClose)
         {
             IsOpen = false;
-            await InvokeJsVoidAsync("MaterialBlazor.MBAutoCompleteTextField.close", MenuReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.close", MenuReference);
         }
     }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
 }

@@ -4,12 +4,46 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [4.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.1)
+#### [4.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.4)
 
-Released 2022-11-01
+Released 2022-12-18
 
 **Updates**
-- Upgraded to DN7 in the main branch. There is a branch called LTS-DN6 which is the maintenance branch for 3.x. Needless to say. LTS-DN6 shold NEVER be merged into main.
+- Fixed `MBSlider` to use disabled markup in first render.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
+#### [4.0.0-preview.3](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.3)
+
+Released 2022-11-29
+
+**Updates**
+- Fix key generation on `MBList`.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
+#### [4.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.2)
+
+Released 2022-11-28
+
+**Updates**
+- Added multi-level list functionality.
 
 **New components**
 
@@ -904,7 +938,7 @@ Released 2021-11-10
 - Material helper text added to text fields and associated derivatives.
 - Blazor native validation integrated with Material Components Web's validation display mechanism.
 - `HelperText`, `HelperTextPersistent` and `ValidationMessageFor` implemented on:
-  - MBAutocompleteTextField
+  - MBAutocompleteTextField, TextField
   - MBDebouncedTextField
   - MBNumericDoubleField
   - MBNumericIntField
