@@ -241,7 +241,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-QqCHy+\/bolh80CsjixpDU+QN09xHWnWylW1rja44O\/U=",
+      "hash": "sha256-y4HCPpLGCClW9YhC2suegIo0igitN8bYpKn79eWD2xo=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -253,15 +253,15 @@
       "url": "_framework\/Humanizer.dll"
     },
     {
-      "hash": "sha256-+dgxvd2TaaunvA7zIT7cyAGx2Togxih77YjzcVfltYQ=",
+      "hash": "sha256-WfOHAK0Pgk7ukYWwBB9BSuk4HOWdla9kYzvFatT5rE4=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-7oZr0e9\/P+KtX0hCd80iFaQTX7SgqMmVfY3oTBt7d08=",
+      "hash": "sha256-Z7p3AfAw5zu\/6yi\/jemPB13G9H8RebtCLuk0TWJG86w=",
       "url": "_framework\/Material.Blazor.Website.dll"
     },
     {
-      "hash": "sha256-xzIZDGaXPA+HFl4WdnTBbCyonMzmmL1Gcr88Q3Uoe7c=",
+      "hash": "sha256-w9srlP1ok6qakYY9APsvUWHpsjZCpgLn5RVpavzfq10=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -521,7 +521,7 @@
       "url": "_framework\/System.Reflection.Metadata.dll"
     },
     {
-      "hash": "sha256-RGTfoJ3MaWUM0GVbHsdKG5AJgEyA5B7arEVPbWoENM4=",
+      "hash": "sha256-nxCSd59MtoKTEEev5HVssULAjRA793aHs0PPbO3zBEE=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -545,7 +545,7 @@
       "url": "_framework\/System.Text.Json.dll"
     },
     {
-      "hash": "sha256-BXv0AJ3GTxcISJO5sXWQigm2wrAEGaZej9LVONjYW+s=",
+      "hash": "sha256-a6vuB+vJub+vh97qtZR7vFdtY9iYfKBzXxMDvp234fI=",
       "url": "_framework\/System.Text.RegularExpressions.dll"
     },
     {
@@ -697,7 +697,7 @@
       "url": "_content\/Material.Blazor\/material.blazor.css"
     },
     {
-      "hash": "sha256-6sNCTz1vjb8R7tB3YykH5Pss4LUfFMN9AQ2tMT6CLOU=",
+      "hash": "sha256-287m\/oGfqe60BJ0ZCiZQmhS2UjCA71gSLREmHh3e8tE=",
       "url": "_content\/Material.Blazor\/material.blazor.js"
     },
     {
@@ -705,9 +705,9 @@
       "url": "_content\/Material.Blazor\/material.blazor.min.css"
     },
     {
-      "hash": "sha256-nubuchFMPJpxQTeXd9VWebR\/FtMh6Su8ndvJegzctXM=",
+      "hash": "sha256-5vDGlU92LCsJdTkOpGe8GrDfaHnTtFYJQgydsG0UEl4=",
       "url": "_content\/Material.Blazor\/material.blazor.min.js"
     }
   ],
-  "version": "6Azf1hDn"
+  "version": "TtaFTglc"
 };

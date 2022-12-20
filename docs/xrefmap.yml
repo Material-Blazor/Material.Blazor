@@ -73,6 +73,9 @@ references:
 - uid: C.MBAnchor
   name: MBAnchor
   href: Material.Blazor/Components/Anchor/MBAnchor.html
+- uid: C.MBAutocompleteSelectField
+  name: MBAutocompleteSelectField
+  href: Material.Blazor/Components/AutocompleteSelectFieldAsync/MBAutoCompleteSelectField.html
 - uid: C.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html
@@ -2267,6 +2270,372 @@ references:
   commentId: T:Material.Blazor.MBAnchor
   fullName: Material.Blazor.MBAnchor
   nameWithType: MBAnchor
+- uid: Material.Blazor.MBAutocompleteSelectField`1
+  name: MBAutocompleteSelectField<TItem>
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html
+  commentId: T:Material.Blazor.MBAutocompleteSelectField`1
+  name.vb: MBAutocompleteSelectField(Of TItem)
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem)
+  nameWithType: MBAutocompleteSelectField<TItem>
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem)
+- uid: Material.Blazor.MBAutocompleteSelectField`1.AllowBlankResult
+  name: AllowBlankResult
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_AllowBlankResult
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.AllowBlankResult
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.AllowBlankResult
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).AllowBlankResult
+  nameWithType: MBAutocompleteSelectField<TItem>.AllowBlankResult
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).AllowBlankResult
+- uid: Material.Blazor.MBAutocompleteSelectField`1.AllowBlankResult*
+  name: AllowBlankResult
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_AllowBlankResult_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.AllowBlankResult
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.AllowBlankResult
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).AllowBlankResult
+  nameWithType: MBAutocompleteSelectField<TItem>.AllowBlankResult
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).AllowBlankResult
+- uid: Material.Blazor.MBAutocompleteSelectField`1.DebounceInterval
+  name: DebounceInterval
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_DebounceInterval
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.DebounceInterval
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.DebounceInterval
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).DebounceInterval
+  nameWithType: MBAutocompleteSelectField<TItem>.DebounceInterval
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).DebounceInterval
+- uid: Material.Blazor.MBAutocompleteSelectField`1.DebounceInterval*
+  name: DebounceInterval
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_DebounceInterval_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.DebounceInterval
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.DebounceInterval
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).DebounceInterval
+  nameWithType: MBAutocompleteSelectField<TItem>.DebounceInterval
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).DebounceInterval
+- uid: Material.Blazor.MBAutocompleteSelectField`1.Density
+  name: Density
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_Density
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.Density
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.Density
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).Density
+  nameWithType: MBAutocompleteSelectField<TItem>.Density
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).Density
+- uid: Material.Blazor.MBAutocompleteSelectField`1.Density*
+  name: Density
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_Density_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.Density
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.Density
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).Density
+  nameWithType: MBAutocompleteSelectField<TItem>.Density
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).Density
+- uid: Material.Blazor.MBAutocompleteSelectField`1.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_Dispose_System_Boolean_
+  commentId: M:Material.Blazor.MBAutocompleteSelectField`1.Dispose(System.Boolean)
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.Dispose(System.Boolean)
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).Dispose(System.Boolean)
+  nameWithType: MBAutocompleteSelectField<TItem>.Dispose(Boolean)
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).Dispose(Boolean)
+- uid: Material.Blazor.MBAutocompleteSelectField`1.Dispose*
+  name: Dispose
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_Dispose_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.Dispose
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.Dispose
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).Dispose
+  nameWithType: MBAutocompleteSelectField<TItem>.Dispose
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).Dispose
+- uid: Material.Blazor.MBAutocompleteSelectField`1.GetMatchingSelection
+  name: GetMatchingSelection
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_GetMatchingSelection
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.GetMatchingSelection
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.GetMatchingSelection
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).GetMatchingSelection
+  nameWithType: MBAutocompleteSelectField<TItem>.GetMatchingSelection
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).GetMatchingSelection
+- uid: Material.Blazor.MBAutocompleteSelectField`1.GetMatchingSelection*
+  name: GetMatchingSelection
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_GetMatchingSelection_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.GetMatchingSelection
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.GetMatchingSelection
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).GetMatchingSelection
+  nameWithType: MBAutocompleteSelectField<TItem>.GetMatchingSelection
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).GetMatchingSelection
+- uid: Material.Blazor.MBAutocompleteSelectField`1.GetSelectElement
+  name: GetSelectElement
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_GetSelectElement
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.GetSelectElement
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.GetSelectElement
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).GetSelectElement
+  nameWithType: MBAutocompleteSelectField<TItem>.GetSelectElement
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).GetSelectElement
+- uid: Material.Blazor.MBAutocompleteSelectField`1.GetSelectElement*
+  name: GetSelectElement
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_GetSelectElement_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.GetSelectElement
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.GetSelectElement
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).GetSelectElement
+  nameWithType: MBAutocompleteSelectField<TItem>.GetSelectElement
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).GetSelectElement
+- uid: Material.Blazor.MBAutocompleteSelectField`1.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_HelperText
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.HelperText
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.HelperText
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).HelperText
+  nameWithType: MBAutocompleteSelectField<TItem>.HelperText
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).HelperText
+- uid: Material.Blazor.MBAutocompleteSelectField`1.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_HelperText_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.HelperText
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).HelperText
+  nameWithType: MBAutocompleteSelectField<TItem>.HelperText
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).HelperText
+- uid: Material.Blazor.MBAutocompleteSelectField`1.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_HelperTextPersistent
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.HelperTextPersistent
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.HelperTextPersistent
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).HelperTextPersistent
+  nameWithType: MBAutocompleteSelectField<TItem>.HelperTextPersistent
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).HelperTextPersistent
+- uid: Material.Blazor.MBAutocompleteSelectField`1.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.HelperTextPersistent
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).HelperTextPersistent
+  nameWithType: MBAutocompleteSelectField<TItem>.HelperTextPersistent
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).HelperTextPersistent
+- uid: Material.Blazor.MBAutocompleteSelectField`1.IconFoundry
+  name: IconFoundry
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_IconFoundry
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.IconFoundry
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.IconFoundry
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).IconFoundry
+  nameWithType: MBAutocompleteSelectField<TItem>.IconFoundry
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).IconFoundry
+- uid: Material.Blazor.MBAutocompleteSelectField`1.IconFoundry*
+  name: IconFoundry
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_IconFoundry_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.IconFoundry
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.IconFoundry
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).IconFoundry
+  nameWithType: MBAutocompleteSelectField<TItem>.IconFoundry
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).IconFoundry
+- uid: Material.Blazor.MBAutocompleteSelectField`1.Label
+  name: Label
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_Label
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.Label
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.Label
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).Label
+  nameWithType: MBAutocompleteSelectField<TItem>.Label
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).Label
+- uid: Material.Blazor.MBAutocompleteSelectField`1.Label*
+  name: Label
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_Label_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.Label
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.Label
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).Label
+  nameWithType: MBAutocompleteSelectField<TItem>.Label
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).Label
+- uid: Material.Blazor.MBAutocompleteSelectField`1.LeadingIcon
+  name: LeadingIcon
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_LeadingIcon
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.LeadingIcon
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.LeadingIcon
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).LeadingIcon
+  nameWithType: MBAutocompleteSelectField<TItem>.LeadingIcon
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).LeadingIcon
+- uid: Material.Blazor.MBAutocompleteSelectField`1.LeadingIcon*
+  name: LeadingIcon
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_LeadingIcon_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.LeadingIcon
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.LeadingIcon
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).LeadingIcon
+  nameWithType: MBAutocompleteSelectField<TItem>.LeadingIcon
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).LeadingIcon
+- uid: Material.Blazor.MBAutocompleteSelectField`1.MatchingItemCount
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_MatchingItemCount
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.MatchingItemCount
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).MatchingItemCount
+  nameWithType: MBAutocompleteSelectField<TItem>.MatchingItemCount
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBAutocompleteSelectField`1.MatchingItemCount*
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_MatchingItemCount_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.MatchingItemCount
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).MatchingItemCount
+  nameWithType: MBAutocompleteSelectField<TItem>.MatchingItemCount
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBAutocompleteSelectField`1.MaxItemCount
+  name: MaxItemCount
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_MaxItemCount
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.MaxItemCount
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.MaxItemCount
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).MaxItemCount
+  nameWithType: MBAutocompleteSelectField<TItem>.MaxItemCount
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).MaxItemCount
+- uid: Material.Blazor.MBAutocompleteSelectField`1.MaxItemCount*
+  name: MaxItemCount
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_MaxItemCount_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.MaxItemCount
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.MaxItemCount
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).MaxItemCount
+  nameWithType: MBAutocompleteSelectField<TItem>.MaxItemCount
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).MaxItemCount
+- uid: Material.Blazor.MBAutocompleteSelectField`1.NotifyClosed
+  name: NotifyClosed()
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_NotifyClosed
+  commentId: M:Material.Blazor.MBAutocompleteSelectField`1.NotifyClosed
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.NotifyClosed()
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).NotifyClosed()
+  nameWithType: MBAutocompleteSelectField<TItem>.NotifyClosed()
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).NotifyClosed()
+- uid: Material.Blazor.MBAutocompleteSelectField`1.NotifyClosed*
+  name: NotifyClosed
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_NotifyClosed_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.NotifyClosed
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.NotifyClosed
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).NotifyClosed
+  nameWithType: MBAutocompleteSelectField<TItem>.NotifyClosed
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).NotifyClosed
+- uid: Material.Blazor.MBAutocompleteSelectField`1.NotifySelected(System.String)
+  name: NotifySelected(String)
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_NotifySelected_System_String_
+  commentId: M:Material.Blazor.MBAutocompleteSelectField`1.NotifySelected(System.String)
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.NotifySelected(System.String)
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).NotifySelected(System.String)
+  nameWithType: MBAutocompleteSelectField<TItem>.NotifySelected(String)
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).NotifySelected(String)
+- uid: Material.Blazor.MBAutocompleteSelectField`1.NotifySelected*
+  name: NotifySelected
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_NotifySelected_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.NotifySelected
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.NotifySelected
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).NotifySelected
+  nameWithType: MBAutocompleteSelectField<TItem>.NotifySelected
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).NotifySelected
+- uid: Material.Blazor.MBAutocompleteSelectField`1.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_OnInitializedAsync
+  commentId: M:Material.Blazor.MBAutocompleteSelectField`1.OnInitializedAsync
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.OnInitializedAsync()
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).OnInitializedAsync()
+  nameWithType: MBAutocompleteSelectField<TItem>.OnInitializedAsync()
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).OnInitializedAsync()
+- uid: Material.Blazor.MBAutocompleteSelectField`1.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.OnInitializedAsync
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).OnInitializedAsync
+  nameWithType: MBAutocompleteSelectField<TItem>.OnInitializedAsync
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).OnInitializedAsync
+- uid: Material.Blazor.MBAutocompleteSelectField`1.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBAutocompleteSelectField`1.OnParametersSetAsync
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.OnParametersSetAsync()
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).OnParametersSetAsync()
+  nameWithType: MBAutocompleteSelectField<TItem>.OnParametersSetAsync()
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).OnParametersSetAsync()
+- uid: Material.Blazor.MBAutocompleteSelectField`1.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.OnParametersSetAsync
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).OnParametersSetAsync
+  nameWithType: MBAutocompleteSelectField<TItem>.OnParametersSetAsync
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).OnParametersSetAsync
+- uid: Material.Blazor.MBAutocompleteSelectField`1.TextAlignStyle
+  name: TextAlignStyle
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TextAlignStyle
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.TextAlignStyle
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.TextAlignStyle
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).TextAlignStyle
+  nameWithType: MBAutocompleteSelectField<TItem>.TextAlignStyle
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).TextAlignStyle
+- uid: Material.Blazor.MBAutocompleteSelectField`1.TextAlignStyle*
+  name: TextAlignStyle
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TextAlignStyle_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.TextAlignStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.TextAlignStyle
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).TextAlignStyle
+  nameWithType: MBAutocompleteSelectField<TItem>.TextAlignStyle
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).TextAlignStyle
+- uid: Material.Blazor.MBAutocompleteSelectField`1.TextInputStyle
+  name: TextInputStyle
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TextInputStyle
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.TextInputStyle
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.TextInputStyle
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).TextInputStyle
+  nameWithType: MBAutocompleteSelectField<TItem>.TextInputStyle
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).TextInputStyle
+- uid: Material.Blazor.MBAutocompleteSelectField`1.TextInputStyle*
+  name: TextInputStyle
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TextInputStyle_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.TextInputStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.TextInputStyle
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).TextInputStyle
+  nameWithType: MBAutocompleteSelectField<TItem>.TextInputStyle
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).TextInputStyle
+- uid: Material.Blazor.MBAutocompleteSelectField`1.TrailingIcon
+  name: TrailingIcon
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TrailingIcon
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.TrailingIcon
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.TrailingIcon
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).TrailingIcon
+  nameWithType: MBAutocompleteSelectField<TItem>.TrailingIcon
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).TrailingIcon
+- uid: Material.Blazor.MBAutocompleteSelectField`1.TrailingIcon*
+  name: TrailingIcon
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TrailingIcon_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.TrailingIcon
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.TrailingIcon
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).TrailingIcon
+  nameWithType: MBAutocompleteSelectField<TItem>.TrailingIcon
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).TrailingIcon
+- uid: Material.Blazor.MBAutocompleteSelectField`1.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_ValidationMessageFor
+  commentId: P:Material.Blazor.MBAutocompleteSelectField`1.ValidationMessageFor
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.ValidationMessageFor
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).ValidationMessageFor
+  nameWithType: MBAutocompleteSelectField<TItem>.ValidationMessageFor
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).ValidationMessageFor
+- uid: Material.Blazor.MBAutocompleteSelectField`1.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.ValidationMessageFor
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).ValidationMessageFor
+  nameWithType: MBAutocompleteSelectField<TItem>.ValidationMessageFor
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).ValidationMessageFor
 - uid: Material.Blazor.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: api/Material.Blazor.MBAutocompleteTextField.html
@@ -10892,6 +11261,113 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBSchedulerAppointment.Width
   nameWithType: MBSchedulerAppointment.Width
+- uid: Material.Blazor.MBSearchResult`1
+  name: MBSearchResult<TItem>
+  href: api/Material.Blazor.MBSearchResult-1.html
+  commentId: T:Material.Blazor.MBSearchResult`1
+  name.vb: MBSearchResult(Of TItem)
+  fullName: Material.Blazor.MBSearchResult<TItem>
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem)
+  nameWithType: MBSearchResult<TItem>
+  nameWithType.vb: MBSearchResult(Of TItem)
+- uid: Material.Blazor.MBSearchResult`1.MatchingItemCount
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_MatchingItemCount
+  commentId: P:Material.Blazor.MBSearchResult`1.MatchingItemCount
+  fullName: Material.Blazor.MBSearchResult<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).MatchingItemCount
+  nameWithType: MBSearchResult<TItem>.MatchingItemCount
+  nameWithType.vb: MBSearchResult(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBSearchResult`1.MatchingItemCount*
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_MatchingItemCount_
+  commentId: Overload:Material.Blazor.MBSearchResult`1.MatchingItemCount
+  isSpec: "True"
+  fullName: Material.Blazor.MBSearchResult<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).MatchingItemCount
+  nameWithType: MBSearchResult<TItem>.MatchingItemCount
+  nameWithType.vb: MBSearchResult(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBSearchResult`1.MatchingItems
+  name: MatchingItems
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_MatchingItems
+  commentId: P:Material.Blazor.MBSearchResult`1.MatchingItems
+  fullName: Material.Blazor.MBSearchResult<TItem>.MatchingItems
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).MatchingItems
+  nameWithType: MBSearchResult<TItem>.MatchingItems
+  nameWithType.vb: MBSearchResult(Of TItem).MatchingItems
+- uid: Material.Blazor.MBSearchResult`1.MatchingItems*
+  name: MatchingItems
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_MatchingItems_
+  commentId: Overload:Material.Blazor.MBSearchResult`1.MatchingItems
+  isSpec: "True"
+  fullName: Material.Blazor.MBSearchResult<TItem>.MatchingItems
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).MatchingItems
+  nameWithType: MBSearchResult<TItem>.MatchingItems
+  nameWithType.vb: MBSearchResult(Of TItem).MatchingItems
+- uid: Material.Blazor.MBSearchResult`1.MaxItemCount
+  name: MaxItemCount
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_MaxItemCount
+  commentId: P:Material.Blazor.MBSearchResult`1.MaxItemCount
+  fullName: Material.Blazor.MBSearchResult<TItem>.MaxItemCount
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).MaxItemCount
+  nameWithType: MBSearchResult<TItem>.MaxItemCount
+  nameWithType.vb: MBSearchResult(Of TItem).MaxItemCount
+- uid: Material.Blazor.MBSearchResult`1.MaxItemCount*
+  name: MaxItemCount
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_MaxItemCount_
+  commentId: Overload:Material.Blazor.MBSearchResult`1.MaxItemCount
+  isSpec: "True"
+  fullName: Material.Blazor.MBSearchResult<TItem>.MaxItemCount
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).MaxItemCount
+  nameWithType: MBSearchResult<TItem>.MaxItemCount
+  nameWithType.vb: MBSearchResult(Of TItem).MaxItemCount
+- uid: Material.Blazor.MBSearchResult`1.SearchResultType
+  name: SearchResultType
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_SearchResultType
+  commentId: P:Material.Blazor.MBSearchResult`1.SearchResultType
+  fullName: Material.Blazor.MBSearchResult<TItem>.SearchResultType
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).SearchResultType
+  nameWithType: MBSearchResult<TItem>.SearchResultType
+  nameWithType.vb: MBSearchResult(Of TItem).SearchResultType
+- uid: Material.Blazor.MBSearchResult`1.SearchResultType*
+  name: SearchResultType
+  href: api/Material.Blazor.MBSearchResult-1.html#Material_Blazor_MBSearchResult_1_SearchResultType_
+  commentId: Overload:Material.Blazor.MBSearchResult`1.SearchResultType
+  isSpec: "True"
+  fullName: Material.Blazor.MBSearchResult<TItem>.SearchResultType
+  fullName.vb: Material.Blazor.MBSearchResult(Of TItem).SearchResultType
+  nameWithType: MBSearchResult<TItem>.SearchResultType
+  nameWithType.vb: MBSearchResult(Of TItem).SearchResultType
+- uid: Material.Blazor.MBSearchResultTypes
+  name: MBSearchResultTypes
+  href: api/Material.Blazor.MBSearchResultTypes.html
+  commentId: T:Material.Blazor.MBSearchResultTypes
+  fullName: Material.Blazor.MBSearchResultTypes
+  nameWithType: MBSearchResultTypes
+- uid: Material.Blazor.MBSearchResultTypes.FullMatchFound
+  name: FullMatchFound
+  href: api/Material.Blazor.MBSearchResultTypes.html#Material_Blazor_MBSearchResultTypes_FullMatchFound
+  commentId: F:Material.Blazor.MBSearchResultTypes.FullMatchFound
+  fullName: Material.Blazor.MBSearchResultTypes.FullMatchFound
+  nameWithType: MBSearchResultTypes.FullMatchFound
+- uid: Material.Blazor.MBSearchResultTypes.NoMatchesFound
+  name: NoMatchesFound
+  href: api/Material.Blazor.MBSearchResultTypes.html#Material_Blazor_MBSearchResultTypes_NoMatchesFound
+  commentId: F:Material.Blazor.MBSearchResultTypes.NoMatchesFound
+  fullName: Material.Blazor.MBSearchResultTypes.NoMatchesFound
+  nameWithType: MBSearchResultTypes.NoMatchesFound
+- uid: Material.Blazor.MBSearchResultTypes.PartialMatchesFound
+  name: PartialMatchesFound
+  href: api/Material.Blazor.MBSearchResultTypes.html#Material_Blazor_MBSearchResultTypes_PartialMatchesFound
+  commentId: F:Material.Blazor.MBSearchResultTypes.PartialMatchesFound
+  fullName: Material.Blazor.MBSearchResultTypes.PartialMatchesFound
+  nameWithType: MBSearchResultTypes.PartialMatchesFound
+- uid: Material.Blazor.MBSearchResultTypes.TooManyItemsFound
+  name: TooManyItemsFound
+  href: api/Material.Blazor.MBSearchResultTypes.html#Material_Blazor_MBSearchResultTypes_TooManyItemsFound
+  commentId: F:Material.Blazor.MBSearchResultTypes.TooManyItemsFound
+  fullName: Material.Blazor.MBSearchResultTypes.TooManyItemsFound
+  nameWithType: MBSearchResultTypes.TooManyItemsFound
 - uid: Material.Blazor.MBSegmentedButtonMulti`1
   name: MBSegmentedButtonMulti<TItem>
   href: api/Material.Blazor.MBSegmentedButtonMulti-1.html
