@@ -938,7 +938,7 @@ Released 2021-11-10
 - Material helper text added to text fields and associated derivatives.
 - Blazor native validation integrated with Material Components Web's validation display mechanism.
 - `HelperText`, `HelperTextPersistent` and `ValidationMessageFor` implemented on:
-  - MBAutocompleteTextField, TextField
+  - MBAutocompleteTextField
   - MBDebouncedTextField
   - MBNumericDoubleField
   - MBNumericIntField

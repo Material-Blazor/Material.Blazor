@@ -31,7 +31,7 @@
                     </h3>
 
                     <p>
-                        <MBAutocompleteTextField, TextField AllowBlankResult="false"
+                        <MBAutocompleteTextField AllowBlankResult="false"
                                                  @bind-Value="@Autocomplete1"
                                                  Label="Blanks disallowed"
                                                  LeadingIcon="alarm"
@@ -39,7 +39,7 @@
                                                  TextInputStyle="MBTextInputStyle.Filled" />
                     </p>
                     <p>
-                        <MBAutocompleteTextField, TextField AllowBlankResult="true"
+                        <MBAutocompleteTextField AllowBlankResult="true"
                                                  @bind-Value="@Autocomplete2"
                                                  Label="Blanks allowed"
                                                  SelectItems="@Fruits"
@@ -47,7 +47,7 @@
                                                  TrailingIcon="fa-dragon" IconFoundry="MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.Large)" />
                     </p>
                     <p>
-                        <MBAutocompleteTextField, TextField AllowBlankResult="true"
+                        <MBAutocompleteTextField AllowBlankResult="true"
                                                  @bind-Value="@Autocomplete3"
                                                  IgnoreWhitespace="true"
                                                  Label="Whitespace ignored"
@@ -72,13 +72,13 @@
                     </h3>
 
                     <p>
-                        <MBAutocompleteTextField, TextField @bind-Value="@PopupHelperText"
+                        <MBAutocompleteTextField @bind-Value="@PopupHelperText"
                                                  HelperText="Some helper text that pops up"
                                                  Label="Popup Helper Text"
                                                  SelectItems="@Fruits" />
                     </p>
                     <p>
-                        <MBAutocompleteTextField, TextField @bind-Value="@PersistentHelperText"
+                        <MBAutocompleteTextField @bind-Value="@PersistentHelperText"
                                                  HelperText="Some persistent helper text"
                                                  HelperTextPersistent="true"
                                                  Label="Persistent Helper Text"
@@ -107,7 +107,7 @@
                     </style>
 
                     <p>
-                        <MBAutocompleteTextField, TextField AllowCustomValue="true"
+                        <MBAutocompleteTextField AllowCustomValue="true"
                                                  @bind-Value="@CustomValue"
                                                  Label="Any value is valid"
                                                  SelectItems="@Fruits" />

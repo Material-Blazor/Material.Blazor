@@ -32,8 +32,8 @@ a specified density of minus 5 will actually display with a density of minus 3.
 
 | Component |   0 |  -1 |  -2 |  -3 |  -4 |  -5 |
 | :-------- | :-: | :-: | :-: | :-: | :-: | :-: |
-| [MBAutocompleteTextField, SelectField](xref:C.MBAutocompleteTextField, TextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MBAutocompleteTextField, TextField](xref:C.MBAutocompleteTextField, TextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBAutocompleteTextField, SelectField](xref:C.MBAutocompleteTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBAutocompleteTextField](xref:C.MBAutocompleteTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | [MBButton](xref:C.MBButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MBCheckbox](xref:C.MBCheckbox) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MBDataTable<TItem>](xref:C.MBDataTable) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -98,10 +99,17 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
 
 
     /// <summary>
-    /// An async method returning an enumerated selection list.
+    /// REQUIRED: an async method returning an enumerated selection list.
     /// </summary>
     [Parameter]
-    public Func<string, Task<MBAutocompleteAsyncSearchResult<TItem>>> GetMatchingSelection { get; set; }
+    public Func<string, Task<MBAsyncSearchResult<TItem>>> GetMatchingSelection { get; set; }
+
+
+    /// <summary>
+    /// REQUIRED: Gets a select element matching the supplied <see cref="TItem"/>.
+    /// </summary>
+    [Parameter]
+    public Func<TItem, Task<MBSelectElement<TItem>>> GetSelectElement { get; set; }
 
 
 
@@ -110,6 +118,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
     private MBSelectElement<TItem>[] SelectItems { get; set; } = Array.Empty<MBSelectElement<TItem>>();
+    private Dictionary<string, MBSelectElement<TItem>> SelectItemsDict { get; set; } = new();
     private string SearchText { get; set; } = "";
     private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
     public int MatchingItemCount { get; set; }
@@ -126,9 +135,19 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     {
         await base.OnInitializedAsync();
 
-        ObjectReference = DotNetObjectReference.Create(this);
-
         ForceShouldRenderToTrue = true;
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if (!ComponentValue.Equals(default))
+        {
+            SearchText = (await GetSelectElement(ComponentValue).ConfigureAwait(false)).Label;
+        }
     }
 
 
@@ -157,6 +176,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
         if (GetMatchingSelection is null)
         {
             SelectItems = Array.Empty<MBSelectElement<TItem>>();
+            SelectItemsDict = new();
             SearchResultType = MBSearchResultTypes.NoMatchesFound;
             MatchingItemCount = 0;
             MaxItemCount = 0;
@@ -166,6 +186,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
             var searchResult = await GetMatchingSelection.Invoke(searchString ?? "");
 
             SelectItems = searchResult.MatchingItems.ToArray();
+            SelectItemsDict = SelectItems.ToDictionary(x => x.SelectedValue.ToString(), x => x);
             SearchResultType = searchResult.SearchResultType;
             MatchingItemCount = searchResult.MatchingItemCount;
             MaxItemCount = searchResult.MaxItemCount;
@@ -258,9 +279,9 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     /// </summary>
     /// <returns></returns>
     [JSInvokable]
-    public void NotifySelected(TItem value)
+    public void NotifySelected(string stringValue)
     {
-        var selectedElement = SelectItems.Where(x => x.SelectedValue.Equals(value)).First();
+        var selectedElement = SelectItemsDict[stringValue];
 
         ComponentValue = selectedElement.SelectedValue;
 
@@ -291,5 +312,10 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+    internal override async Task InstantiateMcwComponent()
+    {
+        ObjectReference ??= DotNetObjectReference.Create(this);
+
+        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
+    }
 }
