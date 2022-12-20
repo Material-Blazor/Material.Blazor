@@ -538,9 +538,9 @@ public enum MBNumericInputMagnitude
 }
 
 
-///// Describes the result of a search from the <see cref="MBAutocompleteSelectField"/> component.
+///// Describes the result of a search from the <see cref="MBAutocompleteSelectField{TItem}"/> component.
 /// <summary>
-/// Describes the result of a search from the <see cref="MBAutocompleteSelectField"/> component.
+/// Describes the result of a search from the <see cref="MBAutocompleteSelectField{TItem}"/> component.
 /// </summary>
 public enum MBSearchResultTypes
 {

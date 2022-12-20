@@ -16,6 +16,9 @@
 - name: MBAnchor
   topicUid: C.MBAnchor
 
+- name: MBAutocompleteSelectField
+  topicUid: C.MBAutocompleteSelectField
+
 - name: MBAutocompleteTextField
   topicUid: C.MBAutocompleteTextField
 

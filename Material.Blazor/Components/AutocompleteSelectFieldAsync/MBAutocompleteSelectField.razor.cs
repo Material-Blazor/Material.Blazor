@@ -106,7 +106,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
 
 
     /// <summary>
-    /// REQUIRED: Gets a select element matching the supplied <see cref="TItem"/>.
+    /// REQUIRED: Gets a select element matching the supplied selected value.
     /// </summary>
     [Parameter]
     public Func<TItem, Task<MBSelectElement<TItem>>> GetSelectElement { get; set; }
