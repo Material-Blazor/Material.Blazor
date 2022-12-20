@@ -102,7 +102,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     /// REQUIRED: an async method returning an enumerated selection list.
     /// </summary>
     [Parameter]
-    public Func<string, Task<MBAsyncSearchResult<TItem>>> GetMatchingSelection { get; set; }
+    public Func<string, Task<MBSearchResult<TItem>>> GetMatchingSelection { get; set; }
 
 
     /// <summary>

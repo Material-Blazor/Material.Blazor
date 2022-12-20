@@ -7,7 +7,7 @@ namespace Material.Blazor;
 /// must be set to enable the autocomplete to know if there is an overflow condition due to too many items being returned,
 /// an exact match or no items were found.
 /// </summary>
-public class MBAsyncSearchResult<TItem>
+public class MBSearchResult<TItem>
 {
     /// <summary>
     /// Returned list of select items. Can be empty either

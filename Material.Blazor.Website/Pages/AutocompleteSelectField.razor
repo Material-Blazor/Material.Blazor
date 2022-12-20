@@ -186,7 +186,7 @@
     private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
-    private async Task<MBAsyncSearchResult<Guid>> GetCities(string searchString)
+    private async Task<MBSearchResult<Guid>> GetCities(string searchString)
     {
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
