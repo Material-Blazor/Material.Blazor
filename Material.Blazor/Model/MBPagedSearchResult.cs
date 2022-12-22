@@ -31,9 +31,9 @@ public class MBPagedSearchResult<TItem>
 
 
     /// <summary>
-    /// True indicates that the search is pending results that will be supplied subsequently.
+    /// The size of each page.
     /// </summary>
-    public bool ResultsPending { get; set; }
+    public int PageSize { get; set; }
 
 
     /// <summary>
@@ -43,7 +43,7 @@ public class MBPagedSearchResult<TItem>
 
 
     /// <summary>
-    /// The maximum number of items that the query will return before setting <see cref="SearchResultType"/> to <see cref="MBSearchResultTypes.TooManyItemsFound"/>.
+    /// True indicates that the search is pending results that will be supplied subsequently.
     /// </summary>
-    public int MaxItemCount { get; set; }
+    public bool ResultsPending { get; set; }
 }

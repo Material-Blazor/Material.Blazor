@@ -64,6 +64,7 @@
                                                   GetSelectElement="@GetSelectElement"
                                                   Label="Blanks disallowed"
                                                   LeadingIcon="alarm"
+                                                  PageSize="@PageSize"
                                                   TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
@@ -75,6 +76,7 @@
                                                   GetSelectElement="@GetSelectElement"
                                                   Label="Blanks disallowed"
                                                   LeadingIcon="alarm"
+                                                  PageSize="@PageSize"
                                                   TextInputStyle="MBTextInputStyle.Outlined"
                                                   Disabled="true"/>
                     </p>
@@ -164,7 +166,7 @@
     private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
-    private async Task GetCities(string searchString, Action<MBSearchResult<Guid>> ReceiveCity)
+    private async Task GetCities(string searchString, int pageNumber, int pageSize, Action<MBPagedSearchResult<Guid>> ReceiveCity)
     {
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
@@ -182,7 +184,8 @@
                     MatchingItems = new List<MBSelectElement<Guid>> { new() { SelectedValue = fullMatchCity.Id, Label = fullMatchCity.FullName } },
                     SearchResultType = MBSearchResultTypes.FullMatchFound,
                     MatchingItemCount = 1,
-                    MaxItemCount = PageSize,
+                    PageNumber = 0,
+                    PageSize = pageSize,
                 });
         }
 
@@ -198,26 +201,23 @@
                     MatchingItems = new List<MBSelectElement<Guid>>(),
                     SearchResultType = MBSearchResultTypes.NoMatchesFound,
                     MatchingItemCount = 0,
-                    MaxItemCount = PageSize,
-                });
-        }
-        else if (partialMatchCities.Count > PageSize) // as a demonstration, we decide that more than the query limit number of items is "too many"
-        {
-            ReceiveCity(new()
-                {
-                    MatchingItems = new List<MBSelectElement<Guid>>(),
-                    SearchResultType = MBSearchResultTypes.TooManyItemsFound,
-                    MatchingItemCount = partialMatchCities.Count,
-                    MaxItemCount = PageSize,
+                    PageNumber = 0,
+                    PageSize = pageSize,
                 });
         }
 
+        if (pageSize * pageNumber >= partialMatchCities.Count)
+        {
+            pageNumber = 0;
+        }
+        
         ReceiveCity(new()
             {
-                MatchingItems = partialMatchCities.Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
+                MatchingItems = partialMatchCities.Skip(pageNumber).Take(pageSize).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
                 SearchResultType = MBSearchResultTypes.PartialMatchesFound,
                 MatchingItemCount = partialMatchCities.Count,
-                MaxItemCount = PageSize,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
             });
     }
 

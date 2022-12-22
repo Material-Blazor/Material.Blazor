@@ -39,7 +39,7 @@
                 @if (SearchResultType == MBSearchResultTypes.NoMatchesFound || SearchResultType == MBSearchResultTypes.TooManyItemsFound)
                 {
                     Guid value = default;
-                    var label = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to {MaxItemCount:N0}";
+                    var label = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to XXX";
 
                     <li class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled"
                         data-value="@value"

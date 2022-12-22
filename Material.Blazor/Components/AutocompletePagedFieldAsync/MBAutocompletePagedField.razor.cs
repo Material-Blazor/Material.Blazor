@@ -93,15 +93,22 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
 
     /// <summary>
+    /// Page size for queries.
+    /// </summary>
+    [Parameter] public int PageSize { get; set; }
+
+
+    /// <summary>
     /// Allow unmatched results.
     /// </summary>
     [Parameter] public bool AllowBlankResult { get; set; } = false;
 
 
     /// <summary>
-    /// REQUIRED: an async method returning an enumerated selection list.
+    /// REQUIRED: an async method returning an enumerated selection list. Parameters
+    /// are the search string, followed by the requested page number, and then the page size.
     /// </summary>
-    [Parameter] public Func<string, Action<MBSearchResult<TItem>>, Task> GetMatchingSelection { get; set; }
+    [Parameter] public Func<string, int, int, Action<MBPagedSearchResult<TItem>>, Task> GetMatchingSelection { get; set; }
 
 
     /// <summary>
@@ -120,7 +127,6 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private string SearchText { get; set; } = "";
     private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
     public int MatchingItemCount { get; set; }
-    public int MaxItemCount { get; set; }
     private MBTextField TextField { get; set; }
     private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
     private string CurrentValue { get; set; } = "";
@@ -197,23 +203,21 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
             SelectItemsDict = new();
             SearchResultType = MBSearchResultTypes.NoMatchesFound;
             MatchingItemCount = 0;
-            MaxItemCount = 0;
         }
         else
         {
-            await GetMatchingSelection(searchString ?? "", ReceiveSearchItem).ConfigureAwait(false);
+            await GetMatchingSelection(searchString ?? "", 0, PageSize, ReceiveSearchItem).ConfigureAwait(false);
         }
 
         await InvokeAsync(StateHasChanged);
 
 
-        void ReceiveSearchItem(MBSearchResult<TItem> searchResult)
+        void ReceiveSearchItem(MBPagedSearchResult<TItem> searchResult)
         {
             SelectItems = searchResult.MatchingItems.ToArray();
             SelectItemsDict = SelectItems.ToDictionary(x => x.SelectedValue.ToString(), x => x);
             SearchResultType = searchResult.SearchResultType;
             MatchingItemCount = searchResult.MatchingItemCount;
-            MaxItemCount = searchResult.MaxItemCount;
         }
     }
 
