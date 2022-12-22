@@ -1,0 +1,75 @@
+﻿@namespace Material.Blazor
+
+@inherits SingleSelectComponent<TItem, MBSelectElement<TItem>>
+@typeparam TItem
+
+
+<div class="mb-autocomplete @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id">
+    <MBTextField @attributes="@AttributesToSplat()"
+                 @bind-Value="@SearchText"
+                 Density="@Density"
+                 Disabled="@AppliedDisabled"
+                 HelperText="@HelperText"
+                 HelperTextPersistent="@HelperTextPersistent"
+                 IconFoundry="@IconFoundry"
+                 Label="@Label"
+                 LeadingIcon="@LeadingIcon"
+                 @onchange="@OnTextChangeAsync"
+                 @onfocusin="@OnTextFocusInAsync"
+                 @onfocusout="@OnTextFocusOutAsync"
+                 @oninput="@OnInput"
+                 @ref="@TextField"
+                 TextAlignStyle="@TextAlignStyle"
+                 TextInputStyle="@TextInputStyle"
+                 TrailingIcon="@TrailingIcon"
+                 ValidationMessageFor="@ValidationMessageFor" />
+
+    <div class="mdc-menu-surface--anchor">
+        <div @ref="@MenuReference"
+             class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
+             @onfocusin="OnMenuFocusIn"
+             @onfocusout="OnMenuFocusOut"
+             tabindex="-1">
+
+            <ul class="mdc-deprecated-list"
+                tabindex="-1">
+
+                @if (SearchResultType == MBSearchResultTypes.NoMatchesFound || SearchResultType == MBSearchResultTypes.TooManyItemsFound)
+                {
+                    Guid value = default;
+                    var label = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to {MaxItemCount:N0}";
+
+                    <li class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled"
+                        data-value="@value"
+                        aria-disabled="true"
+                        aria-selected="false"
+                        role="option"
+                        tabindex="0">
+                        <span class="mdc-deprecated-list-item__ripple"></span>
+                        <span class="mdc-deprecated-list-item__text mb-full-width">@label</span>
+                    </li>
+                }
+                else
+                {
+                    foreach (var item in SelectItems)
+                    {
+                        var listClass = "mdc-deprecated-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
+                        var ariaSelected = item.Equals(Value);
+
+                        <li @key="@item.SelectedValue"
+                            class="@listClass"
+                            data-value="@item.SelectedValue"
+                            aria-selected="@ariaSelected"
+                            role="option"
+                            tabindex="0">
+                            <span class="mdc-deprecated-list-item__ripple"></span>
+                            <span class="mdc-deprecated-list-item__text mb-full-width">@item.Label</span>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

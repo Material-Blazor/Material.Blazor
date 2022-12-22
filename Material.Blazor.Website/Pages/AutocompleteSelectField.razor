@@ -132,7 +132,7 @@
 @code {
     private const double SqMPerSqKm = 2.58999;
 
-    class City
+    public class City
     {
         public Guid Id { get; set; } = default;
         public string Name { get; set; } = "";
@@ -152,7 +152,7 @@
     }
 
 
-    private Guid _cityId = _cities[0].Id;
+    private Guid _cityId = Cities[0].Id;
     private Guid CityId
     {
         get => _cityId;
@@ -163,7 +163,7 @@
             ToastService.ShowToast(
                 heading: "Autocomplete blanks disallowed",
                 level: MBToastLevel.Success,
-                message: $"Value: '{_citiesDict[_cityId].FullName}'",
+                message: $"Value: '{CitiesDict[_cityId].FullName}'",
                 showIcon: false);
 
             _ = Task.Run(async () =>
@@ -192,7 +192,7 @@
         await Task.Delay(200);
 
         var fullMatchRegex = new Regex($"^{searchString}$", RegexOptions);
-        var fullMatchCity = _citiesDict.Where(x => fullMatchRegex.Matches(x.Value.SearchTarget).Any()).FirstOrDefault().Value;
+        var fullMatchCity = CitiesDict.Where(x => fullMatchRegex.Matches(x.Value.SearchTarget).Any()).FirstOrDefault().Value;
 
         if (fullMatchCity != default)
         {
@@ -209,7 +209,7 @@
         }
 
         var partialMatchRegex = new Regex(searchString, RegexOptions);
-        var partialMatchCities = _citiesDict.Where(x => partialMatchRegex.Matches(x.Value.SearchTarget).Any()).Select(x => x.Value).OrderBy(x => x.FullName).ToList();
+        var partialMatchCities = CitiesDict.Where(x => partialMatchRegex.Matches(x.Value.SearchTarget).Any()).Select(x => x.Value).OrderBy(x => x.FullName).ToList();
         AllMatchingCityNames = partialMatchCities.Select(x => x.FullName).ToList();
         _ = InvokeAsync(StateHasChanged);
 
@@ -252,7 +252,7 @@
         return new()
         {
             SelectedValue = id,
-            Label = _citiesDict[id].FullName,
+            Label = CitiesDict[id].FullName,
         };
     }
 
@@ -262,18 +262,18 @@
         // A long delay to simulate a complex query
         await Task.Delay(2000);
 
-        return _citiesDict[id];
+        return CitiesDict[id];
     }
 
 
     static AutocompleteSelectField()
     {
-        _citiesDict = _cities.ToDictionary(x => x.Id, x => x);
+        CitiesDict = Cities.ToDictionary(x => x.Id, x => x);
     }
 
 
-    private static Dictionary<Guid, City> _citiesDict = new();
-    private static List<City> _cities = new()
+    public static readonly Dictionary<Guid, City> CitiesDict = new();
+    public static List<City> Cities = new()
     {
         new() { Id = new("16c5f050-9d6c-486c-a9ba-aefc67528eba"), Name = "Abilene", State = "Texas", Population = 125182, AreaSqKm = 276.4, LongitudeNorth = 32.45, LatitudeWest = 99.73,  },
         new() { Id = new("3178f2e6-f8b2-4153-9256-e144b0627e5e"), Name = "Akron", State = "Ohio", Population = 190469, AreaSqKm = 160.3, LongitudeNorth = 41.08, LatitudeWest = 81.52,  },
@@ -606,6 +606,5 @@
         new() { Id = new("015d1952-1de8-4d98-90d8-6eb4171100eb"), Name = "Woodbridge", State = "New Jersey", Population = 103639, AreaSqKm = 60.3, LongitudeNorth = 40.56, LatitudeWest = 74.28,  },
         new() { Id = new("c93e597a-f778-44c5-8922-37041d9a950e"), Name = "Worcester", State = "Massachusetts", Population = 206518, AreaSqKm = 96.9, LongitudeNorth = 42.26, LatitudeWest = 71.8,  },
         new() { Id = new("f9ace6fc-0c44-4ee7-bd3b-c6694da6bfb2"), Name = "Yonkers", State = "New York", Population = 211569, AreaSqKm = 46.6, LongitudeNorth = 40.94, LatitudeWest = 73.86,  },
-
     };
 }
