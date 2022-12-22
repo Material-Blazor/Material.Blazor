@@ -127,6 +127,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
     private string CurrentValue { get; set; } = "";
     private Timer Timer { get; set; }
+    private TItem PreviousComponetValue { get; set; } = default;
 
 
 
@@ -144,9 +145,9 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     {
         await base.OnParametersSetAsync();
 
-        if (!ComponentValue.Equals(default))
+        if (!ComponentValue.Equals(PreviousComponetValue))
         {
-            SearchText = (await GetSelectElement(ComponentValue).ConfigureAwait(false)).Label;
+            await RequerySearchText().ConfigureAwait(false);
         }
     }
 
@@ -168,6 +169,19 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
         _disposed = true;
 
         base.Dispose(disposing);
+    }
+
+
+    /// <summary>
+    /// Forces the component to re-query search text. This can be used if the search text associated
+    /// with the component's value changes. For example if the Value parameter is a Guid but the search
+    /// text associated with it changes in your app, call this method to update the component accordingly.
+    /// </summary>
+    /// <returns></returns>
+    public async Task RequerySearchText()
+    {
+        SearchText = (await GetSelectElement(ComponentValue).ConfigureAwait(false)).Label;
+        PreviousComponetValue = ComponentValue;
     }
 
 
@@ -238,12 +252,16 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     }
 
 
+    private async Task OnTextFocusInAsync()
+    {
+        await GetSelectionAsync(SearchText);
+        await OpenMenuAsync();
+    }
+
+
     private async Task OnTextFocusOutAsync()
     {
-        if (!SelectItems.Any())
-        {
-            await CloseMenuAsync();
-        }
+        await CloseMenuAsync();
     }
 
 
