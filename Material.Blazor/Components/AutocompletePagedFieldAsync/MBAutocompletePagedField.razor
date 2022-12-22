@@ -27,49 +27,37 @@
                  ValidationMessageFor="@ValidationMessageFor" />
 
     <div class="mdc-menu-surface--anchor">
-        <div @ref="@MenuReference"
-             class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
-             @onfocusin="OnMenuFocusIn"
-             @onfocusout="OnMenuFocusOut"
-             tabindex="-1">
-
-            <ul class="mdc-deprecated-list"
-                tabindex="-1">
-
-                @if (SearchResultType == MBSearchResultTypes.NoMatchesFound || SearchResultType == MBSearchResultTypes.TooManyItemsFound)
-                {
-                    Guid value = default;
-                    var label = SearchResultType == MBSearchResultTypes.NoMatchesFound ? "No matches found" : $"{MatchingItemCount:N0} items found, display limited to XXX";
-
-                    <li class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled"
-                        data-value="@value"
-                        aria-disabled="true"
-                        aria-selected="false"
-                        role="option"
-                        tabindex="0">
-                        <span class="mdc-deprecated-list-item__ripple"></span>
-                        <span class="mdc-deprecated-list-item__text mb-full-width">@label</span>
-                    </li>
-                }
-                else
-                {
-                    foreach (var item in SelectItems)
+        <MBMenuSurface @ref="MenuSurface">
+            <div class="mdc-layout-grid" style="width: 600px;">
+                <div class="mdc-layout-grid__inner">
+                    @for (int i = 0; i < 2; i++)
                     {
-                        var listClass = "mdc-deprecated-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
-                        var ariaSelected = item.Equals(Value);
+                        var columnItems = SelectItems.Skip(i * SelectItemsPerColumn).Take(SelectItemsPerColumn);
 
-                        <li @key="@item.SelectedValue"
-                            class="@listClass"
-                            data-value="@item.SelectedValue"
-                            aria-selected="@ariaSelected"
-                            role="option"
-                            tabindex="0">
-                            <span class="mdc-deprecated-list-item__ripple"></span>
-                            <span class="mdc-deprecated-list-item__text mb-full-width">@item.Label</span>
-                        </li>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            @if (columnItems.Any())
+                            {
+                                <MBList Items="@columnItems"
+                                        Context="item"
+                                        ListStyle="@MBListStyle.Outlined"
+                                        SingleLineDensity="@MBDensity.Minus2"
+                                        KeyboardInteractions="true"
+                                        Ripple="true">
+
+                                    <Title>@item.Label</Title>
+                                </MBList>
+                            }
+                        </div>
                     }
-                }
-            </ul>
-        </div>
+
+                    <div class="mdc-layout-grid__cell--span-12" style="display: flex; justify-content: flex-end;">
+                        <MBPaginator @bind-PageNumber="@PageNumber"
+                                     ItemsPerPageSelection="@PaginatorItemsPerPage"
+                                     ItemsPerPage="@PaginatorItemsPerPage[0]"
+                                     ItemCount="@MatchingItemCount" />
+                    </div>
+                </div>
+            </div>
+        </MBMenuSurface>
     </div>
 </div>

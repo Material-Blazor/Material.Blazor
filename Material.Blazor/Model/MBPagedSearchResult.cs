@@ -33,7 +33,7 @@ public class MBPagedSearchResult<TItem>
     /// <summary>
     /// The size of each page.
     /// </summary>
-    public int PageSize { get; set; }
+    public int SelectItemsPerPage { get; set; }
 
 
     /// <summary>

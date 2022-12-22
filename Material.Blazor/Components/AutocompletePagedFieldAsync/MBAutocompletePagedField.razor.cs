@@ -93,9 +93,9 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
 
     /// <summary>
-    /// Page size for queries.
+    /// The number of items to be displayed per column for a given paged selection.
     /// </summary>
-    [Parameter] public int PageSize { get; set; }
+    [Parameter] public int SelectItemsPerColumn { get; set; }
 
 
     /// <summary>
@@ -121,7 +121,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private bool IsOpen { get; set; } = false;
     private DotNetObjectReference<MBAutocompletePagedField<TItem>> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
-    private ElementReference MenuReference { get; set; }
+    private MBMenuSurface MenuSurface { get; set; }
     private MBSelectElement<TItem>[] SelectItems { get; set; } = Array.Empty<MBSelectElement<TItem>>();
     private Dictionary<string, MBSelectElement<TItem>> SelectItemsDict { get; set; } = new();
     private string SearchText { get; set; } = "";
@@ -132,6 +132,8 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private string CurrentValue { get; set; } = "";
     private Timer Timer { get; set; }
     private TItem PreviousComponetValue { get; set; } = default;
+    private int PageNumber { get; set; } = 0;
+    private int[] PaginatorItemsPerPage { get; set; } = { 0 };
 
 
 
@@ -152,6 +154,11 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         if (!ComponentValue.Equals(PreviousComponetValue))
         {
             await RequerySearchText().ConfigureAwait(false);
+        }
+
+        if (SelectItemsPerColumn * 2 != PaginatorItemsPerPage[0])
+        {
+            PaginatorItemsPerPage[0] = SelectItemsPerColumn * 2;
         }
     }
 
@@ -206,7 +213,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         }
         else
         {
-            await GetMatchingSelection(searchString ?? "", 0, PageSize, ReceiveSearchItem).ConfigureAwait(false);
+            await GetMatchingSelection(searchString ?? "", 0, 2 * SelectItemsPerColumn, ReceiveSearchItem).ConfigureAwait(false);
         }
 
         await InvokeAsync(StateHasChanged);
@@ -255,7 +262,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
     private async Task OnTextChangeAsync()
     {
-        await CloseMenuAsync(true);
+        await CloseMenuAsync();
 
         if (!MenuHasFocus)
         {
@@ -321,22 +328,25 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     }
 
 
-    private async Task OpenMenuAsync(bool forceOpen = false)
+    private async Task OpenMenuAsync()
     {
-        if (!IsOpen || forceOpen)
+        if (!IsOpen)
         {
             IsOpen = true;
-            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.open", MenuReference);
+            await MenuSurface.ToggleAsync().ConfigureAwait(false);
+            //await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.open", MenuReference);
         }
     }
 
 
-    private async Task CloseMenuAsync(bool forceClose = false)
+    private async Task CloseMenuAsync()
     {
-        if (IsOpen || forceClose)
+        if (IsOpen)
         {
             IsOpen = false;
-            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.close", MenuReference);
+            await MenuSurface.ToggleAsync().ConfigureAwait(false);
+
+            //await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.close", MenuReference);
         }
     }
 
@@ -346,6 +356,6 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         ObjectReference ??= DotNetObjectReference.Create(this);
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
+        //await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
     }
 }

@@ -22,27 +22,49 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Page Size
+                        Number of Columns
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Set the page size (even numbers are good).
+                        Set the number of columns per page.
                     </h3>
 
                     <p>
-                        <MBIntSlider AriaLabel="Page Size"
-                                     @bind-Value="@PageSize"
+                        <MBIntSlider AriaLabel="Number of Columns per Page"
+                                     @bind-Value="@NumberOfColumns"
                                      ContinuousInputDelay="300"
                                      EventType="@MBInputEventType.OnChange"
                                      ShowTickmarks="true"
-                                     ValueMax="30"
-                                     ValueMin="10" />
+                                     ValueMax="3"
+                                     ValueMin="1" />
                     </p>
                 </Primary>
             </MBCard>
         </div>
 
-        <div class="mdc-layout-grid__cell--span-6"></div>
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Select Items per Column
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Sets the number of select items per column.
+                    </h3>
+
+                    <p>
+                        <MBIntSlider AriaLabel="Number of Select Items per Column"
+                                     @bind-Value="@SelectItemsPerColumn"
+                                     ContinuousInputDelay="300"
+                                     EventType="@MBInputEventType.OnChange"
+                                     ShowTickmarks="true"
+                                     ValueMax="10"
+                                     ValueMin="4" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
 
         <div class="mdc-layout-grid__cell--span-4">
             <MBCard AutoStyled="true">
@@ -64,7 +86,8 @@
                                                   GetSelectElement="@GetSelectElement"
                                                   Label="Blanks disallowed"
                                                   LeadingIcon="alarm"
-                                                  PageSize="@PageSize"
+                                                  NumberOfColumns="@NumberOfColumns"
+                                                  SelectItemsPerColumn="@SelectItemsPerColumn"
                                                   TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
@@ -76,7 +99,8 @@
                                                   GetSelectElement="@GetSelectElement"
                                                   Label="Blanks disallowed"
                                                   LeadingIcon="alarm"
-                                                  PageSize="@PageSize"
+                                                  NumberOfColumns="@NumberOfColumns"
+                                                  SelectItemsPerColumn="@SelectItemsPerColumn"
                                                   TextInputStyle="MBTextInputStyle.Outlined"
                                                   Disabled="true"/>
                     </p>
@@ -159,14 +183,15 @@
     }
 
 
-    private int PageSize { get; set; } = 10;
+    private int NumberOfColumns { get; set; } = 2;
+    private int SelectItemsPerColumn { get; set; } = 5;
     private AutocompleteSelectField.City ClientSideSelectedCity { get; set; } = null;
     private List<string> AllMatchingCityNames { get; set; } = new();
     private MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Closed;
     private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
-    private async Task GetCities(string searchString, int pageNumber, int pageSize, Action<MBPagedSearchResult<Guid>> ReceiveCity)
+    private async Task GetCities(string searchString, int pageNumber, int SelectItemsPerColumn, Action<MBPagedSearchResult<Guid>> ReceiveCity)
     {
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
@@ -185,7 +210,7 @@
                     SearchResultType = MBSearchResultTypes.FullMatchFound,
                     MatchingItemCount = 1,
                     PageNumber = 0,
-                    PageSize = pageSize,
+                    SelectItemsPerPage = SelectItemsPerColumn * NumberOfColumns,
                 });
         }
 
@@ -202,22 +227,22 @@
                     SearchResultType = MBSearchResultTypes.NoMatchesFound,
                     MatchingItemCount = 0,
                     PageNumber = 0,
-                    PageSize = pageSize,
+                    SelectItemsPerPage = SelectItemsPerColumn * NumberOfColumns,
                 });
         }
 
-        if (pageSize * pageNumber >= partialMatchCities.Count)
+        if (SelectItemsPerColumn * pageNumber >= partialMatchCities.Count)
         {
             pageNumber = 0;
         }
         
         ReceiveCity(new()
             {
-                MatchingItems = partialMatchCities.Skip(pageNumber).Take(pageSize).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
+                MatchingItems = partialMatchCities.Skip(pageNumber).Take(SelectItemsPerColumn).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
                 SearchResultType = MBSearchResultTypes.PartialMatchesFound,
                 MatchingItemCount = partialMatchCities.Count,
                 PageNumber = pageNumber,
-                PageSize = pageSize,
+                SelectItemsPerPage = SelectItemsPerColumn * NumberOfColumns,
             });
     }
 
