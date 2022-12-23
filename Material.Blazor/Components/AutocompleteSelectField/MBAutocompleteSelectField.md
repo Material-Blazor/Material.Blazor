@@ -18,4 +18,4 @@ provide ongoing value queries, for instance from a database.
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAutocompleteSelectField&color=brightgreen)](xref:Material.Blazor.MBAutocompleteSelectField)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAutocompleteSelectField&color=brightgreen)](xref:Material.Blazor.MBAutocompleteSelectField`1)

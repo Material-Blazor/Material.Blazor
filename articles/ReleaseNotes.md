@@ -4,14 +4,32 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.6)
+
+Released 2022-12-23
+
+**Updates**
+
+**New components**
+- Added `MBAutoCompletePagedField` which is a single item select using asynchronous methods supplied as parameters to search for items matching user entered text. Behaves differently to `MBAutoCompleteSelectField` because
+results are paged on a menu surface rather than being hidden in favour of a "too many results" message.
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.5)
 
 Released 2022-12-20
 
 **Updates**
-- Added `MBAutoCompleteSelectField` which is a single item select using asynchronous methods supplied as parameters to search for items matching user entered text.
 
 **New components**
+- Added `MBAutoCompleteSelectField` which is a single item select using asynchronous methods supplied as parameters to search for items matching user entered text.
 
 **Breaking Changes**
 

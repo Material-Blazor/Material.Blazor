@@ -1,12 +1,12 @@
 ﻿---
-uid: C.MBAutocompleteSelectField
-title: MBAutocompleteSelectField
+uid: C.MBAutocompletePagedField
+title: MBAutocompletePagedField
 ---
-# MBAutocompleteSelectField
+# MBAutocompletePagedField
 
 ## Summary
 
-An [MBTextField](xref:C.MBTextField) that drops a [menu](xref:C.MBMenu) for auto completion, using asynchronous methods (supplied by the caller) to
+An [MBTextField](xref:C.MBTextField) that drops a [menu surface](xref:C.MBMenuSurface) containing paged results for auto completion, using asynchronous methods (supplied by the caller) to
 provide ongoing value queries, for instance from a database.
 
 - Has parameters to allow blank results and for whitespace to be ignored in searches.
@@ -18,4 +18,4 @@ provide ongoing value queries, for instance from a database.
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAutocompleteSelectField&color=brightgreen)](xref:Material.Blazor.MBAutocompleteSelectField)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAutocompletePagedField&color=brightgreen)](xref:Material.Blazor.MBAutocompletePagedField`1)

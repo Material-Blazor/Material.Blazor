@@ -12,6 +12,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | Component | Notes |
 | :-------- | :---- |
 | [MBAnchor](xref:C.MBAnchor) | Anchor for a port of [Blazored/Toast](https://github.com/Blazored/Toast) and [Material Tooltips](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip) modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an [IIMBoastService](xref:S.IMBToastService) service and will throw an exception on startup if the service is not found. |
+| [MBAutocompletePagedField](xref:C.MBAutocompletePagedField) | An autocomplete comprising a text field and a paged menu, using asynchronous methods (supplied by the caller) to provide ongoing value queries, for instance from a database. |
 | [MBAutocompleteSelectField](xref:C.MBAutocompleteSelectField) | An autocomplete comprising a text field and a menu, using asynchronous methods (supplied by the caller) to provide ongoing value queries, for instance from a database. |
 | [MBAutocompleteTextField](xref:C.MBAutocompleteTextField) | An autocomplete comprising a text field and a menu. |
 | [MBBadge](xref:C.MBBadge) | Badges that can be applied wither within HTML `div'`s or invoked via the parameters on `MBButton`, `MBIconButton` and 'MBIconButtonToggle''. |
