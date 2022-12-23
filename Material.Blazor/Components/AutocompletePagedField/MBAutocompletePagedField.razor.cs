@@ -122,6 +122,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private bool IsOpen { get; set; } = false;
     private DotNetObjectReference<MBAutocompletePagedField<TItem>> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
+    private bool SelectionClosedMenu { get; set; } = false;
     private ElementReference MenuReference { get; set; }
     private bool ResultsPending { get; set; } = false;
     private MBLinearProgressType MenuSurfaceLinearProgressType => ResultsPending ? MBLinearProgressType.Indeterminate : MBLinearProgressType.Closed;
@@ -286,13 +287,22 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private async Task OnTextFocusInAsync()
     {
         await GetSelectionAsync(SearchText);
-        await OpenMenuAsync();
+
+        if (!SelectionClosedMenu)
+        {
+            await OpenMenuAsync().ConfigureAwait(false);
+        }
+
+        SelectionClosedMenu = false;
     }
 
 
     private async Task OnTextFocusOutAsync()
     {
-        //await CloseMenuAsync();
+        if (!MenuHasFocus)
+        {
+            await CloseMenuAsync().ConfigureAwait(false);
+        }
     }
 
 
@@ -308,13 +318,17 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     }
 
 
-    private void OnListItemClick(int col, int listIndex)
+    private async Task OnListItemClickAsync(int col, int listIndex)
     {
         var selectedElement = SelectItems[(col * SelectItemsPerColumn) + listIndex];
 
         ComponentValue = selectedElement.SelectedValue;
 
         SearchText = selectedElement.Label;
+
+        SelectionClosedMenu = true;
+
+        await CloseMenuAsync().ConfigureAwait(false);
 
         NotifyClosed();
     }
@@ -335,7 +349,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         IsOpen = false;
 
-        StateHasChanged();
+        _ = InvokeAsync(StateHasChanged);
     }
 
 
