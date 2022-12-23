@@ -13,35 +13,11 @@
                    Title="Autocomplete Paged Field Demonstration">
     <Description>
         <p>
-            Shows autocomplete select paged which are Plus components.
+            Shows autocomplete paged selects which are Plus components.
         </p>
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-6">
-            <MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Number of Columns
-                    </h2>
-
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Set the number of columns per page.
-                    </h3>
-
-                    <p>
-                        <MBIntSlider AriaLabel="Number of Columns per Page"
-                                     @bind-Value="@NumberOfColumns"
-                                     ContinuousInputDelay="300"
-                                     EventType="@MBInputEventType.OnChange"
-                                     ShowTickmarks="true"
-                                     ValueMax="3"
-                                     ValueMin="1" />
-                    </p>
-                </Primary>
-            </MBCard>
-        </div>
-
         <div class="mdc-layout-grid__cell--span-6">
             <MBCard AutoStyled="true">
                 <Primary>
@@ -62,9 +38,16 @@
                                      ValueMax="10"
                                      ValueMin="4" />
                     </p>
+
+                    <p>
+                        <MBCheckbox @bind-Value="@SimulateSuperSlowQuery"
+                                    Label="Simulate super slow queries" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-6"></div>
 
         <div class="mdc-layout-grid__cell--span-4">
             <MBCard AutoStyled="true">
@@ -86,7 +69,6 @@
                                                   GetSelectElement="@GetSelectElement"
                                                   Label="Blanks disallowed"
                                                   LeadingIcon="alarm"
-                                                  NumberOfColumns="@NumberOfColumns"
                                                   SelectItemsPerColumn="@SelectItemsPerColumn"
                                                   TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
@@ -99,7 +81,6 @@
                                                   GetSelectElement="@GetSelectElement"
                                                   Label="Blanks disallowed"
                                                   LeadingIcon="alarm"
-                                                  NumberOfColumns="@NumberOfColumns"
                                                   SelectItemsPerColumn="@SelectItemsPerColumn"
                                                   TextInputStyle="MBTextInputStyle.Outlined"
                                                   Disabled="true"/>
@@ -183,7 +164,7 @@
     }
 
 
-    private int NumberOfColumns { get; set; } = 2;
+    private bool SimulateSuperSlowQuery { get; set; } = false;
     private int SelectItemsPerColumn { get; set; } = 5;
     private AutocompleteSelectField.City ClientSideSelectedCity { get; set; } = null;
     private List<string> AllMatchingCityNames { get; set; } = new();
@@ -204,7 +185,7 @@
             AllMatchingCityNames = new() { fullMatchCity.FullName };
             _ = InvokeAsync(StateHasChanged);
 
-            ReceiveCity(new()
+            await SendCityWithOptionalDelay(new()
                 {
                     MatchingItems = new List<MBSelectElement<Guid>> { new() { SelectedValue = fullMatchCity.Id, Label = fullMatchCity.FullName } },
                     SearchResultType = MBSearchResultTypes.FullMatchFound,
@@ -221,7 +202,7 @@
 
         if (!partialMatchCities.Any())
         {
-            ReceiveCity(new()
+            await SendCityWithOptionalDelay(new()
                 {
                     MatchingItems = new List<MBSelectElement<Guid>>(),
                     SearchResultType = MBSearchResultTypes.NoMatchesFound,
@@ -235,8 +216,8 @@
         {
             pageNumber = 0;
         }
-        
-        ReceiveCity(new()
+
+        await SendCityWithOptionalDelay(new()
             {
                 MatchingItems = partialMatchCities.Skip(pageNumber * selectItemsPerPage).Take(selectItemsPerPage).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
                 SearchResultType = MBSearchResultTypes.PartialMatchesFound,
@@ -244,6 +225,27 @@
                 PageNumber = pageNumber,
                 SelectItemsPerPage = selectItemsPerPage,
             });
+
+
+        async Task SendCityWithOptionalDelay(MBPagedSearchResult<Guid> result)
+        {
+            if (SimulateSuperSlowQuery)
+            {
+                ReceiveCity(new()
+                    {
+                        MatchingItems = new List<MBSelectElement<Guid>>(),
+                        SearchResultType = result.SearchResultType,
+                        MatchingItemCount = result.MatchingItemCount,
+                        PageNumber = result.PageNumber,
+                        SelectItemsPerPage = result.PageNumber,
+                        ResultsPending = true, // This tells the control that there are pending results that will arrive after a delay
+                    });
+
+                await Task.Delay(2000); // A delay to simulate a *very* slow query
+            }
+
+            ReceiveCity(result);
+        }
     }
 
 

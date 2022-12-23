@@ -33,7 +33,8 @@
              @onfocusout="OnMenuFocusOut"
              tabindex="-1">
 
-            <div class="mdc-layout-grid" style="width: 600px;">
+            <MBLinearProgress LinearProgressType="@MenuSurfaceLinearProgressType" />
+            <div class="mdc-layout-grid mb-autocomplete-paged-field-list">
                 <div class="mdc-layout-grid__inner">
                     @for (int col = 0; col < 2; col++)
                     {
@@ -49,16 +50,15 @@
                                         ListStyle="@MBListStyle.Outlined"
                                         OnClick="@(listIndex => OnListItemClick(localCol, listIndex))"
                                         Ripple="true"
-                                        ShowSeparators="true"
                                         SingleLineDensity="@MBDensity.Minus2">
 
                                     <Title>@item.Label</Title>
                                 </MBList>
                             }
                         </div>
-                    }@PageNumber
+                    }
 
-                    <div class="mdc-layout-grid__cell--span-12" style="display: flex; justify-content: flex-end;">
+                    <div class="mdc-layout-grid__cell--span-12 mb-autocomplete-paged-field-paginator">
                         <MBPaginator @bind-PageNumber="@PageNumber"
                                      @bind-PageNumber:after="@OnPageTurn"
                                      ItemsPerPageSelection="@PaginatorItemsPerPage"

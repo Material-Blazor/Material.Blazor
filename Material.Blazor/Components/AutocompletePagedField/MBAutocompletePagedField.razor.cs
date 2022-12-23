@@ -123,6 +123,8 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private DotNetObjectReference<MBAutocompletePagedField<TItem>> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
+    private bool ResultsPending { get; set; } = false;
+    private MBLinearProgressType MenuSurfaceLinearProgressType => ResultsPending ? MBLinearProgressType.Indeterminate : MBLinearProgressType.Closed;
     private MBSelectElement<TItem>[] SelectItems { get; set; } = Array.Empty<MBSelectElement<TItem>>();
     private string SearchText { get; set; } = "";
     private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
@@ -224,9 +226,16 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
         void ReceiveSearchItem(MBPagedSearchResult<TItem> searchResult)
         {
-            SelectItems = searchResult.MatchingItems.ToArray();
+            if (!searchResult.ResultsPending)
+            {
+                SelectItems = searchResult.MatchingItems.ToArray();
+            }
+            
+            ResultsPending = searchResult.ResultsPending;
             SearchResultType = searchResult.SearchResultType;
             MatchingItemCount = searchResult.MatchingItemCount;
+
+            _ = InvokeAsync(StateHasChanged);
         }
     }
 
@@ -235,30 +244,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         Timer?.Dispose();
         var autoReset = new AutoResetEvent(false);
-        Timer = new Timer(_ => GetSelectionAndDisplayMenuAsync(args.Value.ToString()), autoReset, AppliedDebounceInterval, Timeout.Infinite);
-
-
-        //async void OnTimerComplete(object stateInfo)
-        //{
-        //    await GetSelectionAsync(args.Value.ToString());
-
-        //    if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && ComponentValue.Equals(default)))
-        //    {
-        //        await CloseMenuAsync();
-        //        ComponentValue = SelectItems[0].SelectedValue;
-        //        SearchText = SelectItems[0].Label;
-        //    }
-        //    else if (SelectItems.Any())
-        //    {
-        //        await OpenMenuAsync();
-        //    }
-        //    else
-        //    {
-        //        await OpenMenuAsync();
-        //    }
-
-        //    await InvokeAsync(StateHasChanged);
-        //}
+        Timer = new Timer(async _ => await GetSelectionAndDisplayMenuAsync(args.Value.ToString()).ConfigureAwait(false), autoReset, AppliedDebounceInterval, Timeout.Infinite);
     }
 
 
