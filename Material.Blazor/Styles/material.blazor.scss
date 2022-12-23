@@ -3,6 +3,7 @@
 @use '_colors.scss';
 @use "_material-components-icons.scss";
 
+@use '../Components/AutocompletePagedField/MBAutocompletePagedField.scss';
 @use '../Components/AutocompleteTextField/MBAutocompleteTextField.scss';
 @use '../Components/Badge/MBBadge.scss';
 @use '../Components/BladeSet/MBBladeSet.scss';

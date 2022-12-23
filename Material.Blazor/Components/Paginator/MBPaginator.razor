@@ -12,29 +12,26 @@
                 @ItemsText
             </div>
 
-            @*<MBSelect class="mdc-data-table__pagination-rows-per-page-select"
-                @bind-Value="@SelectItemsPerPage"
-                Items="@ItemsPerPageItems"
-                SelectInputStyle="@MBSelectInputStyle.Outlined"
-                Density="MBDensity.Minus4" />*@
-
-            <div class="mdc-data-table__pagination-rows-per-page-select">
-                <MBIconButtonToggle @bind-Value="@ToggleOn"
-                                    IconOff="arrow_drop_down"
-                                    IconOn="arrow_drop_up"
-                                    @ref="@IconButtonToggle" />
-                <div class="mdc-menu-surface--anchor">
-                    <MBMenu OnMenuClosed="@OnMenuClosed"
-                            @ref="Menu">
-                        @foreach (var itemsPerPage in ItemsPerPageSelection)
-                        {
-                            <MBListItem @key="@itemsPerPage"
-                                        Label="@itemsPerPage.ToString("G0")"
-                                        @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
-                        }
-                    </MBMenu>
+            @if (ItemsPerPageSelection.Count() > 1)
+            {
+                <div class="mdc-data-table__pagination-rows-per-page-select">
+                    <MBIconButtonToggle @bind-Value="@ToggleOn"
+                                        IconOff="arrow_drop_down"
+                                        IconOn="arrow_drop_up"
+                                        @ref="@IconButtonToggle" />
+                        <div class="mdc-menu-surface--anchor">
+                            <MBMenu OnMenuClosed="@OnMenuClosed"
+                                @ref="Menu">
+                                @foreach (var itemsPerPage in ItemsPerPageSelection)
+                                {
+                                    <MBListItem @key="@itemsPerPage"
+                                                Label="@itemsPerPage.ToString("G0")"
+                                                @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
+                                }
+                            </MBMenu>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
 
         <div class="mdc-data-table__pagination-navigation">

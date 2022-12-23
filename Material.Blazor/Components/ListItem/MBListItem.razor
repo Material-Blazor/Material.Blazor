@@ -4,10 +4,11 @@
 
 @if (Drawer != null)
 {
-    <a class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
-        style="@style"
-        id="@id"
-        @attributes="@AttributesToSplat()">
+    <a aria-selected="@IsSelectedMenuItem"
+       class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
+       id="@id"
+       style="@style"
+       @attributes="@AttributesToSplat()">
 
         <span class="mdc-deprecated-list-item__ripple"></span>
 
@@ -24,9 +25,10 @@
 }
 else if (Menu != null)
 {
-    <li class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
-        style="@style"
+    <li aria-selected="@IsSelectedMenuItem"
+        class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
         id="@id"
+        style="@style"
         @attributes="@AttributesToSplat()"
         role="menuitem">
 

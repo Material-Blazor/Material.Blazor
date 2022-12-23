@@ -1,0 +1,272 @@
+﻿@page "/autocompletepagedfield"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+@using System.Text.RegularExpressions
+
+
+<DemonstrationPage ComponentName="AutocompletePagedField"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Autocomplete Paged Field Demonstration">
+    <Description>
+        <p>
+            Shows autocomplete paged selects which are Plus components.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Select Items per Column
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Sets the number of select items per column.
+                    </h3>
+
+                    <p>
+                        <MBIntSlider AriaLabel="Number of Select Items per Column"
+                                     @bind-Value="@SelectItemsPerColumn"
+                                     ContinuousInputDelay="300"
+                                     EventType="@MBInputEventType.OnChange"
+                                     ShowTickmarks="true"
+                                     ValueMax="10"
+                                     ValueMin="4" />
+                    </p>
+
+                    <p>
+                        <MBCheckbox @bind-Value="@SimulateSuperSlowQuery"
+                                    Label="Simulate super slow queries" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-6"></div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Autcomplete select field
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An asynchronous autocomplete that searches large US cities by name or state. The search function adds a minor delay to simulate
+                        an async method, such as a database search.
+                    </h3>
+
+                    <p>
+                        <MBAutocompletePagedField AllowBlankResult="false"
+                                                  @bind-Value="@CityId"
+                                                  DebounceInterval="1000"
+                                                  GetMatchingSelection="@GetCities"
+                                                  GetSelectElement="@GetSelectElement"
+                                                  Label="Blanks disallowed"
+                                                  LeadingIcon="alarm"
+                                                  SelectItemsPerColumn="@SelectItemsPerColumn"
+                                                  TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBAutocompletePagedField AllowBlankResult="false"
+                                                  @bind-Value="@CityId"
+                                                  DebounceInterval="1000"
+                                                  GetMatchingSelection="@GetCities"
+                                                  GetSelectElement="@GetSelectElement"
+                                                  Label="Blanks disallowed"
+                                                  LeadingIcon="alarm"
+                                                  SelectItemsPerColumn="@SelectItemsPerColumn"
+                                                  TextInputStyle="MBTextInputStyle.Outlined"
+                                                  Disabled="true"/>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-8">
+            <MBCard>
+                <Primary>
+                    <MBLinearProgress LinearProgressType="@LinearProgressType" />
+
+                    <div style="margin: 12px;">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            Your chosen location
+                        </h2>
+
+                        @if (ClientSideSelectedCity is not null)
+                        {
+                            <p class="mdc-typography--body1">City: @ClientSideSelectedCity.Name</p>
+                            <p class="mdc-typography--body1">State: @ClientSideSelectedCity.State</p>
+                            <p class="mdc-typography--body1">Population: @ClientSideSelectedCity.Population.ToString("N0")</p>
+                            <p class="mdc-typography--body1">Area: @ClientSideSelectedCity.AreaSqKm.ToString("N2") sq km / @ClientSideSelectedCity.AreaSqM.ToString("N2") sq miles</p>
+                            <p class="mdc-typography--body1">Population Density: @ClientSideSelectedCity.PopulationDensityPerSqKm.ToString("N0") per sq km / @ClientSideSelectedCity.PopulationDensityPerSqM.ToString("N0") per sq mile</p>
+                            <p class="mdc-typography--body1">Location: @ClientSideSelectedCity.Location</p>
+                            <p class="mdc-typography--body1">Map Link: <a href="@ClientSideSelectedCity.GoogleMapsUrl" target="_blank">@ClientSideSelectedCity.GoogleMapsUrl</a></p>
+                        }
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        All matching cities returned from the "database"
+                    </h2>
+
+                    <div class="mdc-layout-grid__inner">
+                        @foreach (var cityName in AllMatchingCityNames)
+                        {
+                            <div class="mdc-layout-grid__cell--span-3 mdc-typography--body2">
+                                @cityName
+                            </div>
+                        }
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private Guid _cityId = AutocompleteSelectField.Cities[0].Id;
+    private Guid CityId
+    {
+        get => _cityId;
+        set
+        {
+            _cityId = value;
+
+            ToastService.ShowToast(
+                heading: "Autocomplete blanks disallowed",
+                level: MBToastLevel.Success,
+                message: $"Value: '{AutocompleteSelectField.CitiesDict[_cityId].FullName}'",
+                showIcon: false);
+
+            _ = Task.Run(async () =>
+            {
+                LinearProgressType = MBLinearProgressType.Indeterminate;
+                await InvokeAsync(StateHasChanged);
+
+                ClientSideSelectedCity = await GetSelectedCity(_cityId);
+                LinearProgressType = MBLinearProgressType.Closed;
+                await InvokeAsync(StateHasChanged);
+            });
+        }
+    }
+
+
+    private bool SimulateSuperSlowQuery { get; set; } = false;
+    private int SelectItemsPerColumn { get; set; } = 5;
+    private AutocompleteSelectField.City ClientSideSelectedCity { get; set; } = null;
+    private List<string> AllMatchingCityNames { get; set; } = new();
+    private MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Closed;
+    private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
+
+
+    private async Task GetCities(string searchString, int pageNumber, int selectItemsPerPage, Action<MBPagedSearchResult<Guid>> ReceiveCity)
+    {
+        // A delay to mimic waiting for a database to respond
+        await Task.Delay(200);
+
+        var fullMatchRegex = new Regex($"^{searchString}$", RegexOptions);
+        var fullMatchCity = AutocompleteSelectField.CitiesDict.Where(x => fullMatchRegex.Matches(x.Value.SearchTarget).Any()).FirstOrDefault().Value;
+
+        if (fullMatchCity != default)
+        {
+            AllMatchingCityNames = new() { fullMatchCity.FullName };
+            _ = InvokeAsync(StateHasChanged);
+
+            await SendCityWithOptionalDelay(new()
+                {
+                    MatchingItems = new List<MBSelectElement<Guid>> { new() { SelectedValue = fullMatchCity.Id, Label = fullMatchCity.FullName } },
+                    SearchResultType = MBSearchResultTypes.FullMatchFound,
+                    MatchingItemCount = 1,
+                    PageNumber = 0,
+                    SelectItemsPerPage = selectItemsPerPage,
+                });
+        }
+
+        var partialMatchRegex = new Regex(searchString, RegexOptions);
+        var partialMatchCities = AutocompleteSelectField.CitiesDict.Where(x => partialMatchRegex.Matches(x.Value.SearchTarget).Any()).Select(x => x.Value).OrderBy(x => x.FullName).ToList();
+        AllMatchingCityNames = partialMatchCities.Select(x => x.FullName).ToList();
+        _ = InvokeAsync(StateHasChanged);
+
+        if (!partialMatchCities.Any())
+        {
+            await SendCityWithOptionalDelay(new()
+                {
+                    MatchingItems = new List<MBSelectElement<Guid>>(),
+                    SearchResultType = MBSearchResultTypes.NoMatchesFound,
+                    MatchingItemCount = 0,
+                    PageNumber = 0,
+                    SelectItemsPerPage = selectItemsPerPage,
+                });
+        }
+
+        if (SelectItemsPerColumn * pageNumber >= partialMatchCities.Count)
+        {
+            pageNumber = 0;
+        }
+
+        await SendCityWithOptionalDelay(new()
+            {
+                MatchingItems = partialMatchCities.Skip(pageNumber * selectItemsPerPage).Take(selectItemsPerPage).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
+                SearchResultType = MBSearchResultTypes.PartialMatchesFound,
+                MatchingItemCount = partialMatchCities.Count,
+                PageNumber = pageNumber,
+                SelectItemsPerPage = selectItemsPerPage,
+            });
+
+
+        async Task SendCityWithOptionalDelay(MBPagedSearchResult<Guid> result)
+        {
+            if (SimulateSuperSlowQuery)
+            {
+                ReceiveCity(new()
+                    {
+                        MatchingItems = new List<MBSelectElement<Guid>>(),
+                        SearchResultType = result.SearchResultType,
+                        MatchingItemCount = result.MatchingItemCount,
+                        PageNumber = result.PageNumber,
+                        SelectItemsPerPage = result.PageNumber,
+                        ResultsPending = true, // This tells the control that there are pending results that will arrive after a delay
+                    });
+
+                await Task.Delay(2000); // A delay to simulate a *very* slow query
+            }
+
+            ReceiveCity(result);
+        }
+    }
+
+
+    private async Task GetSelectElement(Guid id, Action<MBSelectElement<Guid>> ReceiveSelectElement)
+    {
+        // A long delay to simulate a complex query
+        await Task.Delay(100);
+
+        ReceiveSelectElement(new()
+        {
+            SelectedValue = id,
+            Label = AutocompleteSelectField.CitiesDict[id].FullName,
+        });
+    }
+
+
+    private async Task<AutocompleteSelectField.City> GetSelectedCity(Guid id)
+    {
+        // A long delay to simulate a complex query
+        await Task.Delay(2000);
+
+        return AutocompleteSelectField.CitiesDict[id];
+    }
+}

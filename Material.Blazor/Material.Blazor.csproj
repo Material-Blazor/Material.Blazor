@@ -96,6 +96,8 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
 		<!--Keep this Removes-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<InputStaticAssetsStyles Remove="Components\AutocompletePagedField\MBAutocompletePagedField.scss" />
+		<InputStaticAssetsStyles Remove="Components\AutocompleteSelectField\MBAutocompleteTextField.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
