@@ -134,7 +134,8 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
     private string CurrentValue { get; set; } = "";
     private Timer Timer { get; set; }
-    private TItem PreviousComponetValue { get; set; } = default;
+    private TItem PreviousComponentValue { get; set; } = default;
+    private string PreviousSearchText { get; set; } = "";
     private int PageNumber { get; set; } = 0;
     private int[] PaginatorItemsPerPage { get; set; } = { 0 };
 
@@ -154,7 +155,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         await base.OnParametersSetAsync();
 
-        if (!ComponentValue.Equals(PreviousComponetValue))
+        if (!ComponentValue.Equals(PreviousComponentValue))
         {
             await RequerySearchText().ConfigureAwait(false);
         }
@@ -200,7 +201,8 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         void ReceiveSelectElement(MBSelectElement<TItem> selectElement)
         {
             SearchText = selectElement.Label;
-            PreviousComponetValue = ComponentValue;
+            PreviousComponentValue = ComponentValue;
+            PreviousSearchText = SearchText;
         }
     }
 
@@ -279,7 +281,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
         if (!MenuHasFocus)
         {
-            await GetSelectionAsync(SearchText);
+            await GetSelectionAsync(SearchText).ConfigureAwait(false);
         }
     }
 
@@ -302,6 +304,10 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         if (!MenuHasFocus)
         {
             await CloseMenuAsync().ConfigureAwait(false);
+
+            SearchText = PreviousSearchText;
+
+            await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
     }
 
