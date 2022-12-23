@@ -27,37 +27,46 @@
                  ValidationMessageFor="@ValidationMessageFor" />
 
     <div class="mdc-menu-surface--anchor">
-        <MBMenuSurface @ref="MenuSurface">
+        <div @ref="@MenuReference"
+             class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
+             @onfocusin="OnMenuFocusIn"
+             @onfocusout="OnMenuFocusOut"
+             tabindex="-1">
+
             <div class="mdc-layout-grid" style="width: 600px;">
                 <div class="mdc-layout-grid__inner">
-                    @for (int i = 0; i < 2; i++)
+                    @for (int col = 0; col < 2; col++)
                     {
-                        var columnItems = SelectItems.Skip(i * SelectItemsPerColumn).Take(SelectItemsPerColumn);
+                        var localCol = col;
+                        var columnItems = SelectItems.Skip(col * SelectItemsPerColumn).Take(SelectItemsPerColumn);
 
                         <div class="mdc-layout-grid__cell--span-6">
                             @if (columnItems.Any())
                             {
                                 <MBList Items="@columnItems"
                                         Context="item"
-                                        ListStyle="@MBListStyle.Outlined"
-                                        SingleLineDensity="@MBDensity.Minus2"
                                         KeyboardInteractions="true"
-                                        Ripple="true">
+                                        ListStyle="@MBListStyle.Outlined"
+                                        OnClick="@(listIndex => OnListItemClick(localCol, listIndex))"
+                                        Ripple="true"
+                                        ShowSeparators="true"
+                                        SingleLineDensity="@MBDensity.Minus2">
 
                                     <Title>@item.Label</Title>
                                 </MBList>
                             }
                         </div>
-                    }
+                    }@PageNumber
 
                     <div class="mdc-layout-grid__cell--span-12" style="display: flex; justify-content: flex-end;">
                         <MBPaginator @bind-PageNumber="@PageNumber"
+                                     @bind-PageNumber:after="@OnPageTurn"
                                      ItemsPerPageSelection="@PaginatorItemsPerPage"
                                      ItemsPerPage="@PaginatorItemsPerPage[0]"
                                      ItemCount="@MatchingItemCount" />
                     </div>
                 </div>
             </div>
-        </MBMenuSurface>
+        </div>
     </div>
 </div>

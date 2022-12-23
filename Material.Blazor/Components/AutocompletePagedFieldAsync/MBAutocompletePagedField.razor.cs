@@ -1,5 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Primitives;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -121,9 +122,8 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     private bool IsOpen { get; set; } = false;
     private DotNetObjectReference<MBAutocompletePagedField<TItem>> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
-    private MBMenuSurface MenuSurface { get; set; }
+    private ElementReference MenuReference { get; set; }
     private MBSelectElement<TItem>[] SelectItems { get; set; } = Array.Empty<MBSelectElement<TItem>>();
-    private Dictionary<string, MBSelectElement<TItem>> SelectItemsDict { get; set; } = new();
     private string SearchText { get; set; } = "";
     private MBSearchResultTypes SearchResultType { get; set; } = MBSearchResultTypes.NoMatchesFound;
     public int MatchingItemCount { get; set; }
@@ -207,13 +207,16 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         if (GetMatchingSelection is null)
         {
             SelectItems = Array.Empty<MBSelectElement<TItem>>();
-            SelectItemsDict = new();
             SearchResultType = MBSearchResultTypes.NoMatchesFound;
             MatchingItemCount = 0;
         }
         else
         {
-            await GetMatchingSelection(searchString ?? "", 0, 2 * SelectItemsPerColumn, ReceiveSearchItem).ConfigureAwait(false);
+            if (PageNumber != 0)
+            {
+                _ = 1;
+            }
+            await GetMatchingSelection(searchString ?? "", PageNumber, 2 * SelectItemsPerColumn, ReceiveSearchItem).ConfigureAwait(false);
         }
 
         await InvokeAsync(StateHasChanged);
@@ -222,7 +225,6 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         void ReceiveSearchItem(MBPagedSearchResult<TItem> searchResult)
         {
             SelectItems = searchResult.MatchingItems.ToArray();
-            SelectItemsDict = SelectItems.ToDictionary(x => x.SelectedValue.ToString(), x => x);
             SearchResultType = searchResult.SearchResultType;
             MatchingItemCount = searchResult.MatchingItemCount;
         }
@@ -233,36 +235,60 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         Timer?.Dispose();
         var autoReset = new AutoResetEvent(false);
-        Timer = new Timer(OnTimerComplete, autoReset, AppliedDebounceInterval, Timeout.Infinite);
+        Timer = new Timer(_ => GetSelectionAndDisplayMenuAsync(args.Value.ToString()), autoReset, AppliedDebounceInterval, Timeout.Infinite);
 
 
-        async void OnTimerComplete(object stateInfo)
-        {
-            await GetSelectionAsync(args.Value.ToString());
+        //async void OnTimerComplete(object stateInfo)
+        //{
+        //    await GetSelectionAsync(args.Value.ToString());
 
-            if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && ComponentValue.Equals(default)))
-            {
-                await CloseMenuAsync();
-                ComponentValue = SelectItems[0].SelectedValue;
-                SearchText = SelectItems[0].Label;
-            }
-            else if (SelectItems.Any())
-            {
-                await OpenMenuAsync();
-            }
-            else
-            {
-                await OpenMenuAsync();
-            }
+        //    if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && ComponentValue.Equals(default)))
+        //    {
+        //        await CloseMenuAsync();
+        //        ComponentValue = SelectItems[0].SelectedValue;
+        //        SearchText = SelectItems[0].Label;
+        //    }
+        //    else if (SelectItems.Any())
+        //    {
+        //        await OpenMenuAsync();
+        //    }
+        //    else
+        //    {
+        //        await OpenMenuAsync();
+        //    }
 
-            await InvokeAsync(StateHasChanged);
-        }
+        //    await InvokeAsync(StateHasChanged);
+        //}
     }
+
+
+    private async Task GetSelectionAndDisplayMenuAsync(string searchString)
+    {
+        await GetSelectionAsync(searchString);
+
+        if (SearchResultType == MBSearchResultTypes.FullMatchFound || (AllowBlankResult && ComponentValue.Equals(default)))
+        {
+            await CloseMenuAsync();
+            ComponentValue = SelectItems[0].SelectedValue;
+            SearchText = SelectItems[0].Label;
+        }
+        else if (SelectItems.Any())
+        {
+            await OpenMenuAsync();
+        }
+        else
+        {
+            await OpenMenuAsync();
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
 
 
     private async Task OnTextChangeAsync()
     {
-        await CloseMenuAsync();
+        await CloseMenuAsync(true);
 
         if (!MenuHasFocus)
         {
@@ -280,7 +306,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
     private async Task OnTextFocusOutAsync()
     {
-        await CloseMenuAsync();
+        //await CloseMenuAsync();
     }
 
 
@@ -296,29 +322,9 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     }
 
 
-    /// <summary>
-    /// For Material Theme to notify when the drop down is closed via JS Interop.
-    /// </summary>
-    /// <returns></returns>
-    [JSInvokable]
-    public void NotifyClosed()
+    private void OnListItemClick(int col, int listIndex)
     {
-        IsOpen = false;
-
-        //ComponentValue = Value?.Trim() ?? "";
-
-        StateHasChanged();
-    }
-
-
-    /// <summary>
-    /// For Material Theme to notify of menu item selection via JS Interop.
-    /// </summary>
-    /// <returns></returns>
-    [JSInvokable]
-    public void NotifySelected(string stringValue)
-    {
-        var selectedElement = SelectItemsDict[stringValue];
+        var selectedElement = SelectItems[(col * SelectItemsPerColumn) + listIndex];
 
         ComponentValue = selectedElement.SelectedValue;
 
@@ -328,25 +334,41 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     }
 
 
-    private async Task OpenMenuAsync()
+    private async Task OnPageTurn()
     {
-        if (!IsOpen)
+        await GetSelectionAndDisplayMenuAsync(SearchText).ConfigureAwait(false);
+    }
+
+
+    /// <summary>
+    /// For Material Theme to notify when the drop down is closed via JS Interop.
+    /// </summary>
+    /// <returns></returns>
+    [JSInvokable]
+    public void NotifyClosed()
+    {
+        IsOpen = false;
+
+        StateHasChanged();
+    }
+
+
+    private async Task OpenMenuAsync(bool forceOpen = false)
+    {
+        if (!IsOpen || forceOpen)
         {
             IsOpen = true;
-            await MenuSurface.ToggleAsync().ConfigureAwait(false);
-            //await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.open", MenuReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.open", MenuReference);
         }
     }
 
 
-    private async Task CloseMenuAsync()
+    private async Task CloseMenuAsync(bool forceClose = false)
     {
-        if (IsOpen)
+        if (IsOpen || forceClose)
         {
             IsOpen = false;
-            await MenuSurface.ToggleAsync().ConfigureAwait(false);
-
-            //await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.close", MenuReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.close", MenuReference);
         }
     }
 
@@ -356,6 +378,6 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         ObjectReference ??= DotNetObjectReference.Create(this);
 
-        //await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
+        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
     }
 }

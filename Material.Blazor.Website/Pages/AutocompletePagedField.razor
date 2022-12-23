@@ -191,7 +191,7 @@
     private static RegexOptions RegexOptions = RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
 
-    private async Task GetCities(string searchString, int pageNumber, int SelectItemsPerColumn, Action<MBPagedSearchResult<Guid>> ReceiveCity)
+    private async Task GetCities(string searchString, int pageNumber, int selectItemsPerPage, Action<MBPagedSearchResult<Guid>> ReceiveCity)
     {
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
@@ -210,7 +210,7 @@
                     SearchResultType = MBSearchResultTypes.FullMatchFound,
                     MatchingItemCount = 1,
                     PageNumber = 0,
-                    SelectItemsPerPage = SelectItemsPerColumn * NumberOfColumns,
+                    SelectItemsPerPage = selectItemsPerPage,
                 });
         }
 
@@ -227,7 +227,7 @@
                     SearchResultType = MBSearchResultTypes.NoMatchesFound,
                     MatchingItemCount = 0,
                     PageNumber = 0,
-                    SelectItemsPerPage = SelectItemsPerColumn * NumberOfColumns,
+                    SelectItemsPerPage = selectItemsPerPage,
                 });
         }
 
@@ -238,11 +238,11 @@
         
         ReceiveCity(new()
             {
-                MatchingItems = partialMatchCities.Skip(pageNumber).Take(SelectItemsPerColumn).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
+                MatchingItems = partialMatchCities.Skip(pageNumber * selectItemsPerPage).Take(selectItemsPerPage).Select(x => new MBSelectElement<Guid> { SelectedValue = x.Id, Label = x.FullName }).ToList(),
                 SearchResultType = MBSearchResultTypes.PartialMatchesFound,
                 MatchingItemCount = partialMatchCities.Count,
                 PageNumber = pageNumber,
-                SelectItemsPerPage = SelectItemsPerColumn * NumberOfColumns,
+                SelectItemsPerPage = selectItemsPerPage,
             });
     }
 
