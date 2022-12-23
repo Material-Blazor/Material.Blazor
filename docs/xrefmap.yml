@@ -73,9 +73,12 @@ references:
 - uid: C.MBAnchor
   name: MBAnchor
   href: Material.Blazor/Components/Anchor/MBAnchor.html
+- uid: C.MBAutocompletePagedField
+  name: MBAutocompletePagedField
+  href: Material.Blazor/Components/AutocompletePagedField/MBAutocompletePagedField.html
 - uid: C.MBAutocompleteSelectField
   name: MBAutocompleteSelectField
-  href: Material.Blazor/Components/AutocompleteSelectFieldAsync/MBAutoCompleteSelectField.html
+  href: Material.Blazor/Components/AutocompleteSelectField/MBAutocompleteSelectField.html
 - uid: C.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html
@@ -2270,6 +2273,372 @@ references:
   commentId: T:Material.Blazor.MBAnchor
   fullName: Material.Blazor.MBAnchor
   nameWithType: MBAnchor
+- uid: Material.Blazor.MBAutocompletePagedField`1
+  name: MBAutocompletePagedField<TItem>
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html
+  commentId: T:Material.Blazor.MBAutocompletePagedField`1
+  name.vb: MBAutocompletePagedField(Of TItem)
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem)
+  nameWithType: MBAutocompletePagedField<TItem>
+  nameWithType.vb: MBAutocompletePagedField(Of TItem)
+- uid: Material.Blazor.MBAutocompletePagedField`1.AllowBlankResult
+  name: AllowBlankResult
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_AllowBlankResult
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.AllowBlankResult
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.AllowBlankResult
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).AllowBlankResult
+  nameWithType: MBAutocompletePagedField<TItem>.AllowBlankResult
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).AllowBlankResult
+- uid: Material.Blazor.MBAutocompletePagedField`1.AllowBlankResult*
+  name: AllowBlankResult
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_AllowBlankResult_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.AllowBlankResult
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.AllowBlankResult
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).AllowBlankResult
+  nameWithType: MBAutocompletePagedField<TItem>.AllowBlankResult
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).AllowBlankResult
+- uid: Material.Blazor.MBAutocompletePagedField`1.DebounceInterval
+  name: DebounceInterval
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_DebounceInterval
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.DebounceInterval
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.DebounceInterval
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).DebounceInterval
+  nameWithType: MBAutocompletePagedField<TItem>.DebounceInterval
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).DebounceInterval
+- uid: Material.Blazor.MBAutocompletePagedField`1.DebounceInterval*
+  name: DebounceInterval
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_DebounceInterval_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.DebounceInterval
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.DebounceInterval
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).DebounceInterval
+  nameWithType: MBAutocompletePagedField<TItem>.DebounceInterval
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).DebounceInterval
+- uid: Material.Blazor.MBAutocompletePagedField`1.Density
+  name: Density
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_Density
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.Density
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.Density
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).Density
+  nameWithType: MBAutocompletePagedField<TItem>.Density
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).Density
+- uid: Material.Blazor.MBAutocompletePagedField`1.Density*
+  name: Density
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_Density_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.Density
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.Density
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).Density
+  nameWithType: MBAutocompletePagedField<TItem>.Density
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).Density
+- uid: Material.Blazor.MBAutocompletePagedField`1.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_Dispose_System_Boolean_
+  commentId: M:Material.Blazor.MBAutocompletePagedField`1.Dispose(System.Boolean)
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.Dispose(System.Boolean)
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).Dispose(System.Boolean)
+  nameWithType: MBAutocompletePagedField<TItem>.Dispose(Boolean)
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).Dispose(Boolean)
+- uid: Material.Blazor.MBAutocompletePagedField`1.Dispose*
+  name: Dispose
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_Dispose_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.Dispose
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.Dispose
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).Dispose
+  nameWithType: MBAutocompletePagedField<TItem>.Dispose
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).Dispose
+- uid: Material.Blazor.MBAutocompletePagedField`1.GetMatchingSelection
+  name: GetMatchingSelection
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_GetMatchingSelection
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.GetMatchingSelection
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.GetMatchingSelection
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).GetMatchingSelection
+  nameWithType: MBAutocompletePagedField<TItem>.GetMatchingSelection
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).GetMatchingSelection
+- uid: Material.Blazor.MBAutocompletePagedField`1.GetMatchingSelection*
+  name: GetMatchingSelection
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_GetMatchingSelection_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.GetMatchingSelection
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.GetMatchingSelection
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).GetMatchingSelection
+  nameWithType: MBAutocompletePagedField<TItem>.GetMatchingSelection
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).GetMatchingSelection
+- uid: Material.Blazor.MBAutocompletePagedField`1.GetSelectElement
+  name: GetSelectElement
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_GetSelectElement
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.GetSelectElement
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.GetSelectElement
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).GetSelectElement
+  nameWithType: MBAutocompletePagedField<TItem>.GetSelectElement
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).GetSelectElement
+- uid: Material.Blazor.MBAutocompletePagedField`1.GetSelectElement*
+  name: GetSelectElement
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_GetSelectElement_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.GetSelectElement
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.GetSelectElement
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).GetSelectElement
+  nameWithType: MBAutocompletePagedField<TItem>.GetSelectElement
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).GetSelectElement
+- uid: Material.Blazor.MBAutocompletePagedField`1.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_HelperText
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.HelperText
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.HelperText
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).HelperText
+  nameWithType: MBAutocompletePagedField<TItem>.HelperText
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).HelperText
+- uid: Material.Blazor.MBAutocompletePagedField`1.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_HelperText_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.HelperText
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).HelperText
+  nameWithType: MBAutocompletePagedField<TItem>.HelperText
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).HelperText
+- uid: Material.Blazor.MBAutocompletePagedField`1.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_HelperTextPersistent
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.HelperTextPersistent
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.HelperTextPersistent
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).HelperTextPersistent
+  nameWithType: MBAutocompletePagedField<TItem>.HelperTextPersistent
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).HelperTextPersistent
+- uid: Material.Blazor.MBAutocompletePagedField`1.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.HelperTextPersistent
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).HelperTextPersistent
+  nameWithType: MBAutocompletePagedField<TItem>.HelperTextPersistent
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).HelperTextPersistent
+- uid: Material.Blazor.MBAutocompletePagedField`1.IconFoundry
+  name: IconFoundry
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_IconFoundry
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.IconFoundry
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.IconFoundry
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).IconFoundry
+  nameWithType: MBAutocompletePagedField<TItem>.IconFoundry
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).IconFoundry
+- uid: Material.Blazor.MBAutocompletePagedField`1.IconFoundry*
+  name: IconFoundry
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_IconFoundry_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.IconFoundry
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.IconFoundry
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).IconFoundry
+  nameWithType: MBAutocompletePagedField<TItem>.IconFoundry
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).IconFoundry
+- uid: Material.Blazor.MBAutocompletePagedField`1.Label
+  name: Label
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_Label
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.Label
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.Label
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).Label
+  nameWithType: MBAutocompletePagedField<TItem>.Label
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).Label
+- uid: Material.Blazor.MBAutocompletePagedField`1.Label*
+  name: Label
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_Label_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.Label
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.Label
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).Label
+  nameWithType: MBAutocompletePagedField<TItem>.Label
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).Label
+- uid: Material.Blazor.MBAutocompletePagedField`1.LeadingIcon
+  name: LeadingIcon
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_LeadingIcon
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.LeadingIcon
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.LeadingIcon
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).LeadingIcon
+  nameWithType: MBAutocompletePagedField<TItem>.LeadingIcon
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).LeadingIcon
+- uid: Material.Blazor.MBAutocompletePagedField`1.LeadingIcon*
+  name: LeadingIcon
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_LeadingIcon_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.LeadingIcon
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.LeadingIcon
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).LeadingIcon
+  nameWithType: MBAutocompletePagedField<TItem>.LeadingIcon
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).LeadingIcon
+- uid: Material.Blazor.MBAutocompletePagedField`1.MatchingItemCount
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_MatchingItemCount
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.MatchingItemCount
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).MatchingItemCount
+  nameWithType: MBAutocompletePagedField<TItem>.MatchingItemCount
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBAutocompletePagedField`1.MatchingItemCount*
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_MatchingItemCount_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.MatchingItemCount
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).MatchingItemCount
+  nameWithType: MBAutocompletePagedField<TItem>.MatchingItemCount
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBAutocompletePagedField`1.NotifyClosed
+  name: NotifyClosed()
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_NotifyClosed
+  commentId: M:Material.Blazor.MBAutocompletePagedField`1.NotifyClosed
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.NotifyClosed()
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).NotifyClosed()
+  nameWithType: MBAutocompletePagedField<TItem>.NotifyClosed()
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).NotifyClosed()
+- uid: Material.Blazor.MBAutocompletePagedField`1.NotifyClosed*
+  name: NotifyClosed
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_NotifyClosed_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.NotifyClosed
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.NotifyClosed
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).NotifyClosed
+  nameWithType: MBAutocompletePagedField<TItem>.NotifyClosed
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).NotifyClosed
+- uid: Material.Blazor.MBAutocompletePagedField`1.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_OnInitializedAsync
+  commentId: M:Material.Blazor.MBAutocompletePagedField`1.OnInitializedAsync
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.OnInitializedAsync()
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).OnInitializedAsync()
+  nameWithType: MBAutocompletePagedField<TItem>.OnInitializedAsync()
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).OnInitializedAsync()
+- uid: Material.Blazor.MBAutocompletePagedField`1.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.OnInitializedAsync
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).OnInitializedAsync
+  nameWithType: MBAutocompletePagedField<TItem>.OnInitializedAsync
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).OnInitializedAsync
+- uid: Material.Blazor.MBAutocompletePagedField`1.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBAutocompletePagedField`1.OnParametersSetAsync
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.OnParametersSetAsync()
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).OnParametersSetAsync()
+  nameWithType: MBAutocompletePagedField<TItem>.OnParametersSetAsync()
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).OnParametersSetAsync()
+- uid: Material.Blazor.MBAutocompletePagedField`1.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.OnParametersSetAsync
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).OnParametersSetAsync
+  nameWithType: MBAutocompletePagedField<TItem>.OnParametersSetAsync
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).OnParametersSetAsync
+- uid: Material.Blazor.MBAutocompletePagedField`1.RequerySearchText
+  name: RequerySearchText()
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_RequerySearchText
+  commentId: M:Material.Blazor.MBAutocompletePagedField`1.RequerySearchText
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.RequerySearchText()
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).RequerySearchText()
+  nameWithType: MBAutocompletePagedField<TItem>.RequerySearchText()
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).RequerySearchText()
+- uid: Material.Blazor.MBAutocompletePagedField`1.RequerySearchText*
+  name: RequerySearchText
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_RequerySearchText_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.RequerySearchText
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.RequerySearchText
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).RequerySearchText
+  nameWithType: MBAutocompletePagedField<TItem>.RequerySearchText
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).RequerySearchText
+- uid: Material.Blazor.MBAutocompletePagedField`1.SelectItemsPerColumn
+  name: SelectItemsPerColumn
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_SelectItemsPerColumn
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.SelectItemsPerColumn
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.SelectItemsPerColumn
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).SelectItemsPerColumn
+  nameWithType: MBAutocompletePagedField<TItem>.SelectItemsPerColumn
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).SelectItemsPerColumn
+- uid: Material.Blazor.MBAutocompletePagedField`1.SelectItemsPerColumn*
+  name: SelectItemsPerColumn
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_SelectItemsPerColumn_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.SelectItemsPerColumn
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.SelectItemsPerColumn
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).SelectItemsPerColumn
+  nameWithType: MBAutocompletePagedField<TItem>.SelectItemsPerColumn
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).SelectItemsPerColumn
+- uid: Material.Blazor.MBAutocompletePagedField`1.TextAlignStyle
+  name: TextAlignStyle
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_TextAlignStyle
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.TextAlignStyle
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.TextAlignStyle
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).TextAlignStyle
+  nameWithType: MBAutocompletePagedField<TItem>.TextAlignStyle
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).TextAlignStyle
+- uid: Material.Blazor.MBAutocompletePagedField`1.TextAlignStyle*
+  name: TextAlignStyle
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_TextAlignStyle_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.TextAlignStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.TextAlignStyle
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).TextAlignStyle
+  nameWithType: MBAutocompletePagedField<TItem>.TextAlignStyle
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).TextAlignStyle
+- uid: Material.Blazor.MBAutocompletePagedField`1.TextInputStyle
+  name: TextInputStyle
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_TextInputStyle
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.TextInputStyle
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.TextInputStyle
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).TextInputStyle
+  nameWithType: MBAutocompletePagedField<TItem>.TextInputStyle
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).TextInputStyle
+- uid: Material.Blazor.MBAutocompletePagedField`1.TextInputStyle*
+  name: TextInputStyle
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_TextInputStyle_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.TextInputStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.TextInputStyle
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).TextInputStyle
+  nameWithType: MBAutocompletePagedField<TItem>.TextInputStyle
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).TextInputStyle
+- uid: Material.Blazor.MBAutocompletePagedField`1.TrailingIcon
+  name: TrailingIcon
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_TrailingIcon
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.TrailingIcon
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.TrailingIcon
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).TrailingIcon
+  nameWithType: MBAutocompletePagedField<TItem>.TrailingIcon
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).TrailingIcon
+- uid: Material.Blazor.MBAutocompletePagedField`1.TrailingIcon*
+  name: TrailingIcon
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_TrailingIcon_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.TrailingIcon
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.TrailingIcon
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).TrailingIcon
+  nameWithType: MBAutocompletePagedField<TItem>.TrailingIcon
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).TrailingIcon
+- uid: Material.Blazor.MBAutocompletePagedField`1.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_ValidationMessageFor
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.ValidationMessageFor
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.ValidationMessageFor
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).ValidationMessageFor
+  nameWithType: MBAutocompletePagedField<TItem>.ValidationMessageFor
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).ValidationMessageFor
+- uid: Material.Blazor.MBAutocompletePagedField`1.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.ValidationMessageFor
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).ValidationMessageFor
+  nameWithType: MBAutocompletePagedField<TItem>.ValidationMessageFor
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).ValidationMessageFor
 - uid: Material.Blazor.MBAutocompleteSelectField`1
   name: MBAutocompleteSelectField<TItem>
   href: api/Material.Blazor.MBAutocompleteSelectField-1.html
@@ -2568,6 +2937,23 @@ references:
   fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).OnParametersSetAsync
   nameWithType: MBAutocompleteSelectField<TItem>.OnParametersSetAsync
   nameWithType.vb: MBAutocompleteSelectField(Of TItem).OnParametersSetAsync
+- uid: Material.Blazor.MBAutocompleteSelectField`1.RequerySearchText
+  name: RequerySearchText()
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_RequerySearchText
+  commentId: M:Material.Blazor.MBAutocompleteSelectField`1.RequerySearchText
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.RequerySearchText()
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).RequerySearchText()
+  nameWithType: MBAutocompleteSelectField<TItem>.RequerySearchText()
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).RequerySearchText()
+- uid: Material.Blazor.MBAutocompleteSelectField`1.RequerySearchText*
+  name: RequerySearchText
+  href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_RequerySearchText_
+  commentId: Overload:Material.Blazor.MBAutocompleteSelectField`1.RequerySearchText
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteSelectField<TItem>.RequerySearchText
+  fullName.vb: Material.Blazor.MBAutocompleteSelectField(Of TItem).RequerySearchText
+  nameWithType: MBAutocompleteSelectField<TItem>.RequerySearchText
+  nameWithType.vb: MBAutocompleteSelectField(Of TItem).RequerySearchText
 - uid: Material.Blazor.MBAutocompleteSelectField`1.TextAlignStyle
   name: TextAlignStyle
   href: api/Material.Blazor.MBAutocompleteSelectField-1.html#Material_Blazor_MBAutocompleteSelectField_1_TextAlignStyle
@@ -10245,6 +10631,117 @@ references:
   fullName.vb: Material.Blazor.MBPagedDataList(Of TItem).PaginatorClass
   nameWithType: MBPagedDataList<TItem>.PaginatorClass
   nameWithType.vb: MBPagedDataList(Of TItem).PaginatorClass
+- uid: Material.Blazor.MBPagedSearchResult`1
+  name: MBPagedSearchResult<TItem>
+  href: api/Material.Blazor.MBPagedSearchResult-1.html
+  commentId: T:Material.Blazor.MBPagedSearchResult`1
+  name.vb: MBPagedSearchResult(Of TItem)
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem)
+  nameWithType: MBPagedSearchResult<TItem>
+  nameWithType.vb: MBPagedSearchResult(Of TItem)
+- uid: Material.Blazor.MBPagedSearchResult`1.MatchingItemCount
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_MatchingItemCount
+  commentId: P:Material.Blazor.MBPagedSearchResult`1.MatchingItemCount
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).MatchingItemCount
+  nameWithType: MBPagedSearchResult<TItem>.MatchingItemCount
+  nameWithType.vb: MBPagedSearchResult(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBPagedSearchResult`1.MatchingItemCount*
+  name: MatchingItemCount
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_MatchingItemCount_
+  commentId: Overload:Material.Blazor.MBPagedSearchResult`1.MatchingItemCount
+  isSpec: "True"
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.MatchingItemCount
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).MatchingItemCount
+  nameWithType: MBPagedSearchResult<TItem>.MatchingItemCount
+  nameWithType.vb: MBPagedSearchResult(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBPagedSearchResult`1.MatchingItems
+  name: MatchingItems
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_MatchingItems
+  commentId: P:Material.Blazor.MBPagedSearchResult`1.MatchingItems
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.MatchingItems
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).MatchingItems
+  nameWithType: MBPagedSearchResult<TItem>.MatchingItems
+  nameWithType.vb: MBPagedSearchResult(Of TItem).MatchingItems
+- uid: Material.Blazor.MBPagedSearchResult`1.MatchingItems*
+  name: MatchingItems
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_MatchingItems_
+  commentId: Overload:Material.Blazor.MBPagedSearchResult`1.MatchingItems
+  isSpec: "True"
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.MatchingItems
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).MatchingItems
+  nameWithType: MBPagedSearchResult<TItem>.MatchingItems
+  nameWithType.vb: MBPagedSearchResult(Of TItem).MatchingItems
+- uid: Material.Blazor.MBPagedSearchResult`1.PageNumber
+  name: PageNumber
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_PageNumber
+  commentId: P:Material.Blazor.MBPagedSearchResult`1.PageNumber
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.PageNumber
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).PageNumber
+  nameWithType: MBPagedSearchResult<TItem>.PageNumber
+  nameWithType.vb: MBPagedSearchResult(Of TItem).PageNumber
+- uid: Material.Blazor.MBPagedSearchResult`1.PageNumber*
+  name: PageNumber
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_PageNumber_
+  commentId: Overload:Material.Blazor.MBPagedSearchResult`1.PageNumber
+  isSpec: "True"
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.PageNumber
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).PageNumber
+  nameWithType: MBPagedSearchResult<TItem>.PageNumber
+  nameWithType.vb: MBPagedSearchResult(Of TItem).PageNumber
+- uid: Material.Blazor.MBPagedSearchResult`1.ResultsPending
+  name: ResultsPending
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_ResultsPending
+  commentId: P:Material.Blazor.MBPagedSearchResult`1.ResultsPending
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.ResultsPending
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).ResultsPending
+  nameWithType: MBPagedSearchResult<TItem>.ResultsPending
+  nameWithType.vb: MBPagedSearchResult(Of TItem).ResultsPending
+- uid: Material.Blazor.MBPagedSearchResult`1.ResultsPending*
+  name: ResultsPending
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_ResultsPending_
+  commentId: Overload:Material.Blazor.MBPagedSearchResult`1.ResultsPending
+  isSpec: "True"
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.ResultsPending
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).ResultsPending
+  nameWithType: MBPagedSearchResult<TItem>.ResultsPending
+  nameWithType.vb: MBPagedSearchResult(Of TItem).ResultsPending
+- uid: Material.Blazor.MBPagedSearchResult`1.SearchResultType
+  name: SearchResultType
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_SearchResultType
+  commentId: P:Material.Blazor.MBPagedSearchResult`1.SearchResultType
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.SearchResultType
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).SearchResultType
+  nameWithType: MBPagedSearchResult<TItem>.SearchResultType
+  nameWithType.vb: MBPagedSearchResult(Of TItem).SearchResultType
+- uid: Material.Blazor.MBPagedSearchResult`1.SearchResultType*
+  name: SearchResultType
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_SearchResultType_
+  commentId: Overload:Material.Blazor.MBPagedSearchResult`1.SearchResultType
+  isSpec: "True"
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.SearchResultType
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).SearchResultType
+  nameWithType: MBPagedSearchResult<TItem>.SearchResultType
+  nameWithType.vb: MBPagedSearchResult(Of TItem).SearchResultType
+- uid: Material.Blazor.MBPagedSearchResult`1.SelectItemsPerPage
+  name: SelectItemsPerPage
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_SelectItemsPerPage
+  commentId: P:Material.Blazor.MBPagedSearchResult`1.SelectItemsPerPage
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.SelectItemsPerPage
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).SelectItemsPerPage
+  nameWithType: MBPagedSearchResult<TItem>.SelectItemsPerPage
+  nameWithType.vb: MBPagedSearchResult(Of TItem).SelectItemsPerPage
+- uid: Material.Blazor.MBPagedSearchResult`1.SelectItemsPerPage*
+  name: SelectItemsPerPage
+  href: api/Material.Blazor.MBPagedSearchResult-1.html#Material_Blazor_MBPagedSearchResult_1_SelectItemsPerPage_
+  commentId: Overload:Material.Blazor.MBPagedSearchResult`1.SelectItemsPerPage
+  isSpec: "True"
+  fullName: Material.Blazor.MBPagedSearchResult<TItem>.SelectItemsPerPage
+  fullName.vb: Material.Blazor.MBPagedSearchResult(Of TItem).SelectItemsPerPage
+  nameWithType: MBPagedSearchResult<TItem>.SelectItemsPerPage
+  nameWithType.vb: MBPagedSearchResult(Of TItem).SelectItemsPerPage
 - uid: Material.Blazor.MBPaginator
   name: MBPaginator
   href: api/Material.Blazor.MBPaginator.html

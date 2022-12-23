@@ -883,6 +883,15 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.mb-autocomplete-paged-field-list {
+  width: 600px;
+}
+
+.mb-autocomplete-paged-field-paginator {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .mb-autocomplete {
   display: inline-flex;
   flex-direction: column;
