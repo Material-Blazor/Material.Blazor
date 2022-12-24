@@ -1,9 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Primitives;
 using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -203,6 +201,8 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
             SearchText = selectElement.Label;
             PreviousComponentValue = ComponentValue;
             PreviousSearchText = SearchText;
+
+            _ = InvokeAsync(StateHasChanged);
         }
     }
 
@@ -301,14 +301,14 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
     private async Task OnTextFocusOutAsync()
     {
-        if (!MenuHasFocus)
-        {
-            await CloseMenuAsync().ConfigureAwait(false);
+        //if (!MenuHasFocus)
+        //{
+        //    await CloseMenuAsync().ConfigureAwait(false);
 
-            SearchText = PreviousSearchText;
+        //    SearchText = PreviousSearchText;
 
-            await InvokeAsync(StateHasChanged).ConfigureAwait(false);
-        }
+        //    await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+        //}
     }
 
 
@@ -364,7 +364,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         if (!IsOpen || forceOpen)
         {
             IsOpen = true;
-            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.open", MenuReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompletePagedField.open", MenuReference);
         }
     }
 
@@ -374,7 +374,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
         if (IsOpen || forceClose)
         {
             IsOpen = false;
-            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.close", MenuReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBAutocompletePagedField.close", MenuReference);
         }
     }
 
@@ -384,6 +384,6 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         ObjectReference ??= DotNetObjectReference.Create(this);
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
+        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompletePagedField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
     }
 }

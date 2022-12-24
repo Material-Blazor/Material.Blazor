@@ -148,6 +148,7 @@
         public double PopulationDensityPerSqM => AreaSqKm < 1e-6 ? 0.0 : Population / AreaSqM;
         public string Location => $"{LongitudeNorth:N2}°N {LatitudeWest:N2}°W";
         public string GoogleMapsUrl => $"https://www.google.com/maps/@{LongitudeNorth:N2},{-LatitudeWest:N2},10z";
+        
         public string SearchTarget => Regex.Replace(FullName, @"\s+", string.Empty);
     }
 
