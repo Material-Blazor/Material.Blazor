@@ -130,7 +130,7 @@ public abstract class InputComponent<T> : ComponentFoundation
                 LoggingService.LogTrace($"ComponentValue setter changed _componentValue");
 
                 _componentValue = value;
-                _ = ValueChanged.InvokeAsync(value);
+                _ = InvokeAsync(() => ValueChanged.InvokeAsync(value));
 
                 if (EditContext != null && !IgnoreFormField)
                 {
