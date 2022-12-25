@@ -340,9 +340,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
                     try
                     {
-                        if (this is MBTextField tf1) LoggingService.LogWarning($">>>>>>>>>>>>>> About to instantiate '{tf1.Value}'");
                         await InstantiateMcwComponent().ConfigureAwait(false);
-                        if (this is MBTextField tf2) LoggingService.LogWarning($">>>>>>>>>>>>>> Instantiated '{tf2.Value}'");
                     }
                     finally
                     {

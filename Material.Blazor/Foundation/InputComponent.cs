@@ -124,11 +124,11 @@ public abstract class InputComponent<T> : ComponentFoundation
         get => _componentValue;
         set
         {
-            LoggingService.LogWarning($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+            LoggingService.LogTrace($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
 
             if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
             {
-                LoggingService.LogWarning($"ComponentValue setter changed _componentValue");
+                LoggingService.LogTrace($"ComponentValue setter changed _componentValue");
 
                 _componentValue = value;
                 _ = InvokeAsync(() => ValueChanged.InvokeAsync(value));
@@ -298,34 +298,26 @@ public abstract class InputComponent<T> : ComponentFoundation
         try
         {
             var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
-            LoggingService.LogWarning($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+            LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
             if (!valuesEqual)
             {
-                LoggingService.LogWarning($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+                LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
                 _cachedValue = Value;
 
                 valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
-                LoggingService.LogWarning($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+                LoggingService.LogTrace($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
                 if (!valuesEqual)
                 {
-                    LoggingService.LogWarning($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
-                    LoggingService.LogWarning($"OnParametersSetAsync HasInstantiated '{HasInstantiated}'");
+                    LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
 
                     _componentValue = Value;
                     if (HasInstantiated)
                     {
                         if (SetComponentValue is not null)
                         {
-                            try
-                            {
-                                await SetComponentValue?.Invoke();
-                            }
-                            catch (Exception ex)
-                            {
-                                throw;
-                            }
+                            await SetComponentValue?.Invoke();
                         }
                     }
                 }
@@ -417,5 +409,4 @@ public abstract class InputComponent<T> : ComponentFoundation
         => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
 
     #endregion
-
 }
