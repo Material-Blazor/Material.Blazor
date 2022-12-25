@@ -152,7 +152,7 @@ public partial class MBSlider : InputComponent<decimal>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value);
 
 
     /// <summary>

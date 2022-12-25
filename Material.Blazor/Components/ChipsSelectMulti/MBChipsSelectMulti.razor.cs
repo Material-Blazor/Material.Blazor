@@ -97,7 +97,7 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setSelected", ChipsReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setSelected", ChipsReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray());
 
 
     /// <summary>
@@ -116,9 +116,9 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
     /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
     /// </summary>
     /// <param name="value"></param>
-    internal void SetSingleSelectValue(TItem value)
+    internal Task SetSingleSelectValue(TItem value)
     {
         Value = new TItem[] { value };
-        OnValueSetCallback();
+        return OnValueSetCallback();
     }
 }

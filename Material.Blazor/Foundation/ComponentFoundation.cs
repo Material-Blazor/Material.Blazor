@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal;
@@ -71,6 +73,12 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
 
     /// <summary>
+    /// Ensures that setting values and instantiation cannot have timing clashes.
+    /// </summary>
+    private protected readonly SemaphoreSlim ValueSetSemaphore = new(1, 1);
+
+
+    /// <summary>
     /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync(bool)"/>, which should not be overridden.
     /// </summary>
     internal virtual Task InstantiateMcwComponent()
@@ -93,7 +101,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Indicates whether the component is disabled.
     /// </summary>
+
+#pragma warning disable BL0007 // Component parameters should be auto properties
     [Parameter] public bool? Disabled
+#pragma warning restore BL0007 // Component parameters should be auto properties
     {
         get => disabled;
         set
@@ -325,7 +336,18 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 }
                 else
                 {
-                    await InstantiateMcwComponent().ConfigureAwait(false);
+                    await ValueSetSemaphore.WaitAsync().ConfigureAwait(false);
+
+                    try
+                    {
+                        if (this is MBTextField tf1) LoggingService.LogWarning($">>>>>>>>>>>>>> About to instantiate '{tf1.Value}'");
+                        await InstantiateMcwComponent().ConfigureAwait(false);
+                        if (this is MBTextField tf2) LoggingService.LogWarning($">>>>>>>>>>>>>> Instantiated '{tf2.Value}'");
+                    }
+                    finally
+                    {
+                        _ = ValueSetSemaphore.Release();
+                    }
                 }
                 
                 HasInstantiated = true;

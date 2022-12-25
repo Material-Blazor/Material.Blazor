@@ -93,7 +93,7 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
+    protected async Task OnValueSetCallback() => await InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
 
 
     /// <summary>

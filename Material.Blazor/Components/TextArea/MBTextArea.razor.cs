@@ -136,7 +136,7 @@ public partial class MBTextArea : InputComponent<string>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value);
 
 
     /// <summary>

@@ -268,17 +268,17 @@ public partial class MBDatePicker : InputComponent<DateTime>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback()
+    protected async Task OnValueSetCallback()
     {
         Panel.SetParameters(Value);
 
         if (AdditionalStyle.Length > 0)
         {
             AdditionalStyle = "";
-            InvokeAsync(StateHasChanged);
+            await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
 
-        InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false);
     }
 
 

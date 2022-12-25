@@ -182,7 +182,7 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray());
 
 
     /// <summary>
@@ -201,9 +201,9 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
     /// </summary>
     /// <param name="value"></param>
-    internal void SetSingleSelectValue(TItem value)
+    internal Task SetSingleSelectValue(TItem value)
     {
         Value = new TItem[] { value };
-        OnValueSetCallback();
+        return OnValueSetCallback();
     }
 }

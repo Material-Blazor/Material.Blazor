@@ -158,7 +158,7 @@ public partial class MBCheckbox : InputComponent<bool>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setChecked", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setChecked", ElementReference, Value);
 
 
     /// <summary>

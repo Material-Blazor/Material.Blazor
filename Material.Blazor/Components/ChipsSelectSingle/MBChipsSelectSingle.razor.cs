@@ -59,5 +59,5 @@ public partial class MBChipsSelectSingle<TItem> : SingleSelectComponent<TItem, M
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => ChipsSelectMulti.SetSingleSelectValue(Value);
+    protected Task OnValueSetCallback() => ChipsSelectMulti.SetSingleSelectValue(Value);
 }

@@ -46,7 +46,7 @@ public partial class MBSwitch : InputComponent<bool>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setSelected", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setSelected", ElementReference, Value);
 
 
     /// <summary>

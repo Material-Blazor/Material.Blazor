@@ -281,7 +281,11 @@ public partial class MBTextField : InputComponent<string>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
+    protected async Task OnValueSetCallback()
+    {
+        LoggingService.LogWarning($"VALUE SET - Value: '{Value}', ComponentValue: '{ComponentValue}'");
+        await InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, ComponentValue).ConfigureAwait(false);
+    }
 
 
     /// <summary>
@@ -293,7 +297,11 @@ public partial class MBTextField : InputComponent<string>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    internal override Task InstantiateMcwComponent()
+    {
+        LoggingService.LogWarning($"INSTANTIATE - Value: '{Value}', ComponentValue: '{ComponentValue}'");
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    }
 
 
     /// <summary>

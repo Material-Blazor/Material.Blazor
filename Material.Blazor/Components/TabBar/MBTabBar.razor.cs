@@ -127,7 +127,7 @@ public partial class MBTabBar<TItem> : InputComponent<int>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value);
 
 
     /// <inheritdoc/>

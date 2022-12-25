@@ -55,6 +55,7 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// </summary>
     private bool AllowNextRender = false;
 
+
     /// <summary>
     /// Gets a string that indicates the status of the field being edited. This will include
     /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
@@ -85,7 +86,7 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// automatically clicked to get Material Theme to update the value shown in the
     /// <c>&lt;input&gt;</c> HTML tag.
     /// </summary>
-    protected event Action SetComponentValue;
+    protected event Func<Task> SetComponentValue;
 
 
     /// <summary>
@@ -123,11 +124,11 @@ public abstract class InputComponent<T> : ComponentFoundation
         get => _componentValue;
         set
         {
-            LoggingService.LogTrace($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+            LoggingService.LogWarning($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
 
             if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
             {
-                LoggingService.LogTrace($"ComponentValue setter changed _componentValue");
+                LoggingService.LogWarning($"ComponentValue setter changed _componentValue");
 
                 _componentValue = value;
                 _ = InvokeAsync(() => ValueChanged.InvokeAsync(value));
@@ -292,24 +293,47 @@ public abstract class InputComponent<T> : ComponentFoundation
     {
         await base.OnParametersSetAsync();
 
-        LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+        await ValueSetSemaphore.WaitAsync().ConfigureAwait(false);
 
-        if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
+        try
         {
-            _cachedValue = Value;
+            var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
+            LoggingService.LogWarning($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
-            LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue value");
-
-            if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
+            if (!valuesEqual)
             {
-                LoggingService.LogTrace("OnParametersSetAsync update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
+                LoggingService.LogWarning($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+                _cachedValue = Value;
 
-                _componentValue = Value;
-                if (HasInstantiated)
+                valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
+                LoggingService.LogWarning($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+
+                if (!valuesEqual)
                 {
-                    SetComponentValue?.Invoke();
+                    LoggingService.LogWarning($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+                    LoggingService.LogWarning($"OnParametersSetAsync HasInstantiated '{HasInstantiated}'");
+
+                    _componentValue = Value;
+                    if (HasInstantiated)
+                    {
+                        if (SetComponentValue is not null)
+                        {
+                            try
+                            {
+                                await SetComponentValue?.Invoke();
+                            }
+                            catch (Exception ex)
+                            {
+                                throw;
+                            }
+                        }
+                    }
                 }
             }
+        }
+        finally
+        {
+            _ = ValueSetSemaphore.Release();
         }
     }
 

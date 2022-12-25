@@ -144,7 +144,7 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.setOn", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.setOn", ElementReference, Value);
 
 
     /// <summary>

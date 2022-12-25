@@ -75,7 +75,7 @@ public partial class MBLinearProgress : InputComponent<double>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue);
 
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);

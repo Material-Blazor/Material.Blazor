@@ -117,5 +117,5 @@ public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TIte
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
+    protected Task OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
 }

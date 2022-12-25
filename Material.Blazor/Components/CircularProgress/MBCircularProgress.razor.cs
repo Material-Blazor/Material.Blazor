@@ -96,7 +96,7 @@ public partial class MBCircularProgress : InputComponent<double>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.setProgress", ElementReference, Value));
+    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.setProgress", ElementReference, Value);
 
 
     /// <inheritdoc/>
