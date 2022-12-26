@@ -50,10 +50,7 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
             {
                 badgeValue = value;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
+                Badge?.SetValueAndExited(badgeValue, badgeExited);
             }
         }
     }
@@ -73,10 +70,7 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
             {
                 badgeExited = value;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
+                Badge?.SetValueAndExited(badgeValue, badgeExited);
             }
         }
     }
@@ -104,7 +98,7 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
 
         IsSingleSelect = SegmentedButtonSingle != null;
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-segmented-button--single-select", () => IsSingleSelect);
 
         ItemsArray = Items.ToArray();
@@ -199,9 +193,9 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
     /// </summary>
     /// <param name="value"></param>
-    internal Task SetSingleSelectValue(TItem value)
+    internal void SetSingleSelectValue(TItem value)
     {
         Value = new TItem[] { value };
-        return SetComponentValueAsync();
+        EnqueueJSInteropAction(SetComponentValueAsync);
     }
 }

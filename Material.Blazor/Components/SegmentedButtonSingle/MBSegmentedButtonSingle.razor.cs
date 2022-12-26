@@ -112,6 +112,7 @@ public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TIte
     /// <inheritdoc/>
     private protected override Task SetComponentValueAsync()
     {
-        return SegmentedButtonMulti.SetSingleSelectValue(Value);
+        SegmentedButtonMulti.SetSingleSelectValue(Value);
+        return Task.CompletedTask;
     }
 }

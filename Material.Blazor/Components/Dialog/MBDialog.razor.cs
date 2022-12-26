@@ -166,7 +166,7 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
             foreach (var child in LayoutChildren)
             {
-                await child.InstantiateMcwComponent().ConfigureAwait(false);
+                EnqueueJSInteropAction(child.InstantiateMcwComponent);
             }
         }
     }

@@ -53,6 +53,7 @@ public partial class MBChipsSelectSingle<TItem> : SingleSelectComponent<TItem, M
     /// <inheritdoc/>
     private protected override Task SetComponentValueAsync()
     {
-        return ChipsSelectMulti.SetSingleSelectValue(Value);
+        ChipsSelectMulti.SetSingleSelectValue(Value);
+        return Task.CompletedTask;
     }
 }
