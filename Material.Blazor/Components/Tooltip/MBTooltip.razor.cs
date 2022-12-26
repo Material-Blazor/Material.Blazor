@@ -7,9 +7,6 @@ namespace Material.Blazor;
 
 public partial class MBTooltip : ComponentFoundation, IDisposable
 {
-    [Inject] private IMBTooltipService TooltipService { get; set; }
-
-
     /// <summary>
     /// The render fragment requiring the tooltip.
     /// </summary>
@@ -24,7 +21,7 @@ public partial class MBTooltip : ComponentFoundation, IDisposable
 
 
 
-    private readonly long id = TooltipIdProvider.NextId();
+    private readonly long tooltipId = TooltipIdProvider.NextId();
     private bool disposedValue;
 
 
@@ -34,24 +31,24 @@ public partial class MBTooltip : ComponentFoundation, IDisposable
     {
         await base.OnInitializedAsync();
 
-        TooltipService.AddTooltip(id, Content);
+        TooltipService.AddTooltip(tooltipId, Content);
     }
 
 
-    protected virtual void Dispose(bool disposing)
+    protected virtual new void Dispose(bool disposing)
     {
         if (!disposedValue)
         {
             if (disposing)
             {
-                TooltipService.RemoveTooltip(id);
+                TooltipService.RemoveTooltip(tooltipId);
             }
             disposedValue = true;
         }
     }
 
 
-    public void Dispose()
+    public new void Dispose()
     {
         // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
         Dispose(disposing: true);

@@ -323,7 +323,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// Material.Blazor components generally *should not* override this because it handles the case where components need
     /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
     /// </summary>
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
@@ -346,6 +346,8 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
             }
         }
+
+        return Task.CompletedTask;
     }
 
     #endregion

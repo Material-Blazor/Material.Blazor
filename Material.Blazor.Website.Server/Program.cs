@@ -83,11 +83,9 @@ try
 
     app.UseRouting();
 
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapBlazorHub();
-        endpoints.MapFallbackToPage("/_Host");
-    });
+    app.MapBlazorHub();
+
+    app.MapFallbackToPage("/_Host");
 
     app.Run();
 }
