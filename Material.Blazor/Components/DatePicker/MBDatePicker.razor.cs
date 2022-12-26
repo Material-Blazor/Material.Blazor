@@ -259,14 +259,14 @@ public partial class MBDatePicker : InputComponent<DateTime>
     }
     #endregion
 
-    #region OnValueSetCallback & NotifyValueChanged
+    #region SetComponentValueAsync & NotifyValueChanged
 
     /// <summary>
     /// Callback for value the value setter.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected async Task OnValueSetCallback()
+    private protected override async Task SetComponentValueAsync()
     {
         Panel.SetParameters(Value);
 

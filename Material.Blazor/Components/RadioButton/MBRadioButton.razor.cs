@@ -85,16 +85,22 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected async Task OnValueSetCallback() => await InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        if (Label == "Dog repeated")
+        {
+            _ = 1;
+        }
+        return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue));
+    }
 
 
     /// <inheritdoc/>
-    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
+    }
 
 
     private void OnInternalItemClick()
