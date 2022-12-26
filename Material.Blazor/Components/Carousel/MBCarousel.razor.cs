@@ -38,17 +38,17 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     private CancellationTokenSource TokenSource { get; set; } = new();
     private InternalCarouselPanel<TItem> ICP { get; set; }
     private int ItemIndex { get; set; } = 0;
+    private int RadioItemIndex { get; set; }
     private List<MBSelectElement<int>> RadioElements { get; set; }
 
-    private int RadioItemIndex
+
+
+    private async Task AfterSetRadioItemIndex()
     {
-        get => ItemIndex;
-        set
-        {
-            ItemIndex = value;
-            ICP.SlidingContent.SetItemIndex(ItemIndex);
-            PlayStop(false);
-        }
+        PlayStop(false);
+        ItemIndex = RadioItemIndex;
+        await ICP.SlidingContent.SetItemIndexAsync(ItemIndex).ConfigureAwait(false);
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
 
@@ -111,6 +111,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         PlayStop(false);
         await ICP.SlidingContent.SlidePrevious(true).ConfigureAwait(false);
         ItemIndex = ICP.SlidingContent.ItemIndex;
+        RadioItemIndex = ICP.SlidingContent.ItemIndex;
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
 
@@ -119,6 +121,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         PlayStop(false);
         await ICP.SlidingContent.SlideNext(true).ConfigureAwait(false);
         ItemIndex = ICP.SlidingContent.ItemIndex;
+        RadioItemIndex = ICP.SlidingContent.ItemIndex;
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
 
@@ -128,7 +132,7 @@ public partial class MBCarousel<TItem> : InputComponent<int>
 
         _ = Task.Run(async () =>
         {
-            bool continuePanelTransition = true;
+            var continuePanelTransition = true;
 
             while (continuePanelTransition)
             {
@@ -142,7 +146,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
                 {
                     await ICP.SlidingContent.SlideNext(true).ConfigureAwait(false);
                     ItemIndex = ICP.SlidingContent.ItemIndex;
-                    await InvokeAsync(StateHasChanged);
+                    RadioItemIndex = ICP.SlidingContent.ItemIndex;
+                    await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                 }
             }
         }, TokenSource.Token);

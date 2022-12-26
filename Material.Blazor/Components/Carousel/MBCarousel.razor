@@ -32,7 +32,9 @@
                             @onclick="@(() => PlayStop())" />
 
     <div class="mb-carousel__lower">
+        
         <MBRadioButtonGroup @bind-Value="@RadioItemIndex"
+                            @bind-Value:after="@AfterSetRadioItemIndex"
                             Items="@RadioElements"
                             Vertical="false" />
     </div>
