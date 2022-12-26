@@ -433,7 +433,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             {
                 while (_jsActionQueue.TryDequeue(out var dequeuedAction))
                 {
-                    await dequeuedAction().ConfigureAwait(false);
+                    if (!_disposed)
+                    {
+                        await dequeuedAction().ConfigureAwait(false);
+                    }
                 }
 
                 await InvokeAsync(StateHasChanged).ConfigureAwait(false);
