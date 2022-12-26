@@ -23,26 +23,12 @@ public partial class MBLinearProgress : InputComponent<double>
     [Parameter] public string AriaLabel { get; set; } = "";
 
 
-    private double? _bufferValue = null;
     /// <summary>
     /// Sets the buffer value (no buffer if not set).
     /// </summary>
     [Parameter]
-    public double? BufferValue
-    {
-        get => _bufferValue;
-        set
-        {
-            if (value != _bufferValue)
-            {
-                _bufferValue = value;
-                if (HasInstantiated)
-                {
-                    EnqueueJSInteropAction(SetComponentValueAsync);
-                }
-            }
-        }
-    }
+    public double? BufferValue { get; set; }
+    private double? _cachedBufferValue = null;
 
 
     private ElementReference ElementReference { get; set; }
@@ -62,9 +48,22 @@ public partial class MBLinearProgress : InputComponent<double>
         ForceShouldRenderToTrue = true;
         InitialValue = Value;
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
             .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MBLinearProgressType.Closed);
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBufferValue != BufferValue)
+        {
+            _cachedBufferValue = BufferValue;
+            EnqueueJSInteropAction(SetComponentValueAsync);
+        }
     }
 
 
