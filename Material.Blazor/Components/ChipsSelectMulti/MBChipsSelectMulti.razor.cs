@@ -45,9 +45,6 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
 
         ItemsArray = Items.ToArray();
 
-        SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
-
         ObjectReference = DotNetObjectReference.Create(this);
     }
 
@@ -92,33 +89,34 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setSelected", ChipsReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setDisabled", ChipsReference, AppliedDisabled));
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setSelected", ChipsReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray());
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsMultiSelect, ObjectReference);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setDisabled", ChipsReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsMultiSelect, ObjectReference);
+    }
 
 
     /// <summary>
     /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
     /// </summary>
     /// <param name="value"></param>
-    internal void SetSingleSelectValue(TItem value)
+    internal Task SetSingleSelectValue(TItem value)
     {
         Value = new TItem[] { value };
-        OnValueSetCallback();
+        return SetComponentValueAsync();
     }
 }

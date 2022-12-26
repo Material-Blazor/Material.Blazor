@@ -116,50 +116,20 @@ public partial class MBDatePicker : InputComponent<DateTime>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
-
-
-    private bool badgeExited;
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
     [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
     #endregion
 
     #region DensityInfo
@@ -181,18 +151,20 @@ public partial class MBDatePicker : InputComponent<DateTime>
     #region InstantiateMcwComponent
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
+    }
 
     #endregion
 
     #region OnDisabledSetCallback
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
+    /// <inheritdoc/>
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled);
+    }
 
     #endregion
 
@@ -220,10 +192,6 @@ public partial class MBDatePicker : InputComponent<DateTime>
             .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)
             .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
-
-        SetComponentValue += OnValueSetCallback;
-
-        OnDisabledSet += OnDisabledSetCallback;
 
         // SuppressDefaultDate is only used here and not in GetSelectionAsync
         // therefore a change will not be detected (and makes little sense
@@ -261,24 +229,44 @@ public partial class MBDatePicker : InputComponent<DateTime>
     }
     #endregion
 
-    #region OnValueSetCallback & NotifyValueChanged
+    #region SetComponentValueAsync & NotifyValueChanged
+
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
+    }
+
 
     /// <summary>
     /// Callback for value the value setter.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnValueSetCallback()
+    protected private override async Task SetComponentValueAsync()
     {
         Panel.SetParameters(Value);
 
         if (AdditionalStyle.Length > 0)
         {
             AdditionalStyle = "";
-            InvokeAsync(StateHasChanged);
+            await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
 
-        InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false);
     }
 
 

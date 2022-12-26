@@ -106,7 +106,7 @@ public partial class MBTextArea : InputComponent<string>
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
             .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
@@ -115,9 +115,6 @@ public partial class MBTextArea : InputComponent<string>
             .AddIf("mdc-text-field--disabled", () => AppliedDisabled);
 
         FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
-
-        SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
 
         if (EditContext != null)
         {
@@ -131,25 +128,25 @@ public partial class MBTextArea : InputComponent<string>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled);
+    }
 
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    }
 
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
     {

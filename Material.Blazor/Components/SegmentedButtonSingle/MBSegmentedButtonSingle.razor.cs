@@ -35,50 +35,20 @@ public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TIte
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
-    /// <summary>
-    /// The badge's value.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (SegmentedButtonMulti?.Badge != null)
-                {
-                    SegmentedButtonMulti.Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
-
-
-    private bool badgeExited;
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
     [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
-                if (SegmentedButtonMulti?.Badge != null)
-                {
-                    SegmentedButtonMulti.Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
 #nullable restore annotations
 
 
@@ -101,21 +71,36 @@ public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TIte
     {
         await base.OnInitializedAsync();
 
-        MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
+        var appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
 
-        bool hasValue;
-        (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
+        ComponentValue = ValidateItemList(Items, appliedItemValidation).value;
 
         multiValues = new TItem[] { Value };
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (SegmentedButtonMulti?.Badge is not null)
+            {
+                EnqueueJSInteropAction(() => SegmentedButtonMulti.Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
+    }
+
+
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        SegmentedButtonMulti.SetSingleSelectValue(Value);
+        return Task.CompletedTask;
+    }
 }

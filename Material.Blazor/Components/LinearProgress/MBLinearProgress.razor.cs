@@ -23,26 +23,11 @@ public partial class MBLinearProgress : InputComponent<double>
     [Parameter] public string AriaLabel { get; set; } = "";
 
 
-    private double? _bufferValue = null;
     /// <summary>
     /// Sets the buffer value (no buffer if not set).
     /// </summary>
-    [Parameter]
-    public double? BufferValue
-    {
-        get => _bufferValue;
-        set
-        {
-            if (value != _bufferValue)
-            {
-                _bufferValue = value;
-                if (HasInstantiated)
-                {
-                    OnValueSetCallback();
-                }
-            }
-        }
-    }
+    [Parameter] public double? BufferValue { get; set; }
+    private double? _cachedBufferValue = null;
 
 
     private ElementReference ElementReference { get; set; }
@@ -62,23 +47,37 @@ public partial class MBLinearProgress : InputComponent<double>
         ForceShouldRenderToTrue = true;
         InitialValue = Value;
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
             .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MBLinearProgressType.Closed);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBufferValue != BufferValue)
+        {
+            _cachedBufferValue = BufferValue;
+            EnqueueJSInteropAction(SetComponentValueAsync);
+        }
+    }
+
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+    }
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

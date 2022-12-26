@@ -4,6 +4,30 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.7)
+
+Released 2022-12-26
+
+**Updates**
+- SIGNIFICANT REFACTORING SUBJECT TO REVIEW
+	- This release sees the first refactoring of how JS Interop calls are made to control (material-components-web)[https://github.com/material-components/material-components-web].
+	- All calls are now fully awaited rather than Material.Blazor's previous "fire and forget" approach to setting values and disabled parameters.
+	- Furthermore these calls are placed on a concurrent queue and executed sequentially in the order in which they were queued.
+	- This has been necessary to enable `MBAutoCompletePagedField` to instantiate correctly, since it potentially receives a set of rapid-fire changes as it is first rendered.
+	- We are stress testing this release in live deployed app environments. If we find issues we will fix these fast.
+
+**New components**
+- Added `MBAutoCompletePagedField` which is a single item select using asynchronous methods supplied as parameters to search for items matching user entered text. Behaves differently to `MBAutoCompleteSelectField` because
+results are paged on a menu surface rather than being hidden in favour of a "too many results" message.
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.6)
 
 Released 2022-12-23

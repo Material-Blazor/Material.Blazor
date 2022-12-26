@@ -78,8 +78,6 @@ public partial class MBTabBar<TItem> : InputComponent<int>
 
         ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
@@ -122,14 +120,16 @@ public partial class MBTabBar<TItem> : InputComponent<int>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value));
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
+    }
 }

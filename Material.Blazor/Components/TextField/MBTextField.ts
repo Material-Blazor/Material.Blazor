@@ -1,10 +1,12 @@
 ﻿import { MDCTextField, MDCTextFieldHelperText } from '@material/textfield';
 
-export function init(elem, helperTextElem, helperText, helperTextPersistent, performsValidation) {
+export function init(elem, value, helperTextElem, helperText, helperTextPersistent, performsValidation) {
     if (!elem) {
         return;
     }
+
     elem._textField = MDCTextField.attachTo(elem);
+    setValue(elem, value);
     setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
 }
 
@@ -12,6 +14,7 @@ export function setValue(elem, value) {
     if (!elem) {
         return;
     }
+    
     elem._textField.value = value;
 }
 

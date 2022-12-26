@@ -21,23 +21,11 @@ public partial class MBPaginator : ComponentFoundation
     [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
 
 
-    private int _itemCount;
     /// <summary>
     /// The total number if items being paged.
     /// </summary>
-    [Parameter]
-    public int ItemCount
-    {
-        get => _itemCount;
-        set
-        {
-            if (value != _itemCount)
-            {
-                _itemCount = value;
-                PageNumber = 0;
-            }
-        }
-    }
+    [Parameter] public int ItemCount { get; set; }
+    private int _cachedItemCount;
 
 
     private int BackingItemsPerPage
@@ -48,7 +36,7 @@ public partial class MBPaginator : ComponentFoundation
             if (value != ItemsPerPage)
             {
                 ItemsPerPage = value;
-                ItemsPerPageChanged.InvokeAsync(value);
+                _ = ItemsPerPageChanged.InvokeAsync(value);
                 BackingPageNumber = PageNumber; // Forces a clamp
             }
         }
@@ -132,7 +120,7 @@ public partial class MBPaginator : ComponentFoundation
 
                 if (toggleOn)
                 {
-                    _ = InvokeAsync(async () => await Menu.ToggleAsync());
+                    _ = InvokeAsync(Menu.ToggleAsync);
                 }
             }
         }
@@ -163,6 +151,19 @@ public partial class MBPaginator : ComponentFoundation
                                  SelectedValue = r,
                                  Label = r.ToString()
                              }).ToArray();
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedItemCount != ItemCount)
+        {
+            _cachedItemCount = ItemCount;
+            PageNumber = 0;
+        }
     }
 
 

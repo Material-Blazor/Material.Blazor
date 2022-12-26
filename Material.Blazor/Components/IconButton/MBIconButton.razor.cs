@@ -79,7 +79,7 @@ public partial class MBIconButton : ComponentFoundation
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-button--touch", () => AppliedTouchTarget)
             .AddIf("mdc-card__action mdc-card__action--icon", () => Card != null);
@@ -87,5 +87,8 @@ public partial class MBIconButton : ComponentFoundation
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+    }
 }

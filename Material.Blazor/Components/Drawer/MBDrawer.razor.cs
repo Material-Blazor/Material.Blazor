@@ -86,5 +86,8 @@ public partial class MBDrawer : ComponentFoundation
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
+    }
 }

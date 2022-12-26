@@ -299,8 +299,9 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     }
 
 
-    private async Task OnTextFocusOutAsync()
+    private Task OnTextFocusOutAsync()
     {
+        return Task.CompletedTask;
         //if (!MenuHasFocus)
         //{
         //    await CloseMenuAsync().ConfigureAwait(false);

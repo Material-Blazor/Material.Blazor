@@ -32,7 +32,7 @@ public partial class MBBadge : ComponentFoundation
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mb-badge--dot", () => BadgeStyle == MBBadgeStyle.Dot)
             .AddIf("mb-badge--exited", () => Exited);
     }
@@ -41,10 +41,10 @@ public partial class MBBadge : ComponentFoundation
     /// <summary>
     /// Sets the exited value and calls SHC.
     /// </summary>
-    internal void SetValueAndExited(string value, bool exited)
+    internal async Task SetValueAndExited(string value, bool exited)
     {
         Value = value;
         Exited = exited;
-        _ = InvokeAsync(StateHasChanged);
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 }

@@ -111,9 +111,6 @@ public partial class MBSlider : InputComponent<decimal>
 
         InputMarkup = new($"<input class=\"mdc-slider__input{disabledClassMarkup}\" type=\"range\" value=\"{Value.ToString(Format)}\" {disabledAttributeMarkup}step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
 
-        SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
-
         ObjectReference = DotNetObjectReference.Create(this);
     }
 
@@ -147,22 +144,23 @@ public partial class MBSlider : InputComponent<decimal>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value));
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled));
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
+    }
 }

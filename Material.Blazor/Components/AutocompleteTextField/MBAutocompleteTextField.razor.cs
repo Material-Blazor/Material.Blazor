@@ -16,9 +16,6 @@ namespace Material.Blazor;
 /// </summary>
 public partial class MBAutocompleteTextField : InputComponent<string>
 {
-    private IEnumerable<string> selectItems;
-    private IEnumerable<string> newSelectItems = null;
-
     private class SelectionInfo
     {
         public string SelectedText { get; set; }
@@ -34,7 +31,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
         public bool IgnoreWhitespace { get; set; }
         public string SearchTarget => IgnoreWhitespace ? SearchTargetRegex().Replace(Item, string.Empty) : Item;
 
-        
+
         [GeneratedRegex("\\s+")]
         private static partial Regex SearchTargetRegex();
     }
@@ -127,25 +124,13 @@ public partial class MBAutocompleteTextField : InputComponent<string>
     [Parameter] public bool MatchFromItemStart { get; set; } = false;
 
 
+    //private string[] selectItems;
+    //private string[] newSelectItems = null;
+    private string[] _cachedSelectItems = null;
     /// <summary>
     /// List of items to select from.
     /// </summary>
-    [Parameter]
-    public IEnumerable<string> SelectItems
-    {
-        get => selectItems;
-        set
-        {
-            if (IsOpen)
-            {
-                newSelectItems = value;
-            }
-            else
-            {
-                selectItems = value;
-            }
-        }
-    }
+    [Parameter] public IEnumerable<string> SelectItems { get; set; }
 #nullable restore annotations
 
     /// <summary>
@@ -158,7 +143,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
     private DotNetObjectReference<MBAutocompleteTextField> ObjectReference { get; set; }
     private bool MenuHasFocus { get; set; } = false;
     private ElementReference MenuReference { get; set; }
-    private SelectionItem[] MySelectItems { get; set; }
+    private SelectionItem[] DisplaySelectionItems { get; set; }
     private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();
     private MBTextField TextField { get; set; }
 
@@ -204,12 +189,22 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
     private void SetParameters()
     {
-        MySelectItems = (from i in SelectItems
-                         select new SelectionItem
-                         {
-                             Item = i,
-                             IgnoreWhitespace = IgnoreWhitespace
-                         }).ToArray();
+        if (!IsOpen)
+        {
+            _cachedSelectItems = SelectItems.ToArray();
+        }
+
+        if (_cachedSelectItems != null)
+        {
+            DisplaySelectionItems =
+                _cachedSelectItems
+                .Select(x => new SelectionItem
+                {
+                    Item = x,
+                    IgnoreWhitespace = IgnoreWhitespace,
+                })
+                .ToArray();
+        }
 
         SelectInfo = BuildSelectList(ComponentValue);
 
@@ -222,7 +217,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
         var regexOptions = RegexOptions.IgnoreCase | (IgnoreWhitespace ? RegexOptions.IgnorePatternWhitespace : 0);
 
         var fullMatchRegex = new Regex($"^{fieldText}$", regexOptions);
-        var fullMatches = (from f in MySelectItems
+        var fullMatches = (from f in DisplaySelectionItems
                            where fullMatchRegex.Matches(f.SearchTarget).Count > 0
                            select f.Item).ToArray();
 
@@ -237,7 +232,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
         var startMatch = MatchFromItemStart ? "^" : "";
         var partialMatchRegex = new Regex($"{startMatch}{fieldText}", regexOptions);
-        var partialMatches = (from f in MySelectItems
+        var partialMatches = (from f in DisplaySelectionItems
                               where partialMatchRegex.Matches(f.SearchTarget).Count > 0
                               select f.Item).ToArray();
         var firstValueIsCustomValue = AllowCustomValue && fieldText != null && !partialMatches.Contains(fieldText);
@@ -318,10 +313,9 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
         SelectInfo.SelectedText = Value;
 
-        if (newSelectItems != null)
+        if (_cachedSelectItems != null)
         {
-            selectItems = newSelectItems;
-            newSelectItems = null;
+            _cachedSelectItems = SelectItems.ToArray();
         }
 
         StateHasChanged();
@@ -362,5 +356,8 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+    }
 }

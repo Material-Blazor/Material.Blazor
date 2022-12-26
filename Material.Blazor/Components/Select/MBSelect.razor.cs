@@ -72,50 +72,20 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
-    /// <summary>
-    /// The badge's value.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
-
-
-    private bool badgeExited;
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
     [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
 #nullable restore annotations
 
 
@@ -188,16 +158,13 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
         SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.Label) : "";
         FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
             .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)
             .AddIf("mdc-select--no-label", () => !ShowLabel)
             .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
-
-        SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
 
         ObjectReference = DotNetObjectReference.Create(this);
     }
@@ -206,7 +173,18 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnParametersSetAsync()
     {
-        await base.OnParametersSetAsync();
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
 
         KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
     }
@@ -241,22 +219,23 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
+    /// <<inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value));
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+    }
 }

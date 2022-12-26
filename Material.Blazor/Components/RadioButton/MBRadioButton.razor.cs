@@ -65,9 +65,6 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
         IsChecked = ComponentValue != null && ComponentValue.Equals(TargetCheckedValue);
 
         ForceShouldRenderToTrue = true;
-
-        SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
     }
 
 
@@ -88,20 +85,15 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
+    /// <inheritdoc/>
+    protected private override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue));
+    }
 
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled));
+    /// <inheritdoc/>
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
 
 
     private void OnInternalItemClick()
@@ -110,5 +102,9 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     }
 
 
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
+    }
 }

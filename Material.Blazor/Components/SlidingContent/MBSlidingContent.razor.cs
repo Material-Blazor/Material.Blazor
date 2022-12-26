@@ -15,25 +15,11 @@ namespace Material.Blazor;
 /// <typeparam name="TItem">The content type.</typeparam>
 public partial class MBSlidingContent<TItem> : ComponentFoundation
 {
-    private int _itemIndex;
     /// <summary>
     /// The index of the currently displayed item.
     /// </summary>
-    [Parameter]
-    public int ItemIndex
-    {
-        get => _itemIndex;
-
-        set
-        {
-            if (value != _itemIndex)
-            {
-                var direction = (value > _itemIndex) ? SlideDirection.Forwards : SlideDirection.Backwards;
-
-                _ = InvokeAsync(() => SlideToItem(value, direction));
-            }
-        }
-    }
+    [Parameter] public int ItemIndex { get; set; }
+    private int _cachedItemIndex;
 
 
     /// <summary>
@@ -78,14 +64,20 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
 
         if (Items != null)
         {
-            CurrentItem = Items.ElementAtOrDefault(_itemIndex);
+            CurrentItem = Items.ElementAtOrDefault(_cachedItemIndex);
+        }
+
+        if (_cachedItemIndex != ItemIndex)
+        {
+            var direction = (ItemIndex > _cachedItemIndex) ? SlideDirection.Forwards : SlideDirection.Backwards;
+            EnqueueJSInteropAction(() => SlideToItem(ItemIndex, direction));
         }
     }
 
 
     private async Task SlideToItem(int index, SlideDirection direction)
     {
-        if (index != _itemIndex)
+        if (index != _cachedItemIndex)
         {
             if (HasRendered)
             {
@@ -110,7 +102,8 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
                 ContentClass = nextClass;
                 CurrentItem = Items.ElementAt(index);
 
-                _itemIndex = index;
+                _cachedItemIndex = index;
+                ItemIndex = index;
                 await ItemIndexChanged.InvokeAsync(index);
                 
                 HideContent = false;
@@ -120,7 +113,8 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
             else
             {
                 await ItemIndexChanged.InvokeAsync(index);
-                _itemIndex = index;
+                _cachedItemIndex = index;
+                ItemIndex = index;
             }
         }
     }
@@ -144,7 +138,7 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
     /// <param name="rollover">Rolls from last to first if true, scrolling forwards.</param>
     public async Task SlideNext(bool rollover)
     {
-        var nextIndex = _itemIndex + 1;
+        var nextIndex = _cachedItemIndex + 1;
 
         if (nextIndex == Items.Count())
         {
@@ -166,7 +160,7 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
     /// <param name="rollover">Rolls from first to last if true, scrolling backwards.</param>
     public async Task SlidePrevious(bool rollover)
     {
-        var previousIndex = _itemIndex - 1;
+        var previousIndex = _cachedItemIndex - 1;
 
         if (previousIndex == -1)
         {
@@ -187,9 +181,9 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
     /// returns ShouldRender() => false;
     /// </summary>
     /// <param name="index"></param>
-    internal void SetItemIndex(int index)
+    internal async Task SetItemIndexAsync(int index)
     {
-        ItemIndex = index;
-        _ = InvokeAsync(StateHasChanged);
+        var slideDirection = index < ItemIndex ? SlideDirection.Backwards : SlideDirection.Forwards;
+        await SlideToItem(index, slideDirection).ConfigureAwait(false);
     }
 }

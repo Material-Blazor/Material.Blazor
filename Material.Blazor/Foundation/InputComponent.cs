@@ -55,6 +55,7 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// </summary>
     private bool AllowNextRender = false;
 
+
     /// <summary>
     /// Gets a string that indicates the status of the field being edited. This will include
     /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
@@ -76,16 +77,6 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// </example>
     [Parameter] public T Value { get; set; }
     private T _cachedValue;
-
-
-    /// <summary>
-    /// Derived components can use this to get a callback from SetParameters(Async) when the consumer changes
-    /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
-    /// the data change visually. An example is a select where the relevant list item needs to be
-    /// automatically clicked to get Material Theme to update the value shown in the
-    /// <c>&lt;input&gt;</c> HTML tag.
-    /// </summary>
-    protected event Action SetComponentValue;
 
 
     /// <summary>
@@ -130,7 +121,7 @@ public abstract class InputComponent<T> : ComponentFoundation
                 LoggingService.LogTrace($"ComponentValue setter changed _componentValue");
 
                 _componentValue = value;
-                _ = ValueChanged.InvokeAsync(value);
+                _ = InvokeAsync(() => ValueChanged.InvokeAsync(value));
 
                 if (EditContext != null && !IgnoreFormField)
                 {
@@ -292,22 +283,25 @@ public abstract class InputComponent<T> : ComponentFoundation
     {
         await base.OnParametersSetAsync();
 
-        LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+        var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
+        LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
-        if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
+        if (!valuesEqual)
         {
+            LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
             _cachedValue = Value;
 
-            LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue value");
+            valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
+            LoggingService.LogTrace($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
-            if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
+            if (!valuesEqual)
             {
-                LoggingService.LogTrace("OnParametersSetAsync update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
+                LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
 
                 _componentValue = Value;
                 if (HasInstantiated)
                 {
-                    SetComponentValue?.Invoke();
+                    EnqueueJSInteropAction(SetComponentValueAsync);
                 }
             }
         }
@@ -379,6 +373,22 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
+    #region SetComponentValueAsync
+
+    /// <summary>
+    /// Derived components can override this to get a callback from SetParameters(Async) when the consumer changes
+    /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
+    /// the data change visually. An example is a select where the relevant list item needs to be
+    /// automatically clicked to get Material Theme to update the value shown in the
+    /// <c>&lt;input&gt;</c> HTML tag.
+    /// </summary>
+    private protected virtual Task SetComponentValueAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
     #region TryParseValueFromString
 
     /// <summary>
@@ -390,8 +400,9 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// <param name="validationErrorMessage">If the value could not be parsed, provides a validation error message.</param>
     /// <returns>True if the value could be parsed; otherwise false.</returns>
     protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
-        => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
+    {
+        throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
+    }
 
     #endregion
-
 }

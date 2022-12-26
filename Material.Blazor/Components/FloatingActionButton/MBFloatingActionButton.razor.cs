@@ -51,27 +51,13 @@ public partial class MBFloatingActionButton : ComponentFoundation
 
     private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
 
-    private bool exited;
+    
     /// <summary>
     /// When true collapses the FAB.
     /// </summary>
     [Parameter]
-    public bool Exited
-    {
-        get => exited;
-        set
-        {
-            if (value != exited)
-            {
-                exited = value;
-
-                if (HasInstantiated)
-                {
-                    InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
-                }
-            }
-        }
-    }
+    public bool Exited { get; set; }
+    private bool _cachedExited;
 #nullable restore annotations
 
 
@@ -83,13 +69,28 @@ public partial class MBFloatingActionButton : ComponentFoundation
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-fab--mini mdc-fab--touch", () => Type == MBFloatingActionButtonType.Mini)
             .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.ExtendedNoIcon || Type == MBFloatingActionButtonType.ExtendedLeadingIcon || Type == MBFloatingActionButtonType.ExtendedTrailingIcon)
             .AddIf("mdc-fab--exited", () => Exited);
     }
 
 
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedExited != Exited)
+        {
+            _cachedExited = Exited;
+            EnqueueJSInteropAction(() => InvokeJsVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
+        }
+    }
+
+
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
+    }
 }

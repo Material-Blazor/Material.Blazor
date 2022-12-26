@@ -17,27 +17,10 @@ public partial class MBTextField : InputComponent<string>
 
 #nullable enable annotations
 
-    private bool badgeExited;
     /// <summary>
-    /// When true collapses the badge.
+    /// Determines whether the button has a badge - defaults to false.
     /// </summary>
-    [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+    [Parameter] public bool HasBadge { get; set; }
 
 
     /// <summary>
@@ -46,39 +29,26 @@ public partial class MBTextField : InputComponent<string>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
+    /// <summary>
+    /// When true collapses the badge.
+    /// </summary>
+    [Parameter]
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
+
+
     /// <summary>
     /// The button's density.
     /// </summary>
     [Parameter]
-    public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
 
 
     /// <summary>
     /// The text field's density.
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
-
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
 
 
     /// <summary>
@@ -219,7 +189,7 @@ public partial class MBTextField : InputComponent<string>
 
         SetDateErrorMessage();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
             .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
@@ -232,9 +202,6 @@ public partial class MBTextField : InputComponent<string>
 
         FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
-        SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
-
         if (EditContext != null)
         {
             EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
@@ -242,6 +209,24 @@ public partial class MBTextField : InputComponent<string>
             if (HasRequiredAttribute(ValidationMessageFor))
             {
                 LabelSuffix = " *";
+            }
+        }
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
             }
         }
     }
@@ -276,24 +261,25 @@ public partial class MBTextField : InputComponent<string>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, ComponentValue);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    }
 
 
     /// <summary>
@@ -313,7 +299,7 @@ public partial class MBTextField : InputComponent<string>
             var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
             var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            _ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
 }

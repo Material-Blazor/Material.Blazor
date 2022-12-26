@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal;
@@ -58,16 +60,21 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
 
     /// <summary>
-    /// Derived components can use this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
-    /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
-    /// </summary>
-    private protected event Action OnDisabledSet;
-
-
-    /// <summary>
     /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="ComponentBase.OnInitialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
     /// </summary>
     private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
+
+
+    /// <summary>
+    /// The concurrent queue for javascript interop actions.
+    /// </summary>
+    private readonly ConcurrentQueue<Func<Task>> _jsActionQueue = new();
+
+
+    /// <summary>
+    /// Semaphore prevents multiple dequeue actions from running concurrently.
+    /// </summary>
+    private readonly SemaphoreSlim _jsActionQueueSemaphore = new(1,1);
 
 
     /// <summary>
@@ -93,7 +100,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Indicates whether the component is disabled.
     /// </summary>
+
+#pragma warning disable BL0007 // Component parameters should be auto properties
     [Parameter] public bool? Disabled
+#pragma warning restore BL0007 // Component parameters should be auto properties
     {
         get => disabled;
         set
@@ -104,7 +114,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
                 if (HasInstantiated)
                 {
-                    OnDisabledSet?.Invoke();
+                    EnqueueJSInteropAction(OnDisabledSetAsync);
                 }
             }
         }
@@ -313,7 +323,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// Material.Blazor components generally *should not* override this because it handles the case where components need
     /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
     /// </summary>
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
@@ -325,7 +335,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 }
                 else
                 {
-                    await InstantiateMcwComponent().ConfigureAwait(false);
+                    EnqueueJSInteropAction(InstantiateMcwComponent);
                 }
                 
                 HasInstantiated = true;
@@ -336,6 +346,8 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
             }
         }
+
+        return Task.CompletedTask;
     }
 
     #endregion
@@ -386,4 +398,54 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
     #endregion
 
+    #region OnDisabledSetAsync
+
+    /// <summary>
+    /// Derived components can override this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
+    /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual Task OnDisabledSetAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
+    #region EnqueueJSInteropAction
+
+    /// <summary>
+    /// Enqueues a javascript action (meaning instantiation, component value set or disabled value set)
+    /// and then flushes the queue one by one. This process is required to ensure that rapidly applied 
+    /// values don't clash with one another, but are applied sequentially in order.
+    /// </summary>
+    /// <param name="action"></param>
+    private protected void EnqueueJSInteropAction(Func<Task> action)
+    {
+        _jsActionQueue.Enqueue(action);
+        _ = DequeueActions();
+
+        async Task DequeueActions()
+        {
+            await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
+
+            try
+            {
+                while (_jsActionQueue.TryDequeue(out var dequeuedAction))
+                {
+                    if (!_disposed)
+                    {
+                        await dequeuedAction().ConfigureAwait(false);
+                    }
+                }
+
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+            }
+            finally
+            {
+                _jsActionQueueSemaphore.Release();
+            }
+        }
+    }
+    #endregion
 }

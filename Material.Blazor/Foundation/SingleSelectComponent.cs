@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal;
 
@@ -18,34 +19,11 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
     [Parameter] public Func<T, object> GetKeysFunc { get; set; }
 
 
-    private IEnumerable<TListElement> _items;
     /// <summary>
     /// The item list to be represented as radio buttons
     /// </summary>
-    [Parameter] public IEnumerable<TListElement> Items
-    {
-        get => _items;
-        set
-        {
-            if ((value == null && _items != null) || (value != null && _items == null) || (value != null && _items != null && !value.SequenceEqual(_items)))
-            {
-                _items = value;
-
-                if (HasInstantiated)
-                {
-                    var (_, validatedValue) = ValidateItemList(_items, CascadingDefaults.AppliedItemValidation(ItemValidation));
-
-                    if (!validatedValue.Equals(Value))
-                    {
-                        Value = validatedValue;
-                    }
-                }
-
-                AllowNextShouldRender();
-                InvokeAsync(StateHasChanged);
-            }
-        }
-    }
+    [Parameter] public IEnumerable<TListElement> Items { get; set; }
+    private IEnumerable<TListElement> _cachedItems;
 
 
     /// <summary>
@@ -61,6 +39,31 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
     /// Generates keys for repeated elements in the single select list.
     /// </summary>
     private protected Func<T, object> KeyGenerator { get; set; }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        if ((Items == null && _cachedItems != null) || (Items != null && _cachedItems == null) || (Items != null && _cachedItems != null && !Items.SequenceEqual(_cachedItems)))
+        {
+            _cachedItems = Items;
+
+            if (HasInstantiated)
+            {
+                var validatedValue = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation)).value;
+
+                if (!validatedValue.Equals(Value))
+                {
+                    Value = validatedValue;
+                }
+            }
+
+            AllowNextShouldRender();
+            await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+        }
+    }
 
 
     // This method was added in the interest of DRY and is used by MBSelect & MBRadioButtonGroup

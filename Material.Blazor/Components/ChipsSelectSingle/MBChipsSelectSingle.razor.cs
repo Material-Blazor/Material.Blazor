@@ -42,22 +42,18 @@ public partial class MBChipsSelectSingle<TItem> : SingleSelectComponent<TItem, M
     {
         await base.OnInitializedAsync();
 
+        var appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
 
-        MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
-
-        bool hasValue;
-        (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
+        ComponentValue = ValidateItemList(Items, appliedItemValidation).value;
 
         multiValues = new TItem[] { Value };
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnValueSetCallback() => ChipsSelectMulti.SetSingleSelectValue(Value);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        ChipsSelectMulti.SetSingleSelectValue(Value);
+        return Task.CompletedTask;
+    }
 }

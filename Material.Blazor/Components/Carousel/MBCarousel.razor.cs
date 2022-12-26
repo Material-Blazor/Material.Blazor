@@ -27,29 +27,28 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     [Parameter] public RenderFragment<TItem> Content { get; set; }
 
 
-    private int _rolloverInterval = 3000;
     /// <summary>
-    /// The interval in milliseconds to roll over from one panel of content to the next. Clamped between 1,000 and 60,000. Defaults toi 3,000.
+    /// The interval in milliseconds to roll over from one panel of content to the next. Clamped between 1,000 and 60,000. Defaults to 3,000.
     /// </summary>
-    [Parameter] public int RolloverInterval { get => _rolloverInterval; set => _rolloverInterval = Math.Clamp(value, 1000, 60000); }
+    [Parameter] public int RolloverInterval { get; set; } = 3000;
 
 
     private bool Play { get; set; }
     private string PlayIcon => Play ? "stop" : "play_arrow";
-    private CancellationTokenSource tokenSource { get; set; } = new();
+    private CancellationTokenSource TokenSource { get; set; } = new();
     private InternalCarouselPanel<TItem> ICP { get; set; }
     private int ItemIndex { get; set; } = 0;
+    private int RadioItemIndex { get; set; }
     private List<MBSelectElement<int>> RadioElements { get; set; }
 
-    private int RadioItemIndex
+
+
+    private async Task AfterSetRadioItemIndex()
     {
-        get => ItemIndex;
-        set
-        {
-            ItemIndex = value;
-            ICP.SlidingContent.SetItemIndex(ItemIndex);
-            PlayStop(false);
-        }
+        PlayStop(false);
+        ItemIndex = RadioItemIndex;
+        await ICP.SlidingContent.SetItemIndexAsync(ItemIndex).ConfigureAwait(false);
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
 
@@ -65,6 +64,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        RolloverInterval = Math.Clamp(RolloverInterval, 1000, 60000);
 
         RadioElements = new();
 
@@ -96,9 +97,9 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         }
         else
         {
-            tokenSource.Cancel();
-            tokenSource.Dispose();
-            tokenSource = new();
+            TokenSource.Cancel();
+            TokenSource.Dispose();
+            TokenSource = new();
         }
 
         _ = InvokeAsync(StateHasChanged);
@@ -110,6 +111,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         PlayStop(false);
         await ICP.SlidingContent.SlidePrevious(true).ConfigureAwait(false);
         ItemIndex = ICP.SlidingContent.ItemIndex;
+        RadioItemIndex = ICP.SlidingContent.ItemIndex;
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
 
@@ -118,16 +121,18 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         PlayStop(false);
         await ICP.SlidingContent.SlideNext(true).ConfigureAwait(false);
         ItemIndex = ICP.SlidingContent.ItemIndex;
+        RadioItemIndex = ICP.SlidingContent.ItemIndex;
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
 
     private void RunPanels()
     {
-        var ct = tokenSource.Token;
+        var ct = TokenSource.Token;
 
         _ = Task.Run(async () =>
         {
-            bool continuePanelTransition = true;
+            var continuePanelTransition = true;
 
             while (continuePanelTransition)
             {
@@ -141,9 +146,10 @@ public partial class MBCarousel<TItem> : InputComponent<int>
                 {
                     await ICP.SlidingContent.SlideNext(true).ConfigureAwait(false);
                     ItemIndex = ICP.SlidingContent.ItemIndex;
-                    await InvokeAsync(StateHasChanged);
+                    RadioItemIndex = ICP.SlidingContent.ItemIndex;
+                    await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                 }
             }
-        }, tokenSource.Token);
+        }, TokenSource.Token);
     }
 }
