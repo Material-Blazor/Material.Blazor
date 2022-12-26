@@ -80,6 +80,29 @@
             <article class="content wrap" id="_content" data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
+<h4 id="400-preview7"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.7">4.0.0-preview.7</a></h4>
+<p>Released 2022-12-26</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li>SIGNIFICANT REFACTORING SUBJECT TO REVIEW
+<ul>
+<li>This release sees the first refactoring of how JS Interop calls are made to control (material-components-web)[https://github.com/material-components/material-components-web].</li>
+<li>All calls are now fully awaited rather than Material.Blazor's previous &quot;fire and forget&quot; approach to setting values and disabled parameters.</li>
+<li>Furthermore these calls are placed on a concurrent queue and executed sequentially in the order in which they were queued.</li>
+<li>This has been necessary to enable <code>MBAutoCompletePagedField</code> to instantiate correctly, since it potentially receives a set of rapid-fire changes as it is first rendered.</li>
+<li>We are stress testing this release in live deployed app environments. If we find issues we will fix these fast.</li>
+</ul>
+</li>
+</ul>
+<p><strong>New components</strong></p>
+<ul>
+<li>Added <code>MBAutoCompletePagedField</code> which is a single item select using asynchronous methods supplied as parameters to search for items matching user entered text. Behaves differently to <code>MBAutoCompleteSelectField</code> because
+results are paged on a menu surface rather than being hidden in favour of a &quot;too many results&quot; message.</li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<p><strong>Deprecated Components</strong></p>
+<p><strong>Known issues</strong></p>
+<br>
 <h4 id="400-preview6"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.6">4.0.0-preview.6</a></h4>
 <p>Released 2022-12-23</p>
 <p><strong>Updates</strong></p>
