@@ -278,7 +278,7 @@ public partial class MBTextField : InputComponent<string>
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
     }
 
 
@@ -299,7 +299,7 @@ public partial class MBTextField : InputComponent<string>
             var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
             var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            _ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
 }
