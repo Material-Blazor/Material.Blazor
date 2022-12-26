@@ -62,49 +62,20 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter] public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
-
-
-    private bool badgeExited;
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
     [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
 
 
     private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
@@ -119,7 +90,7 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
             .AddIf("mdc-icon-button--on", () => Value)
@@ -133,6 +104,24 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     private void ToggleOnClick()
     {
         ComponentValue = !ComponentValue;
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
     }
 
 

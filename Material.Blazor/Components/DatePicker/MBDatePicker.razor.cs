@@ -116,50 +116,20 @@ public partial class MBDatePicker : InputComponent<DateTime>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
-
-
-    private bool badgeExited;
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
     [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
     #endregion
 
     #region DensityInfo
@@ -260,6 +230,26 @@ public partial class MBDatePicker : InputComponent<DateTime>
     #endregion
 
     #region SetComponentValueAsync & NotifyValueChanged
+
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
+    }
+
 
     /// <summary>
     /// Callback for value the value setter.

@@ -1,5 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -16,26 +17,12 @@ public partial class MBCheckbox : InputComponent<bool>
     [Parameter] public MBDensity? Density { get; set; }
 
 
-    private bool _isIndetermimate;
     /// <summary>
     /// Set to True if the checkbox is indeterminate.
     /// </summary>
     [Parameter]
-    public bool IsIndeterminate
-    {
-        get => _isIndetermimate;
-        set
-        {
-            if (value != _isIndetermimate)
-            {
-                _isIndetermimate = value;
-                if (HasInstantiated)
-                {
-                    _ = UpdateIndeterminateStateAsync();
-                }
-            }
-        }
-    }
+    public bool IsIndeterminate { get; set; }
+    private bool _cachedIsIndeterminate;
 
 
     /// <summary>
@@ -51,10 +38,6 @@ public partial class MBCheckbox : InputComponent<bool>
 
     private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
 
-    private Task UpdateIndeterminateStateAsync()
-    {
-        return InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setIndeterminate", ElementReference, IsIndeterminate);
-    }
 
     /// <summary>
     /// Gets or sets a callback that updates the bound value.
@@ -74,50 +57,20 @@ public partial class MBCheckbox : InputComponent<bool>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
-    private string badgeValue;
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue
-    {
-        get => badgeValue;
-        set
-        {
-            if (value != badgeValue)
-            {
-                badgeValue = value;
-
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
-
-
-    private bool badgeExited;
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
     [Parameter]
-    public bool BadgeExited
-    {
-        get => badgeExited;
-        set
-        {
-            if (value != badgeExited)
-            {
-                badgeExited = value;
+    public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
-                if (Badge != null)
-                {
-                    Badge.SetValueAndExited(badgeValue, badgeExited);
-                }
-            }
-        }
-    }
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter]
+    public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
 
 
     private bool CheckedValue
@@ -125,8 +78,7 @@ public partial class MBCheckbox : InputComponent<bool>
         get => ComponentValue;
         set
         {
-            _isIndetermimate = false;
-            IsIndeterminateChanged.InvokeAsync(false);
+            _ = IsIndeterminateChanged.InvokeAsync(false);
             ComponentValue = value;
         }
     }
@@ -143,10 +95,33 @@ public partial class MBCheckbox : InputComponent<bool>
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-checkbox--selected", () => Value)
             .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
+    }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
+
+        if (_cachedIsIndeterminate != IsIndeterminate)
+        {
+            _cachedIsIndeterminate = IsIndeterminate;
+            EnqueueJSInteropAction(UpdateIndeterminateStateAsync);
+        }
     }
 
 
@@ -168,5 +143,11 @@ public partial class MBCheckbox : InputComponent<bool>
     internal override Task InstantiateMcwComponent()
     {
         return InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
+    }
+
+
+    private Task UpdateIndeterminateStateAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setIndeterminate", ElementReference, IsIndeterminate);
     }
 }
