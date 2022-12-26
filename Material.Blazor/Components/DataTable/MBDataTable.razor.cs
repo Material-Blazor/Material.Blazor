@@ -54,27 +54,12 @@ public partial class MBDataTable<TItem> : ComponentFoundation
     [Parameter] public bool StickyHeader { get; set; }
 
 
-    private bool showProgress;
     /// <summary>
     /// Determines whether the data table has a progress bar.
     /// </summary>
     [Parameter]
-    public bool ShowProgress
-    {
-        get => showProgress;
-        set
-        {
-            if (value != showProgress)
-            {
-                showProgress = value;
-
-                if (HasProgressBar && HasInstantiated)
-                {
-                    InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
-                }
-            }
-        }
-    }
+    public bool ShowProgress { get; set; }
+    private bool _cachedShowProgress;
 
 
     /// <summary>
@@ -103,6 +88,16 @@ public partial class MBDataTable<TItem> : ComponentFoundation
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        if (_cachedShowProgress != ShowProgress)
+        {
+            _cachedShowProgress = ShowProgress;
+
+            if (HasProgressBar && HasInstantiated)
+            {
+                EnqueueJSInteropAction(() => InvokeJsVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, ShowProgress));
+            }
+        }
 
         KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
     }
