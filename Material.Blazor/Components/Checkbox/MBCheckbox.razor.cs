@@ -149,7 +149,6 @@ public partial class MBCheckbox : InputComponent<bool>
             .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
     }
 
 
@@ -166,7 +165,7 @@ public partial class MBCheckbox : InputComponent<bool>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setDisabled", ElementReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setDisabled", ElementReference, AppliedDisabled);
 
 
     /// <inheritdoc/>

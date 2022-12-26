@@ -131,7 +131,6 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
         }
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
 
         ObjectReference = DotNetObjectReference.Create(this);
     }
@@ -190,7 +189,7 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled);
 
 
     /// <inheritdoc/>

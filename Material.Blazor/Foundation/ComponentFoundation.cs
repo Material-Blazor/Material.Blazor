@@ -60,13 +60,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
 
     /// <summary>
-    /// Derived components can use this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
-    /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
-    /// </summary>
-    private protected event Action OnDisabledSet;
-
-
-    /// <summary>
     /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="ComponentBase.OnInitialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
     /// </summary>
     private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
@@ -121,7 +114,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
                 if (HasInstantiated)
                 {
-                    OnDisabledSet?.Invoke();
+                    EnqueueJSInteropAction(OnDisabledSetAsync);
                 }
             }
         }
@@ -355,36 +348,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         }
     }
 
-
-    /// <summary>
-    /// Enqueues a javascript action (meaning instantiation, component value set or disabled value set)
-    /// and then flushes the queue one by one. This process is required to ensure that rapidly applied 
-    /// values don't clash with one another, but are applied sequentially in order.
-    /// </summary>
-    /// <param name="action"></param>
-    private protected void EnqueueJSInteropAction(Func<Task> action)
-    {
-        _jsActionQueue.Enqueue(action);
-        _ = DequeueActions();
-
-        async Task DequeueActions()
-        {
-            await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
-
-            try
-            {
-                while (_jsActionQueue.TryDequeue(out var dequeuedAction))
-                {
-                    await dequeuedAction().ConfigureAwait(false);
-                }
-            }
-            finally
-            {
-                _jsActionQueueSemaphore.Release();
-            }
-        }
-    }
-
     #endregion
 
     #region OnInitialized
@@ -433,4 +396,49 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
     #endregion
 
+    #region OnDisabledSetAsync
+
+    /// <summary>
+    /// Derived components can override this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
+    /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual Task OnDisabledSetAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
+    #region EnqueueJSInteropAction
+
+    /// <summary>
+    /// Enqueues a javascript action (meaning instantiation, component value set or disabled value set)
+    /// and then flushes the queue one by one. This process is required to ensure that rapidly applied 
+    /// values don't clash with one another, but are applied sequentially in order.
+    /// </summary>
+    /// <param name="action"></param>
+    private protected void EnqueueJSInteropAction(Func<Task> action)
+    {
+        _jsActionQueue.Enqueue(action);
+        _ = DequeueActions();
+
+        async Task DequeueActions()
+        {
+            await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
+
+            try
+            {
+                while (_jsActionQueue.TryDequeue(out var dequeuedAction))
+                {
+                    await dequeuedAction().ConfigureAwait(false);
+                }
+            }
+            finally
+            {
+                _jsActionQueueSemaphore.Release();
+            }
+        }
+    }
+    #endregion
 }

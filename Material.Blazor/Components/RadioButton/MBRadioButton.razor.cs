@@ -67,7 +67,6 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
         ForceShouldRenderToTrue = true;
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
     }
 
 
@@ -101,7 +100,7 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
 
 
     private void OnInternalItemClick()

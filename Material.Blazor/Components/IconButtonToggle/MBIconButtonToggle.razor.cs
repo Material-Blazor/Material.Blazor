@@ -126,7 +126,6 @@ public partial class MBIconButtonToggle : InputComponent<bool>
             .AddIf("mdc-button--touch", () => AppliedTouchTarget);
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
     }
 
 
@@ -152,7 +151,11 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(AllowNextShouldRender);
+    private protected override Task OnDisabledSetAsync()
+    {
+        AllowNextShouldRender();
+        return Task.CompletedTask;
+    }
 
 
     /// <inheritdoc/>

@@ -117,7 +117,6 @@ public partial class MBTextArea : InputComponent<string>
         FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
 
         if (EditContext != null)
         {
@@ -144,7 +143,10 @@ public partial class MBTextArea : InputComponent<string>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled);
+    }
 
 
     /// <inheritdoc/>

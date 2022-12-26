@@ -28,7 +28,6 @@ public partial class MBSwitch : InputComponent<bool>
             .AddIf("mdc-switch--selected", () => ComponentValue);
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
     }
 
 
@@ -54,7 +53,10 @@ public partial class MBSwitch : InputComponent<bool>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setDisabled", ElementReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setDisabled", ElementReference, AppliedDisabled);
+    }
 
 
     /// <inheritdoc/>

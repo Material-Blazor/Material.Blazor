@@ -192,7 +192,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled);
 
     #endregion
 
@@ -222,8 +222,6 @@ public partial class MBDatePicker : InputComponent<DateTime>
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
         SetComponentValue += OnValueSetCallback;
-
-        OnDisabledSet += OnDisabledSetCallback;
 
         // SuppressDefaultDate is only used here and not in GetSelectionAsync
         // therefore a change will not be detected (and makes little sense

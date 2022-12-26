@@ -46,7 +46,6 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
         ItemsArray = Items.ToArray();
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
 
         ObjectReference = DotNetObjectReference.Create(this);
     }
@@ -105,7 +104,7 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setDisabled", ChipsReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.setDisabled", ChipsReference, AppliedDisabled);
 
 
     /// <inheritdoc/>

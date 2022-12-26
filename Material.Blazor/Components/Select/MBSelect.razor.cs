@@ -197,7 +197,6 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
         SetComponentValue += OnValueSetCallback;
-        OnDisabledSet += OnDisabledSetCallback;
 
         ObjectReference = DotNetObjectReference.Create(this);
     }
@@ -254,7 +253,7 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled);
 
 
     /// <inheritdoc/>
