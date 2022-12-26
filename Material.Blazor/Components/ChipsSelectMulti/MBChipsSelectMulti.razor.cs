@@ -114,9 +114,9 @@ public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBI
     /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
     /// </summary>
     /// <param name="value"></param>
-    internal void SetSingleSelectValue(TItem value)
+    internal Task SetSingleSelectValue(TItem value)
     {
         Value = new TItem[] { value };
-        EnqueueJSInteropAction(SetComponentValueAsync);
+        return SetComponentValueAsync();
     }
 }

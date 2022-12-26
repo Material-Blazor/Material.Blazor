@@ -266,7 +266,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private protected override async Task SetComponentValueAsync()
+    protected private override async Task SetComponentValueAsync()
     {
         Panel.SetParameters(Value);
 

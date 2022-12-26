@@ -86,21 +86,14 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
 
 
     /// <inheritdoc/>
-    private protected override Task SetComponentValueAsync()
+    protected private override Task SetComponentValueAsync()
     {
-        if (Label == "Dog repeated")
-        {
-            _ = 1;
-        }
         return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue));
     }
 
 
     /// <inheritdoc/>
-    private protected override Task OnDisabledSetAsync()
-    {
-        return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
-    }
+    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
 
 
     private void OnInternalItemClick()

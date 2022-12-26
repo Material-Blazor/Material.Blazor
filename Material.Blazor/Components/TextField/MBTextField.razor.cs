@@ -219,7 +219,7 @@ public partial class MBTextField : InputComponent<string>
 
         SetDateErrorMessage();
 
-        _ = ConditionalCssClasses
+        ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
             .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
@@ -290,7 +290,7 @@ public partial class MBTextField : InputComponent<string>
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
     }
 
 

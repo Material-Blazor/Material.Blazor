@@ -27,16 +27,15 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     [Parameter] public RenderFragment<TItem> Content { get; set; }
 
 
-    private int _rolloverInterval = 3000;
     /// <summary>
-    /// The interval in milliseconds to roll over from one panel of content to the next. Clamped between 1,000 and 60,000. Defaults toi 3,000.
+    /// The interval in milliseconds to roll over from one panel of content to the next. Clamped between 1,000 and 60,000. Defaults to 3,000.
     /// </summary>
-    [Parameter] public int RolloverInterval { get => _rolloverInterval; set => _rolloverInterval = Math.Clamp(value, 1000, 60000); }
+    [Parameter] public int RolloverInterval { get; set; } = 3000;
 
 
     private bool Play { get; set; }
     private string PlayIcon => Play ? "stop" : "play_arrow";
-    private CancellationTokenSource tokenSource { get; set; } = new();
+    private CancellationTokenSource TokenSource { get; set; } = new();
     private InternalCarouselPanel<TItem> ICP { get; set; }
     private int ItemIndex { get; set; } = 0;
     private List<MBSelectElement<int>> RadioElements { get; set; }
@@ -65,6 +64,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        RolloverInterval = Math.Clamp(RolloverInterval, 1000, 60000);
 
         RadioElements = new();
 
@@ -96,9 +97,9 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         }
         else
         {
-            tokenSource.Cancel();
-            tokenSource.Dispose();
-            tokenSource = new();
+            TokenSource.Cancel();
+            TokenSource.Dispose();
+            TokenSource = new();
         }
 
         _ = InvokeAsync(StateHasChanged);
@@ -123,7 +124,7 @@ public partial class MBCarousel<TItem> : InputComponent<int>
 
     private void RunPanels()
     {
-        var ct = tokenSource.Token;
+        var ct = TokenSource.Token;
 
         _ = Task.Run(async () =>
         {
@@ -144,6 +145,6 @@ public partial class MBCarousel<TItem> : InputComponent<int>
                     await InvokeAsync(StateHasChanged);
                 }
             }
-        }, tokenSource.Token);
+        }, TokenSource.Token);
     }
 }

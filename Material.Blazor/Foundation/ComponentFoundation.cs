@@ -435,6 +435,8 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 {
                     await dequeuedAction().ConfigureAwait(false);
                 }
+
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
             }
             finally
             {

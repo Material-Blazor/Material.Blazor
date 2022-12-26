@@ -34,7 +34,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
         public bool IgnoreWhitespace { get; set; }
         public string SearchTarget => IgnoreWhitespace ? SearchTargetRegex().Replace(Item, string.Empty) : Item;
 
-        
+
         [GeneratedRegex("\\s+")]
         private static partial Regex SearchTargetRegex();
     }
@@ -320,7 +320,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
         if (newSelectItems != null)
         {
-            selectItems = newSelectItems;
+            selectItems =  newSelectItems;
             newSelectItems = null;
         }
 

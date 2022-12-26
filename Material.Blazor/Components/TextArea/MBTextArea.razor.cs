@@ -106,7 +106,7 @@ public partial class MBTextArea : InputComponent<string>
     {
         await base.OnInitializedAsync();
 
-        _ = ConditionalCssClasses
+        ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
             .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
@@ -145,9 +145,8 @@ public partial class MBTextArea : InputComponent<string>
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
     }
-
 
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
     {
