@@ -232,8 +232,6 @@ public partial class MBTextField : InputComponent<string>
 
         FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
-        SetComponentValue += OnValueSetCallback;
-
         if (EditContext != null)
         {
             EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
@@ -275,19 +273,14 @@ public partial class MBTextField : InputComponent<string>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, ComponentValue);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, ComponentValue);
+    }
 
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
         return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled);
@@ -295,7 +288,10 @@ public partial class MBTextField : InputComponent<string>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+    }
 
 
     /// <summary>

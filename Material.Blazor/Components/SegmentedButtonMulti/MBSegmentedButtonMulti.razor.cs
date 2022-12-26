@@ -130,8 +130,6 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
             }
         }
 
-        SetComponentValue += OnValueSetCallback;
-
         ObjectReference = DotNetObjectReference.Create(this);
     }
 
@@ -176,24 +174,25 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray());
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray());
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.init", SegmentedButtonReference, IsSingleSelect, ObjectReference);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.init", SegmentedButtonReference, IsSingleSelect, ObjectReference);
+    }
 
 
     /// <summary>
@@ -203,6 +202,6 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
     internal Task SetSingleSelectValue(TItem value)
     {
         Value = new TItem[] { value };
-        return OnValueSetCallback();
+        return SetComponentValueAsync();
     }
 }

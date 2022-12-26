@@ -83,7 +83,7 @@ public partial class MBFloatingActionButton : ComponentFoundation
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-fab--mini mdc-fab--touch", () => Type == MBFloatingActionButtonType.Mini)
             .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.ExtendedNoIcon || Type == MBFloatingActionButtonType.ExtendedLeadingIcon || Type == MBFloatingActionButtonType.ExtendedTrailingIcon)
             .AddIf("mdc-fab--exited", () => Exited);
@@ -91,5 +91,8 @@ public partial class MBFloatingActionButton : ComponentFoundation
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
+    }
 }

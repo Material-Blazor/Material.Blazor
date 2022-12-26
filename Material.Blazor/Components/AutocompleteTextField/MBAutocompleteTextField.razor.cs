@@ -362,5 +362,8 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+    }
 }

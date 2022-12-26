@@ -147,27 +147,26 @@ public partial class MBCheckbox : InputComponent<bool>
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-checkbox--selected", () => Value)
             .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setChecked", ElementReference, Value);
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setDisabled", ElementReference, AppliedDisabled);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setChecked", ElementReference, Value);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.setDisabled", ElementReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
+    }
 }

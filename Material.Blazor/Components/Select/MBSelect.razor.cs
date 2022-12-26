@@ -196,8 +196,6 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
-        SetComponentValue += OnValueSetCallback;
-
         ObjectReference = DotNetObjectReference.Create(this);
     }
 
@@ -240,22 +238,23 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value));
-
-
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled);
+    /// <<inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value));
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled);
+    }
+
+
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+    }
 }

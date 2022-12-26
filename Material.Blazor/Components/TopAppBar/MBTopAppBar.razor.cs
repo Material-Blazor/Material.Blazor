@@ -68,5 +68,8 @@ public partial class MBTopAppBar : ComponentFoundation
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTopAppBar.init", HeaderElem, ScrollTarget);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBTopAppBar.init", HeaderElem, ScrollTarget);
+    }
 }

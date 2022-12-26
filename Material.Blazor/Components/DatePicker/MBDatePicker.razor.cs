@@ -181,18 +181,20 @@ public partial class MBDatePicker : InputComponent<DateTime>
     #region InstantiateMcwComponent
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
+    }
 
     #endregion
 
     #region OnDisabledSetCallback
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled);
+    /// <inheritdoc/>
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled);
+    }
 
     #endregion
 
@@ -220,8 +222,6 @@ public partial class MBDatePicker : InputComponent<DateTime>
             .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)
             .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
-
-        SetComponentValue += OnValueSetCallback;
 
         // SuppressDefaultDate is only used here and not in GetSelectionAsync
         // therefore a change will not be detected (and makes little sense

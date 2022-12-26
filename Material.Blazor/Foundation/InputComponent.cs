@@ -80,16 +80,6 @@ public abstract class InputComponent<T> : ComponentFoundation
 
 
     /// <summary>
-    /// Derived components can use this to get a callback from SetParameters(Async) when the consumer changes
-    /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
-    /// the data change visually. An example is a select where the relevant list item needs to be
-    /// automatically clicked to get Material Theme to update the value shown in the
-    /// <c>&lt;input&gt;</c> HTML tag.
-    /// </summary>
-    protected event Func<Task> SetComponentValue;
-
-
-    /// <summary>
     /// Gets or sets a callback that updates the bound value.
     /// </summary>
     [Parameter] public EventCallback<T> ValueChanged { get; set; }
@@ -311,10 +301,7 @@ public abstract class InputComponent<T> : ComponentFoundation
                 _componentValue = Value;
                 if (HasInstantiated)
                 {
-                    if (SetComponentValue is not null)
-                    {
-                        EnqueueJSInteropAction(() => SetComponentValue?.Invoke());
-                    }
+                    EnqueueJSInteropAction(SetComponentValueAsync);
                 }
             }
         }
@@ -386,6 +373,22 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
+    #region SetComponentValueAsync
+
+    /// <summary>
+    /// Derived components can override this to get a callback from SetParameters(Async) when the consumer changes
+    /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
+    /// the data change visually. An example is a select where the relevant list item needs to be
+    /// automatically clicked to get Material Theme to update the value shown in the
+    /// <c>&lt;input&gt;</c> HTML tag.
+    /// </summary>
+    private protected virtual Task SetComponentValueAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
     #region TryParseValueFromString
 
     /// <summary>
@@ -397,7 +400,9 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// <param name="validationErrorMessage">If the value could not be parsed, provides a validation error message.</param>
     /// <returns>True if the value could be parsed; otherwise false.</returns>
     protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
-        => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
+    {
+        throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
+    }
 
     #endregion
 }

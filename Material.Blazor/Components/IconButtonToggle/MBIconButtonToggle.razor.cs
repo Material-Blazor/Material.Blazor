@@ -124,8 +124,6 @@ public partial class MBIconButtonToggle : InputComponent<bool>
             .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
             .AddIf("mdc-icon-button--on", () => Value)
             .AddIf("mdc-button--touch", () => AppliedTouchTarget);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
@@ -138,19 +136,14 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.setOn", ElementReference, Value);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.setOn", ElementReference, Value);
+    }
 
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
         AllowNextShouldRender();
@@ -159,5 +152,8 @@ public partial class MBIconButtonToggle : InputComponent<bool>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.init", ElementReference);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.init", ElementReference);
+    }
 }

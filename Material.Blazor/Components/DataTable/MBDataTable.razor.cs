@@ -109,5 +109,8 @@ public partial class MBDataTable<TItem> : ComponentFoundation
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar, ShowProgress);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar, ShowProgress);
+    }
 }

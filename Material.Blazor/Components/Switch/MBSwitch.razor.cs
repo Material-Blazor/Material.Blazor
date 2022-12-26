@@ -26,8 +26,6 @@ public partial class MBSwitch : InputComponent<bool>
         ConditionalCssClasses
             .AddIf("mdc-switch--unselected", () => !ComponentValue)
             .AddIf("mdc-switch--selected", () => ComponentValue);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
@@ -40,19 +38,14 @@ public partial class MBSwitch : InputComponent<bool>
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setSelected", ElementReference, Value);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setSelected", ElementReference, Value);
+    }
 
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
         return InvokeJsVoidAsync("MaterialBlazor.MBSwitch.setDisabled", ElementReference, AppliedDisabled);
@@ -60,5 +53,8 @@ public partial class MBSwitch : InputComponent<bool>
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSwitch.init", ElementReference, ComponentValue);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBSwitch.init", ElementReference, ComponentValue);
+    }
 }

@@ -38,7 +38,7 @@ public partial class MBLinearProgress : InputComponent<double>
                 _bufferValue = value;
                 if (HasInstantiated)
                 {
-                    OnValueSetCallback();
+                    EnqueueJSInteropAction(SetComponentValueAsync);
                 }
             }
         }
@@ -65,20 +65,21 @@ public partial class MBLinearProgress : InputComponent<double>
         ConditionalCssClasses
             .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
             .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MBLinearProgressType.Closed);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue);
+    }
+
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+    }
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

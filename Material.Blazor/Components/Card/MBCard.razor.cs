@@ -87,11 +87,14 @@ public partial class MBCard : ComponentFoundation
     {
         await base.OnInitializedAsync();
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == MBCardStyle.Outlined);
     }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => PrimaryAction != null ? InvokeJsVoidAsync("MaterialBlazor.MBCard.init", PrimaryActionReference) : Task.CompletedTask;
+    internal override Task InstantiateMcwComponent()
+    {
+        return PrimaryAction != null ? InvokeJsVoidAsync("MaterialBlazor.MBCard.init", PrimaryActionReference) : Task.CompletedTask;
+    }
 }

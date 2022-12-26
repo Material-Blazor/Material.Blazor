@@ -246,14 +246,16 @@ public partial class MBList<TItem> : ComponentFoundation
     }
 
 
-    /// <summary>
-    /// Callback for value the Disabled value setter. MBList is a special case where Material.Blazor re-renders the component when Disabled is set.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple));
+    /// <inheritdoc/>
+    private protected override Task OnDisabledSetAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple);
+    }
 }

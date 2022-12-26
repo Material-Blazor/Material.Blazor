@@ -86,19 +86,19 @@ public partial class MBCircularProgress : InputComponent<double>
         ConditionalCssClasses
             .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MBCircularProgressType.Indeterminate)
             .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MBCircularProgressType.Closed);
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
-    /// <summary>
-    /// Callback for value the value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected Task OnValueSetCallback() => InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.setProgress", ElementReference, Value);
+    /// <inheritdoc/>
+    private protected override Task SetComponentValueAsync()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.setProgress", ElementReference, Value);
+    }
 
 
     /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.init", ElementReference, Value);
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.init", ElementReference, Value);
+    }
 }

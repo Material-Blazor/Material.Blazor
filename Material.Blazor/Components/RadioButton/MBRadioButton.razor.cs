@@ -65,8 +65,6 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
         IsChecked = ComponentValue != null && ComponentValue.Equals(TargetCheckedValue);
 
         ForceShouldRenderToTrue = true;
-
-        SetComponentValue += OnValueSetCallback;
     }
 
 
@@ -95,11 +93,7 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     protected async Task OnValueSetCallback() => await InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
 
 
-    /// <summary>
-    /// Callback for value the Disabled value setter.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled);
 
 
@@ -109,5 +103,9 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     }
 
 
-    internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
+    /// <inheritdoc/>
+    internal override Task InstantiateMcwComponent()
+    {
+        return InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
+    }
 }
