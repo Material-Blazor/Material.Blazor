@@ -293,39 +293,30 @@ public abstract class InputComponent<T> : ComponentFoundation
     {
         await base.OnParametersSetAsync();
 
-        await ValueSetSemaphore.WaitAsync().ConfigureAwait(false);
+        var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
+        LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
-        try
+        if (!valuesEqual)
         {
-            var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
-            LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+            LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+            _cachedValue = Value;
+
+            valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
+            LoggingService.LogTrace($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
 
             if (!valuesEqual)
             {
-                LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
-                _cachedValue = Value;
+                LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
 
-                valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
-                LoggingService.LogTrace($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
-
-                if (!valuesEqual)
+                _componentValue = Value;
+                if (HasInstantiated)
                 {
-                    LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
-
-                    _componentValue = Value;
-                    if (HasInstantiated)
+                    if (SetComponentValue is not null)
                     {
-                        if (SetComponentValue is not null)
-                        {
-                            await SetComponentValue?.Invoke();
-                        }
+                        EnqueueJSInteropAction(() => SetComponentValue?.Invoke());
                     }
                 }
             }
-        }
-        finally
-        {
-            _ = ValueSetSemaphore.Release();
         }
     }
 

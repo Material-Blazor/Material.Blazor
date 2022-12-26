@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -73,9 +73,15 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
 
     /// <summary>
-    /// Ensures that setting values and instantiation cannot have timing clashes.
+    /// The concurrent queue for javascript interop actions.
     /// </summary>
-    private protected readonly SemaphoreSlim ValueSetSemaphore = new(1, 1);
+    private readonly ConcurrentQueue<Func<Task>> _jsActionQueue = new();
+
+
+    /// <summary>
+    /// Semaphore prevents multiple dequeue actions from running concurrently.
+    /// </summary>
+    private readonly SemaphoreSlim _jsActionQueueSemaphore = new(1,1);
 
 
     /// <summary>
@@ -336,16 +342,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 }
                 else
                 {
-                    await ValueSetSemaphore.WaitAsync().ConfigureAwait(false);
-
-                    try
-                    {
-                        await InstantiateMcwComponent().ConfigureAwait(false);
-                    }
-                    finally
-                    {
-                        _ = ValueSetSemaphore.Release();
-                    }
+                    EnqueueJSInteropAction(InstantiateMcwComponent);
                 }
                 
                 HasInstantiated = true;
@@ -354,6 +351,36 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             catch (Exception e)
             {
                 LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Enqueues a javascript action (meaning instantiation, component value set or disabled value set)
+    /// and then flushes the queue one by one. This process is required to ensure that rapidly applied 
+    /// values don't clash with one another, but are applied sequentially in order.
+    /// </summary>
+    /// <param name="action"></param>
+    private protected void EnqueueJSInteropAction(Func<Task> action)
+    {
+        _jsActionQueue.Enqueue(action);
+        _ = DequeueActions();
+
+        async Task DequeueActions()
+        {
+            await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
+
+            try
+            {
+                while (_jsActionQueue.TryDequeue(out var dequeuedAction))
+                {
+                    await dequeuedAction().ConfigureAwait(false);
+                }
+            }
+            finally
+            {
+                _jsActionQueueSemaphore.Release();
             }
         }
     }
