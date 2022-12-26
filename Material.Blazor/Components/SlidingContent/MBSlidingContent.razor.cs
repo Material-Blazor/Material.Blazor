@@ -18,8 +18,7 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
     /// <summary>
     /// The index of the currently displayed item.
     /// </summary>
-    [Parameter]
-    public int ItemIndex { get; set; }
+    [Parameter] public int ItemIndex { get; set; }
     private int _cachedItemIndex;
 
 

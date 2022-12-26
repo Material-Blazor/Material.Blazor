@@ -57,8 +57,7 @@ public partial class MBDataTable<TItem> : ComponentFoundation
     /// <summary>
     /// Determines whether the data table has a progress bar.
     /// </summary>
-    [Parameter]
-    public bool ShowProgress { get; set; }
+    [Parameter] public bool ShowProgress { get; set; }
     private bool _cachedShowProgress;
 
 

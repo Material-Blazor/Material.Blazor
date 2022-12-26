@@ -26,8 +26,7 @@ public partial class MBLinearProgress : InputComponent<double>
     /// <summary>
     /// Sets the buffer value (no buffer if not set).
     /// </summary>
-    [Parameter]
-    public double? BufferValue { get; set; }
+    [Parameter] public double? BufferValue { get; set; }
     private double? _cachedBufferValue = null;
 
 

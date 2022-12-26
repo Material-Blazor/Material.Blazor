@@ -24,8 +24,7 @@ public partial class MBPaginator : ComponentFoundation
     /// <summary>
     /// The total number if items being paged.
     /// </summary>
-    [Parameter]
-    public int ItemCount { get; set; }
+    [Parameter] public int ItemCount { get; set; }
     private int _cachedItemCount;
 
 
