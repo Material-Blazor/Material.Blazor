@@ -1,8 +1,14 @@
 ﻿@namespace Material.Blazor
-
+@*
 @inherits InputComponent<string>
+*@
 
+<md-outlined-text-field @ref="ElementReference"
+               label="@DisplayLabel"
+               .value="@ComponentValue">
+</md-outlined-text-field>
 
+@*
 <label @ref="@ElementReference"
        class="mdc-text-field @ActiveConditionalClasses @(@class)"
        style="@style"
@@ -104,3 +110,4 @@
         </div>
     </div>
 }
+*@
