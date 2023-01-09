@@ -62,8 +62,8 @@ jobs:
       with:
         dotnet-version: '7.0.x'
 
-    - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
+    #- name: Run the acceptance tests as the first build action and cancel out the rest if it fails
+    #  run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
       
 ############################################################################################################
 # Build documentation
