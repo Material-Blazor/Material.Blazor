@@ -4,7 +4,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="bunit" Version="1.13.5" />
+    <PackageReference Include="bunit" Version="1.14.4" />
     <PackageReference Include="bunit.core" Version="1.13.5" />
     <PackageReference Include="bunit.web" Version="1.13.5" />
     <PackageReference Include="Moq" Version="4.18.3" />
