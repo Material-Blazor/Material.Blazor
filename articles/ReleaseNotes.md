@@ -28,6 +28,24 @@ results are paged on a menu surface rather than being hidden in favour of a "too
 
 <br />
 
+#### [4.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.8)
+
+Released 2023-01-18
+
+**Updates**
+- Fixed a bug in `MBSlidingContent`.
+- Update Packages.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.6)
 
 Released 2022-12-23
