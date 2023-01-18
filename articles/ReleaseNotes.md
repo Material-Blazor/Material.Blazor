@@ -4,7 +4,7 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [4.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.8)
+#### [4.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.9)
 
 Released 2023-01-18
 
@@ -19,6 +19,12 @@ Released 2023-01-18
 **Deprecated Components**
 
 **Known issues**
+
+<br />
+
+#### [4.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.8)
+
+Released 2023-01-18 - WITHDRAWN
 
 <br />
 
