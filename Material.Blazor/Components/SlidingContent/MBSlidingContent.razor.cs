@@ -114,6 +114,7 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
             {
                 await ItemIndexChanged.InvokeAsync(index);
                 _cachedItemIndex = index;
+                CurrentItem = Items.ElementAt(index);
                 ItemIndex = index;
             }
         }
