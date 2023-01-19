@@ -94,19 +94,19 @@
                         Prefix and Suffix text applied within fields.
                     </h3>
 
-                    <MBTextField Label="Prefix"
+                    <MBFilledTextField Label="Prefix"
                                  Prefix="$"
                                  style="margin: 6px; "
                                  TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField Label="Suffix"
+                    <MBFilledTextField Label="Suffix"
                                  Suffix="%"
                                  style="margin: 6px; "
                                  TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField Label="Prefix"
+                    <MBOutLinedTextField Label="Prefix"
                                  Prefix="$"
                                  style="margin: 6px; "
                                  TextInputStyle="MBTextInputStyle.Outlined" />
-                    <MBTextField Label="Suffix"
+                    <MBOutLinedTextField Label="Suffix"
                                  Suffix="%"
                                  style="margin: 6px; "
                                  TextInputStyle="MBTextInputStyle.Outlined" />
@@ -202,10 +202,10 @@
                         Shows two way binding for text fields.
                     </h3>
 
-                    <MBTextField @bind-Value="@TwoWayBinding"
+                    <MBOutLinedTextField @bind-Value="@TwoWayBinding"
                                  Label="First Linked Field"
                                  style="margin: 6px; " />
-                    <MBTextField @bind-Value="@TwoWayBinding"
+                    <MBOutLinedTextField @bind-Value="@TwoWayBinding"
                                  Label="Second Linked Field"
                                  style="margin: 6px; " />
                 </Primary>
@@ -316,7 +316,7 @@
 
 
 @code {
-    private string DefaultStyle { get; set; }
+    private string DefaultStyle { get; set; } = "Initial Text";
 
     private string FilledStyle { get; set; }
 

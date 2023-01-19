@@ -212,6 +212,8 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 LabelSuffix = " *";
             }
         }
+
+        ForceShouldRenderToTrue = true;
     }
 
 
