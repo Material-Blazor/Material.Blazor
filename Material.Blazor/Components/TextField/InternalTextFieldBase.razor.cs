@@ -1,5 +1,4 @@
-﻿using Material.Blazor.Internal;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using System;
@@ -11,7 +10,7 @@ namespace Material.Blazor.Internal;
 /// <summary>
 /// Base component for Filled and Outlined Text Fields.
 /// </summary>
-public abstract class InternalTextFieldBase : InputComponent<string>
+public abstract class InternalTextFieldBase : InputComponentMD3<string>
 {
     [CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
 
@@ -190,18 +189,18 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
         SetDateErrorMessage();
 
-        _ = ConditionalCssClasses
-            .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-            .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-            .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
-            .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
-            .AddIf("mdc-text-field--no-label", () => !ShowLabel)
-            .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
-            .AddIf("mdc-text-field--with-leading-icon", () => LeadingIcon is not null)
-            .AddIf("mdc-text-field--with-trailing-icon", () => TrailingIcon is not null)
-            .AddIf("mb-date-field", () => DateTimeField is not null);
+        //_ = ConditionalCssClasses
+        //    .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+        //    .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
+        //    .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
+        //    .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
+        //    .AddIf("mdc-text-field--no-label", () => !ShowLabel)
+        //    .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
+        //    .AddIf("mdc-text-field--with-leading-icon", () => LeadingIcon is not null)
+        //    .AddIf("mdc-text-field--with-trailing-icon", () => TrailingIcon is not null)
+        //    .AddIf("mb-date-field", () => DateTimeField is not null);
 
-        FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
+        //FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
         if (EditContext != null)
         {
@@ -212,8 +211,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 LabelSuffix = " *";
             }
         }
-
-        ForceShouldRenderToTrue = true;
     }
 
 
@@ -229,7 +226,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
             if (Badge is not null)
             {
-                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+                //EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
             }
         }
     }
@@ -264,7 +261,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             // Add leading and trailing icons here, once we work out how.
 
             builder.AddAttribute(8, "value", BindConverter.FormatValue(Value));
-            builder.AddAttribute(9, "onchange", EventCallback.Factory.CreateBinder(this, __value => ValueChanged.InvokeAsync(__value), ComponentValue));
+            builder.AddAttribute(9, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
             builder.SetUpdatesAttributeName("value");
         }
         builder.CloseElement();
@@ -308,37 +305,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     }
 
 
-    /// <inheritdoc/>
-    private protected override Task SetComponentValueAsync()
-    {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, ComponentValue);
-    }
-
-
-    /// <inheritdoc/>
-    private protected override Task OnDisabledSetAsync()
-    {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled);
-    }
-
-
-    /// <inheritdoc/>
-    internal override Task InstantiateMcwComponent()
-    {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
-    }
-
-
-    /// <summary>
-    /// Sets the type of the text field - used by <see cref="MBNumericDecimalField"/>.
-    /// </summary>
-    /// <returns></returns>
-    internal async Task SetType(string value, string type, bool formNoValidate)
-    {
-        await InvokeJsVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate).ConfigureAwait(false);
-    }
-
-
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
     {
         if (ValidationMessageFor != null)
@@ -346,7 +312,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
             var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-            _ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            //_ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
 }
