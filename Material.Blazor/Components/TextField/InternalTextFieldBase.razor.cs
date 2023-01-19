@@ -263,8 +263,8 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
             // Add leading and trailing icons here, once we work out how.
 
-            builder.AddAttribute(8, "value", BindConverter.FormatValue(ComponentValue));
-            builder.AddAttribute(9, "onchange", EventCallback.Factory.CreateBinder(this, __value => ComponentValue = __value, ComponentValue));
+            builder.AddAttribute(8, "value", BindConverter.FormatValue(Value));
+            builder.AddAttribute(9, "onchange", EventCallback.Factory.CreateBinder(this, __value => ValueChanged.InvokeAsync(__value), ComponentValue));
             builder.SetUpdatesAttributeName("value");
         }
         builder.CloseElement();
