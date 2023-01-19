@@ -27,16 +27,16 @@
                         Default and explicit text field styles.
                     </h3>
 
-                    <MBTextField @bind-Value="@DefaultStyle"
+                    <MBFilledTextField @bind-Value="@DefaultStyle"
                                  class="supplied-test-class"
                                  id="supplied-test-id"
                                  Label="Default (Filled) Style"
                                  style="margin: 6px; " />
-                    <MBTextField @bind-Value="@FilledStyle"
+                    <MBFilledTextField @bind-Value="@FilledStyle"
                                  Label="Explicit Filled Style"
                                  style="margin: 6px; "
                                  TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField @bind-Value="@OutlinedStyle"
+                    <MBOutLinedTextField @bind-Value="@OutlinedStyle"
                                  Label="Outlined Style"
                                  style="margin: 6px; "
                                  TextInputStyle="MBTextInputStyle.Outlined" />

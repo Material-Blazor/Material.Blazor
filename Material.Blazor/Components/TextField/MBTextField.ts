@@ -1,4 +1,6 @@
-﻿import { MDCTextField, MDCTextFieldHelperText } from '@material/textfield';
+﻿import '@material/web/textfield/filled-text-field.js';
+import '@material/web/textfield/outlined-text-field.js';
+import { MDCTextField, MDCTextFieldHelperText } from '@material/textfield';
 
 export function init(elem, value, helperTextElem, helperText, helperTextPersistent, performsValidation) {
     if (!elem) {
