@@ -2,7 +2,7 @@
 import '@material/web/textfield/filled-text-field.js';
 import '@material/web/textfield/outlined-text-field.js';
 
-import * as InternalNumericFieldBase from '../Components/NumericField/InternalNumericFieldBase';
+import * as InternalTextFieldBase from '../Components/TextField/InternalTextFieldBase';
 
 import * as MBAutocompletePagedField from '../Components/AutocompletePagedField/MBAutocompletePagedField';
 import * as MBAutocompleteTextField from '../Components/AutocompleteTextField/MBAutocompleteTextField';
@@ -39,7 +39,7 @@ import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
-    InternalNumericFieldBase,
+    InternalTextFieldBase,
     MBAutocompletePagedField,
     MBAutocompleteTextField,
     MBBladeSet,

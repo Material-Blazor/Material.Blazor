@@ -214,6 +214,7 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
+        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         builder.OpenElement(0, WebComponentName());
         {
@@ -222,7 +223,7 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
                 builder.AddMultipleAttributes(1, attributesToSplat);
             }
 
-            builder.AddAttribute(2, "class", @class);
+            builder.AddAttribute(2, "class", cssClass);
             builder.AddAttribute(3, "style", style);
             builder.AddAttribute(4, "id", id);
 
@@ -284,7 +285,7 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
     /// <returns></returns>
     internal async Task SelectFieldContent()
     {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.InternalNumericFieldBase.selectFieldContent", ElementReference).ConfigureAwait(false);
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.InternalTextFieldBase.selectFieldContent", ElementReference).ConfigureAwait(false);
     }
 
 
