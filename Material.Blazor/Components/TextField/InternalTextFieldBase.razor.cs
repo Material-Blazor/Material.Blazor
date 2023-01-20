@@ -64,16 +64,6 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
 
 
     /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
-
-
-    /// <summary>
     /// The leading icon's name. No leading icon shown if not set.
     /// </summary>
     [Parameter] public string? LeadingIcon { get; set; }
@@ -102,13 +92,6 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
     /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
     /// </summary>
     [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
-
-
-    /// <summary>
-    /// The text input style.
-    /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
-    /// </summary>
-    [Parameter] public MBTextInputStyle? TextInputStyle { get; set; }
 
 
     /// <summary>
@@ -142,7 +125,6 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
 
 
     private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-    private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string DisplayLabel => Label + LabelSuffix;
     private string FloatingLabelClass { get; set; }
@@ -170,10 +152,10 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
         {
             var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
 
-            var suffix = AppliedInputStyle == MBTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
-            suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+            //var suffix = AppliedInputStyle == MBTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
+            //suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
 
-            d.CssClassName += suffix;
+            //d.CssClassName += suffix;
 
             return d;
         }
@@ -241,28 +223,46 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
             builder.AddAttribute(2, "style", style);
             builder.AddAttribute(3, "id", id);
 
+            builder.AddAttribute(4, "value", BindConverter.FormatValue(Value));
+            builder.AddAttribute(5, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+            builder.SetUpdatesAttributeName("value");
+
             if (AppliedDisabled)
             {
-                builder.AddAttribute(4, "disabled");
+                builder.AddAttribute(6, "disabled");
             }
 
-            builder.AddAttribute(5, "label", DisplayLabel);
-
+            builder.AddAttribute(7, "label", DisplayLabel);
+            
             if (!string.IsNullOrWhiteSpace(Prefix))
             {
-                builder.AddAttribute(6, "prefixText", Prefix);
+                builder.AddAttribute(8, "prefixText", Prefix);
             }
 
             if (!string.IsNullOrWhiteSpace(Suffix))
             {
-                builder.AddAttribute(7, "suffixText", Suffix);
+                builder.AddAttribute(9, "suffixText", Suffix);
             }
 
-            // Add leading and trailing icons here, once we work out how.
+            if (!string.IsNullOrWhiteSpace(LeadingIcon))
+            {
+                builder.OpenElement(10, "md-icon");
+                {
+                    builder.AddAttribute(11, "slot", "leadingicon");
+                    builder.AddContent(12, LeadingIcon);
+                }
+                builder.CloseElement();
+            }
 
-            builder.AddAttribute(8, "value", BindConverter.FormatValue(Value));
-            builder.AddAttribute(9, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
-            builder.SetUpdatesAttributeName("value");
+            if (!string.IsNullOrWhiteSpace(TrailingIcon))
+            {
+                builder.OpenElement(13, "md-icon");
+                {
+                    builder.AddAttribute(14, "slot", "trailingicon");
+                    builder.AddContent(15, TrailingIcon);
+                }
+                builder.CloseElement();
+            }
         }
         builder.CloseElement();
     }

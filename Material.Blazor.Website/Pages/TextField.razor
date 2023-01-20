@@ -27,19 +27,13 @@
                         Default and explicit text field styles.
                     </h3>
 
-                    <MBFilledTextField @bind-Value="@DefaultStyle"
-                                 class="supplied-test-class"
-                                 id="supplied-test-id"
-                                 Label="Default (Filled) Style"
-                                 style="margin: 6px; " />
                     <MBFilledTextField @bind-Value="@FilledStyle"
-                                 Label="Explicit Filled Style"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
+                                       Label="Explicit Filled Style"
+                                       style="margin: 6px;" />
+
                     <MBOutLinedTextField @bind-Value="@OutlinedStyle"
-                                 Label="Outlined Style"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
+                                         Label="Outlined Style"
+                                         style="margin: 6px;" />
                 </Primary>
             </MBCard>
         </div>
@@ -57,26 +51,21 @@
                         Leading and trailing icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
                     </h3>
 
-                    <MBTextField IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)"
-                                 Label="Leading Icon"
-                                 LeadingIcon="print"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Round)"
-                                 Label="Trailing Icon"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled"
-                                 TrailingIcon="import_contacts" />
-                    <MBTextField IconFoundry="@MBIconHelper.FAFoundry()"
-                                 Label="Leading Icon"
-                                 LeadingIcon="fa-car-crash"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
-                    <MBTextField IconFoundry="@MBIconHelper.OIFoundry()"
-                                 Label="Trailing Icon"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined"
-                                 TrailingIcon="microphone" />
+                    <MBFilledTextField Label="Leading Icon"
+                                       LeadingIcon="print"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Label="Trailing Icon"
+                                       style="margin: 6px;"
+                                       TrailingIcon="import_contacts" />
+
+                    <MBOutLinedTextField Label="Leading Icon"
+                                         LeadingIcon="edit"
+                                         style="margin: 6px; " />
+
+                    <MBOutLinedTextField Label="Trailing Icon"
+                                         style="margin: 6px; "
+                                         TrailingIcon="mic" />
                 </Primary>
             </MBCard>
         </div>
@@ -95,21 +84,20 @@
                     </h3>
 
                     <MBFilledTextField Label="Prefix"
-                                 Prefix="$"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
+                                       Prefix="$"
+                                       style="margin: 6px;" />
+
                     <MBFilledTextField Label="Suffix"
-                                 Suffix="%"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
+                                       Suffix="%"
+                                       style="margin: 6px;" />
+
                     <MBOutLinedTextField Label="Prefix"
-                                 Prefix="$"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
+                                         Prefix="$"
+                                         style="margin: 6px;" />
+
                     <MBOutLinedTextField Label="Suffix"
-                                 Suffix="%"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
+                                         Suffix="%"
+                                         style="margin: 6px;" />
                 </Primary>
             </MBCard>
         </div>
@@ -133,11 +121,12 @@
                         Background color set by CSS class and style attributes.
                     </h3>
 
-                    <MBTextField class="text-green"
-                                 Label="Green by class"
-                                 style="margin: 6px; " />
-                    <MBTextField Label="Amber by style"
-                                 style="margin: 6px; background-color: var(--mb-color-amber-800);" />
+                    <MBOutLinedTextField class="text-green"
+                                         Label="Green by class"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Label="Amber by style"
+                                         style="margin: 6px; background-color: var(--mb-color-amber-800);" />
                 </Primary>
             </MBCard>
         </div>
@@ -155,15 +144,17 @@
                         Left, center and right aligned text (not the same as right-to-left script).
                     </h3>
 
-                    <MBTextField Label="Left Aligned"
-                                 style="margin: 6px; "
-                                 TextAlignStyle="@MBTextAlignStyle.Left" />
-                    <MBTextField Label="Centered"
-                                 style="margin: 6px; "
-                                 TextAlignStyle="@MBTextAlignStyle.Center" />
-                    <MBTextField Label="Right Aligned"
-                                 style="margin: 6px; "
-                                 TextAlignStyle="@MBTextAlignStyle.Right" />
+                    <MBOutLinedTextField Label="Left Aligned"
+                                         style="margin: 6px; "
+                                         TextAlignStyle="@MBTextAlignStyle.Left" />
+
+                    <MBOutLinedTextField Label="Centered"
+                                         style="margin: 6px; "
+                                         TextAlignStyle="@MBTextAlignStyle.Center" />
+
+                    <MBOutLinedTextField Label="Right Aligned"
+                                         style="margin: 6px; "
+                                         TextAlignStyle="@MBTextAlignStyle.Right" />
                 </Primary>
             </MBCard>
         </div>
@@ -181,10 +172,10 @@
                         Standard HTML input obscuring with <code>type="password"</code>
                     </h3>
 
-                    <MBTextField @bind-Value="@Password"
-                                 Label="Password"
-                                 style="margin: 6px; "
-                                 type="password" />
+                    <MBOutLinedTextField @bind-Value="@Password"
+                                         Label="Password"
+                                         style="margin: 6px; "
+                                         type="password" />
                 </Primary>
             </MBCard>
         </div>
@@ -203,11 +194,11 @@
                     </h3>
 
                     <MBOutLinedTextField @bind-Value="@TwoWayBinding"
-                                 Label="First Linked Field"
-                                 style="margin: 6px; " />
+                                         Label="First Linked Field"
+                                         style="margin: 6px; " />
                     <MBOutLinedTextField @bind-Value="@TwoWayBinding"
-                                 Label="Second Linked Field"
-                                 style="margin: 6px; " />
+                                         Label="Second Linked Field"
+                                         style="margin: 6px; " />
                 </Primary>
             </MBCard>
         </div>
@@ -225,15 +216,16 @@
                         Shows persistent and non-persistent helper text.
                     </h3>
 
-                    <MBTextField @bind-Value="@PopupHelperText"
-                                 HelperText="Some helper text that pops up<br />More"
-                                 Label="Popup Helper Text"
-                                 style="margin: 6px; " />
-                    <MBTextField @bind-Value="@PersistentHelperText"
-                                 HelperText="Some persistent helper text"
-                                 HelperTextPersistent="true"
-                                 Label="Persistent Helper Text"
-                                 style="margin: 6px; " />
+                    <MBOutLinedTextField @bind-Value="@PopupHelperText"
+                                         HelperText="Some helper text that pops up<br />More"
+                                         Label="Popup Helper Text"
+                                         style="margin: 6px; " />
+
+                    <MBOutLinedTextField @bind-Value="@PersistentHelperText"
+                                         HelperText="Some persistent helper text"
+                                         HelperTextPersistent="true"
+                                         Label="Persistent Helper Text"
+                                         style="margin: 6px; " />
                 </Primary>
             </MBCard>
         </div>
@@ -251,26 +243,25 @@
                         Filled density subsystem from default to minus 4.
                     </h3>
 
-                    <MBTextField Density="@MBDensity.Default"
-                                 Label="Default Density"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField Density="@MBDensity.Minus1"
-                                 Label="Density Minus 1"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField Density="@MBDensity.Minus2"
-                                 Label="Density Minus 2"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField Density="@MBDensity.Minus3"
-                                 Label="Density Minus 3"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
-                    <MBTextField Density="@MBDensity.Minus4"
-                                 Label="Density Minus 4"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Filled" />
+                    <MBFilledTextField Density="@MBDensity.Default"
+                                       Label="Default Density"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus1"
+                                       Label="Density Minus 1"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus2"
+                                       Label="Density Minus 2"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus3"
+                                       Label="Density Minus 3"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus4"
+                                       Label="Density Minus 4"
+                                       style="margin: 6px;" />
                 </Primary>
             </MBCard>
         </div>
@@ -288,26 +279,25 @@
                         Outlined density subsystem from default to minus 4.
                     </h3>
 
-                    <MBTextField Density="@MBDensity.Default"
+                    <MBOutLinedTextField Density="@MBDensity.Default"
                                  Label="Default Density"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
-                    <MBTextField Density="@MBDensity.Minus1"
+                                 style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus1"
                                  Label="Density Minus 1"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
-                    <MBTextField Density="@MBDensity.Minus2"
+                                 style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus2"
                                  Label="Density Minus 2"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
-                    <MBTextField Density="@MBDensity.Minus3"
+                                 style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus3"
                                  Label="Density Minus 3"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
-                    <MBTextField Density="@MBDensity.Minus4"
+                                 style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus4"
                                  Label="Density Minus 4"
-                                 style="margin: 6px; "
-                                 TextInputStyle="MBTextInputStyle.Outlined" />
+                                 style="margin: 6px;" />
                 </Primary>
             </MBCard>
         </div>
@@ -316,8 +306,6 @@
 
 
 @code {
-    private string DefaultStyle { get; set; } = "Initial Text";
-
     private string FilledStyle { get; set; }
 
     private string OutlinedStyle { get; set; }
