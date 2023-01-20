@@ -134,14 +134,9 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponentMD3<T>
 
         var allowSign = Min is not (not null and >= 0);
 
-        if (GetDecimalPlaces() == 0)
-        {
-            Regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
-        }
-        else
-        {
-            Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
-        }
+        Regex = GetDecimalPlaces() == 0
+            ? new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern)
+            : new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
     }
 
     
