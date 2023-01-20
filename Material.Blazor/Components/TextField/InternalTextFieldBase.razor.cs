@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -52,15 +53,15 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
 
 
     /// <summary>
-    /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+    /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
     /// </summary>
-    [Parameter] public string HelperText { get; set; } = "";
+    [Parameter] public string SupportingText { get; set; } = "";
 
 
     /// <summary>
-    /// Makes the <see cref="HelperText"/> persistent if true.
+    /// Makes the <see cref="SupportingText"/> persistent if true.
     /// </summary>
-    [Parameter] public bool HelperTextPersistent { get; set; } = false;
+    [Parameter] public bool SupportingTextPersistent { get; set; } = false;
 
 
     /// <summary>
@@ -129,12 +130,12 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
     private string DisplayLabel => Label + LabelSuffix;
     private string FloatingLabelClass { get; set; }
     private ElementReference InputReference { get; set; }
-    private MarkupString HelperTextMarkup => new(HelperText);
-    private ElementReference HelperTextReference { get; set; }
+    private MarkupString SupportingTextMarkup => new(SupportingText);
+    private ElementReference SupportingTextReference { get; set; }
     private ElementReference ErrorTextReference { get; set; }
     private string DateFieldErrorMessage { get; set; }
     private bool HasErrorText => !string.IsNullOrWhiteSpace(DateFieldErrorMessage);
-    private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
+    private bool HasSupportingText => !string.IsNullOrWhiteSpace(SupportingText) || PerformsValidation;
     private string LabelSuffix { get; set; } = "";
     private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
     private MBBadge Badge { get; set; }
@@ -143,7 +144,7 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
 
 
     private readonly string labelId = Utilities.GenerateUniqueElementName();
-    private readonly string helperTextId = Utilities.GenerateUniqueElementName();
+    private readonly string SupportingTextId = Utilities.GenerateUniqueElementName();
 
 
     private MBCascadingDefaults.DensityInfo DensityInfo
@@ -217,49 +218,61 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
     /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        builder.OpenElement(0, ComponentName());
-        {
-            builder.AddAttribute(1, "class", @class);
-            builder.AddAttribute(2, "style", style);
-            builder.AddAttribute(3, "id", id);
+        var attributesToSplat = AttributesToSplat().ToArray();
 
-            builder.AddAttribute(4, "value", BindConverter.FormatValue(Value));
-            builder.AddAttribute(5, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+        builder.OpenElement(0, WebComponentName());
+        {
+            if (attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(1, attributesToSplat);
+            }
+
+            builder.AddAttribute(2, "class", @class);
+            builder.AddAttribute(3, "style", style);
+            builder.AddAttribute(4, "id", id);
+
+            builder.AddAttribute(5, "value", BindConverter.FormatValue(Value));
+            builder.AddAttribute(6, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
             builder.SetUpdatesAttributeName("value");
 
             if (AppliedDisabled)
             {
-                builder.AddAttribute(6, "disabled");
+                builder.AddAttribute(7, "disabled");
             }
 
-            builder.AddAttribute(7, "label", DisplayLabel);
+            builder.AddAttribute(8, "label", DisplayLabel);
             
             if (!string.IsNullOrWhiteSpace(Prefix))
             {
-                builder.AddAttribute(8, "prefixText", Prefix);
+                builder.AddAttribute(9, "prefixText", Prefix);
             }
 
             if (!string.IsNullOrWhiteSpace(Suffix))
             {
-                builder.AddAttribute(9, "suffixText", Suffix);
+                builder.AddAttribute(10, "suffixText", Suffix);
+            }
+
+            if (!string.IsNullOrWhiteSpace(SupportingText))
+            {
+                builder.AddAttribute(11, "supportingText", SupportingText);
             }
 
             if (!string.IsNullOrWhiteSpace(LeadingIcon))
             {
-                builder.OpenElement(10, "md-icon");
+                builder.OpenElement(12, "md-icon");
                 {
-                    builder.AddAttribute(11, "slot", "leadingicon");
-                    builder.AddContent(12, LeadingIcon);
+                    builder.AddAttribute(13, "slot", "leadingicon");
+                    builder.AddContent(14, LeadingIcon);
                 }
                 builder.CloseElement();
             }
 
             if (!string.IsNullOrWhiteSpace(TrailingIcon))
             {
-                builder.OpenElement(13, "md-icon");
+                builder.OpenElement(15, "md-icon");
                 {
-                    builder.AddAttribute(14, "slot", "trailingicon");
-                    builder.AddContent(15, TrailingIcon);
+                    builder.AddAttribute(16, "slot", "trailingicon");
+                    builder.AddContent(17, TrailingIcon);
                 }
                 builder.CloseElement();
             }
@@ -272,7 +285,7 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
     /// Inherited classes must specify the material-web compoent name.
     /// </summary>
     /// <returns></returns>
-    private protected abstract string ComponentName();
+    private protected abstract string WebComponentName();
 
 
 
@@ -312,7 +325,7 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
             var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
             var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-            //_ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            //_ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setSupportingText", ElementReference, SupportingTextReference, SupportingText.Trim(), SupportingTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
 }

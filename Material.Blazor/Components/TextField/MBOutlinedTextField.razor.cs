@@ -7,7 +7,7 @@ namespace Material.Blazor;
 /// </summary>
 public sealed class MBOutLinedTextField : InternalTextFieldBase
 {
-    private protected override string ComponentName()
+    private protected override string WebComponentName()
     {
         return "md-outlined-text-field";
     }

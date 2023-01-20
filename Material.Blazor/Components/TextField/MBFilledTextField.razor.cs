@@ -7,7 +7,7 @@ namespace Material.Blazor;
 /// </summary>
 public sealed class MBFilledTextField : InternalTextFieldBase
 {
-    private protected override string ComponentName()
+    private protected override string WebComponentName()
     {
         return "md-filled-text-field";
     }
