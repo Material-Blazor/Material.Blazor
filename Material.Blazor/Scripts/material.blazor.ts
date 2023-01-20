@@ -1,4 +1,9 @@
-﻿import * as MBAutocompletePagedField from '../Components/AutocompletePagedField/MBAutocompletePagedField';
+﻿import '@material/web/icon/icon.js';
+import '@material/web/textfield/filled-text-field.js';
+import '@material/web/textfield/outlined-text-field.js';
+
+
+import * as MBAutocompletePagedField from '../Components/AutocompletePagedField/MBAutocompletePagedField';
 import * as MBAutocompleteTextField from '../Components/AutocompleteTextField/MBAutocompleteTextField';
 import * as MBBladeSet from '../Components/BladeSet/MBBladeSet';
 import * as MBButton from '../Components/Button/MBButton';
