@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -19,6 +20,8 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponentMD3<T>
     where T : struct, INumber<T>
     where U : InternalTextFieldBase
 {
+
+
 #nullable enable annotations
     /// <summary>
     /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
@@ -108,6 +111,10 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponentMD3<T>
     private const string PositiveIntegerPattern = @"^\d+$";
 
 
+    private bool SelectInputContentOnAfterRender { get; set; } = false;
+    private U TextField { get; set; }
+
+
     /// <summary>
     /// REGEX that matches valid text field input
     /// </summary>
@@ -137,7 +144,7 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponentMD3<T>
         }
     }
 
-    private string StringValue => HasFocus ? ConvertToUnformattedTextValue(Value) : ConvertToFormattedTextValue(Value);
+    
     /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -157,57 +164,74 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponentMD3<T>
             if (HasFocus)
             {
                 builder.AddAttribute(5, "type", "number");
-                builder.AddAttribute(6, "Value", BindConverter.FormatValue(ConvertToUnformattedTextValue(Value)));
-                //builder.AddAttribute(8, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<string>>>(() => ConvertToUnformattedTextValue(Value)));
+                builder.AddAttribute(6, "formnovalidate", true);
+                builder.AddAttribute(7, "Value", BindConverter.FormatValue(ConvertToUnformattedTextValue(Value)));
+                SelectInputContentOnAfterRender = true;
             }
             else
             {
                 builder.AddAttribute(5, "type", "text");
-                builder.AddAttribute(6, "Value", BindConverter.FormatValue(ConvertToFormattedTextValue(Value)));
-                //builder.AddAttribute(8, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<string>>>(() => ConvertToFormattedTextValue(Value)));
+                builder.AddAttribute(7, "Value", BindConverter.FormatValue(ConvertToFormattedTextValue(Value)));
             }
 
-            builder.AddAttribute(7, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)), ConvertToUnformattedTextValue(Value)))));
-            builder.AddAttribute(8, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<string>>>(() => StringValue));
+            builder.AddAttribute(8, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)), ConvertToUnformattedTextValue(Value)))));
+            var stringValue = HasFocus? ConvertToUnformattedTextValue(Value) : ConvertToFormattedTextValue(Value);
+            builder.AddAttribute(9, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<string>>>(() => stringValue));
 
-            //builder.AddAttribute(8, "ValueExpression", () => Value);
-
-
-
-
-            builder.AddAttribute(8, "onfocusin", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusInAsync));
-            builder.AddAttribute(9, "onfocusout", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusOutAsync));
+            builder.AddAttribute(10, "onfocusin", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusInAsync));
+            builder.AddAttribute(11, "onfocusout", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusOutAsync));
 
             if (AppliedDisabled)
             {
-                builder.AddAttribute(10, "Disabled");
+                builder.AddAttribute(12, "Disabled");
             }
 
-            builder.AddAttribute(11, "label", Label);
-            builder.AddAttribute(12, "SupportingText", SupportingText);
-            builder.AddAttribute(13, "SupportingTextPersistent", SupportingTextPersistent);
-            builder.AddAttribute(14, "LeadingIcon", LeadingIcon);
-            builder.AddAttribute(15, "TrailingIcon", TrailingIcon);
-            builder.AddAttribute(16, "Prefix", Prefix);
-            builder.AddAttribute(17, "Suffix", Suffix);
+            builder.AddAttribute(13, "label", Label);
+            builder.AddAttribute(14, "SupportingText", SupportingText);
+            builder.AddAttribute(15, "SupportingTextPersistent", SupportingTextPersistent);
+            builder.AddAttribute(16, "LeadingIcon", LeadingIcon);
+            builder.AddAttribute(17, "TrailingIcon", TrailingIcon);
+            builder.AddAttribute(18, "Prefix", Prefix);
+            builder.AddAttribute(19, "Suffix", Suffix);
 
-            builder.AddAttribute(18, "Density", Density);
+            builder.AddAttribute(20, "Density", Density);
 
             if (Min is not null)
             {
-                builder.AddAttribute(19, "min", Min);
+                builder.AddAttribute(21, "min", Min);
             }
 
             if (Max is not null)
             {
-                builder.AddAttribute(20, "max", Max);
+                builder.AddAttribute(22, "max", Max);
             }
 
-            builder.AddAttribute(21, "step", BuildStep());
-            builder.AddAttribute(22, "TextAlignStyle", MBTextAlignStyle.Right);
-            builder.AddAttribute(23, "ValidationMessageFor", ValidationMessageFor);
+            var step = BuildStep();
+
+            if (!string.IsNullOrWhiteSpace(step))
+            {
+                builder.AddAttribute(23, "step", BuildStep());
+            }
+
+            builder.AddAttribute(24, "TextAlignStyle", MBTextAlignStyle.Right);
+            builder.AddAttribute(25, "ValidationMessageFor", ValidationMessageFor);
+
+            builder.AddComponentReferenceCapture(18, __value => TextField = (U)__value);
         }
         builder.CloseComponent();
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender).ConfigureAwait(false);
+
+        if (SelectInputContentOnAfterRender)
+        {
+            SelectInputContentOnAfterRender = false;
+
+            await TextField.SelectFieldContent();
+        }
     }
 
 
@@ -284,35 +308,4 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponentMD3<T>
         HasFocus = false;
         await InvokeAsync(StateHasChanged);
     }
-
-
-    //private string StringValue(decimal? value) => (Convert.ToDecimal(value) * AppliedMultiplier).ToString(AppliedFormat);
-
-
-    //private decimal NumericValue(string displayText)
-    //{
-    //    var myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(AppliedMultiplier)));
-
-    //    if (!Regex.IsMatch(displayText))
-    //    {
-    //        return ComponentValue;
-    //    }
-
-    //    decimal amount;
-    //    try
-    //    {
-    //        amount = Convert.ToDecimal(Math.Round(Convert.ToDecimal(displayText) / AppliedMultiplier, myRounding));
-    //    }
-    //    catch
-    //    {
-    //        return ComponentValue;
-    //    }
-
-    //    if ((Min != null && amount < Min) || (Max != null && amount > Max))
-    //    {
-    //        return ComponentValue;
-    //    }
-
-    //    return amount;
-    //}
 }

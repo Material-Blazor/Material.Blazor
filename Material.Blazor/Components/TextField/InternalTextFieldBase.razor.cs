@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.JSInterop;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,6 +14,8 @@ namespace Material.Blazor.Internal;
 /// </summary>
 public abstract class InternalTextFieldBase : InputComponentMD3<string>
 {
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+    
     [CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
 
 
@@ -126,16 +129,8 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
 
 
     private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-    private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string DisplayLabel => Label + LabelSuffix;
-    private string FloatingLabelClass { get; set; }
-    private ElementReference InputReference { get; set; }
-    private MarkupString SupportingTextMarkup => new(SupportingText);
-    private ElementReference SupportingTextReference { get; set; }
-    private ElementReference ErrorTextReference { get; set; }
     private string DateFieldErrorMessage { get; set; }
-    private bool HasErrorText => !string.IsNullOrWhiteSpace(DateFieldErrorMessage);
-    private bool HasSupportingText => !string.IsNullOrWhiteSpace(SupportingText) || PerformsValidation;
     private string LabelSuffix { get; set; } = "";
     private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
     private MBBadge Badge { get; set; }
@@ -276,8 +271,20 @@ public abstract class InternalTextFieldBase : InputComponentMD3<string>
                 }
                 builder.CloseElement();
             }
+
+            builder.AddElementReferenceCapture(18, __value => ElementReference = __value);
         }
         builder.CloseElement();
+    }
+
+
+    /// <summary>
+    /// Selects the text field content. Used by numeric fields when type is changed to "number".
+    /// </summary>
+    /// <returns></returns>
+    internal async Task SelectFieldContent()
+    {
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.InternalNumericFieldBase.selectFieldContent", ElementReference).ConfigureAwait(false);
     }
 
 
