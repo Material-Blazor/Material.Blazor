@@ -4,7 +4,23 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 
-		<Configurations>Debug;Release</Configurations>
+		<Configurations>MD2Server;MD2WASM;MD3Server;MD3WASM</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD2Server|AnyCPU'">
+		<DefineConstants>MD2;BLAZOR_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD2WASM|AnyCPU'">
+		<DefineConstants>MD2;BLAZOR_WEBASSEMBLY</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD3Server|AnyCPU'">
+		<DefineConstants>MD3;BLAZOR_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD3WASM|AnyCPU'">
+		<DefineConstants>MD3;BLAZOR_WEBASSEMBLY</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup>

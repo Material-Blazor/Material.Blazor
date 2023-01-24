@@ -1,0 +1,184 @@
+﻿<PageTitle>@Title</PageTitle>
+
+<div @key="@CascadingDefaults" class="mdc-layout-grid__cell--span-12">
+    <MBCard>
+        <Primary>
+            <div class="mb-card__autostyled">
+                <h2 class="mb-card__title mdc-typography--headline4">@Title</h2>
+            </div>
+            <div class="mb-card__secondary">
+                @Description
+
+                @if (NeedsTable)
+                {
+                    <p style="overflow: auto;">
+                        <MBDataTable Items="@Items"
+                                 Context="item"
+                                 class="dr-table">
+                            <TableHeader>
+                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Reference</th>
+                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Link Source</th>
+                            </TableHeader>
+
+                            <TableRow>
+                                <td class="mdc-data-table__cell">@item.Title</td>
+                                <td class="mdc-data-table__cell">@item.ContentMarkup</td>
+                            </TableRow>
+                        </MBDataTable>
+                    </p>
+                }
+
+                @if (RequiresDisableSelection)
+                {
+                    <p>
+                        <MBSwitch @bind-Value="@CascadingDefaults.Disabled" Label="Disable Components" />
+                    </p>
+                }
+
+                @if (MinDensity != MBDensity.Default)
+                {
+                    <p>
+                        <MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
+                                        Items="@Densities" />
+                    </p>
+                }
+
+                @Controls
+            </div>
+        </Primary>
+    </MBCard>
+</div>
+
+
+
+@*  Using a key of the defaults' version number forces a complete re-render
+    of the block when defaults change, however components don't check for
+    updates to defaults because we use IsFixed="true" *@
+
+<div @key="@CascadingDefaults.Version"
+     class="mdc-layout-grid__cell--span-12">
+
+    <div class="mdc-layout-grid__inner">
+        <CascadingValue Value="@CascadingDefaults" IsFixed="true">
+            @PageContent
+        </CascadingValue>
+    </div>
+</div>
+
+
+@code {
+    [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
+
+    [Parameter] public string ComponentName { get; set; }
+
+    [Parameter] public RenderFragment Controls { get; set; }
+
+    [Parameter] public ComponentBase DemoComponent { get; set; }
+
+    [Parameter] public RenderFragment Description { get; set; }
+
+    [Parameter] public string DetailedArticle { get; set; }
+
+    [Parameter] public bool IsGeneric { get; set; } = false;
+
+    [Parameter] public string MaterialIOPage { get; set; }
+
+    [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
+
+    [Parameter] public RenderFragment PageContent { get; set; }
+
+    [Parameter] public bool RequiresDisableSelection { get; set; } = false;
+
+    [Parameter] public string Title { get; set; }
+
+
+    private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
+        {
+            ThemeDensity = MBDensity.Default,
+            Disabled = false
+        };
+
+
+    private class ReferenceItem
+    {
+        public string Title { get; set; }
+        public string Content { get; set; }
+
+        public MarkupString ContentMarkup => new MarkupString(Content);
+    }
+
+
+    private List<ReferenceItem> Items { get; set; }
+
+    private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
+
+    private bool NeedsTable => ((ComponentName != null) || (DetailedArticle != null) || (DemoComponent != null));
+
+
+    protected override void OnInitialized()
+    {
+        Items = new List<ReferenceItem>();
+
+        if (!NeedsTable)
+        {
+            return;
+        }
+
+        if (ComponentName != null)
+        {
+            Items.Add(new ReferenceItem
+                {
+                    Title = "Component Documentation",
+                    Content = $"<a href=\"https://material-blazor.com/docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                });
+
+            var apiSuffix = (!IsGeneric) ? "" : "-1";
+            var apiText = $"<a href=\"https://material-blazor.com/docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
+
+            Items.Add(new ReferenceItem
+                {
+                    Title = "API Documentation",
+                    Content = apiText
+                });
+        }
+
+        if (DetailedArticle != null)
+        {
+            Items.Add(new ReferenceItem
+                {
+                    Title = "In Depth Documentation",
+                    Content = $"<a href=\"https://material-blazor.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+                });
+        }
+
+        if (DemoComponent != null)
+        {
+            Items.Add(new ReferenceItem
+                {
+                    Title = "Source for This Page",
+                    Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
+                });
+        }
+
+        if (MaterialIOPage != null)
+        {
+            var materialPage = $"<a href=\"{MaterialDocRef + MaterialIOPage}\" target=\"_blank\">{MaterialIOPage.Split("#")[0]}</a>";
+
+            Items.Add(new ReferenceItem
+                {
+                    Title = "Material Theme Page",
+                    Content = materialPage
+                });
+        }
+
+        Densities = new MBSelectElement<MBDensity>[]
+            {
+            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
+            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
+            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
+            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
+            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
+            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
+             }.Where(d => d.Disabled != true);
+    }
+}

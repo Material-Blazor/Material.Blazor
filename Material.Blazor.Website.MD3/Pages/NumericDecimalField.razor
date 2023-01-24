@@ -1,0 +1,243 @@
+﻿@page "/numericdecimalField"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentName="NumericDecimalField"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Numeric Decimal Field Demonstration">
+    <Description>
+        <p>
+            Shows numeric decimal fields, which are Plus components.
+            Each of these can display as Filled or Outlined and with
+            the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted Numerics
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A range of numeric decimal fields using formats for non focused input.
+                    </h3>
+
+                    <p>
+                        <MBFilledDecimalField @bind-Value="@DecimalValue"
+                                              DecimalPlaces="2"
+                                              Label="Decimal 2dp"
+                                              NumericFormat="N2" />
+                    </p>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@MoneyByFormat"
+                                                DecimalPlaces="2"
+                                                Label="Money by format"
+                                                NumericFormat="C2" />
+                    </p>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@MoneyByPrefix"
+                                                DecimalPlaces="2"
+                                                Label="Money by prefix"
+                                                NumericFormat="N2"
+                                                Prefix="£" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Scaled Formatted Numerics
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Percentage and basis point numerics can be editted either using a prefix or standard formatting (in the case of percentages only).
+                        A figure of "12.3%" results in a decimal value of "0.123" and one of "34.5 bp" results in a decimal value of "0.00345".
+                    </h3>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@PercentByFormat"
+                                                DecimalPlaces="2"
+                                                FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                                Label="Percent by format"
+                                                NumericFormat="P2" />
+                    </p>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@PercentBySuffix"
+                                                DecimalPlaces="2"
+                                                FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                                Label="Percent by Suffix"
+                                                NumericFormat="N2"
+                                                Suffix="%"
+                                                UnfocusedMagnitude="MBNumericInputMagnitude.Percent" />
+                    </p>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@BasisPointsBySuffix"
+                                                DecimalPlaces="0"
+                                                FocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
+                                                Label="Basis Points by Suffix"
+                                                NumericFormat="N0"
+                                                Suffix="bp"
+                                                UnfocusedMagnitude="MBNumericInputMagnitude.BasisPoints" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text.
+                    </h3>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@PopupHelperText"
+                                                SupportingText="Some helper text that pops up"
+                                                Label="Popup Helper Text"
+                                                NumericFormat="N2" />
+                    </p>
+
+                    <p>
+                        <MBOutlinedDecimalField @bind-Value="@PersistentHelperText"
+                                                SupportingText="Some persistent helper text"
+                                                SupportingTextPersistent="true"
+                                                Label="Persistent Helper Text"
+                                                NumericFormat="N2" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private decimal _decimalValue;
+    private decimal DecimalValue
+    {
+        get => _decimalValue;
+        set
+        {
+            _decimalValue = value;
+
+            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private decimal _moneyByFormat;
+    private decimal MoneyByFormat
+    {
+        get => _moneyByFormat;
+        set
+        {
+            _moneyByFormat = value;
+
+            ToastService.ShowToast(heading: "Money by format numeric", message: $"Value: '{_moneyByFormat.ToString("C2")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private decimal _moneyByPrefix;
+    private decimal MoneyByPrefix
+    {
+        get => _moneyByPrefix;
+        set
+        {
+            _moneyByPrefix = value;
+
+            ToastService.ShowToast(heading: "Money by Prefix numeric", message: $"Value: '{_moneyByPrefix.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private decimal _percentByFormat;
+    private decimal PercentByFormat
+    {
+        get => _percentByFormat;
+        set
+        {
+            _percentByFormat = value;
+
+            ToastService.ShowToast(heading: "Percent by format", message: $"Value: '{_percentByFormat.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private decimal _percentBySuffix;
+    private decimal PercentBySuffix
+    {
+        get => _percentBySuffix;
+        set
+        {
+            _percentBySuffix = value;
+
+            ToastService.ShowToast(heading: "Percent by suffix", message: $"Value: '{_percentBySuffix.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private decimal _basisPointsBySuffix;
+    private decimal BasisPointsBySuffix
+    {
+        get => _basisPointsBySuffix;
+        set
+        {
+            _basisPointsBySuffix = value;
+
+            ToastService.ShowToast(heading: "Basis Points by suffix", message: $"Value: '{_basisPointsBySuffix.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private decimal _popupHelperText;
+    private decimal PopupHelperText
+    {
+        get => _popupHelperText;
+        set
+        {
+            _popupHelperText = value;
+
+            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private decimal _persistentHelperText;
+    private decimal PersistentHelperText
+    {
+        get => _persistentHelperText;
+        set
+        {
+            _persistentHelperText = value;
+
+            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+}

@@ -495,7 +495,7 @@ Released 2022-06-25
 Released 2022-05-26
 
 **Updates**
-- Repaired MBGrid's OnMouseClickIntertnal (Thanks go out to Steve Sanderson for finding this error)
+- Repaired MBGrid's OnMouseClickInternal (Thanks go out to Steve Sanderson for finding this error)
 - Throttled dependabot to a monthly check
 
 **New components**

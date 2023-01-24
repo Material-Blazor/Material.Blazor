@@ -31,25 +31,28 @@
                     </h3>
 
                     <p>
-                        <MBFilledDecimalField @bind-Value="@DecimalValue"
-                                              DecimalPlaces="2"
-                                              Label="Decimal 2dp"
-                                              NumericFormat="N2" />
+                        <MBNumericDecimalField @bind-Value="@DecimalValue"
+                                               DecimalPlaces="2"
+                                               Label="Double 2dp"
+                                               NumericFormat="N2"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@MoneyByFormat"
-                                                DecimalPlaces="2"
-                                                Label="Money by format"
-                                                NumericFormat="C2" />
+                        <MBNumericDecimalField @bind-Value="@MoneyByFormat"
+                                               DecimalPlaces="2"
+                                               Label="Money by format"
+                                               NumericFormat="C2"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@MoneyByPrefix"
-                                                DecimalPlaces="2"
-                                                Label="Money by prefix"
-                                                NumericFormat="N2"
-                                                Prefix="£" />
+                        <MBNumericDecimalField @bind-Value="@MoneyByPrefix"
+                                               DecimalPlaces="2"
+                                               Label="Money by prefix"
+                                               NumericFormat="N2"
+                                               Prefix="£"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MBCard>
@@ -70,31 +73,34 @@
                     </h3>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PercentByFormat"
-                                                DecimalPlaces="2"
-                                                FocusedMagnitude="MBNumericInputMagnitude.Percent"
-                                                Label="Percent by format"
-                                                NumericFormat="P2" />
+                        <MBNumericDecimalField @bind-Value="@PercentByFormat"
+                                               DecimalPlaces="2"
+                                               FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                               Label="Percent by format"
+                                               NumericFormat="P2"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PercentBySuffix"
-                                                DecimalPlaces="2"
-                                                FocusedMagnitude="MBNumericInputMagnitude.Percent"
-                                                Label="Percent by Suffix"
-                                                NumericFormat="N2"
-                                                Suffix="%"
-                                                UnfocusedMagnitude="MBNumericInputMagnitude.Percent" />
+                        <MBNumericDecimalField @bind-Value="@PercentBySuffix"
+                                               DecimalPlaces="2"
+                                               FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                               Label="Percent by Suffix"
+                                               NumericFormat="N2"
+                                               Suffix="%"
+                                               TextInputStyle="MBTextInputStyle.Outlined"
+                                               UnfocusedMagnitude="MBNumericInputMagnitude.Percent" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@BasisPointsBySuffix"
-                                                DecimalPlaces="0"
-                                                FocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
-                                                Label="Basis Points by Suffix"
-                                                NumericFormat="N0"
-                                                Suffix="bp"
-                                                UnfocusedMagnitude="MBNumericInputMagnitude.BasisPoints" />
+                        <MBNumericDecimalField @bind-Value="@BasisPointsBySuffix"
+                                               DecimalPlaces="0"
+                                               FocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
+                                               Label="Basis Points by Suffix"
+                                               NumericFormat="N0"
+                                               Suffix="bp"
+                                               TextInputStyle="MBTextInputStyle.Outlined"
+                                               UnfocusedMagnitude="MBNumericInputMagnitude.BasisPoints" />
                     </p>
                 </Primary>
             </MBCard>
@@ -114,18 +120,18 @@
                     </h3>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PopupHelperText"
-                                                SupportingText="Some helper text that pops up"
-                                                Label="Popup Helper Text"
-                                                NumericFormat="N2" />
+                        <MBNumericDecimalField @bind-Value="@PopupHelperText"
+                                               HelperText="Some helper text that pops up"
+                                               Label="Popup Helper Text"
+                                               NumericFormat="N2" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PersistentHelperText"
-                                                SupportingText="Some persistent helper text"
-                                                SupportingTextPersistent="true"
-                                                Label="Persistent Helper Text"
-                                                NumericFormat="N2" />
+                        <MBNumericDecimalField @bind-Value="@PersistentHelperText"
+                                               HelperText="Some persistent helper text"
+                                               HelperTextPersistent="true"
+                                               Label="Persistent Helper Text"
+                                               NumericFormat="N2" />
                     </p>
                 </Primary>
             </MBCard>

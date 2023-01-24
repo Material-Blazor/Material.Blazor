@@ -15,7 +15,7 @@ on:
 
 env:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'MD2WASM'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}\siteMB
   outputWeb: ${{github.workspace}}\siteWeb
@@ -206,11 +206,7 @@ jobs:
       shell: bash
 
     - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: ncipollo/release-action@v1
       with:
-        tag_name: ${{env.version}}
-        release_name: Release ${{env.version}}
-        draft: false
-        prerelease: false
+        name: Release ${{ env.version }}
+        tag: ${{ env.version }}

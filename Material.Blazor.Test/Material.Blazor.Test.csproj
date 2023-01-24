@@ -1,21 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="bunit" Version="1.14.4" />
-    <PackageReference Include="bunit.core" Version="1.14.4" />
-    <PackageReference Include="bunit.web" Version="1.14.4" />
-    <PackageReference Include="Moq" Version="4.18.4" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<Configurations>MD2Server;MD2WASM;MD3Server;MD3WASM</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD2Server|AnyCPU'">
+		<DefineConstants>MD2;BLAZOR_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD2WASM|AnyCPU'">
+		<DefineConstants>MD2;BLAZOR_WEBASSEMBLY</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD3Server|AnyCPU'">
+		<DefineConstants>MD3;BLAZOR_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD3WASM|AnyCPU'">
+		<DefineConstants>MD3;BLAZOR_WEBASSEMBLY</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="bunit" Version="1.14.4" />
+		<PackageReference Include="bunit.core" Version="1.14.4" />
+		<PackageReference Include="bunit.web" Version="1.14.4" />
+		<PackageReference Include="Moq" Version="4.18.4" />
+		<PackageReference Include="xunit" Version="2.4.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
+	</ItemGroup>
 </Project>

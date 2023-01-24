@@ -1,6 +1,6 @@
 {
   "name": "material.blazor",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "NPM build steps for Material.Blazor",
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
   "scripts": {
@@ -28,7 +28,6 @@
     "babel-loader": "^9.1.2",
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "material-components-web": "14.0.0",
-    "@material/web": "1.0.0-pre.1",
     "regexp": "^1.0.0",
     "sass": "1.39.2",
     "terser": "^5.16.1",

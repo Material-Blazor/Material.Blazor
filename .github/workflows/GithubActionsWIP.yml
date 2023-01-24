@@ -9,7 +9,7 @@ on:
 
 env:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'MD2WASM'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}/siteMB
   outputWeb: ${{github.workspace}}/siteWeb
@@ -47,6 +47,21 @@ jobs:
       run: echo ""
 
 ############################################################################################################
+# Set unified suffix for the two deployed applications
+############################################################################################################
+  set-suffix:
+    name: Create the date based suffix
+    needs: [perform-deployment]
+    runs-on: ubuntu-latest
+    outputs:
+      outputSuffix: ${{ steps.setSuffix.outputs.GlobalSuffix }}
+
+    steps:
+    - id: setSuffix
+      run: echo "GlobalSuffix=3.0.0-$(date +'%Y-%m-%d--%H-%M-%S')--${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+      shell: bash
+
+############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
 ############################################################################################################
   test:
@@ -80,7 +95,6 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '7.0.x'
-
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json

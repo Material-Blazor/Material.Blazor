@@ -1,10 +1,4 @@
-﻿import '@material/web/icon/icon.js';
-import '@material/web/textfield/filled-text-field.js';
-import '@material/web/textfield/outlined-text-field.js';
-
-import * as InternalTextFieldBase from '../Components/TextField/InternalTextFieldBase';
-
-import * as MBAutocompletePagedField from '../Components/AutocompletePagedField/MBAutocompletePagedField';
+﻿import * as MBAutocompletePagedField from '../Components/AutocompletePagedField/MBAutocompletePagedField';
 import * as MBAutocompleteTextField from '../Components/AutocompleteTextField/MBAutocompleteTextField';
 import * as MBBladeSet from '../Components/BladeSet/MBBladeSet';
 import * as MBButton from '../Components/Button/MBButton';
@@ -39,7 +33,6 @@ import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
-    InternalTextFieldBase,
     MBAutocompletePagedField,
     MBAutocompleteTextField,
     MBBladeSet,
