@@ -279,6 +279,8 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             TooltipId = null;
         }
 
+        _jsActionQueueSemaphore.Dispose();
+
         _disposed = true;
     }
 
@@ -427,7 +429,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
         async Task DequeueActions()
         {
-            await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
+            if (!_disposed)
+            {
+                await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
+            }
 
             try
             {
@@ -439,11 +444,17 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                     }
                 }
 
-                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+                if (!_disposed)
+                {
+                    await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+                }
             }
             finally
             {
-                _jsActionQueueSemaphore.Release();
+                if (!_disposed)
+                {
+                    _ = _jsActionQueueSemaphore.Release();
+                }
             }
         }
     }

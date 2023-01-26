@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.10](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.10)
+
+Released 2023-01-26
+
+**Updates**
+- Fixed a potential bug dequeing JS Interop actions after components are disposed.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.9)
 
 Released 2023-01-18
