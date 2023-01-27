@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD3;
 
 /// <summary>
 /// The base class for all Material.Blazor components.
@@ -27,17 +27,17 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
     private bool? disabled = null;
 
-    [CascadingParameter] private IMBDialog ParentDialog { get; set; }
+    //[CascadingParameter] private IMBDialog ParentDialog { get; set; }
     [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
-    [Inject] private protected IMBTooltipService TooltipService { get; set; }
-    [Inject] private protected IMBLoggingService LoggingService { get; set; }
+    //[Inject] private protected IMBTooltipService TooltipService { get; set; }
+    //[Inject] private protected IMBLoggingService LoggingService { get; set; }
 
 
 
     /// <summary>
     /// Gets a value for the component's 'id' attribute.
     /// </summary>
-    private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
+    //private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
 
     /// <summary>
@@ -49,7 +49,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Determines whether to apply the disabled attribute.
     /// </summary>
-    internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
+    //internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
 
 
     /// <summary>
@@ -61,12 +61,12 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="ComponentBase.OnInitialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
     /// </summary>
-    private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
+    //private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
     #endregion
 
     #region parameters
 
-    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+    //[CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
 
     /// <summary>
     /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -99,7 +99,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 #pragma warning disable IDE1006 // Naming Styles
     [Parameter] public string @class { get; set; }
 #pragma warning restore IDE1006 // Naming Styles
-    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+    //protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
 
 
     /// <summary>
@@ -122,13 +122,13 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Adds a tooltip if tooltip text has been provided.
     /// </summary>
-    private protected void AddTooltip()
-    {
-        if (!string.IsNullOrWhiteSpace(Tooltip) && TooltipId != null)
-        {
-            TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
-        }
-    }
+    //private protected void AddTooltip()
+    //{
+    //    if (!string.IsNullOrWhiteSpace(Tooltip) && TooltipId != null)
+    //    {
+    //        TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
+    //    }
+    //}
 
     #endregion
 
@@ -144,10 +144,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             yield return attribute;
         }
 
-        if (AppliedDisabled)
-        {
-            yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
-        }
+        //if (AppliedDisabled)
+        //{
+        //    yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
+        //}
         if (!string.IsNullOrWhiteSpace(Tooltip))
         {
             yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
@@ -164,10 +164,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             yield return attribute;
         }
 
-        if (AppliedDisabled)
-        {
-            yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
-        }
+        //if (AppliedDisabled)
+        //{
+        //    yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
+        //}
         if (!string.IsNullOrWhiteSpace(Tooltip))
         {
             yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
@@ -195,17 +195,17 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             return;
         }
 
-        if (UnmatchedAttributes.ContainsKey("disabled"))
-        {
-            throw new ArgumentException(
-                $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
-        }
+        //if (UnmatchedAttributes.ContainsKey("disabled"))
+        //{
+        //    throw new ArgumentException(
+        //        $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
+        //}
 
-        if (!CascadingDefaults.ConstrainSplattableAttributes)
-        {
-            // nothing to check, as the ConstrainSplattableAttributes feature is disabled.
-            return;
-        }
+        //if (!CascadingDefaults.ConstrainSplattableAttributes)
+        //{
+        //    // nothing to check, as the ConstrainSplattableAttributes feature is disabled.
+        //    return;
+        //}
 
         var forbidden =
             UnmatchedAttributes.Keys
@@ -213,14 +213,15 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 .Where(n => !n.StartsWith("aria-"))      // heuristic: filter aria attributes. Unlikely that other attributes will start with "aria-" as well.
                 .Where(n => !n.StartsWith("__internal")) // heuristic: filter .NET __internal_stopPropagation_onclick and similar generated attribute names.
                 .Except(EssentialSplattableAttributes)   // filter common attribute names
-                .Except(CascadingDefaults.AllowedSplattableAttributes, StringComparer.InvariantCultureIgnoreCase); // filter user-specified attribute names, ignoring case
+                ;
+                //.Except(CascadingDefaults.AllowedSplattableAttributes, StringComparer.InvariantCultureIgnoreCase); // filter user-specified attribute names, ignoring case
 
-        if (forbidden.Any())
-        {
-            var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attribute(s) in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
+        //if (forbidden.Any())
+        //{
+        //    var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attribute(s) in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
 
-            throw new ArgumentException($"Material.Blazor: {message}");
-        }
+        //    throw new ArgumentException($"Material.Blazor: {message}");
+        //}
     }
 
     #endregion
@@ -237,7 +238,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
         if (disposing && TooltipId != null)
         {
-            TooltipService.RemoveTooltip(TooltipId.Value);
+            //TooltipService.RemoveTooltip(TooltipId.Value);
             TooltipId = null;
         }
 
@@ -278,11 +279,11 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             try
             {
                 HasInstantiated = true;
-                AddTooltip();
+                //AddTooltip();
             }
             catch (Exception e)
             {
-                LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
+                //LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
             }
         }
 
@@ -303,10 +304,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         // the only thing we do here, is creating an ID for the tooltip, if we have one
         if (!string.IsNullOrWhiteSpace(Tooltip))
         {
-            TooltipId = TooltipIdProvider.NextId();
+            //TooltipId = TooltipIdProvider.NextId();
         }
 
-        LoggingService.SetLogger(Logger);
+        //LoggingService.SetLogger(Logger);
     }
 
     #endregion

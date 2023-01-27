@@ -1,4 +1,4 @@
-﻿namespace Material.Blazor.Website;
+﻿namespace Material.Blazor.Website.MD3;
 
 public static class Utilities
 {

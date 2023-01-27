@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD3;
 
 /// <summary>
 /// Base component for Filled and Outlined Text Fields.
@@ -16,7 +16,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 {
     [Inject] private IJSRuntime JsRuntime { get; set; }
     
-    [CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
+    //[CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
 
 
 #nullable enable annotations
@@ -128,34 +128,34 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     internal bool SelectAllText { get; set; } = false;
 
 
-    private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
+    //private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
     private string DisplayLabel => Label + LabelSuffix;
     private string DateFieldErrorMessage { get; set; }
     private string LabelSuffix { get; set; } = "";
     private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
-    private MBBadge Badge { get; set; }
+    //private MBBadge Badge { get; set; }
 
 
 
 
-    private readonly string labelId = Utilities.GenerateUniqueElementName();
-    private readonly string SupportingTextId = Utilities.GenerateUniqueElementName();
+    //private readonly string labelId = Utilities.GenerateUniqueElementName();
+    //private readonly string SupportingTextId = Utilities.GenerateUniqueElementName();
 
 
-    private MBCascadingDefaults.DensityInfo DensityInfo
-    {
-        get
-        {
-            var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
+    //private MBCascadingDefaults.DensityInfo DensityInfo
+    //{
+    //    get
+    //    {
+    //        var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
 
-            //var suffix = AppliedInputStyle == MBTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
-            //suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+    //        //var suffix = AppliedInputStyle == MBTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
+    //        //suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
 
-            //d.CssClassName += suffix;
+    //        //d.CssClassName += suffix;
 
-            return d;
-        }
-    }
+    //        return d;
+    //    }
+    //}
 
     private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
@@ -202,10 +202,10 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             _cachedBadgeValue = BadgeValue;
             _cachedBadgeExited = BadgeExited;
 
-            if (Badge is not null)
-            {
-                //EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
-            }
+            //if (Badge is not null)
+            //{
+            //    EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            //}
         }
     }
 
@@ -214,7 +214,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
+        //var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         builder.OpenElement(0, WebComponentName());
         {
@@ -223,7 +223,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 builder.AddMultipleAttributes(1, attributesToSplat);
             }
 
-            builder.AddAttribute(2, "class", cssClass);
+            //builder.AddAttribute(2, "class", cssClass);
             builder.AddAttribute(3, "style", style);
             builder.AddAttribute(4, "id", id);
 
@@ -231,10 +231,10 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             builder.AddAttribute(6, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
             builder.SetUpdatesAttributeName("value");
 
-            if (AppliedDisabled)
-            {
-                builder.AddAttribute(7, "disabled");
-            }
+            //if (AppliedDisabled)
+            //{
+            //    builder.AddAttribute(7, "disabled");
+            //}
 
             builder.AddAttribute(8, "label", DisplayLabel);
             
@@ -300,10 +300,10 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     protected void SetDateErrorMessage()
     {
         DateFieldErrorMessage = "";
-        if (DateTimeField != null)
-        {
-            DateFieldErrorMessage = MBDateTimeField.ErrorText;
-        }
+        //if (DateTimeField != null)
+        //{
+        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
+        //}
     }
 
 

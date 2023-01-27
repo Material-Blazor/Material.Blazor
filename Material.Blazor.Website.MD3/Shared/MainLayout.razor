@@ -1,7 +1,11 @@
 ﻿@inherits LayoutComponentBase
 
+@namespace Material.Blazor.Website.MD3.Shared
+
 @inject NavigationManager NavigationService
 @inject IJSRuntime JsRuntime
+
+@using Material.Blazor
 
 <MBDrawer @ref="@Drawer"
           IsDismissible="true">
@@ -19,7 +23,29 @@
                  ScrollTarget="#main-content"
                  TopAppBarType="@MBTopAppBarType.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <MBIconButton @onclick="@OpenMenuAsync" Icon="more_vert" />
+        </section>
     </MBTopAppBar>
+
+    <MBBladeSet MainContentAdditionalCss="demo-blade-main-content"
+                BladesAdditionalCss="mdc-elevation--z3">
+        <PageContent>
+            <main class="main-content" id="main-content">
+                <div class="max-width-content">
+                    <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
+                        <div class="mdc-top-app-bar--dense-fixed-adjust">
+                            <div class="mdc-layout-grid">
+                                <div class="mdc-layout-grid__inner">
+                                    @Body
+                                </div>
+                            </div>
+                        </div>
+                    </CascadingValue>
+                </div>
+            </main>
+        </PageContent>
+    </MBBladeSet>
 </div>
 
 
@@ -36,14 +62,6 @@
     {
         await Menu.ToggleAsync();
     }
-
-    protected async Task ThemeSetterAsync(string theme)
-    {
-        await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme, true);
-        Theme = theme;
-        StateHasChanged();
-    }
-
 
     private void ListItemClickHandler(string NavigationReference)
     {

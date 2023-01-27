@@ -3,7 +3,7 @@ using System;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD3;
 
 /// <summary>
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
@@ -107,11 +107,12 @@ public abstract class InternalFloatingPointFieldBase<T, U> : InternalNumericFiel
 
     private protected override string ConvertToFormattedTextValue(T value)
     {
-        var format = NumericSingularFormat is not null && Utilities.DecimalEqual(Math.Abs(Convert.ToDecimal(Value)), 1)
-            ? NumericSingularFormat
-            : NumericFormat;
+        //var format = NumericSingularFormat is not null && Utilities.DecimalEqual(Math.Abs(Convert.ToDecimal(Value)), 1)
+        //    ? NumericSingularFormat
+        //    : NumericFormat;
 
-        return (Convert.ToDecimal(value) * GetMultiplier()).ToString(format);
+        //return (Convert.ToDecimal(value) * GetMultiplier()).ToString(format);
+        return "";
     }
 
 

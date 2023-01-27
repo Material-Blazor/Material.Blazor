@@ -1,6 +1,6 @@
-﻿using Material.Blazor.Internal;
+﻿using Material.Blazor.Internal.MD3;
 
-namespace Material.Blazor;
+namespace Material.Blazor.MD3;
 
 /// <summary>
 /// A Material.Blazor filled style formatted decimal field.

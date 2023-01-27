@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD3;
 
 /// <summary>
 /// This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
@@ -42,14 +42,14 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
     /// should not be in a form.
     /// </summary>
-    private bool IgnoreFormField => this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
+    //private bool IgnoreFormField => this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
 
 
     /// <summary>
     /// Gets a string that indicates the status of the field being edited. This will include
     /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
     /// </summary>
-    protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
+    //protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
     #endregion
 
@@ -155,10 +155,10 @@ public abstract class InputComponent<T> : ComponentFoundation
     {
         await base.OnInitializedAsync();
 
-        if (EditContext != null && IgnoreFormField)
-        {
-            LoggingService.LogWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
-        }
+        //if (EditContext != null && IgnoreFormField)
+        //{
+        //    LoggingService.LogWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
+        //}
     }
 
     #endregion
@@ -188,7 +188,7 @@ public abstract class InputComponent<T> : ComponentFoundation
             _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
             _hasSetInitialParameters = true;
 
-            LoggingService.LogTrace($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
+            //LoggingService.LogTrace($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
         }
         else if (CascadedEditContext != EditContext)
         {

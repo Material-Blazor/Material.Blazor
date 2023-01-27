@@ -81,6 +81,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Material.Blazor.MD3\Material.Blazor.MD3.csproj" />
 		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
 	</ItemGroup>
 

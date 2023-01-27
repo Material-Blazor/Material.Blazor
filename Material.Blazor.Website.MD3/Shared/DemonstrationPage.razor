@@ -1,4 +1,6 @@
-﻿<PageTitle>@Title</PageTitle>
+﻿@namespace Material.Blazor.Website.MD3.Shared
+
+<PageTitle>@Title</PageTitle>
 
 <div @key="@CascadingDefaults" class="mdc-layout-grid__cell--span-12">
     <MBCard>
@@ -15,6 +17,7 @@
                         <MBDataTable Items="@Items"
                                  Context="item"
                                  class="dr-table">
+
                             <TableHeader>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Reference</th>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Link Source</th>
@@ -24,6 +27,7 @@
                                 <td class="mdc-data-table__cell">@item.Title</td>
                                 <td class="mdc-data-table__cell">@item.ContentMarkup</td>
                             </TableRow>
+
                         </MBDataTable>
                     </p>
                 }
@@ -44,6 +48,7 @@
                 }
 
                 @Controls
+
             </div>
         </Primary>
     </MBCard>

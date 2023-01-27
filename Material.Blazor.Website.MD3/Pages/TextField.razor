@@ -1,0 +1,314 @@
+﻿@page "/textfield"
+
+@namespace Material.Blazor.Website.MD3.Pages
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="TextField"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-textfield#text-field"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Text Field Demonstration">
+    <Description>
+        <p>
+            Filled and outlined text fields with icon usage, class and style application and finally density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Text Field Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit text field styles.
+                    </h3>
+
+                    <MBFilledTextField @bind-Value="@FilledStyle"
+                                       Label="Explicit Filled Style"
+                                       style="margin: 6px;" />
+
+                    <MBOutLinedTextField @bind-Value="@OutlinedStyle"
+                                         Label="Outlined Style"
+                                         style="margin: 6px;" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Leading and trailing icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
+                    </h3>
+
+                    <MBFilledTextField Label="Leading Icon"
+                                       LeadingIcon="print"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Label="Trailing Icon"
+                                       style="margin: 6px;"
+                                       TrailingIcon="import_contacts" />
+
+                    <MBOutLinedTextField Label="Leading Icon"
+                                         LeadingIcon="edit"
+                                         style="margin: 6px; " />
+
+                    <MBOutLinedTextField Label="Trailing Icon"
+                                         style="margin: 6px; "
+                                         TrailingIcon="mic" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Prefix and Suffix
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Prefix and Suffix text applied within fields.
+                    </h3>
+
+                    <MBFilledTextField Label="Prefix"
+                                       Prefix="$"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Label="Suffix"
+                                       Suffix="%"
+                                       style="margin: 6px;" />
+
+                    <MBOutLinedTextField Label="Prefix"
+                                         Prefix="$"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Label="Suffix"
+                                         Suffix="%"
+                                         style="margin: 6px;" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <style>
+                        .text-green {
+                            background-color: var(--mb-color-light-green-600) !important;
+                        }
+                    </style>
+
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Class and Style
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Background color set by CSS class and style attributes.
+                    </h3>
+
+                    <MBOutLinedTextField class="text-green"
+                                         Label="Green by class"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Label="Amber by style"
+                                         style="margin: 6px; background-color: var(--mb-color-amber-800);" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Contents Alignment
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Left, center and right aligned text (not the same as right-to-left script).
+                    </h3>
+
+                    <MBOutLinedTextField Label="Left Aligned"
+                                         style="margin: 6px; "
+                                         TextAlignStyle="@MBTextAlignStyle.Left" />
+
+                    <MBOutLinedTextField Label="Centered"
+                                         style="margin: 6px; "
+                                         TextAlignStyle="@MBTextAlignStyle.Center" />
+
+                    <MBOutLinedTextField Label="Right Aligned"
+                                         style="margin: 6px; "
+                                         TextAlignStyle="@MBTextAlignStyle.Right" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Passwords
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Standard HTML input obscuring with <code>type="password"</code>
+                    </h3>
+
+                    <MBOutLinedTextField @bind-Value="@Password"
+                                         Label="Password"
+                                         style="margin: 6px; "
+                                         type="password" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two way binding for text fields.
+                    </h3>
+
+                    <MBOutLinedTextField @bind-Value="@TwoWayBinding"
+                                         Label="First Linked Field"
+                                         style="margin: 6px; " />
+                    <MBOutLinedTextField @bind-Value="@TwoWayBinding"
+                                         Label="Second Linked Field"
+                                         style="margin: 6px; " />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Supporting Text
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows supporting text.
+                    </h3>
+
+                    <MBOutLinedTextField @bind-Value="@SupportingText"
+                                         SupportingText="Some supporting text"
+                                         Label="Persistent Supporting Text"
+                                         style="margin: 6px;" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Filled Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Filled density subsystem from default to minus 4.
+                    </h3>
+
+                    <MBFilledTextField Density="@MBDensity.Default"
+                                       Label="Default Density"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus1"
+                                       Label="Density Minus 1"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus2"
+                                       Label="Density Minus 2"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus3"
+                                       Label="Density Minus 3"
+                                       style="margin: 6px;" />
+
+                    <MBFilledTextField Density="@MBDensity.Minus4"
+                                       Label="Density Minus 4"
+                                       style="margin: 6px;" />
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Outlined Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Outlined density subsystem from default to minus 4.
+                    </h3>
+
+                    <MBOutLinedTextField Density="@MBDensity.Default"
+                                         Label="Default Density"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus1"
+                                         Label="Density Minus 1"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus2"
+                                         Label="Density Minus 2"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus3"
+                                         Label="Density Minus 3"
+                                         style="margin: 6px;" />
+
+                    <MBOutLinedTextField Density="@MBDensity.Minus4"
+                                         Label="Density Minus 4"
+                                         style="margin: 6px;" />
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private string FilledStyle { get; set; }
+
+    private string OutlinedStyle { get; set; }
+
+    private string Password { get; set; }
+
+    private string TwoWayBinding { get; set; }
+
+    private string SupportingText { get; set; }
+}

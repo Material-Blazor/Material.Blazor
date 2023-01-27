@@ -2,16 +2,10 @@
 
 @namespace Material.Blazor.Website.Server.Pages
 
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Material.Blazor.Website;
+@using Material.Blazor.Website.MD3;
 
-@if (PlatformDetermination.IsMD2)
-{
-    @using Material.Blazor.Website
-}
-else
-{
-@*    @using Material.Blazor.Website.MD3*@
-}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @using Material.Blazor.Website.Server
 @using Microsoft.AspNetCore.Components.Web
@@ -29,26 +23,29 @@ else
     <title>Material.Blazor</title>
     <base href="/" />
 
-    @if (PlatformDetermination.IsMD2)
+@*    We load all of the MD2 resources as the website is a mix of MD2 structure with MD3 components (for now)*@
+
+    <link href="_content/Material.Blazor.Website/icon-512.png" rel="apple-touch-icon" sizes="512x512">
+    <link href="_content/Material.Blazor.Website/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="_content/Material.Blazor.Website/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+    <link id="app-style" href="_content/Material.Blazor.Website/css/material-default-theme.min.css" rel="stylesheet">
+    <link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    @if (PlatformDetermination.IsMD3)
     {
-        <link href="_content/Material.Blazor.Website/icon-512.png" rel="apple-touch-icon" sizes="512x512">
-        <link href="_content/Material.Blazor.Website/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
-        <link href="_content/Material.Blazor.Website/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-        <link id="app-style" href="_content/Material.Blazor.Website/css/material-default-theme.min.css" rel="stylesheet">
-        <link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Shrikhand" rel="stylesheet">
-
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />    <!-- Global site tag (gtag.js) - Google Analytics -->
     }
 
     @if (PlatformDetermination.IsBlazorServer)
@@ -65,7 +62,14 @@ else
 <body class="mdc-typography mb-custom-scrollbars">
     @if (PlatformDetermination.IsBlazorServer)
     {
-        <component type="typeof(App)" render-mode="@RenderMode" />
+        @if (PlatformDetermination.IsMD2)
+        {
+            <component type="typeof(App)" render-mode="@RenderMode" />
+        }
+        else
+        {
+            <component type="typeof(AppMD3)" render-mode="@RenderMode" />
+        }
     }
     else
     {
@@ -94,11 +98,11 @@ else
         <script src="_content/Material.Blazor/material.blazor.js"></script>
         <script src="_content/Material.Blazor.Website/js/app.js"></script>
     }
-@*    else
+    @*    else
     {
-        
+
     }
-*@
+    *@
     <script src="_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js"></script>
 
     @if (PlatformDetermination.IsBlazorServer)

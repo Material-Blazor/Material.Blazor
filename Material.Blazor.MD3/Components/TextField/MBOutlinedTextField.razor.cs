@@ -3,12 +3,12 @@
 namespace Material.Blazor.MD3;
 
 /// <summary>
-/// A Material.Blazor filled text field.
+/// A Material.Blazor outlined text field.
 /// </summary>
-public sealed class MBFilledTextField : InternalTextFieldBase
+public sealed class MBOutLinedTextField : InternalTextFieldBase
 {
     private protected override string WebComponentName()
     {
-        return "md-filled-text-field";
+        return "md-outlined-text-field";
     }
 }

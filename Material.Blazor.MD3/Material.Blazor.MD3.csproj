@@ -124,7 +124,6 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
 		<!--Keep this Removes-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<Compile Include="..\Material.Blazor\Model\MBEnumerations.cs" Link="Model\MBEnumerations.cs" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
@@ -212,6 +211,10 @@
 			</Code>
 		</Task>
 	</UsingTask>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
