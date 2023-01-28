@@ -47,21 +47,6 @@ jobs:
       run: echo ""
 
 ############################################################################################################
-# Set unified suffix for the two deployed applications
-############################################################################################################
-  set-suffix:
-    name: Create the date based suffix
-    needs: [perform-deployment]
-    runs-on: ubuntu-latest
-    outputs:
-      outputSuffix: ${{ steps.setSuffix.outputs.GlobalSuffix }}
-
-    steps:
-    - id: setSuffix
-      run: echo "GlobalSuffix=3.0.0-$(date +'%Y-%m-%d--%H-%M-%S')--${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
-      shell: bash
-
-############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
 ############################################################################################################
   test:

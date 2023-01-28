@@ -23,9 +23,6 @@
                  ScrollTarget="#main-content"
                  TopAppBarType="@MBTopAppBarType.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-            <MBIconButton @onclick="@OpenMenuAsync" Icon="more_vert" />
-        </section>
     </MBTopAppBar>
 
     <MBBladeSet MainContentAdditionalCss="demo-blade-main-content"
@@ -53,15 +50,6 @@
     private const string materialDocRef = "https://github.com/material-components/material-components-web/tree/master/packages/";
 
     private MBDrawer Drawer { get; set; }
-
-    private MBMenu Menu { get; set; }
-
-    private string Theme { get; set; } = "material-default-theme";
-
-    private async Task OpenMenuAsync()
-    {
-        await Menu.ToggleAsync();
-    }
 
     private void ListItemClickHandler(string NavigationReference)
     {

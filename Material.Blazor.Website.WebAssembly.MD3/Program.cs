@@ -1,6 +1,7 @@
-﻿using GoogleAnalytics.Blazor;
+using GoogleAnalytics.Blazor;
 using Material.Blazor;
-using Material.Blazor.Website;
+using Material.Blazor.MD3;
+using Material.Blazor.Website.MD3;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("#appMD3");
+builder.RootComponents.Add<AppMD3>("#appMD3");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
