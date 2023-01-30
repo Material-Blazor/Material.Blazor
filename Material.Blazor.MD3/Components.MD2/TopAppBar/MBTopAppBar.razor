@@ -1,0 +1,30 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundationMD2
+
+
+<header @ref="HeaderElem"
+        class="mdc-top-app-bar @ActiveConditionalClasses @(@class)"
+        style="@style"
+        id="@id"
+        @attributes="@OtherAttributesToSplat()">
+
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            @if (NavIcon != null)
+            {
+                <MBIconButton @attributes="@EventAttributesToSplat()"
+                              class="mdc-top-app-bar__action-item--unbounded"
+                              Icon="@NavIcon"
+                              IconFoundry="@IconFoundry" />
+            }
+
+            <span class="mdc-top-app-bar__title">@Title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
+        </section>
+    </div>
+</header>

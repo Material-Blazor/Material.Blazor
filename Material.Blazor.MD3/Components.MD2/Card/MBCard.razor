@@ -1,0 +1,58 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundationMD2
+
+
+<CascadingValue Value="@this" IsFixed="true">
+    <div class="mdc-card @ActiveConditionalClasses @(@class)"
+         style="@style"
+         id="@id"
+         @attributes="@OtherAttributesToSplat()">
+        
+        @if (Primary != null)
+        {
+            <div class="@PrimaryClass">
+                @Primary
+            </div>
+        }
+
+        @if (PrimaryAction != null)
+        {
+            <div @ref="@PrimaryActionReference"
+                    @attributes="@EventAttributesToSplat()"
+                    class="mdc-card__primary-action @PrimaryActionClass"
+                    tabindex="@PrimaryActionTabIndex"
+                    role="@PrimaryActionRole"
+                    aria-selected="@PrimaryActionAriaSelected"
+                    aria-controls="@PrimaryActionAriaControls">
+
+                @PrimaryAction
+                <div class="mdc-card__ripple"></div>
+            </div>
+        }
+
+        @if (ActionButtons != null || ActionIcons != null)
+        {
+            <div class="mdc-card__actions">
+                @if (ActionButtons != null)
+                {
+                    <div class="mdc-card__action-buttons">
+                        @ActionButtons
+                    </div>
+                }
+
+                @if (ActionIcons != null)
+                {
+                    <div class="mdc-card__action-icons">
+                        @ActionIcons
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    @if (NonSemanticContent != null)
+    {
+        @NonSemanticContent
+    }
+</CascadingValue>
+

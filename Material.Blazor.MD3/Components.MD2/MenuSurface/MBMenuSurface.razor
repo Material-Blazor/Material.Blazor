@@ -1,0 +1,16 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundationMD2
+
+
+<div @ref="ElementReference"
+     class="mdc-menu-surface @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+
+</div>

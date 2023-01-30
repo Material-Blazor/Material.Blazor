@@ -1,0 +1,20 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundationMD2
+
+
+<div @ref="ElementReference"
+     class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+
+    <ul class="mdc-deprecated-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+        <CascadingValue Value="@this" IsFixed="true">
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
+        </CascadingValue>
+    </ul>
+
+</div>
