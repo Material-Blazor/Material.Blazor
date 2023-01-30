@@ -2,11 +2,11 @@
 
 @namespace Material.Blazor.Website.Server.Pages
 
-@using Material.Blazor.Website;
+@using Material.Blazor.Website.MD3;
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@using Material.Blazor.Website.Server
+@using Material.Blazor.Website.Server.MD3
 @using Microsoft.AspNetCore.Components.Web
 
 @{
@@ -21,6 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Material.Blazor</title>
     <base href="/" />
+
+    @*    We load all of the MD2 resources as the website is a mix of MD2 structure with MD3 components (for now)*@
 
     <link href="_content/Material.Blazor.Website/icon-512.png" rel="apple-touch-icon" sizes="512x512">
     <link href="_content/Material.Blazor.Website/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
@@ -58,7 +60,7 @@
 <body class="mdc-typography mb-custom-scrollbars">
     @if (PlatformDetermination.IsBlazorServer)
     {
-        <component type="typeof(AppMD2)" render-mode="@RenderMode" />
+        <component type="typeof(AppMD3)" render-mode="@RenderMode" />
     }
     else
     {
@@ -82,8 +84,9 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="_content/Material.Blazor/material.blazor.js"></script>
-    <script src="_content/Material.Blazor.Website/js/app.js"></script>
+        <script src="_content/Material.Blazor/material.blazor.js"></script>
+        <script src="_content/Material.Blazor.Website/js/app.js"></script>
+        <script src="_content/Material.Blazor.MD3/material.blazor.js"></script>
 
     <script src="_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js"></script>
 

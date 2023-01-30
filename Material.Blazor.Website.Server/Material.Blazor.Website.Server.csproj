@@ -49,8 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Material.Blazor.Website.MD3\Material.Blazor.Website.MD3.csproj" />
-		<ProjectReference Include="..\Material.Blazor.Website.WebAssembly.MD3\Material.Blazor.Website.WebAssembly.MD3.csproj" />
+		<ProjectReference Include="..\Material.Blazor.Website.WebAssembly\Material.Blazor.Website.WebAssembly.csproj" />
 		<ProjectReference Include="..\Material.Blazor.Website\Material.Blazor.Website.csproj" />
 	</ItemGroup>
 
