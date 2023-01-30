@@ -1,11 +1,11 @@
 ﻿@inherits LayoutComponentBase
 
-@namespace Material.Blazor.Website.MD3.Shared
+@namespace Material.Blazor.Website.Shared.MD2
 
 @inject NavigationManager NavigationService
 @inject IJSRuntime JsRuntime
 
-@using Material.Blazor
+@using Material.Blazor.MD2
 
 <MBDrawer @ref="@Drawer"
           StartOpen=true
@@ -26,24 +26,19 @@
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
     </MBTopAppBar>
 
-    <MBBladeSet MainContentAdditionalCss="demo-blade-main-content"
-                BladesAdditionalCss="mdc-elevation--z3">
-        <PageContent>
-            <main class="main-content" id="main-content">
-                <div class="max-width-content">
-                    <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
-                        <div class="mdc-top-app-bar--dense-fixed-adjust">
-                            <div class="mdc-layout-grid">
-                                <div class="mdc-layout-grid__inner">
-                                    @Body
-                                </div>
-                            </div>
+    <main class="main-content" id="main-content">
+        <div class="max-width-content">
+            <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
+                <div class="mdc-top-app-bar--dense-fixed-adjust">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            @Body
                         </div>
-                    </CascadingValue>
+                    </div>
                 </div>
-            </main>
-        </PageContent>
-    </MBBladeSet>
+            </CascadingValue>
+        </div>
+    </main>
 </div>
 
 

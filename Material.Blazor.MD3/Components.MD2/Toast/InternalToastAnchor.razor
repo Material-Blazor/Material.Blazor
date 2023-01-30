@@ -1,4 +1,4 @@
-﻿@namespace Material.Blazor.Internal
+﻿@namespace Material.Blazor.Internal.MD2
 @inherits ComponentFoundationMD2
 
 
@@ -14,7 +14,7 @@
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    var iconHelper = new MBIconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
+                    var iconHelper = new MBIconHelper(toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
                     var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
                     <div class="mb-toast-icon @filterClass">

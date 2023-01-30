@@ -67,7 +67,7 @@ public partial class MBDataTable<TItem> : ComponentFoundationMD2
     [Parameter] public MBDensity? Density { get; set; }
 
 
-    private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedDataTableDensity(Density));
+//    private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedDataTableDensity(Density));
     private ElementReference ElementReference { get; set; }
     private Func<TItem, object> KeyGenerator { get; set; }
 
@@ -78,7 +78,7 @@ public partial class MBDataTable<TItem> : ComponentFoundationMD2
         await base.OnInitializedAsync();
 
         ConditionalCssClasses
-            .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+            //.AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-data-table--sticky-header", () => StickyHeader);
     }
 

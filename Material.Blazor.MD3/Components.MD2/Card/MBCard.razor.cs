@@ -86,9 +86,6 @@ public partial class MBCard : ComponentFoundationMD2
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-
-        _ = ConditionalCssClasses
-            .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == MBCardStyle.Outlined);
     }
 
 

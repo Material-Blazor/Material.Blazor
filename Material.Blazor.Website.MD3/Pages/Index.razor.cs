@@ -3,24 +3,17 @@ using Microsoft.JSInterop;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Website.MD3.Pages;
+namespace Material.Blazor.Website.Pages;
 
 public partial class Index
 {
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
 
-#if MD2 && BLAZOR_SERVER
-    private string BuildMode { get; set; } = "MD2Server";
-#endif
-#if MD2 && BLAZOR_WEBASSEMBLY
-    private string BuildMode { get; set; } = "MD2WASM";
-#endif
-#if MD3 && BLAZOR_SERVER
-    private string BuildMode { get; set; } = "MD3Server";
-#endif
-#if MD3 && BLAZOR_WEBASSEMBLY
-    private string BuildMode { get; set; } = "MD3WASM";
+#if BLAZOR_SERVER
+    private string BuildMode { get; set; } = "Server";
+#else
+    private string BuildMode { get; set; } = "WebAssembly";
 #endif
 
     private string OSArchitecture { get; set; }

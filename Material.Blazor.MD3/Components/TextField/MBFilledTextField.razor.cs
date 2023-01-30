@@ -1,6 +1,6 @@
-﻿using Material.Blazor.Internal.MD3;
+﻿using Material.Blazor.Internal;
 
-namespace Material.Blazor.MD3;
+namespace Material.Blazor;
 
 /// <summary>
 /// A Material.Blazor filled text field.

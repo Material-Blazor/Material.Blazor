@@ -20,18 +20,4 @@ public static class PlatformDetermination
     public const bool IsBlazorServer = false;
     public const bool IsBlazorWebAssembly = true;
 #endif
-
-#if MD2
-    /// <summary>
-    /// We are running Material Design 2.
-    /// </summary>
-    public const bool IsMD2 = true;
-    public const bool IsMD3 = false;
-#else
-    /// <summary>
-    /// We are running Material Design 3.
-    /// </summary>
-    public const bool IsMD2 = false;
-    public const bool IsMD3 = true;
-#endif
 }

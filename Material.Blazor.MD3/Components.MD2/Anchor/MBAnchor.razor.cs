@@ -1,4 +1,5 @@
-﻿namespace Material.Blazor.MD2;
+﻿using Material.Blazor.Internal.MD2;
+namespace Material.Blazor.MD2;
 
 /// <summary>
 /// An anchor component for snackbars, toasts and tooltips to be placed in App.razor, MainLayout.razor or Index.razor.

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.Internal.MD2;
+using Microsoft.AspNetCore.Components;
 
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Internal.MD2;
+namespace Material.Blazor.MD2;
 
 /// <summary>
 /// An anchor component that displays toast notification that you display via

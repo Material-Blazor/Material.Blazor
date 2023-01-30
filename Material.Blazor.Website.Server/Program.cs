@@ -38,7 +38,7 @@ try
     // Add services to the container.
     builder.Services.AddRazorPages();
 
-#if BLAZOR_SERVER
+#if SERVER
 
     builder.Services.AddServerSideBlazor();
     builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
@@ -73,7 +73,7 @@ try
 
     if (app.Environment.IsDevelopment())
     {
-#if BLAZOR_SERVER
+#if SERVER
         app.UseDeveloperExceptionPage();
 #else
         app.UseWebAssemblyDebugging();
@@ -94,7 +94,7 @@ try
 
     app.UseRouting();
 
-#if BLAZOR_SERVER
+#if SERVER
     app.MapBlazorHub();
 #else
     app.UseBlazorFrameworkFiles();

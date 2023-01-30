@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Internal.MD3;
+namespace Material.Blazor.Internal;
 
 /// <summary>
 /// This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats

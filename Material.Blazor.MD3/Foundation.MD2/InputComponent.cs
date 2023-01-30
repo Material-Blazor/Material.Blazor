@@ -42,7 +42,8 @@ public abstract class InputComponentMD2<T> : ComponentFoundationMD2
     /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
     /// should not be in a form.
     /// </summary>
-    private bool IgnoreFormField => this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
+//    private bool IgnoreFormField => this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
+    private bool IgnoreFormField => false;
 
     /// <summary>
     /// Allows <see cref="ShouldRender()"/> to return "true" habitually.

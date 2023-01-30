@@ -3,7 +3,7 @@ using System;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
-namespace Material.Blazor.Internal.MD3;
+namespace Material.Blazor.Internal;
 
 /// <summary>
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally

@@ -19,23 +19,15 @@
 		<PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
 		<Product>Material.Blazor</Product>
 		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-		<Configurations>MD2Server;MD2WASM;MD3Server;MD3WASM</Configurations>
+		<Configurations>Server;WebAssembly</Configurations>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD2Server|AnyCPU'">
-		<DefineConstants>MD2;BLAZOR_SERVER</DefineConstants>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Server|AnyCPU'">
+		<DefineConstants>BLAZOR_SERVER</DefineConstants>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD2WASM|AnyCPU'">
-		<DefineConstants>MD2;BLAZOR_WEBASSEMBLY</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD3Server|AnyCPU'">
-		<DefineConstants>MD3;BLAZOR_SERVER</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MD3WASM|AnyCPU'">
-		<DefineConstants>MD3;BLAZOR_WEBASSEMBLY</DefineConstants>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WebAssembly|AnyCPU'">
+		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup>
