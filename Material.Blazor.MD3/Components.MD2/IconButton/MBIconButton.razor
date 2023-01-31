@@ -1,0 +1,26 @@
+﻿@namespace Material.Blazor.MD2
+@inherits ComponentFoundationMD2
+
+
+<MBTouchTargetWrapper ApplyTouchTargetWrapper="false">
+    <button @ref="@ElementReference"
+            class="mdc-icon-button @ActiveConditionalClasses @(@class)"
+            style="@style"
+            id="@id"
+            type="button"
+            @attributes="@AttributesToSplat()">
+
+        <div class="mdc-icon-button__ripple"></div>
+        <MBIcon IconFoundry="@IconFoundry"
+                IconName="@Icon" />
+
+        @if (HasBadge)
+        {
+            <span class="mb-badge-container">
+                <MBBadge BadgeStyle="@BadgeStyle"
+                         Value="@BadgeValue"
+                         Exited="@BadgeExited" />
+            </span>
+        }
+    </button>
+</MBTouchTargetWrapper>

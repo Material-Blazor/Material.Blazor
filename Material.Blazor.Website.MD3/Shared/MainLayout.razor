@@ -8,7 +8,7 @@
 @using Material.Blazor.MD2
 
 <MBDrawer @ref="@Drawer"
-          StartOpen=true
+          StartOpen=false
           IsDismissible="true">
 
     <nav class="mdc-list">
@@ -28,23 +28,19 @@
 
     <main class="main-content" id="main-content">
         <div class="max-width-content">
-            <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
-                <div class="mdc-top-app-bar--dense-fixed-adjust">
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            @Body
-                        </div>
+            <div class="mdc-top-app-bar--dense-fixed-adjust">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        @Body
                     </div>
                 </div>
-            </CascadingValue>
+            </div>
         </div>
     </main>
 </div>
 
 
 @code {
-    private const string materialDocRef = "https://github.com/material-components/material-components-web/tree/master/packages/";
-
     private MBDrawer Drawer { get; set; }
 
     private void ListItemClickHandler(string NavigationReference)

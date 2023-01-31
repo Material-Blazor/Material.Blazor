@@ -342,9 +342,8 @@ healthchecksdb
 #Generated CSS and JS files
 **/Material.Blazor/wwwroot/*.*
 **/Material.Blazor.Website/wwwroot/css/*.*
-**/Material.Blazor/StaticAssets/*.*
-**/Material.Blazor/StaticAssetsBuildDirectory/*.js
-**/Material.Blazor.Website/StaticAssets/css/*.*
+**/Material.Blazor.MD3/wwwroot/*.*
+**/Material.Blazor.Website.MD3/wwwroot/css/*.*
 
 # DocFx tool
 !**/DocFx/*.*

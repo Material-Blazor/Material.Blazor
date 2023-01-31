@@ -1077,6 +1077,493 @@
   padding-left: 0px;
 }
 
+.mdc-icon-button.dense--5 {
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+}
+.mdc-icon-button.dense--5 .mdc-icon-button__focus-ring {
+  display: none;
+}
+.mdc-icon-button.dense--5.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--5:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  display: block;
+  max-height: 28px;
+  max-width: 28px;
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--5.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--5:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--5.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--5:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    border-color: CanvasText;
+  }
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--5.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--5:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    content: "";
+    border: 2px solid transparent;
+    border-radius: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--5.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--5:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    border-color: CanvasText;
+  }
+}
+.mdc-icon-button.dense--5.mdc-icon-button--reduced-size .mdc-icon-button__ripple {
+  width: 28px;
+  height: 28px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.mdc-icon-button.dense--5.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--5.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  max-height: 28px;
+  max-width: 28px;
+}
+.mdc-icon-button.dense--5 .mdc-icon-button__touch {
+  position: absolute;
+  top: 50%;
+  height: 28px;
+  /* @noflip */
+  /*rtl:ignore*/
+  left: 50%;
+  width: 28px;
+  transform: translate(-50%, -50%);
+}
+.mdc-icon-button.dense--4 {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+}
+.mdc-icon-button.dense--4 .mdc-icon-button__focus-ring {
+  display: none;
+}
+.mdc-icon-button.dense--4.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--4:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  display: block;
+  max-height: 32px;
+  max-width: 32px;
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--4.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--4:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--4.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--4:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    border-color: CanvasText;
+  }
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--4.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--4:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    content: "";
+    border: 2px solid transparent;
+    border-radius: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--4.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--4:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    border-color: CanvasText;
+  }
+}
+.mdc-icon-button.dense--4.mdc-icon-button--reduced-size .mdc-icon-button__ripple {
+  width: 32px;
+  height: 32px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.mdc-icon-button.dense--4.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--4.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  max-height: 32px;
+  max-width: 32px;
+}
+.mdc-icon-button.dense--4 .mdc-icon-button__touch {
+  position: absolute;
+  top: 50%;
+  height: 32px;
+  /* @noflip */
+  /*rtl:ignore*/
+  left: 50%;
+  width: 32px;
+  transform: translate(-50%, -50%);
+}
+.mdc-icon-button.dense--3, .mdc-icon-button.dense-compact {
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+}
+.mdc-icon-button.dense--3 .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact .mdc-icon-button__focus-ring {
+  display: none;
+}
+.mdc-icon-button.dense--3.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--3:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  display: block;
+  max-height: 36px;
+  max-width: 36px;
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--3.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--3:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--3.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--3:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    border-color: CanvasText;
+  }
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--3.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--3:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-compact.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-compact:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    content: "";
+    border: 2px solid transparent;
+    border-radius: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--3.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--3:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-compact.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-compact:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    border-color: CanvasText;
+  }
+}
+.mdc-icon-button.dense--3.mdc-icon-button--reduced-size .mdc-icon-button__ripple, .mdc-icon-button.dense-compact.mdc-icon-button--reduced-size .mdc-icon-button__ripple {
+  width: 36px;
+  height: 36px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.mdc-icon-button.dense--3.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--3.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-compact.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  max-height: 36px;
+  max-width: 36px;
+}
+.mdc-icon-button.dense--3 .mdc-icon-button__touch, .mdc-icon-button.dense-compact .mdc-icon-button__touch {
+  position: absolute;
+  top: 50%;
+  height: 36px;
+  /* @noflip */
+  /*rtl:ignore*/
+  left: 50%;
+  width: 36px;
+  transform: translate(-50%, -50%);
+}
+.mdc-icon-button.dense--2, .mdc-icon-button.dense-comfortable {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}
+.mdc-icon-button.dense--2 .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable .mdc-icon-button__focus-ring {
+  display: none;
+}
+.mdc-icon-button.dense--2.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--2:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  display: block;
+  max-height: 40px;
+  max-width: 40px;
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--2.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--2:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--2.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--2:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    border-color: CanvasText;
+  }
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--2.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--2:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-comfortable.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-comfortable:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    content: "";
+    border: 2px solid transparent;
+    border-radius: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--2.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--2:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-comfortable.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-comfortable:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    border-color: CanvasText;
+  }
+}
+.mdc-icon-button.dense--2.mdc-icon-button--reduced-size .mdc-icon-button__ripple, .mdc-icon-button.dense-comfortable.mdc-icon-button--reduced-size .mdc-icon-button__ripple {
+  width: 40px;
+  height: 40px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.mdc-icon-button.dense--2.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--2.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-comfortable.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  max-height: 40px;
+  max-width: 40px;
+}
+.mdc-icon-button.dense--2 .mdc-icon-button__touch, .mdc-icon-button.dense-comfortable .mdc-icon-button__touch {
+  position: absolute;
+  top: 50%;
+  height: 40px;
+  /* @noflip */
+  /*rtl:ignore*/
+  left: 50%;
+  width: 40px;
+  transform: translate(-50%, -50%);
+}
+.mdc-icon-button.dense--1 {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+}
+.mdc-icon-button.dense--1 .mdc-icon-button__focus-ring {
+  display: none;
+}
+.mdc-icon-button.dense--1.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--1:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  display: block;
+  max-height: 44px;
+  max-width: 44px;
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--1.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--1:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--1.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--1:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    border-color: CanvasText;
+  }
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--1.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--1:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    content: "";
+    border: 2px solid transparent;
+    border-radius: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--1.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--1:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    border-color: CanvasText;
+  }
+}
+.mdc-icon-button.dense--1.mdc-icon-button--reduced-size .mdc-icon-button__ripple {
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.mdc-icon-button.dense--1.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--1.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  max-height: 40px;
+  max-width: 40px;
+}
+.mdc-icon-button.dense--1 .mdc-icon-button__touch {
+  position: absolute;
+  top: 50%;
+  height: 44px;
+  /* @noflip */
+  /*rtl:ignore*/
+  left: 50%;
+  width: 44px;
+  transform: translate(-50%, -50%);
+}
+.mdc-icon-button.dense--0, .mdc-icon-button.dense-default {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+}
+.mdc-icon-button.dense--0 .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default .mdc-icon-button__focus-ring {
+  display: none;
+}
+.mdc-icon-button.dense--0.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--0:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  display: block;
+  max-height: 48px;
+  max-width: 48px;
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--0.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--0:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--0.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--0:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+    border-color: CanvasText;
+  }
+}
+@media screen and (forced-colors: active) {
+  .mdc-icon-button.dense--0.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--0:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-default.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-default:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    content: "";
+    border: 2px solid transparent;
+    border-radius: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    left: 50%;
+    /* @noflip */
+    /*rtl:ignore*/
+    transform: translate(-50%, -50%);
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+  }
+}
+@media screen and (forced-colors: active) and (forced-colors: active) {
+  .mdc-icon-button.dense--0.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense--0:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-default.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring::after, .mdc-icon-button.dense-default:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring::after {
+    border-color: CanvasText;
+  }
+}
+.mdc-icon-button.dense--0.mdc-icon-button--reduced-size .mdc-icon-button__ripple, .mdc-icon-button.dense-default.mdc-icon-button--reduced-size .mdc-icon-button__ripple {
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+.mdc-icon-button.dense--0.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense--0.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default.mdc-icon-button--reduced-size.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring, .mdc-icon-button.dense-default.mdc-icon-button--reduced-size:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring {
+  max-height: 40px;
+  max-width: 40px;
+}
+.mdc-icon-button.dense--0 .mdc-icon-button__touch, .mdc-icon-button.dense-default .mdc-icon-button__touch {
+  position: absolute;
+  top: 50%;
+  height: 48px;
+  /* @noflip */
+  /*rtl:ignore*/
+  left: 50%;
+  width: 48px;
+  transform: translate(-50%, -50%);
+}
+
 .mdc-snackbar {
   z-index: 8;
   margin: 8px;
