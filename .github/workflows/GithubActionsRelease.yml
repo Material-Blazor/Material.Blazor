@@ -15,7 +15,7 @@ on:
 
 env:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'MD2WASM'
+  buildConfiguration: 'WebAssembly'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}\siteMB
   outputWeb: ${{github.workspace}}\siteWeb

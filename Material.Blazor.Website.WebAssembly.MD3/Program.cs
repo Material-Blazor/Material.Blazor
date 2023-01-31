@@ -1,5 +1,7 @@
 ﻿using GoogleAnalytics.Blazor;
 using Material.Blazor;
+using Material.Blazor.Internal.MD2;
+using Material.Blazor.MD2;
 using Material.Blazor.Website.MD3;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -19,22 +21,22 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 // Option 1: add options to services, which are then accessed by the Material Blazor services.
-//builder.Services.AddOptions<MBServicesOptions>().Configure(options =>
-//{
-//    options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
-//    options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
-//    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
-//});
-
-//builder.Services.AddMBServices();
-
-// Option 2: add options within the call to add the Material.Blazor services.
-builder.Services.AddMBServices(options =>
+builder.Services.AddOptions<MBServicesOptions>().Configure(options =>
 {
     options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
     options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
     options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
 });
+
+//builder.Services.AddMBServices();
+
+// Option 2: add options within the call to add the Material.Blazor services.
+//builder.Services.AddMBServices(options =>
+//{
+//    options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
+//    options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
+//    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
+//});
 
 Log.Logger = new LoggerConfiguration()
 #if DEBUG

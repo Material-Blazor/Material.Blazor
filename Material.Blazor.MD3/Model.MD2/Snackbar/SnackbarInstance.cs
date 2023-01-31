@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Material.Blazor.MD2;
+using System;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD2;
 
 /// <summary>
 /// An instance of a snackbar message.

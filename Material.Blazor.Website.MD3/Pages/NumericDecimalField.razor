@@ -9,7 +9,7 @@
 
 <DemonstrationPage ComponentName="NumericDecimalField"
                    DemoComponent="@this"
-                   MinDensity="MBDensity.Minus4"
+                   MinDensity="Material.Blazor.MBDensity.Minus4"
                    RequiresDisableSelection="true"
                    Title="Numeric Decimal Field Demonstration">
     <Description>
@@ -74,7 +74,7 @@
                     <p>
                         <MBOutlinedDecimalField @bind-Value="@PercentByFormat"
                                                 DecimalPlaces="2"
-                                                FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                                FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent"
                                                 Label="Percent by format"
                                                 NumericFormat="P2" />
                     </p>
@@ -82,21 +82,21 @@
                     <p>
                         <MBOutlinedDecimalField @bind-Value="@PercentBySuffix"
                                                 DecimalPlaces="2"
-                                                FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                                FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent"
                                                 Label="Percent by Suffix"
                                                 NumericFormat="N2"
                                                 Suffix="%"
-                                                UnfocusedMagnitude="MBNumericInputMagnitude.Percent" />
+                                                UnfocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent" />
                     </p>
 
                     <p>
                         <MBOutlinedDecimalField @bind-Value="@BasisPointsBySuffix"
                                                 DecimalPlaces="0"
-                                                FocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
+                                                FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.BasisPoints"
                                                 Label="Basis Points by Suffix"
                                                 NumericFormat="N0"
                                                 Suffix="bp"
-                                                UnfocusedMagnitude="MBNumericInputMagnitude.BasisPoints" />
+                                                UnfocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.BasisPoints" />
                     </p>
                 </Primary>
             </MBCard>
@@ -145,7 +145,7 @@
         {
             _decimalValue = value;
 
-            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -159,7 +159,7 @@
         {
             _moneyByFormat = value;
 
-            ToastService.ShowToast(heading: "Money by format numeric", message: $"Value: '{_moneyByFormat.ToString("C2")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Money by format numeric", message: $"Value: '{_moneyByFormat.ToString("C2")}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -173,7 +173,7 @@
         {
             _moneyByPrefix = value;
 
-            ToastService.ShowToast(heading: "Money by Prefix numeric", message: $"Value: '{_moneyByPrefix.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Money by Prefix numeric", message: $"Value: '{_moneyByPrefix.ToString("N2")}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -187,7 +187,7 @@
         {
             _percentByFormat = value;
 
-            ToastService.ShowToast(heading: "Percent by format", message: $"Value: '{_percentByFormat.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Percent by format", message: $"Value: '{_percentByFormat.ToString("N4")}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -200,7 +200,7 @@
         {
             _percentBySuffix = value;
 
-            ToastService.ShowToast(heading: "Percent by suffix", message: $"Value: '{_percentBySuffix.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Percent by suffix", message: $"Value: '{_percentBySuffix.ToString("N4")}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -213,7 +213,7 @@
         {
             _basisPointsBySuffix = value;
 
-            ToastService.ShowToast(heading: "Basis Points by suffix", message: $"Value: '{_basisPointsBySuffix.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Basis Points by suffix", message: $"Value: '{_basisPointsBySuffix.ToString("N4")}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -226,7 +226,7 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -239,7 +239,7 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: Material.Blazor.MD2.MBToastLevel.Success, showIcon: false);
         }
     }
 }

@@ -59,7 +59,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Components.MD2\Dialog\" />
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
@@ -109,10 +108,6 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
 		<!--Keep this Removes-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsStyles Remove="Styles\material-components-web.scss" />
-		<InputStaticAssetsStyles Remove="Styles\material.blazor.scss" />
-		<InputStaticAssetsStyles Remove="Styles\_colors.scss" />
-		<InputStaticAssetsStyles Remove="Styles\_material-components-icons.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
@@ -206,12 +201,6 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Update="Components\IntSlider\MBIntSlider.razor">
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-		</Content>
 	</ItemGroup>
 
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">

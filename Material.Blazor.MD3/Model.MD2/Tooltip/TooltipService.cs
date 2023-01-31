@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.MD2;
+using Microsoft.AspNetCore.Components;
 using System;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD2;
 
 /// <summary>
 /// The internal implementation of <see cref="IMBTooltipService"/>.

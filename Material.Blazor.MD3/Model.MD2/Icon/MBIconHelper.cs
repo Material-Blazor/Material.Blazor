@@ -42,23 +42,23 @@ public class MBIconHelper : IMBIcon
     public static IMBIconFoundry OIFoundry() => new IconFoundryOI();
 
 
-//#nullable enable annotations
-//    internal MBIconHelper(MBCascadingDefaults cascadingDefaults, string iconName, IMBIconFoundry? foundry = null)
-//    {
-//        if (cascadingDefaults is null)
-//        {
-//            cascadingDefaults = new MBCascadingDefaults();
-//        }
+#nullable enable annotations
+    internal MBIconHelper(string iconName, IMBIconFoundry? foundry = null)
+    {
+        //if (cascadingDefaults is null)
+        //{
+        //    cascadingDefaults = new MBCascadingDefaults();
+        //}
 
-//        MBIconFoundryName iconFoundry = cascadingDefaults.AppliedIconFoundryName(foundry?.FoundryName);
+        MBIconFoundryName iconFoundry = MBIconFoundryName.MaterialIcons;
 
-//        UnderlyingIcon = iconFoundry switch
-//        {
-//            MBIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
-//            MBIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
-//            MBIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
-//            _ => throw new NotImplementedException(),
-//        };
-//    }
-//#nullable restore annotations
+        UnderlyingIcon = iconFoundry switch
+        {
+            MBIconFoundryName.MaterialIcons => new IconMI(iconName, (IconFoundryMI?)foundry),
+            MBIconFoundryName.FontAwesome => new IconFA(iconName, (IconFoundryFA?)foundry),
+            MBIconFoundryName.OpenIconic => new IconOI(iconName, (IconFoundryOI?)foundry),
+            _ => throw new NotImplementedException(),
+        };
+    }
+#nullable restore annotations
 }

@@ -1,5 +1,5 @@
-﻿@namespace Material.Blazor.Website.Shared.MD2
-@using Material.Blazor;
+﻿@namespace Material.Blazor.Website.Shared
+@using Material.Blazor.MD2;
 
 <PageTitle>@Title</PageTitle>
 
@@ -41,7 +41,7 @@
                     </p>
                 }
 
-                @if (MinDensity != MBDensity.Default)
+                @if (MinDensity != Material.Blazor.MBDensity.Default)
                 {
                     <p>
                         @*                        <MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
@@ -88,7 +88,7 @@
 
     [Parameter] public string MaterialIOPage { get; set; }
 
-    [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
+    [Parameter] public Blazor.MBDensity MinDensity { get; set; } = Material.Blazor.MBDensity.Default;
 
     [Parameter] public RenderFragment PageContent { get; set; }
 

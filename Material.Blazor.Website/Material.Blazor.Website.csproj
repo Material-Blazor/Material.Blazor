@@ -87,7 +87,7 @@
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-		<!-- Don't build unminified themes -->
+		<!-- Build minified themes -->
 		<Message Importance="high" Text="***** build material default theme" />
 		<Exec Command="npm run build-min-material-default" />
 

@@ -1,5 +1,7 @@
 ﻿using Material.Blazor.MD2;
+
 using Microsoft.Extensions.Options;
+
 using System;
 
 namespace Material.Blazor.Internal.MD2;
@@ -66,7 +68,7 @@ internal class SnackbarService : IMBSnackbarService
         Action action = null,
         string actionText = null,
         string additionalClass = "",
-        MBNotifierCloseMethod? closeMethod = null,
+        Material.Blazor.MD2.MBNotifierCloseMethod? closeMethod = null,
         bool leading = false,
         bool stacked = false,
         int? timeout = null,

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Material.Blazor;
+namespace Material.Blazor.MD2;
 
 /// <summary>
 /// Configuration for <see cref="IMBSnackbarService"/>.

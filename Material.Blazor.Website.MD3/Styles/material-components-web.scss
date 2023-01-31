@@ -41,6 +41,7 @@
 @use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/typography/mdc-typography';
 
+
 @include card.core-styles;
 @include checkbox.core-styles;
 @include data-table.core-styles;

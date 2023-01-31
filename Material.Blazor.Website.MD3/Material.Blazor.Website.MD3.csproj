@@ -61,12 +61,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
-		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
+		<ProjectReference Include="..\Material.Blazor.MD3\Material.Blazor.MD3.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Material.Blazor.MD3\Material.Blazor.MD3.csproj" />
+		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,21 +87,9 @@
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-		 <!--Don't build unminified themes--> 
+		 <!--Build minified themes--> 
 		<Message Importance="high" Text="***** build material default theme" />
 		<Exec Command="npm run build-min-material-default" />
-
-		<!--<Message Importance="high" Text="***** build light square theme" />
-		<Exec Command="npm run build-min-light-square" />
-
-		<Message Importance="high" Text="***** build dark square theme" />
-		<Exec Command="npm run build-min-dark-square" />
-
-		<Message Importance="high" Text="***** build rounded theme" />
-		<Exec Command="npm run build-min-rounded" />
-
-		<Message Importance="high" Text="***** build asymmetric theme" />
-		<Exec Command="npm run build-min-asymmetric" />-->
 
 	</Target>
 

@@ -16,7 +16,7 @@
 
         @{
             var hasAction = Snackbar.Settings.AppliedAction != null && Snackbar.Settings.AppliedActionText != null;
-            var hasDismiss = Snackbar.Settings.AppliedCloseMethod != MBNotifierCloseMethod.Timeout;
+            var hasDismiss = Snackbar.Settings.AppliedCloseMethod != Material.Blazor.MD2.MBNotifierCloseMethod.Timeout;
         }
 
         @if (hasAction || hasDismiss)

@@ -1,8 +1,8 @@
-﻿using Material.Blazor.Internal;
+﻿using Material.Blazor.Internal.MD2;
 using System;
 using System.Threading.Tasks;
 
-namespace Material.Blazor;
+namespace Material.Blazor.MD2;
 
 /// <summary>
 /// Settings for an individual snackbar notification determining all aspects controlling

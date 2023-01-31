@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Material.Blazor;
+namespace Material.Blazor.MD2;
 
 /// <summary>
 /// Interface for the Material.Blazor snackbar service, developed from the code base of Blazored Snackbar by Chris Sainty.
@@ -68,7 +68,7 @@ public interface IMBSnackbarService
         Action action = null,
         string actionText = null,
         string additionalClass = null,
-        MBNotifierCloseMethod? closeMethod = null,
+        Material.Blazor.MD2.MBNotifierCloseMethod? closeMethod = null,
         bool leading = false,
         bool stacked = false,
         int? timeout = null,
