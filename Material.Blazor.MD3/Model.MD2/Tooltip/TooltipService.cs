@@ -58,9 +58,9 @@ internal class TooltipService : IMBTooltipService
     {
         if (OnAddMarkupString is null)
         {
-            throw new InvalidOperationException($"Material.Blazor: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
+            throw new InvalidOperationException($"Material.Blazor: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(Material.Blazor.MD2.MBAnchor))} component at the top of either App.razor or MainLayout.razor");
         }
-
+        
         OnAddMarkupString?.Invoke(id, content);
     }
 
@@ -71,7 +71,7 @@ internal class TooltipService : IMBTooltipService
     {
         if (OnRemove is null)
         {
-            throw new InvalidOperationException($"Material.Blazor: you attempted to remove a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
+            throw new InvalidOperationException($"Material.Blazor: you attempted to remove a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(Material.Blazor.MD2.MBAnchor))} component at the top of either App.razor or MainLayout.razor");
         }
 
         OnRemove?.Invoke(id);
