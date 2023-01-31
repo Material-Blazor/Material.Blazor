@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -175,10 +176,10 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
             builder.AddAttribute(10, "onfocusin", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusInAsync));
             builder.AddAttribute(11, "onfocusout", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusOutAsync));
 
-            //if (AppliedDisabled)
-            //{
-            //    builder.AddAttribute(12, "Disabled");
-            //}
+            if (AppliedDisabled)
+            {
+                builder.AddAttribute(12, "Disabled");
+            }
 
             builder.AddAttribute(13, "label", Label);
             builder.AddAttribute(14, "SupportingText", SupportingText);

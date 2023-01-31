@@ -38,7 +38,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Gets a value for the component's 'id' attribute.
     /// </summary>
-    //private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
+    private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
 
     /// <summary>
@@ -50,7 +50,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Determines whether to apply the disabled attribute.
     /// </summary>
-    //internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
+    internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
 
 
     /// <summary>
@@ -67,7 +67,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
     #region parameters
 
-    //[CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
 
     /// <summary>
     /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -196,17 +196,17 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             return;
         }
 
-        //if (UnmatchedAttributes.ContainsKey("disabled"))
-        //{
-        //    throw new ArgumentException(
-        //        $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
-        //}
+        if (UnmatchedAttributes.ContainsKey("disabled"))
+        {
+            throw new ArgumentException(
+                $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
+        }
 
-        //if (!CascadingDefaults.ConstrainSplattableAttributes)
-        //{
-        //    // nothing to check, as the ConstrainSplattableAttributes feature is disabled.
-        //    return;
-        //}
+        if (!CascadingDefaults.ConstrainSplattableAttributes)
+        {
+            // nothing to check, as the ConstrainSplattableAttributes feature is disabled.
+            return;
+        }
 
         var forbidden =
             UnmatchedAttributes.Keys
@@ -214,8 +214,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 .Where(n => !n.StartsWith("aria-"))      // heuristic: filter aria attributes. Unlikely that other attributes will start with "aria-" as well.
                 .Where(n => !n.StartsWith("__internal")) // heuristic: filter .NET __internal_stopPropagation_onclick and similar generated attribute names.
                 .Except(EssentialSplattableAttributes)   // filter common attribute names
-                ;
-                //.Except(CascadingDefaults.AllowedSplattableAttributes, StringComparer.InvariantCultureIgnoreCase); // filter user-specified attribute names, ignoring case
+                .Except(CascadingDefaults.AllowedSplattableAttributes, StringComparer.InvariantCultureIgnoreCase); // filter user-specified attribute names, ignoring case
 
         //if (forbidden.Any())
         //{

@@ -1,0 +1,109 @@
+﻿@namespace Material.Blazor.MD2
+
+@inherits SingleSelectComponentMD2<TItem, MBSelectElement<TItem>>
+@typeparam TItem
+
+
+<div @ref="SelectReference"
+     class="mdc-select @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="AttributesToSplat()">
+
+    @if (HasBadge)
+    {
+        <span class="mb-badge-container">
+            <MBBadge @ref="@Badge"
+                     BadgeStyle="@BadgeStyle"#
+                     Value="@BadgeValue"
+                     Exited="@BadgeExited" />
+        </span>
+    }
+
+    <div class="mdc-select__anchor"
+         role="button"
+         aria-haspopup="@listboxId"
+         aria-expanded="false"
+         aria-disabled="@AppliedDisabled"
+         aria-labelledby="@labelId @selectedTextId">
+
+        @if (AppliedInputStyle == MBSelectInputStyle.Outlined)
+        {
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+
+                @if (ShowLabel)
+                {
+                    <span class="mdc-notched-outline__notch">
+                        <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+                    </span>
+                }
+
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+        }
+        else
+        {
+            <span class="mdc-select__ripple"></span>
+
+            if (ShowLabel)
+            {
+                <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+            }
+        }
+
+        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+        {
+            <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-select__icon" tabindex="-1" role="button" />
+        }
+
+        <span class="mdc-select__selected-text-container">
+            <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@AppliedDisabled"></span>
+        </span>
+
+        <span class="mdc-select__dropdown-icon">
+            <svg class="mdc-select__dropdown-icon-graphic"
+                 viewBox="7 10 10 5" focusable="false">
+                <polygon class="mdc-select__dropdown-icon-inactive"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 10 12 15 17 10">
+                </polygon>
+                <polygon class="mdc-select__dropdown-icon-active"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 15 12 10 17 15">
+                </polygon>
+            </svg>
+        </span>
+
+        @if (AppliedInputStyle == MBSelectInputStyle.Filled)
+        {
+            <span class="mdc-line-ripple"></span>
+        }
+    </div>
+
+    <div id="@listboxId" 
+         class="mdc-select__menu mdc-menu mdc-menu-surface @MenuClass">
+
+        <ul class="mdc-deprecated-list">
+
+            @foreach (var item in Items)
+            {
+                var selected = NullAllowingEquals(item.SelectedValue, Value);
+                var listClass = "mdc-deprecated-list-item" + (selected ? " mdc-deprecated-list-item--selected" : "") + (item.Disabled == true ? " mdc-deprecated-list-item--disabled" : "");
+
+                <li @key="@KeyGenerator(item.SelectedValue)"
+                    class="@listClass @AlignClass"
+                    data-value="@item.Label"
+                    aria-selected="@selected"
+                    aria-disabled="@item.Disabled"
+                    role="option">
+
+                    <span class="mdc-deprecated-list-item__ripple"></span>
+                    <span class="mdc-deprecated-list-item__text mb-full-width">@item.Label</span>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

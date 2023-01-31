@@ -3,7 +3,7 @@
 
 <PageTitle>@Title</PageTitle>
 
-<div class="mdc-layout-grid__cell--span-12">
+<div @key="@CascadingDefaults" class="mdc-layout-grid__cell--span-12">
     <MBCard>
         <Primary>
             <div class="mb-card__autostyled">
@@ -36,17 +36,16 @@
                 @if (RequiresDisableSelection)
                 {
                     <p>
-                        @*                        <MBSwitch @bind-Value="@CascadingDefaults.Disabled" Label="Disable Components" />
-                    *@
+                        <MBSwitch @bind-Value="@CascadingDefaults.Disabled"
+                              Label="Disable Components" />
                     </p>
                 }
 
                 @if (MinDensity != Material.Blazor.MBDensity.Default)
                 {
                     <p>
-                        @*                        <MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
-                    Items="@Densities" />
-                    *@
+                        <MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
+                                        Items="@Densities" />
                     </p>
                 }
 
@@ -63,11 +62,13 @@
     of the block when defaults change, however components don't check for
     updates to defaults because we use IsFixed="true" *@
 
-<div @key="1"
+<div @key="@CascadingDefaults.Version"
      class="mdc-layout-grid__cell--span-12">
 
     <div class="mdc-layout-grid__inner">
-        @PageContent
+        <CascadingValue Value="@CascadingDefaults" IsFixed="true">
+            @PageContent
+        </CascadingValue>
     </div>
 </div>
 
@@ -95,6 +96,13 @@
     [Parameter] public bool RequiresDisableSelection { get; set; } = false;
 
     [Parameter] public string Title { get; set; }
+
+
+    private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
+        {
+            ThemeDensity = MBDensity.Default,
+            Disabled = false
+        };
 
 
     private class ReferenceItem

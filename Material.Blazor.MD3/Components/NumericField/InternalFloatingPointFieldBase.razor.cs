@@ -14,7 +14,7 @@ public abstract class InternalFloatingPointFieldBase<T, U> : InternalNumericFiel
     where U : InternalTextFieldBase
 {
     /// <summary>
-    /// Adjusts the value's magnitude as a number when the field is focused. Used for
+    /// Adjusts the value's maginitude as a number when the field is focused. Used for
     /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
     /// this issue may not get solved.
     /// </summary>
@@ -107,12 +107,11 @@ public abstract class InternalFloatingPointFieldBase<T, U> : InternalNumericFiel
 
     private protected override string ConvertToFormattedTextValue(T value)
     {
-        //var format = NumericSingularFormat is not null && Utilities.DecimalEqual(Math.Abs(Convert.ToDecimal(Value)), 1)
-        //    ? NumericSingularFormat
-        //    : NumericFormat;
+        var format = NumericSingularFormat is not null && Utilities.DecimalEqual(Math.Abs(Convert.ToDecimal(Value)), 1)
+            ? NumericSingularFormat
+            : NumericFormat;
 
-        //return (Convert.ToDecimal(value) * GetMultiplier()).ToString(format);
-        return "";
+        return (Convert.ToDecimal(value) * GetMultiplier()).ToString(format);
     }
 
 

@@ -12,6 +12,7 @@
           IsDismissible="true">
 
     <nav class="mdc-list">
+        <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
         <MBListItem LeadingIcon="money" Label="Numeric Decimal Field" @onclick="@(() => ListItemClickHandler("numericdecimalfield"))" />
         <MBListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
     </nav>
