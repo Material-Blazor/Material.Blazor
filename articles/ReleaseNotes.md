@@ -6,12 +6,17 @@ title: ReleaseNotes
 
 #### [4.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.11)
 
-Released 2023-02-01
+Released 2023-02-02
 
 **Updates**
 
 **New components**
 - Added preview of Material Design 3 components.
+	- MBAnchor
+	- MBFilledDecimalField
+	- MBOutlinedDecimalField
+	- MBFilledTextField
+	- MBOutlinedTextField
 
 **Breaking Changes**
 - There are two configurations, 'Server' (replacing 'Debug') and 'WebAssembly' (replacing 'Release').
