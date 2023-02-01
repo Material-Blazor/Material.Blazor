@@ -4,6 +4,27 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.11)
+
+Released 2023-02-01
+
+**Updates**
+
+**New components**
+- Added preview of Material Design 3 components.
+
+**Breaking Changes**
+- There are two configurations, 'Server' (replacing 'Debug') and 'WebAssembly' (replacing 'Release').
+The choice of one or the other of these determines if the website is to run as a server side
+application or
+a web assembly application hosted by the server.
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.10](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.10)
 
 Released 2023-01-26

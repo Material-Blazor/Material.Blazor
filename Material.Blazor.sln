@@ -78,7 +78,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{777FB8
 		guidelines\images\screenshot-update-branch.png = guidelines\images\screenshot-update-branch.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Material Design 3 (Proof of Concept)", "Material Design 3 (Proof of Concept)", "{F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Material Design 3 (Preview)", "Material Design 3 (Preview)", "{F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.MD3", "Material.Blazor.MD3\Material.Blazor.MD3.csproj", "{1808B031-C79A-48BA-B1D4-37FAA989A116}"
 EndProject
