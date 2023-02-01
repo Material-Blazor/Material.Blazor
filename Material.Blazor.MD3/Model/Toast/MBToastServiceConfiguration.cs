@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// Configuration for <see cref="IMBToastService"/>.
@@ -120,7 +120,7 @@ public class MBToastServiceConfiguration
     /// <summary>
     /// Toast icon foundry.
     /// </summary>
-    public IMBIconFoundry IconFoundry { get; set; }
+    public IMBIconFoundry3 IconFoundry { get; set; }
 
 
     /// <summary>

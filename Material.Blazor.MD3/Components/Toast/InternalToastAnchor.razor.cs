@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 
 using System;
@@ -7,14 +7,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// An anchor component that displays toast notification that you display via
 /// <see cref="IMBToastService.ShowToast(MBToastLevel, string, string, MBNotifierCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>.
 /// Place this component at the top of either App.razor or MainLayout.razor.
 /// </summary>
-public partial class InternalToastAnchor : ComponentFoundationMD2
+public partial class InternalToastAnchor : ComponentFoundation
 {
     [Inject] private IMBToastService ToastService { get; set; }
 

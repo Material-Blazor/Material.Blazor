@@ -1,8 +1,8 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 
 using System;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// Settings for an individual toast notification determining all aspects controlling
@@ -48,7 +48,7 @@ public class MBToastSettings
     /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
     /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
     /// </summary>
-    public IMBIconFoundry? IconFoundry { get; set; }
+    public IMBIconFoundry3? IconFoundry { get; set; }
 
 
     /// <summary>
@@ -79,7 +79,7 @@ public class MBToastSettings
 
     internal string AppliedIconName => string.IsNullOrWhiteSpace(IconName) ? ConfigIconName : IconName;
 
-    internal IMBIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI() : IconFoundry;
+    internal IMBIconFoundry3 AppliedIconFoundry3 => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI3() : IconFoundry;
 
     internal MBNotifierCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MBToastServiceConfiguration.DefaultCloseMethod : (MBNotifierCloseMethod)CloseMethod;
 

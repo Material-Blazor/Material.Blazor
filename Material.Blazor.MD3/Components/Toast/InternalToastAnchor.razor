@@ -1,6 +1,6 @@
-﻿@namespace Material.Blazor.MD2
-@using Material.Blazor.Internal.MD2;
-@inherits ComponentFoundationMD2
+﻿@namespace Material.Blazor
+@using Material.Blazor.Internal;
+@inherits ComponentFoundation
 
 @if (DisplayedToasts.Any())
 {
@@ -14,11 +14,11 @@
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    var iconHelper = new MBIconHelper(toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
+                    var iconHelper = new MBIconHelper3(toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry3);
                     var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
                     <div class="mb-toast-icon @filterClass">
-                        <MBIcon aria-hidden="true"
+                        <MBIcon3 aria-hidden="true"
                                 IconFoundry="@toast.Settings.IconFoundry"
                                 IconName="@toast.Settings.AppliedIconName" />
                     </div>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// Interface for the Material.Blazor toast service, developed from the code base of Blazored Toast by Chris Sainty.
@@ -71,7 +71,7 @@ public interface IMBToastService
         MBNotifierCloseMethod? closeMethod = null,
         string cssClass = null,
         string iconName = null,
-        IMBIconFoundry? iconFoundry = null,
+        IMBIconFoundry3? iconFoundry = null,
         bool? showIcon = null,
         uint? timeout = null,
         bool debug = false);

@@ -1,7 +1,7 @@
-﻿using Material.Blazor.MD2;
+﻿using Material.Blazor;
 using System;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// The current status of a Toast, expressed through it's CSS class.

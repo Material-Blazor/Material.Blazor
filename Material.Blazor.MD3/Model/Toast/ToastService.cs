@@ -1,8 +1,8 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.Extensions.Options;
 using System;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// The internal implementation of <see cref="IMBToastService"/>.
@@ -67,7 +67,7 @@ internal class ToastService : IMBToastService
         MBNotifierCloseMethod? closeMethod = null,
         string cssClass = null,
         string iconName = null,
-        IMBIconFoundry? iconFoundry = null,
+        IMBIconFoundry3? iconFoundry = null,
         bool? showIcon = null,
         uint? timeout = null,
         bool debug = false)

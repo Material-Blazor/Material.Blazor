@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Material.Blazor.MD2;
+using Material.Blazor.MD2;
+namespace Material.Blazor;
 
 
 /// <summary>
