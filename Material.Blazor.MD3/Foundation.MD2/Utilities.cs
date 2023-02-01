@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Material.Blazor.MD2;
+
+using System;
 using System.Text.RegularExpressions;
 
 namespace Material.Blazor.Internal.MD2;
@@ -50,13 +52,13 @@ internal static class Utilities
     /// </summary>
     /// <param name="textAlign"></param>
     /// <returns><c>mb-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="MBTextAlignStyle.Default"/> returning a blank string.</returns>
-    public static string GetTextAlignClass(MBTextAlignStyle textAlign)
+    public static string GetTextAlignClass(Material.Blazor.MD2.MBTextAlignStyle textAlign)
     {
         return textAlign switch
         {
-            MBTextAlignStyle.Left => " mb-align-left",
-            MBTextAlignStyle.Center => " mb-align-center",
-            MBTextAlignStyle.Right => " mb-align-right",
+            Material.Blazor.MD2.MBTextAlignStyle.Left => " mb-align-left",
+            Material.Blazor.MD2.MBTextAlignStyle.Center => " mb-align-center",
+            Material.Blazor.MD2.MBTextAlignStyle.Right => " mb-align-right",
             _ => "",
         };
     }

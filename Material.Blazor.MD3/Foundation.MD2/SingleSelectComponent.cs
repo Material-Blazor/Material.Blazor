@@ -11,7 +11,7 @@ namespace Material.Blazor.Internal.MD2;
 /// A DRY inspired abstract class providing <see cref="MBSelect{TItem}"/> and <see cref="MBRadioButtonGroup{TItem}"/> with validation.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponentMD2<T> where TListElement : MBSelectElement<T>
+public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponentMD2<T> where TListElement : Material.Blazor.MD2.MBSelectElement<T>
 {
     /// <summary>
     /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
@@ -53,7 +53,7 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
 
             if (HasInstantiated)
             {
-                var validatedValue = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation)).value;
+                var validatedValue = ValidateItemList(Items, Material.Blazor.MD2.MBItemValidation.DefaultToFirst).value;
 
                 if (!validatedValue.Equals(Value))
                 {
@@ -75,7 +75,7 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
     /// <param name="appliedItemValidation">Specification of the required validation <see cref="MBItemValidation"/></param>
     /// <returns>The an indicator of whether an item was found and the item in the list matching <see cref="InputComponent{T}._cachedValue"/> or default if not found.</returns>
     /// <exception cref="ArgumentException"/>
-    public (bool hasValue, T value) ValidateItemList(IEnumerable<MBSelectElement<T>> items, MBItemValidation appliedItemValidation)
+    public (bool hasValue, T value) ValidateItemList(IEnumerable<MBSelectElement<T>> items, Material.Blazor.MD2.MBItemValidation appliedItemValidation)
     {
         var componentName = Utilities.GetTypeName(GetType());
 
@@ -88,16 +88,16 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
         {
             switch (appliedItemValidation)
             {
-                case MBItemValidation.DefaultToFirst:
+                case Material.Blazor.MD2.MBItemValidation.DefaultToFirst:
                     var defaultValue = items.FirstOrDefault().SelectedValue;
                     AllowNextShouldRender();
                     return (true, defaultValue);
 
-                case MBItemValidation.Exception:
+                case Material.Blazor.MD2.MBItemValidation.Exception:
                     var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";
                     throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
-                case MBItemValidation.NoSelection:
+                case Material.Blazor.MD2.MBItemValidation.NoSelection:
                     AllowNextShouldRender();
                     return (false, default);
             }

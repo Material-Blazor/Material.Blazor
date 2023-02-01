@@ -56,8 +56,6 @@ try
         options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
     });
 
-    builder.Services.AddMBServices();
-
     // Option 2: add options within the call to add the Material.Blazor services.
     //builder.Services.AddMBServices(options =>
     //{
@@ -65,6 +63,8 @@ try
     //    options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
     //    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
     //});
+
+    builder.Services.AddMBServices();
 
     builder.Services.AddGBService(options =>
     {

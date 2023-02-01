@@ -94,9 +94,9 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
     private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
-    private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
-    private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+    private string AlignClass => Utilities.GetTextAlignClass(Material.Blazor.MD2.MBTextAlignStyle.Left);
+    private MBDensity AppliedDensity => MBDensity.Default;
+    private MBSelectInputStyle AppliedInputStyle => MBSelectInputStyle.Outlined;
     private string FloatingLabelClass { get; set; } = "";
     private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
     private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
@@ -106,11 +106,20 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
     private MBBadge Badge { get; set; }
 
 
-    private MBCascadingDefaults.DensityInfo DensityInfo
+    internal class DensityInfoClass
+    {
+        public bool ApplyCssClass { get; set; }
+        public string CssClassName { get; set; }
+    }
+    private DensityInfoClass DensityInfo
     {
         get
         {
-            var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
+            var d = new DensityInfoClass
+            {
+                ApplyCssClass = false,
+                CssClassName = "\"dense-default\""
+            };
 
             var suffix = AppliedInputStyle == MBSelectInputStyle.Filled ? "--filled" : "--outlined";
             suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
@@ -149,7 +158,7 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
         bool hasValue;
         TItem potentialComponentValue;
 
-        (hasValue, potentialComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+        (hasValue, potentialComponentValue) = ValidateItemList(Items, Material.Blazor.MD2.MBItemValidation.DefaultToFirst);
 
         if (hasValue)
         {

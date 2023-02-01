@@ -7,7 +7,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// A group of <see cref="MBRadioButton{TItem}"/>s displayed horizontally or vertically.
 /// </summary>
-public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentMD2<TItem, MBSelectElement<TItem>>
+public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentMD2<TItem, Material.Blazor.MD2.MBSelectElement<TItem>>
 {
     /// <summary>
     /// The radio button's density.
@@ -29,7 +29,7 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentMD2<TItem,
     {
         await base.OnInitializedAsync();
 
-        MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
+        MBItemValidation appliedItemValidation = MBItemValidation.DefaultToFirst;
 
         ForceShouldRenderToTrue = true;
 

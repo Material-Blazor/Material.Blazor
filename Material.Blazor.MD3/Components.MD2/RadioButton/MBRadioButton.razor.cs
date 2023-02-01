@@ -49,11 +49,22 @@ public partial class MBRadioButton<TItem> : InputComponentMD2<TItem>
     private ElementReference RadioButtonReference { get; set; }
     private string DisabledClass { get; set; } = "";
 
-    private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedRadioButtonDensity(Density));
+    internal class DensityInfoClass
+    {
+        public bool ApplyCssClass { get; set; }
+        public string CssClassName { get; set; }
+    }
+    private DensityInfoClass DensityInfo =
+            new DensityInfoClass
+            {
+                ApplyCssClass = false,
+                CssClassName = "\"dense-default\""
+            };
 
 
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnInitializedAsync()
+
+// Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 

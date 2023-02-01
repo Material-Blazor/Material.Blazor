@@ -26,14 +26,14 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 //    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
 //});
 
-//builder.Services.AddMBServices();
-
 // Option 2: add options within the call to add the Material.Blazor services.
 builder.Services.AddMBServices(options => {
     options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
     options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
     options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
 });
+
+builder.Services.AddMBServices();
 
 Log.Logger = new LoggerConfiguration()
 #if DEBUG
