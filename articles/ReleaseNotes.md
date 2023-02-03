@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.12](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.12)
+
+Released 2023-02-03
+
+**Updates**
+- Bug fixes.
+
+**New components**
+- Added preview of Material Design 3 components:
+	- MBIcon
+	- MBSwitch
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.11)
 
 Released 2023-02-03
@@ -11,7 +31,7 @@ Released 2023-02-03
 **Updates**
 
 **New components**
-- Added preview of Material Design 3 components.
+- Added preview of Material Design 3 components:
 	- MBAnchor
 	- MBFilledDecimalField
 	- MBOutlinedDecimalField
