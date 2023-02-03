@@ -14,12 +14,8 @@
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    var iconHelper = new MBIconHelper3(toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry3);
-                    var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
-
-                    <div class="mb-toast-icon @filterClass">
-                        <MBIcon3 aria-hidden="true"
-                                IconFoundry="@toast.Settings.IconFoundry"
+                    <div class="mb-toast-icon">
+                        <MBIcon aria-hidden="true"
                                 IconName="@toast.Settings.AppliedIconName" />
                     </div>
                 }

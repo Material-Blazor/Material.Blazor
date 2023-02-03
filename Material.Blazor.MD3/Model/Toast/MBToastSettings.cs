@@ -43,15 +43,6 @@ public class MBToastSettings
 
 
     /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// </summary>
-    public IMBIconFoundry3? IconFoundry { get; set; }
-
-
-    /// <summary>
     /// How the toast message gets closed. See <see cref="MBNotifierCloseMethod"/>.
     /// </summary>
     public MBNotifierCloseMethod? CloseMethod { get; set; }
@@ -78,8 +69,6 @@ public class MBToastSettings
     internal bool AppliedShowIcon => (AppliedIconName != null) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? MBToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
 
     internal string AppliedIconName => string.IsNullOrWhiteSpace(IconName) ? ConfigIconName : IconName;
-
-    internal IMBIconFoundry3 AppliedIconFoundry3 => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI3() : IconFoundry;
 
     internal MBNotifierCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MBToastServiceConfiguration.DefaultCloseMethod : (MBNotifierCloseMethod)CloseMethod;
 

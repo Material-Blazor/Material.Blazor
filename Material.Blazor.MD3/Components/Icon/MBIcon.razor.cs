@@ -1,7 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Material.Blazor;
 
@@ -11,46 +11,32 @@ namespace Material.Blazor;
 /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
 /// in your app.
 /// </summary>
-public class MBIcon3 : ComponentFoundation
+public class MBIcon : ComponentFoundation
 {
     [CascadingParameter(Name = "IsInsideMBTabBar")] private bool IsInsideMBTabBar { get; set; }
 
-#nullable enable annotations
+
     /// <summary>
     /// The icon name.
     /// </summary>
     [Parameter] public string IconName { get; set; }
 
 
-    /// <summary>
-    /// The foundry.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry3? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    private MBIconHelper3 IconHelper { get; set; }
-
-
-    /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        if (IconHelper == null)
+        var attributesToSplat = AttributesToSplat().ToArray();
+        
+        builder.OpenElement(0, "md-icon");
         {
-            return;
+            if (attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(1, attributesToSplat);
+            }
+
+            builder.AddAttribute(2, "class", @class);
+            builder.AddAttribute(3, "style", style);
+            builder.AddContent(4, IconName);
         }
-        builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class), style: style, attributes: AttributesToSplat()));
-    }
-
-    /// <inheritdoc/>
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        IconHelper = new MBIconHelper3(IconName, IconFoundry);
+        builder.CloseElement();
     }
 }

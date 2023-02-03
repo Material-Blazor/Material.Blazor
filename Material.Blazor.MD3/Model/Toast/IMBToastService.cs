@@ -71,7 +71,6 @@ public interface IMBToastService
         MBNotifierCloseMethod? closeMethod = null,
         string cssClass = null,
         string iconName = null,
-        IMBIconFoundry3? iconFoundry = null,
         bool? showIcon = null,
         uint? timeout = null,
         bool debug = false);

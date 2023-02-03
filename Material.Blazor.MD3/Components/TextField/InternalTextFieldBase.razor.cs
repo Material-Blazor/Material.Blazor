@@ -161,7 +161,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
 
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -193,7 +192,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     }
 
 
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
@@ -211,7 +209,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     }
 
 
-    /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();

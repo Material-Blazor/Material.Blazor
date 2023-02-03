@@ -14,10 +14,10 @@ import * as MBSnackbar from '../Components.MD2/Snackbar/MBSnackbar';
 import * as MBSwitch from '../Components.MD2/Switch/MBSwitch';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
-import * as InternalTextFieldBase from '../Components/TextField/InternalTextFieldBase';
+import * as MBTextField from '../Components/TextField/MBTextField';
 
 (<any>window).MaterialBlazor = {
-    InternalTextFieldBase,
+    MBTextField,
 
     MBCard,
     MBDataTable,
