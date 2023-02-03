@@ -175,12 +175,7 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
 
             builder.AddAttribute(10, "onfocusin", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusInAsync));
             builder.AddAttribute(11, "onfocusout", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusOutAsync));
-
-            if (AppliedDisabled)
-            {
-                builder.AddAttribute(12, "Disabled");
-            }
-
+            builder.AddAttribute(12, "Disabled", Disabled);
             builder.AddAttribute(13, "label", Label);
             builder.AddAttribute(14, "SupportingText", SupportingText);
             builder.AddAttribute(15, "SupportingTextPersistent", SupportingTextPersistent);
@@ -188,7 +183,6 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
             builder.AddAttribute(17, "TrailingIcon", TrailingIcon);
             builder.AddAttribute(18, "Prefix", Prefix);
             builder.AddAttribute(19, "Suffix", Suffix);
-
             builder.AddAttribute(20, "Density", Density);
 
             if (Min is not null)

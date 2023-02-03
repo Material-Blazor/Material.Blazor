@@ -296,24 +296,6 @@ public class MBCascadingDefaults
 
 
 
-    private MBTextInputStyle _textInputStyle = MBTextInputStyle.Outlined;
-    /// <summary>
-    /// The default style for an <see cref="MBTextField"/> or an <see cref="MBTextArea"/>, initialized to <see cref="MBTextInputStyle.Outlined"/> if not explicitly set.
-    /// </summary>
-    /// <remarks>
-    /// Also applied to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/>.
-    /// </remarks>
-    public MBTextInputStyle TextInputStyle { get => _textInputStyle; set => SetParameter(ref _textInputStyle, value); }
-
-    /// <summary>
-    /// The text input style to apply to an <see cref="MBTextField"/> or an <see cref="MBTextArea"/>.
-    /// </summary>
-    /// <param name="style">The text input style parameter passed to the <see cref="MBTextField"/> or <see cref="MBTextArea"/></param>
-    /// <returns>The <see cref="MBTextInputStyle"/> to apply.</returns>
-    internal MBTextInputStyle AppliedStyle(MBTextInputStyle? style = null) => style ?? TextInputStyle;
-
-
-
     /*************************************************************************************************************
      * 
      * 
