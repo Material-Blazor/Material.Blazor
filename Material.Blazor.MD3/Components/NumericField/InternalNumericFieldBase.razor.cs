@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,8 +19,6 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
     where T : struct, INumber<T>
     where U : InternalTextFieldBase
 {
-
-
 #nullable enable annotations
     /// <summary>
     /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
@@ -107,8 +104,8 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
 
     private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
     private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
-    private const string IntegerPattern = @"^(\+|-)?\d+$";
-    private const string PositiveIntegerPattern = @"^\d+$";
+    //private const string IntegerPattern = @"^(\+|-)?\d+$";
+    //private const string PositiveIntegerPattern = @"^\d+$";
 
 
     private bool SelectInputContentOnAfterRender { get; set; } = false;
@@ -134,12 +131,14 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
 
         var allowSign = Min is not (not null and >= 0);
 
-        Regex = GetDecimalPlaces() == 0
-            ? new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern)
-            : new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+        Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+
+        //Regex = GetDecimalPlaces() == 0
+        //    ? new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern)
+        //    : new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
     }
 
-    
+
     /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
