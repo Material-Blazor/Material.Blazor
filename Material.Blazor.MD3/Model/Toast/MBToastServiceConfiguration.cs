@@ -118,12 +118,6 @@ public class MBToastServiceConfiguration
 
 
     /// <summary>
-    /// Toast icon foundry.
-    /// </summary>
-    public IMBIconFoundry3 IconFoundry { get; set; }
-
-
-    /// <summary>
     /// Used to notify the toast service that a value has changed.
     /// </summary>
     internal event Action OnValueChanged;

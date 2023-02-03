@@ -1,6 +1,7 @@
 ﻿import '@material/web/icon/icon.js';
 import '@material/web/textfield/filled-text-field.js';
 import '@material/web/textfield/outlined-text-field.js';
+import '@material/web/switch/switch.js';
 
 import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
@@ -11,13 +12,12 @@ import * as MBMenu from '../Components.MD2/Menu/MBMenu';
 import * as MBRadioButton from '../Components.MD2/RadioButton/MBRadioButton';
 import * as MBSelect from '../Components.MD2/Select/MBSelect';
 import * as MBSnackbar from '../Components.MD2/Snackbar/MBSnackbar';
-import * as MBSwitch from '../Components.MD2/Switch/MBSwitch';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
-import * as InternalTextFieldBase from '../Components/TextField/InternalTextFieldBase';
+import * as MBTextField from '../Components/TextField/MBTextField';
 
 (<any>window).MaterialBlazor = {
-    InternalTextFieldBase,
+    MBTextField,
 
     MBCard,
     MBDataTable,
@@ -28,6 +28,5 @@ import * as InternalTextFieldBase from '../Components/TextField/InternalTextFiel
     MBRadioButton,
     MBSelect,
     MBSnackbar,
-    MBSwitch,
     MBTopAppBar
 };

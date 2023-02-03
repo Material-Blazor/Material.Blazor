@@ -1,5 +1,6 @@
 ﻿@namespace Material.Blazor.MD2
 @using Material.Blazor.Internal.MD2;
+@using Material.Blazor;
 @inherits SingleSelectComponentMD2<TItem, MBSelectElement<TItem>>
 @typeparam TItem
 
@@ -54,7 +55,7 @@
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
-            <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-select__icon" tabindex="-1" role="button" />
+            <MBIcon IconName="@LeadingIcon" class="mdc-select__icon" tabindex="-1" role="button" />
         }
 
         <span class="mdc-select__selected-text-container">

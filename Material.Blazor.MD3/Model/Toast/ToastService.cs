@@ -67,7 +67,6 @@ internal class ToastService : IMBToastService
         MBNotifierCloseMethod? closeMethod = null,
         string cssClass = null,
         string iconName = null,
-        IMBIconFoundry3? iconFoundry = null,
         bool? showIcon = null,
         uint? timeout = null,
         bool debug = false)
@@ -87,7 +86,6 @@ internal class ToastService : IMBToastService
             CloseMethod = closeMethod,
             CssClass = cssClass,
             IconName = iconName,
-            IconFoundry = iconFoundry,
             ShowIcon = showIcon,
             Timeout = timeout
         };

@@ -35,10 +35,10 @@
 
                 @if (RequiresDisableSelection)
                 {
-                    <p>
-                        <Material.Blazor.MD2.MBSwitch @bind-Value="@CascadingDefaults.Disabled"
-                                                      @bind-Value:after="@AfterCascadingDefaultsChange"
-                                                      Label="Disable Components" />
+                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
+                        <span class="mdc-typography--body1" style="margin-right: 24px;">Disable Components:</span>
+                        <MBSwitch @bind-Value="@CascadingDefaults.Disabled"
+                                  @bind-Value:after="@AfterCascadingDefaultsChange" />
                     </p>
                 }
 
@@ -104,7 +104,7 @@
     private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
     {
         ThemeDensity = Material.Blazor.MBDensity.Default,
-        Disabled = false
+        Disabled = false,
     };
 
 
