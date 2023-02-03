@@ -215,7 +215,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        //var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
+        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         builder.OpenElement(0, WebComponentName());
         {
@@ -224,18 +224,19 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 builder.AddMultipleAttributes(1, attributesToSplat);
             }
 
-            //builder.AddAttribute(2, "class", cssClass);
-            builder.AddAttribute(3, "style", style);
-            builder.AddAttribute(4, "id", id);
+            if (AppliedDisabled)
+            {
+                builder.AddAttribute(2, "disabled");
+            }
+            
+            builder.AddAttribute(3, "class", cssClass);
+            builder.AddAttribute(4, "style", style);
+            builder.AddAttribute(54, "id", id);
 
-            builder.AddAttribute(5, "value", BindConverter.FormatValue(Value));
-            builder.AddAttribute(6, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+            builder.AddAttribute(6, "value", BindConverter.FormatValue(Value));
+            builder.AddAttribute(7, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
             builder.SetUpdatesAttributeName("value");
 
-            //if (AppliedDisabled)
-            //{
-            //    builder.AddAttribute(7, "disabled");
-            //}
 
             builder.AddAttribute(8, "label", DisplayLabel);
             

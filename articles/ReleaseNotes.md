@@ -6,7 +6,7 @@ title: ReleaseNotes
 
 #### [4.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.11)
 
-Released 2023-02-02
+Released 2023-02-03
 
 **Updates**
 

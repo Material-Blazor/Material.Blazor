@@ -662,25 +662,6 @@ public enum MBTextAlignStyle
 
 
 /// <summary>
-/// Material Theme text field and text area input style applied to <see cref="MBTextField"/> and <see cref="MBTextArea"/>.
-/// <para>Applied also to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/></para>
-/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
-/// </summary>
-public enum MBTextInputStyle
-{
-    /// <summary>
-    /// The filled style (pending in Material Web Components 6.0.0 for <see cref="MBTextArea"/>). This is the <see cref="MBCascadingDefaults"/> default.
-    /// </summary>
-    Filled,
-
-    /// <summary>
-    /// The outlined style.
-    /// </summary>
-    Outlined
-}
-
-
-/// <summary>
 /// Material Theme top app bar type applied to an <see cref="MBTopAppBar"/>.
 /// </summary>
 [Flags]
