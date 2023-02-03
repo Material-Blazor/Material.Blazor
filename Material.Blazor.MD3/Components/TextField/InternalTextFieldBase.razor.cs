@@ -228,7 +228,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             
             builder.AddAttribute(3, "class", cssClass);
             builder.AddAttribute(4, "style", style);
-            builder.AddAttribute(54, "id", id);
+            builder.AddAttribute(5, "id", id);
 
             builder.AddAttribute(6, "value", BindConverter.FormatValue(Value));
             builder.AddAttribute(7, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));

@@ -1,0 +1,203 @@
+﻿@page "/switch"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Switch"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-switch#selection-controls-switches"
+                   MinDensity="MBDensity.Minus5"
+                   RequiresDisableSelection="true"
+                   Title="Switch Demonstration">
+    <Description>
+        <p>
+            Demonstrates switches.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Basic component demo
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Simple switch. Notice that density only affects the halo when selecting a switch.
+                    </h3>
+
+                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
+                        <MBSwitch @bind-Value="@SwitchState1"
+                                  class="supplied-test-class"
+                                  id="supplied-test-id" />
+                        <span class="mdc-typography--body1" style="margin-left: 24px;">no icons</span>
+                    </p>
+                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
+                        <MBSwitch @bind-Value="@SwitchState2" Icons="true" />
+                        <span class="mdc-typography--body1" style="margin-left: 24px;">icons</span>
+                    </p>
+                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
+                        <MBSwitch @bind-Value="@SwitchState3" Icons="true" ShowOnlySelectedIcon="true" />
+                        <span class="mdc-typography--body1" style="margin-left: 24px;">selected icon only</span>
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two-Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two-way binding.
+                    </h3>
+
+                    <p>
+                        <MBSwitch @bind-Value="@ToggleTwoWayBindingState" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@ToggleTwoWayBindingState" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        @*<div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Switch Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        <strong>Seems to be deprecated as of Material Components Web v12.0.0.</strong> Shows density subsystem from default to minus 5. Notice that density only affects the halo when selecting a switch.
+                    </h3>
+
+                    <p>
+                        <MBSwitch @bind-Value="@densityDefault"
+                                  Density="@MBDensity.Default"
+                                  Label="Default Density" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus1"
+                                  Density="@MBDensity.Minus1"
+                                  Label="Density Minus 1" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus2"
+                                  Density="@MBDensity.Minus2"
+                                  Label="Density Minus 2" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus3"
+                                  Density="@MBDensity.Minus3"
+                                  Label="Density Minus 3" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus4"
+                                  Density="@MBDensity.Minus4"
+                                  Label="Density Minus 4" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus5"
+                                  Density="@MBDensity.Minus5"
+                                  Label="Density Minus 5" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>*@
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool densityDefault;
+    private bool densityMinus1;
+    private bool densityMinus2;
+    private bool densityMinus3;
+    private bool densityMinus4;
+    private bool densityMinus5;
+
+    private bool _checkboxState;
+    private bool CheckboxState
+    {
+        get => _checkboxState;
+        set
+        {
+            _checkboxState = value;
+
+            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState1;
+    private bool SwitchState1
+    {
+        get => _switchState1;
+        set
+        {
+            _switchState1 = value;
+
+            ToastService.ShowToast(heading: "Switch 1 Clicked", message: $"Value: {_switchState1}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState2 = true;
+    private bool SwitchState2
+    {
+        get => _switchState2;
+        set
+        {
+            _switchState2 = value;
+
+            ToastService.ShowToast(heading: "Switch 2 Clicked", message: $"Value: {_switchState2}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState3;
+    private bool SwitchState3
+    {
+        get => _switchState3;
+        set
+        {
+            _switchState3 = value;
+
+            ToastService.ShowToast(heading: "Switch 3 Clicked", message: $"Value: {_switchState3}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _toggleTwoWayBindingState;
+    private bool ToggleTwoWayBindingState
+    {
+        get => _toggleTwoWayBindingState;
+        set
+        {
+            _toggleTwoWayBindingState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}

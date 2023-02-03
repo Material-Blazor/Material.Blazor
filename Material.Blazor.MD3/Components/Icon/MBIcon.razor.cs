@@ -35,7 +35,8 @@ public class MBIcon : ComponentFoundation
 
             builder.AddAttribute(2, "class", @class);
             builder.AddAttribute(3, "style", style);
-            builder.AddContent(4, IconName);
+            builder.AddAttribute(4, "id", id);
+            builder.AddContent(5, IconName);
         }
         builder.CloseElement();
     }
