@@ -1,4 +1,4 @@
-﻿@page "/numericdecimalField"
+﻿@page "/numericdoublefield"
 
 @namespace Material.Blazor.Website.Pages
 
@@ -7,13 +7,13 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage ComponentName="NumericDecimalField"
+<DemonstrationPage ComponentName="NumericDoubleField"
                    DemoComponent="@this"
                    RequiresDisableSelection="true"
-                   Title="Numeric Decimal Field Demonstration">
+                   Title="Numeric Double Field Demonstration">
     <Description>
         <p>
-            Shows numeric decimal fields, which are Plus components.
+            Shows numeric double fields, which are Plus components.
             Each of these can display as Filled or Outlined and with
             the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
         </p>
@@ -28,29 +28,29 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A range of numeric decimal fields using formats for non focused input.
+                        A range of numeric double fields using formats for non focused input.
                     </h3>
 
                     <p>
-                        <MBFilledDecimalField @bind-Value="@DecimalValue"
-                                              DecimalPlaces="2"
-                                              Label="Decimal 2dp"
-                                              NumericFormat="N2" />
+                        <MBFilledDoubleField @bind-Value="@DoubleValue"
+                                             DecimalPlaces="2"
+                                             Label="Double 2dp"
+                                             NumericFormat="N2" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@MoneyByFormat"
-                                                DecimalPlaces="2"
-                                                Label="Money by format"
-                                                NumericFormat="C2" />
+                        <MBOutlinedDoubleField @bind-Value="@MoneyByFormat"
+                                               DecimalPlaces="2"
+                                               Label="Money by format"
+                                               NumericFormat="C2" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@MoneyByPrefix"
-                                                DecimalPlaces="2"
-                                                Label="Money by prefix"
-                                                NumericFormat="N2"
-                                                Prefix="£" />
+                        <MBOutlinedDoubleField @bind-Value="@MoneyByPrefix"
+                                               DecimalPlaces="2"
+                                               Label="Money by prefix"
+                                               NumericFormat="N2"
+                                               Prefix="£" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -67,35 +67,35 @@
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
                         Percentage and basis point numerics can be editted either using a prefix or standard formatting (in the case of percentages only).
-                        A figure of "12.3%" results in a decimal value of "0.123" and one of "34.5 bp" results in a decimal value of "0.00345".
+                        A figure of "12.3%" results in a double value of "0.123" and one of "34.5 bp" results in a double value of "0.00345".
                     </h3>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PercentByFormat"
-                                                DecimalPlaces="2"
-                                                FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent"
-                                                Label="Percent by format"
-                                                NumericFormat="P2" />
+                        <MBOutlinedDoubleField @bind-Value="@PercentByFormat"
+                                               DecimalPlaces="2"
+                                               FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent"
+                                               Label="Percent by format"
+                                               NumericFormat="P2" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PercentBySuffix"
-                                                DecimalPlaces="2"
-                                                FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent"
-                                                Label="Percent by Suffix"
-                                                NumericFormat="N2"
-                                                Suffix="%"
-                                                UnfocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent" />
+                        <MBOutlinedDoubleField @bind-Value="@PercentBySuffix"
+                                               DecimalPlaces="2"
+                                               FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent"
+                                               Label="Percent by Suffix"
+                                               NumericFormat="N2"
+                                               Suffix="%"
+                                               UnfocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.Percent" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@BasisPointsBySuffix"
-                                                DecimalPlaces="0"
-                                                FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.BasisPoints"
-                                                Label="Basis Points by Suffix"
-                                                NumericFormat="N0"
-                                                Suffix="bp"
-                                                UnfocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.BasisPoints" />
+                        <MBOutlinedDoubleField @bind-Value="@BasisPointsBySuffix"
+                                               DecimalPlaces="0"
+                                               FocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.BasisPoints"
+                                               Label="Basis Points by Suffix"
+                                               NumericFormat="N0"
+                                               Suffix="bp"
+                                               UnfocusedMagnitude="Material.Blazor.MBNumericInputMagnitude.BasisPoints" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -115,18 +115,18 @@
                     </h3>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PopupHelperText"
-                                                SupportingText="Some helper text that pops up"
-                                                Label="Popup Helper Text"
-                                                NumericFormat="N2" />
+                        <MBOutlinedDoubleField @bind-Value="@PopupHelperText"
+                                               SupportingText="Some helper text that pops up"
+                                               Label="Popup Helper Text"
+                                               NumericFormat="N2" />
                     </p>
 
                     <p>
-                        <MBOutlinedDecimalField @bind-Value="@PersistentHelperText"
-                                                SupportingText="Some persistent helper text"
-                                                SupportingTextPersistent="true"
-                                                Label="Persistent Helper Text"
-                                                NumericFormat="N2" />
+                        <MBOutlinedDoubleField @bind-Value="@PersistentHelperText"
+                                               SupportingText="Some persistent helper text"
+                                               SupportingTextPersistent="true"
+                                               Label="Persistent Helper Text"
+                                               NumericFormat="N2" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -136,22 +136,22 @@
 
 
 @code {
-    private decimal _decimalValue;
-    private decimal DecimalValue
+    private double _doubleValue;
+    private double DoubleValue
     {
-        get => _decimalValue;
+        get => _doubleValue;
         set
         {
-            _decimalValue = value;
+            _doubleValue = value;
 
-            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Double numeric", message: $"Value: '{_doubleValue.ToString("N2")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
         }
     }
 
 
 
-    private decimal _moneyByFormat;
-    private decimal MoneyByFormat
+    private double _moneyByFormat;
+    private double MoneyByFormat
     {
         get => _moneyByFormat;
         set
@@ -164,8 +164,8 @@
 
 
 
-    private decimal _moneyByPrefix;
-    private decimal MoneyByPrefix
+    private double _moneyByPrefix;
+    private double MoneyByPrefix
     {
         get => _moneyByPrefix;
         set
@@ -178,8 +178,8 @@
 
 
 
-    private decimal _percentByFormat;
-    private decimal PercentByFormat
+    private double _percentByFormat;
+    private double PercentByFormat
     {
         get => _percentByFormat;
         set
@@ -191,8 +191,8 @@
     }
 
 
-    private decimal _percentBySuffix;
-    private decimal PercentBySuffix
+    private double _percentBySuffix;
+    private double PercentBySuffix
     {
         get => _percentBySuffix;
         set
@@ -204,8 +204,8 @@
     }
 
 
-    private decimal _basisPointsBySuffix;
-    private decimal BasisPointsBySuffix
+    private double _basisPointsBySuffix;
+    private double BasisPointsBySuffix
     {
         get => _basisPointsBySuffix;
         set
@@ -217,8 +217,8 @@
     }
 
 
-    private decimal _popupHelperText;
-    private decimal PopupHelperText
+    private double _popupHelperText;
+    private double PopupHelperText
     {
         get => _popupHelperText;
         set
@@ -230,8 +230,8 @@
     }
 
 
-    private decimal _persistentHelperText;
-    private decimal PersistentHelperText
+    private double _persistentHelperText;
+    private double PersistentHelperText
     {
         get => _persistentHelperText;
         set
