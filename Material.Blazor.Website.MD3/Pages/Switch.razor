@@ -30,16 +30,21 @@
 
                     <p style="display: flex; flex-flow: row nowrap; align-items: center;">
                         <MBSwitch @bind-Value="@SwitchState1"
+                                  @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
                                   class="supplied-test-class"
                                   id="supplied-test-id" />
                         <span class="mdc-typography--body1" style="margin-left: 24px;">no icons</span>
                     </p>
                     <p style="display: flex; flex-flow: row nowrap; align-items: center;">
-                        <MBSwitch @bind-Value="@SwitchState2" Icons="true" />
+                        <MBSwitch @bind-Value="@SwitchState2"
+                                  @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
+                                  Icons="true" />
                         <span class="mdc-typography--body1" style="margin-left: 24px;">icons</span>
                     </p>
                     <p style="display: flex; flex-flow: row nowrap; align-items: center;">
-                        <MBSwitch @bind-Value="@SwitchState3" Icons="true" ShowOnlySelectedIcon="true" />
+                        <MBSwitch @bind-Value="@SwitchState3"
+                                  @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
+                                  Icons="true" ShowOnlySelectedIcon="true" />
                         <span class="mdc-typography--body1" style="margin-left: 24px;">selected icon only</span>
                     </p>
                 </Primary>
@@ -59,10 +64,13 @@
                     </h3>
 
                     <p>
-                        <MBSwitch @bind-Value="@ToggleTwoWayBindingState" />
+                        <MBSwitch @bind-Value="@TwoWayBindingState"
+                                  @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))" />
                     </p>
                     <p>
-                        <MBSwitch @bind-Value="@ToggleTwoWayBindingState" />
+                        <MBSwitch @bind-Value="@TwoWayBindingState"
+                                  @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
+                                  Icons="true" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -126,76 +134,19 @@
     private bool densityMinus4;
     private bool densityMinus5;
 
-    private bool _checkboxState;
-    private bool CheckboxState
+    private bool CheckboxState { get; set; }
+    private bool SwitchState1 { get; set; }
+    private bool SwitchState2 { get; set; }
+    private bool SwitchState3 { get; set; } = true;
+    private bool TwoWayBindingState { get; set; }
+    
+    
+    private void ComponentValueChanged(bool value, string componentName)
     {
-        get => _checkboxState;
-        set
-        {
-            _checkboxState = value;
-
-            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MBToastLevel.Success, showIcon: false);
-        }
+        ToastService.ShowToast(heading: $"{componentName} Clicked", message: $"Two way binding Value: {value}", level: MBToastLevel.Success, showIcon: false);
     }
 
-
-
-    private bool _switchState1;
-    private bool SwitchState1
-    {
-        get => _switchState1;
-        set
-        {
-            _switchState1 = value;
-
-            ToastService.ShowToast(heading: "Switch 1 Clicked", message: $"Value: {_switchState1}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private bool _switchState2 = true;
-    private bool SwitchState2
-    {
-        get => _switchState2;
-        set
-        {
-            _switchState2 = value;
-
-            ToastService.ShowToast(heading: "Switch 2 Clicked", message: $"Value: {_switchState2}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private bool _switchState3;
-    private bool SwitchState3
-    {
-        get => _switchState3;
-        set
-        {
-            _switchState3 = value;
-
-            ToastService.ShowToast(heading: "Switch 3 Clicked", message: $"Value: {_switchState3}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private bool _toggleTwoWayBindingState;
-    private bool ToggleTwoWayBindingState
-    {
-        get => _toggleTwoWayBindingState;
-        set
-        {
-            _toggleTwoWayBindingState = value;
-
-            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
+    
     private void ButtonClick(string notification)
     {
         ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);

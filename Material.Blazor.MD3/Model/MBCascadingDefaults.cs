@@ -64,74 +64,6 @@ public class MBCascadingDefaults
     /*************************************************************************************************************
      * 
      * 
-     *      ICON FOUNDRIES AND THEIR OPTIONAL PARAMETERS
-     * 
-     * 
-     ************************************************************************************************************/
-
-    private MBIconFoundryName _iconFoundryName = MBIconFoundryName.MaterialIcons;
-    /// <summary>
-    /// The default foundry name, initialized to <see cref="MBIconFoundryName.MaterialIcons"/> if not explicitly set.
-    /// </summary>
-    public MBIconFoundryName IconFoundryName { get => _iconFoundryName; set => SetParameter(ref _iconFoundryName, value); }
-
-    /// <summary>
-    /// The foundry name to apply within a Material.Blazor component.
-    /// </summary>
-    /// <param name="iconFoundryName">The foundry name parameter passed to the component</param>
-    /// <returns>The <see cref="IconFoundryName"/> to apply.</returns>
-    internal MBIconFoundryName AppliedIconFoundryName(MBIconFoundryName? iconFoundryName = null) => iconFoundryName ?? IconFoundryName;
-
-
-
-    private MBIconMITheme _iconMITheme = MBIconMITheme.Filled;
-    /// <summary>
-    /// The default Material Icons theme, initialized to <see cref="MBIconMITheme.Filled"/> if not explicitly set.
-    /// </summary>
-    public MBIconMITheme IconMITheme { get => _iconMITheme; set => SetParameter(ref _iconMITheme, value); }
-
-    /// <summary>
-    /// The Material Icons theme to apply within a Material.Blazor component.
-    /// </summary>
-    /// <param name="iconMITheme">The theme parameter passed to the component</param>
-    /// <returns>The <see cref="IconMITheme"/> to apply.</returns>
-    internal MBIconMITheme AppliedIconMITheme(MBIconMITheme? iconMITheme = null) => iconMITheme ?? IconMITheme;
-
-
-
-    private MBIconFAStyle _iconFAStyle = MBIconFAStyle.Solid;
-    /// <summary>
-    /// The default Font Awesome style, initialized to <see cref="MBIconFAStyle.Solid"/> if not explicitly set.
-    /// </summary>
-    public MBIconFAStyle IconFAStyle { get => _iconFAStyle; set => SetParameter(ref _iconFAStyle, value); }
-
-    /// <summary>
-    /// The Font Awesome style to apply within a Material.Blazor component.
-    /// </summary>
-    /// <param name="iconFAStyle">The style parameter passed to the component</param>
-    /// <returns>The <see cref="IconFAStyle"/> to apply.</returns>
-    internal MBIconFAStyle AppliedIconFAStyle(MBIconFAStyle? iconFAStyle = null) => iconFAStyle ?? IconFAStyle;
-
-
-
-    private MBIconFARelativeSize _iconFARelativeSize = MBIconFARelativeSize.Regular;
-    /// <summary>
-    /// The default Font Awesome relative size, initialized to <see cref="MBIconFARelativeSize.Regular"/> if not explicitly set.
-    /// </summary>
-    public MBIconFARelativeSize IconFARelativeSize { get => _iconFARelativeSize; set => SetParameter(ref _iconFARelativeSize, value); }
-
-    /// <summary>
-    /// The Font Awesome relative size to apply within a Material.Blazor component.
-    /// </summary>
-    /// <param name="iconFARelativeSize">The relative size parameter passed to the component</param>
-    /// <returns>The <see cref="IconFARelativeSize"/> to apply.</returns>
-    internal MBIconFARelativeSize AppliedIconFARelativeSize(MBIconFARelativeSize? iconFARelativeSize = null) => iconFARelativeSize ?? IconFARelativeSize;
-
-
-
-    /*************************************************************************************************************
-     * 
-     * 
      *      MDC CORE COMPONENTS
      * 
      * 
@@ -275,6 +207,36 @@ public class MBCascadingDefaults
     /// <param name="style">The style parameter passed to the <see cref="MBSelect{TItem}"/></param>
     /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
     internal MBSelectInputStyle AppliedStyle(MBSelectInputStyle? style = null) => style ?? SelectInputStyle;
+
+
+
+    private bool _switchIcons = false;
+    /// <summary>
+    /// The default for whether <see cref="MBSwitch"/>, displays icons.
+    /// </summary>
+    public bool SwitchIcons { get => _switchIcons; set => SetParameter(ref _switchIcons, value); }
+
+    /// <summary>
+    /// The value to apply to an <see cref="MBSwitch"/>.
+    /// </summary>
+    /// <param name="style">The style parameter passed to the <see cref="MBSelect{TItem}"/></param>
+    /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
+    internal bool AppliedSwitchIcons(bool? icons = null) => icons ?? SwitchIcons;
+
+
+
+    private bool _switchShowOnlySelectedIcon = false;
+    /// <summary>
+    /// The default for whether <see cref="MBSwitch"/>, displays only the selected icon.
+    /// </summary>
+    public bool SwitchShowOnlySelectedIcon { get => _switchShowOnlySelectedIcon; set => SetParameter(ref _switchShowOnlySelectedIcon, value); }
+
+    /// <summary>
+    /// The value to apply to an <see cref="MBSwitch"/>.
+    /// </summary>
+    /// <param name="style">The style parameter passed to the <see cref="MBSelect{TItem}"/></param>
+    /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
+    internal bool AppliedSwitchSwitchShowOnlySelectedIcon(bool? switchShowOnlySelectedIcon = null) => switchShowOnlySelectedIcon ?? SwitchShowOnlySelectedIcon;
 
 
 

@@ -15,13 +15,13 @@ public sealed class MBSwitch : InputComponent<bool>
     /// <summary>
     /// Determines whether the switch shows icons.
     /// </summary>
-    [Parameter] public bool Icons { get; set; } = false;
+    [Parameter] public bool? Icons { get; set; }
 
 
     /// <summary>
     /// Determines shows icons only in the selected state.
     /// </summary>
-    [Parameter] public bool ShowOnlySelectedIcon { get; set; } = false;
+    [Parameter] public bool? ShowOnlySelectedIcon { get; set; }
 
     
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -56,8 +56,8 @@ public sealed class MBSwitch : InputComponent<bool>
             builder.AddAttribute(5, "id", id);
             builder.AddAttribute(6, "selected", BindConverter.FormatValue(Value));
             builder.AddAttribute(7, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClick));
-            builder.AddAttribute(8, "icons", Icons);
-            builder.AddAttribute(9, "showOnlySelectedIcon", ShowOnlySelectedIcon);
+            builder.AddAttribute(8, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
+            builder.AddAttribute(9, "showOnlySelectedIcon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
         }
         builder.CloseElement();
     }
