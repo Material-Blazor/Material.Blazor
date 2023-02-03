@@ -9,9 +9,9 @@
     "assembly": {
       "GoogleAnalytics.Blazor.dll": "sha256-6UCxOOU86cD8H+\/tB\/eMoFtwQ7H0XGp4vjGD7eiS7v0=",
       "Humanizer.dll": "sha256-1oUwdVR9fjA+\/WA1TZEaL\/GO26WCzaL6WdkaLl3Pnpg=",
-      "Material.Blazor.dll": "sha256-r6skJMY4MD4G1Rq6cAALhCrSV72+4nivFuK3GYwsRT0=",
-      "Material.Blazor.Website.dll": "sha256-GOZOJ+RQQ32\/52Ph7JQtjRYxbrZCt9IxXut+4Sxa5cw=",
-      "Material.Blazor.Website.WebAssembly.dll": "sha256-J\/oQ7S4b6jBSsmyms5jo3SK+kVas98saOMV7W6GVslE=",
+      "Material.Blazor.dll": "sha256-f2Ui\/zgmnHg71onX1lCMxB0JYCUHZxa0dcmOsXQKPlA=",
+      "Material.Blazor.Website.dll": "sha256-E9jT\/aguInhUCawbvDZdScqTewzeBbd5kMwj6Oi347w=",
+      "Material.Blazor.Website.WebAssembly.dll": "sha256-cTpjd7wYd\/xdbX+lzMMStJzg3FTXMiW5JPImdiusu0Q=",
       "Microsoft.AspNetCore.Components.dll": "sha256-\/7lx1eP24cty+\/gHtKgwEPCBtDKEDj7L85E6kFIHNGE=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-fsqehJ69eVw+ip0woex4k+SPtDTCkZjLArLEpbkGHD4=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-ZTnNZTBAzQK7lsZUnndLHQdWoG\/pUS56dmRFCs6EncE=",
