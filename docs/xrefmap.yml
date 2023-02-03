@@ -235,9 +235,6 @@ references:
 - uid: C.MBTextArea
   name: MBTextArea
   href: Material.Blazor/Components/TextArea/MBTextArea.html
-- uid: C.MBTextField
-  name: MBTextField
-  href: Material.Blazor/Components/TextField/MBTextField.html
 - uid: C.MBTooltip
   name: MBTooltip
   href: Material.Blazor/Components/Tooltip/MBTooltip.html
