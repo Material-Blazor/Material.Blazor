@@ -9,7 +9,7 @@ on:
 
 env:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'WebAssembly'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}/siteMB
   outputWeb: ${{github.workspace}}/siteWeb
@@ -80,7 +80,6 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '7.0.x'
-
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json

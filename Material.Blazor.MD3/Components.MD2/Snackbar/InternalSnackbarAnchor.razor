@@ -1,0 +1,8 @@
+﻿@namespace Material.Blazor.Internal.MD2
+@inherits ComponentFoundationMD2
+
+@if (ActiveSnackbar != null)
+{
+    <InternalSnackbar @key="ActiveSnackbar.Id" 
+                      Snackbar="ActiveSnackbar" />
+}

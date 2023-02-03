@@ -10,10 +10,10 @@ public partial class Index
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
 
-#if DEBUG
-    private string BuildMode { get; set; } = "debug";
+#if BLAZOR_SERVER
+    private string BuildMode { get; set; } = "Server";
 #else
-    private string BuildMode { get; set; } = "release";
+    private string BuildMode { get; set; } = "WebAssembly";
 #endif
 
     private string OSArchitecture { get; set; }

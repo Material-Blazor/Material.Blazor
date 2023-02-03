@@ -1,0 +1,57 @@
+﻿@inherits LayoutComponentBase
+
+@namespace Material.Blazor.Website.Shared
+
+@inject NavigationManager NavigationService
+@inject IJSRuntime JsRuntime
+
+@using Material.Blazor.MD2
+
+<MBDrawer @ref="@Drawer"
+          StartOpen=false
+          IsDismissible="true">
+
+    <nav class="mdc-list">
+        <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
+        <MBListItem LeadingIcon="money" Label="Numeric Decimal Field" @onclick="@(() => ListItemClickHandler("numericdecimalfield"))" />
+        <MBListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
+    </nav>
+</MBDrawer>
+
+<div class="mdc-drawer-app-content">
+    <MBTopAppBar Title="Material.Blazor"
+                 @onclick="@SideBarToggle"
+                 NavIcon="menu"
+                 ScrollTarget="#main-content"
+                 TopAppBarType="@MBTopAppBarType.Dense"
+                 class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
+    </MBTopAppBar>
+
+    <main class="main-content" id="main-content">
+        <div class="max-width-content">
+            <div class="mdc-top-app-bar--dense-fixed-adjust">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        @Body
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+@code {
+    private MBDrawer Drawer { get; set; }
+
+    private void ListItemClickHandler(string NavigationReference)
+    {
+        Drawer.NotifyNavigation();
+        NavigationService.NavigateTo(NavigationReference);
+    }
+
+    private void SideBarToggle()
+    {
+        Drawer.Toggle();
+    }
+}

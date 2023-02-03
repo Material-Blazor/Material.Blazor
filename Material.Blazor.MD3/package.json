@@ -1,0 +1,40 @@
+{
+  "name": "material.blazor",
+  "version": "4.0.0",
+  "description": "NPM build steps for Material.Blazor",
+  "repository": "https://github.com/Material-Blazor/Material.Blazor",
+  "scripts": {
+    "build-css": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.css",
+    "build-min-css": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.min.css",
+    "build-material-css": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-components-web.scss wwwroot/material-components-web.css",
+    "build-material-min-css": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-components-web.scss wwwroot/material-components-web.min.css",
+    "build-js": "terser wwwroot/intermediate.js --beautify --output wwwroot/material.blazor.js",
+    "build-min-js": "terser wwwroot/material.blazor.js --compress --mangle --ecma 2016 --output wwwroot/material.blazor.min.js",
+    "build-scripts": "webpack --config webpack.config.js",
+    "build-scripts-Comment1": "https://github.com/microsoft/TypeScript-Babel-Starter",
+    "build-scripts-Comment2": "https://github.com/a-tarasyuk/webpack-typescript-babel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-transform-runtime": "7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "@material/web": "1.0.0-pre.1",
+    "babel-loader": "^9.1.2",
+    "fork-ts-checker-webpack-plugin": "^7.3.0",
+    "material-components-web": "14.0.0",
+    "regexp": "^1.0.0",
+    "sass": "1.39.2",
+    "terser": "^5.16.2",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

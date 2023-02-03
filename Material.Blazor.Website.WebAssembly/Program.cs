@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
-using Serilog.Extensions.Logging;
 using Serilog.Events;
+using Serilog.Extensions.Logging;
 using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("app");
+builder.RootComponents.Add<AppMD2>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
@@ -26,15 +26,14 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 //    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
 //});
 
-//builder.Services.AddMBServices();
-
 // Option 2: add options within the call to add the Material.Blazor services.
-builder.Services.AddMBServices(options =>
-{
+builder.Services.AddMBServices(options => {
     options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
     options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
     options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
 });
+
+builder.Services.AddMBServices();
 
 Log.Logger = new LoggerConfiguration()
 #if DEBUG

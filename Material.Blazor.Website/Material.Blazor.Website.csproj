@@ -3,7 +3,15 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 
-		<Configurations>Debug;Release</Configurations>
+		<Configurations>Server;WebAssembly</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Server|AnyCPU'">
+		<DefineConstants>BLAZOR_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WebAssembly|AnyCPU'">
+		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -44,7 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.2" />
+		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.2" />
 		<PackageReference Include="Humanizer " Version="2.14.1" />
@@ -79,7 +87,7 @@
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-		<!-- Don't build unminified themes -->
+		<!-- Build minified themes -->
 		<Message Importance="high" Text="***** build material default theme" />
 		<Exec Command="npm run build-min-material-default" />
 

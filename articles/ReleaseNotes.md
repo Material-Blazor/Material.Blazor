@@ -4,6 +4,32 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.11)
+
+Released 2023-02-02
+
+**Updates**
+
+**New components**
+- Added preview of Material Design 3 components.
+	- MBAnchor
+	- MBFilledDecimalField
+	- MBOutlinedDecimalField
+	- MBFilledTextField
+	- MBOutlinedTextField
+
+**Breaking Changes**
+- There are two configurations, 'Server' (replacing 'Debug') and 'WebAssembly' (replacing 'Release').
+The choice of one or the other of these determines if the website is to run as a server side
+application or
+a web assembly application hosted by the server.
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0-preview.10](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.10)
 
 Released 2023-01-26
@@ -512,7 +538,7 @@ Released 2022-06-25
 Released 2022-05-26
 
 **Updates**
-- Repaired MBGrid's OnMouseClickIntertnal (Thanks go out to Steve Sanderson for finding this error)
+- Repaired MBGrid's OnMouseClickInternal (Thanks go out to Steve Sanderson for finding this error)
 - Throttled dependabot to a monthly check
 
 **New components**

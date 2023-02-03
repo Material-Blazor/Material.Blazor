@@ -37,7 +37,14 @@ try
 
     // Add services to the container.
     builder.Services.AddRazorPages();
+
+#if SERVER
+
     builder.Services.AddServerSideBlazor();
+    builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+
+#endif
+
 
     // Option 1: add options to services, which are then accessed by the Material Blazor services.
     builder.Services.AddOptions<MBServicesOptions>().Configure(options =>
@@ -66,7 +73,11 @@ try
 
     if (app.Environment.IsDevelopment())
     {
+#if SERVER
         app.UseDeveloperExceptionPage();
+#else
+        app.UseWebAssemblyDebugging();
+#endif
     }
     else
     {
@@ -83,7 +94,11 @@ try
 
     app.UseRouting();
 
+#if SERVER
     app.MapBlazorHub();
+#else
+    app.UseBlazorFrameworkFiles();
+#endif
 
     app.MapFallbackToPage("/_Host");
 

@@ -1,0 +1,48 @@
+﻿@namespace Material.Blazor
+@using Material.Blazor.Internal;
+@inherits ComponentFoundation
+
+@if (DisplayedToasts.Any())
+{
+    <aside class="mb-toast-container mdc-snackbar mdc-snackbar--open @PositionClass">
+        @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
+        {
+            <div @key="@toast"
+                 aria-relevant="additions"
+                 class="mdc-snackbar__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
+                 role="status">
+
+                @if (toast.Settings.AppliedShowIcon)
+                {
+                    var iconHelper = new MBIconHelper3(toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry3);
+                    var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
+
+                    <div class="mb-toast-icon @filterClass">
+                        <MBIcon3 aria-hidden="true"
+                                IconFoundry="@toast.Settings.IconFoundry"
+                                IconName="@toast.Settings.AppliedIconName" />
+                    </div>
+                }
+
+                <div aria-atomic="false" class="mdc-snackbar__label">
+                    @if (!string.IsNullOrWhiteSpace(toast.Settings.Heading))
+                    {
+                        <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
+                    }
+
+                    @((MarkupString)toast.Settings.AppliedMessage)
+                </div>
+
+                @if (toast.Settings.CloseMethod != MBNotifierCloseMethod.Timeout)
+                {
+                    <button class="mdc-icon-button mdc-snackbar__dismiss material-icons"
+                            title="Dismiss"
+                            type="button"
+                @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))">
+                        close
+                    </button>
+                }
+            </div>
+        }
+    </aside>
+}

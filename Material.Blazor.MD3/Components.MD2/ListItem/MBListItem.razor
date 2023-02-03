@@ -1,0 +1,47 @@
+﻿@namespace Material.Blazor.MD2
+@inherits ComponentFoundationMD2
+
+
+@if (Drawer != null)
+{
+    <a aria-selected="@IsSelectedMenuItem"
+       class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
+       id="@id"
+       style="@style"
+       @attributes="@AttributesToSplat()">
+
+        <span class="mdc-deprecated-list-item__ripple"></span>
+
+        @if (LeadingIcon != null)
+        {
+            <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
+                <MBIcon IconFoundry="@IconFoundry"
+                        IconName="@LeadingIcon" />
+            </span>
+        }
+
+        <span class="mdc-deprecated-list-item__text">@Label</span>
+    </a>
+}
+else if (Menu != null)
+{
+    <li aria-selected="@IsSelectedMenuItem"
+        class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
+        id="@id"
+        style="@style"
+        @attributes="@AttributesToSplat()"
+        role="menuitem">
+
+        <span class="mdc-deprecated-list-item__ripple"></span>
+
+        @if (LeadingIcon != null && IsSelectedMenuItem)
+        {
+            <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
+                <MBIcon IconFoundry="@IconFoundry"
+                        IconName="@LeadingIcon" />
+            </span>
+        }
+
+        <span class="mdc-deprecated-list-item__text">@Label</span>
+    </li>
+}

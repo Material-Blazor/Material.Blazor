@@ -1,0 +1,65 @@
+﻿@charset "UTF-8";
+
+@use '_colors.scss';
+@use "_material-components-icons.scss";
+
+@use '../Components.MD2/Card/MBCard.scss';
+@use '../Components.MD2/DataTable/MBDataTable.scss';
+@use '../Components.MD2/Dialog/MBDialog.scss';
+@use '../Components.MD2/IconButton/MBIconButton.scss';
+@use '../Components.MD2/RadioButton/MBRadioButton.scss';
+@use '../Components.MD2/RadioButtonGroup/MBRadioButtonGroup.scss';
+@use '../Components.MD2/Select/MBSelect.scss';
+@use '../Components.MD2/Snackbar/MBSnackbar.scss';
+@use '../Components/Toast/MBToast.scss';
+@use '../Components.MD2/TopAppBar/MBTopAppBar.scss';
+
+
+.mb-align-left {
+    text-align: left;
+}
+
+.mb-align-center {
+    text-align: center;
+}
+
+.mb-align-right {
+    text-align: right;
+}
+
+.mb-full-width {
+    width: 100%;
+}
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+.loading-progress circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+
+.loading-progress circle:last-child {
+    stroke: #1b6ec2;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}

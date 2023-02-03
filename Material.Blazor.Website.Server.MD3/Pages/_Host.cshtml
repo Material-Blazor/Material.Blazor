@@ -1,0 +1,99 @@
+﻿@page "/"
+
+@namespace Material.Blazor.Website.Server.Pages
+
+@using Material.Blazor.Website.MD3;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Material.Blazor.Website.Server.MD3
+@using Microsoft.AspNetCore.Components.Web
+
+@{
+    RenderMode RenderMode = PlatformDetermination.IsBlazorServer ? RenderMode.ServerPrerendered : RenderMode.WebAssemblyPrerendered;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Material.Blazor</title>
+    <base href="/" />
+
+    @*    We load all of the MD2 resources as the website is a mix of MD2 structure with MD3 components (for now)*@
+
+    <link href="_content/Material.Blazor.MD3/material.blazor.min.css" rel="stylesheet">
+
+    <link href="_content/Material.Blazor.Website.MD3/icon-512.png" rel="apple-touch-icon" sizes="512x512">
+    <link href="_content/Material.Blazor.Website.MD3/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="_content/Material.Blazor.Website.MD3/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+    <link id="app-style" href="_content/Material.Blazor.Website.MD3/css/material-default-theme.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />    <!-- Global site tag (gtag.js) - Google Analytics -->
+    @if (PlatformDetermination.IsBlazorServer)
+    {
+        <component type="typeof(HeadOutlet)" render-mode="@RenderMode" />
+    }
+    else
+    {
+        <link rel="manifest" href="manifest.json" />
+    }
+
+</head>
+
+<body class="mdc-typography mb-custom-scrollbars">
+    @if (PlatformDetermination.IsBlazorServer)
+    {
+        <component type="typeof(AppMD3)" render-mode="@RenderMode" />
+    }
+    else
+    {
+        <div id="app">
+            <svg class="loading-progress">
+                <circle r="40%" cx="50%" cy="50%" />
+                <circle r="40%" cx="50%" cy="50%" />
+            </svg>
+            <div class="loading-progress-text"></div>
+        </div>
+    }
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_content/Material.Blazor.MD3/material.blazor.min.js"></script>
+    <script src="_content/Material.Blazor.Website.MD3/js/app.js"></script>
+
+    <script src="_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js"></script>
+
+    @if (PlatformDetermination.IsBlazorServer)
+    {
+        <script src="_framework/blazor.server.js"></script>
+    }
+    else
+    {
+        <script src="_framework/blazor.webassembly.js"></script>
+    }
+
+</body>
+</html>
