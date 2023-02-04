@@ -96,11 +96,11 @@ try
 
 #if SERVER
     app.MapBlazorHub();
+    app.MapFallbackToPage("/_Host");
 #else
     app.UseBlazorFrameworkFiles();
+    app.MapFallbackToFile("index.html");
 #endif
-
-    app.MapFallbackToPage("/_Host");
 
     app.Run();
 }
