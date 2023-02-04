@@ -28,4 +28,20 @@ public partial class Index
         Runtime = RuntimeInformation.FrameworkDescription.ToString();
         Version = MBVersion.MaterialBlazorVersion();
     }
+
+
+
+    private async Task NavigateToDocs()
+    {
+        var baseURI = NavigationManager.BaseUri;
+        await JSRuntime.InvokeAsync<object>("open", $"{baseURI}docs", "_blank");
+    }
+
+
+
+    private void NavigateToComponent()
+    {
+        //ToDo Make this reference the first implemented component
+        NavigationManager.NavigateTo("icon");
+    }
 }
