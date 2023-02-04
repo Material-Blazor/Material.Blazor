@@ -49,3 +49,42 @@
         </Primary>
     </Material.Blazor.MD2.MBCard>
 </div>
+
+
+
+
+<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <Material.Blazor.MD2.MBCard class="mb-basic-with-text-over-media xlink-card"
+            @onclick="@NavigateToDocs">
+        <PrimaryAction>
+            <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url('_content/Material.Blazor.Website.MD3/images/book-shelves.jpg');">
+                <div class="mdc-card__media-content mb-card__media-content">
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Documentation</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">Click to visit the docs website</h3>
+                    </div>
+                </div>
+            </div>
+        </PrimaryAction>
+    </Material.Blazor.MD2.MBCard>
+</div>
+
+
+       
+<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <Material.Blazor.MD2.MBCard class="mb-basic-with-text-over-media xlink-card"
+            @onclick="@NavigateToComponent">
+        <PrimaryAction>
+            <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url('_content/Material.Blazor.Website.MD3/images/mac.jpg');">
+                <div class="mdc-card__media-content mb-card__media-content">
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Demonstration</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Try Material.Blazor out from the menu or click here to go straight to the Button demo page.
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </PrimaryAction>
+    </Material.Blazor.MD2.MBCard>
+</div>
