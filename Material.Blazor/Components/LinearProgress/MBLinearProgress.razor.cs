@@ -44,6 +44,8 @@ public partial class MBLinearProgress : InputComponent<double>
     {
         await base.OnInitializedAsync();
 
+        cachedLinearProgressType = LinearProgressType;
+
         ForceShouldRenderToTrue = true;
         InitialValue = Value;
 
@@ -83,6 +85,7 @@ public partial class MBLinearProgress : InputComponent<double>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
+        
         if (cachedLinearProgressType != LinearProgressType)
         {
             cachedLinearProgressType = LinearProgressType;
