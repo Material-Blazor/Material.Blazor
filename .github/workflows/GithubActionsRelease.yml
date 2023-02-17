@@ -23,6 +23,12 @@ env:
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
+  outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
+  outputMBMD3: ${{github.workspace}}\siteMBMD3
+  outputWebMD3: ${{github.workspace}}\siteWebMD3
+  projectMBMD3: 'Material.Blazor/Material.Blazor.MD3.csproj'
+  projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.csproj'
+
 jobs:
 
 ############################################################################################################
@@ -154,7 +160,7 @@ jobs:
 # deployghpages
 ############################################################################################################
   deployghpages:
-    name: Deploy to material-blazor.com
+    name: Deploy to material.blazor
     needs: [test, build-documentation, build-website, is-on-material-blazor]
 
     runs-on: ubuntu-latest
@@ -210,3 +216,111 @@ jobs:
       with:
         name: Release ${{ env.version }}
         tag: ${{ env.version }}
+
+############################################################################################################
+############################################################################################################
+############################################################################################################
+# MD3 jobs
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation-MD3:
+    name: Build documentation MD3
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Create documentation 🔧
+      run: .\docfx\docfx docfx.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: main   
+
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
+      uses: actions/upload-artifact@v2
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+        
+############################################################################################################
+# Build website
+############################################################################################################
+  build-website-MD3:
+    needs: [test]
+    name: Build website MD3
+    runs-on: windows-latest
+
+    steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Build and Publish Website 🔧
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
+
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+      uses: actions/upload-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+        
+############################################################################################################
+# deployghpages
+############################################################################################################
+  deployghpages-MD3:
+    name: Deploy to material.blazor.MD3.com
+    needs: [test, build-documentation, build-website, is-on-material-blazor]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+
+    - name: Configure deployment directory structure Ꙫ
+      run: |
+        mv siteWebMD3/wwwroot deployroot
+        mv siteDocFxMD3 deployroot/docs
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
+        repository-name: Material-Blazor/Material.Blazor.MD3

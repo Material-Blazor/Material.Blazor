@@ -9,13 +9,21 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "daily"  
+      interval: "weekly"  
 
 
   - package-ecosystem: "npm"
     directory: "/Material.Blazor"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    ignore:
+      - dependency-name: "sass"
+
+
+  - package-ecosystem: "npm"
+    directory: "/Material.Blazor.MD3"
+    schedule:
+      interval: "weekly"
     ignore:
       - dependency-name: "sass"
 
@@ -23,7 +31,15 @@ updates:
   - package-ecosystem: "npm"
     directory: "/Material.Blazor.Website"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    ignore:
+      - dependency-name: "sass"
+
+
+  - package-ecosystem: "npm"
+    directory: "/Material.Blazor.Website.MD3"
+    schedule:
+      interval: "weekly"
     ignore:
       - dependency-name: "sass"
 
@@ -31,7 +47,7 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
 
