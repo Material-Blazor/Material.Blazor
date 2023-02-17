@@ -160,7 +160,7 @@ jobs:
 # deployghpages
 ############################################################################################################
   deployghpages:
-    name: Deploy to material-blazor.com
+    name: Deploy to material.blazor
     needs: [test, build-documentation, build-website, is-on-material-blazor]
 
     runs-on: ubuntu-latest
@@ -229,7 +229,7 @@ jobs:
 # Build documentation
 ############################################################################################################
   build-documentation-MD3:
-    name: Build documentation
+    name: Build documentation MD3
     runs-on: windows-latest
 
     steps:
@@ -257,7 +257,7 @@ jobs:
 ############################################################################################################
   build-website-MD3:
     needs: [test]
-    name: Build website
+    name: Build website MD3
     runs-on: windows-latest
 
     steps:
@@ -286,7 +286,7 @@ jobs:
 # deployghpages
 ############################################################################################################
   deployghpages-MD3:
-    name: Deploy to material-blazor.com
+    name: Deploy to material.blazor.MD3.com
     needs: [test, build-documentation, build-website, is-on-material-blazor]
 
     runs-on: ubuntu-latest

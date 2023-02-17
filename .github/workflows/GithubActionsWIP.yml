@@ -20,8 +20,8 @@ env:
   outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
   outputMBMD3: ${{github.workspace}}/siteMBMD3
   outputWebMD3: ${{github.workspace}}/siteWebMD3
-  projectMBMD3: 'Material.Blazor/Material.Blazor.MD3.csproj'
-  projectWebMD3: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.MD3.csproj'
+  projectMBMD3: 'Material.Blazor.MD3/Material.Blazor.MD3.csproj'
+  projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.MD3.csproj'
 
 jobs:
 
@@ -464,7 +464,7 @@ jobs:
 # Material.Blazor.Current is handled by deployghpages-mbcurrent below.
 ############################################################################################################
   deployghpagesMD3:
-    name: Deploy to GitHub pages
+    name: Deploy to GitHub pages MD3
     needs: [test, build-documentation-MD3, build-website-MD3, is-on-fork, is-not-dependabot]
 
     runs-on: ubuntu-latest
@@ -508,7 +508,7 @@ jobs:
 # The current version of Material.Blazor is viewable on GH-pages in addition to material-blazor.com
 ############################################################################################################
   deployghpages-mbcurrent-MD3:
-    name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
+    name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.MD3.Current)
     needs: [test, build-documentation-MD3, build-website-MD3, is-on-material-blazor, is-not-dependabot]
     if: (github.event_name == 'push')
 
