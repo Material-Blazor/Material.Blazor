@@ -128,43 +128,6 @@ $scroll-track-hover-color: rgba(theme.$on-surface, 0.05);
         top: 0.5rem;
     }
     /*
-        Splash screen
-    */
-    .splash-screen {
-        display: grid;
-        --mdc-theme-primary: #fff;
-        text-shadow: 0 0 4px black;
-        width: 100vw;
-        height: 100vh;
-    }
-
-    .splash-content {
-        display: flex;
-        flex-flow: column nowrap;
-        align-self: center;
-        justify-self: center;
-        align-items: center;
-        color: var(--mdc-theme-primary);
-        font-weight: bold;
-    }
-
-    .splash-background-video {
-        object-fit: cover;
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        filter: brightness(80%);
-        -webkit-filter: brightness(80%);
-        -moz-filter: brightness(50%);
-    }
-
-    .splash-linear-progress {
-        position: fixed;
-        width: 100vw;
-        --mdc-theme-primary: var(--mb-color-blue-600);
-    }
-    /*
         General styling
     */
     .point-list li {
@@ -230,5 +193,38 @@ $scroll-track-hover-color: rgba(theme.$on-surface, 0.05);
         .demo-blade-main-content {
             min-width: 640px;
         }
+    }
+
+    .loading-progress {
+        position: relative;
+        display: block;
+        width: 8rem;
+        height: 8rem;
+        margin: 20vh auto 1rem auto;
+    }
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+    .loading-progress circle:last-child {
+        stroke: #1b6ec2;
+        stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+        transition: stroke-dasharray 0.05s ease-in-out;
+    }
+
+    .loading-progress-text {
+        position: absolute;
+        text-align: center;
+        font-weight: bold;
+        inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+    }
+
+    .loading-progress-text:after {
+        content: var(--blazor-load-percentage-text, "Loading");
     }
 }

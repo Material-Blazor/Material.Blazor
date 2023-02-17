@@ -128,43 +128,6 @@ $scroll-track-hover-color: rgba(theme.$on-surface, 0.05);
         top: 0.5rem;
     }
     /*
-        Splash screen
-    */
-    .splash-screen {
-        display: grid;
-        --mdc-theme-primary: #fff;
-        text-shadow: 0 0 4px black;
-        width: 100vw;
-        height: 100vh;
-    }
-
-    .splash-content {
-        display: flex;
-        flex-flow: column nowrap;
-        align-self: center;
-        justify-self: center;
-        align-items: center;
-        color: var(--mdc-theme-primary);
-        font-weight: bold;
-    }
-
-    .splash-background-video {
-        object-fit: cover;
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        filter: brightness(80%);
-        -webkit-filter: brightness(80%);
-        -moz-filter: brightness(50%);
-    }
-
-    .splash-linear-progress {
-        position: fixed;
-        width: 100vw;
-        --mdc-theme-primary: var(--mb-color-blue-600);
-    }
-    /*
         General styling
     */
     .point-list li {
