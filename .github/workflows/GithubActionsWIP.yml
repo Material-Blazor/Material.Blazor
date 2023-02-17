@@ -362,34 +362,7 @@ jobs:
 ############################################################################################################
 ############################################################################################################
 
-############################################################################################################
-# Build documentation
-############################################################################################################
-  build-documentation-MD3:
-    name: Build documentation
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '7.0.x'
-
-    - name: Create documentation 🔧
-      run: .\docfx\docfx docfx.json
-      env:
-        DOCFX_SOURCE_BRANCH_NAME: main
-
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v2
-      with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3
-
-############################################################################################################
+###########################################################################################################
 # Build website
 ############################################################################################################
   build-website-MD3:
@@ -427,7 +400,7 @@ jobs:
 # Build nuget package
 ############################################################################################################
   build-package-MD3:
-    name: Build nuget package
+    name: Build nuget package MD3
     needs: [test]
 
     runs-on: windows-latest
@@ -465,7 +438,7 @@ jobs:
 ############################################################################################################
   deployghpagesMD3:
     name: Deploy to GitHub pages MD3
-    needs: [test, build-documentation-MD3, build-website-MD3, is-on-fork, is-not-dependabot]
+    needs: [test, build-website-MD3, is-on-fork, is-not-dependabot]
 
     runs-on: ubuntu-latest
 
@@ -476,17 +449,11 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v2
       with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v2
-      with:
         name: siteWebMD3
         path: siteWebMD3
 
     - name: Configure deployment directory structure Ꙫ
-      run: mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
+      run: mv siteWebMD3/wwwroot deployroot
 
     # this step rewrites the base href
     - name: Base Href Rewrite 👉
@@ -523,24 +490,18 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v2
       with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v2
-      with:
         name: siteWebMD3
         path: siteWebMD3
 
     - name: Configure deployment directory structure Ꙫ
-      run: mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
+      run: mv siteWebMD3/wwwroot deployroot
 
     # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: 'deployroot/index.html'
-        base_href: '/Material.Blazor.Current.MD3/'
+        base_href: '/Material.Blazor.MD3.Current/'
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
