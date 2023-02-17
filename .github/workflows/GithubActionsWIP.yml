@@ -17,6 +17,12 @@ env:
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
+  outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
+  outputMBMD3: ${{github.workspace}}/siteMBMD3
+  outputWebMD3: ${{github.workspace}}/siteWebMD3
+  projectMBMD3: 'Material.Blazor/Material.Blazor.MD3.csproj'
+  projectWebMD3: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.MD3.csproj'
+
 jobs:
 
 ############################################################################################################
@@ -102,7 +108,7 @@ jobs:
 
     steps:
     - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=3.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -137,7 +143,7 @@ jobs:
 
     steps:
     - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=3.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -347,3 +353,201 @@ jobs:
         content-filepath: meta_report.md
         labels: report, automated issue
         token: ${{secrets.GH_PAT}}
+
+############################################################################################################
+############################################################################################################
+############################################################################################################
+# MD3 jobs
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation-MD3:
+    name: Build documentation
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Create documentation 🔧
+      run: .\docfx\docfx docfx.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: main
+
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
+      uses: actions/upload-artifact@v2
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
+############################################################################################################
+# Build website
+############################################################################################################
+  build-website-MD3:
+    name: Build website MD3
+    needs: [test]
+    runs-on: windows-latest
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+
+    - name: Build Website MD3 🔧
+      run: dotnet build ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
+      
+    - name: Publish Website 🔧
+      run: dotnet publish ${{env.projectWebMD3}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+      uses: actions/upload-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+
+############################################################################################################
+# Build nuget package
+############################################################################################################
+  build-package-MD3:
+    name: Build nuget package
+    needs: [test]
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Build Material.Blazor 🔧
+      run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
+
+    - name: Generate the NuGet package 🔧
+      run: dotnet pack ${{env.projectMBMD3}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${{env.outputMBMD3}}
+
+
+############################################################################################################
+# deployghpages
+# We deploy to GH pages in the following conditions
+# - on any fork on push
+# - on any fork on PR by an authorized user
+# We NEVER deploy to GH pages on Material-Blazor/Material.Blazor in this WIP workflow:
+# Material.Blazor.Current is handled by deployghpages-mbcurrent below.
+############################################################################################################
+  deployghpagesMD3:
+    name: Deploy to GitHub pages
+    needs: [test, build-documentation-MD3, build-website-MD3, is-on-fork, is-not-dependabot]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+
+    - name: Configure deployment directory structure Ꙫ
+      run: mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
+
+    # this step rewrites the base href
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: 'deployroot/index.html'
+        base_href: '/Material.Blazor.MD3/'
+
+    # this step deploys to the current repo's gh-pages branch
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages-MD3
+        folder: 'deployroot'
+
+############################################################################################################
+# deployghpages-mbcurrent
+# The current version of Material.Blazor is viewable on GH-pages in addition to material-blazor.com
+############################################################################################################
+  deployghpages-mbcurrent-MD3:
+    name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
+    needs: [test, build-documentation-MD3, build-website-MD3, is-on-material-blazor, is-not-dependabot]
+    if: (github.event_name == 'push')
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+
+    - name: Configure deployment directory structure Ꙫ
+      run: mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
+
+    # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: 'deployroot/index.html'
+        base_href: '/Material.Blazor.Current.MD3/'
+
+    # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
+        repository-name: Material-Blazor/Material.Blazor.Current.MD3
+
