@@ -476,7 +476,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent-MD3:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.MD3.Current)
-    needs: [test, build-documentation-MD3, build-website-MD3, is-on-material-blazor, is-not-dependabot]
+    needs: [test, build-website-MD3, is-on-material-blazor, is-not-dependabot]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
