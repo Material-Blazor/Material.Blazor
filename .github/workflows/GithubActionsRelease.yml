@@ -226,33 +226,6 @@ jobs:
 ############################################################################################################
 
 ############################################################################################################
-# Build documentation
-############################################################################################################
-  build-documentation-MD3:
-    name: Build documentation MD3
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '7.0.x'
-
-    - name: Create documentation 🔧
-      run: .\docfx\docfx docfx.json
-      env:
-        DOCFX_SOURCE_BRANCH_NAME: main   
-
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v2
-      with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3
-        
-############################################################################################################
 # Build website
 ############################################################################################################
   build-website-MD3:
@@ -300,12 +273,6 @@ jobs:
       with:
         dotnet-version: '7.0.x'
 
-    - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
-      uses: actions/download-artifact@v2
-      with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3
-
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
       uses: actions/download-artifact@v2
       with:
@@ -315,7 +282,6 @@ jobs:
     - name: Configure deployment directory structure Ꙫ
       run: |
         mv siteWebMD3/wwwroot deployroot
-        mv siteDocFxMD3 deployroot/docs
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.4
