@@ -40,4 +40,4 @@ Material.Blazor has two release 'trains' avaianle via NuGet
 
 - V3.x is a DotNet 6 stable version using Material Design 2 and is the version used in most production settings
 - V4.x is a DotNet 7 preview version and has introductory work using Material Design 3 (The released NuGet packages are Material Design 2. To
-see the MD3 work in progress you need to browse to https://material-blazor.github.io/Material.Blazor.Current.MD3/)
+see the MD3 work in progress you need to browse to https://material-blazor.github.io/Material.Blazor.MD3.Current/)
