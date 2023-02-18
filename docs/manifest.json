@@ -51,17 +51,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/architecture-book-shelves-books-commercial-eatablishment-244134.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/architecture-book-shelves-books-commercial-eatablishment-244134.jpg"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "Material.Blazor.Website/wwwroot/images/book-shelves.jpg",
       "output": {
         "resource": {
@@ -77,50 +66,6 @@
       "output": {
         "resource": {
           "relative_path": "Material.Blazor.Website/wwwroot/images/mac.jpg"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/notebook-and-pen-beside-red-mug-on-gray-surface-3774057.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/notebook-and-pen-beside-red-mug-on-gray-surface-3774057.jpg"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/person-using-macbook-pro-3804775.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/person-using-macbook-pro-3804775.jpg"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/person-using-tablet-computer-3740722.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/person-using-tablet-computer-3740722.jpg"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/tablet.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/tablet.jpg"
         }
       },
       "is_incremental": false,
@@ -924,7 +869,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "taqK+inBBuSHV0hgDIueVtv/sg1CPtbdTajFvj3ewLk="
+          "hash": "tJdcfni1RY+WdKmS7TUsiUD0YKERMIC+nlKi+pOyJLs="
         }
       },
       "is_incremental": false,
@@ -2820,7 +2765,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "y3MML2/xdQP3iuMvwRYI9X9IEIkWKw9o18fJfa/9Pq4="
+          "hash": "dsTn2JzgniQR67jfOs23a/wRWNvg3ZMly3RMwoSkcSs="
         }
       },
       "is_incremental": false,
@@ -3094,7 +3039,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "zio8vwRRpKjE3k6ILFF4z1Q7/LsdTK76BUTGjyGj7vE="
+          "hash": "lC+jWqGSOfJ+NNMqAqh4dkPNVPzySXkhgOo/6z71I0Y="
         }
       },
       "is_incremental": false,
