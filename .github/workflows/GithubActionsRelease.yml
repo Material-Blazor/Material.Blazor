@@ -123,39 +123,7 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb      
-############################################################################################################
-# Build package and deploy
-############################################################################################################
-  build-and-deploy-package:
-    name: Build nuget package & deploy to nuget
-    needs: [test, is-on-material-blazor]
 
-    runs-on: windows-latest
-
-    steps:
-    - name: Get the version
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '7.0.x'
-
-    - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{env.version}}
-
-    - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
-
-    - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env.outputMB}}
-
-    - name: Upload Package 🚀
-      run: dotnet nuget push ${{env.outputMB}}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
 ############################################################################################################
 # deployghpages
 ############################################################################################################
@@ -197,36 +165,9 @@ jobs:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
         folder: 'deployroot'
-############################################################################################################
-# Create release
-############################################################################################################
-  create-release:
-    name: Create release
-    needs: [deployghpages, build-and-deploy-package, is-on-material-blazor]
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Get the version
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        name: Release ${{ env.version }}
-        tag: ${{ env.version }}
 
 ############################################################################################################
-############################################################################################################
-############################################################################################################
-# MD3 jobs
-############################################################################################################
-############################################################################################################
-############################################################################################################
-
-############################################################################################################
-# Build website
+# Build website MD3
 ############################################################################################################
   build-website-MD3:
     needs: [test]
@@ -256,11 +197,11 @@ jobs:
         path: siteWebMD3
         
 ############################################################################################################
-# deployghpages
+# deployghpages MD3
 ############################################################################################################
   deployghpages-MD3:
     name: Deploy to material.blazor.MD3.com
-    needs: [test, build-documentation, build-website, is-on-material-blazor]
+    needs: [test, build-documentation, build-website-MD3, is-on-material-blazor]
 
     runs-on: ubuntu-latest
 
@@ -290,3 +231,58 @@ jobs:
         branch: gh-pages
         folder: 'deployroot'
         repository-name: Material-Blazor/Material.Blazor.MD3
+
+############################################################################################################
+# Build package and deploy
+############################################################################################################
+  build-and-deploy-package:
+    name: Build nuget package & deploy to nuget
+    needs: [test, is-on-material-blazor, deployghpages, deployghpages-MD3]
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Build Material.Blazor 🔧
+      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{env.version}}
+
+    - name: Generate the NuGet package 🔧
+      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
+
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${{env.outputMB}}
+
+    - name: Upload Package 🚀
+      run: dotnet nuget push ${{env.outputMB}}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+
+############################################################################################################
+# Create release
+############################################################################################################
+  create-release:
+    name: Create release
+    needs: [build-and-deploy-package]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        name: Release ${{ env.version }}
+        tag: ${{ env.version }}
+

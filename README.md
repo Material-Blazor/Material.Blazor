@@ -36,7 +36,7 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 - Material.Blazor is available at https://www.nuget.org/packages/Material.Blazor.
 - If you intend to submit pull requests please note that we use a gitub repository with a `main` branch upon which pull requests can be made. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
 
-Material.Blazor has two release 'trains' avaianle via NuGet
+Material.Blazor has two release 'trains' available via NuGet
 
 - V3.x is a DotNet 6 stable version using Material Design 2 and is the version used in most production settings
 - V4.x is a DotNet 7 preview version and has introductory work using Material Design 3 (The released NuGet packages are Material Design 2. To
