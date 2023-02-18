@@ -436,7 +436,7 @@ jobs:
 # We NEVER deploy to GH pages on Material-Blazor/Material.Blazor in this WIP workflow:
 # Material.Blazor.Current is handled by deployghpages-mbcurrent below.
 ############################################################################################################
-  deployghpagesMD3:
+  deployghpages-MD3:
     name: Deploy to GitHub pages MD3
     needs: [test, build-website-MD3, is-on-fork, is-not-dependabot]
 
@@ -467,7 +467,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         token: ${{secrets.GH_PAT}}
-        branch: gh-pages-MD3
+        branch: gh-pages
         folder: 'deployroot'
 
 ############################################################################################################
@@ -510,5 +510,5 @@ jobs:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
         folder: 'deployroot'
-        repository-name: Material-Blazor/Material.Blazor.Current.MD3
+        repository-name: Material-Blazor/Material.Blazor.MD3.Current
 
