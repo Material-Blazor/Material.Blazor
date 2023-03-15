@@ -380,7 +380,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.x'
         include-prelease: true
 
     - name: Build Website MD3 🔧
@@ -415,7 +415,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.x'
         include-prelease: true
 
     - name: Build Material.Blazor 🔧

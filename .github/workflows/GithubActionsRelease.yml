@@ -185,7 +185,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.x'
         include-prelease: true
 
     - name: Build and Publish Website 🔧
@@ -213,7 +213,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.x'
         include-prelease: true
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
