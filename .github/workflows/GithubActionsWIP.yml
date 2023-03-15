@@ -381,7 +381,7 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '8.0.x'
-        allow-prelease: true
+        include-prelease: true
 
     - name: Build Website MD3 🔧
       run: dotnet build ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
@@ -416,7 +416,7 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '8.0.x'
-        allow-prelease: true
+        include-prelease: true
 
     - name: Build Material.Blazor 🔧
       run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
