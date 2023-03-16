@@ -25,7 +25,7 @@
     "@babel/plugin-transform-runtime": "7.19.6",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
-    "@material/web": "1.0.0-pre.2",
+    "@material/web": "1.0.0-pre.4",
     "babel-loader": "^9.1.2",
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "material-components-web": "14.0.0",
