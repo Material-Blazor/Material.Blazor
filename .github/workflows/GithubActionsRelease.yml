@@ -185,7 +185,8 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
     - name: Build and Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
@@ -212,7 +213,8 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
       uses: actions/download-artifact@v2

@@ -119,7 +119,6 @@ jobs:
       with:
         dotnet-version: '7.0.x'
 
-
     - name: Build Website 🔧
       run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
       
@@ -381,8 +380,8 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '7.0.x'
-
+        dotnet-version: '8.x'
+        include-prerelease: true
 
     - name: Build Website MD3 🔧
       run: dotnet build ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
@@ -416,7 +415,8 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
     - name: Build Material.Blazor 🔧
       run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}

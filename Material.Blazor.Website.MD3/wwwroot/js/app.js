@@ -1,4 +1,6 @@
-﻿window.material_blazor_website = {
+﻿// We load this file on the MD3 website even though there is no support yet for themes
+
+window.material_blazor_website = {
     themeSetter: {
         setTheme: function (sheetName, minify) {
             let extension = ".css";

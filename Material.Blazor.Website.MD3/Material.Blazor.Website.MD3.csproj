@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 
 		<Configurations>Server;WebAssembly</Configurations>
 	</PropertyGroup>
@@ -53,11 +53,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.2.23153.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.2.23153.2" />
 		<PackageReference Include="Humanizer " Version="2.14.1" />
 		<PackageReference Include="Nager.Date" Version="1.33.1" />
-		<PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0-preview.2.23128.3" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,7 +87,7 @@
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-		 <!--Build minified themes--> 
+		<!--Build minified themes-->
 		<Message Importance="high" Text="***** build material default theme" />
 		<Exec Command="npm run build-min-material-default" />
 
