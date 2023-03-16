@@ -62,7 +62,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Use dotnet
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
 
@@ -80,7 +80,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
 
@@ -111,7 +111,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
 
@@ -138,7 +138,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
 
@@ -167,74 +167,6 @@ jobs:
         folder: 'deployroot'
 
 ############################################################################################################
-# Build website MD3
-############################################################################################################
-  build-website-MD3:
-    needs: [test]
-    name: Build website MD3
-    runs-on: windows-latest
-
-    steps:
-    - name: Get the version
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '8.x'
-        include-prerelease: true
-
-    - name: Build and Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
-
-    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v2
-      with:
-        name: siteWebMD3
-        path: siteWebMD3
-        
-############################################################################################################
-# deployghpages MD3
-############################################################################################################
-  deployghpages-MD3:
-    name: Deploy to material.blazor.MD3.com
-    needs: [test, build-documentation, build-website-MD3, is-on-material-blazor]
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '8.x'
-        include-prerelease: true
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v2
-      with:
-        name: siteWebMD3
-        path: siteWebMD3
-
-    - name: Configure deployment directory structure Ꙫ
-      run: |
-        mv siteWebMD3/wwwroot deployroot
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        token: ${{secrets.GH_PAT}}
-        branch: gh-pages
-        folder: 'deployroot'
-        repository-name: Material-Blazor/Material.Blazor.MD3
-
-############################################################################################################
 # Build package and deploy
 ############################################################################################################
   build-and-deploy-package:
@@ -252,7 +184,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.0.x'
 
@@ -288,3 +220,85 @@ jobs:
         name: Release ${{ env.version }}
         tag: ${{ env.version }}
 
+############################################################################################################
+############################################################################################################
+############################################################################################################
+# MD3 jobs
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+############################################################################################################
+# Build website MD3
+############################################################################################################
+  build-website-MD3:
+    needs: [test]
+    name: Build website MD3
+    runs-on: windows-latest
+
+    steps:
+    - name: Get the version
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        include-prerelease: true
+
+    - name: Build and Publish Website 🔧
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
+
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+      uses: actions/upload-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+        
+############################################################################################################
+# deployghpages MD3
+############################################################################################################
+  deployghpages-MD3:
+    name: Deploy to material.blazor.MD3.com
+    needs: [test, build-documentation, build-website-MD3, is-on-material-blazor]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        include-prerelease: true
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
+      uses: actions/download-artifact@v2
+      with:
+        name: siteWebMD3
+        path: siteWebMD3
+
+    - name: Configure deployment directory structure Ꙫ
+      run: |
+        mv siteWebMD3/wwwroot deployroot
+
+    # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: 'deployroot/index.html'
+        base_href: '/Material.Blazor.MD3/'
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
+        repository-name: Material-Blazor/Material.Blazor.MD3
