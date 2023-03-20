@@ -70,5 +70,5 @@ We also want to acknowledge the work of
 [![GitHub stars](https://img.shields.io/github/stars/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/stargazers)
 [![GitHub stars](https://img.shields.io/github/watchers/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/watchers)
 
-[![GithubActionsMainPublish](https://img.shields.io/github/workflow/status/Material-Blazor/Material.Blazor/GithubActionsMainPublish?label=actions%20main&logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/actions?query=workflow%3AGithubActionsMainPublish)
-[![GithubActionsDevelop](https://img.shields.io/github/workflow/status/Material-Blazor/Material.Blazor/GithubActionsDevelop?label=actions%20develop&logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/actions?query=workflow%3AGithubActionsDevelop)
+[![GithubActionsRelease](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsRelease.yml?label=actions%20release&logo=github&style=flat-square)](https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsRelease.yml)
+[![GithubActionsWIP](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsWIP.yml?label=actions%20wip&logo=github&style=flat-square)](https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsWIP.yml)
