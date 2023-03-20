@@ -155,7 +155,7 @@ jobs:
         include-prerelease: true
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -414,7 +414,7 @@ jobs:
         include-prerelease: true
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMBMD3}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
