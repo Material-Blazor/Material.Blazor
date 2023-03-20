@@ -57,7 +57,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.4" />
 		<PackageReference Include="Humanizer " Version="2.14.1" />
 		<PackageReference Include="Nager.Date" Version="1.33.1" />
-		<PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0-preview.2.23128.3" />
 	</ItemGroup>
 
 	<ItemGroup>
