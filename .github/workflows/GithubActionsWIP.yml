@@ -66,7 +66,8 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
@@ -85,7 +86,8 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -117,13 +119,11 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
-    - name: Build Website 🔧
-      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
-      
-    - name: Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+    - name: Build & Publish Website 🔧
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
@@ -151,12 +151,10 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        include-prerelease: true
 
-    - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
-
-    - name: Generate the NuGet package 🔧
+    - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
 
     - name: Display MaterialBlazor package output Ꙫ
@@ -383,11 +381,8 @@ jobs:
         dotnet-version: '8.x'
         include-prerelease: true
 
-    - name: Build Website MD3 🔧
-      run: dotnet build ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
-      
-    - name: Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+    - name: Build  & Publish Website 🔧
+      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
@@ -418,10 +413,7 @@ jobs:
         dotnet-version: '8.x'
         include-prerelease: true
 
-    - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
-
-    - name: Generate the NuGet package 🔧
+    - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: dotnet pack ${{env.projectMBMD3}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
 
     - name: Display MaterialBlazor package output Ꙫ
