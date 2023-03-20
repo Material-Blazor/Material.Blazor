@@ -50,7 +50,6 @@ updates:
     ignore:
       - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
-        # For Express, ignore all updates for version 4 and 5
         versions: ["8.x"]
 
   - package-ecosystem: "nuget"
@@ -60,7 +59,6 @@ updates:
     ignore:
       - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
-        # For Express, ignore all updates for version 4 and 5
         versions: ["8.x"]
 
   - package-ecosystem: "nuget"
@@ -70,7 +68,6 @@ updates:
     ignore:
       - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
-        # For Express, ignore all updates for version 4 and 5
         versions: ["8.x"]
 
   - package-ecosystem: "nuget"
@@ -80,7 +77,6 @@ updates:
     ignore:
       - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
-        # For Express, ignore all updates for version 4 and 5
         versions: ["8.x"]
 
   - package-ecosystem: "nuget"
@@ -90,7 +86,6 @@ updates:
     ignore:
       - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
-        # For Express, ignore all updates for version 4 and 5
         versions: ["8.x"]
 
 
