@@ -43,12 +43,13 @@ updates:
     ignore:
       - dependency-name: "sass"
 
+
+
   - package-ecosystem: "nuget"
     directory: "/Material.Blazor"
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
         versions: ["8.x"]
 
@@ -57,7 +58,6 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
         versions: ["8.x"]
 
@@ -75,7 +75,6 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
         versions: ["8.x"]
 
@@ -84,17 +83,15 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "Nager.Date"
       - dependency-name: "Microsoft.*"
         versions: ["8.x"]
+
 
 
   - package-ecosystem: "nuget"
     directory: "/Material.Blazor.MD3"
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "Nager.Date"
 
   - package-ecosystem: "nuget"
     directory: "/Material.Blazor.Website.MD3"
@@ -107,12 +104,8 @@ updates:
     directory: "/Material.Blazor.Website.Server.MD3"
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "Nager.Date"
 
   - package-ecosystem: "nuget"
     directory: "/Material.Blazor.Website.WebAssembly.MD3"
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "Nager.Date"
