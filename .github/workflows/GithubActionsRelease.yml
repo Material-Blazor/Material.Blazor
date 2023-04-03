@@ -1,4 +1,4 @@
-﻿name: GithubActionsRelease
+name: GithubActionsRelease
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository
@@ -146,13 +146,13 @@ jobs:
         dotnet-version: '7.0.x'
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: siteDocFx
         path: siteDocFx
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: siteWeb
         path: siteWeb
@@ -280,7 +280,7 @@ jobs:
         include-prerelease: true
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: siteWebMD3
         path: siteWebMD3
