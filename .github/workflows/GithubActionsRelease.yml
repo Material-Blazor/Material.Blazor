@@ -1,4 +1,4 @@
-﻿name: GithubActionsRelease
+name: GithubActionsRelease
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository
@@ -163,7 +163,7 @@ jobs:
         mv siteDocFx deployroot/docs
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -297,7 +297,7 @@ jobs:
         base_href: '/Material.Blazor.MD3/'
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
