@@ -1,4 +1,4 @@
-﻿name: GithubActionsWIP
+name: GithubActionsWIP
 
 on:
   push:
@@ -95,7 +95,7 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: main
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: siteDocFx
         path: siteDocFx
@@ -126,7 +126,7 @@ jobs:
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: siteWeb
         path: siteWeb
@@ -334,7 +334,7 @@ jobs:
             cat trimmed_meta_report.md tail.md > meta_report.md
         fi
     - name: Upload comparison & report artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: comparison_report
         path: |
@@ -385,7 +385,7 @@ jobs:
       run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: siteWebMD3
         path: siteWebMD3
