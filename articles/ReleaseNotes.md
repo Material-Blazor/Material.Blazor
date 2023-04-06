@@ -9,7 +9,7 @@ title: ReleaseNotes
 Released 2023-03-15
 
 **Updates**
-- Dependabot updates, migrate MD3 projects to DotNet 8 Preview 2
+- Dependabot updates, migrate MD3 projects to .Net 8 Preview 2
 
 **New components**
 
