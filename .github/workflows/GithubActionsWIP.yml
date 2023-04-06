@@ -122,6 +122,9 @@ jobs:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
 
+    - name: Install WASM tools
+      run: dotnet workload restore
+
     - name: Build & Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
 
