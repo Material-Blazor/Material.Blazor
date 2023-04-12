@@ -1,4 +1,4 @@
-﻿name: GithubActionsWIP
+name: GithubActionsWIP
 
 on:
   push:
@@ -180,7 +180,7 @@ jobs:
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v3
@@ -439,7 +439,7 @@ jobs:
 
   #  steps:
   #  - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-  #    uses: actions/checkout@v2
+  #    uses: actions/checkout@v3
 
   #  - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
   #    uses: actions/download-artifact@v3
