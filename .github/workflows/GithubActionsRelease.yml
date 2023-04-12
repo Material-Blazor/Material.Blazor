@@ -65,7 +65,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.x'
-        include-prerelease: true
+        dotnet-quality: 'preview'
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
@@ -84,7 +84,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.x'
-        include-prerelease: true
+        dotnet-quality: 'preview'
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -92,7 +92,7 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: main   
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: siteDocFx
         path: siteDocFx       
@@ -116,13 +116,16 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.x'
-        include-prerelease: true
+        dotnet-quality: 'preview'
+
+    - name: Install WASM tools
+      run: dotnet workload restore
 
     - name: Build and Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: siteWeb
         path: siteWeb      
@@ -143,16 +146,17 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.x'
+        dotnet-quality: 'preview'
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: siteDocFx
         path: siteDocFx
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: siteWeb
         path: siteWeb
@@ -163,7 +167,7 @@ jobs:
         mv siteDocFx deployroot/docs
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+      uses: JamesIves/github-pages-deploy-action@4.4.1
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -190,7 +194,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.x'
-        include-prerelease: true
+        dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
@@ -249,13 +253,13 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.x'
-        include-prerelease: true
+        dotnet-quality: 'preview'
 
     - name: Build and Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: siteWebMD3
         path: siteWebMD3
@@ -277,10 +281,10 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.x'
-        include-prerelease: true
+        dotnet-quality: 'preview'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: siteWebMD3
         path: siteWebMD3
@@ -297,7 +301,7 @@ jobs:
         base_href: '/Material.Blazor.MD3/'
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+      uses: JamesIves/github-pages-deploy-action@4.4.1
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages

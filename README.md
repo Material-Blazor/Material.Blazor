@@ -1,18 +1,16 @@
 ﻿# Material.Blazor
 
-
 ---
-
 
 [![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 
-[![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material.Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-
 ---
 
+[![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material.Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+---
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?logo=github&style=flat-square)](/LICENSE.md)
 [![GitHub issues](https://img.shields.io/github/issues/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/issues)

@@ -5,7 +5,24 @@
 [![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material-Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-<br />
+---
+
+[![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material.Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+---
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?logo=github&style=flat-square)](/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/stargazers)
+[![GitHub stars](https://img.shields.io/github/watchers/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/watchers)
+
+[![GithubActionsRelease](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsRelease.yml?label=actions%20release&logo=github&style=flat-square)](https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsRelease.yml)
+[![GithubActionsWIP](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsWIP.yml?label=actions%20wip&logo=github&style=flat-square)](https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsWIP.yml)
+
+---
+
+
 
 >[TIP]
 >Visit our website at https://material-blazor.com for a full Material.Blazor demonstration.
@@ -52,23 +69,3 @@ We also want to acknowledge the work of
 ## Components, Services, and Utilities
 
 [See the Components/Services/Utilities documentation](Material.Blazor/Components/Intro.md)
-
-<br />
-<br />
-
----
-
-<br />
-
-[![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
-[![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
-[![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material.Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?logo=github&style=flat-square)](/LICENSE.md)
-[![GitHub issues](https://img.shields.io/github/issues/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/issues)
-[![GitHub forks](https://img.shields.io/github/forks/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/stargazers)
-[![GitHub stars](https://img.shields.io/github/watchers/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/watchers)
-
-[![GithubActionsMainPublish](https://img.shields.io/github/workflow/status/Material-Blazor/Material.Blazor/GithubActionsMainPublish?label=actions%20main&logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/actions?query=workflow%3AGithubActionsMainPublish)
-[![GithubActionsDevelop](https://img.shields.io/github/workflow/status/Material-Blazor/Material.Blazor/GithubActionsDevelop?label=actions%20develop&logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/actions?query=workflow%3AGithubActionsDevelop)

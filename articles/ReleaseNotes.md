@@ -4,12 +4,12 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [4.0.0-preview.16](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.15)
+#### [4.0.0-preview.16](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16)
 
-Released 2023-03-15
+Released 2023-04-12
 
 **Updates**
-- Dependabot updates, migrate MD3 projects to DotNet 8 Preview 2
+- Dependabot updates, migrate MD3 projects to .Net 8 Preview 3
 
 **New components**
 
