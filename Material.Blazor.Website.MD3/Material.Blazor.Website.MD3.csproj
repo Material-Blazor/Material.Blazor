@@ -53,11 +53,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.2.23153.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.2.23153.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.3.23177.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.3.23177.8" />
 		<PackageReference Include="Humanizer " Version="2.14.1" />
 		<PackageReference Include="Nager.Date" Version="1.33.1" />
-		<PackageReference Include="System.Net.Http.Json" Version="8.0.0-preview.2.23128.3" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0-preview.3.23174.8" />
 	</ItemGroup>
 
 	<ItemGroup>

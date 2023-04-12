@@ -63,25 +63,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.2.23153.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.2.23153.2" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-preview.2.23128.3" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-preview.2.23128.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.3.23177.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.3.23177.8" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-preview.3.23174.8" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-preview.3.23174.8" />
 	</ItemGroup>
-
-	<!--<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.10" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
-	</ItemGroup>
-
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-preview.3.*" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.3.*" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.3.*" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0-preview.3.*" />
-	</ItemGroup>-->
 
 	<ItemGroup>
 		<None Include="package-lock.json" />
