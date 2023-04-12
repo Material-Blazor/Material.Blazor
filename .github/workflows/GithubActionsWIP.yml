@@ -206,7 +206,7 @@ jobs:
 
     # this step deploys to the current repo's gh-pages branch
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.4.1
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -459,7 +459,7 @@ jobs:
 
   #  # this step deploys to the current repo's gh-pages branch
   #  - name: Deploy 🚀
-  #    uses: JamesIves/github-pages-deploy-action@4.4.1
+  #    uses: JamesIves/github-pages-deploy-action@v4
   #    with:
   #      token: ${{secrets.GH_PAT}}
   #      branch: gh-pages
@@ -500,7 +500,7 @@ jobs:
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.4.1
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages

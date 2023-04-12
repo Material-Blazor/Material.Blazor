@@ -167,7 +167,7 @@ jobs:
         mv siteDocFx deployroot/docs
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.4.1
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -301,7 +301,7 @@ jobs:
         base_href: '/Material.Blazor.MD3/'
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.4.1
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
