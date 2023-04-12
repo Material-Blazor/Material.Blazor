@@ -10,6 +10,7 @@ Released 2023-??-??
 
 **Updates**
 - Dependabot updates, migrate MD3 projects to .Net 8 Preview 3
+- Repaired release YAML to properly build the MD3 website. The wip YAML did this properly for MD3.Current
 
 **New components**
 
