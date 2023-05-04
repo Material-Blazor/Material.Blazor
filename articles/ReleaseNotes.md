@@ -6,10 +6,10 @@ title: ReleaseNotes
 
 #### [4.0.0-preview.18](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16)
 
-Released 2023-??-??
+Released 2023-05-??
 
 **Updates**
-- Dependabot updates, migrate MD3 projects to .Net 8 Preview 3
+- Dependabot updates, migrate MD3 projects to .Net 8 Preview 4
 - Repaired release YAML to properly build the MD3 website. The wip YAML did this properly for MD3.Current
 
 **New components**
