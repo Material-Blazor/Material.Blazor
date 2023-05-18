@@ -27,7 +27,7 @@ env:
   outputMBMD3: ${{github.workspace}}\siteMBMD3
   outputWebMD3: ${{github.workspace}}\siteWebMD3
   projectMBMD3: 'Material.Blazor/Material.Blazor.MD3.csproj'
-  projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.csproj'
+  projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.MD3.csproj'
 
 jobs:
 
