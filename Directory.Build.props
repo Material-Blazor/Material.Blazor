@@ -1,6 +1,5 @@
 <Project>
-  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
-  <PropertyGroup>
-	  <UseArtifactsOutput>true</UseArtifactsOutput>
-  </PropertyGroup>
+	<PropertyGroup>
+		<ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
+	</PropertyGroup>
 </Project>

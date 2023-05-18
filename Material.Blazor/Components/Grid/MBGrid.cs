@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -39,6 +40,9 @@ namespace Material.Blazor;
 public class MBGrid<TRowData> : ComponentFoundation
 {
     #region Members
+
+    // Remember that adding/removing/renaming parameters requires an update
+    // to SetParametersAsync
 
     /// <summary>
     /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
@@ -99,14 +103,17 @@ public class MBGrid<TRowData> : ComponentFoundation
     /// <summary>
     /// Callback for a mouse click
     /// </summary>
-    [Parameter] public EventCallback<string> OnMouseClick { get; set; }
+    [Parameter] public EventCallback<string> OnMouseClickCallback { get; set; }
+
 
     /// <summary>
     /// Headers are optional
     /// </summary>
     [Parameter] public bool SuppressHeader { get; set; } = false;
 
+
     [Inject] IJSRuntime JsRuntime { get; set; }
+
 
     private float[] ColumnWidthArray;
     private ElementReference GridBodyRef { get; set; }
@@ -145,8 +152,8 @@ public class MBGrid<TRowData> : ComponentFoundation
     }
     #endregion
 
-    #region BuildNewGridTD
-    private static string BuildNewGridTD(
+    #region BuildGridTDElement
+    private static string BuildGridTDElement(
         RenderTreeBuilder builder,
         ref int rendSeq,
         bool isFirstColumn,
@@ -254,7 +261,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                 var colCount = 0;
                 foreach (var col in ColumnConfigurations)
                 {
-                    styleStr = BuildNewGridTD(
+                    styleStr = BuildGridTDElement(
                         builder,
                         ref rendSeq,
                         colCount == 0,
@@ -295,6 +302,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                 // This div holds the scrolled content
                 builder.OpenElement(rendSeq++, "div");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-div-body");
+                builder.AddAttribute(rendSeq++, "id", "mb-grid-div-body");
                 builder.AddAttribute(rendSeq++, "onscroll",
                     EventCallback.Factory.Create<System.EventArgs>(this, GridSyncScroll));
                 builder.AddAttribute(rendSeq++, "id", GridBodyID);
@@ -356,6 +364,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                         // Do a tr
                         builder.OpenElement(rendSeq++, "tr");
                         builder.AddAttribute(rendSeq++, "class", "mb-grid-tr " + rowBackgroundColorClass);
+                        builder.AddAttribute(rendSeq++, "id", rowKey);
 
                         builder.AddAttribute
                         (
@@ -369,7 +378,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                         var isHeaderRow = false;
                         foreach (var columnDefinition in ColumnConfigurations)
                         {
-                            styleStr = BuildNewGridTD(
+                            styleStr = BuildGridTDElement(
                                 builder,
                                 ref rendSeq,
                                 colCount == 0,
@@ -695,7 +704,7 @@ public class MBGrid<TRowData> : ComponentFoundation
         {
             await base.OnAfterRenderAsync(firstRender);
 
-            LoggingService.LogDebug("[" + LogIdentification + "]   entered");
+            LoggingService.LogDebug("[" + LogIdentification + "]  OnAfterRenderAsync entered");
             LoggingService.LogDebug("[" + LogIdentification + "]                     firstRender: " + firstRender.ToString());
             LoggingService.LogDebug("[" + LogIdentification + "]                     IsSimpleRender: " + IsSimpleRender.ToString());
             LoggingService.LogDebug("[" + LogIdentification + "]                     IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
@@ -759,7 +768,15 @@ public class MBGrid<TRowData> : ComponentFoundation
         {
             SelectedKey = newRowKey;
         }
-        return OnMouseClick.InvokeAsync(newRowKey);
+        return OnMouseClickCallback.InvokeAsync(newRowKey);
+    }
+    #endregion
+
+    #region ScrollToIndicatedRowAsync
+    public async Task ScrollToIndicatedRowAsync(string rowIdentifier)
+    {
+        LoggingService.LogDebug("[" + LogIdentification + "]  ScrollToIndicatedRowAsync(" + rowIdentifier + ")");
+        await InvokeJsVoidAsync("MaterialBlazor.MBGrid.scrollToIndicatedRow", rowIdentifier);
     }
     #endregion
 
@@ -772,8 +789,11 @@ public class MBGrid<TRowData> : ComponentFoundation
         semaphoreSlim.WaitAsync();
         try
         {
+            var count = parameters.ToDictionary().Count;
+            LoggingService.LogDebug("[" + LogIdentification + "]  SetParametersAsync parameter count: " + count.ToString());
             foreach (var parameter in parameters)
             {
+                LoggingService.LogDebug("[" + LogIdentification + "]  SetParametersAsync parameter: " + parameter.Name);
                 switch (parameter.Name)
                 {
                     case nameof(@class):
@@ -809,8 +829,8 @@ public class MBGrid<TRowData> : ComponentFoundation
                     case nameof(ObscurePMI):
                         ObscurePMI = (bool)parameter.Value;
                         break;
-                    case nameof(OnMouseClick):
-                        OnMouseClick = (EventCallback<string>)parameter.Value;
+                    case nameof(OnMouseClickCallback):
+                        OnMouseClickCallback = (EventCallback<string>)parameter.Value;
                         break;
                     case nameof(style):
                         style = (string)parameter.Value;
@@ -826,11 +846,11 @@ public class MBGrid<TRowData> : ComponentFoundation
 
             LoggingService.LogDebug("[" + LogIdentification + "]                     about to compute parameter hash");
 
-            HashCode newParameterHash;
+            HashCode newConfigurationParametersHash = new();
 
             if (HighlightSelectedRow)
             {
-                newParameterHash = HashCode
+                newConfigurationParametersHash = HashCode
                     .OfEach(ColumnConfigurations)
                     .And(@class)
                     .And(Group)
@@ -838,14 +858,14 @@ public class MBGrid<TRowData> : ComponentFoundation
                     .And(KeyExpression)
                     .And(Measurement)
                     .And(ObscurePMI)
-                    .And(OnMouseClick)
+                    .And(OnMouseClickCallback)
                     .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
                     .And(style)
                     .And(SuppressHeader);
             }
             else
             {
-                newParameterHash = HashCode
+                newConfigurationParametersHash = HashCode
                     .OfEach(ColumnConfigurations)
                     .And(@class)
                     .And(Group)
@@ -853,15 +873,17 @@ public class MBGrid<TRowData> : ComponentFoundation
                     .And(KeyExpression)
                     .And(Measurement)
                     .And(ObscurePMI)
-                    .And(OnMouseClick)
+                    .And(OnMouseClickCallback)
                     .And(style)
                     .And(SuppressHeader);
             }
+            LoggingService.LogDebug("[" + LogIdentification + "]                     'configuration' parameters hash == " + ((int)newConfigurationParametersHash).ToString());
 
             //
             // We have to implement the double loop for grouped ordered data as the OfEach/AndEach
             // do not recurse into the second enumerable and certainly don't look at the rowValues
             //
+            HashCode newDataParameterHash = new();
             if ((GroupedOrderedData != null) && (ColumnConfigurations != null))
             {
                 foreach (var kvp in GroupedOrderedData)
@@ -872,8 +894,8 @@ public class MBGrid<TRowData> : ComponentFoundation
                     {
                         var rowKey = KeyExpression(rowValues.Value).ToString();
 
-                        newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                            newParameterHash.value,
+                        newDataParameterHash = new HashCode(HashCode.CombineHashCodes(
+                            newDataParameterHash.value,
                             HashCode.Of(rowKey)));
 
                         foreach (var columnDefinition in ColumnConfigurations)
@@ -887,8 +909,8 @@ public class MBGrid<TRowData> : ComponentFoundation
                                         {
                                             var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
 
-                                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                                                newParameterHash.value,
+                                            newDataParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                newDataParameterHash.value,
                                                 HashCode.Of(value)));
                                         }
                                         catch
@@ -904,8 +926,8 @@ public class MBGrid<TRowData> : ComponentFoundation
                                         var value = columnDefinition.DataExpression(rowValues.Value);
                                         var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
 
-                                        newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                                            newParameterHash.value,
+                                        newDataParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                            newDataParameterHash.value,
                                             HashCode.Of(value)));
                                     }
                                     break;
@@ -917,8 +939,8 @@ public class MBGrid<TRowData> : ComponentFoundation
                                         {
                                             var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
 
-                                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                                                newParameterHash.value,
+                                            newDataParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                newDataParameterHash.value,
                                                 HashCode.Of(value)));
                                         }
                                         catch
@@ -934,7 +956,13 @@ public class MBGrid<TRowData> : ComponentFoundation
                         }
                     }
                 }
+                LoggingService.LogDebug("[" + LogIdentification + "]                     'data' parameter hash == " + ((int)newDataParameterHash).ToString());
             }
+
+            HashCode newParameterHash = new HashCode(
+                HashCode.CombineHashCodes(
+                    newConfigurationParametersHash.value,
+                    newDataParameterHash.value));
 
             LoggingService.LogDebug("[" + LogIdentification + "]                     hash == " + ((int)newParameterHash).ToString());
             if (newParameterHash == oldParameterHash)
@@ -951,7 +979,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                     ShouldRenderValue = true;
                 }
 
-                LoggingService.LogDebug("[" + LogIdentification + "]                     EQUAL hash");
+//                LoggingService.LogDebug("[" + LogIdentification + "]                     EQUAL hash");
             }
             else
             {

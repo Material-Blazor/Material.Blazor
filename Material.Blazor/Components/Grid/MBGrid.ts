@@ -87,3 +87,15 @@ export function getTextWidths(
 
     return currentWidths;
 }
+
+export function scrollToIndicatedRow(rowIdentifier: string)
+{
+    console.log("scrollToIndicatedRow: " + rowIdentifier);
+    const row = document.getElementById(rowIdentifier);
+    console.log("scrollToIndicatedRow element: " + row);
+    if (row != null)
+    {
+        console.log("scrollToIndicatedRow scrollIntoView");
+        row.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    }
+}
