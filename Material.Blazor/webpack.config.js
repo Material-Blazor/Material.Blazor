@@ -15,6 +15,8 @@ module.exports = {
     },
 
     output: {
+        clean: true,
+        compareBeforeEmit: false,
         filename: "intermediate.js",
         path: path.resolve(__dirname, 'wwwroot'),
     },

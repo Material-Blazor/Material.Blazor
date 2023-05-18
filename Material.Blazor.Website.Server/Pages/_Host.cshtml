@@ -48,7 +48,7 @@
     }
     else
     {
-        <link rel="manifest" href="manifest.json" />
+        <link rel="manifest" href="_content/Material.Blazor.Website.WebAssembly/manifest.json" />
     }
 
 </head>
@@ -92,6 +92,8 @@
     else
     {
         <script src="_framework/blazor.webassembly.js"></script>
+
+        <script>navigator.serviceWorker.register('service-worker.js');</script>
     }
 
 </body>

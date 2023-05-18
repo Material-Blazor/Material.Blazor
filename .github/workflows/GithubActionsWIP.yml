@@ -58,6 +58,7 @@ jobs:
   test:
     name: Run .NET tests
     runs-on: windows-latest
+    needs: [is-not-dependabot]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -78,6 +79,7 @@ jobs:
   build-documentation:
     name: Build documentation
     runs-on: windows-latest
+    needs: [is-not-dependabot]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -140,7 +142,6 @@ jobs:
   build-package:
     name: Build nuget package
     needs: [test]
-
     runs-on: windows-latest
 
     steps:
@@ -174,7 +175,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, is-on-fork, is-not-dependabot]
+    needs: [test, build-documentation, build-website, is-on-fork]
 
     runs-on: ubuntu-latest
 
@@ -218,7 +219,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
-    needs: [test, build-documentation, build-website, is-on-material-blazor, is-not-dependabot]
+    needs: [test, build-documentation, build-website, is-on-material-blazor]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
@@ -264,7 +265,7 @@ jobs:
 # comparison
 ############################################################################################################
   compare:
-    needs: [deployghpages]
+    needs: [deployghpages, test]
     name: Compare pages
     runs-on: ubuntu-latest
 
@@ -433,7 +434,7 @@ jobs:
 ############################################################################################################
   #deployghpages-MD3:
   #  name: Deploy to GitHub pages MD3
-  #  needs: [test, build-website-MD3, is-on-fork, is-not-dependabot]
+  #  needs: [test, build-website-MD3, is-on-fork]
 
   #  runs-on: ubuntu-latest
 
@@ -471,7 +472,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent-MD3:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.MD3.Current)
-    needs: [test, build-website-MD3, is-on-material-blazor, is-not-dependabot]
+    needs: [test, build-website-MD3, is-on-material-blazor]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
