@@ -4,6 +4,29 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [4.0.0-preview.19](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16)
+
+Released 2023-??-??
+
+**Updates**
+- Dependabot updates, migrate MD3 projects to .Net 8 Preview 4, migrate @material/web to 1.0.0-pre.8
+- Repaired release YAML to properly build the MD3 website (Yet again). The wip YAML did this properly for MD3.Current
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+- Nuget does not know how to handle the mixed 
+DN7 and DN8 environment. The easiest solution
+is to update with 'prerelease' not selected
+and then to copy the DN8 references from the
+DN8 branch (MD3 projects only).
+
+<br />
+
 #### [4.0.0-preview.18](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16)
 
 Released 2023-05-18
