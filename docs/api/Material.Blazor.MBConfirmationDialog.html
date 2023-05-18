@@ -91,7 +91,7 @@ for the &quot;Cancel&quot; button.</p>
 <p>Alternatively the consumer can supply render fragments with buttons to <a class="xref" href="Material.Blazor.MBConfirmationDialog.html#Material_Blazor_MBConfirmationDialog_UnconfirmedButtons">UnconfirmedButtons</a> and <a class="xref" href="Material.Blazor.MBConfirmationDialog.html#Material_Blazor_MBConfirmationDialog_ConfirmedButtons">ConfirmedButtons</a>. The former
 is rendered until the correct confirmaton text is entered into the text box at which point it is replaced with the latter. Typically
 these are identical save that one or more of the repeated buttons in <a class="xref" href="Material.Blazor.MBConfirmationDialog.html#Material_Blazor_MBConfirmationDialog_UnconfirmedButtons">UnconfirmedButtons</a> is disabled, but not in <a class="xref" href="Material.Blazor.MBConfirmationDialog.html#Material_Blazor_MBConfirmationDialog_ConfirmedButtons">ConfirmedButtons</a>.
-This components throws an <see cref="!:ArgumentException"></see> if one of these render fragments is set while the other is not.</p>
+This components throws an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a> if one of these render fragments is set while the other is not.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -102,7 +102,7 @@ This components throws an <see cref="!:ArgumentException"></see> if one of these
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><span class="xref">IDisposable</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -153,7 +153,7 @@ This components throws an <see cref="!:ArgumentException"></see> if one of these
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
   <h5 id="Material_Blazor_MBConfirmationDialog_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MBConfirmationDialog : ComponentFoundation</code></pre>
+    <pre><code class="lang-csharp hljs">public class MBConfirmationDialog : ComponentFoundation, IDisposable</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
@@ -169,7 +169,7 @@ This components throws an <see cref="!:ArgumentException"></see> if one of these
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string CancelActionResult = null</code></pre>
+    <pre><code class="lang-csharp hljs">public const string CancelActionResult = &quot;cancel&quot;</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,7 +198,7 @@ This components throws an <see cref="!:ArgumentException"></see> if one of these
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string ConfirmActionResult = null</code></pre>
+    <pre><code class="lang-csharp hljs">public const string ConfirmActionResult = &quot;confirm&quot;</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -502,7 +502,7 @@ or both null in unison.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -533,7 +533,7 @@ or both null in unison.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -566,14 +566,14 @@ or both null in unison.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
 </article>
           </div>

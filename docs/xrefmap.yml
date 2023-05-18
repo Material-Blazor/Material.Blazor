@@ -307,13 +307,13 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.HashCode.AndEach
   nameWithType: HashCode.AndEach
-- uid: Material.Blazor.HashCode.AndEach``1(IEnumerable{``0})
+- uid: Material.Blazor.HashCode.AndEach``1(System.Collections.Generic.IEnumerable{``0})
   name: AndEach<T>(IEnumerable<T>)
-  href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_AndEach__1_IEnumerable___0__
-  commentId: M:Material.Blazor.HashCode.AndEach``1(IEnumerable{``0})
+  href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_AndEach__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:Material.Blazor.HashCode.AndEach``1(System.Collections.Generic.IEnumerable{``0})
   name.vb: AndEach(Of T)(IEnumerable(Of T))
-  fullName: Material.Blazor.HashCode.AndEach<T>(IEnumerable<T>)
-  fullName.vb: Material.Blazor.HashCode.AndEach(Of T)(IEnumerable(Of T))
+  fullName: Material.Blazor.HashCode.AndEach<T>(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: Material.Blazor.HashCode.AndEach(Of T)(System.Collections.Generic.IEnumerable(Of T))
   nameWithType: HashCode.AndEach<T>(IEnumerable<T>)
   nameWithType.vb: HashCode.AndEach(Of T)(IEnumerable(Of T))
 - uid: Material.Blazor.HashCode.CombineHashCodes(System.Int32,System.Int32)
@@ -348,19 +348,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.HashCode.Equals
   nameWithType: HashCode.Equals
-- uid: Material.Blazor.HashCode.GetHashCode
-  name: GetHashCode()
-  href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_GetHashCode
-  commentId: M:Material.Blazor.HashCode.GetHashCode
-  fullName: Material.Blazor.HashCode.GetHashCode()
-  nameWithType: HashCode.GetHashCode()
-- uid: Material.Blazor.HashCode.GetHashCode*
-  name: GetHashCode
-  href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_GetHashCode_
-  commentId: Overload:Material.Blazor.HashCode.GetHashCode
-  isSpec: "True"
-  fullName: Material.Blazor.HashCode.GetHashCode
-  nameWithType: HashCode.GetHashCode
 - uid: Material.Blazor.HashCode.Of*
   name: Of
   href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_Of_
@@ -384,13 +371,13 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.HashCode.OfEach
   nameWithType: HashCode.OfEach
-- uid: Material.Blazor.HashCode.OfEach``1(IEnumerable{``0})
+- uid: Material.Blazor.HashCode.OfEach``1(System.Collections.Generic.IEnumerable{``0})
   name: OfEach<T>(IEnumerable<T>)
-  href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_OfEach__1_IEnumerable___0__
-  commentId: M:Material.Blazor.HashCode.OfEach``1(IEnumerable{``0})
+  href: api/Material.Blazor.HashCode.html#Material_Blazor_HashCode_OfEach__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:Material.Blazor.HashCode.OfEach``1(System.Collections.Generic.IEnumerable{``0})
   name.vb: OfEach(Of T)(IEnumerable(Of T))
-  fullName: Material.Blazor.HashCode.OfEach<T>(IEnumerable<T>)
-  fullName.vb: Material.Blazor.HashCode.OfEach(Of T)(IEnumerable(Of T))
+  fullName: Material.Blazor.HashCode.OfEach<T>(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: Material.Blazor.HashCode.OfEach(Of T)(System.Collections.Generic.IEnumerable(Of T))
   nameWithType: HashCode.OfEach<T>(IEnumerable<T>)
   nameWithType.vb: HashCode.OfEach(Of T)(IEnumerable(Of T))
 - uid: Material.Blazor.HashCode.op_Equality(Material.Blazor.HashCode,Material.Blazor.HashCode)
@@ -658,13 +645,13 @@ references:
   commentId: E:Material.Blazor.IMBSnackbarService.OnTriggerStateHasChanged
   fullName: Material.Blazor.IMBSnackbarService.OnTriggerStateHasChanged
   nameWithType: IMBSnackbarService.OnTriggerStateHasChanged
-- uid: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,Action,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)
+- uid: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)
   name: ShowSnackbar(String, Action, String, String, Nullable<MBNotifierCloseMethod>, Boolean, Boolean, Nullable<Int32>, Boolean)
-  href: api/Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_
-  commentId: M:Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,Action,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)
+  href: api/Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_
+  commentId: M:Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)
   name.vb: ShowSnackbar(String, Action, String, String, Nullable(Of MBNotifierCloseMethod), Boolean, Boolean, Nullable(Of Int32), Boolean)
-  fullName: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String, Action, System.String, System.String, System.Nullable<Material.Blazor.MBNotifierCloseMethod>, System.Boolean, System.Boolean, System.Nullable<System.Int32>, System.Boolean)
-  fullName.vb: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String, Action, System.String, System.String, System.Nullable(Of Material.Blazor.MBNotifierCloseMethod), System.Boolean, System.Boolean, System.Nullable(Of System.Int32), System.Boolean)
+  fullName: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String, System.Action, System.String, System.String, System.Nullable<Material.Blazor.MBNotifierCloseMethod>, System.Boolean, System.Boolean, System.Nullable<System.Int32>, System.Boolean)
+  fullName.vb: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String, System.Action, System.String, System.String, System.Nullable(Of Material.Blazor.MBNotifierCloseMethod), System.Boolean, System.Boolean, System.Nullable(Of System.Int32), System.Boolean)
   nameWithType: IMBSnackbarService.ShowSnackbar(String, Action, String, String, Nullable<MBNotifierCloseMethod>, Boolean, Boolean, Nullable<Int32>, Boolean)
   nameWithType.vb: IMBSnackbarService.ShowSnackbar(String, Action, String, String, Nullable(Of MBNotifierCloseMethod), Boolean, Boolean, Nullable(Of Int32), Boolean)
 - uid: Material.Blazor.IMBSnackbarService.ShowSnackbar*
@@ -983,13 +970,13 @@ references:
   commentId: T:Material.Blazor.Internal.ConditionalCssClasses
   fullName: Material.Blazor.Internal.ConditionalCssClasses
   nameWithType: ConditionalCssClasses
-- uid: Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String,Func{System.Boolean})
+- uid: Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String,System.Func{System.Boolean})
   name: AddIf(String, Func<Boolean>)
-  href: api/Material.Blazor.Internal.ConditionalCssClasses.html#Material_Blazor_Internal_ConditionalCssClasses_AddIf_System_String_Func_System_Boolean__
-  commentId: M:Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String,Func{System.Boolean})
+  href: api/Material.Blazor.Internal.ConditionalCssClasses.html#Material_Blazor_Internal_ConditionalCssClasses_AddIf_System_String_System_Func_System_Boolean__
+  commentId: M:Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String,System.Func{System.Boolean})
   name.vb: AddIf(String, Func(Of Boolean))
-  fullName: Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String, Func<System.Boolean>)
-  fullName.vb: Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String, Func(Of System.Boolean))
+  fullName: Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String, System.Func<System.Boolean>)
+  fullName.vb: Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String, System.Func(Of System.Boolean))
   nameWithType: ConditionalCssClasses.AddIf(String, Func<Boolean>)
   nameWithType.vb: ConditionalCssClasses.AddIf(String, Func(Of Boolean))
 - uid: Material.Blazor.Internal.ConditionalCssClasses.AddIf*
@@ -1957,11 +1944,11 @@ references:
   commentId: T:Material.Blazor.Internal.InternalToastAnchor
   fullName: Material.Blazor.Internal.InternalToastAnchor
   nameWithType: InternalToastAnchor
-- uid: Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync(Guid)
+- uid: Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync(System.Guid)
   name: CloseToastAsync(Guid)
-  href: api/Material.Blazor.Internal.InternalToastAnchor.html#Material_Blazor_Internal_InternalToastAnchor_CloseToastAsync_Guid_
-  commentId: M:Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync(Guid)
-  fullName: Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync(Guid)
+  href: api/Material.Blazor.Internal.InternalToastAnchor.html#Material_Blazor_Internal_InternalToastAnchor_CloseToastAsync_System_Guid_
+  commentId: M:Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync(System.Guid)
+  fullName: Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync(System.Guid)
   nameWithType: InternalToastAnchor.CloseToastAsync(Guid)
 - uid: Material.Blazor.Internal.InternalToastAnchor.CloseToastAsync*
   name: CloseToastAsync
@@ -2182,13 +2169,13 @@ references:
   fullName.vb: Material.Blazor.Internal.SingleSelectComponent(Of T, TListElement).OnParametersSetAsync
   nameWithType: SingleSelectComponent<T, TListElement>.OnParametersSetAsync
   nameWithType.vb: SingleSelectComponent(Of T, TListElement).OnParametersSetAsync
-- uid: Material.Blazor.Internal.SingleSelectComponent`2.ValidateItemList(IEnumerable{Material.Blazor.MBSelectElement{`0}},Material.Blazor.MBItemValidation)
+- uid: Material.Blazor.Internal.SingleSelectComponent`2.ValidateItemList(System.Collections.Generic.IEnumerable{Material.Blazor.MBSelectElement{`0}},Material.Blazor.MBItemValidation)
   name: ValidateItemList(IEnumerable<MBSelectElement<T>>, MBItemValidation)
-  href: api/Material.Blazor.Internal.SingleSelectComponent-2.html#Material_Blazor_Internal_SingleSelectComponent_2_ValidateItemList_IEnumerable_Material_Blazor_MBSelectElement__0___Material_Blazor_MBItemValidation_
-  commentId: M:Material.Blazor.Internal.SingleSelectComponent`2.ValidateItemList(IEnumerable{Material.Blazor.MBSelectElement{`0}},Material.Blazor.MBItemValidation)
+  href: api/Material.Blazor.Internal.SingleSelectComponent-2.html#Material_Blazor_Internal_SingleSelectComponent_2_ValidateItemList_System_Collections_Generic_IEnumerable_Material_Blazor_MBSelectElement__0___Material_Blazor_MBItemValidation_
+  commentId: M:Material.Blazor.Internal.SingleSelectComponent`2.ValidateItemList(System.Collections.Generic.IEnumerable{Material.Blazor.MBSelectElement{`0}},Material.Blazor.MBItemValidation)
   name.vb: ValidateItemList(IEnumerable(Of MBSelectElement(Of T)), MBItemValidation)
-  fullName: Material.Blazor.Internal.SingleSelectComponent<T, TListElement>.ValidateItemList(IEnumerable<Material.Blazor.MBSelectElement<T>>, Material.Blazor.MBItemValidation)
-  fullName.vb: Material.Blazor.Internal.SingleSelectComponent(Of T, TListElement).ValidateItemList(IEnumerable(Of Material.Blazor.MBSelectElement(Of T)), Material.Blazor.MBItemValidation)
+  fullName: Material.Blazor.Internal.SingleSelectComponent<T, TListElement>.ValidateItemList(System.Collections.Generic.IEnumerable<Material.Blazor.MBSelectElement<T>>, Material.Blazor.MBItemValidation)
+  fullName.vb: Material.Blazor.Internal.SingleSelectComponent(Of T, TListElement).ValidateItemList(System.Collections.Generic.IEnumerable(Of Material.Blazor.MBSelectElement(Of T)), Material.Blazor.MBItemValidation)
   nameWithType: SingleSelectComponent<T, TListElement>.ValidateItemList(IEnumerable<MBSelectElement<T>>, MBItemValidation)
   nameWithType.vb: SingleSelectComponent(Of T, TListElement).ValidateItemList(IEnumerable(Of MBSelectElement(Of T)), MBItemValidation)
 - uid: Material.Blazor.Internal.SingleSelectComponent`2.ValidateItemList*
@@ -3502,13 +3489,13 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBBladeSet.AddBladeAsync
   nameWithType: MBBladeSet.AddBladeAsync
-- uid: Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,Action{System.String})
+- uid: Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,System.Action{System.String})
   name: AddBladeAsync<TComponent, TParameters>(String, TParameters, String, String, Action<String>)
-  href: api/Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_Action_System_String__
-  commentId: M:Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,Action{System.String})
+  href: api/Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__
+  commentId: M:Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,System.Action{System.String})
   name.vb: AddBladeAsync(Of TComponent, TParameters)(String, TParameters, String, String, Action(Of String))
-  fullName: Material.Blazor.MBBladeSet.AddBladeAsync<TComponent, TParameters>(System.String, TParameters, System.String, System.String, Action<System.String>)
-  fullName.vb: Material.Blazor.MBBladeSet.AddBladeAsync(Of TComponent, TParameters)(System.String, TParameters, System.String, System.String, Action(Of System.String))
+  fullName: Material.Blazor.MBBladeSet.AddBladeAsync<TComponent, TParameters>(System.String, TParameters, System.String, System.String, System.Action<System.String>)
+  fullName.vb: Material.Blazor.MBBladeSet.AddBladeAsync(Of TComponent, TParameters)(System.String, TParameters, System.String, System.String, System.Action(Of System.String))
   nameWithType: MBBladeSet.AddBladeAsync<TComponent, TParameters>(String, TParameters, String, String, Action<String>)
   nameWithType.vb: MBBladeSet.AddBladeAsync(Of TComponent, TParameters)(String, TParameters, String, String, Action(Of String))
 - uid: Material.Blazor.MBBladeSet.BladeReferences
@@ -6853,13 +6840,13 @@ references:
   fullName.vb: Material.Blazor.MBGrid_DataHelper(Of TRowData)
   nameWithType: MBGrid_DataHelper<TRowData>
   nameWithType.vb: MBGrid_DataHelper(Of TRowData)
-- uid: Material.Blazor.MBGrid_DataHelper`1.PrepareGridData(IEnumerable{`0},PropertyInfo,PropertyInfo,Material.Blazor.Direction,PropertyInfo,Material.Blazor.Direction,System.Boolean,PropertyInfo,IEnumerable{System.String},Func{IEnumerable{`0},PropertyInfo,Material.Blazor.Direction,PropertyInfo,Material.Blazor.Direction,IEnumerable{`0}},Func{IEnumerable{`0},System.Boolean,PropertyInfo,PropertyInfo,IEnumerable{System.String},IEnumerable{KeyValuePair{System.String,IEnumerable{KeyValuePair{System.String,`0}}}}})
+- uid: Material.Blazor.MBGrid_DataHelper`1.PrepareGridData(System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Boolean,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Func{System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Collections.Generic.IEnumerable{`0}},System.Func{System.Collections.Generic.IEnumerable{`0},System.Boolean,System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}}}}})
   name: PrepareGridData(IEnumerable<TRowData>, PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable<String>, Func<IEnumerable<TRowData>, PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable<TRowData>>, Func<IEnumerable<TRowData>, Boolean, PropertyInfo, PropertyInfo, IEnumerable<String>, IEnumerable<KeyValuePair<String, IEnumerable<KeyValuePair<String, TRowData>>>>>)
-  href: api/Material.Blazor.MBGrid_DataHelper-1.html#Material_Blazor_MBGrid_DataHelper_1_PrepareGridData_IEnumerable__0__PropertyInfo_PropertyInfo_Material_Blazor_Direction_PropertyInfo_Material_Blazor_Direction_System_Boolean_PropertyInfo_IEnumerable_System_String__Func_IEnumerable__0__PropertyInfo_Material_Blazor_Direction_PropertyInfo_Material_Blazor_Direction_IEnumerable__0___Func_IEnumerable__0__System_Boolean_PropertyInfo_PropertyInfo_IEnumerable_System_String__IEnumerable_KeyValuePair_System_String_IEnumerable_KeyValuePair_System_String__0______
-  commentId: M:Material.Blazor.MBGrid_DataHelper`1.PrepareGridData(IEnumerable{`0},PropertyInfo,PropertyInfo,Material.Blazor.Direction,PropertyInfo,Material.Blazor.Direction,System.Boolean,PropertyInfo,IEnumerable{System.String},Func{IEnumerable{`0},PropertyInfo,Material.Blazor.Direction,PropertyInfo,Material.Blazor.Direction,IEnumerable{`0}},Func{IEnumerable{`0},System.Boolean,PropertyInfo,PropertyInfo,IEnumerable{System.String},IEnumerable{KeyValuePair{System.String,IEnumerable{KeyValuePair{System.String,`0}}}}})
+  href: api/Material.Blazor.MBGrid_DataHelper-1.html#Material_Blazor_MBGrid_DataHelper_1_PrepareGridData_System_Collections_Generic_IEnumerable__0__System_Reflection_PropertyInfo_System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Boolean_System_Reflection_PropertyInfo_System_Collections_Generic_IEnumerable_System_String__System_Func_System_Collections_Generic_IEnumerable__0__System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Collections_Generic_IEnumerable__0___System_Func_System_Collections_Generic_IEnumerable__0__System_Boolean_System_Reflection_PropertyInfo_System_Reflection_PropertyInfo_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String__0______
+  commentId: M:Material.Blazor.MBGrid_DataHelper`1.PrepareGridData(System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Boolean,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Func{System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Collections.Generic.IEnumerable{`0}},System.Func{System.Collections.Generic.IEnumerable{`0},System.Boolean,System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}}}}})
   name.vb: PrepareGridData(IEnumerable(Of TRowData), PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable(Of String), Func(Of IEnumerable(Of TRowData), PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable(Of TRowData)), Func(Of IEnumerable(Of TRowData), Boolean, PropertyInfo, PropertyInfo, IEnumerable(Of String), IEnumerable(Of KeyValuePair(Of String, IEnumerable(Of KeyValuePair(Of String, TRowData))))))
-  fullName: Material.Blazor.MBGrid_DataHelper<TRowData>.PrepareGridData(IEnumerable<TRowData>, PropertyInfo, PropertyInfo, Material.Blazor.Direction, PropertyInfo, Material.Blazor.Direction, System.Boolean, PropertyInfo, IEnumerable<System.String>, Func<IEnumerable<TRowData>, PropertyInfo, Material.Blazor.Direction, PropertyInfo, Material.Blazor.Direction, IEnumerable<TRowData>>, Func<IEnumerable<TRowData>, System.Boolean, PropertyInfo, PropertyInfo, IEnumerable<System.String>, IEnumerable<KeyValuePair<System.String, IEnumerable<KeyValuePair<System.String, TRowData>>>>>)
-  fullName.vb: Material.Blazor.MBGrid_DataHelper(Of TRowData).PrepareGridData(IEnumerable(Of TRowData), PropertyInfo, PropertyInfo, Material.Blazor.Direction, PropertyInfo, Material.Blazor.Direction, System.Boolean, PropertyInfo, IEnumerable(Of System.String), Func(Of IEnumerable(Of TRowData), PropertyInfo, Material.Blazor.Direction, PropertyInfo, Material.Blazor.Direction, IEnumerable(Of TRowData)), Func(Of IEnumerable(Of TRowData), System.Boolean, PropertyInfo, PropertyInfo, IEnumerable(Of System.String), IEnumerable(Of KeyValuePair(Of System.String, IEnumerable(Of KeyValuePair(Of System.String, TRowData))))))
+  fullName: Material.Blazor.MBGrid_DataHelper<TRowData>.PrepareGridData(System.Collections.Generic.IEnumerable<TRowData>, System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Boolean, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable<System.String>, System.Func<System.Collections.Generic.IEnumerable<TRowData>, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Collections.Generic.IEnumerable<TRowData>>, System.Func<System.Collections.Generic.IEnumerable<TRowData>, System.Boolean, System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable<System.String>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String, TRowData>>>>>)
+  fullName.vb: Material.Blazor.MBGrid_DataHelper(Of TRowData).PrepareGridData(System.Collections.Generic.IEnumerable(Of TRowData), System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Boolean, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable(Of System.String), System.Func(Of System.Collections.Generic.IEnumerable(Of TRowData), System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Collections.Generic.IEnumerable(Of TRowData)), System.Func(Of System.Collections.Generic.IEnumerable(Of TRowData), System.Boolean, System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable(Of System.String), System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of System.String, System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of System.String, TRowData))))))
   nameWithType: MBGrid_DataHelper<TRowData>.PrepareGridData(IEnumerable<TRowData>, PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable<String>, Func<IEnumerable<TRowData>, PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable<TRowData>>, Func<IEnumerable<TRowData>, Boolean, PropertyInfo, PropertyInfo, IEnumerable<String>, IEnumerable<KeyValuePair<String, IEnumerable<KeyValuePair<String, TRowData>>>>>)
   nameWithType.vb: MBGrid_DataHelper(Of TRowData).PrepareGridData(IEnumerable(Of TRowData), PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable(Of String), Func(Of IEnumerable(Of TRowData), PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable(Of TRowData)), Func(Of IEnumerable(Of TRowData), Boolean, PropertyInfo, PropertyInfo, IEnumerable(Of String), IEnumerable(Of KeyValuePair(Of String, IEnumerable(Of KeyValuePair(Of String, TRowData))))))
 - uid: Material.Blazor.MBGrid_DataHelper`1.PrepareGridData*
@@ -7084,23 +7071,40 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnInitializedAsync
   nameWithType: MBGrid<TRowData>.OnInitializedAsync
   nameWithType.vb: MBGrid(Of TRowData).OnInitializedAsync
-- uid: Material.Blazor.MBGrid`1.OnMouseClick
-  name: OnMouseClick
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_OnMouseClick
-  commentId: P:Material.Blazor.MBGrid`1.OnMouseClick
-  fullName: Material.Blazor.MBGrid<TRowData>.OnMouseClick
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnMouseClick
-  nameWithType: MBGrid<TRowData>.OnMouseClick
-  nameWithType.vb: MBGrid(Of TRowData).OnMouseClick
-- uid: Material.Blazor.MBGrid`1.OnMouseClick*
-  name: OnMouseClick
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_OnMouseClick_
-  commentId: Overload:Material.Blazor.MBGrid`1.OnMouseClick
+- uid: Material.Blazor.MBGrid`1.OnMouseClickCallback
+  name: OnMouseClickCallback
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_OnMouseClickCallback
+  commentId: P:Material.Blazor.MBGrid`1.OnMouseClickCallback
+  fullName: Material.Blazor.MBGrid<TRowData>.OnMouseClickCallback
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnMouseClickCallback
+  nameWithType: MBGrid<TRowData>.OnMouseClickCallback
+  nameWithType.vb: MBGrid(Of TRowData).OnMouseClickCallback
+- uid: Material.Blazor.MBGrid`1.OnMouseClickCallback*
+  name: OnMouseClickCallback
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_OnMouseClickCallback_
+  commentId: Overload:Material.Blazor.MBGrid`1.OnMouseClickCallback
   isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.OnMouseClick
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnMouseClick
-  nameWithType: MBGrid<TRowData>.OnMouseClick
-  nameWithType.vb: MBGrid(Of TRowData).OnMouseClick
+  fullName: Material.Blazor.MBGrid<TRowData>.OnMouseClickCallback
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnMouseClickCallback
+  nameWithType: MBGrid<TRowData>.OnMouseClickCallback
+  nameWithType.vb: MBGrid(Of TRowData).OnMouseClickCallback
+- uid: Material.Blazor.MBGrid`1.ScrollToIndicatedRowAsync(System.String)
+  name: ScrollToIndicatedRowAsync(String)
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ScrollToIndicatedRowAsync_System_String_
+  commentId: M:Material.Blazor.MBGrid`1.ScrollToIndicatedRowAsync(System.String)
+  fullName: Material.Blazor.MBGrid<TRowData>.ScrollToIndicatedRowAsync(System.String)
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).ScrollToIndicatedRowAsync(System.String)
+  nameWithType: MBGrid<TRowData>.ScrollToIndicatedRowAsync(String)
+  nameWithType.vb: MBGrid(Of TRowData).ScrollToIndicatedRowAsync(String)
+- uid: Material.Blazor.MBGrid`1.ScrollToIndicatedRowAsync*
+  name: ScrollToIndicatedRowAsync
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ScrollToIndicatedRowAsync_
+  commentId: Overload:Material.Blazor.MBGrid`1.ScrollToIndicatedRowAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBGrid<TRowData>.ScrollToIndicatedRowAsync
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).ScrollToIndicatedRowAsync
+  nameWithType: MBGrid<TRowData>.ScrollToIndicatedRowAsync
+  nameWithType.vb: MBGrid(Of TRowData).ScrollToIndicatedRowAsync
 - uid: Material.Blazor.MBGrid`1.SetParametersAsync(ParameterView)
   name: SetParametersAsync(ParameterView)
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetParametersAsync_ParameterView_
@@ -7161,13 +7165,13 @@ references:
   fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData)
   nameWithType: MBGridColumnConfiguration<TRowData>
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData)
-- uid: Material.Blazor.MBGridColumnConfiguration`1.#ctor(Expression{Func{`0,System.Object}},System.Nullable{Color},Material.Blazor.MB_Grid_ColumnType,Expression{Func{`0,System.Object}},Expression{Func{`0,System.Object}},System.Nullable{Color},System.String,System.Boolean,Expression{Func{`0,System.Object}},System.String,System.Int32)
+- uid: Material.Blazor.MBGridColumnConfiguration`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},Material.Blazor.MB_Grid_ColumnType,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Int32)
   name: MBGridColumnConfiguration(Expression<Func<TRowData, Object>>, Nullable<Color>, MB_Grid_ColumnType, Expression<Func<TRowData, Object>>, Expression<Func<TRowData, Object>>, Nullable<Color>, String, Boolean, Expression<Func<TRowData, Object>>, String, Int32)
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1__ctor_Expression_Func__0_System_Object___System_Nullable_Color__Material_Blazor_MB_Grid_ColumnType_Expression_Func__0_System_Object___Expression_Func__0_System_Object___System_Nullable_Color__System_String_System_Boolean_Expression_Func__0_System_Object___System_String_System_Int32_
-  commentId: M:Material.Blazor.MBGridColumnConfiguration`1.#ctor(Expression{Func{`0,System.Object}},System.Nullable{Color},Material.Blazor.MB_Grid_ColumnType,Expression{Func{`0,System.Object}},Expression{Func{`0,System.Object}},System.Nullable{Color},System.String,System.Boolean,Expression{Func{`0,System.Object}},System.String,System.Int32)
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1__ctor_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Nullable_System_Drawing_Color__Material_Blazor_MB_Grid_ColumnType_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Nullable_System_Drawing_Color__System_String_System_Boolean_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Int32_
+  commentId: M:Material.Blazor.MBGridColumnConfiguration`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},Material.Blazor.MB_Grid_ColumnType,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Int32)
   name.vb: MBGridColumnConfiguration(Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), MB_Grid_ColumnType, Expression(Of Func(Of TRowData, Object)), Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), String, Boolean, Expression(Of Func(Of TRowData, Object)), String, Int32)
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(Expression<Func<TRowData, System.Object>>, System.Nullable<Color>, Material.Blazor.MB_Grid_ColumnType, Expression<Func<TRowData, System.Object>>, Expression<Func<TRowData, System.Object>>, System.Nullable<Color>, System.String, System.Boolean, Expression<Func<TRowData, System.Object>>, System.String, System.Int32)
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(Expression(Of Func(Of TRowData, System.Object)), System.Nullable(Of Color), Material.Blazor.MB_Grid_ColumnType, Expression(Of Func(Of TRowData, System.Object)), Expression(Of Func(Of TRowData, System.Object)), System.Nullable(Of Color), System.String, System.Boolean, Expression(Of Func(Of TRowData, System.Object)), System.String, System.Int32)
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Nullable<System.Drawing.Color>, Material.Blazor.MB_Grid_ColumnType, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Nullable<System.Drawing.Color>, System.String, System.Boolean, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.String, System.Int32)
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Nullable(Of System.Drawing.Color), Material.Blazor.MB_Grid_ColumnType, System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Nullable(Of System.Drawing.Color), System.String, System.Boolean, System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.String, System.Int32)
   nameWithType: MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(Expression<Func<TRowData, Object>>, Nullable<Color>, MB_Grid_ColumnType, Expression<Func<TRowData, Object>>, Expression<Func<TRowData, Object>>, Nullable<Color>, String, Boolean, Expression<Func<TRowData, Object>>, String, Int32)
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), MB_Grid_ColumnType, Expression(Of Func(Of TRowData, Object)), Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), String, Boolean, Expression(Of Func(Of TRowData, Object)), String, Int32)
 - uid: Material.Blazor.MBGridColumnConfiguration`1.#ctor*
@@ -11246,13 +11250,13 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBScheduler.HashCode2.AndEach
   nameWithType: MBScheduler.HashCode2.AndEach
-- uid: Material.Blazor.MBScheduler.HashCode2.AndEach``1(IEnumerable{``0})
+- uid: Material.Blazor.MBScheduler.HashCode2.AndEach``1(System.Collections.Generic.IEnumerable{``0})
   name: AndEach<T>(IEnumerable<T>)
-  href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_AndEach__1_IEnumerable___0__
-  commentId: M:Material.Blazor.MBScheduler.HashCode2.AndEach``1(IEnumerable{``0})
+  href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_AndEach__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:Material.Blazor.MBScheduler.HashCode2.AndEach``1(System.Collections.Generic.IEnumerable{``0})
   name.vb: AndEach(Of T)(IEnumerable(Of T))
-  fullName: Material.Blazor.MBScheduler.HashCode2.AndEach<T>(IEnumerable<T>)
-  fullName.vb: Material.Blazor.MBScheduler.HashCode2.AndEach(Of T)(IEnumerable(Of T))
+  fullName: Material.Blazor.MBScheduler.HashCode2.AndEach<T>(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: Material.Blazor.MBScheduler.HashCode2.AndEach(Of T)(System.Collections.Generic.IEnumerable(Of T))
   nameWithType: MBScheduler.HashCode2.AndEach<T>(IEnumerable<T>)
   nameWithType.vb: MBScheduler.HashCode2.AndEach(Of T)(IEnumerable(Of T))
 - uid: Material.Blazor.MBScheduler.HashCode2.CombineHashCodes(System.Int32,System.Int32)
@@ -11287,19 +11291,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBScheduler.HashCode2.Equals
   nameWithType: MBScheduler.HashCode2.Equals
-- uid: Material.Blazor.MBScheduler.HashCode2.GetHashCode
-  name: GetHashCode()
-  href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_GetHashCode
-  commentId: M:Material.Blazor.MBScheduler.HashCode2.GetHashCode
-  fullName: Material.Blazor.MBScheduler.HashCode2.GetHashCode()
-  nameWithType: MBScheduler.HashCode2.GetHashCode()
-- uid: Material.Blazor.MBScheduler.HashCode2.GetHashCode*
-  name: GetHashCode
-  href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_GetHashCode_
-  commentId: Overload:Material.Blazor.MBScheduler.HashCode2.GetHashCode
-  isSpec: "True"
-  fullName: Material.Blazor.MBScheduler.HashCode2.GetHashCode
-  nameWithType: MBScheduler.HashCode2.GetHashCode
 - uid: Material.Blazor.MBScheduler.HashCode2.Of*
   name: Of
   href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_Of_
@@ -11323,13 +11314,13 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBScheduler.HashCode2.OfEach
   nameWithType: MBScheduler.HashCode2.OfEach
-- uid: Material.Blazor.MBScheduler.HashCode2.OfEach``1(IEnumerable{``0})
+- uid: Material.Blazor.MBScheduler.HashCode2.OfEach``1(System.Collections.Generic.IEnumerable{``0})
   name: OfEach<T>(IEnumerable<T>)
-  href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_OfEach__1_IEnumerable___0__
-  commentId: M:Material.Blazor.MBScheduler.HashCode2.OfEach``1(IEnumerable{``0})
+  href: api/Material.Blazor.MBScheduler.HashCode2.html#Material_Blazor_MBScheduler_HashCode2_OfEach__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:Material.Blazor.MBScheduler.HashCode2.OfEach``1(System.Collections.Generic.IEnumerable{``0})
   name.vb: OfEach(Of T)(IEnumerable(Of T))
-  fullName: Material.Blazor.MBScheduler.HashCode2.OfEach<T>(IEnumerable<T>)
-  fullName.vb: Material.Blazor.MBScheduler.HashCode2.OfEach(Of T)(IEnumerable(Of T))
+  fullName: Material.Blazor.MBScheduler.HashCode2.OfEach<T>(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: Material.Blazor.MBScheduler.HashCode2.OfEach(Of T)(System.Collections.Generic.IEnumerable(Of T))
   nameWithType: MBScheduler.HashCode2.OfEach<T>(IEnumerable<T>)
   nameWithType.vb: MBScheduler.HashCode2.OfEach(Of T)(IEnumerable(Of T))
 - uid: Material.Blazor.MBScheduler.HashCode2.op_Equality(Material.Blazor.MBScheduler.HashCode2,Material.Blazor.MBScheduler.HashCode2)
@@ -14693,13 +14684,13 @@ references:
   commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection)
   fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection)
   nameWithType: ServiceCollectionExtensions.AddMBServices(IServiceCollection)
-- uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Action{Material.Blazor.MBServicesOptions})
+- uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,System.Action{Material.Blazor.MBServicesOptions})
   name: AddMBServices(IServiceCollection, Action<MBServicesOptions>)
-  href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Action_Material_Blazor_MBServicesOptions__
-  commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Action{Material.Blazor.MBServicesOptions})
+  href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_System_Action_Material_Blazor_MBServicesOptions__
+  commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,System.Action{Material.Blazor.MBServicesOptions})
   name.vb: AddMBServices(IServiceCollection, Action(Of MBServicesOptions))
-  fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, Action<Material.Blazor.MBServicesOptions>)
-  fullName.vb: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, Action(Of Material.Blazor.MBServicesOptions))
+  fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, System.Action<Material.Blazor.MBServicesOptions>)
+  fullName.vb: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, System.Action(Of Material.Blazor.MBServicesOptions))
   nameWithType: ServiceCollectionExtensions.AddMBServices(IServiceCollection, Action<MBServicesOptions>)
   nameWithType.vb: ServiceCollectionExtensions.AddMBServices(IServiceCollection, Action(Of MBServicesOptions))
 - uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices*

@@ -84,19 +84,37 @@
   
   <h1 id="Material_Blazor_HashCode" data-uid="Material.Blazor.HashCode" class="text-break">Struct HashCode
   </h1>
-  <div class="markdown level0 summary"><p>A hash code used to help with implementing <see cref="!:object.GetHashCode()"></see>.</p>
+  <div class="markdown level0 summary"><p>A hash code used to help with implementing <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">GetHashCode()</a>.</p>
 <p>This code is from the blog post at <a href="https://rehansaeed.com/gethashcode-made-easy/">https://rehansaeed.com/gethashcode-made-easy/</a></p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="Material.Blazor.HashCode.html">HashCode</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Material.Blazor.HashCode.html">HashCode</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode#system-valuetype-gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring#system-valuetype-tostring">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
   <h5 id="Material_Blazor_HashCode_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct HashCode</code></pre>
+    <pre><code class="lang-csharp hljs">public struct HashCode : IEquatable&lt;HashCode&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -105,7 +123,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1001">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1029">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode__ctor_" data-uid="Material.Blazor.HashCode.#ctor*"></a>
   <h4 id="Material_Blazor_HashCode__ctor_System_Int32_" data-uid="Material.Blazor.HashCode.#ctor(System.Int32)">HashCode(Int32)</h4>
@@ -141,7 +159,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_value.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L995">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1023">View Source</a>
   </span>
   <h4 id="Material_Blazor_HashCode_value" data-uid="Material.Blazor.HashCode.value">value</h4>
   <div class="markdown level1 summary"></div>
@@ -172,7 +190,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_And__1___0_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.And%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1049">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1077">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_And_" data-uid="Material.Blazor.HashCode.And*"></a>
   <h4 id="Material_Blazor_HashCode_And__1___0_" data-uid="Material.Blazor.HashCode.And``1(``0)">And&lt;T&gt;(T)</h4>
@@ -235,13 +253,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_AndEach__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.AndEach%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_AndEach__1_System_Collections_Generic_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.AndEach%60%601(System.Collections.Generic.IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1058">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1086">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_AndEach_" data-uid="Material.Blazor.HashCode.AndEach*"></a>
-  <h4 id="Material_Blazor_HashCode_AndEach__1_IEnumerable___0__" data-uid="Material.Blazor.HashCode.AndEach``1(IEnumerable{``0})">AndEach&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <h4 id="Material_Blazor_HashCode_AndEach__1_System_Collections_Generic_IEnumerable___0__" data-uid="Material.Blazor.HashCode.AndEach``1(System.Collections.Generic.IEnumerable{``0})">AndEach&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds the hash code of the specified items in the collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -260,7 +278,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
         <td><span class="parametername">items</span></td>
         <td><p>The collection.</p>
 </td>
@@ -304,7 +322,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_CombineHashCodes_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.CombineHashCodes(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1090">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1118">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_CombineHashCodes_" data-uid="Material.Blazor.HashCode.CombineHashCodes*"></a>
   <h4 id="Material_Blazor_HashCode_CombineHashCodes_System_Int32_System_Int32_" data-uid="Material.Blazor.HashCode.CombineHashCodes(System.Int32,System.Int32)">CombineHashCodes(Int32, Int32)</h4>
@@ -356,7 +374,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_Equals_Material_Blazor_HashCode_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.Equals(Material.Blazor.HashCode)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1068">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1096">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_Equals_" data-uid="Material.Blazor.HashCode.Equals*"></a>
   <h4 id="Material_Blazor_HashCode_Equals_Material_Blazor_HashCode_" data-uid="Material.Blazor.HashCode.Equals(Material.Blazor.HashCode)">Equals(HashCode)</h4>
@@ -403,7 +421,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1070">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1098">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_Equals_" data-uid="Material.Blazor.HashCode.Equals*"></a>
   <h4 id="Material_Blazor_HashCode_Equals_System_Object_" data-uid="Material.Blazor.HashCode.Equals(System.Object)">Equals(Object)</h4>
@@ -445,44 +463,14 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_GetHashCode.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1085">View Source</a>
-  </span>
-  <a id="Material_Blazor_HashCode_GetHashCode_" data-uid="Material.Blazor.HashCode.GetHashCode*"></a>
-  <h4 id="Material_Blazor_HashCode_GetHashCode" data-uid="Material.Blazor.HashCode.GetHashCode">GetHashCode()</h4>
-  <div class="markdown level1 summary"><p>Throws <see cref="!:NotSupportedException"></see>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><p>Does not return.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals#system-valuetype-equals(system-object)">ValueType.Equals(Object)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_Of__1___0_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.Of%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1032">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1060">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_Of_" data-uid="Material.Blazor.HashCode.Of*"></a>
   <h4 id="Material_Blazor_HashCode_Of__1___0_" data-uid="Material.Blazor.HashCode.Of``1(``0)">Of&lt;T&gt;(T)</h4>
@@ -545,13 +533,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_OfEach__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.OfEach%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_OfEach__1_System_Collections_Generic_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.OfEach%60%601(System.Collections.Generic.IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1040">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1068">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_OfEach_" data-uid="Material.Blazor.HashCode.OfEach*"></a>
-  <h4 id="Material_Blazor_HashCode_OfEach__1_IEnumerable___0__" data-uid="Material.Blazor.HashCode.OfEach``1(IEnumerable{``0})">OfEach&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <h4 id="Material_Blazor_HashCode_OfEach__1_System_Collections_Generic_IEnumerable___0__" data-uid="Material.Blazor.HashCode.OfEach``1(System.Collections.Generic.IEnumerable{``0})">OfEach&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Takes the hash code of the specified items.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -570,7 +558,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
         <td><span class="parametername">items</span></td>
         <td><p>The collection.</p>
 </td>
@@ -616,7 +604,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_op_Equality_Material_Blazor_HashCode_Material_Blazor_HashCode_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.op_Equality(Material.Blazor.HashCode%2CMaterial.Blazor.HashCode)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1016">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1044">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_op_Equality_" data-uid="Material.Blazor.HashCode.op_Equality*"></a>
   <h4 id="Material_Blazor_HashCode_op_Equality_Material_Blazor_HashCode_Material_Blazor_HashCode_" data-uid="Material.Blazor.HashCode.op_Equality(Material.Blazor.HashCode,Material.Blazor.HashCode)">Equality(HashCode, HashCode)</h4>
@@ -672,11 +660,11 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_op_Implicit_Material_Blazor_HashCode__System_Int32.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.op_Implicit(Material.Blazor.HashCode)~System.Int32%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1008">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1036">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_op_Implicit_" data-uid="Material.Blazor.HashCode.op_Implicit*"></a>
   <h4 id="Material_Blazor_HashCode_op_Implicit_Material_Blazor_HashCode__System_Int32" data-uid="Material.Blazor.HashCode.op_Implicit(Material.Blazor.HashCode)~System.Int32">Implicit(HashCode to Int32)</h4>
-  <div class="markdown level1 summary"><p>Performs an implicit conversion from <a class="xref" href="Material.Blazor.HashCode.html">HashCode</a> to <see cref="!:System.Int32"></see>.</p>
+  <div class="markdown level1 summary"><p>Performs an implicit conversion from <a class="xref" href="Material.Blazor.HashCode.html">HashCode</a> to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -722,7 +710,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode_op_Inequality_Material_Blazor_HashCode_Material_Blazor_HashCode_.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode.op_Inequality(Material.Blazor.HashCode%2CMaterial.Blazor.HashCode)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1024">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1052">View Source</a>
   </span>
   <a id="Material_Blazor_HashCode_op_Inequality_" data-uid="Material.Blazor.HashCode.op_Inequality*"></a>
   <h4 id="Material_Blazor_HashCode_op_Inequality_Material_Blazor_HashCode_Material_Blazor_HashCode_" data-uid="Material.Blazor.HashCode.op_Inequality(Material.Blazor.HashCode,Material.Blazor.HashCode)">Inequality(HashCode, HashCode)</h4>
@@ -775,7 +763,7 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IEquatable&lt;&gt;</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
   </div>
 </article>
           </div>
@@ -788,7 +776,7 @@
                     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_HashCode.md&amp;value=---%0Auid%3A%20Material.Blazor.HashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L992" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1020" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
