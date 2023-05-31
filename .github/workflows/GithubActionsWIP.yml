@@ -30,7 +30,7 @@ jobs:
 ############################################################################################################
 
   perform-deployment-mb:
-    name: Perform deployment
+    name: Perform deployment on M-B/M.B
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && github.actor != 'dependabot[bot]'
     steps:
@@ -38,7 +38,7 @@ jobs:
       run: echo ""
 
   perform-deployment-fork:
-    name: Skip deployment
+    name: Perform deployment fork
     runs-on: ubuntu-latest
     if: github.repository != 'Material-Blazor/Material.Blazor' || github.actor == 'dependabot[bot]'
     steps:
@@ -55,18 +55,18 @@ jobs:
 
 
 ############################################################################################################
-# Set unified suffix for the two deployed applications
+# Set unified version
 ############################################################################################################
-  set-suffix:
+  set-unified-version:
     name: Create the date based suffix
     needs: [perform-deployment-mb]
     runs-on: ubuntu-latest
     outputs:
-      outputSuffix: ${{ steps.setSuffix.outputs.GlobalSuffix }}
+      outputVersion: ${{ steps.setVersion.outputs.GlobalVersion }}
 
     steps:
-    - id: setSuffix
-      run: echo "GlobalSuffix=$(date +'%Y-%m-%d--%H-%M-%S')--WIP--13.5" >> $GITHUB_OUTPUT
+    - id: setVersion
+      run: echo "GlobalVersion=4.0.0-$(date +'%Y-%m-%d--%H-%M-%S')--WIP" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################
@@ -124,12 +124,12 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -145,7 +145,7 @@ jobs:
       run: dotnet workload restore
 
     - name: Build & Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version ${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -158,12 +158,12 @@ jobs:
 ############################################################################################################
   build-package:
     name: Build nuget package
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -176,7 +176,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -385,12 +385,12 @@ jobs:
 ############################################################################################################
   build-website-MD3:
     name: Build website MD3
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -403,7 +403,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build  & Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version ${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -416,13 +416,13 @@ jobs:
 ############################################################################################################
   build-package-MD3:
     name: Build nuget package MD3
-    needs: [test]
+    needs: [test, set-unified-version]
 
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -435,7 +435,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
