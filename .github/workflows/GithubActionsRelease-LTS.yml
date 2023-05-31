@@ -1,4 +1,4 @@
-﻿name: GithubActionsRelease
+﻿name: GithubActionsRelease-LTS
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository
@@ -80,11 +80,8 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{env.version}}
-
-    - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
+    - name: Build Material.Blazor & Generate the NuGet package 🔧
+      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -96,7 +93,7 @@ jobs:
 ############################################################################################################
   create-release:
     name: Create release
-    needs: [build-and-deploy-package, is-on-material-blazor]
+    needs: [build-and-deploy-package]
 
     runs-on: ubuntu-latest
 

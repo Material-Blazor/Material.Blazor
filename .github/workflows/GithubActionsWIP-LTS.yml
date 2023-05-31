@@ -1,4 +1,4 @@
-﻿name: GithubActionsWIP
+﻿name: GithubActionsWIP-LTS
 
 on:
   push:
@@ -22,15 +22,7 @@ jobs:
 ############################################################################################################
 # These jobs are used to gate actions. By creating these jobs we don't need to proliferate the repo checks
 ############################################################################################################
-  is-on-fork:
-    name: Running on a fork?
-    runs-on: ubuntu-latest
-    if: github.repository != 'Material-Blazor/Material.Blazor'
-    steps:
-    - name: Nothing to see here
-      run: echo ""
-
-  is-on-material-blazor:
+  perform-deployment-mb:
     name: Running on Material-Blazor/Material.Blazor?
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor'
@@ -38,7 +30,7 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
-  is-not-dependabot:
+  build-allowed:
     name: Is not dependabot
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
@@ -47,11 +39,27 @@ jobs:
       run: echo ""
 
 ############################################################################################################
+# Set unified version
+############################################################################################################
+  set-unified-version:
+    name: Create the date based version
+    needs: [perform-deployment-mb]
+    runs-on: ubuntu-latest
+    outputs:
+      unifiedVersion: ${{ steps.setVersion.outputs.version }}
+
+    steps:
+    - id: setVersion
+      run: echo "version=4.0.0.0-preview.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      shell: bash
+
+############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
 ############################################################################################################
   test:
     name: Run .NET tests
     runs-on: windows-latest
+    needs: [build-allowed]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -73,6 +81,7 @@ jobs:
   build-documentation:
     name: Build documentation
     runs-on: windows-latest
+    needs: [build-allowed]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -96,12 +105,12 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=3.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -114,25 +123,21 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-
-    - name: Build Website 🔧
-      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
-      
-    - name: Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+    - name: Build and Publish Website 🔧
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
 ############################################################################################################
 # Build nuget package
 ############################################################################################################
   build-package:
     name: Build nuget package
-    needs: [test]
+    needs: [test, set-unified-version]
 
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=3.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -145,11 +150,8 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}}
-
-    - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+    - name: Build Material.Blazor & Generate the NuGet package 🔧
+      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
