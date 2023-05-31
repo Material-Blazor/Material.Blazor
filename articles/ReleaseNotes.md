@@ -9,8 +9,7 @@ title: ReleaseNotes
 Released 2023-??-??
 
 **Updates**
-- Dependabot updates, migrate MD3 projects to .Net 8 Preview 4, migrate @material/web to 1.0.0-pre.8
-- Repaired release YAML to properly build the MD3 website (Yet again). The wip YAML did this properly for MD3.Current
+- Dependabot updates, migrate MD3 projects to .Net 8 Preview 5, migrate @material/web to 1.0.0-pre.9
 
 **New components**
 

@@ -28,29 +28,46 @@ jobs:
 ############################################################################################################
 # These jobs are used to gate actions. By creating these jobs we don't need to proliferate the repo checks
 ############################################################################################################
-  is-on-fork:
-    name: Running on a fork?
+
+  perform-deployment-mb:
+    name: Perform deployment
     runs-on: ubuntu-latest
-    if: github.repository != 'Material-Blazor/Material.Blazor'
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.actor != 'dependabot[bot]'
     steps:
     - name: Nothing to see here
       run: echo ""
 
-  is-on-material-blazor:
-    name: Running on Material-Blazor/Material.Blazor?
+  perform-deployment-fork:
+    name: Skip deployment
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor'
+    if: github.repository != 'Material-Blazor/Material.Blazor' || github.actor == 'dependabot[bot]'
     steps:
     - name: Nothing to see here
       run: echo ""
 
-  is-not-dependabot:
-    name: Is not dependabot
+  build-allowed:
+    name: Build allowed
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
     - name: Nothing to see here
       run: echo ""
+
+
+############################################################################################################
+# Set unified suffix for the two deployed applications
+############################################################################################################
+  set-suffix:
+    name: Create the date based suffix
+    needs: [perform-deployment-mb]
+    runs-on: ubuntu-latest
+    outputs:
+      outputSuffix: ${{ steps.setSuffix.outputs.GlobalSuffix }}
+
+    steps:
+    - id: setSuffix
+      run: echo "GlobalSuffix=$(date +'%Y-%m-%d--%H-%M-%S')--WIP--13.5" >> $GITHUB_OUTPUT
+      shell: bash
 
 ############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
@@ -58,7 +75,7 @@ jobs:
   test:
     name: Run .NET tests
     runs-on: windows-latest
-    needs: [is-not-dependabot]
+    needs: [build-allowed]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -79,7 +96,7 @@ jobs:
   build-documentation:
     name: Build documentation
     runs-on: windows-latest
-    needs: [is-not-dependabot]
+    needs: [build-allowed]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -175,7 +192,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, is-on-fork]
+    needs: [test, build-documentation, build-website, perform-fork-deployment]
 
     runs-on: ubuntu-latest
 
@@ -219,7 +236,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
-    needs: [test, build-documentation, build-website, is-on-material-blazor]
+    needs: [test, build-documentation, build-website, perform-deployment-mb]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
@@ -430,11 +447,11 @@ jobs:
 # - on any fork on push
 # - on any fork on PR by an authorized user
 # We NEVER deploy to GH pages on Material-Blazor/Material.Blazor in this WIP workflow:
-# Material.Blazor.Current is handled by deployghpages-mbcurrent below.
+# Material.Blazor.MD3.Current is handled by deployghpages-mbcurrent-MD3 below.
 ############################################################################################################
   #deployghpages-MD3:
   #  name: Deploy to GitHub pages MD3
-  #  needs: [test, build-website-MD3, is-on-fork]
+  #  needs: [test, build-website-MD3, perform-fork-deployment]
 
   #  runs-on: ubuntu-latest
 
@@ -472,7 +489,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent-MD3:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.MD3.Current)
-    needs: [test, build-website-MD3, is-on-material-blazor]
+    needs: [test, build-website-MD3, perform-deployment-mb]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
@@ -499,7 +516,7 @@ jobs:
         html_path: 'deployroot/index.html'
         base_href: '/Material.Blazor.MD3.Current/'
 
-    # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
+    # this step deploys to Material-Blazor/Material.Blazor.MD3.Current when we are in the main repo
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
