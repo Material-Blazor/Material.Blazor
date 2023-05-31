@@ -62,11 +62,11 @@ jobs:
     needs: [perform-deployment-mb]
     runs-on: ubuntu-latest
     outputs:
-      outputVersion: ${{ steps.setVersion.outputs.GlobalVersion }}
+      unifiedVersion: ${{ steps.setVersion.outputs.version }}
 
     steps:
     - id: setVersion
-      run: echo "GlobalVersion=4.0.0--WIP--$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      run: echo "version=4.0.0-preview.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################
@@ -129,7 +129,7 @@ jobs:
 
     steps:
     - name: Set ciVersion as env variable
-      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -163,7 +163,7 @@ jobs:
 
     steps:
     - name: Set ciVersion as env variable
-      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -390,7 +390,7 @@ jobs:
 
     steps:
     - name: Set ciVersion as env variable
-      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -422,7 +422,7 @@ jobs:
 
     steps:
     - name: Set ciVersion as env variable
-      run: echo "ciVersion=${{needs.set-unified-version.outputs.outputVersion}}" >> $GITHUB_ENV
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
