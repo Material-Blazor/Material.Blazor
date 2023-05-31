@@ -28,7 +28,7 @@ jobs:
 ############################################################################################################
 # These jobs are used to gate actions. By creating these jobs we don't need to proliferate the repo checks
 ############################################################################################################
-  is-on-material-blazor:
+  perform-deployment-mb:
     name: Running on Material-Blazor/Material.Blazor?
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor'
@@ -61,7 +61,7 @@ jobs:
 ############################################################################################################
   build-and-deploy-package:
     name: Build nuget package & deploy to nuget
-    needs: [test, is-on-material-blazor]
+    needs: [test, perform-deployment-mb]
 
     runs-on: windows-latest
 
