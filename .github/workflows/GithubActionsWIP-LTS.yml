@@ -126,6 +126,9 @@ jobs:
     - name: Build and Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
+    - name: Display MaterialBlazor web output Ꙫ
+      run: dir ${{env.outputWeb}}
+
 ############################################################################################################
 # Build nuget package
 ############################################################################################################
