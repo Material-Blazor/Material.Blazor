@@ -58,7 +58,7 @@ jobs:
 # Set unified version
 ############################################################################################################
   set-unified-version:
-    name: Create the date based suffix
+    name: Create the date based version
     needs: [perform-deployment-mb]
     runs-on: ubuntu-latest
     outputs:
@@ -66,7 +66,7 @@ jobs:
 
     steps:
     - id: setVersion
-      run: echo "GlobalVersion=4.0.0-$(date +'%Y-%m-%d--%H-%M-%S')--WIP" >> $GITHUB_OUTPUT
+      run: echo "GlobalVersion=4.x.y--WIP--$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################
@@ -145,7 +145,7 @@ jobs:
       run: dotnet workload restore
 
     - name: Build & Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version ${{env.ciVersion}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -403,7 +403,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build  & Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version ${{env.ciVersion}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
