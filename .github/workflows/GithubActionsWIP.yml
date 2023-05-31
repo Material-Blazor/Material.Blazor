@@ -66,7 +66,7 @@ jobs:
 
     steps:
     - id: setVersion
-      run: echo "GlobalVersion=4.x.y--WIP--$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      run: echo "GlobalVersion=4.0.0--WIP--$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################
