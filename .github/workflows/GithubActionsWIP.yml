@@ -192,7 +192,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, perform-fork-deployment]
+    needs: [test, build-documentation, build-website, perform-deployment-fork]
 
     runs-on: ubuntu-latest
 
@@ -451,7 +451,7 @@ jobs:
 ############################################################################################################
   #deployghpages-MD3:
   #  name: Deploy to GitHub pages MD3
-  #  needs: [test, build-website-MD3, perform-fork-deployment]
+  #  needs: [test, build-website-MD3, perform-deployment-fork]
 
   #  runs-on: ubuntu-latest
 
