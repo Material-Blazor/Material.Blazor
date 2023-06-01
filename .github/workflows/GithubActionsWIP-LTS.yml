@@ -127,7 +127,7 @@ jobs:
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Display MaterialBlazor web output Ꙫ
-      run: dir ${{env.outputWeb}}
+      run: dir ${{env.outputWeb}} /s
 
 ############################################################################################################
 # Build nuget package
