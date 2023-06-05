@@ -6,8 +6,6 @@
   "scripts": {
     "build-css": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.css",
     "build-min-css": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.min.css",
-    "build-material-css": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-components-web.scss wwwroot/material-components-web.css",
-    "build-material-min-css": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-components-web.scss wwwroot/material-components-web.min.css",
     "build-js": "terser wwwroot/intermediate.js --beautify --output wwwroot/material.blazor.js",
     "build-min-js": "terser wwwroot/material.blazor.js --compress --mangle --ecma 2016 --output wwwroot/material.blazor.min.js",
     "build-scripts": "webpack --config webpack.config.js",
@@ -31,10 +29,10 @@
     "material-components-web": "14.0.0",
     "regexp": "^1.0.0",
     "sass": "1.39.2",
-    "terser": "^5.17.6",
+    "terser": "^5.17.7",
     "ts-loader": "^9.4.3",
-    "typescript": "^5.0.4",
-    "webpack": "^5.84.1",
-    "webpack-cli": "^5.1.1"
+    "typescript": "^5.1.3",
+    "webpack": "^5.85.1",
+    "webpack-cli": "^5.1.3"
   }
 }

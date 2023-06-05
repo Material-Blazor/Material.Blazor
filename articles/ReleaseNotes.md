@@ -11,9 +11,10 @@ Released 2023-??-??
 **Updates**
 - Dependabot updates, migrate MD3 projects to .Net 8 Preview 5, migrate @material/web to 1.0.0-pre.9
 - Updated MBVersion to suppress the portion of the version that
-  was in addition to version prefix & version suffix
+  was in addition to version prefix & version suffix.
   The previous version returned "4.0.0-2023-05-18--0755+94ebbe370431f2039fdacce665d53393358eeb24"
-  The new version returns "4.0.0-2023-05-18--0755"
+  The new version returns "4.0.0-2023-05-18--0755". The extended version information
+  appeared with .Net 7 & persists in .Net 8.
 
 **New components**
 
