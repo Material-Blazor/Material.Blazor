@@ -4,7 +4,7 @@
 		<!--<TargetFrameworks>net6.0;net7.0</TargetFrameworks>-->
 		<TargetFrameworks>net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Version>3.0.0.0-WIP</Version>
+		<Version>3.0.0-WIP</Version>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>Material.Blazor</Company>
