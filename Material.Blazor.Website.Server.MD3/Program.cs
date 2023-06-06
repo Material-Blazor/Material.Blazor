@@ -102,7 +102,7 @@ try
     app.UseBlazorFrameworkFiles();
 #endif
 
-    app.MapFallbackToPage("/_Host");
+    app.MapFallbackToPage("/Host");
 
     app.Run();
 }
