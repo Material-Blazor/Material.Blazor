@@ -2,15 +2,14 @@
 
 @namespace Material.Blazor.Website.Server.Pages
 
-@using Material.Blazor.Website.MD3;
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@using Material.Blazor.Website.Server.MD3
+@using Material.Blazor.Website
+@using Material.Blazor.Website.Server
 @using Microsoft.AspNetCore.Components.Web
 
 @{
-    RenderMode RenderMode = PlatformDetermination.IsBlazorServer ? RenderMode.ServerPrerendered : RenderMode.WebAssemblyPrerendered;
+    Microsoft.AspNetCore.Mvc.Rendering.RenderMode renderMode = PlatformDetermination.IsBlazorServer ? Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered : Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered;
 }
 
 <!DOCTYPE html>
@@ -22,15 +21,13 @@
     <title>Material.Blazor</title>
     <base href="/" />
 
-    @*    We load all of the MD2 resources as the website is a mix of MD2 structure with MD3 components (for now)*@
+    <link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet">
 
-    <link href="_content/Material.Blazor.MD3/material.blazor.min.css" rel="stylesheet">
-
-    <link href="_content/Material.Blazor.Website.MD3/icon-512.png" rel="apple-touch-icon" sizes="512x512">
-    <link href="_content/Material.Blazor.Website.MD3/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
-    <link href="_content/Material.Blazor.Website.MD3/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-    <link id="app-style" href="_content/Material.Blazor.Website.MD3/css/material-default-theme.min.css" rel="stylesheet">
-
+    <link href="_content/Material.Blazor.Website/icon-512.png" rel="apple-touch-icon" sizes="512x512">
+    <link href="_content/Material.Blazor.Website/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="_content/Material.Blazor.Website/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+    <link id="app-style" href="_content/Material.Blazor.Website/css/material-default-theme.min.css" rel="stylesheet">
+ 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -43,13 +40,14 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />    <!-- Global site tag (gtag.js) - Google Analytics -->
+
     @if (PlatformDetermination.IsBlazorServer)
     {
-        <component type="typeof(HeadOutlet)" render-mode="@RenderMode" />
+        <component type="typeof(HeadOutlet)" render-mode="@renderMode" />
     }
     else
     {
-        <link rel="manifest" href="manifest.json" />
+        <link rel="manifest" href="_content/Material.Blazor.Website.WebAssembly/manifest.json" />
     }
 
 </head>
@@ -57,7 +55,7 @@
 <body class="mdc-typography mb-custom-scrollbars">
     @if (PlatformDetermination.IsBlazorServer)
     {
-        <component type="typeof(AppMD3)" render-mode="@RenderMode" />
+        <component type="typeof(AppMD2)" render-mode="@renderMode" />
     }
     else
     {
@@ -81,8 +79,8 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="_content/Material.Blazor.MD3/material.blazor.min.js"></script>
-    <script src="_content/Material.Blazor.Website.MD3/js/app.js"></script>
+    <script src="_content/Material.Blazor/material.blazor.js"></script>
+    <script src="_content/Material.Blazor.Website/js/app.js"></script>
 
     <script src="_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js"></script>
 
@@ -93,6 +91,8 @@
     else
     {
         <script src="_framework/blazor.webassembly.js"></script>
+
+        <script>navigator.serviceWorker.register('service-worker.js');</script>
     }
 
 </body>

@@ -28,24 +28,25 @@ jobs:
 ############################################################################################################
 # These jobs are used to gate actions. By creating these jobs we don't need to proliferate the repo checks
 ############################################################################################################
-  is-on-fork:
-    name: Running on a fork?
+
+  perform-deployment-mb:
+    name: Perform deployment on M-B/M.B
     runs-on: ubuntu-latest
-    if: github.repository != 'Material-Blazor/Material.Blazor'
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.actor != 'dependabot[bot]'
     steps:
     - name: Nothing to see here
       run: echo ""
 
-  is-on-material-blazor:
-    name: Running on Material-Blazor/Material.Blazor?
+  perform-deployment-fork:
+    name: Perform deployment fork
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor'
+    if: github.repository != 'Material-Blazor/Material.Blazor' || github.actor == 'dependabot[bot]'
     steps:
     - name: Nothing to see here
       run: echo ""
 
-  is-not-dependabot:
-    name: Is not dependabot
+  build-allowed:
+    name: Build allowed
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
@@ -53,12 +54,27 @@ jobs:
       run: echo ""
 
 ############################################################################################################
+# Set unified version
+############################################################################################################
+  set-unified-version:
+    name: Create the date based version
+    needs: [perform-deployment-mb]
+    runs-on: ubuntu-latest
+    outputs:
+      unifiedVersion: ${{ steps.setVersion.outputs.version }}
+
+    steps:
+    - id: setVersion
+      run: echo "version=4.0.0-preview.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      shell: bash
+
+############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
 ############################################################################################################
   test:
     name: Run .NET tests
     runs-on: windows-latest
-    needs: [is-not-dependabot]
+    needs: [build-allowed]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -79,7 +95,7 @@ jobs:
   build-documentation:
     name: Build documentation
     runs-on: windows-latest
-    needs: [is-not-dependabot]
+    needs: [build-allowed]
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -107,12 +123,12 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -128,7 +144,7 @@ jobs:
       run: dotnet workload restore
 
     - name: Build & Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -141,12 +157,12 @@ jobs:
 ############################################################################################################
   build-package:
     name: Build nuget package
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -159,7 +175,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -175,7 +191,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, is-on-fork]
+    needs: [test, build-documentation, build-website, perform-deployment-fork]
 
     runs-on: ubuntu-latest
 
@@ -219,7 +235,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
-    needs: [test, build-documentation, build-website, is-on-material-blazor]
+    needs: [test, build-documentation, build-website, perform-deployment-mb]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
@@ -368,12 +384,12 @@ jobs:
 ############################################################################################################
   build-website-MD3:
     name: Build website MD3
-    needs: [test]
+    needs: [test, set-unified-version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -386,7 +402,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build  & Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} --version-suffix ${{env.ciSuffix}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -399,13 +415,13 @@ jobs:
 ############################################################################################################
   build-package-MD3:
     name: Build nuget package MD3
-    needs: [test]
+    needs: [test, set-unified-version]
 
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=4.0.0-$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -418,7 +434,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciSuffix}}
+      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
@@ -430,11 +446,11 @@ jobs:
 # - on any fork on push
 # - on any fork on PR by an authorized user
 # We NEVER deploy to GH pages on Material-Blazor/Material.Blazor in this WIP workflow:
-# Material.Blazor.Current is handled by deployghpages-mbcurrent below.
+# Material.Blazor.MD3.Current is handled by deployghpages-mbcurrent-MD3 below.
 ############################################################################################################
   #deployghpages-MD3:
   #  name: Deploy to GitHub pages MD3
-  #  needs: [test, build-website-MD3, is-on-fork]
+  #  needs: [test, build-website-MD3, perform-deployment-fork]
 
   #  runs-on: ubuntu-latest
 
@@ -472,7 +488,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent-MD3:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.MD3.Current)
-    needs: [test, build-website-MD3, is-on-material-blazor]
+    needs: [test, build-website-MD3, perform-deployment-mb]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
@@ -499,7 +515,7 @@ jobs:
         html_path: 'deployroot/index.html'
         base_href: '/Material.Blazor.MD3.Current/'
 
-    # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
+    # this step deploys to Material-Blazor/Material.Blazor.MD3.Current when we are in the main repo
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:

@@ -10,6 +10,6 @@ public static class MBVersion
     /// <returns></returns>
     public static string MaterialBlazorVersion()
     {
-        return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+        return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion.Split('+')[0];
     }
 }

@@ -4,8 +4,7 @@
 		<!--<TargetFrameworks>net6.0;net7.0</TargetFrameworks>-->
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<VersionPrefix>4.0.0</VersionPrefix>
-		<VersionSuffix>WIP</VersionSuffix>
+		<Version>4.0.0-preview.WIP</Version>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>Material.Blazor</Company>
@@ -63,10 +62,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.4.23260.4" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.4.23260.4" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-preview.4.23259.5" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-preview.4.23259.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.5.23302.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.5.23302.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-preview.5.23280.8" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-preview.5.23280.8" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -84,17 +83,16 @@
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
-		<!--Keep this Removes-->
+		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
-		<!--Keep this Removes-->
+		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
+		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsScripts Remove="Components\Switch\MBSwitch.ts" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
@@ -238,12 +236,6 @@
 
 		<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
     <Delete Files="wwwroot\material-components-icons.css" />-->
-
-		<Message Importance="high" Text="***** npm run build-material-css" />
-		<Exec Command="npm run build-material-css" />
-
-		<Message Importance="high" Text="***** npm run build-material-min-css" />
-		<Exec Command="npm run build-material-min-css" />
 
 	</Target>
 
