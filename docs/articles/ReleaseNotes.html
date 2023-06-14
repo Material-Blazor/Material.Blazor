@@ -81,11 +81,15 @@
 <h1 id="release-notes">Release Notes</h1>
 
 <h4 id="400-preview19"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16">4.0.0-preview.19</a></h4>
-<p>Released 2023-??-??</p>
+<p>Released 2023-06-14</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>Dependabot updates, migrate MD3 projects to .Net 8 Preview 4, migrate @material/web to 1.0.0-pre.8</li>
-<li>Repaired release YAML to properly build the MD3 website (Yet again). The wip YAML did this properly for MD3.Current</li>
+<li>Dependabot updates, migrate MD3 projects to .Net 8 Preview 5, migrate @material/web to 1.0.0-pre.10</li>
+<li>Updated MBVersion to suppress the portion of the version that
+was in addition to version prefix &amp; version suffix.
+The previous version returned &quot;4.0.0-2023-05-18--0755+94ebbe370431f2039fdacce665d53393358eeb24&quot;
+The new version returns &quot;4.0.0-2023-05-18--0755&quot;. The extended version information
+appeared with .Net 7 &amp; persists in .Net 8.</li>
 </ul>
 <p><strong>New components</strong></p>
 <p><strong>Breaking Changes</strong></p>
