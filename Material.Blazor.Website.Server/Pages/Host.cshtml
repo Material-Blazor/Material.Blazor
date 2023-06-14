@@ -1,16 +1,15 @@
-﻿@page "/Host"
+﻿@page "/"
 
 @namespace Material.Blazor.Website.Server.Pages
 
-@using Material.Blazor.Website;
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+@using Material.Blazor.Website
 @using Material.Blazor.Website.Server
 @using Microsoft.AspNetCore.Components.Web
 
 @{
-    RenderMode RenderMode = PlatformDetermination.IsBlazorServer ? RenderMode.ServerPrerendered : RenderMode.WebAssemblyPrerendered;
+    Microsoft.AspNetCore.Mvc.Rendering.RenderMode renderMode = PlatformDetermination.IsBlazorServer ? Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered : Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered;
 }
 
 <!DOCTYPE html>
@@ -44,7 +43,7 @@
 
     @if (PlatformDetermination.IsBlazorServer)
     {
-        <component type="typeof(HeadOutlet)" render-mode="@RenderMode" />
+        <component type="typeof(HeadOutlet)" render-mode="@renderMode" />
     }
     else
     {
@@ -56,7 +55,7 @@
 <body class="mdc-typography mb-custom-scrollbars">
     @if (PlatformDetermination.IsBlazorServer)
     {
-        <component type="typeof(AppMD2)" render-mode="@RenderMode" />
+        <component type="typeof(AppMD2)" render-mode="@renderMode" />
     }
     else
     {

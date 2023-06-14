@@ -12,12 +12,9 @@ using System;
 #if Logging
 using Serilog;
 using Serilog.Events;
-#endif
 
-#if Logging
 const string _customTemplate = "{Timestamp:HH:mm:ss.fff}\t[{Level:u3}]\t{Message}{NewLine}{Exception}";
-#endif
-#if Logging
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
