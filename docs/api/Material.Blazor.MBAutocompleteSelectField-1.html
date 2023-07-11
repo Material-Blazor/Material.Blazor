@@ -98,7 +98,7 @@ down list implementation from a Material Theme select.</p>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    <div><span class="xref">IDisposable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -115,7 +115,7 @@ down list implementation from a Material Theme select.</p>
       <a class="xref" href="Material.Blazor.Internal.SingleSelectComponent-2.html#Material_Blazor_Internal_SingleSelectComponent_2_OnParametersSetAsync">SingleSelectComponent&lt;TItem, MBSelectElement&lt;TItem&gt;&gt;.OnParametersSetAsync()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.SingleSelectComponent-2.html#Material_Blazor_Internal_SingleSelectComponent_2_ValidateItemList_System_Collections_Generic_IEnumerable_Material_Blazor_MBSelectElement__0___Material_Blazor_MBItemValidation_">SingleSelectComponent&lt;TItem, MBSelectElement&lt;TItem&gt;&gt;.ValidateItemList(IEnumerable&lt;MBSelectElement&lt;TItem&gt;&gt;, MBItemValidation)</a>
+      <a class="xref" href="Material.Blazor.Internal.SingleSelectComponent-2.html#Material_Blazor_Internal_SingleSelectComponent_2_ValidateItemList_IEnumerable_Material_Blazor_MBSelectElement__0___Material_Blazor_MBItemValidation_">SingleSelectComponent&lt;TItem, MBSelectElement&lt;TItem&gt;&gt;.ValidateItemList(IEnumerable&lt;MBSelectElement&lt;TItem&gt;&gt;, MBItemValidation)</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_EditContext">InputComponent&lt;TItem&gt;.EditContext</a>
@@ -194,7 +194,7 @@ down list implementation from a Material Theme select.</p>
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
   <h5 id="Material_Blazor_MBAutocompleteSelectField_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MBAutocompleteSelectField&lt;TItem&gt; : SingleSelectComponent&lt;TItem, MBSelectElement&lt;TItem&gt;&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class MBAutocompleteSelectField&lt;TItem&gt; : SingleSelectComponent&lt;TItem, MBSelectElement&lt;TItem&gt;&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -332,7 +332,7 @@ down list implementation from a Material Theme select.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Material.Blazor.MBSearchResult-1.html">MBSearchResult</a>&lt;TItem&gt;&gt;&gt;</td>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <span class="xref">Task</span>&lt;<a class="xref" href="Material.Blazor.MBSearchResult-1.html">MBSearchResult</a>&lt;TItem&gt;&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -363,7 +363,7 @@ down list implementation from a Material Theme select.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Material.Blazor.MBSelectElement-1.html">MBSelectElement</a>&lt;TItem&gt;&gt;&gt;</td>
+        <td><span class="xref">Func</span>&lt;TItem, <span class="xref">Task</span>&lt;<a class="xref" href="Material.Blazor.MBSelectElement-1.html">MBSelectElement</a>&lt;TItem&gt;&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -479,7 +479,7 @@ down list implementation from a Material Theme select.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Label { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? Label { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -491,7 +491,7 @@ down list implementation from a Material Theme select.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -510,7 +510,7 @@ down list implementation from a Material Theme select.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string LeadingIcon { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? LeadingIcon { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -522,7 +522,7 @@ down list implementation from a Material Theme select.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -665,7 +665,7 @@ down list implementation from a Material Theme select.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TrailingIcon { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? TrailingIcon { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -677,7 +677,7 @@ down list implementation from a Material Theme select.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -710,7 +710,7 @@ the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. Th
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</td>
+        <td><span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -825,7 +825,7 @@ the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. Th
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -857,7 +857,7 @@ the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. Th
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -892,14 +892,14 @@ text associated with it changes in your app, call this method to update the comp
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <span class="xref">IDisposable</span>
   </div>
 </article>
           </div>
