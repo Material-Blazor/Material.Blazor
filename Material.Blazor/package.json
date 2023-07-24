@@ -30,7 +30,7 @@
     "material-components-web": "14.0.0",
     "regexp": "^1.0.0",
     "sass": "1.39.2",
-    "terser": "^5.19.0",
+    "terser": "^5.19.2",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "webpack": "^5.88.1",
