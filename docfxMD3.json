@@ -45,7 +45,7 @@
           "apiMD3/**.yml",
           "apiMD3/index.md"
         ]
-      },
+      }
 
     ],
     "resource": [
@@ -76,7 +76,7 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
-      "templates/material.blazor.MD3"
+      "modern"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",

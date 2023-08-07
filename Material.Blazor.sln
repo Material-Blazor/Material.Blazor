@@ -20,9 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		LocalTest.bat = LocalTest.bat
 		README.md = README.md
 		ReleaseNotes.md = ReleaseNotes.md
+		ServeDocs-2.61.0.cmd = ServeDocs-2.61.0.cmd
 		ServeDocs.cmd = ServeDocs.cmd
 		ServeDocsMD3.cmd = ServeDocsMD3.cmd
 		SuperClean.cmd = SuperClean.cmd
+		toc.yml = toc.yml
 		tocMD2.yml = tocMD2.yml
 		tocMD3.yml = tocMD3.yml
 	EndProjectSection

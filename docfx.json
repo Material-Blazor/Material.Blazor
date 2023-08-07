@@ -76,7 +76,7 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
-      "templates/material.blazor"
+      "modern"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
