@@ -13,6 +13,9 @@ Released 2023-??-??
 - Dependabot updates, migrate MD3 projects to .Net 8 Preview 7, migrate @material/web to 1.0.0-pre.14
 
 **New components**
+- Added preview of Material Design 3 components:
+	- MBCircularProgress
+	- MBLinearProgress
 
 **Breaking Changes**
 

@@ -379,6 +379,35 @@ jobs:
 ############################################################################################################
 ############################################################################################################
 
+############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation-MD3:
+    name: Build documentation
+    runs-on: windows-latest
+    needs: [build-allowed]
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        dotnet-quality: 'preview'
+
+    - name: Create documentation 🔧
+      run: .\docfx\docfx docfx-md3.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: main
+
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
+      uses: actions/upload-artifact@v3
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
 ###########################################################################################################
 # Build website
 ############################################################################################################

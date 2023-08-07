@@ -4,7 +4,7 @@
       "src": [
         {
           "files": [
-            "Material.Blazor/Material.Blazor.csproj"
+            "Material.Blazor.MD3/Material.Blazor.MD3.csproj"
           ],
           "filter": "filterConfig.yml"
         }
@@ -19,25 +19,25 @@
     "content": [
       {
         "files": [
-          "toc.yml",
+          "tocMD3.yml",
           "*.md"
         ]
       },
       {
         "files": [
-          "Material.Blazor/articles/**/**.md",
-          "Material.Blazor/articles/toc.yml"
+          "Material.Blazor.MD3/articles/**/**.md",
+          "Material.Blazor.MD3/articles/toc.yml"
         ]
       },
       {
         "files": [
-          "Material.Blazor/**/**.md",
-          "Material.Blazor/**/**/**.md",
-          "Material.Blazor/**/toc.yml"
+          "Material.Blazor.MD3/**/**.md",
+          "Material.Blazor.MD3/**/**/**.md",
+          "Material.Blazor.MD3/**/toc.yml"
         ],
         "exclude": [
-          "Material.Blazor/node_modules/**/**.md",
-          "Material.Blazor/node_modules/**/**.toc"
+          "Material.Blazor.MD3/node_modules/**/**.md",
+          "Material.Blazor.MD3/node_modules/**/**.toc"
         ]
       },
       {
@@ -71,7 +71,7 @@
         ]
       }
     ],
-    "dest": "siteDocFx",
+    "dest": "siteDocFxMD3",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [

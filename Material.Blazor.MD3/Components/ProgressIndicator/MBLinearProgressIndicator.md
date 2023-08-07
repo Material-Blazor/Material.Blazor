@@ -1,14 +1,12 @@
 ﻿---
-uid: C.MBProgressIndicator
-title: MBProgressIndicator
+uid: C.MBLinearProgressIndicator
+title: MBLinearProgressIndicator
 ---
-# MBProgressIndicator
+# MBLinearProgressIndicator
 
 ## Summary
 
-A simple progress indicator that can be circular
-[Material Progress Circular](https://material-web.dev/components/circular-progress/)
-or linear
+A simple linear progress indicator
 [Material Progress Linear](https://material-web.dev/components/linear-progress/)
 with either indeterminant or determinant characteristics.
 Applies [density subsystem](xref:A.Density).

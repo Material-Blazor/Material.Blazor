@@ -13,53 +13,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		.github\dependabot.yml = .github\dependabot.yml
 		Directory.Build.props = Directory.Build.props
 		docfx.json = docfx.json
+		docfxMD3.json = docfxMD3.json
 		filterConfig.yml = filterConfig.yml
 		index.md = index.md
 		LICENSE.md = LICENSE.md
 		LocalTest.bat = LocalTest.bat
 		README.md = README.md
+		ReleaseNotes.md = ReleaseNotes.md
 		ServeDocs.cmd = ServeDocs.cmd
+		ServeDocsMD3.cmd = ServeDocsMD3.cmd
 		SuperClean.cmd = SuperClean.cmd
 		toc.yml = toc.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}"
-	ProjectSection(SolutionItems) = preProject
-		articles\CascadingDefaults.md = articles\CascadingDefaults.md
-		articles\CoreComponents.md = articles\CoreComponents.md
-		articles\Demonstration.md = articles\Demonstration.md
-		articles\Density.md = articles\Density.md
-		articles\DevelopmentEnvironment.md = articles\DevelopmentEnvironment.md
-		articles\FormValidation.md = articles\FormValidation.md
-		articles\Icon.md = articles\Icon.md
-		articles\Installation.md = articles\Installation.md
-		articles\Introduction.md = articles\Introduction.md
-		articles\MenuOverflow.md = articles\MenuOverflow.md
-		articles\PlusComponents.md = articles\PlusComponents.md
-		articles\Principles.md = articles\Principles.md
-		articles\ReleaseNotes.md = articles\ReleaseNotes.md
-		articles\Services.md = articles\Services.md
-		articles\Snackbar.md = articles\Snackbar.md
-		articles\ThemingAndCSS.md = articles\ThemingAndCSS.md
-		articles\Toast.md = articles\Toast.md
-		articles\toc.yml = articles\toc.yml
-		articles\Tooltip.md = articles\Tooltip.md
-		articles\TwoWayBinding.md = articles\TwoWayBinding.md
-		articles\Utilities.md = articles\Utilities.md
-		articles\Workflows.md = articles\Workflows.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{5AF96DDC-150A-4287-B299-F33253610526}"
-	ProjectSection(SolutionItems) = preProject
-		articles\images\gh-account-settings-1.png = articles\images\gh-account-settings-1.png
-		articles\images\gh-account-settings-2.png = articles\images\gh-account-settings-2.png
-		articles\images\gh-account-settings-3.png = articles\images\gh-account-settings-3.png
-		articles\images\gh-account-settings-4.png = articles\images\gh-account-settings-4.png
-		articles\images\gh-account-settings-5.png = articles\images\gh-account-settings-5.png
-		articles\images\text-field-focus.png = articles\images\text-field-focus.png
-		articles\images\two-way-bind-flow.png = articles\images\two-way-bind-flow.png
-		articles\images\vs-config.png = articles\images\vs-config.png
-		articles\images\vs-extensions.png = articles\images\vs-extensions.png
+		tocMD3.yml = tocMD3.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guidelines", "guidelines", "{86740746-C4E6-45DF-BA84-8FB1C1200DD9}"
@@ -144,7 +109,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5AF96DDC-150A-4287-B299-F33253610526} = {FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}
 		{777FB882-0F4D-48EB-9D7C-148C80549A63} = {86740746-C4E6-45DF-BA84-8FB1C1200DD9}
 		{1808B031-C79A-48BA-B1D4-37FAA989A116} = {F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}
 		{C37DB3E6-EC3D-42F6-81C3-EE45744BA5F7} = {F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}

@@ -1,0 +1,66 @@
+﻿@page "/progressindicatorcircular"
+
+@namespace Material.Blazor.Website.Pages
+
+
+<DemonstrationPage ComponentName="ProgressIndicatorCircular"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-textfield#text-field"
+                   RequiresDisableSelection="false"
+                   Title="Progress Indicator (Circular) Demonstration">
+    <Description>
+        <p>
+            Circular progress indicators.
+        </p>
+    </Description>
+
+    <Controls>
+        <p>
+            <Material.Blazor.MD2.MBRadioButtonGroup @bind-Value="ProgressLevel"
+                                                    Items="@ProgressLevels" />
+        </p>
+    </Controls>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Indeterminate
+                    </h2>
+                    <MBCircularProgressIndicator indeterminate
+                                                 style="margin: 6px;" />
+                    <br />
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Indeterminate, 4 color
+                    </h2>
+                    <MBCircularProgressIndicator indeterminate four-color
+                                                 style="margin: 6px;" />
+                    <br />
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Determinate
+                    </h2>
+                    <MBCircularProgressIndicator value=@ProgressLevel
+                                                 style="margin: 6px;" />
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+@code {
+    private Material.Blazor.MD2.MBSelectElement<double>[] ProgressLevels = new Material.Blazor.MD2.MBSelectElement<double>[]
+    {
+        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 0.25, Label = "25% Progress" },
+        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 0.50, Label = "50% Progress" },
+        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 0.75, Label = "75% Progress" },
+        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 1.00, Label = "100% Progress" }
+    };
+
+    private double ProgressLevel { get; set; }
+
+    public ProgressIndicatorCircular()
+    {
+        ProgressLevel = ProgressLevels[0].SelectedValue;
+    }
+}
