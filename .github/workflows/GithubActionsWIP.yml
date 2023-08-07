@@ -531,11 +531,17 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v3
       with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v3
+      with:
         name: siteWebMD3
         path: siteWebMD3
 
     - name: Configure deployment directory structure Ꙫ
-      run: mv siteWebMD3/wwwroot deployroot
+      run: mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
 
     # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
     - name: Base Href Rewrite 👉

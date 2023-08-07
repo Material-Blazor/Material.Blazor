@@ -7,5 +7,6 @@ rem docfx restore
 rem docfx build
 rem docfx serve siteDocFx
 @echo on
-for /d /r . %%d in (bin,obj,ClientBin,api,siteDocFx) do @if exist "%%d" rd /s /q "%%d"
+for /d /r . %%d in (bin,obj,ClientBin,api,apiMD3,siteDocFx,siteDocFxMD3) do @if exist "%%d" rd /s /q "%%d"
+copy tocMD3.yml toc.yml /Y
 docfx\docfx.exe docfxMD3.json --serve
