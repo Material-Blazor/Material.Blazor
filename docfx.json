@@ -25,8 +25,8 @@
       },
       {
         "files": [
-          "Material.Blazor/articles/**/**.md",
-          "Material.Blazor/articles/toc.yml"
+          "articles/**/**.md",
+          "articles/toc.yml"
         ]
       },
       {

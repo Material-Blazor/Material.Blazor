@@ -9,7 +9,7 @@
           "filter": "filterConfig.yml"
         }
       ],
-      "dest": "api",
+      "dest": "apiMD3",
       "disableContribution": true,
       "disableGitFeatures": false,
       "disableDefaultFilter": false
@@ -19,14 +19,14 @@
     "content": [
       {
         "files": [
-          "tocMD3.yml",
+          "toc.yml",
           "*.md"
         ]
       },
       {
         "files": [
-          "Material.Blazor.MD3/articles/**/**.md",
-          "Material.Blazor.MD3/articles/toc.yml"
+          "articlesMD3/**/**.md",
+          "articlesMD3/toc.yml"
         ]
       },
       {
@@ -42,8 +42,8 @@
       },
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
+          "apiMD3/**.yml",
+          "apiMD3/index.md"
         ]
       },
 
@@ -62,7 +62,7 @@
     "overwrite": [
       {
         "files": [
-          "api/**.md"
+          "apiMD3/**.md"
         ],
         "exclude": [
           "obj/**",
@@ -76,7 +76,7 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
-      "templates/material.blazor"
+      "templates/material.blazor.MD3"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
