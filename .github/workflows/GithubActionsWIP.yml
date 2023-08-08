@@ -108,7 +108,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Get proper toc in place
-      run: copy tocMD2.yml toc.yml /Y
+      run: copy tocMD2.yml toc.yml
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -401,7 +401,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Get proper toc in place
-      run: copy tocMD3.yml toc.yml /Y
+      run: copy tocMD3.yml toc.yml
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx-md3.json
