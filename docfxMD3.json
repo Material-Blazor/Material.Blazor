@@ -1,0 +1,92 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "Material.Blazor.MD3/Material.Blazor.MD3.csproj"
+          ],
+          "filter": "filterConfig.yml"
+        }
+      ],
+      "dest": "apiMD3",
+      "disableContribution": true,
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "toc.yml",
+          "*.md"
+        ]
+      },
+      {
+        "files": [
+          "articlesMD3/**/**.md",
+          "articlesMD3/toc.yml"
+        ]
+      },
+      {
+        "files": [
+          "Material.Blazor.MD3/**/**.md",
+          "Material.Blazor.MD3/**/**/**.md",
+          "Material.Blazor.MD3/**/toc.yml"
+        ],
+        "exclude": [
+          "Material.Blazor.MD3/node_modules/**/**.md",
+          "Material.Blazor.MD3/node_modules/**/**.toc"
+        ]
+      },
+      {
+        "files": [
+          "apiMD3/**.yml",
+          "apiMD3/index.md"
+        ]
+      }
+
+    ],
+    "resource": [
+      {
+        "files": [
+          "**/images/**.png",
+          "**/images/**.jpg",
+          ".nojekyll",
+          "404.html",
+          "*html.txt"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          "apiMD3/**.md"
+        ],
+        "exclude": [
+          "obj/**",
+          "siteDocFx/**",
+          "siteDocFxMD3/**"
+        ]
+      }
+    ],
+    "dest": "siteDocFxMD3",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default",
+      "modern"
+    ],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false,
+    "disableContribution": true,
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
+  }
+}

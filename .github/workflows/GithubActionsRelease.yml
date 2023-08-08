@@ -34,7 +34,7 @@ jobs:
 ############################################################################################################
 # This job is used to gate actions. By creating this job we don't need to proliferate the repo checks
 ############################################################################################################
-  perform-deployment-mb:
+  deployment-allowed-mb:
     name: Running on Material-Blazor/Material.Blazor?
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor'
@@ -77,6 +77,9 @@ jobs:
       with:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
+
+    - name: Get proper toc in place
+      run: copy tocMD2.yml toc.yml
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -127,7 +130,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to material.blazor
-    needs: [test, build-documentation, build-website, perform-deployment-mb]
+    needs: [test, build-documentation, build-website, deployment-allowed-mb]
 
     runs-on: ubuntu-latest
 
@@ -170,7 +173,7 @@ jobs:
 ############################################################################################################
   build-and-deploy-package:
     name: Build nuget package & deploy to nuget
-    needs: [test, perform-deployment-mb, deployghpages, deployghpages-MD3]
+    needs: [test, deployment-allowed-mb, deployghpages, deployghpages-MD3]
 
     runs-on: windows-latest
 
@@ -226,6 +229,37 @@ jobs:
 ############################################################################################################
 
 ############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation-MD3:
+    name: Build documentation MD3
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        dotnet-quality: 'preview'
+
+    - name: Get proper toc in place
+      run: copy tocMD3.yml toc.yml
+
+    - name: Create documentation 🔧
+      run: .\docfx\docfx docfxMD3.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: main   
+
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
+      uses: actions/upload-artifact@v3
+      with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3       
+
+############################################################################################################
 # Build website MD3
 ############################################################################################################
   build-website-MD3:
@@ -261,7 +295,7 @@ jobs:
 ############################################################################################################
   deployghpages-MD3:
     name: Deploy to material.blazor.MD3.com
-    needs: [test, build-documentation, build-website-MD3, perform-deployment-mb]
+    needs: [test, build-documentation, build-website-MD3, deployment-allowed-mb]
 
     runs-on: ubuntu-latest
 
@@ -278,12 +312,18 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
       uses: actions/download-artifact@v3
       with:
+        name: siteDocFxMD3
+        path: siteDocFxMD3
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
+      uses: actions/download-artifact@v3
+      with:
         name: siteWebMD3
         path: siteWebMD3
 
     - name: Configure deployment directory structure Ꙫ
       run: |
-        mv siteWebMD3/wwwroot deployroot
+        mv siteWebMD3/wwwroot deployroot; mv siteDocFx deployroot/docs
 
     # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
     - name: Base Href Rewrite 👉

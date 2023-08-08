@@ -37,10 +37,3 @@ the markup specification. We term these "Core Components. Material.Blazor also h
 | [MBTextField](xref:C.MBTextField) | A [Material Text Field](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-textfield#text-field). |
 | [MBTooltip](xref:C.MBTooltip) | A [Material Tooltip](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip). |
 | [MBTopAppBar](xref:C.MBTopAppBar) | A [Material Top App Bar](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-top-app-bar#top-app-bar). |
-
-## Experimental Component List
-
-| Component | Notes |
-| :-------- | :---- |
-| [MBChipsSelectMulti](xref:C.MBChipsSelectMulti) | A [Material Filter Chipset](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips). Implements a multi-select chipset ("filter chips"). |
-| [MBChipsSelectSingle](xref:C.MBChipsSelectSingle) | A [Material Choice Chipset](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips). Implements a single-select chipset ("choice chips"). |

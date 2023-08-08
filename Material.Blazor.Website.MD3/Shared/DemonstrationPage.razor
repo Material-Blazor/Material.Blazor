@@ -87,7 +87,7 @@
 
     [Parameter] public bool IsGeneric { get; set; } = false;
 
-    [Parameter] public string MaterialIOPage { get; set; }
+    [Parameter] public string MaterialDesign3Page { get; set; }
 
     [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
 
@@ -167,15 +167,15 @@
             });
         }
 
-        if (MaterialIOPage != null)
+        if (MaterialDesign3Page != null)
         {
-            //var materialPage = $"<a href=\"{MaterialDocRef + MaterialIOPage}\" target=\"_blank\">{MaterialIOPage.Split("#")[0]}</a>";
+            var materialPage = $"<a href=\"https://material-web.dev/components/" + MaterialDesign3Page + "/\" target=\"_blank\" >MD3 page link</a>";
 
-            //Items.Add(new ReferenceItem
-            //    {
-            //        Title = "Material Theme Page",
-            //        Content = materialPage
-            //    });
+            Items.Add(new ReferenceItem
+               {
+                   Title = "Material Design 3",
+                   Content = materialPage
+               });
         }
 
         Densities = new Material.Blazor.MD2.MBSelectElement<Material.Blazor.MBDensity>[]

@@ -36,12 +36,14 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBShield](xref:C.MBShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | [MBSlidingContent](xref:C.MBSlidingContent) | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | [MBSlidingTabBar](xref:C.MBSlidingTabBar) | An `MBTabBar` augmented with content displayed in a `MBSlidingContent` |
- MBToast   | An `MBToast` component used to show toast notifications` |
+| MBToast   | An `MBToast` component used to show toast notifications` |
 
 ## Experimental Component List
 
 | Component | Notes |
 | :-------- | :---- |
+| [MBChipsSelectMulti](xref:C.MBChipsSelectMulti) | A [Material Filter Chipset](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips). Implements a multi-select chipset ("filter chips"). |
+| [MBChipsSelectSingle](xref:C.MBChipsSelectSingle) | A [Material Choice Chipset](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips). Implements a single-select chipset ("choice chips"). |
 | [MBGridMT](xref:C.MBGrid) | Displays a grid themed as MWC composed from the elements specified as parameters. |
 | [MBScheduler](xref:C.MBScheduler) | Displays a schedule composed from the elements specified as parameters. |
 
