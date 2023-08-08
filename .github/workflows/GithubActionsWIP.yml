@@ -404,7 +404,7 @@ jobs:
       run: copy tocMD3.yml toc.yml
 
     - name: Create documentation 🔧
-      run: .\docfx\docfx docfx-md3.json
+      run: .\docfx\docfx docfxMD3.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
