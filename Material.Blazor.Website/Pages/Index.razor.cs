@@ -33,13 +33,13 @@ public partial class Index
     private async Task NavigateToDocs()
     {
         var baseURI = NavigationManager.BaseUri;
-        await JSRuntime.InvokeAsync<object>("open", $"{baseURI}docs", "_blank");
+        await JSRuntime.InvokeVoidAsync("open", $"{baseURI}docs", "_blank");
     }
 
 
 
     private void NavigateToButton()
     {
-        NavigationManager.NavigateTo("button");
+        NavigationManager.NavigateTo("anchor");
     }
 }

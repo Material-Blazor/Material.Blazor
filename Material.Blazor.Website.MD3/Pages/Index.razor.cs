@@ -16,6 +16,7 @@ public partial class Index
     private string BuildMode { get; set; } = "WebAssembly";
 #endif
 
+    private string BaseURI { get; set; } = "";
     private string OSArchitecture { get; set; }
     private string OSDescription { get; set; }
     private string Runtime { get; set; }
@@ -33,8 +34,8 @@ public partial class Index
 
     private async Task NavigateToDocs()
     {
-        var baseURI = NavigationManager.BaseUri;
-        await JSRuntime.InvokeAsync<object>("open", $"{baseURI}docs", "_blank");
+        BaseURI = NavigationManager.BaseUri;
+        await JSRuntime.InvokeVoidAsync("open", $"{BaseURI}docs", "_blank");
     }
 
 
