@@ -126,7 +126,10 @@ jobs:
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
+    - name: Show the documentation artifacts
+      run: dir siteDocFx /s
+
+    - name: Upload Documentation Artifacts 🔺 # The documentation site is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v3
       with:
         name: siteDocFx
@@ -207,7 +210,6 @@ jobs:
   deployghpages:
     name: Deploy to GitHub pages
     needs: [test, build-documentation, build-website, deployment-allowed-fork]
-
     runs-on: ubuntu-latest
 
     steps:
@@ -251,7 +253,6 @@ jobs:
   deployghpages-mbcurrent:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
     needs: [test, build-documentation, build-website, deployment-allowed-mb]
-
     runs-on: ubuntu-latest
 
     steps:
@@ -419,6 +420,9 @@ jobs:
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
+    - name: Show the documentation artifacts
+      run: dir siteDocFx /s
+
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v3
       with:
@@ -462,7 +466,6 @@ jobs:
   build-package-MD3:
     name: Build nuget package MD3
     needs: [test, set-unified-version]
-
     runs-on: windows-latest
 
     steps:
@@ -497,7 +500,6 @@ jobs:
   #deployghpages-MD3:
   #  name: Deploy to GitHub pages MD3
   #  needs: [test, build-website-MD3, build-documentation-MD3, deployment-allowed-fork]
-
   #  runs-on: ubuntu-latest
 
   #  steps:
@@ -541,7 +543,6 @@ jobs:
   deployghpages-mbcurrent-MD3:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.MD3.Current)
     needs: [test, build-website-MD3, build-documentation-MD3, deployment-allowed-mb]
-
     runs-on: ubuntu-latest
 
     steps:
