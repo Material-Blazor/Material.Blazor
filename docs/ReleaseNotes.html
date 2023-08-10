@@ -8,28 +8,17 @@
     <title>ReleaseNotes </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="ReleaseNotes ">
-    <meta name="generator" content="docfx 1.0.0.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
-    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="articles/toc.html">
     
     
-  
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-  
-      gtag('config', 'UA-173249047-2');
-    </script>
+    
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -45,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -80,6 +69,33 @@
             <article class="content wrap" id="_content" data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
+<h4 id="400">[4.0.0]</h4>
+<p>(<a href="https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0-preview.21">https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0-preview.21</a>)</p>
+<p>Released 2023-08-10</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li>Dependabot updates, migrate MD3 projects to .Net 8 Preview 7, migrate @material/web to 1.0.0-pre.14</li>
+</ul>
+<p><strong>New components</strong></p>
+<ul>
+<li>Added preview of Material Design 3 components:
+<ul>
+<li>MBCircularProgress</li>
+<li>MBLinearProgress</li>
+</ul>
+</li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<p><strong>Deprecated Components</strong></p>
+<p><strong>Known issues</strong></p>
+<ul>
+<li>Nuget does not know how to handle the mixed
+DN7 and DN8 environment. The easiest solution
+is to update with 'prerelease' not selected
+and then to copy the DN8 references from the
+DN8 branch (MD3 projects only).</li>
+</ul>
+<br>
 <h4 id="400-preview20">[4.0.0-preview.20]</h4>
 <p>(<a href="https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.20">https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.20</a>)</p>
 <p>Released 2023-07-11</p>
@@ -872,7 +888,7 @@ This is an experimental component and we do not recommend its use.</p>
 <li>MBSlider value changed to be of type decimal</li>
 <li>MBRadioButtonGroup <code>EnableTouchWrapper</code> obsolete and removed.</li>
 <li><code>MBToastCloseMethod</code> enum renamed to <code>MBNotifierCloseMethod</code>, and enum value names have changed. This is now used by both toasts and snackbars.</li>
-<li>The names and content of the  css and js resources required for MaterialBlazor have changed. Please see <a class="xref" href="Installation.html">Installation article</a> for details.</li>
+<li>The names and content of the  css and js resources required for MaterialBlazor have changed. Please see <a class="xref" href="articles/Installation.html">Installation article</a> for details.</li>
 <li>The CSS utility class <code>mb-card__primary</code> was renamed to <code>mb-card__autostyled</code>.</li>
 </ul>
 <br>
@@ -903,7 +919,7 @@ This is an experimental component and we do not recommend its use.</p>
 <p><strong>New components</strong></p>
 <p><strong>Breaking Changes</strong></p>
 <ul>
-<li>CDN packages now reference material components web 9.0.0, see <a class="xref" href="Installation.html">Installation article</a>.</li>
+<li>CDN packages now reference material components web 9.0.0, see <a class="xref" href="articles/Installation.html">Installation article</a>.</li>
 <li>If you are building a theme from material components web SASS, you need to reference version 9.0.0.</li>
 </ul>
 <br>
@@ -1032,7 +1048,7 @@ This is an experimental component and we do not recommend its use.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/articles/ReleaseNotes.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/ReleaseNotes.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -1059,8 +1075,8 @@ This is an experimental component and we do not recommend its use.</p>
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
   </body>
 </html>

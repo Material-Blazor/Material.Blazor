@@ -10,28 +10,17 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MBGrid&lt;TRowData&gt;
    ">
-    <meta name="generator" content="docfx 1.0.0.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
     
     
-  
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-  
-      gtag('config', 'UA-173249047-2');
-    </script>
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -90,13 +79,13 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
     <div class="level2"><span class="xref">MBGrid&lt;TRowData&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><span class="xref">IDisposable</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -147,7 +136,7 @@
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
   <h5 id="Material_Blazor_MBGrid_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MBGrid&lt;TRowData&gt; : ComponentFoundation</code></pre>
+    <pre><code class="lang-csharp hljs">public class MBGrid&lt;TRowData&gt; : ComponentFoundation, IDisposable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -193,7 +182,7 @@ for details.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Material.Blazor.MBGridColumnConfiguration-1.html">MBGridColumnConfiguration</a>&lt;TRowData&gt;&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="Material.Blazor.MBGridColumnConfiguration-1.html">MBGridColumnConfiguration</a>&lt;TRowData&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -258,7 +247,7 @@ that is used to indicate a row that has been clicked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <span class="xref">IEnumerable</span>&lt;<span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, TRowData&gt;&gt;&gt;&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<span class="xref">System.String</span>, <span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<span class="xref">System.String</span>, TRowData&gt;&gt;&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -308,7 +297,7 @@ that is used to indicate a row that has been clicked.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt;? KeyExpression { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt; KeyExpression { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -320,7 +309,7 @@ that is used to indicate a row that has been clicked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TRowData, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</td>
+        <td><span class="xref">System.Func</span>&lt;TRowData, <span class="xref">System.Object</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -352,7 +341,7 @@ on a single page or component</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -446,7 +435,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventCallback</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">EventCallback</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -541,7 +530,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -588,7 +577,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -620,7 +609,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -651,7 +640,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">rowIdentifier</span></td>
         <td></td>
       </tr>
@@ -667,7 +656,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -714,7 +703,7 @@ data widths (FitToData)</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -751,7 +740,7 @@ data widths (FitToData)</p>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
 </article>
           </div>
