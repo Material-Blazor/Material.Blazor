@@ -1,4 +1,5 @@
 using Bunit;
+using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
