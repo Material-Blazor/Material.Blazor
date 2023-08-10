@@ -37,20 +37,11 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
-  # deployment-allowed-mb:
-  #   name: Allow deployment on M-B/M.B
-  #   needs: [build-allowed]
-  #   runs-on: ubuntu-latest
-  #   if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name == 'push')
-  #   steps:
-  #   - name: Nothing to see here
-  #     run: echo ""
-
   deployment-allowed-mb:
     name: Allow deployment on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor'
+    if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name == 'push')
     steps:
     - name: Nothing to see here
       run: echo ""

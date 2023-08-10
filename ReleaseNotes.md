@@ -7,7 +7,7 @@ title: ReleaseNotes
 #### [4.0.0-preview.21]
 (https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0-preview.21)
 
-Released 2023-08-09
+Released 2023-08-10
 
 **Updates**
 - Dependabot updates, migrate MD3 projects to .Net 8 Preview 7, migrate @material/web to 1.0.0-pre.14
