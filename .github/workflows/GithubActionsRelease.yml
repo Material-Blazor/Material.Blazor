@@ -323,7 +323,7 @@ jobs:
 
     - name: Configure deployment directory structure Ꙫ
       run: |
-        mv siteWebMD3/wwwroot deployroot; mv siteDocFx deployroot/docs
+        mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
 
     # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
     - name: Base Href Rewrite 👉
