@@ -4,7 +4,7 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [4.0.0-preview.21]
+#### [4.0.0]
 (https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0-preview.21)
 
 Released 2023-08-10
