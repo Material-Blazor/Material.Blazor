@@ -16,8 +16,8 @@
                 {
                     <p style="overflow: auto;">
                         <Material.Blazor.MD2.MBDataTable Items="@Items"
-                                 Context="item"
-                                 class="dr-table">
+                                                         Context="item"
+                                                         class="dr-table">
 
                             <TableHeader>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Reference</th>
@@ -87,7 +87,7 @@
 
     [Parameter] public bool IsGeneric { get; set; } = false;
 
-    [Parameter] public string MaterialDesign3Page { get; set; }
+    [Parameter] public string MaterialDesignPage { get; set; } = "";
 
     [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
 
@@ -102,10 +102,10 @@
     private IEnumerable<Material.Blazor.MD2.MBSelectElement<MBDensity>> Densities { get; set; }
 
     private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
-    {
-        ThemeDensity = Material.Blazor.MBDensity.Default,
-        Disabled = false,
-    };
+        {
+            ThemeDensity = Material.Blazor.MBDensity.Default,
+            Disabled = false,
+        };
 
 
     private class ReferenceItem
@@ -131,51 +131,49 @@
             return;
         }
 
-        if (ComponentName != null)
+        if (!string.IsNullOrWhiteSpace(ComponentName))
         {
             Items.Add(new ReferenceItem
-            {
-                Title = "Component Documentation",
-                Content = $"<a href=\"https://material-blazor.com/docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
-            });
+                {
+                    Title = "Component Documentation",
+                    Content = $"<a href=\"https://material-blazor.com/docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                });
 
             var apiSuffix = (!IsGeneric) ? "" : "-1";
             var apiText = $"<a href=\"https://material-blazor.com/docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
 
             Items.Add(new ReferenceItem
-            {
-                Title = "API Documentation",
-                Content = apiText
-            });
+                {
+                    Title = "API Documentation",
+                    Content = apiText
+                });
         }
 
-        if (DetailedArticle != null)
+        if (!string.IsNullOrWhiteSpace(DetailedArticle))
         {
             Items.Add(new ReferenceItem
-            {
-                Title = "In Depth Documentation",
-                Content = $"<a href=\"https://material-blazor.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
-            });
+                {
+                    Title = "In Depth Documentation",
+                    Content = $"<a href=\"https://material-blazor.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+                });
         }
 
         if (DemoComponent != null)
         {
             Items.Add(new ReferenceItem
-            {
-                Title = "Source for This Page",
-                Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
-            });
+                {
+                    Title = "Source for This Page",
+                    Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
+                });
         }
 
-        if (MaterialDesign3Page != null)
+        if (!string.IsNullOrWhiteSpace(MaterialDesignPage))
         {
-            var materialPage = $"<a href=\"https://material-web.dev/components/" + MaterialDesign3Page + "/\" target=\"_blank\" >MD3 page link</a>";
-
             Items.Add(new ReferenceItem
-               {
-                   Title = "Material Design 3",
-                   Content = materialPage
-               });
+                {
+                    Title = "Material Design 3",
+                    Content = $"<a href=\"https://material-web.dev/components/" + MaterialDesignPage + "/\" target=\"_blank\" >MD3 page link</a>"
+                });
         }
 
         Densities = new Material.Blazor.MD2.MBSelectElement<Material.Blazor.MBDensity>[]

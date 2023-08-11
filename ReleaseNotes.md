@@ -4,8 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.0.0-rc1]
+(https://github.com/Maerial-Blazor/Material.Blazor/tree/5.0.0-rc1)
+
+Released 2023-09-??
+
+**Updates**
+- Dependabot updates, migrate all projects to .Net 8 RC 1, migrate @material/web to 1.0.0-pre.14
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0]
-(https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0-preview.21)
+(https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0)
 
 Released 2023-08-10
 
