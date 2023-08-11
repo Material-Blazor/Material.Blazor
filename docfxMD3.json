@@ -79,6 +79,7 @@
       "default",
       "modern"
     ],
+    "allowcompilationerrors": true,
     "cleanupCacheHistory": false,
     "disableContribution": true,
     "disableGitFeatures": false,
