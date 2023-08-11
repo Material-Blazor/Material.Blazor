@@ -37,20 +37,20 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
+  build-only-allowed-mb:
+    name: Allow deployment on M-B/M.B
+    needs: [build-allowed]
+    runs-on: ubuntu-latest
+    if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name != 'push')
+    steps:
+    - name: Nothing to see here
+      run: echo ""
+
   deployment-allowed-mb:
     name: Allow deployment on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name == 'push')
-    steps:
-    - name: Nothing to see here
-      run: echo ""
-
-  deployment-allowed-fork:
-    name: Allow deployment on fork
-    needs: [build-allowed]
-    runs-on: ubuntu-latest
-    if: github.repository != 'Material-Blazor/Material.Blazor' && (github.event_name == 'push')
     steps:
     - name: Nothing to see here
       run: echo ""
@@ -148,9 +148,6 @@ jobs:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
 
-    - name: Install WASM tools
-      run: dotnet workload restore
-
     - name: Build & Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
 
@@ -200,7 +197,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, deployment-allowed-fork]
+    needs: [test, build-documentation, build-website]
     runs-on: ubuntu-latest
 
     steps:
@@ -378,6 +375,31 @@ jobs:
         token: ${{secrets.GH_PAT}}
 
 ############################################################################################################
+# Build only nuget package
+############################################################################################################
+  build-only-package:
+    name: Build nuget package
+    needs: [test, build-only-allowed-mb]
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        dotnet-quality: 'preview'
+
+    - name: Build Material.Blazor & Generate the NuGet package 🔧
+      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${{env.outputMB}}
+
+
+############################################################################################################
 ############################################################################################################
 ############################################################################################################
 # MD3 jobs
@@ -490,7 +512,7 @@ jobs:
 ############################################################################################################
   #deployghpages-MD3:
   #  name: Deploy to GitHub pages MD3
-  #  needs: [test, build-website-MD3, build-documentation-MD3, deployment-allowed-fork]
+  #  needs: [test, build-website-MD3, build-documentation-MD3]
   #  runs-on: ubuntu-latest
 
   #  steps:
@@ -572,4 +594,29 @@ jobs:
         branch: gh-pages
         folder: 'deployroot'
         repository-name: Material-Blazor/Material.Blazor.MD3.Current
+
+############################################################################################################
+# Build only MD3 nuget package
+############################################################################################################
+  build-only-package-MD3:
+    name: Build nuget package
+    needs: [test, build-only-allowed-mb]
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        dotnet-quality: 'preview'
+
+    - name: Build Material.Blazor & Generate the NuGet package 🔧
+      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${{env.outputMBMD3}}
+
 
