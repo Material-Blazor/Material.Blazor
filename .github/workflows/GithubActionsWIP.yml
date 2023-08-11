@@ -38,7 +38,7 @@ jobs:
       run: echo ""
 
   build-only-allowed-mb:
-    name: Allow deployment on M-B/M.B
+    name: Allow build only on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name != 'push')
@@ -599,7 +599,7 @@ jobs:
 # Build only MD3 nuget package
 ############################################################################################################
   build-only-package-MD3:
-    name: Build nuget package
+    name: Build nuget package MD3
     needs: [test, build-only-allowed-mb]
     runs-on: windows-latest
 
@@ -614,7 +614,7 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
