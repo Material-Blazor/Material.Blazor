@@ -9,6 +9,7 @@
           "filter": "filterConfig.yml"
         }
       ],
+      "allowcompilationerrors": true,
       "dest": "api",
       "disableContribution": true,
       "disableGitFeatures": false,
@@ -45,7 +46,7 @@
           "api/**.yml",
           "api/index.md"
         ]
-      },
+      }
 
     ],
     "resource": [
@@ -78,13 +79,14 @@
       "default",
       "modern"
     ],
-    "postProcessors": [],
+    "allowcompilationerrors": true,
+    "cleanupCacheHistory": false,
+    "disableContribution": true,
+    "disableGitFeatures": false,
+    "keepFileLink": false,
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
-    "keepFileLink": false,
-    "cleanupCacheHistory": false,
-    "disableGitFeatures": false,
-    "disableContribution": true,
+    "postProcessors": [],
     "xrefService": [
       "https://xref.docs.microsoft.com/query?uid={uid}"
     ]
