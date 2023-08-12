@@ -15,9 +15,5 @@ The following attributes are reserved by Material Components Web and will be ign
 - role
 - type
 
-&nbsp;
-
-&nbsp;
-
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSwitch&color=brightgreen)](xref:Material.Blazor.MBSwitch)

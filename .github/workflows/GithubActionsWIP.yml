@@ -46,11 +46,12 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
+# && (github.event_name == 'push')
   deployment-allowed-mb:
     name: Allow deployment on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name == 'push')
+    if: github.repository == 'Material-Blazor/Material.Blazor'
     steps:
     - name: Nothing to see here
       run: echo ""
@@ -110,13 +111,20 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Setup docfx
-      run: dotnet tool update -g docfx
+      run: |
+          md Articles
+          copy Material.Blazor\Articles\* Articles\* /Y
+          copy Material.Blazor\Articles\Images\* Articles\Images\* /Y
+          copy Material.Blazor\docfxMD2.json docfx.json
+          copy Material.Blazor\indexMD2.md index.md
+          copy Material.Blazor\tocMD2.yml toc.yml
+          dotnet tool update -g docfx
 
-    - name: Get proper toc in place
-      run: copy tocMD2.yml toc.yml
+    - name: Build Material.Blazor
+      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
 
     - name: Create documentation 🔧
-      run: docfx docfx.json
+      run: docfx Material.Blazor/docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
@@ -429,13 +437,19 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Setup docfx
-      run: dotnet tool update -g docfx
+      run: |
+          copy Material.Blazor.MD3\Articles\* Articles\* /Y
+          copy Material.Blazor.MD3\Articles\Images\* Articles\Images\* /Y
+          copy Material.Blazor.MD3\docfxMD3.json docfx.json
+          copy Material.Blazor.MD3\indexMD3.md index.md
+          copy Material.Blazor.MD3\tocMD3.yml toc.yml
+          dotnet tool update -g docfx
 
-    - name: Get proper toc in place
-      run: copy tocMD3.yml toc.yml
+    - name: Build Material.Blazor
+      run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}}
 
     - name: Create documentation 🔧
-      run: docfx docfxMD3.json
+      run: docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 

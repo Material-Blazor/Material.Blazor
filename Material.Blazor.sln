@@ -12,10 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		ctag.cmd = ctag.cmd
 		.github\dependabot.yml = .github\dependabot.yml
 		Directory.Build.props = Directory.Build.props
-		docfx.json = docfx.json
-		docfxMD3.json = docfxMD3.json
 		filterConfig.yml = filterConfig.yml
-		index.md = index.md
 		LICENSE.md = LICENSE.md
 		LocalTest.bat = LocalTest.bat
 		README.md = README.md
@@ -23,9 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		ServeDocs.cmd = ServeDocs.cmd
 		ServeDocsMD3.cmd = ServeDocsMD3.cmd
 		SuperClean.cmd = SuperClean.cmd
-		toc.yml = toc.yml
-		tocMD2.yml = tocMD2.yml
-		tocMD3.yml = tocMD3.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guidelines", "guidelines", "{86740746-C4E6-45DF-BA84-8FB1C1200DD9}"
@@ -62,68 +56,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.Server.MD3", "Material.Blazor.Website.Server.MD3\Material.Blazor.Website.Server.MD3.csproj", "{6CC02217-6409-4B34-AE1C-25DFFB4B94AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.WebAssembly.MD3", "Material.Blazor.Website.WebAssembly.MD3\Material.Blazor.Website.WebAssembly.MD3.csproj", "{24BC0E88-5D78-49EC-BADF-5FEE0CF9FE58}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{C5420FA5-70CF-46E3-B084-8949AC30DC53}"
-	ProjectSection(SolutionItems) = preProject
-		articles\CascadingDefaults.md = articles\CascadingDefaults.md
-		articles\CoreComponents.md = articles\CoreComponents.md
-		articles\Demonstration.md = articles\Demonstration.md
-		articles\Density.md = articles\Density.md
-		articles\DevelopmentEnvironment.md = articles\DevelopmentEnvironment.md
-		articles\FormValidation.md = articles\FormValidation.md
-		articles\Icon.md = articles\Icon.md
-		articles\Installation.md = articles\Installation.md
-		articles\Introduction.md = articles\Introduction.md
-		articles\MenuOverflow.md = articles\MenuOverflow.md
-		articles\PlusComponents.md = articles\PlusComponents.md
-		articles\Principles.md = articles\Principles.md
-		articles\Services.md = articles\Services.md
-		articles\Snackbar.md = articles\Snackbar.md
-		articles\ThemingAndCSS.md = articles\ThemingAndCSS.md
-		articles\Toast.md = articles\Toast.md
-		articles\toc.yml = articles\toc.yml
-		articles\Tooltip.md = articles\Tooltip.md
-		articles\TwoWayBinding.md = articles\TwoWayBinding.md
-		articles\Utilities.md = articles\Utilities.md
-		articles\Workflows.md = articles\Workflows.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{B44CD09B-0E0D-4F0E-BF9E-D278F0049A29}"
-	ProjectSection(SolutionItems) = preProject
-		articles\images\gh-account-settings-1.png = articles\images\gh-account-settings-1.png
-		articles\images\gh-account-settings-2.png = articles\images\gh-account-settings-2.png
-		articles\images\gh-account-settings-3.png = articles\images\gh-account-settings-3.png
-		articles\images\gh-account-settings-4.png = articles\images\gh-account-settings-4.png
-		articles\images\gh-account-settings-5.png = articles\images\gh-account-settings-5.png
-		articles\images\text-field-focus.png = articles\images\text-field-focus.png
-		articles\images\two-way-bind-flow.png = articles\images\two-way-bind-flow.png
-		articles\images\vs-config.png = articles\images\vs-config.png
-		articles\images\vs-extensions.png = articles\images\vs-extensions.png
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articlesMD3", "articlesMD3", "{0320009F-9565-4C1D-B8F9-23752D4E6FC8}"
-	ProjectSection(SolutionItems) = preProject
-		articlesMD3\CoreComponents.md = articlesMD3\CoreComponents.md
-		articlesMD3\DevelopmentEnvironment.md = articlesMD3\DevelopmentEnvironment.md
-		articlesMD3\Installation.md = articlesMD3\Installation.md
-		articlesMD3\Introduction.md = articlesMD3\Introduction.md
-		articlesMD3\PlusComponents.md = articlesMD3\PlusComponents.md
-		articlesMD3\Principles.md = articlesMD3\Principles.md
-		articlesMD3\toc.yml = articlesMD3\toc.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{E4A3450B-62B5-4657-98C0-92B8CE70A94C}"
-	ProjectSection(SolutionItems) = preProject
-		articlesMD3\images\gh-account-settings-1.png = articlesMD3\images\gh-account-settings-1.png
-		articlesMD3\images\gh-account-settings-2.png = articlesMD3\images\gh-account-settings-2.png
-		articlesMD3\images\gh-account-settings-3.png = articlesMD3\images\gh-account-settings-3.png
-		articlesMD3\images\gh-account-settings-4.png = articlesMD3\images\gh-account-settings-4.png
-		articlesMD3\images\gh-account-settings-5.png = articlesMD3\images\gh-account-settings-5.png
-		articlesMD3\images\text-field-focus.png = articlesMD3\images\text-field-focus.png
-		articlesMD3\images\two-way-bind-flow.png = articlesMD3\images\two-way-bind-flow.png
-		articlesMD3\images\vs-config.png = articlesMD3\images\vs-config.png
-		articlesMD3\images\vs-extensions.png = articlesMD3\images\vs-extensions.png
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,8 +109,6 @@ Global
 		{C37DB3E6-EC3D-42F6-81C3-EE45744BA5F7} = {F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}
 		{6CC02217-6409-4B34-AE1C-25DFFB4B94AD} = {F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}
 		{24BC0E88-5D78-49EC-BADF-5FEE0CF9FE58} = {F3F9E74C-DFB8-49CF-8F1E-6C4849914C0B}
-		{B44CD09B-0E0D-4F0E-BF9E-D278F0049A29} = {C5420FA5-70CF-46E3-B084-8949AC30DC53}
-		{E4A3450B-62B5-4657-98C0-92B8CE70A94C} = {0320009F-9565-4C1D-B8F9-23752D4E6FC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EFB30DD-ABFD-4A38-96E1-D309BB538E62}
