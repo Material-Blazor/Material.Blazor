@@ -109,11 +109,15 @@ jobs:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
 
+    - name: Setup docfx
+      uses: actions/setup-dotnet@v3
+      run: dotnet tool update -g docfx
+
     - name: Get proper toc in place
       run: copy tocMD2.yml toc.yml
 
     - name: Create documentation 🔧
-      run: .\docfx\docfx docfx.json
+      run: docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
@@ -425,11 +429,15 @@ jobs:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
 
+    - name: Setup docfx
+      uses: actions/setup-dotnet@v3
+      run: dotnet tool update -g docfx
+
     - name: Get proper toc in place
       run: copy tocMD3.yml toc.yml
 
     - name: Create documentation 🔧
-      run: .\docfx\docfx docfxMD3.json
+      run: docfx docfxMD3.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
