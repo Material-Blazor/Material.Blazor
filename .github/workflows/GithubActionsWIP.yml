@@ -110,7 +110,6 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Setup docfx
-      uses: actions/setup-dotnet@v3
       run: dotnet tool update -g docfx
 
     - name: Get proper toc in place
@@ -430,7 +429,6 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Setup docfx
-      uses: actions/setup-dotnet@v3
       run: dotnet tool update -g docfx
 
     - name: Get proper toc in place
