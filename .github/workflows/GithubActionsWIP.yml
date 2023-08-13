@@ -46,12 +46,11 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
-# && (github.event_name == 'push')
   deployment-allowed-mb:
     name: Allow deployment on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor'
+    if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name == 'push')
     steps:
     - name: Nothing to see here
       run: echo ""
@@ -159,11 +158,8 @@ jobs:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
 
-    - name: Install WASM tools
-      run: dotnet workload restore
-
     - name: Build & Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -492,7 +488,7 @@ jobs:
       run: dotnet workload restore
 
     - name: Build  & Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
