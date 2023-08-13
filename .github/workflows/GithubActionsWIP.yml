@@ -124,7 +124,7 @@ jobs:
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
 
     - name: Create documentation 🔧
-      run: docfx Material.Blazor/docfx.json
+      run: docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
@@ -158,6 +158,9 @@ jobs:
       with:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
+
+    - name: Copy directory.build.props
+      run: copy Directory.Build.Props Material.Blazor\
 
     - name: Build & Publish Website 🔧
       run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
@@ -484,6 +487,9 @@ jobs:
       with:
         dotnet-version: '8.x'
         dotnet-quality: 'preview'
+
+    - name: Copy directory.build.props
+      run: copy Directory.Build.Props Material.Blazor.MD3\
 
     - name: Build  & Publish Website 🔧
       run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false
