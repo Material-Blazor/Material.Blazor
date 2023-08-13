@@ -3,7 +3,7 @@
     {
       "src": [
         {
-          "files": "Material.Blazor.csproj",
+          "files": ".artifacts/bin/Material.Blazor/**/*.dll",
           "filter": "filterConfig.yml"
         }
       ],
