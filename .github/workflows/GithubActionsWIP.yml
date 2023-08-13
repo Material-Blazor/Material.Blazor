@@ -245,14 +245,14 @@ jobs:
 ############################################################################################################
 # comparison
 ############################################################################################################
-  compare:
-    needs: [deployghpages, test]
-    name: Compare pages
-    runs-on: ubuntu-latest
+  # compare:
+  #   needs: [deployghpages, test]
+  #   name: Compare pages
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+  #   steps:
+  #   - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+  #     uses: actions/checkout@v3
 
     # - id: install-puppeteer
     #   run: |
