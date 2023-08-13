@@ -1,23 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-	<!--The following 3 property groups had to be copied from Directory.Build.Props in
-	order to have the gh action publish working-->
-	
-	<PropertyGroup>
-		<TargetFrameworks>net8.0</TargetFrameworks>
-		<Configurations>Server;WebAssembly</Configurations>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Server|AnyCPU'">
-		<DefineConstants>BLAZOR_SERVER</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WebAssembly|AnyCPU'">
-		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
-	</PropertyGroup>
-
-	
-	
 	<PropertyGroup>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Version>5.0.0-preview.WIP</Version>
