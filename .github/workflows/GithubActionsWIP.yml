@@ -115,7 +115,7 @@ jobs:
           md Articles
           copy Material.Blazor\Articles\* Articles\
           dir articles
-          md Articles\Images
+          dir Articles\Images
           copy Material.Blazor\Articles\Images\* Articles\Images\
           dir artcles\images
           copy Material.Blazor\docfxMD2.json docfx.json
@@ -443,8 +443,10 @@ jobs:
       run: |
           md Articles
           copy Material.Blazor.MD3\Articles\* Articles\
-          md Articles\Images
+          dir articles
+          dir Articles\Images
           copy Material.Blazor.MD3\Articles\Images\* Articles\Images\
+          dir Articles\Images
           copy Material.Blazor.MD3\docfxMD3.json docfx.json
           copy Material.Blazor.MD3\indexMD3.md index.md
           copy Material.Blazor.MD3\tocMD3.yml toc.yml
