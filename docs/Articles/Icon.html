@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Icon </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Icon ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Articles/Icon.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="A.Icon">
+<h1 id="icon">Icon</h1>
+
+<h2 id="summary">Summary</h2>
+<p>Material.Blazor allows you to freely choose among the Material Icons, Font Awesome version 5 and Open Iconic version 1.1 icon foundries. These three foundries
+each use different HTML markup, and this difference is handled by the general purpose <a class="xref" href="../api/Material.Blazor.MBIcon.html">MBIcon (see API documentation)</a> component.</p>
+<p>Material Icons are essential for Material Theme and so our css includes this font for you. You will need to include links
+for Font Awesome and Open Iconic separately if you want to use them - see the <a class="xref" href="Installation.html#package-versions">Installation Article</a> for links.</p>
+<h2 id="using-mbicon">Using MBIcon</h2>
+<p>MBIcon's two parameters are IconName (required) and IconFoundry (optional). Examples of icon name are &quot;alarm&quot; for Material
+Icons, &quot;fa-bell&quot; for Font Awesome and &quot;audio&quot; for Open Iconic. If you don't provide IconFoundry your default foundry will be used. The default
+is either Material Icons or a <a class="xref" href="CascadingDefaults.html#icons">default that you set with cascading defaults</a>.</p>
+<h2 id="setting-the-icon-foundry">Setting the Icon Foundry</h2>
+<p>Material.Blazor provides three static convenience methods to supply an icon foundry to MBIcon: <code>IconFoundry=&quot;IconHelper.MIIcon()&quot;</code>, <code>IconFoundry=&quot;IconHelper.FAIcon()&quot;</code>, <code>IconFoundry=&quot;IconHelper.OIIcon()&quot;</code>.
+There are varying parameters for these helper methods described in the <a class="xref" href="../api/Material.Blazor.MBIconHelper.html">Icon Helper documentation</a>.</p>
+<h2 id="other-components">Other Components</h2>
+<p>Many components such as MBButton, MBSelect and MBTextField take icons. In every instance these components take IconName
+and an optional IconFoundry parameters which are applied in the same way as for MBIcon. In fact they all use MBIcon.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Articles/Icon.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

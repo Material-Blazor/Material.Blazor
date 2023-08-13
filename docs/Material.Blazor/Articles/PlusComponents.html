@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>PlusComponents </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="PlusComponents ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/PlusComponents.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../../public/main.js'
+    import { init } from './../../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="A.PlusComponents">
+<h1 id="plus-components">Plus Components</h1>
+
+<p>Material Theme closely specifies component HTML markup. Material.Blazor implements many of these as <a class="xref" href="../../Articles/CoreComponents.html">Core Components</a>. Material.Blazor also
+implements further Blazor/Material Theme hybrid components that we term &quot;Plus Components&quot;.</p>
+<h2 id="component-list">Component List</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Anchor/MBAnchor.html">MBAnchor</a></td>
+<td style="text-align: left;">Anchor for a port of <a href="https://github.com/Blazored/Toast">Blazored/Toast</a> and <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip">Material Tooltips</a> modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of <code>App.razor</code> or <code>MainLayout.razor</code>. Requires that you register an <a class="xref" href="../Model/Toast/IMBToastService.html">IIMBoastService</a> service and will throw an exception on startup if the service is not found.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/AutocompletePagedField/MBAutocompletePagedField.html">MBAutocompletePagedField</a></td>
+<td style="text-align: left;">An autocomplete comprising a text field and a paged menu, using asynchronous methods (supplied by the caller) to provide ongoing value queries, for instance from a database.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/AutocompleteSelectField/MBAutocompleteSelectField.html">MBAutocompleteSelectField</a></td>
+<td style="text-align: left;">An autocomplete comprising a text field and a menu, using asynchronous methods (supplied by the caller) to provide ongoing value queries, for instance from a database.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a></td>
+<td style="text-align: left;">An autocomplete comprising a text field and a menu.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Badge/MBBadge.html">MBBadge</a></td>
+<td style="text-align: left;">Badges that can be applied wither within HTML <code>div'</code>s or invoked via the parameters on <code>MBButton</code>, <code>MBIconButton</code> and 'MBIconButtonToggle''.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/BladeSet/MBBladeSet.html">MBBladeSet</a></td>
+<td style="text-align: left;">Blades inspired by Microsoft Azure</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Carousel/MBCarousel.html">MBCarousel</a></td>
+<td style="text-align: left;">A carousel implementing animation using an <code>MBSlidingContent</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/ConfirmationDialog/MBConfirmationDialog.html">MBConfirmationDialog</a></td>
+<td style="text-align: left;">A special purpose wrapper around <a class="xref" href="../Components/Dialog/MBDialog.html">MBDialog</a> that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/DatePicker/MBDatePicker.html">MBDatePicker</a></td>
+<td style="text-align: left;">An implementation of the <a href="https://material.io/components/pickers/#specs">Material date picker specification</a> for the desktop.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/DateTimeField/MBDateTimeField.html">MBDateTimeField</a></td>
+<td style="text-align: left;">An implementation in the spirit of the MBNumeric fields using an input type of either 'date' or 'datetime-local'.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a></td>
+<td style="text-align: left;">A debounced version of <a class="xref" href="../Components/TextField/MBTextField.html">MBTextField</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Divider/MBDivider.html">MBDivider</a></td>
+<td style="text-align: left;">Implements a list divider by wrapping <code>hr</code> and gives the option of inset and padded. This uses the mdc-list-divider styles.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/DragAndDropList/MBDragAndDropList.html">MBDragAndDropList</a></td>
+<td style="text-align: left;">A list of user provided render fragments that can be re-ordered with drag and drop.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/FileUpload/MBFileUploadButton.html">MBFileUploadButton</a></td>
+<td style="text-align: left;">A material button styled wrapper for the <code>InputFile</code> component.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/FileUpload/MBFileUploadDragAndDrop.html">MBFileUploadDragAndDrop</a></td>
+<td style="text-align: left;">A material card styled wrapper for the <code>InputFile</code> component that can load files either by drag and drop or clicking the card area.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Grid/MBGrid.html">MBGrid</a></td>
+<td style="text-align: left;">Displays a grid composed from the elements specified as parameters.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Icon/MBIcon.html">MBIcon</a></td>
+<td style="text-align: left;">Displays an icon from the specified icon foundry or the default foundry from <a class="xref" href="../Model/MBCascadingDefaults.html">MBCascadingDefaults</a>. See also <a class="xref" href="../Model/Icon/MBIconHelper.html">MBIconHelper</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/NumericDecimalField/MBNumericDecimalField.html">MBNumericDecimalField</a></td>
+<td style="text-align: left;">Wraps <a class="xref" href="../Components/TextField/MBTextField.html">MBTextField</a> to format numeric entry of a <code>decimal</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a></td>
+<td style="text-align: left;">A wrapper for <code>MBNumericDecimalField</code> for <code>double</code> variables.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a></td>
+<td style="text-align: left;">A wrapper for <code>MBNumericDecimalField</code> for <code>int</code> variables.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/PagedDataList/MBPagedDataList.html">MBPagedDataList</a></td>
+<td style="text-align: left;">A templated component for paging generic data lists using <a class="xref" href="../Components/Paginator/MBPaginator.html">MBPaginator</a> and applying transitions with <a class="xref" href="../Components/SlidingContent/MBSlidingContent.html">MBSlidingContent</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/RadioButtonGroup/MBRadioButtonGroup.html">MBRadioButtonGroup</a></td>
+<td style="text-align: left;">A group of <a class="xref" href="../Components/RadioButton/MBRadioButton.html">MBRadioButtons</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Shield/MBShield.html">MBShield</a></td>
+<td style="text-align: left;">A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/SlidingContent/MBSlidingContent.html">MBSlidingContent</a></td>
+<td style="text-align: left;">A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/SlidingTabBar/MBSlidingTabBar.html">MBSlidingTabBar</a></td>
+<td style="text-align: left;">An <code>MBTabBar</code> augmented with content displayed in a <code>MBSlidingContent</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">MBToast</td>
+<td style="text-align: left;">An <code>MBToast</code> component used to show toast notifications`</td>
+</tr>
+</tbody>
+</table>
+<h2 id="experimental-component-list">Experimental Component List</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/ChipsSelectMulti/MBChipsSelectMulti.html">MBChipsSelectMulti</a></td>
+<td style="text-align: left;">A <a href="https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips">Material Filter Chipset</a>. Implements a multi-select chipset (&quot;filter chips&quot;).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/ChipsSelectSingle/MBChipsSelectSingle.html">MBChipsSelectSingle</a></td>
+<td style="text-align: left;">A <a href="https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips">Material Choice Chipset</a>. Implements a single-select chipset (&quot;choice chips&quot;).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Grid/MBGrid.html">MBGridMT</a></td>
+<td style="text-align: left;">Displays a grid themed as MWC composed from the elements specified as parameters.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Components/Scheduler/MBScheduler.html">MBScheduler</a></td>
+<td style="text-align: left;">Displays a schedule composed from the elements specified as parameters.</td>
+</tr>
+</tbody>
+</table>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/PlusComponents.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

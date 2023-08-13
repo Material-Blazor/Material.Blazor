@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>TwoWayBinding </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="TwoWayBinding ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/TwoWayBinding.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../../public/main.js'
+    import { init } from './../../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="A.TwoWayBinding">
+<h1 id="materialblazors-two-way-binding-approach">Material.Blazor's Two Way Binding Approach</h1>
+
+<p>Material.Blazor takes an unusual approach to two way binding and rendering. Most components return <code>ShouldRender() =&gt; false;</code>. This is
+to resolve an inherent conflict between how Blazor re-renders components when bound parameters are updated by their consumers and
+how a JavaScript framework such as <a href="https://github.com/material-components/material-components-web">Material Components Web (&quot;MCW&quot;)</a> works.</p>
+<p>In a pure Blazor world, Blazor takes care of rendering and re-rendering for you. In doing so it overwrites the relevant part of the
+DOM. In a pure Material Theme world on the other hand, you mark your page up once and then call some instantiation JavaScript on your
+material web components, from which point Material Components Web manipulates the DOM with user interaction. Let's consider an empty text field.</p>
+<p>This article explains how Blazor's natural rendering mechanism and MCW are in contention and what we do to manage
+this gracefully.</p>
+<h2 id="how-mcw-manipulates-the-dom">How MCW Manipulates the DOM</h2>
+<p>Consider an empty outlined text field before and after a user gives it focus as below. Note how the label floats up and how both it and
+the border gain color:</p>
+<p><img src="images/text-field-focus.png" alt="Text Field Gaining Focus"></p>
+<p>The text field's markup however has three distinct state. First what any app environment (including your app using Material.Blazor) marks
+up in a page, then what this becomes once the text field has been initiated and manipulated by MCW and lastly
+how its state after receiving focus. The transition between the last two is animated by MCW.</p>
+<ol>
+<li>Uninitiated markup
+<pre><code class="lang-html">&lt;label class=&quot;mdc-text-field mdc-text-field--outlined&quot; &gt;
+    &lt;input id=&quot;my-text-field&quot; class=&quot;mdc-text-field__input&quot; type=&quot;text&quot; aria-label=&quot;Outlined Style&quot;&gt;
+    &lt;span class=&quot;mdc-notched-outline&quot;&gt;
+        &lt;span class=&quot;mdc-notched-outline__leading&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__notch&quot;&gt;
+            &lt;span class=&quot;mdc-floating-label &quot; for=&quot;my-text-field&quot;&gt;Outlined Style&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__trailing&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</li>
+<li>Markup post initiation - <em>all changes made by MCW</em>
+<pre><code class="lang-html">&lt;label class=&quot;mdc-text-field mdc-text-field--outlined&quot;&gt;
+    &lt;input id=&quot;my-text-field&quot; class=&quot;mdc-text-field__input&quot; type=&quot;text&quot; aria-label=&quot;Outlined Style&quot;&gt;
+    &lt;span class=&quot;mdc-notched-outline mdc-notched-outline--upgraded&quot;&gt;
+        &lt;span class=&quot;mdc-notched-outline__leading&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__notch&quot;&gt;
+            &lt;span class=&quot;mdc-floating-label &quot; for=&quot;my-text-field&quot; style&gt;Outlined Style&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__trailing&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</li>
+<li>Markup with focus - <em>all changes made by MCW</em>
+<pre><code class="lang-html">&lt;label class=&quot;mdc-text-field mdc-text-field--outlined mdc-text-field--focused mdc-text-field--label-floating&quot;&gt;
+    &lt;input id=&quot;my-text-field&quot; class=&quot;mdc-text-field__input&quot; type=&quot;text&quot; aria-label=&quot;Outlined Style&quot;&gt;
+    &lt;span class=&quot;mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched&quot;&gt;
+        &lt;span class=&quot;mdc-notched-outline__leading&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__notch&quot;&gt;
+            &lt;span class=&quot;mdc-floating-label mdc-floating-label--float-above&quot; for=&quot;my-text-field&quot; style=&quot;width: 87.5px;&quot;&gt;Outlined Style&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__trailing&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</li>
+</ol>
+<p>What we see from this is that if Material.Blazor were to allow Blazor to re-render, this would be with markup similar to 1. above and
+MCW will then fail to manipulate the DOM correctly thereafter - we know this because we tried.</p>
+<h2 id="other-blazor-issues">Other Blazor Issues</h2>
+<p>Another factor we faced is that Blazor can perform a &quot;bounce&quot; when passing values into a component. This can be observed when using Cascading
+Values; <a href="https://github.com/dotnet/aspnetcore/issues/24599#issuecomment-697588562">see this GitHub issue</a> explaining the problem and receiving a detailed response from Steve Sanderson.
+Coupling this with the need to prevent Blazor rendering brought us to the two way binding pattern that we use.</p>
+<h2 id="how-we-do-two-way-binding">How We Do Two Way Binding</h2>
+<p>When we first identified this issue during Material.Blazor's development we realized that our Blazor code needed to first render a
+new component and then immediately after instantiating it step out of MCW's way by applying <code>ShouldRender() =&gt; false;</code>
+in <code>InputComponent</code>. If we did no more, two way binding would be broken because subsequent attempts by the consumer (your project)
+to update Value are ignored, which is an unacceptable result. Fortunately each MCW component has a rich
+JavaScript library that includes both the ability to set a value in the future and to be notified of that value being changed by
+the user. We make use of this in our two way binding for the <code>Value</code> parameter, and do something similar for the <code>Disabled</code>
+parameter.</p>
+<p>The principle is like this:</p>
+<p><img src="images/two-way-bind-flow.png" alt="Two Way Binding Flow"></p>
+<p>Each component inheriting from <code>InputComponent</code> implements this mechanism separately calling the JavaScript provided
+by MCW for that component:</p>
+<ul>
+<li>Overrides <code>OnParametersSet</code> from <code>InputComponent</code> to call the relevant MCW code via JSInterop;</li>
+<li>Registers a JSInterop callback with MCW for notification of value changes;</li>
+<li>Overrides <code>OnDisabledSet</code> from <code>ComponentFoundation</code> for to either call MCW via JSInterop to set the disabled state or to do so directly via Blazor binding as relevant; and</li>
+<li><em>Does not</em> bind Value to any elements in the razor markup except for <code>MBTextField</code> which binds directly to the <code>'&lt;input&gt;</code> block.</li>
+</ul>
+<p>Without this careful mechanism Blazor and MCW can enter an infinite positive feedback loop of values bouncing from current to previous value.</p>
+<h2 id="debouncing">Debouncing</h2>
+<p>One last thing. In the <a href="https://github.com/dotnet/aspnetcore/issues/24599#issuecomment-697588562">GitHub issue</a> that we mentioned above, <code>Value</code>
+can bounce. We handle this by over-riding <code>OnParametersSet()</code> and <code>OnParametersSetAsync()</code> and checking for changes against cached versions of both
+<code>Value</code> and <code>ComponentValue</code>. Material.Blazor only propagate changes to <code>Value</code> when it is indicative of a genuine consumer two-way binding
+data update:</p>
+<ul>
+<li>First there are cached versions of both <code>Value</code> and <code>ComponentValue</code>.</li>
+<li>In <code>OnParametersSet()</code>, if <code>Value</code> differs to <code>_cachedValue</code> we know that there is a genuine change of value (i.e. not a Cascading Value derived bounce).
+<ul>
+<li>If there is no change Material.Blazor does nothing more in <code>OnParametersSet()</code>.</li>
+<li>If there is a change, <code>_cachedValue</code> is update and we move to the next test.</li>
+</ul>
+</li>
+<li>Next we test <code>Value</code> against <code>ComponentValue</code>:
+<ul>
+<li>If they are the same, then we know that the component has been called in response to <code>ComponentValue</code> having emitted a <code>ValueChanged</code> event and we exit <code>OnParametersSet()</code>.</li>
+<li>If they differ, we now know that this is a genuine new value. Material.Blazor sets <code>_cachedComponentValue</code> to <code>Value</code> and calls the component's value setter via JSInterop.</li>
+</ul>
+</li>
+</ul>
+<p>When the user interacts with the app changing a component's value, this is emitted via JSInterop to set <code>ComponentValue</code></p>
+<ul>
+<li>First this new value is compared by the setter for <code>ComponentValue</code> to <code>_cachedComponentValue</code> further action is only taken if they differ.</li>
+<li>Next <code>_cachedComponentValue</code> is updated accordingly.</li>
+<li>Last the consumer code is notified of value changes by calling <code>ValueChanged()</code>.</li>
+<li>Note that Material.Blazor never sets <code>Value</code> in response to user/component interaction - this is the pattern set out by Steve Sanderson.</li>
+</ul>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/TwoWayBinding.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

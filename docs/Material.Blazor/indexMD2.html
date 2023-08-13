@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Material.Blazor </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Material.Blazor ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/indexMD2.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="materialblazor">Material.Blazor</h1>
+
+<p><a href="https://www.nuget.org/packages/Material.Blazor/"><img src="https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&amp;label=nuget%20release&amp;style=flat-square" alt="NuGet version"></a>
+<a href="https://www.nuget.org/packages/Material.Blazor/"><img src="https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&amp;label=nuget%20pre-release&amp;style=flat-square" alt="NuGet version"></a>
+<a href="https://www.nuget.org/packages/Material.Blazor/"><img src="https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&amp;label=nuget%20downloads&amp;style=flat-square" alt="NuGet downloads"></a>
+<a href="https://gitter.im/Material-Blazor/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&amp;style=flat-square" alt="Gitter"></a></p>
+<hr>
+<p><a href="https://gitter.im/Material.Blazor/community?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&amp;style=flat-square" alt="Gitter"></a></p>
+<hr>
+<p><a href="/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?logo=github&amp;style=flat-square" alt="License: MIT"></a>
+<a href="https://github.com/Material-Blazor/Material.Blazor/issues"><img src="https://img.shields.io/github/issues/Material-Blazor/Material.Blazor?logo=github&amp;style=flat-square" alt="GitHub issues"></a>
+<a href="https://github.com/Material-Blazor/Material.Blazor/network/members"><img src="https://img.shields.io/github/forks/Material-Blazor/Material.Blazor?logo=github&amp;style=flat-square" alt="GitHub forks"></a>
+<a href="https://github.com/Material-Blazor/Material.Blazor/stargazers"><img src="https://img.shields.io/github/stars/Material-Blazor/Material.Blazor?logo=github&amp;style=flat-square" alt="GitHub stars"></a>
+<a href="https://github.com/Material-Blazor/Material.Blazor/watchers"><img src="https://img.shields.io/github/watchers/Material-Blazor/Material.Blazor?logo=github&amp;style=flat-square" alt="GitHub stars"></a></p>
+<p><a href="https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsRelease.yml"><img src="https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsRelease.yml?label=actions%20release&amp;logo=github&amp;style=flat-square" alt="GithubActionsRelease"></a>
+<a href="https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsWIP.yml"><img src="https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsWIP.yml?label=actions%20wip&amp;logo=github&amp;style=flat-square" alt="GithubActionsWIP"></a></p>
+<hr>
+<blockquote>
+<p>[TIP]
+Visit our website at <a href="https://material-blazor.com">https://material-blazor.com</a> for a full Material.Blazor demonstration.</p>
+</blockquote>
+<h1 id="lightweight-material-theme-razor-components-for-blazor">Lightweight Material Theme Razor Components for Blazor</h1>
+<p>Material.Blazor is a lightweight <a href="https://material.io/">Material Theme</a> <a href="https://material.io/develop/web/">web development platform</a> (<a href="(https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02)">version 9.0.0</a>) component library for <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">ASP.NET Blazor</a> that is rigorously faithful to the Material Theme's design philosophy, markup and code usage.
+This docs site along with <a href="https://material-blazor.com">our demonstration website</a> gives you a deep dive into Material.Blazor.</p>
+<div style="text-align: right; font-style: italic;">Simon and Mark</div>
+<h2 id="background">Background</h2>
+<p>Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor. This is available at <a href="https://www.nuget.org/packages/Material.Blazor">https://www.nuget.org/packages/Material.Blazor</a>.</p>
+<p>Material.Blazor isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as <a href="https://www.matblazor.com/">MatBlazor</a>, <a href="https://materialdemo.blazorise.com/">Blazorize</a> and <a href="https://github.com/skclusive/Skclusive.Material.Component">Skclusive.Material.Component</a>, or commercial products such as those from <a href="https://www.telerik.com/blazor-ui">Telerik</a>, and <a href="https://blazor.syncfusion.com/">Syncfusion</a>; this is not an exhaustive list and there may be others. So why did we create Material.Blazor as yet another option? Because we had some overriding objectives and to our taste this required a new library focussing on the following:</p>
+<ul>
+<li>Lightweight components that require the minimal possible setup or boilerplate Blazor coding and without intensive startup processing;</li>
+<li>An entirely native Blazor experience for Material.Blazor's consumer, using JavaScript Interop within Material.Blazor only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application;</li>
+<li>A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable;</li>
+<li>A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS:
+<ul>
+<li>Material.Blazor keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability.</li>
+<li>We don't help you with styling/CSS. Whether you are theming or just tailoring the styles of individual components within a <code>&lt;div&gt;</code> block, you need to be very familar with <a href="https://github.com/material-components/material-components-web/tree/v14.0.0/packages">Material Components Web</a>. If you think you like or dislike the look of one of our &quot;core&quot; Material.Blazor components, what you're actually viewing is Material Theme as Google intend it, and which we aim to bring faithfully to you.</li>
+<li>Similarly you need to manage your layout because Material.Blazor doesn't try to help out. This is so you can decide what layout system to use - Material Theme, Bootstrap or whatever you want.</li>
+<li>So: we just do components using Material Theme. Other libraries take a different approach, and if you have a different requirement you may want to consider other options;</li>
+</ul>
+</li>
+<li>You'll find some different themes <a href="https://material-blazor.com">on our website</a> just to give you a flavour of what can be done. Note that these themes aren't really anything to do with Material.Blazor - we just decided to show that Material.Blazor works with themes built using <a href="https://github.com/material-components/material-components-web">material-components-web</a>. Click the button on the top right of the top app bar. See the code base (same repo as this) to see how we did it.</li>
+<li>We've built some added value &quot;plus&quot; components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation;</li>
+<li>We aim for Material.Blazor to employ best practice for Blazor development. As a starting point this should be considered as being defined per <a href="https://www.youtube.com/watch?v=QnBYmTpugz0">this video from NDC London, January 2020</a>; and</li>
+<li>Permissive <a class="xref" href="../LICENSE.html">MIT license</a> and a clear <a class="xref" href="../CODE_OF_CONDUCT.html">contributor code of conduct</a>.</li>
+</ul>
+<h2 id="attribution">Attribution</h2>
+<p>Material.Blazor is forked from <a href="https://blog.stevensanderson.com/">Steve Sanderson's</a> experimental <a href="https://github.com/SteveSandersonMS/RazorComponents.MaterialDesign">RazorComponents.MaterialDesign</a> experiment. That project struck the balance we sought of giving easy to use, performant Blazor components in a lightweight, native Material Theme setting.</p>
+<p>We also want to acknowledge the work of</p>
+<ul>
+<li><a href="https://github.com/SamProf">Vladimir Samoilenko (@SamProf on Github)</a> for his work on <a href="https://www.matblazor.com/">MatBlazor</a>. MatBlazor code was referenced and some small parts of the code were copied to be part of Material.Blazor (ClassMapper and StyleMapper).</li>
+<li><a href="https://github.com/chrissainty">Chris Sainty (@chrissainty on Github)</a> for his work on <a href="https://github.com/Blazored/Toast">Blazored/Toast</a> which is the basis for MBToast and MBSnackbar.</li>
+<li><a href="https://github.com/SQL-MisterMagoo/">ℳisterℳagoo (@mistermag00 on Twitter)</a> for the <code>@:@{</code> construct (formerly used in MBPagedDataList) and <a href="https://github.com/mrpmorris">Peter Morris (@mrpmorris on Github)</a> for demonstrating this with code that we forked in <a href="https://blazor-university.com/">Blazor University</a>, christening it the &quot;wig pig&quot; - head to Blazor University to see why.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p><a href="Articles/Installation.html">See the Installation article</a></p>
+<h2 id="components-services-and-utilities">Components, Services, and Utilities</h2>
+<p><a href="Material.Blazor/Components/Intro.md">See the Components/Services/Utilities documentation</a></p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/indexMD2.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

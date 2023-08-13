@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Workflows </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Workflows ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Articles/Workflows.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="A.Workflows">
+<h1 id="github-workflows">GitHub workflows</h1>
+
+<p>The Material.Blazor project makes use of GitHub workflows to automate a range of tasks:</p>
+<ul>
+<li>Deploy releases to nuget</li>
+<li>Deploy the demo page (<a href="https://material-blazor.com">https://material-blazor.com</a>) for every release</li>
+<li>Deploy a demo page (<a href="https://material-blazor.com">https://material-blazor.com</a>) for the most recent state of the project (i.e. the state the <code>main</code> branch)</li>
+<li>Perform basic sanity checks for pull requests</li>
+<li>Perform side-by-side comparison checks for pull requests against the current state of Material.Blazor</li>
+</ul>
+<h1 id="difference-between-official-demo-pages">Difference between official demo pages</h1>
+<p>There are two demo pages for Material.Blazor: <a href="https://material-blazor.com">https://material-blazor.com</a> and <a href="https://material-blazor.github.io/Material.Blazor.Current">https://material-blazor.github.io/Material.Blazor.Current</a>.
+<a href="https://material-blazor.com">https://material-blazor.com</a> reflects the state of the most recent release of Material.Blazor. Use this as a reference when designing your website.
+<a href="https://material-blazor.github.io/Material.Blazor.Current">https://material-blazor.github.io/Material.Blazor.Current</a> reflects the state of the main branch of the Material.Blazor repo. Its main purpose is to facilitate the development of the library.</p>
+<h1 id="side-by-side-comparisons">Side-by-side comparisons</h1>
+<p>One of the key principles behind Material.Blazor is correctness. Components should create the exact markup specified by the material components web project. To detect regressions, we perform side-by-side comparisons of new versions against the current version.</p>
+<p>We crawl all pages of the demo website for both forks and PRs and compare them against the most recent version of Material.Blazor.</p>
+<p>For forks, the workflow run will create a new issue with the summary of the comparison.
+For pull requests against the Material.Blazor repo, a comment will be added to the pull request.</p>
+<p><img src="https://user-images.githubusercontent.com/10850250/111618192-bd20b100-87ec-11eb-82e4-d8b6c772f2b9.png" alt="image"></p>
+<h1 id="ci-and-release-github-action-workflows">CI and Release GitHub Action workflows</h1>
+<p>These workflows are responsible for publishing three artifacts:</p>
+<ul>
+<li>A gh-pages branch</li>
+<li>The Material.Blazor NuGet package</li>
+<li>The Material.Blazor Side-by-side Comparison report</li>
+</ul>
+<p>The gh-pages branch is created in the repository of either Material.Blazor or Material.Blazor.Current;</p>
+<p>The NuGet package is published as a GitHub package (CI) or a NuGet.org package (Release).</p>
+<p>The Side by Side report is actually packaged as a GitHub artifact of the build.</p>
+<h3 id="wip-workflow">WIP Workflow</h3>
+<p>This workflow runs whenever a pull request is created, updated, or pushed.</p>
+<h4 id="forked-repository">Forked repository</h4>
+<p>Regardless of the trigger, the  three artifacts are published.</p>
+<p>The output of the WebSite and DocFx builds are combined and reside locally in the forked repository gh-pages branch.</p>
+<p>The NuGet package is identified as a CI build &amp; published in the forked repository GH Packages.</p>
+<p>The final steps of the build involve a comparison of the local gh-pages to the Material.Blazor.Current repository gh-pages. The artifact that is produced is a zip file containing the difference report. The ertifact is indeed a GH Actions artifact named Report.</p>
+<p>NOTE -- An issue exists when publishing the CI package to a forked repository in that the publish appears to work but the packages are not visible. For this reason (pending a service request response) the publish of the CI package is temporarily disabled.</p>
+<h4 id="material-blazormaterialblazor-repository">Material-Blazor\Material.Blazor repository</h4>
+<p>Regardless of the trigger, the gh-pages branch is not published in the repository.</p>
+<p>On a Push trigger the the Material.Blazor Nuget package identified as a CI build is built and then published to the Material.Blazor repository. Additionally, the gh-pages branch is created in the Material.Blazor.Current repository.</p>
+<p>It is up to a developer to have checked the publishing results of the gh-pages in the forked repository (or Material.Blazor.Current repository) prior to initiating a release workflow.</p>
+<h3 id="release-workflow">Release Workflow</h3>
+<h4 id="forked-repository-1">Forked repository</h4>
+<p>Upon creation of a tag no actions are performed in the multiple jobs. At the current time we see no reason to create releases in the forked repositories.</p>
+<h4 id="material-blazormaterialblazor-repository-1">Material-Blazor\Material.Blazor repository</h4>
+<p>Upon creation of a tag the first two artifacts are produced.</p>
+<p>The DocFx and WebSite build results are combined in the Material-Blazor\Material.Blazor\gh-pages branch.</p>
+<p>The Material.Blazor NuGet package is published to NuGet.org.</p>
+<p>The gh-pages branch is not required to be published to the Material.Blazor.Current repository by the release workflow as they will have been published by the CI build with the push request.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Articles/Workflows.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Demonstration </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Demonstration ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/Demonstration.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../../public/main.js'
+    import { init } from './../../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="A.Demonstration">
+<h1 id="demonstration-website">Demonstration website</h1>
+
+<p>We are not yet hosting a demonstration, but you can fork and download this project yourself. If you so so, set your default project to <code>BlazorMdc.Demo.WebServer</code>.</p>
+<h2 id="demonstration-from-local-build">Demonstration from local build</h2>
+<p>If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.</p>
+<p>Note that we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the <a href="https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier">Bundler Minifier</a> and <a href="https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler">Web Compiler</a> extensions.</p>
+<p>If you are experimenting with different versions of the Material Design Components you will need to build the BlazorMDC.MaterialComponents project. You need to install <code>libman</code> if you haven't already:</p>
+<pre><code class="lang-console">dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+</code></pre>
+<p>There are four implemented solution configurations:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Configuration</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Debug_WebAssembly</code></td>
+<td style="text-align: left;">This is a debug build. It defines two constants, DEBUG, and BlazorWebAssembly. It executes using WebAssembly.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Debug_Server</code></td>
+<td style="text-align: left;">Also a debug build, defines DEBUG and BlazorServer. It executes in the context of the web server and the the client being displayed through a SignalR connection.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Release_WebAssembly</code></td>
+<td style="text-align: left;">The same as <code>Debug_WebAssembly</code> but built as release and replacing the DEBUG constant with RELEASE.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Release_Server</code></td>
+<td style="text-align: left;">The same as <code>Debug_Server</code> but built as release and replacing the DEBUG constant with RELEASE.</td>
+</tr>
+</tbody>
+</table>
+<p>The home page of the demonstration application shows the execution environment as well as the build mode.</p>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/Demonstration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
