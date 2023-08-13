@@ -41,10 +41,11 @@ jobs:
     name: Allow build only on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor' && (github.event_name != 'push') && false
+    if: false && (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name != 'push')
     steps:
     - name: Nothing to see here
       run: echo ""
+
  # && (github.event_name == 'push')
   deployment-allowed-mb:
     name: Allow deployment on M-B/M.B
