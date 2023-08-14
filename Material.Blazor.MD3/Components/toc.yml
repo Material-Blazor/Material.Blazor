@@ -1,0 +1,17 @@
+﻿- name: Introduction to Material.Blazor Components
+  href: intro.md
+
+- name: Material.Blazor namespace
+  topicUid: Material.Blazor
+
+- name: Material.Blazor.Internal namespace
+  topicUid: Material.Blazor.Internal
+
+- name: MBCircularProgressIndicator
+  topicUid: C.MBCircularProgressIndicator
+
+- name: MBLinearProgressIndicator
+  topicUid: C.MBLinearProgressIndicator
+
+- name: MBSwitch
+  topicUid: C.MBSwitch

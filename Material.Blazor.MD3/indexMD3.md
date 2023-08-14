@@ -34,6 +34,19 @@ This docs site along with [our demonstration website](https://material-blazor.co
 
 <div style="text-align: right; font-style: italic;">Simon and Mark</div>
 
+## Notes about Material.Design.MD3
+The MD3 projects in Material.Blazor are a nascent effort to migrate Material.Blazor to Material Design 3 as
+implemented in Material Web (see https://github.com/material-components/material-web/tree/main) for details.
+MD3 is under active development by Google.
+
+Material.Blazor using MD3 is not expected to be a 'drop-in' replacement for Material.Blazor
+and will require application updates. It is not yet decided
+if Material.Blazor.MD3 a separate NuGet package or
+if it will replace the existing project.
+
+You can view progress on the github pages at 
+https://material-blazor.github.io/Material.Blazor.MD3.Current/.
+
 ## Background
 
 Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor. This is available at https://www.nuget.org/packages/Material.Blazor.

@@ -1,5 +1,5 @@
 - name: Articles
-  href: articles/
+  href: Material.Blazor/Articles/
 
 - name: Components, Services, and Utilities
   href: Material.Blazor/Components/

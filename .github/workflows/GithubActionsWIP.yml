@@ -46,12 +46,11 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
- # && (github.event_name == 'push')
   deployment-allowed-mb:
     name: Allow deployment on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor'
+    if: (github.repository == 'Material-Blazor/Material.Blazor') && (true || (github.event_name == 'push'))
     steps:
     - name: Nothing to see here
       run: echo ""
@@ -112,9 +111,6 @@ jobs:
 
     - name: Setup docfx
       run: |
-          md Articles
-          copy Material.Blazor\Articles\* Articles\
-          copy Material.Blazor\Articles\Images\* Articles\Images\
           copy Material.Blazor\docfxMD2.json docfx.json
           copy Material.Blazor\indexMD2.md index.md
           copy Material.Blazor\tocMD2.yml toc.yml
@@ -390,9 +386,6 @@ jobs:
 
     - name: Setup docfx
       run: |
-          md Articles
-          copy Material.Blazor.MD3\Articles\* Articles\
-          copy Material.Blazor.MD3\Articles\Images\* Articles\Images\
           copy Material.Blazor.MD3\docfxMD3.json docfx.json
           copy Material.Blazor.MD3\indexMD3.md index.md
           copy Material.Blazor.MD3\tocMD3.yml toc.yml
