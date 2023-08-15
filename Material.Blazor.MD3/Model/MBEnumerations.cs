@@ -71,50 +71,6 @@ public enum MBButtonStyle
 
 
 ///// <summary>
-///// Size for an <see cref="MBCircularProgress"/>.
-///// </summary>
-//public enum MBCircularProgressSize
-//{
-//    /// <summary>
-//    /// A small sized circular progress.
-//    /// </summary>
-//    Small,
-
-//    /// <summary>
-//    /// A medium sized circular progress.
-//    /// </summary>
-//    Medium,
-
-//    /// <summary>
-//    /// A large sized circular progress. This is the default.
-//    /// </summary>
-//    Large
-//}
-
-
-///// <summary>
-///// Type for an <see cref="MBCircularProgress"/>.
-///// </summary>
-//public enum MBCircularProgressType
-//{
-//    /// <summary>
-//    /// An indeterminate circular progress.
-//    /// </summary>
-//    Indeterminate,
-
-//    /// <summary>
-//    /// A determinate circular progress with a value from 0 to 1.
-//    /// </summary>
-//    Determinate,
-
-//    /// <summary>
-//    /// A closed circular progress.
-//    /// </summary>
-//    Closed
-//}
-
-
-///// <summary>
 ///// Determines the allowed selections in <see cref="MBDatePicker"/>
 ///// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="AllowAll"/></para>
 ///// </summary>
@@ -410,28 +366,6 @@ public enum MBItemValidation
 
 
 ///// <summary>
-///// Type for an <see cref="MBLinearProgress"/>.
-///// </summary>
-//public enum MBLinearProgressType
-//{
-//    /// <summary>
-//    /// An indeterminate linear progress.
-//    /// </summary>
-//    Indeterminate,
-
-//    /// <summary>
-//    /// A determinate linear progress with a value from 0 to 1.
-//    /// </summary>
-//    Determinate,
-
-//    /// <summary>
-//    /// A closed linear progress.
-//    /// </summary>
-//    Closed
-//}
-
-
-///// <summary>
 ///// Style for an <see cref="MBList{TItem}"/>. The <see cref="Outlined"/> variety borrows card markup matching <see cref="MBCardStyle.Outlined"/>.
 ///// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="None"/></para>
 ///// </summary>
@@ -535,6 +469,28 @@ public enum MBNumericInputMagnitude
     /// Basis points where the numeric input needs to multiply the value by 10 000 when displaying or editing (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
     /// </summary>
     BasisPoints = 4
+}
+
+
+/// <summary>
+/// Type for either <see cref="MBCircularProgress"/> or  <see cref="MBLinearProgress"/>.
+/// </summary>
+public enum MBProgressType
+{
+    /// <summary>
+    /// An indeterminate progress.
+    /// </summary>
+    Indeterminate,
+
+    /// <summary>
+    /// A determinate progress with a value from 0 to 1.
+    /// </summary>
+    Determinate,
+
+    /// <summary>
+    /// A closed progress.
+    /// </summary>
+    Closed
 }
 
 

@@ -16,7 +16,7 @@
 
     <Controls>
         <p>
-            <Material.Blazor.MD2.MBRadioButtonGroup @bind-Value="ProgressLevel"
+            <Material.Blazor.MD2.MBRadioButtonGroup @bind-Value="progressLevel"
                                                     Items="@ProgressLevels" />
         </p>
     </Controls>
@@ -28,18 +28,21 @@
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Indeterminate
                     </h2>
-                    <MBLinearProgressIndicator indeterminant style="margin: 6px;" />
+                    <MBLinearProgressIndicator ProgressType="MBProgressType.Indeterminate"
+                                               style="margin: 6px;" />
                     <br />
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Indeterminate, 4 color
                     </h2>
-                    <MBLinearProgressIndicator four-color indeterminate
+                    <MBLinearProgressIndicator ProgressType="MBProgressType.Indeterminate"
+                                               ProgressIsFourColor=true
                                                style="margin: 6px;" />
                     <br />
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Determinate
                     </h2>
-                    <MBLinearProgressIndicator value=@ProgressLevel
+                    <MBLinearProgressIndicator ProgressType="MBProgressType.Determinate"
+                                               ProgressLevel=@progressLevel
                                                style="margin: 6px;" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -57,10 +60,10 @@
         new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 1.00, Label = "100% Progress" }
     };
 
-    private double ProgressLevel { get; set; }
+    private double progressLevel { get; set; }
 
     public ProgressIndicatorLinear()
     {
-        ProgressLevel = ProgressLevels[0].SelectedValue;
+        progressLevel = ProgressLevels[0].SelectedValue;
     }
 }

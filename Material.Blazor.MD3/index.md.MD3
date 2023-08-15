@@ -44,8 +44,8 @@ and will require application updates. It is not yet decided
 if Material.Blazor.MD3 a separate NuGet package or
 if it will replace the existing project.
 
-You can view progress on the github pages at 
-https://material-blazor.github.io/Material.Blazor.MD3.Current/.
+You can view progress on the tracking issue at 
+https://github.com/Material-Blazor/Material.Blazor/issues/795
 
 ## Background
 
