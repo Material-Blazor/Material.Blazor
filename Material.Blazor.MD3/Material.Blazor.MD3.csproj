@@ -82,7 +82,9 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<None Remove="docfx.json.MD3" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
+		<Content Include="docfx.json.MD3" />
 	</ItemGroup>
 
 	<ItemGroup>

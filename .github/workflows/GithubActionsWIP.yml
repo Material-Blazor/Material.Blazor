@@ -37,11 +37,11 @@ jobs:
     - name: Nothing to see here
       run: echo ""
 
-  build-only-allowed-mb:
+  build-allowed-fork:
     name: Allow build only on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: false && (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name != 'push')
+    if: (github.repository != 'Material-Blazor/Material.Blazor')
     steps:
     - name: Nothing to see here
       run: echo ""
@@ -50,7 +50,7 @@ jobs:
     name: Allow deployment on M-B/M.B
     needs: [build-allowed]
     runs-on: ubuntu-latest
-    if: (github.repository == 'Material-Blazor/Material.Blazor') && (true || (github.event_name == 'push'))
+    if: (github.repository == 'Material-Blazor/Material.Blazor')
     steps:
     - name: Nothing to see here
       run: echo ""
@@ -111,9 +111,9 @@ jobs:
 
     - name: Setup docfx
       run: |
-          copy Material.Blazor\docfxMD2.json docfx.json
-          copy Material.Blazor\indexMD2.md index.md
-          copy Material.Blazor\tocMD2.yml toc.yml
+          copy Material.Blazor\docfx.json.MD2 docfx.json
+          copy Material.Blazor\index.md.MD2 index.md
+          copy Material.Blazor\toc.yml.MD2 toc.yml
           dotnet tool update -g docfx
 
     - name: Build Material.Blazor
@@ -156,7 +156,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build & Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false --framework net8.0
+      run: >
+        dotnet publish ${{env.projectWeb}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputWeb}}
+        -p:Version=${{env.ciVersion}}
+        -p:BlazorEnableCompression=false
+        --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -187,7 +193,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
+      run: >
+        dotnet pack ${{env.projectMB}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputMB}}
+        -p:IncludeSymbols=true
+        -p:SymbolPackageFormat=snupkg
+        -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -338,7 +350,7 @@ jobs:
 ############################################################################################################
   build-only-package:
     name: Build nuget package
-    needs: [test, build-only-allowed-mb]
+    needs: [test, build-allowed-fork]
     runs-on: windows-latest
 
     steps:
@@ -352,7 +364,12 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+      run: >
+        dotnet pack ${{env.projectMB}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputMB}}
+        -p:IncludeSymbols=true
+        -p:SymbolPackageFormat=snupkg
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -386,9 +403,9 @@ jobs:
 
     - name: Setup docfx
       run: |
-          copy Material.Blazor.MD3\docfxMD3.json docfx.json
-          copy Material.Blazor.MD3\indexMD3.md index.md
-          copy Material.Blazor.MD3\tocMD3.yml toc.yml
+          copy Material.Blazor.MD3\docfx.json.MD3 docfx.json
+          copy Material.Blazor.MD3\index.md.MD3 index.md
+          copy Material.Blazor.MD3\toc.yml.MD3 toc.yml
           dotnet tool update -g docfx
 
     - name: Build Material.Blazor
@@ -431,7 +448,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build  & Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.ciVersion}} -p:BlazorEnableCompression=false --framework net8.0
+      run: >
+        dotnet publish ${{env.projectWebMD3}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputWebMD3}}
+        -p:Version=${{env.ciVersion}}
+        -p:BlazorEnableCompression=false
+        --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -462,7 +485,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.ciVersion}}
+      run: >
+        dotnet pack ${{env.projectMBMD3}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputMBMD3}}
+        -p:IncludeSymbols=true
+        -p:SymbolPackageFormat=snupkg
+        -p:Version=${{env.ciVersion}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
@@ -519,7 +548,7 @@ jobs:
 ############################################################################################################
   build-only-package-MD3:
     name: Build nuget package MD3
-    needs: [test, build-only-allowed-mb]
+    needs: [test, build-allowed-fork]
     runs-on: windows-latest
 
     steps:
@@ -533,9 +562,12 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMBMD3}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+      run: >
+        dotnet pack ${{env.projectMBMD3}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputMBMD3}}
+        -p:IncludeSymbols=true
+        -p:SymbolPackageFormat=snupkg
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
-
-

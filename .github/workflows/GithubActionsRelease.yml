@@ -79,16 +79,10 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Setup docfx
-      run: dotnet tool update -g docfx
-
-    - name: Get proper toc in place
-      run: copy tocMD2.yml toc.yml
-
-    - name: Setup docfx
       run: |
-          copy Material.Blazor\docfxMD2.json docfx.json
-          copy Material.Blazor\indexMD2.md index.md
-          copy Material.Blazor\tocMD2.yml toc.yml
+          copy Material.Blazor\docfx.json.MD2 docfx.json
+          copy Material.Blazor\index.md.MD2 index.md
+          copy Material.Blazor\toc.yml.MD2 toc.yml
           dotnet tool update -g docfx
 
     - name: Build Material.Blazor
@@ -127,7 +121,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build and Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false --framework net8.0
+      run: >
+        dotnet publish ${{env.projectWeb}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputWeb}}
+        -p:Version=${{env.version}}
+        -p:BlazorEnableCompression=false
+        --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -202,7 +202,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
-      run: dotnet pack ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{env.version}}
+      run: >
+        dotnet pack ${{env.projectMB}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputMB}}
+        -p:IncludeSymbols=true
+        -p:SymbolPackageFormat=snupkg
+        -p:Version=${{env.version}}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
@@ -257,15 +263,15 @@ jobs:
 
     - name: Setup docfx
       run: |
-          copy Material.Blazor.MD3\docfxMD3.json docfx.json
-          copy Material.Blazor.MD3\indexMD3.md index.md
-          copy Material.Blazor.MD3\tocMD3.yml toc.yml
+          copy Material.Blazor.MD3\docfx.json.MD3 docfx.json
+          copy Material.Blazor.MD3\index.md.MD3 index.md
+          copy Material.Blazor.MD3\toc.yml.MD3 toc.yml
           dotnet tool update -g docfx
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}}
 
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
+    - name: Upload Documentation Artifacts 🔺
       uses: actions/upload-artifact@v3
       with:
         name: siteDocFxMD3
@@ -294,7 +300,13 @@ jobs:
         dotnet-quality: 'preview'
 
     - name: Build and Publish Website 🔧
-      run: dotnet publish ${{env.projectWebMD3}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWebMD3}} -p:Version=${{env.version}} -p:BlazorEnableCompression=false --framework net8.0
+      run: >
+        dotnet publish ${{env.projectWebMD3}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputWebMD3}}
+        -p:Version=${{env.version}}
+        -p:BlazorEnableCompression=false
+        --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
