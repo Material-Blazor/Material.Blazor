@@ -141,7 +141,11 @@
         var componentDirectory = "";
         if (ComponentDirectory.Length > 0)
         {
-            componentDirectory = "/" + ComponentDirectory;
+            componentDirectory = ComponentDirectory;
+        }
+        else
+        {
+            componentDirectory = ComponentName;
         }
 
         var baseURI = NavigationManager.BaseUri;
@@ -151,7 +155,7 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "Component Documentation",
-                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{ComponentName}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
                 });
 
             var apiSuffix = (!IsGeneric) ? "" : "-1";
@@ -169,7 +173,7 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "In Depth Documentation",
-                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{DetailedArticle}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{DetailedArticle}</a>"
+                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{componentDirectory}/MB{DetailedArticle}.html\" target=\"_blank\">MB{DetailedArticle}</a>"
                 });
         }
 
