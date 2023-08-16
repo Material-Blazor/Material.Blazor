@@ -19,6 +19,11 @@
             <Material.Blazor.MD2.MBRadioButtonGroup @bind-Value="progressLevel"
                                                     Items="@ProgressLevels" />
         </p>
+
+        <p>
+            <MBSwitch @bind-Value="@showProgress" />
+            <span class="mdc-typography--body1" style="margin-left: 24px;">Show Progress Indicators (Not yet implemented)</span>
+        </p>
     </Controls>
 
     <PageContent>
@@ -61,6 +66,8 @@
     };
 
     private double progressLevel { get; set; }
+
+    private bool showProgress { get; set; } = true;
 
     public ProgressIndicatorLinear()
     {
