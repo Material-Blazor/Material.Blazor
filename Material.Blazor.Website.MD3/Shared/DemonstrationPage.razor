@@ -74,6 +74,8 @@
 
 
 @code {
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
     [Parameter] public string ComponentDirectory { get; set; } = "";
 
     [Parameter] public string ComponentName { get; set; }
@@ -142,16 +144,18 @@
             componentDirectory = "/" + ComponentDirectory;
         }
 
+        var baseURI = NavigationManager.BaseUri;
+
         if (!string.IsNullOrWhiteSpace(ComponentName))
         {
             Items.Add(new ReferenceItem
                 {
                     Title = "Component Documentation",
-                    Content = $"<a href=\"https://../docs/Material.Blazor.MD3/Components/{ComponentName}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{ComponentName}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
                 });
 
             var apiSuffix = (!IsGeneric) ? "" : "-1";
-            var apiText = $"<a href=\"https://../docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
+            var apiText = $"<a href=\"{baseURI}docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
 
             Items.Add(new ReferenceItem
                 {
@@ -165,7 +169,7 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "In Depth Documentation",
-                    Content = $"<a href=\"https://../docs/Material.Blazor.MD3/Components/{DetailedArticle}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{DetailedArticle}</a>"
+                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{DetailedArticle}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{DetailedArticle}</a>"
                 });
         }
 

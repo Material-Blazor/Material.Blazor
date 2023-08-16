@@ -67,6 +67,8 @@
 
 
 @code {
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
     [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
 
     [Parameter] public string ComponentName { get; set; }
@@ -112,7 +114,11 @@
 
     private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
 
-    private bool NeedsTable => ((ComponentName != null) || (DetailedArticle != null) || (DemoComponent != null));
+    private bool NeedsTable =>
+        ((ComponentName != null) ||
+         (DetailedArticle != null) ||
+         (DemoComponent != null) ||
+         (MaterialIOPage != null));
 
 
     protected override void OnInitialized()
@@ -124,16 +130,18 @@
             return;
         }
 
+        var baseURI = NavigationManager.BaseUri;
+
         if (ComponentName != null)
         {
             Items.Add(new ReferenceItem
                 {
                     Title = "Component Documentation",
-                    Content = $"<a href=\"https://../docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                    Content = $"<a href=\"{baseURI}docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
                 });
 
             var apiSuffix = (!IsGeneric) ? "" : "-1";
-            var apiText = $"<a href=\"https://../docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
+            var apiText = $"<a href=\"{baseURI}docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
 
             Items.Add(new ReferenceItem
                 {
@@ -147,7 +155,7 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "In Depth Documentation",
-                    Content = $"<a href=\"https://../docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+                    Content = $"<a href=\"{baseURI}docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
                 });
         }
 
