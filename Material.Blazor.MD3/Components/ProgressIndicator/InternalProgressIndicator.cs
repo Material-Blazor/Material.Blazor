@@ -1,12 +1,6 @@
-﻿using Material.Blazor.Internal;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal;
 
@@ -15,10 +9,19 @@ public abstract class InternalProgressIndicator : ComponentFoundation
     #region members
 
     /// <summary>
-    /// The progress indicator type.
+    /// The progress indicator 4 color option for indeterminate progress.
     /// </summary>
     [Parameter] public bool ProgressIsFourColor { get; set; } = false;
+
+
+    /// <summary>
+    /// The progress indicator level for determinate progress.
+    /// </summary>
     [Parameter] public double ProgressLevel { get; set; } = 0;
+
+    /// <summary>
+    /// The progress indicator type.
+    /// </summary>
     [Parameter] public MBProgressType ProgressType { get; set; } = MBProgressType.Determinate;
 
 

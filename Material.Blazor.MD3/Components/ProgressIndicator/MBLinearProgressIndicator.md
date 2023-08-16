@@ -8,13 +8,8 @@ title: MBLinearProgressIndicator
 
 A simple linear progress indicator
 [Material Progress Linear](https://material-web.dev/components/linear-progress/)
-with either indeterminant or determinant characteristics.
+with either indeterminate or determinate characteristics.
 
-## Parameters
-
-- ProgressIsFourColor: boolean; Indeterminate style uses this value; Default is false
-- ProgressType: Determinate, Indeterminate,or Closed styles; Default is Determinate
-- ProgressValue: Determinate style uses this value; Default is 0.0
 - Applies [density subsystem](xref:A.Density).
 
 ## Notes

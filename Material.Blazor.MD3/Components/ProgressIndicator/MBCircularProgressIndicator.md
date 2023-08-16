@@ -9,12 +9,6 @@ title: MBCircularProgressIndicator
 A simple circular progress indicator 
 [Material Progress Circular](https://material-web.dev/components/circular-progress/)
 with either indeterminate or determinate characteristics.
-
-## Parameters
-
-- ProgressIsFourColor: boolean; Indeterminate style uses this value; Default is false
-- ProgressType: Determinate, Indeterminate,or Closed styles; Default is Determinate
-- ProgressValue: Determinate style uses this value; Default is 0.0
 - Applies [density subsystem](xref:A.Density).
 
 ## Notes
