@@ -1,4 +1,4 @@
-﻿@page "/progressindicatorcircular"
+﻿@page "/circularprogressindicator"
 
 @namespace Material.Blazor.Website.Pages
 
@@ -8,7 +8,7 @@
                    DemoComponent="@this"
                    MaterialDesignPage="circular-progress"
                    RequiresDisableSelection="false"
-                   Title="Progress Indicator (Circular) Demonstration">
+                   Title="Circular Progress Indicator Demonstration">
     <Description>
         <p>
             Circular progress indicators.
@@ -69,7 +69,7 @@
 
     private bool showProgress { get; set; } = true;
 
-    public ProgressIndicatorCircular()
+    public CircularProgressIndicator()
     {
         progressLevel = ProgressLevels[0].SelectedValue;
     }

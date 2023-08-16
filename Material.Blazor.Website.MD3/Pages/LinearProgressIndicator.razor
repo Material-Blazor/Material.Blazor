@@ -1,4 +1,4 @@
-﻿@page "/progressindicatorlinear"
+﻿@page "/linearprogressindicator"
 
 @namespace Material.Blazor.Website.Pages
 
@@ -8,7 +8,7 @@
                    DemoComponent="@this"
                    MaterialDesignPage="linear-progress"
                    RequiresDisableSelection="false"
-                   Title="Progress Indicator (Linear) Demonstration">
+                   Title="Linear Progress Indicator Demonstration">
     <Description>
         <p>
             Linear progress indicators.
@@ -70,7 +70,7 @@
 
     private bool showProgress { get; set; } = true;
 
-    public ProgressIndicatorLinear()
+    public LinearProgressIndicator()
     {
         progressLevel = ProgressLevels[0].SelectedValue;
     }

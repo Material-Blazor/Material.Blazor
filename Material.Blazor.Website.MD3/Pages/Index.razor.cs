@@ -42,6 +42,6 @@ public partial class Index
     private void NavigateToComponent()
     {
         //ToDo Make this reference the first implemented component
-        NavigationManager.NavigateTo("icon");
+        NavigationManager.NavigateTo("circularprogressindicator");
     }
 }

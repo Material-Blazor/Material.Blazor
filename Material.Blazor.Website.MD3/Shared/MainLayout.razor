@@ -13,12 +13,12 @@
 
     <nav class="mdc-list">
         <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
+        <MBListItem LeadingIcon="access_time" Label="Circular Progress Indicator" @onclick="@(() => ListItemClickHandler("circularprogressindicator"))" />
         <MBListItem LeadingIcon="touch_app" Label="Icon" @onclick="@(() => ListItemClickHandler("icon"))" />
+        <MBListItem LeadingIcon="access_time" Label="Linear Progress Indicator" @onclick="@(() => ListItemClickHandler("linearprogressindicator"))" />
         <MBListItem LeadingIcon="money" Label="Numeric Decimal Field" @onclick="@(() => ListItemClickHandler("numericdecimalfield"))" />
         <MBListItem LeadingIcon="money" Label="Numeric Double Field" @onclick="@(() => ListItemClickHandler("numericdoublefield"))" />
         <MBListItem LeadingIcon="money" Label="Numeric Int Field" @onclick="@(() => ListItemClickHandler("numericintfield"))" />
-        <MBListItem LeadingIcon="access_time" Label="Progress Indicator (Circular)" @onclick="@(() => ListItemClickHandler("progressindicatorcircular"))" />
-        <MBListItem LeadingIcon="access_time" Label="Progress Indicator (Linear)" @onclick="@(() => ListItemClickHandler("progressindicatorlinear"))" />
         <MBListItem LeadingIcon="switch_left" Label="Switch" @onclick="@(() => ListItemClickHandler("switch"))" />
         <MBListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
     </nav>
