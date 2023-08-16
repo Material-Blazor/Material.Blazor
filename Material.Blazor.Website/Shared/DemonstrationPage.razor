@@ -129,11 +129,11 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "Component Documentation",
-                    Content = $"<a href=\"https://material-blazor.com/docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                    Content = $"<a href=\"https://../docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
                 });
 
             var apiSuffix = (!IsGeneric) ? "" : "-1";
-            var apiText = $"<a href=\"https://material-blazor.com/docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
+            var apiText = $"<a href=\"https://../docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
 
             Items.Add(new ReferenceItem
                 {
@@ -147,7 +147,7 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "In Depth Documentation",
-                    Content = $"<a href=\"https://material-blazor.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+                    Content = $"<a href=\"https://../docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
                 });
         }
 

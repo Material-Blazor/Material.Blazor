@@ -74,6 +74,7 @@
 
 
 @code {
+    [Parameter] public string ComponentDirectory { get; set; } = "";
 
     [Parameter] public string ComponentName { get; set; }
 
@@ -119,7 +120,11 @@
 
     private List<ReferenceItem> Items { get; set; }
 
-    private bool NeedsTable => ((ComponentName != null) || (DetailedArticle != null) || (DemoComponent != null));
+    private bool NeedsTable => 
+        (  (ComponentName != null) 
+        || (DetailedArticle != null) 
+        || (MaterialDesignPage != null)
+        || (DemoComponent != null));
 
 
     protected override void OnInitialized()
@@ -131,16 +136,22 @@
             return;
         }
 
+        var componentDirectory = "";
+        if (ComponentDirectory.Length > 0)
+        {
+            componentDirectory = "/" + ComponentDirectory;
+        }
+
         if (!string.IsNullOrWhiteSpace(ComponentName))
         {
             Items.Add(new ReferenceItem
                 {
                     Title = "Component Documentation",
-                    Content = $"<a href=\"https://material-blazor.com/docs/Material.Blazor/Components/{ComponentName}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                    Content = $"<a href=\"https://../docs/Material.Blazor.MD3/Components/{ComponentName}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
                 });
 
             var apiSuffix = (!IsGeneric) ? "" : "-1";
-            var apiText = $"<a href=\"https://material-blazor.com/docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
+            var apiText = $"<a href=\"https://../docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
 
             Items.Add(new ReferenceItem
                 {
@@ -154,7 +165,7 @@
             Items.Add(new ReferenceItem
                 {
                     Title = "In Depth Documentation",
-                    Content = $"<a href=\"https://material-blazor.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+                    Content = $"<a href=\"https://../docs/Material.Blazor.MD3/Components/{DetailedArticle}{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{DetailedArticle}</a>"
                 });
         }
 
