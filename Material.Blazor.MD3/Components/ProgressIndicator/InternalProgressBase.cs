@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Material.Blazor.Internal;
 
-public abstract class InternalProgressIndicator : ComponentFoundation
+public abstract class InternalProgressBase : ComponentFoundation
 {
     #region members
 

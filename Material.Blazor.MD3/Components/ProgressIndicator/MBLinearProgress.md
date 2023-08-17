@@ -1,8 +1,8 @@
 ﻿---
-uid: C.MBLinearProgressIndicator
-title: MBLinearProgressIndicator
+uid: C.MBLinearProgress
+title: MBLinearProgress
 ---
-# MBLinearProgressIndicator
+# MBLinearProgress
 
 ## Summary
 

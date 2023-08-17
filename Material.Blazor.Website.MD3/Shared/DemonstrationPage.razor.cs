@@ -9,7 +9,7 @@ namespace Material.Blazor.Website.Shared
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Parameter] public string ComponentDirectory { get; set; } = "";
-        [Parameter] public string ComponentName { get; set; }
+        [Parameter] public string ComponentAndPageName { get; set; }
         [Parameter] public RenderFragment Controls { get; set; }
         [Parameter] public RenderFragment Description { get; set; }
         [Parameter] public string DetailedArticle { get; set; }
@@ -18,6 +18,7 @@ namespace Material.Blazor.Website.Shared
         [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
         [Parameter] public RenderFragment PageContent { get; set; }
         [Parameter] public bool RequiresDisableSelection { get; set; } = false;
+        [Parameter] public bool SuppressComponentDocumentation { get; set; } = false;
         [Parameter] public string Title { get; set; }
 
 
@@ -43,7 +44,7 @@ namespace Material.Blazor.Website.Shared
         private List<ReferenceItem> Items { get; set; }
 
         private bool NeedsTable =>
-            ((ComponentName != null)
+            (  (ComponentAndPageName != null)
             || (DetailedArticle != null)
             || (MaterialDesignPage != null));
 
@@ -64,32 +65,26 @@ namespace Material.Blazor.Website.Shared
             }
             else
             {
-                componentDirectory = ComponentName;
+                componentDirectory = ComponentAndPageName;
             }
 
             var baseURI = NavigationManager.BaseUri;
 
-            if (!string.IsNullOrWhiteSpace(ComponentName))
+            if ((!string.IsNullOrWhiteSpace(ComponentAndPageName)) && !SuppressComponentDocumentation)
             {
                 Items.Add(new ReferenceItem
                 {
                     Title = "Component Documentation",
-                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{componentDirectory}/MB{ComponentName}.html\" target=\"_blank\">MB{ComponentName} Component Article</a>"
+                    Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{componentDirectory}/MB{ComponentAndPageName}.html\" target=\"_blank\">MB{ComponentAndPageName} Component Article</a>"
                 });
 
                 var apiSuffix = (!IsGeneric) ? "" : "-1";
-                var apiText = $"<a href=\"{baseURI}docs/api/Material.Blazor.MB{ComponentName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentName} API docs</a>";
+                var apiText = $"<a href=\"{baseURI}docs/api/Material.Blazor.MB{ComponentAndPageName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentAndPageName} API docs</a>";
 
                 Items.Add(new ReferenceItem
                 {
                     Title = "API Documentation",
                     Content = apiText
-                });
-
-                Items.Add(new ReferenceItem
-                {
-                    Title = "Source for This Page",
-                    Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/tree/main/Material.Blazor.Website.MD3/Pages/{ComponentName}.razor\" target=\"_blank\">GitHub source page link</a>"
                 });
             }
 
@@ -99,6 +94,15 @@ namespace Material.Blazor.Website.Shared
                 {
                     Title = "In Depth Documentation",
                     Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Articles/MB{DetailedArticle}.html\" target=\"_blank\">MB{DetailedArticle}</a>"
+                });
+            }
+
+            if (!string.IsNullOrWhiteSpace(ComponentAndPageName))
+            {
+                Items.Add(new ReferenceItem
+                {
+                    Title = "Source for This Page",
+                    Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/tree/main/Material.Blazor.Website.MD3/Pages/{ComponentAndPageName}.razor\" target=\"_blank\">GitHub source page link</a>"
                 });
             }
 

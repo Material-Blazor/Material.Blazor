@@ -1,13 +1,13 @@
-﻿@page "/linearprogressindicator"
+﻿@page "/linearprogress"
 
 @namespace Material.Blazor.Website.Pages
 
 
-<DemonstrationPage ComponentName="LinearProgressIndicator"
+<DemonstrationPage ComponentAndPageName="LinearProgress"
                    ComponentDirectory="ProgressIndicator"
                    MaterialDesignPage="linear-progress"
                    RequiresDisableSelection="false"
-                   Title="Linear Progress Indicator Demonstration">
+                   Title="Linear Progress Demonstration">
     <Description>
         <p>
             Linear progress indicators.
@@ -33,22 +33,22 @@
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Indeterminate
                     </h2>
-                    <MBLinearProgressIndicator ProgressType="MBProgressType.Indeterminate"
-                                               style="margin: 6px;" />
+                    <MBLinearProgress ProgressType="MBProgressType.Indeterminate"
+                                      style="margin: 6px;" />
                     <br />
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Indeterminate, 4 color
                     </h2>
-                    <MBLinearProgressIndicator ProgressType="MBProgressType.Indeterminate"
-                                               ProgressIsFourColor=true
-                                               style="margin: 6px;" />
+                    <MBLinearProgress ProgressType="MBProgressType.Indeterminate"
+                                      ProgressIsFourColor=true
+                                      style="margin: 6px;" />
                     <br />
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Determinate
                     </h2>
-                    <MBLinearProgressIndicator ProgressType="MBProgressType.Determinate"
-                                               ProgressLevel=@progressLevel
-                                               style="margin: 6px;" />
+                    <MBLinearProgress ProgressType="MBProgressType.Determinate"
+                                      ProgressLevel=@progressLevel
+                                      style="margin: 6px;" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -69,7 +69,7 @@
 
     private bool showProgress { get; set; } = true;
 
-    public LinearProgressIndicator()
+    public LinearProgress()
     {
         progressLevel = ProgressLevels[0].SelectedValue;
     }

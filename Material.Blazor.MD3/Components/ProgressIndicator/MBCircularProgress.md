@@ -1,8 +1,8 @@
 ﻿---
-uid: C.MBCircularProgressIndicator
-title: MBCircularProgressIndicator
+uid: C.MBCircularProgress
+title: MBCircularProgress
 ---
-# MBCircularProgressIndicator
+# MBCircularProgress
 
 ## Summary
 

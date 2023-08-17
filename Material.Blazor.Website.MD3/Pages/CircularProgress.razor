@@ -1,13 +1,13 @@
-﻿@page "/circularprogressindicator"
+﻿@page "/circularprogress"
 
 @namespace Material.Blazor.Website.Pages
 
 
-<DemonstrationPage ComponentName="CircularProgressIndicator"
+<DemonstrationPage ComponentAndPageName="CircularProgress"
                    ComponentDirectory="ProgressIndicator"
                    MaterialDesignPage="circular-progress"
                    RequiresDisableSelection="false"
-                   Title="Circular Progress Indicator Demonstration">
+                   Title="Circular Progress Demonstration">
     <Description>
         <p>
             Circular progress indicators.
@@ -33,22 +33,22 @@
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Indeterminate
                     </h2>
-                    <MBCircularProgressIndicator ProgressType="MBProgressType.Indeterminate"
-                                                 style="margin: 6px;" />
+                    <MBCircularProgress ProgressType="MBProgressType.Indeterminate"
+                                        style="margin: 6px;" />
                     <br />
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Indeterminate, 4 color
                     </h2>
-                    <MBCircularProgressIndicator ProgressType="MBProgressType.Indeterminate"
-                                                 ProgressIsFourColor=true
-                                                 style="margin: 6px;" />
+                    <MBCircularProgress ProgressType="MBProgressType.Indeterminate"
+                                        ProgressIsFourColor=true
+                                        style="margin: 6px;" />
                     <br />
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Determinate
                     </h2>
-                    <MBCircularProgressIndicator ProgressType="MBProgressType.Determinate"
-                                                 ProgressLevel=@progressLevel
-                                                 style="margin: 6px;" />
+                    <MBCircularProgress ProgressType="MBProgressType.Determinate"
+                                        ProgressLevel=@progressLevel
+                                        style="margin: 6px;" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -68,7 +68,7 @@
 
     private bool showProgress { get; set; } = true;
 
-    public CircularProgressIndicator()
+    public CircularProgress()
     {
         progressLevel = ProgressLevels[0].SelectedValue;
     }
