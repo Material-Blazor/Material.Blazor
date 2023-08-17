@@ -45,19 +45,3 @@
         </div>
     </main>
 </div>
-
-
-@code {
-    private MBDrawer Drawer { get; set; }
-
-    private void ListItemClickHandler(string NavigationReference)
-    {
-        Drawer.NotifyNavigation();
-        NavigationService.NavigateTo(NavigationReference);
-    }
-
-    private void SideBarToggle()
-    {
-        Drawer.Toggle();
-    }
-}
