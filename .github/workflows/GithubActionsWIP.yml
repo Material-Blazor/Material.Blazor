@@ -67,7 +67,7 @@ jobs:
 
     steps:
     - id: setVersion
-      run: echo "version=4.0.0-preview.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      run: echo "version=5.0.0-preview.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################
