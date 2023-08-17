@@ -11,6 +11,8 @@ Released 2023-09-??
 
 **Updates**
 - Dependabot updates, migrate all projects to .Net 8 RC 1, migrate @material/web to 1.0.0-pre.14
+- Our use of the MOQ library has been deprecated. The replacement library is NSubstitute. The pattern for adding additional tests
+remains unchanged.
 
 **New components**
 
