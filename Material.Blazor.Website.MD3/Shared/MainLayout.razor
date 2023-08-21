@@ -13,6 +13,7 @@
 
     <nav class="mdc-list">
         <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
+        <MBListItem LeadingIcon="check_box" Label="Checkbox" @onclick="@(() => ListItemClickHandler("checkbox"))" />
         <MBListItem LeadingIcon="access_time" Label="Circular Progress Indicator" @onclick="@(() => ListItemClickHandler("circularprogress"))" />
         <MBListItem LeadingIcon="touch_app" Label="Icon" @onclick="@(() => ListItemClickHandler("icon"))" />
         <MBListItem LeadingIcon="access_time" Label="Linear Progress Indicator" @onclick="@(() => ListItemClickHandler("linearprogress"))" />

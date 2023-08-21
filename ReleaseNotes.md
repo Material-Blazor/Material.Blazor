@@ -15,6 +15,8 @@ Released 2023-09-??
 remains unchanged.
 
 **New components**
+- Added preview of Material Design 3 components:
+	- MBCheckbox
 
 **Breaking Changes**
 

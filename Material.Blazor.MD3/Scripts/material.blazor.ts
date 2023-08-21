@@ -1,6 +1,7 @@
 ﻿/*
 MD3 JS
 */
+import '@material/web/checkbox/checkbox.js';
 import '@material/web/icon/icon.js';
 import '@material/web/progress/circular-progress.js';
 import '@material/web/progress/linear-progress.js';
