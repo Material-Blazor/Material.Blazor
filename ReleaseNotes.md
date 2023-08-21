@@ -16,7 +16,8 @@ remains unchanged.
 
 **New components**
 - Added preview of Material Design 3 components:
-	- MBCheckbox
+	- MBCheckbox (with PLUS label parameters)
+	- MBSwitch (added PLUS label parameters)
 
 **Breaking Changes**
 

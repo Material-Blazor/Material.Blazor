@@ -50,6 +50,33 @@
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two-Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two-way binding.
+                    </h3>
+
+                    <p>
+                        <MBCheckbox @bind-Value="@TwoWayBindingState"
+                        @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
+                                    Icons="true" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@TwoWayBindingState"
+                        @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))" />
+                    </p>
+                    <p>
+                        TwoWayBindingState: @TwoWayBindingState
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
@@ -67,6 +94,7 @@
     private bool CheckboxState1 { get; set; }
     private bool CheckboxState2 { get; set; }
     private bool CheckboxState3 { get; set; } = true;
+    private bool TwoWayBindingState { get; set; }
 
 
     private void ComponentValueChanged(bool value, string componentName)

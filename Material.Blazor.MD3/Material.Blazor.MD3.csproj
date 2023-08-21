@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
 	<ItemGroup>

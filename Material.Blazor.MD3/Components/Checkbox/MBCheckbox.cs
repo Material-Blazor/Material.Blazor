@@ -33,13 +33,6 @@ public sealed class MBCheckbox : InputComponent<bool>
     /// </summary>
     [Parameter] public string LabelPLUS { get; set; }
 
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-    }
-
-
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
@@ -74,7 +67,7 @@ public sealed class MBCheckbox : InputComponent<bool>
 
         if (Value)
         {
-            builder.AddAttribute(7, "selected");
+            builder.AddAttribute(7, "checked");
         }
 
         if (IsIndeterminate)

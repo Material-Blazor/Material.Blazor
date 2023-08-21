@@ -24,32 +24,27 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Simple switch. Notice that density only affects the halo when selecting a switch.
+                        Simple switch (Labels are PLUS additions). Notice that density only affects the halo when selecting a switch.
                     </h3>
 
-                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
-                        <MBSwitch @bind-Value="@SwitchState1"
-                                  @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
-                                  class="supplied-test-class"
-                                  id="supplied-test-id" />
-                        <span class="mdc-typography--body1" style="margin-left: 24px;">no icons</span>
-                    </p>
-                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
-                        <MBSwitch @bind-Value="@SwitchState2"
-                                  @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
-                                  Icons="true" />
-                        <span class="mdc-typography--body1" style="margin-left: 24px;">icons</span>
-                    </p>
-                    <p style="display: flex; flex-flow: row nowrap; align-items: center;">
-                        <MBSwitch @bind-Value="@SwitchState3"
-                                  @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
-                                  Icons="true" ShowOnlySelectedIcon="true" />
-                        <span class="mdc-typography--body1" style="margin-left: 24px;">selected icon only</span>
-                    </p>
+                    <MBSwitch @bind-Value="@SwitchState1"
+                    @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
+                              class="supplied-test-class"
+                              id="supplied-test-id"
+                              LabelPLUS="no icons" />
+
+                    <MBSwitch @bind-Value="@SwitchState2"
+                    @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
+                              Icons="true"
+                              LabelPLUS="icons" />
+
+                    <MBSwitch @bind-Value="@SwitchState3"
+                    @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
+                              Icons="true" ShowOnlySelectedIcon="true"
+                              LabelPLUS="selected icon only" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
-
 
         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
@@ -67,9 +62,12 @@
                                   @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))" />
                     </p>
                     <p>
-                        <MBSwitch @bind-Value="@TwoWayBindingState"
-                                  @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
-                                  Icons="true" />
+                        <MBCheckbox @bind-Value="@TwoWayBindingState"
+                                    @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
+                                    Icons="true" />
+                    </p>
+                    <p>
+                        TwoWayBindingState: @TwoWayBindingState
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -77,48 +75,48 @@
 
 
         @*<div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Switch Density
-                    </h2>
+        <Material.Blazor.MD2.MBCard AutoStyled="true">
+        <Primary>
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        Switch Density
+        </h2>
 
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        <strong>Seems to be deprecated as of Material Components Web v12.0.0.</strong> Shows density subsystem from default to minus 5. Notice that density only affects the halo when selecting a switch.
-                    </h3>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        <strong>Seems to be deprecated as of Material Components Web v12.0.0.</strong> Shows density subsystem from default to minus 5. Notice that density only affects the halo when selecting a switch.
+        </h3>
 
-                    <p>
-                        <MBSwitch @bind-Value="@densityDefault"
-                                  Density="@MBDensity.Default"
-                                  Label="Default Density" />
-                    </p>
-                    <p>
-                        <MBSwitch @bind-Value="@densityMinus1"
-                                  Density="@MBDensity.Minus1"
-                                  Label="Density Minus 1" />
-                    </p>
-                    <p>
-                        <MBSwitch @bind-Value="@densityMinus2"
-                                  Density="@MBDensity.Minus2"
-                                  Label="Density Minus 2" />
-                    </p>
-                    <p>
-                        <MBSwitch @bind-Value="@densityMinus3"
-                                  Density="@MBDensity.Minus3"
-                                  Label="Density Minus 3" />
-                    </p>
-                    <p>
-                        <MBSwitch @bind-Value="@densityMinus4"
-                                  Density="@MBDensity.Minus4"
-                                  Label="Density Minus 4" />
-                    </p>
-                    <p>
-                        <MBSwitch @bind-Value="@densityMinus5"
-                                  Density="@MBDensity.Minus5"
-                                  Label="Density Minus 5" />
-                    </p>
-                </Primary>
-            </Material.Blazor.MD2.MBCard>
+        <p>
+        <MBSwitch @bind-Value="@densityDefault"
+        Density="@MBDensity.Default"
+        Label="Default Density" />
+        </p>
+        <p>
+        <MBSwitch @bind-Value="@densityMinus1"
+        Density="@MBDensity.Minus1"
+        Label="Density Minus 1" />
+        </p>
+        <p>
+        <MBSwitch @bind-Value="@densityMinus2"
+        Density="@MBDensity.Minus2"
+        Label="Density Minus 2" />
+        </p>
+        <p>
+        <MBSwitch @bind-Value="@densityMinus3"
+        Density="@MBDensity.Minus3"
+        Label="Density Minus 3" />
+        </p>
+        <p>
+        <MBSwitch @bind-Value="@densityMinus4"
+        Density="@MBDensity.Minus4"
+        Label="Density Minus 4" />
+        </p>
+        <p>
+        <MBSwitch @bind-Value="@densityMinus5"
+        Density="@MBDensity.Minus5"
+        Label="Density Minus 5" />
+        </p>
+        </Primary>
+        </Material.Blazor.MD2.MBCard>
         </div>*@
     </PageContent>
 </DemonstrationPage>
@@ -138,14 +136,14 @@
     private bool SwitchState2 { get; set; }
     private bool SwitchState3 { get; set; } = true;
     private bool TwoWayBindingState { get; set; }
-    
-    
+
+
     private void ComponentValueChanged(bool value, string componentName)
     {
         ToastService.ShowToast(heading: $"{componentName} Clicked", message: $"Two way binding Value: {value}", level: MBToastLevel.Success, showIcon: false);
     }
 
-    
+
     private void ButtonClick(string notification)
     {
         ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);

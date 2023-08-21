@@ -17,51 +17,78 @@ public sealed class MBSwitch : InputComponent<bool>
     /// </summary>
     [Parameter] public bool? Icons { get; set; }
 
-
     /// <summary>
     /// Determines shows icons only in the selected state.
     /// </summary>
     [Parameter] public bool? ShowOnlySelectedIcon { get; set; }
 
-    
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
+    /// <summary>
+    /// Specifies the label location.
+    /// </summary>
+    [Parameter] public bool LabelLocationIsRightPLUS { get; set; } = true;
 
-        //ConditionalCssClasses
-        //    .AddIf("mdc-switch--unselected", () => !ComponentValue)
-        //    .AddIf("mdc-switch--selected", () => ComponentValue);
-    }
-
+    /// <summary>
+    /// Provides a label for the checkbox.
+    /// </summary>
+    [Parameter] public string LabelPLUS { get; set; }
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
 
-        builder.OpenElement(0, "md-switch");
+        if (!string.IsNullOrWhiteSpace(LabelPLUS))
         {
-            if (attributesToSplat.Any())
-            {
-                builder.AddMultipleAttributes(1, attributesToSplat);
-            }
+            builder.OpenElement(0, "p");
+            builder.AddAttribute(1, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
 
-            if (AppliedDisabled)
+            if (!LabelLocationIsRightPLUS)
             {
-                builder.AddAttribute(2, "disabled");
+                var labelSpan =
+                    "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
+                    + LabelPLUS
+                    + "</Span>";
+                builder.AddMarkupContent(2, "\r\n");
+                builder.AddMarkupContent(3, labelSpan);
             }
-
-            builder.AddAttribute(3, "class", @class);
-            builder.AddAttribute(4, "style", style);
-            builder.AddAttribute(5, "id", id);
-            builder.AddAttribute(6, "selected", BindConverter.FormatValue(Value));
-            builder.AddAttribute(7, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClick));
-            builder.AddAttribute(8, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
-            builder.AddAttribute(9, "showOnlySelectedIcon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
         }
-        builder.CloseElement();
-    }
 
+        builder.OpenElement(4, "md-switch");
+
+        if (attributesToSplat.Any())
+        {
+            builder.AddMultipleAttributes(5, attributesToSplat);
+        }
+
+        if (AppliedDisabled)
+        {
+            builder.AddAttribute(6, "disabled");
+        }
+
+        builder.AddAttribute(7, "class", @class);
+        builder.AddAttribute(8, "style", style);
+        builder.AddAttribute(9, "id", id);
+        builder.AddAttribute(10, "selected", BindConverter.FormatValue(Value));
+        builder.AddAttribute(11, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClick));
+        builder.AddAttribute(8, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
+        builder.AddAttribute(9, "showOnlySelectedIcon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
+
+        builder.CloseElement();
+
+        if (!string.IsNullOrWhiteSpace(LabelPLUS))
+        {
+            if (LabelLocationIsRightPLUS)
+            {
+                var labelSpan =
+                    "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
+                    + LabelPLUS
+                    + "</Span>";
+                builder.AddMarkupContent(13, "\r\n");
+                builder.AddMarkupContent(14, labelSpan);
+            }
+
+            builder.CloseElement();
+        }
+    }
 
     private async Task OnClick()
     {
