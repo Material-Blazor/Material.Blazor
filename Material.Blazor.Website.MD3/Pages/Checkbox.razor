@@ -29,23 +29,22 @@
 
                     <MBCheckbox @bind-Value="@CheckboxState1"
                                 @bind-Value:after="@(() => ComponentValueChanged(CheckboxState1, "Checkbox 1"))"
-                                LabelPLUS="checkbox" />
+                                TrailingLabelPLUS="checkbox" />
 
                     <MBCheckbox @bind-Value="@CheckboxState2"
                     @bind-Value:after="@(() => ComponentValueChanged(CheckboxState2, "Checkbox 2"))"
                                 IsIndeterminate=true
-                                LabelPLUS="indeterminate" />
+                                TrailingLabelPLUS="indeterminate" />
 
                     <MBCheckbox @bind-Value="@CheckboxState3"
                                 @bind-Value:after="@(() => ComponentValueChanged(CheckboxState3, "Checkbox 3"))"
                                 IsDisabled=true
-                                LabelPLUS="disabled" />
+                                TrailingLabelPLUS="disabled" />
 
                     <MBCheckbox @bind-Value="@CheckboxState3"
                                 @bind-Value:after="@(() => ComponentValueChanged(CheckboxState3, "Checkbox 3"))"
                                 IsDisabled=true
-                                LabelLocationIsRightPLUS=false
-                                LabelPLUS="disabled" />
+                                LeadingLabelPLUS="disabled" />
 
                 </Primary>
             </Material.Blazor.MD2.MBCard>

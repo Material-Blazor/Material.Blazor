@@ -23,29 +23,30 @@ public sealed class MBSwitch : InputComponent<bool>
     [Parameter] public bool? ShowOnlySelectedIcon { get; set; }
 
     /// <summary>
-    /// Specifies the label location.
+    /// Provides a leading label for the checkbox.
     /// </summary>
-    [Parameter] public bool LabelLocationIsRightPLUS { get; set; } = true;
+    [Parameter] public string LeadingLabelPLUS { get; set; }
+
 
     /// <summary>
-    /// Provides a label for the checkbox.
+    /// Provides a trailing label for the checkbox.
     /// </summary>
-    [Parameter] public string LabelPLUS { get; set; }
+    [Parameter] public string TrailingLabelPLUS { get; set; }
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
 
-        if (!string.IsNullOrWhiteSpace(LabelPLUS))
+        if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS) || !string.IsNullOrWhiteSpace(TrailingLabelPLUS))
         {
             builder.OpenElement(0, "p");
             builder.AddAttribute(1, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
 
-            if (!LabelLocationIsRightPLUS)
+            if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
             {
                 var labelSpan =
                     "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
-                    + LabelPLUS
+                    + LeadingLabelPLUS
                     + "</Span>";
                 builder.AddMarkupContent(2, "\r\n");
                 builder.AddMarkupContent(3, labelSpan);
@@ -74,18 +75,18 @@ public sealed class MBSwitch : InputComponent<bool>
 
         builder.CloseElement();
 
-        if (!string.IsNullOrWhiteSpace(LabelPLUS))
+        if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
         {
-            if (LabelLocationIsRightPLUS)
-            {
-                var labelSpan =
-                    "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
-                    + LabelPLUS
-                    + "</Span>";
-                builder.AddMarkupContent(13, "\r\n");
-                builder.AddMarkupContent(14, labelSpan);
-            }
+            var labelSpan =
+                "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
+                + TrailingLabelPLUS
+                + "</Span>";
+            builder.AddMarkupContent(13, "\r\n");
+            builder.AddMarkupContent(14, labelSpan);
+        }
 
+        if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS) || !string.IsNullOrWhiteSpace(TrailingLabelPLUS))
+        {
             builder.CloseElement();
         }
     }

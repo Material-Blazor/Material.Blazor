@@ -47,7 +47,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Components\Checkbox\" />
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
@@ -83,7 +82,11 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<Content Remove="wwwroot\material.blazor.js" />
+		<Content Remove="wwwroot\material.blazor.min.js" />
 		<None Remove="docfx.json.MD3" />
+		<Content Remove="wwwroot\material.blazor.min.css" />
+		<Content Remove="wwwroot\material.blazor.css" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 		<Content Include="docfx.json.MD3" />
 	</ItemGroup>

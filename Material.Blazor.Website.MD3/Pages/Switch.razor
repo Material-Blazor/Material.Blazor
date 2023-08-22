@@ -31,17 +31,18 @@
                     @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
                               class="supplied-test-class"
                               id="supplied-test-id"
-                              LabelPLUS="no icons" />
+                              TrailingLabelPLUS="no icons" />
 
                     <MBSwitch @bind-Value="@SwitchState2"
                     @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
                               Icons="true"
-                              LabelPLUS="icons" />
+                              TrailingLabelPLUS="icons" />
 
                     <MBSwitch @bind-Value="@SwitchState3"
                     @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
-                              Icons="true" ShowOnlySelectedIcon="true"
-                              LabelPLUS="selected icon only" />
+                              Icons="true"
+                              ShowOnlySelectedIcon="true"
+                              TrailingLabelPLUS="selected icon only" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
