@@ -173,6 +173,9 @@ jobs:
     - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
       run: dir ${{env.outputWeb}}/wwwroot/_content
 
+    - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
+      run: dir ${{env.outputWeb}}/wwwroot/_content/Material.Blazor
+
     - name: Display workspace Ꙫ
       run: dir ${{github.workspace}}
 
@@ -477,8 +480,11 @@ jobs:
     - name: Display MaterialBlazorMD3 package output wwwroot Ꙫ
       run: dir ${{env.outputWebMD3}}/wwwroot
 
-    - name: Display MaterialBlazorMD3 package output wwwroot Ꙫ
+    - name: Display MaterialBlazorMD3 package output wwwroot _content Ꙫ
       run: dir ${{env.outputWebMD3}}/wwwroot/_content
+
+    - name: Display MaterialBlazorMD3 package output wwwroot _content Material.Blazor.MD3 Ꙫ
+      run: dir ${{env.outputWebMD3}}/wwwroot/_content/Material.Blazor.MD3
 
     - name: Display workspace Ꙫ
       run: dir ${{github.workspace}}
