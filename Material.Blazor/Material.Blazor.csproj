@@ -83,9 +83,7 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<None Remove="docfx.json.MD2" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
-		<Content Include="docfx.json.MD2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -179,12 +177,6 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Update="Components\IntSlider\MBIntSlider.razor">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	  </Content>
 	</ItemGroup>
 
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
