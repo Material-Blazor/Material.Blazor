@@ -164,6 +164,12 @@ jobs:
         -p:BlazorEnableCompression=false
         --framework net8.0
 
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${{env.outputWeb}}
+
+    - name: Display wwwroot Ꙫ
+      run: dir Material.Blazor\Material.Blazor\wwwroot
+
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
       with:
@@ -455,6 +461,12 @@ jobs:
         -p:Version=${{env.ciVersion}}
         -p:BlazorEnableCompression=false
         --framework net8.0
+
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${{env.outputWeb}}
+
+    - name: Display wwwroot Ꙫ
+      run: dir Material.Blazor\Material.Blazor\wwwroot
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
