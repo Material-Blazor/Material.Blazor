@@ -127,9 +127,6 @@ jobs:
     - name: Show the documentation artifacts
       run: dir siteDocFx
 
-    - name: Show the documentation artifacts
-      run: dir siteDocFx\wwwroot
-
     - name: Upload Documentation Artifacts 🔺 # The documentation site is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v3
       with:
@@ -170,11 +167,14 @@ jobs:
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputWeb}}
 
-    - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env.outputWeb}}\wwwroot
+    - name: Display MaterialBlazor package output wwwroot Ꙫ
+      run: dir ${{env.outputWeb}\wwwroot
+
+    - name: Display workspace Ꙫ
+      run: dir ${{github.workspace}}
 
     - name: Display wwwroot Ꙫ
-      run: dir ${{github.workspace}}\Material.Blazor\Material.Blazor\wwwroot
+      run: dir ${{github.workspace}}\Material.Blazor\wwwroot
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -468,14 +468,17 @@ jobs:
         -p:BlazorEnableCompression=false
         --framework net8.0
 
-    - name: Display MaterialBlazor package output Ꙫ
+    - name: Display MaterialBlazorMD3 package output Ꙫ
       run: dir ${{env.outputWebMD3}}
 
-    - name: Display MaterialBlazor package output Ꙫ
+    - name: Display MaterialBlazorMD3 package output wwwroot Ꙫ
       run: dir ${{env.outputWebMD3}}\wwwroot
 
+    - name: Display workspace Ꙫ
+      run: dir ${{github.workspace}}
+
     - name: Display wwwroot Ꙫ
-      run: dir ${{github.workspace}}\Material.Blazor\Material.Blazor\wwwroot
+      run: dir ${{github.workspace}}\Material.Blazor\wwwroot
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
