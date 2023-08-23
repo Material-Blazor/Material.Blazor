@@ -168,7 +168,7 @@ jobs:
       run: dir ${{env.outputWeb}}
 
     - name: Display MaterialBlazor package output wwwroot Ꙫ
-      run: dir ${{env.outputWeb}/wwwroot
+      run: dir ${{env.outputWeb}}/wwwroot
 
     - name: Display workspace Ꙫ
       run: dir ${{github.workspace}}
