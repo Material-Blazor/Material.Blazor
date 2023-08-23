@@ -168,13 +168,13 @@ jobs:
       run: dir ${{env.outputWeb}}
 
     - name: Display MaterialBlazor package output wwwroot Ꙫ
-      run: dir ${{env.outputWeb}\wwwroot
+      run: dir ${{env.outputWeb}/wwwroot
 
     - name: Display workspace Ꙫ
       run: dir ${{github.workspace}}
 
     - name: Display wwwroot Ꙫ
-      run: dir ${{github.workspace}}\Material.Blazor\wwwroot
+      run: dir ${{github.workspace}}/Material.Blazor/wwwroot
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -472,13 +472,13 @@ jobs:
       run: dir ${{env.outputWebMD3}}
 
     - name: Display MaterialBlazorMD3 package output wwwroot Ꙫ
-      run: dir ${{env.outputWebMD3}}\wwwroot
+      run: dir ${{env.outputWebMD3}}/wwwroot
 
     - name: Display workspace Ꙫ
       run: dir ${{github.workspace}}
 
     - name: Display wwwroot Ꙫ
-      run: dir ${{github.workspace}}\Material.Blazor\wwwroot
+      run: dir ${{github.workspace}}/Material.Blazor/wwwroot
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
