@@ -164,23 +164,28 @@ jobs:
         -p:BlazorEnableCompression=false
         --framework net8.0
 
-    - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env.outputWeb}}
+    # All of the trace was added to show that .js & .min.js files were getting created but not
+    # being included in the published content. This was a result of VS 'helpfully' adding some
+    # 'content none' and 'content remove' directives after a deletion of the .js files to test
+    # the build of derived files. It is being left in place to help in the future.
 
-    - name: Display MaterialBlazor package output wwwroot Ꙫ
-      run: dir ${{env.outputWeb}}/wwwroot
-
-    - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
-      run: dir ${{env.outputWeb}}/wwwroot/_content
-
-    - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
-      run: dir ${{env.outputWeb}}/wwwroot/_content/Material.Blazor
-
-    - name: Display workspace Ꙫ
-      run: dir ${{github.workspace}}
+    # - name: Display workspace Ꙫ
+    #   run: dir ${{github.workspace}}
 
     - name: Display wwwroot Ꙫ
       run: dir ${{github.workspace}}/Material.Blazor/wwwroot
+
+    # - name: Display MaterialBlazor package output Ꙫ
+    #   run: dir ${{env.outputWeb}}
+
+    # - name: Display MaterialBlazor package output wwwroot Ꙫ
+    #   run: dir ${{env.outputWeb}}/wwwroot
+
+    # - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
+    #   run: dir ${{env.outputWeb}}/wwwroot/_content
+
+    - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
+      run: dir ${{env.outputWeb}}/wwwroot/_content/Material.Blazor
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
@@ -474,23 +479,28 @@ jobs:
         -p:BlazorEnableCompression=false
         --framework net8.0
 
-    - name: Display MaterialBlazorMD3 package output Ꙫ
-      run: dir ${{env.outputWebMD3}}
+    # All of the trace was added to show that .js & .min.js files were getting created but not
+    # being included in the published content. This was a result of VS 'helpfully' adding some
+    # 'content none' and 'content remove' directives after a deletion of the .js files to test
+    # the build of derived files. It is being left in place to help in the future.
 
-    - name: Display MaterialBlazorMD3 package output wwwroot Ꙫ
-      run: dir ${{env.outputWebMD3}}/wwwroot
-
-    - name: Display MaterialBlazorMD3 package output wwwroot _content Ꙫ
-      run: dir ${{env.outputWebMD3}}/wwwroot/_content
-
-    - name: Display MaterialBlazorMD3 package output wwwroot _content Material.Blazor.MD3 Ꙫ
-      run: dir ${{env.outputWebMD3}}/wwwroot/_content/Material.Blazor.MD3
-
-    - name: Display workspace Ꙫ
-      run: dir ${{github.workspace}}
+    # - name: Display workspace Ꙫ
+    #   run: dir ${{github.workspace}}
 
     - name: Display wwwroot Ꙫ
       run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
+
+    # - name: Display MaterialBlazorMD3 package output Ꙫ
+    #   run: dir ${{env.outputWebMD3}}
+
+    # - name: Display MaterialBlazorMD3 package output wwwroot Ꙫ
+    #   run: dir ${{env.outputWebMD3}}/wwwroot
+
+    # - name: Display MaterialBlazorMD3 package output wwwroot _content Ꙫ
+    #   run: dir ${{env.outputWebMD3}}/wwwroot/_content
+
+    - name: Display MaterialBlazorMD3 package output wwwroot _content Material.Blazor.MD3 Ꙫ
+      run: dir ${{env.outputWebMD3}}/wwwroot/_content/Material.Blazor.MD3
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
