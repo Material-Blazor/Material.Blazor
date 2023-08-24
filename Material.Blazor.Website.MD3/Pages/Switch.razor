@@ -28,21 +28,27 @@
                     </h3>
 
                     <MBSwitch @bind-Value="@SwitchState1"
-                    @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
+                              @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
                               class="supplied-test-class"
                               id="supplied-test-id"
                               TrailingLabelPLUS="no icons" />
 
                     <MBSwitch @bind-Value="@SwitchState2"
-                    @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
+                              @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
                               Icons="true"
                               TrailingLabelPLUS="icons" />
 
                     <MBSwitch @bind-Value="@SwitchState3"
-                    @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
+                              @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
                               Icons="true"
                               ShowOnlySelectedIcon="true"
                               TrailingLabelPLUS="selected icon only" />
+
+                    <MBSwitch @bind-Value="@SwitchState4"
+                              @bind-Value:after="@(() => ComponentValueChanged(SwitchState4, "Switch 4"))"
+                              Icons="true"
+                              LeadingLabelPLUS="Leading label"
+                              TrailingLabelPLUS="Trailing label" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -64,7 +70,7 @@
                     </p>
                     <p>
                         <MBCheckbox @bind-Value="@TwoWayBindingState"
-                                    @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
+                                    @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Checkbox"))"
                                     Icons="true" />
                     </p>
                     <p>
@@ -136,6 +142,7 @@
     private bool SwitchState1 { get; set; }
     private bool SwitchState2 { get; set; }
     private bool SwitchState3 { get; set; } = true;
+    private bool SwitchState4 { get; set; }
     private bool TwoWayBindingState { get; set; }
 
 

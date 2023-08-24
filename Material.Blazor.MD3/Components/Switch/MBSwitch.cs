@@ -71,7 +71,7 @@ public sealed class MBSwitch : InputComponent<bool>
         builder.AddAttribute(10, "selected", BindConverter.FormatValue(Value));
         builder.AddAttribute(11, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClick));
         builder.AddAttribute(8, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
-        builder.AddAttribute(9, "showOnlySelectedIcon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
+        builder.AddAttribute(9, "show-only-selected-icon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
 
         builder.CloseElement();
 

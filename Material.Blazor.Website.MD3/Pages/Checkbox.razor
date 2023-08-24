@@ -44,7 +44,8 @@
                     <MBCheckbox @bind-Value="@CheckboxState3"
                                 @bind-Value:after="@(() => ComponentValueChanged(CheckboxState3, "Checkbox 3"))"
                                 IsDisabled=true
-                                LeadingLabelPLUS="disabled" />
+                                LeadingLabelPLUS="Leading label"
+                                TrailingLabelPLUS="Trailing Label"/>
 
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -63,7 +64,7 @@
 
                     <p>
                         <MBCheckbox @bind-Value="@TwoWayBindingState"
-                        @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
+                        @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Checkbox"))"
                                     Icons="true" />
                     </p>
                     <p>

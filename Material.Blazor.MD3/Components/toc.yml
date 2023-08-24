@@ -7,6 +7,9 @@
 - name: Material.Blazor.Internal namespace
   topicUid: Material.Blazor.Internal
 
+- name: MBCheckbox
+  topicUid: C.MBCheckbox
+
 - name: MBCircularProgressIndicator
   topicUid: C.MBCircularProgressIndicator
 
