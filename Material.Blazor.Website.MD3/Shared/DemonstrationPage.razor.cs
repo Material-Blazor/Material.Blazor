@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Website.Shared
@@ -8,6 +10,8 @@ namespace Material.Blazor.Website.Shared
     public partial class DemonstrationPage
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
+
+        [Parameter] public Tuple<int, string>[] AdditionalAPIReferences { get; set; } = null;
         [Parameter] public string ComponentDirectory { get; set; } = "";
         [Parameter] public string ComponentAndPageName { get; set; }
         [Parameter] public RenderFragment Controls { get; set; }
@@ -44,7 +48,7 @@ namespace Material.Blazor.Website.Shared
         private List<ReferenceItem> Items { get; set; }
 
         private bool NeedsTable =>
-            (  (ComponentAndPageName != null)
+            ((ComponentAndPageName != null)
             || (DetailedArticle != null)
             || (MaterialDesignPage != null));
 
@@ -86,6 +90,35 @@ namespace Material.Blazor.Website.Shared
                     Title = "API Documentation",
                     Content = apiText
                 });
+            }
+
+            if (AdditionalAPIReferences != null)
+            {
+                var apiSuffix = (!IsGeneric) ? "" : "-1";
+                foreach (var apiTuple in AdditionalAPIReferences)
+                {
+                    var api2Text = "";
+                    var api2Spacer = "";
+                    for (int i = 0; i < apiTuple.Item1; i++)
+                    {
+                        api2Spacer += "&nbsp;";
+                    }
+
+                    if (apiTuple.Item2.StartsWith("MB"))
+                    {
+                        api2Text = $"{api2Spacer}<a href=\"{baseURI}docs/api/Material.Blazor.{apiTuple.Item2}{apiSuffix}.html\" target=\"_blank\">{apiTuple.Item2} API docs</a>";
+                    }
+                    else
+                    {
+                        api2Text = $"{api2Spacer}<a href=\"{baseURI}docs/api/Material.Blazor.Internal.{apiTuple.Item2}{apiSuffix}.html\" target=\"_blank\">{apiTuple.Item2} API docs</a>";
+                    }
+
+                    Items.Add(new ReferenceItem
+                    {
+                        Title = "API Documentation",
+                        Content = api2Text
+                    });
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(DetailedArticle))

@@ -7,10 +7,12 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage ComponentAndPageName="NumericDecimalField"
+<DemonstrationPage AdditionalAPIReferences="@apiTuple"
+                   ComponentAndPageName="NumericDecimalField"
                    ComponentDirectory="NumericField"
                    MaterialDesignPage=""
                    RequiresDisableSelection="true"
+                   SuppressComponentDocumentation="true"
                    Title="Numeric Decimal Field Demonstration">
     <Description>
         <p>
@@ -242,4 +244,16 @@
             ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
         }
     }
+
+
+    private Tuple<int, string>[] apiTuple = 
+    {
+       new Tuple<int, string>(0, "MBFilledNumericTextField"),
+       new Tuple<int, string>(0, "MBOutlinedNumericTextField"),
+       new Tuple<int, string>(5, "InternalFloatingPointFieldBase"),
+       new Tuple<int, string>(10, "MBFilledTextField"),
+       new Tuple<int, string>(10, "MBOutlinedTextField"),
+       new Tuple<int, string>(15, "InternalTextFieldBase")
+    };
+
 }
