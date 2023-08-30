@@ -141,11 +141,24 @@ namespace Material.Blazor.Website.Shared
 
             if (!string.IsNullOrWhiteSpace(MaterialDesignPage))
             {
-                Items.Add(new ReferenceItem
+                string[] pages;
+                if (MaterialDesignPage.Contains(";"))
                 {
-                    Title = "Material Design 3",
-                    Content = $"<a href=\"https://material-web.dev/components/" + MaterialDesignPage + "/\" target=\"_blank\" >MD3 page link</a>"
-                });
+                    pages = MaterialDesignPage.Split(';');
+                }
+                else
+                {
+                    pages = new string[1] { MaterialDesignPage };
+                }
+
+                foreach (var page in pages)
+                {
+                    Items.Add(new ReferenceItem
+                    {
+                        Title = "Material Design 3",
+                        Content = $"<a href=\"https://material-web.dev/components/" + page + "/\" target=\"_blank\" >" + page + " page link</a>"
+                    });
+                }
             }
 
             Densities = new Material.Blazor.MD2.MBSelectElement<Material.Blazor.MBDensity>[]

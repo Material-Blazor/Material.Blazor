@@ -284,7 +284,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// <returns></returns>
     internal async Task SelectFieldContent()
     {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.InternalTextFieldBase.selectFieldContent", ElementReference).ConfigureAwait(false);
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", ElementReference).ConfigureAwait(false);
     }
 
 

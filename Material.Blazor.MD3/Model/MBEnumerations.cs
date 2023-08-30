@@ -473,7 +473,24 @@ public enum MBNumericInputMagnitude
 
 
 /// <summary>
-/// Type for either <see cref="MBCircularProgress"/> or  <see cref="MBLinearProgress"/>.
+/// Stype for Progress  <see cref="MBProgress"/>.
+/// </summary>
+public enum MBProgressStyle
+{
+    /// <summary>
+    /// An circular progress.
+    /// </summary>
+    Circular,
+
+    /// <summary>
+    /// A linear progress
+    /// </summary>
+    Linear
+}
+
+
+/// <summary>
+/// Type for Progress  <see cref="MBProgress"/>.
 /// </summary>
 public enum MBProgressType
 {

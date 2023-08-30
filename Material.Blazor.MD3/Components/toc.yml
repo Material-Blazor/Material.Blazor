@@ -10,11 +10,14 @@
 - name: MBCheckbox
   topicUid: C.MBCheckbox
 
-- name: MBCircularProgressIndicator
-  topicUid: C.MBCircularProgressIndicator
+- name: MBCircularProgress
+  topicUid: C.MBCircularProgress
 
-- name: MBLinearProgressIndicator
-  topicUid: C.MBLinearProgressIndicator
+- name: MBLinearProgress
+  topicUid: C.MBLinearProgress
+
+- name: MBProgress
+  topicUid: C.MBProgress
 
 - name: MBSwitch
   topicUid: C.MBSwitch

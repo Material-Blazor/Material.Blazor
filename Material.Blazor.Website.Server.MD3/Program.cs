@@ -49,7 +49,7 @@ try
     builder.Services.AddOptions<MBServicesOptions>().Configure(options =>
     {
         options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
-        options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
+        //options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
         options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
     });
 

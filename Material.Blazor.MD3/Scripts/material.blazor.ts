@@ -10,6 +10,7 @@ import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/switch/switch.js';
 
 import * as MBTextField from '../Components/TextField/MBTextField';
+import * as MBTextField2 from '../Components/TextField2/MBTextField2';
 
 /*
 MD2 JS
@@ -22,11 +23,11 @@ import * as MBIconButton from '../Components.MD2/IconButton/MBIconButton'
 import * as MBMenu from '../Components.MD2/Menu/MBMenu';
 import * as MBRadioButton from '../Components.MD2/RadioButton/MBRadioButton';
 import * as MBSelect from '../Components.MD2/Select/MBSelect';
-import * as MBSnackbar from '../Components.MD2/Snackbar/MBSnackbar';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
     MBTextField,
+    MBTextField2,
 
     MBCard,
     MBDataTable,
@@ -36,6 +37,5 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
     MBMenu,
     MBRadioButton,
     MBSelect,
-    MBSnackbar,
     MBTopAppBar
 };

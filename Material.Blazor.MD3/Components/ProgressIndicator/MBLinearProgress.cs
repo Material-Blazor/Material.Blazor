@@ -3,7 +3,7 @@
 namespace Material.Blazor;
 
 /// <summary>
-/// A Material.Blazor outlined text field.
+/// A Material.Blazor linear progress indicator.
 /// </summary>
 public sealed class MBLinearProgress : InternalProgressBase
 {

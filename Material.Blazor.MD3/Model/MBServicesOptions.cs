@@ -16,12 +16,6 @@ public class MBServicesOptions
 
 
     /// <summary>
-    /// Snackbar service configuration.
-    /// </summary>
-    public MBSnackbarServiceConfiguration SnackbarServiceConfiguration { get; set; } = new();
-
-
-    /// <summary>
     /// Toast service configuration.
     /// </summary>
     public MBToastServiceConfiguration ToastServiceConfiguration { get; set; } = new();
