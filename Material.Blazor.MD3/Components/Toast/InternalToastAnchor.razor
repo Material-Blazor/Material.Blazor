@@ -31,9 +31,10 @@
 
                 @if (toast.Settings.CloseMethod != MBNotifierCloseMethod.Timeout)
                 {
-                    <md-icon-button @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))">
-                        <md-icon>close</md-icon>
-                    </md-icon-button>
+                    <div class="mb-toast__icon">
+                        <MBIcon IconName="close"
+                                @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))" />
+                    </div>
                 }
             </div>
         }
