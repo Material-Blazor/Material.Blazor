@@ -4,23 +4,23 @@
 
 @if (DisplayedToasts.Any())
 {
-    <aside class="mb-toast-container mdc-snackbar mdc-snackbar--open @PositionClass">
+    <aside class="mb-toast-container @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
             <div @key="@toast"
                  aria-relevant="additions"
-                 class="mdc-snackbar__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
+                 class="mb-toast__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
                  role="status">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    <div class="mb-toast-icon">
+                    <div class="mb-toast__icon">
                         <MBIcon aria-hidden="true"
                                 IconName="@toast.Settings.AppliedIconName" />
                     </div>
                 }
 
-                <div aria-atomic="false" class="mdc-snackbar__label">
+                <div aria-atomic="false" class="mb-toast__label">
                     @if (!string.IsNullOrWhiteSpace(toast.Settings.Heading))
                     {
                         <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
@@ -31,12 +31,9 @@
 
                 @if (toast.Settings.CloseMethod != MBNotifierCloseMethod.Timeout)
                 {
-                    <button class="mdc-icon-button mdc-snackbar__dismiss material-icons"
-                            title="Dismiss"
-                            type="button"
-                @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))">
-                        close
-                    </button>
+                    <md-icon-button @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))">
+                        <md-icon>close</md-icon>
+                    </md-icon-button>
                 }
             </div>
         }
