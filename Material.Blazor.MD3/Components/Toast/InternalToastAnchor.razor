@@ -23,7 +23,9 @@
                 <div aria-atomic="false" class="mb-toast__label">
                     @if (!string.IsNullOrWhiteSpace(toast.Settings.Heading))
                     {
-                        <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
+                        <div class="mb-toast__header">
+                            @((MarkupString)toast.Settings.AppliedHeading)
+                        </div>
                     }
 
                     @((MarkupString)toast.Settings.AppliedMessage)
@@ -33,7 +35,7 @@
                 {
                     <div class="mb-toast__icon">
                         <MBIcon IconName="close"
-                                @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))" />
+                        @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))" />
                     </div>
                 }
             </div>

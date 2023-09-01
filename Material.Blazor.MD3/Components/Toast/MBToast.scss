@@ -43,6 +43,11 @@ $icon-horizontal-padding: 12px;
 }
 
 
+.mb-toast__header {
+    font-size: 1.4rem;
+    padding-bottom: 0.5rem;
+}
+
 .mb-toast__icon {
     display: flex;
     flex-direction: column;
@@ -92,6 +97,7 @@ $icon-horizontal-padding: 12px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    font-size: 1rem;
     justify-content: flex-start;
     padding-left:0;
     padding-right: 8px;

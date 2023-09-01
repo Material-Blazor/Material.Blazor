@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD2;
 
 /// <summary>
 /// An instance of a tooltip.
