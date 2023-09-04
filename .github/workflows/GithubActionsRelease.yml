@@ -1,4 +1,4 @@
-﻿name: GithubActionsRelease
+name: GithubActionsRelease
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository
@@ -51,7 +51,7 @@ jobs:
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Use dotnet
       uses: actions/setup-dotnet@v3
@@ -70,7 +70,7 @@ jobs:
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
@@ -105,7 +105,7 @@ jobs:
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
@@ -136,7 +136,7 @@ jobs:
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
@@ -183,7 +183,7 @@ jobs:
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
@@ -237,7 +237,7 @@ jobs:
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
@@ -273,7 +273,7 @@ jobs:
       shell: bash
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
@@ -301,7 +301,7 @@ jobs:
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v3
