@@ -1,17 +1,18 @@
-﻿using Material.Blazor.MD2;
+﻿using Material.Blazor;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Internal.MD2;
+namespace Material.Blazor.Internal;
 
 /// <summary>
 /// A DRY inspired abstract class providing <see cref="MBSelect{TItem}"/> and <see cref="MBRadioButtonGroup{TItem}"/> with validation.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponentMD2<T> where TListElement : Material.Blazor.MD2.MBSelectElementMD2<T>
+public abstract class SingleSelectComponent<T, TListElement> :
+    InputComponent<T> where TListElement : Material.Blazor.MBSelectElement<T>
 {
     /// <summary>
     /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
@@ -33,7 +34,7 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
     /// to throw an exception (the default).
     /// <para>Overrides <see cref="MBCascadingDefaults.ItemValidation"/></para>
     /// </summary>
-    [Parameter] public Material.Blazor.MD2.MBItemValidation? ItemValidation { get; set; }
+    [Parameter] public Material.Blazor.MBItemValidation? ItemValidation { get; set; }
 
 
     /// <summary>
@@ -53,7 +54,7 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
 
             if (HasInstantiated)
             {
-                var validatedValue = ValidateItemList(Items, Material.Blazor.MD2.MBItemValidation.DefaultToFirst).value;
+                var validatedValue = ValidateItemList(Items, Material.Blazor.MBItemValidation.DefaultToFirst).value;
 
                 if (!validatedValue.Equals(Value))
                 {
@@ -61,7 +62,7 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
                 }
             }
 
-            AllowNextShouldRender();
+            //AllowNextShouldRender();
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
     }
@@ -75,7 +76,9 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
     /// <param name="appliedItemValidation">Specification of the required validation <see cref="MBItemValidation"/></param>
     /// <returns>The an indicator of whether an item was found and the item in the list matching <see cref="InputComponent{T}._cachedValue"/> or default if not found.</returns>
     /// <exception cref="ArgumentException"/>
-    public (bool hasValue, T value) ValidateItemList(IEnumerable<MBSelectElementMD2<T>> items, Material.Blazor.MD2.MBItemValidation appliedItemValidation)
+    public (bool hasValue, T value) ValidateItemList(
+        IEnumerable<MBSelectElement<T>> items,
+        Material.Blazor.MBItemValidation appliedItemValidation)
     {
         var componentName = Utilities.GetTypeName(GetType());
 
@@ -88,17 +91,17 @@ public abstract class SingleSelectComponentMD2<T, TListElement> : InputComponent
         {
             switch (appliedItemValidation)
             {
-                case Material.Blazor.MD2.MBItemValidation.DefaultToFirst:
+                case MBItemValidation.DefaultToFirst:
                     var defaultValue = items.FirstOrDefault().SelectedValue;
-                    AllowNextShouldRender();
+                    //AllowNextShouldRender();
                     return (true, defaultValue);
 
-                case Material.Blazor.MD2.MBItemValidation.Exception:
+                case MBItemValidation.Exception:
                     var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";
                     throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
-                case Material.Blazor.MD2.MBItemValidation.NoSelection:
-                    AllowNextShouldRender();
+                case MBItemValidation.NoSelection:
+                    //AllowNextShouldRender();
                     return (false, default);
             }
         }

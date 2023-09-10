@@ -9,7 +9,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// A Material Theme select.
 /// </summary>
-public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectElement<TItem>>
+public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectElementMD2<TItem>>
 {
 #nullable enable annotations
     /// <summary>

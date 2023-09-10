@@ -1,4 +1,4 @@
-﻿using Material.Blazor;
+using Material.Blazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
@@ -18,6 +18,7 @@ namespace Material.Blazor.Internal;
 public abstract class ComponentFoundation : ComponentBase, IDisposable
 {
     #region members
+
     /// <summary>
     /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
     /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
@@ -31,7 +32,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     //[CascadingParameter] private IMBDialog ParentDialog { get; set; }
     [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
     //[Inject] private protected IMBTooltipService TooltipService { get; set; }
-    //[Inject] private protected IMBLoggingService LoggingService { get; set; }
+    [Inject] private protected IMBLoggingService LoggingService { get; set; }
 
 
 
@@ -62,7 +63,8 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="ComponentBase.OnInitialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
     /// </summary>
-    //private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
+    private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
+    
     #endregion
 
     #region parameters
@@ -100,7 +102,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 #pragma warning disable IDE1006 // Naming Styles
     [Parameter] public string @class { get; set; }
 #pragma warning restore IDE1006 // Naming Styles
-    //protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
 
 
     /// <summary>

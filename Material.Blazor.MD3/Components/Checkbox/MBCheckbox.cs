@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +12,8 @@ namespace Material.Blazor;
 /// </summary>
 public sealed class MBCheckbox : InputComponent<bool>
 {
+    #region members
+
     /// <summary>
     /// Determines if the checkbox is disabled.
     /// </summary>
@@ -33,14 +34,27 @@ public sealed class MBCheckbox : InputComponent<bool>
     /// </summary>
     [Parameter] public string TrailingLabelPLUS { get; set; }
 
+
+
+    private string checkboxStyle { get; } = "display: flex; flex-direction: row; flex-grow: 1; align-items: center;";
+
+    #endregion
+
+    #region BuildRenderTree
+
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-
-        if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS) || !string.IsNullOrWhiteSpace(TrailingLabelPLUS))
+        var rendSeq = 0;
+        builder.OpenElement(rendSeq++, "p");
         {
-            builder.OpenElement(0, "p");
-            builder.AddAttribute(1, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
+            builder.AddAttribute(rendSeq++, "class", @class);
+            builder.AddAttribute(rendSeq++, "style", checkboxStyle + style);
+            builder.AddAttribute(rendSeq++, "id", id);
+            if (attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+            }
 
             if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
             {
@@ -48,59 +62,54 @@ public sealed class MBCheckbox : InputComponent<bool>
                     "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
                     + LeadingLabelPLUS
                     + "</Span>";
-                builder.AddMarkupContent(2, "\r\n");
-                builder.AddMarkupContent(3, labelSpan);
+                builder.AddMarkupContent(rendSeq++, "\r\n");
+                builder.AddMarkupContent(rendSeq++, labelSpan);
+            }
+
+            builder.OpenElement(rendSeq++, "md-checkbox");
+            {
+                if (AppliedDisabled || IsDisabled)
+                {
+                    builder.AddAttribute(rendSeq++, "disabled");
+                }
+
+                if (Value)
+                {
+                    builder.AddAttribute(rendSeq++, "checked");
+                }
+
+                if (IsIndeterminate)
+                {
+                    builder.AddAttribute(rendSeq++, "indeterminate");
+                }
+
+                builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+            }
+            builder.CloseElement();
+
+            if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
+            {
+                var labelSpan =
+                    "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
+                    + TrailingLabelPLUS
+                    + "</Span>";
+                builder.AddMarkupContent(13, "\r\n");
+                builder.AddMarkupContent(14, labelSpan);
             }
         }
-
-        builder.OpenElement(4, "md-checkbox");
-
-        if (attributesToSplat.Any())
-        {
-            builder.AddMultipleAttributes(5, attributesToSplat);
-        }
-
-        if (AppliedDisabled || IsDisabled)
-        {
-            builder.AddAttribute(6, "disabled");
-        }
-
-        if (Value)
-        {
-            builder.AddAttribute(7, "checked");
-        }
-
-        if (IsIndeterminate)
-        {
-            builder.AddAttribute(8, "indeterminate");
-        }
-
-        builder.AddAttribute(9, "class", @class);
-        builder.AddAttribute(10, "style", style);
-        builder.AddAttribute(11, "id", id);
-        builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClick));
         builder.CloseElement();
-
-        if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
-        {
-            var labelSpan =
-                "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
-                + TrailingLabelPLUS
-                + "</Span>";
-            builder.AddMarkupContent(13, "\r\n");
-            builder.AddMarkupContent(14, labelSpan);
-        }
-
-        if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS) || !string.IsNullOrWhiteSpace(TrailingLabelPLUS))
-        {
-            builder.CloseElement();
-        }
     }
 
+    #endregion
 
-    private async Task OnClick()
+    #region OnClickInternal
+
+    private async Task OnClickInternal()
     {
         Value = !Value;
         await ValueChanged.InvokeAsync(Value);
     }
+
+    #endregion
+
 }

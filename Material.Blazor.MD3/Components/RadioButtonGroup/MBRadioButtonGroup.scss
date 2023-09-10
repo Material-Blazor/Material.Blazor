@@ -1,0 +1,13 @@
+﻿.mb-radiobuttongroup__horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.mb-radiobuttongroup__vertical {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start;
+}

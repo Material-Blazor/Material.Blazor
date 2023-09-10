@@ -346,23 +346,23 @@ public enum MBIconFARelativeSize
 /// A helper to determine how a <see cref="MBSelect{TItem}"/> or <see cref="MBRadioButtonGroup{TItem}"/> should handle an intial bound value not matching elements in the value list.
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Exception"/></para>
 /// </summary>
-//public enum MBItemValidation
-//{
-//    /// <summary>
-//    /// Sets the bound value to the first item in the list.
-//    /// </summary>
-//    DefaultToFirst,
+public enum MBItemValidation
+{
+    /// <summary>
+    /// Sets the bound value to the first item in the list.
+    /// </summary>
+    DefaultToFirst,
 
-//    /// <summary>
-//    /// Throws an exception. This is the <see cref="MBCascadingDefaults"/> default.
-//    /// </summary>
-//    Exception,
+    /// <summary>
+    /// Throws an exception. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>
+    Exception,
 
-//    /// <summary>
-//    /// Does nothing, leaving the bound value as it is.
-//    /// </summary>
-//    NoSelection
-//}
+    /// <summary>
+    /// Does nothing, leaving the bound value as it is.
+    /// </summary>
+    NoSelection
+}
 
 
 ///// <summary>

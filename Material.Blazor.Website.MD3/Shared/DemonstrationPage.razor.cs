@@ -27,7 +27,7 @@ namespace Material.Blazor.Website.Shared
 
 
 
-        private IEnumerable<Material.Blazor.MD2.MBSelectElement<MBDensity>> Densities { get; set; }
+        private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
 
         private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
         {
@@ -161,14 +161,14 @@ namespace Material.Blazor.Website.Shared
                 }
             }
 
-            Densities = new Material.Blazor.MD2.MBSelectElement<Material.Blazor.MBDensity>[]
+            Densities = new MBSelectElement<Material.Blazor.MBDensity>[]
             {
-            new() {SelectedValue = Material.Blazor.MBDensity.Default, Label = "Default", Disabled = false },
-            new() {SelectedValue = Material.Blazor.MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > Material.Blazor.MBDensity.Minus1 },
-            new() {SelectedValue = Material.Blazor.MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > Material.Blazor.MBDensity.Minus2 },
-            new() {SelectedValue = Material.Blazor.MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > Material.Blazor.MBDensity.Minus3 },
-            new() {SelectedValue = Material.Blazor.MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > Material.Blazor.MBDensity.Minus4 },
-            new() {SelectedValue = Material.Blazor.MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > Material.Blazor.MBDensity.Minus5 },
+            new() {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
+            new() {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
+            new() {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
+            new() {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
+            new() {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
+            new() {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
             }.Where(d => d.Disabled != true);
         }
 

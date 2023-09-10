@@ -36,7 +36,11 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 
 Material.Blazor has two release 'trains' available via NuGet
 
-- V3.x is a DotNet 6 stable version using Material Design 2 and is the version used in most production settings
-- V4.x is a DotNet 7 preview version.
-- V4.x also has introductory work using Material Design 3 and DotNet 8 preview (The released NuGet packages are Material Design 2. To
-see the MD3 work in progress you need to browse to https://material-blazor.github.io/Material.Blazor.MD3.Current/)
+- V3.x is a DotNet 6 LTS stable version using Material Design 2 and is the version used in most production settings
+- V4.x is a DotNet 7 STS stable version using Material Design 2 and is the version used in some production settings
+- V5.x is a DotNet 8 LTS preview version.
+- V5.x also has introductory work using Material Design 3.
+- To see the MD3 work in progress you need to browse to https://material-blazor.github.io/Material.Blazor.MD3.Current/)
+- As of .Net 8 RC1 two Nuget packages are released:
+    - Material.Blazor (.Net 8 RC1 & Material Design 2)
+    - Material.Blazor.MD3 (.Net 8 RC1 & Material Design 3)

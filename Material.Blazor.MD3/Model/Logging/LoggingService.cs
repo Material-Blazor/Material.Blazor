@@ -1,9 +1,9 @@
-﻿using Material.Blazor.MD2;
+﻿using Material.Blazor;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Material.Blazor.Internal.MD2;
+namespace Material.Blazor.Internal;
 
 /// <summary>
 /// The internal implementation of <see cref="IMBLoggingService"/>.
@@ -110,9 +110,6 @@ internal class LoggingService : IMBLoggingService
 
     public void SetLogger(ILogger<ComponentFoundation> logger)
     {
-        if (Logger == null)
-        {
-            Logger = logger;
-        }
+        Logger ??= logger;
     }
 }

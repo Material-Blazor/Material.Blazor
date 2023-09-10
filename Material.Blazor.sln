@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guidelines", "guidelines", "{86740746-C4E6-45DF-BA84-8FB1C1200DD9}"
 	ProjectSection(SolutionItems) = preProject
+		Material.Blazor.MD3\Model.MD2\MBSelectElement.cs = Material.Blazor.MD3\Model.MD2\MBSelectElement.cs
 		guidelines\ProjectGuidelines.md = guidelines\ProjectGuidelines.md
 		guidelines\StylingGuidelines.md = guidelines\StylingGuidelines.md
 	EndProjectSection

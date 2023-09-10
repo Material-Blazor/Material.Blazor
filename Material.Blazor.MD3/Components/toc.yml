@@ -19,6 +19,12 @@
 - name: MBProgress
   topicUid: C.MBProgress
 
+- name: MBRadioButton
+  topicUid: C.MBRadioButton
+
+- name: MBRadioButtonGroup
+  topicUid: C.MBRadioButtonGroup
+
 - name: MBSwitch
   topicUid: C.MBSwitch
 

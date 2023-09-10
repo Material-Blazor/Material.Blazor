@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.Internal.MD2;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,33 @@ namespace Material.Blazor.Internal;
 public abstract class InputComponent<T> : ComponentFoundation
 {
     #region members
+
+    [CascadingParameter] private EditContext CascadedEditContext { get; set; }
+
+
+    /// <summary>
+    /// Gets or sets the value of the input. This should be used with two-way binding.
+    /// </summary>
+    /// <example>
+    /// @bind-Value="@model.PropertyName"
+    /// </example>
+    [Parameter] public T Value { get; set; }
+    private T _cachedValue;
+
+
+    /// <summary>
+    /// Gets or sets a callback that updates the bound value.
+    /// </summary>
+    [Parameter] public EventCallback<T> ValueChanged { get; set; }
+
+
+    /// <summary>
+    /// Gets or sets an expression that identifies the bound value.
+    /// </summary>
+    [Parameter] public Expression<Func<T>> ValueExpression { get; set; }
+
+
+
 
     private bool _previousParsingAttemptFailed;
     private ValidationMessageStore _parsingValidationMessages;
@@ -42,7 +70,7 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
     /// should not be in a form.
     /// </summary>
-    //private bool IgnoreFormField => this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
+    private bool IgnoreFormField => true; //this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
 
 
     /// <summary>
@@ -53,30 +81,95 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
-    #region parameters
+    #region ComponentValue
 
-    [CascadingParameter] private EditContext CascadedEditContext { get; set; }
+    /// <summary>
+    /// Gets or sets the value of the component. To be used by Material.Blazor components for binding to
+    /// native components, or to set the value in response to an event arising from the native component.
+    /// </summary>
+
+    private T _componentValue;
+    private protected T ComponentValue
+    {
+        get => _componentValue;
+        set
+        {
+            LoggingService.LogTrace($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+
+            if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
+            {
+                LoggingService.LogTrace($"ComponentValue setter changed _componentValue");
+
+                _componentValue = value;
+                _ = InvokeAsync(() => ValueChanged.InvokeAsync(value));
+
+                if (EditContext != null && !IgnoreFormField)
+                {
+                    if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
+                    {
+                        throw new Exception("Material.Blazor: ValueExpression must be defined for a field contained in an EditForm");
+                    }
+                    else
+                    {
+                        EditContext?.NotifyFieldChanged(FieldIdentifier);
+                    }
+                }
+            }
+        }
+    }
 
 
     /// <summary>
-    /// Gets or sets the value of the input. This should be used with two-way binding.
+    /// Gets or sets the current value of the input, represented as a string.
     /// </summary>
-    /// <example>
-    /// @bind-Value="@model.PropertyName"
-    /// </example>
-    [Parameter] public T Value { get; set; }
+    protected string ComponentValueAsString
+    {
+        get => FormatValueToString(ComponentValue);
+        set
+        {
+            _parsingValidationMessages?.Clear();
 
+            bool parsingFailed;
 
-    /// <summary>
-    /// Gets or sets a callback that updates the bound value.
-    /// </summary>
-    [Parameter] public EventCallback<T> ValueChanged { get; set; }
+            if (_nullableUnderlyingType != null && string.IsNullOrEmpty(value))
+            {
+                // Assume if it's a nullable type, null/empty inputs should correspond to default(T)
+                // Then all subclasses get nullable support almost automatically (they just have to
+                // not reject Nullable<T> based on the type itself).
+                parsingFailed = false;
+                ComponentValue = default;
+            }
+            else if (TryParseValueFromString(value, out var parsedValue, out var validationErrorMessage))
+            {
+                parsingFailed = false;
+                ComponentValue = parsedValue;
+            }
+            else
+            {
+                parsingFailed = true;
 
+                if (EditContext != null && !IgnoreFormField)
+                {
+                    if (_parsingValidationMessages == null)
+                    {
+                        _parsingValidationMessages = new ValidationMessageStore(EditContext);
+                    }
 
-    /// <summary>
-    /// Gets or sets an expression that identifies the bound value.
-    /// </summary>
-    [Parameter] public Expression<Func<T>> ValueExpression { get; set; }
+                    _parsingValidationMessages.Add(FieldIdentifier, validationErrorMessage);
+
+                    // Since we're not writing to ComponentValue, we'll need to notify about modification from here
+                    EditContext.NotifyFieldChanged(FieldIdentifier);
+                }
+            }
+
+            // We can skip the validation notification if we were previously valid and still are
+            if (parsingFailed || _previousParsingAttemptFailed)
+            {
+                EditContext?.NotifyValidationStateChanged();
+                _previousParsingAttemptFailed = parsingFailed;
+            }
+        }
+    }
 
     #endregion
 
@@ -163,6 +256,22 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
+    #region SetComponentValueAsync
+
+    /// <summary>
+    /// Derived components can override this to get a callback from SetParameters(Async) when the consumer changes
+    /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
+    /// the data change visually. An example is a select where the relevant list item needs to be
+    /// automatically clicked to get Material Theme to update the value shown in the
+    /// <c>&lt;input&gt;</c> HTML tag.
+    /// </summary>
+    private protected virtual Task SetComponentValueAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
     #region SetParametersAsync
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor.
@@ -205,4 +314,22 @@ public abstract class InputComponent<T> : ComponentFoundation
     }
 
     #endregion
+
+    #region TryParseValueFromString
+
+    /// <summary>
+    /// Parses a string to create an instance of <typeparamref name="T"/>. Derived classes can override this to change how
+    /// <see cref="ComponentValueAsString"/> interprets incoming values.
+    /// </summary>
+    /// <param name="value">The string value to be parsed.</param>
+    /// <param name="result">An instance of <typeparamref name="T"/>.</param>
+    /// <param name="validationErrorMessage">If the value could not be parsed, provides a validation error message.</param>
+    /// <returns>True if the value could be parsed; otherwise false.</returns>
+    protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
+    {
+        throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
+    }
+
+    #endregion
+
 }

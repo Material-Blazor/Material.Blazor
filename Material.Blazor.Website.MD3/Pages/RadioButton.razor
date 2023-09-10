@@ -5,7 +5,7 @@
 
 <DemonstrationPage ComponentAndPageName="RadioButton"
                    IsGeneric="true"
-                   MaterialIOPage="mdc-radio#selection-controls-radio-buttons"
+                   MaterialDesignPage="radio"
                    MinDensity="MBDensity.Minus3"
                    RequiresDisableSelection="true"
                    Title="Radio Button Demonstration">
@@ -17,42 +17,44 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-12">
-            <MBCard AutoStyled="true">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Individual Radio Buttons
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Radio Buttons are rendered individually and grouped by id. The second line demonstrates two-way binding.
+                        Radio buttons are rendered individually and grouped by RadioGroupName. The 'repeat-dog' demonstrates two-way binding.
                         Bound data is an <code>enum</code>.
                     </h3>
 
                     <p>
                         <MBRadioButton @bind-Value="@Animal"
-                                       Label=@AnimalEnum.Dog.ToString()
+                                       style="margin-right: 2em; "
+                                       TrailingLabelPLUS=@AnimalEnum.Dog.ToString()
                                        RadioGroupName="animal-group"
                                        TargetCheckedValue=@AnimalEnum.Dog />
 
                         <MBRadioButton @bind-Value="@Animal"
-                                       Label=@AnimalEnum.Fish.ToString()
+                                       style="margin-right: 2em; "
+                                       TrailingLabelPLUS=@AnimalEnum.Fish.ToString()
                                        RadioGroupName="animal-group"
                                        TargetCheckedValue=@AnimalEnum.Fish />
 
                         <MBRadioButton @bind-Value="@Animal"
-                                       Label=@AnimalEnum.Zebra.ToString()
+                                       TrailingLabelPLUS=@AnimalEnum.Zebra.ToString()
                                        RadioGroupName="animal-group"
                                        TargetCheckedValue=@AnimalEnum.Zebra />
                     </p>
                     <p>
                         <MBRadioButton @bind-Value="@Animal"
-                                       Label=@RepeatedDogLabel
+                                       TrailingLabelPLUS=@RepeatedDogLabel
                                        RadioGroupName="repeat-group"
                                        TargetCheckedValue=@AnimalEnum.Dog />
 
                     </p>
                 </Primary>
-            </MBCard>
+            </Material.Blazor.MD2.MBCard>
         </div>
     </PageContent>
 </DemonstrationPage>

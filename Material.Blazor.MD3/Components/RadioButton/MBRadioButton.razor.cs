@@ -2,57 +2,71 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
 
 /// <summary>
-/// This is a general purpose Material Theme switch.
+/// This is a general purpose Material Theme radio button. Accepts a generic class TItem
+/// and displays as checked if <see cref="InputComponent{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
 /// </summary>
-public sealed class MBSwitch : InputComponent<bool>
+public partial class MBRadioButton<TItem> : InputComponent<TItem>
 {
     #region members
 
     /// <summary>
-    /// Determines whether the switch shows icons.
+    /// Determines if the radiobutton is disabled.
     /// </summary>
-    [Parameter] public bool? Icons { get; set; }
+    [Parameter] public bool IsDisabled { get; set; } = false;
 
     /// <summary>
-    /// Determines shows icons only in the selected state.
-    /// </summary>
-    [Parameter] public bool? ShowOnlySelectedIcon { get; set; }
-
-    /// <summary>
-    /// Provides a leading label for the checkbox.
+    /// Provides a leading label for the radiobutton.
     /// </summary>
     [Parameter] public string LeadingLabelPLUS { get; set; }
 
+    /// <summary>
+    /// <see cref="InputComponent{T}.Value"/> is set to this when the 
+    /// radio button is clicked. If the consumer sets <see cref="InputComponent{T}.Value"/>
+    /// to this the radio state will change to checked, or cleared for any other value.
+    /// </summary>
+    [Parameter] public TItem TargetCheckedValue { get; set; }
 
     /// <summary>
-    /// Provides a trailing label for the checkbox.
+    /// Provides a trailing label for the radiobutton.
     /// </summary>
     [Parameter] public string TrailingLabelPLUS { get; set; }
 
+    /// <summary>
+    /// The radio button group name. This is applied to a group of radio buttons
+    /// so Material Theme can identify them as representing different values of the
+    /// same property.
+    /// </summary>
+    [Parameter] public string RadioGroupName { get; set; }
 
 
-    private string switchStyle { get; } = "display: flex; flex-direction: row; flex-grow: 1; align-items: center;";
+
+    private string radioStyle { get; } = "display: flex; flex-direction: row; flex-grow: 1; align-items: center;";
 
     #endregion
 
     #region BuildRenderTree
+
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "p");
+        builder.OpenElement(rendSeq++, "div");
         {
             builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", switchStyle + style);
+            builder.AddAttribute(rendSeq++, "style", radioStyle + style);
             builder.AddAttribute(rendSeq++, "id", id);
-            builder.AddAttribute(rendSeq++, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
+            if (attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+            }
 
             if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
             {
@@ -64,22 +78,19 @@ public sealed class MBSwitch : InputComponent<bool>
                 builder.AddMarkupContent(rendSeq++, labelSpan);
             }
 
-            builder.OpenElement(rendSeq++, "md-switch");
+            builder.OpenElement(rendSeq++, "md-radio");
             {
-                if (attributesToSplat.Any())
-                {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-                }
-
-                if (AppliedDisabled)
+                if (AppliedDisabled || IsDisabled)
                 {
                     builder.AddAttribute(rendSeq++, "disabled");
                 }
 
-                builder.AddAttribute(rendSeq++, "selected", BindConverter.FormatValue(Value));
+                if (Value.Equals(TargetCheckedValue))
+                {
+                    builder.AddAttribute(rendSeq++, "checked");
+                }
+
                 builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
-                builder.AddAttribute(rendSeq++, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
-                builder.AddAttribute(rendSeq++, "show-only-selected-icon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
             }
             builder.CloseElement();
 
@@ -92,6 +103,7 @@ public sealed class MBSwitch : InputComponent<bool>
                 builder.AddMarkupContent(rendSeq++, "\r\n");
                 builder.AddMarkupContent(rendSeq++, labelSpan);
             }
+
         }
         builder.CloseElement();
     }
@@ -102,7 +114,7 @@ public sealed class MBSwitch : InputComponent<bool>
 
     private async Task OnClickInternal()
     {
-        Value = !Value;
+        Value = TargetCheckedValue;
         await ValueChanged.InvokeAsync(Value);
     }
 

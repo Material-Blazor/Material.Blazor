@@ -16,8 +16,8 @@
 
     <Controls>
         <p>
-            <Material.Blazor.MD2.MBRadioButtonGroup @bind-Value="progressLevel"
-                                                    Items="@ProgressLevels" />
+            <MBRadioButtonGroup @bind-Value="progressLevel"
+                                Items="@ProgressLevels" />
         </p>
 
         <p>
@@ -57,12 +57,12 @@
 </DemonstrationPage>
 
 @code {
-    private Material.Blazor.MD2.MBSelectElement<double>[] ProgressLevels = new Material.Blazor.MD2.MBSelectElement<double>[]
+    private MBSelectElement<double>[] ProgressLevels = new MBSelectElement<double>[]
     {
-        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 0.25, Label = "25% Progress" },
-        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 0.50, Label = "50% Progress" },
-        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 0.75, Label = "75% Progress" },
-        new Material.Blazor.MD2.MBSelectElement<double> { SelectedValue = 1.00, Label = "100% Progress" }
+        new MBSelectElement<double> { SelectedValue = 0.25, Label = "25% Progress" },
+        new MBSelectElement<double> { SelectedValue = 0.50, Label = "50% Progress" },
+        new MBSelectElement<double> { SelectedValue = 0.75, Label = "75% Progress" },
+        new MBSelectElement<double> { SelectedValue = 1.00, Label = "100% Progress" }
     };
 
     private double progressLevel { get; set; }

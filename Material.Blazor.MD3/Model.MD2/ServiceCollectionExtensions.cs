@@ -1,11 +1,10 @@
-﻿using Material.Blazor.Internal.MD2;
-using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.Internal;
+using Material.Blazor.Internal.MD2;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
-using System.Threading;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 public static class ServiceCollectionExtensions
 {
@@ -26,9 +25,8 @@ public static class ServiceCollectionExtensions
             serviceCollection
             .AddScoped<IMBLoggingService>(serviceProvider => ActivatorUtilities.CreateInstance<LoggingService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
             .AddScoped<IMBToastService>(serviceProvider => ActivatorUtilities.CreateInstance<ToastService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
-            .AddScoped<IMBTooltipService>(serviceProvider => new TooltipService());
+            .AddScoped<MD2.IMBTooltipService>(serviceProvider => new TooltipService());
     }
-
 
     /// <summary>
     /// Adds Toast and Logging services for Material.Blazor. This is required for any app that uses one or more

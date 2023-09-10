@@ -38,16 +38,16 @@
                     <p style="display: flex; flex-flow: row nowrap; align-items: center;">
                         <span class="mdc-typography--body1" style="margin-right: 24px;">Disable Components:</span>
                         <MBSwitch @bind-Value="@CascadingDefaults.Disabled"
-                                  @bind-Value:after="@AfterCascadingDefaultsChange" />
+                        @bind-Value:after="@AfterCascadingDefaultsChange" />
                     </p>
                 }
 
                 @if (MinDensity != Material.Blazor.MBDensity.Default)
                 {
                     <p>
-                        <Material.Blazor.MD2.MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
-                                                                @bind-Value:after="@AfterCascadingDefaultsChange"
-                                                                Items="@Densities" />
+                        <MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
+                                            @bind-Value:after="@AfterCascadingDefaultsChange"
+                                            Items="@Densities" />
                     </p>
                 }
 

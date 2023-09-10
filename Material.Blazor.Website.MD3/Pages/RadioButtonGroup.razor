@@ -1,0 +1,151 @@
+﻿@page "/radiobuttongroup"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentAndPageName="RadioButtonGroup"
+                   IsGeneric="true"
+                   MaterialDesignPage="radio"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true"
+                   Title="Radio Button Group Demonstration">
+    <Description>
+        <p>
+            Radio button groups.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Horizontal radio button group
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A radio button group presented horizontally.
+                    </h3>
+
+                    <p>
+                        <MBRadioButtonGroup @bind-Value="@HorizontalGroup"
+                                            Items="@KittenBreeds"
+                                            ItemValidation="@MBItemValidation.NoSelection" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Vertical radio button group
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A radio button group presented vertically.
+                    </h3>
+
+                    <p>
+                        <MBRadioButtonGroup @bind-Value="@Colour"
+                                            Items="@ColourItems"
+                                            IsHorizontal="true" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Density subsystem from default to minus 3.
+                    </h3>
+
+                    <p style="display: flex; flex-flow: column nowrap;">
+                        <MBRadioButton @bind-Value="@Density"
+                                       Density="MBDensity.Default"
+                                       Label="Default Density"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Default />
+
+                        <MBRadioButton @bind-Value="@Density"
+                                       Density=@MBDensity.Minus1
+                                       Label="Density Minus 1"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Minus1 />
+
+                        <MBRadioButton @bind-Value="@Density"
+                                       Density=@MBDensity.Minus2
+                                       Label="Density Minus 2"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Minus2 />
+
+                        <MBRadioButton @bind-Value="@Density"
+                                       Density=@MBDensity.Minus3
+                                       Label="Density Minus 3"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Minus3 />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+            };
+
+
+    private string _horizontalGroup;
+    private string HorizontalGroup
+    {
+        get => _horizontalGroup;
+        set
+        {
+            _horizontalGroup = value;
+
+            ToastService.ShowToast(heading: "Horizontal radio group", message: $"Value: '{_horizontalGroup}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    enum ColorEnum { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
+    IEnumerable<MBSelectElement<ColorEnum>> ColourItems => from c in (ColorEnum[])Enum.GetValues(typeof(ColorEnum))
+                                                           select new MBSelectElement<ColorEnum>
+                                                           {
+                                                               SelectedValue = c,
+                                                               Label = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),
+                                                               Disabled = (c == ColorEnum.Blue) ? true : (bool?)null
+                                                           };
+
+    private ColorEnum _color = ColorEnum.Orange;
+    private ColorEnum Colour
+    {
+        get => _color;
+        set
+        {
+            _color = value;
+
+            ToastService.ShowToast(heading: "Vertical radio group", message: $"Value: '{_color.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private MBDensity Density = MBDensity.Default;
+}
