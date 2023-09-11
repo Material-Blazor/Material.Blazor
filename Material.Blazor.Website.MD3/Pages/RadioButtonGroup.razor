@@ -52,7 +52,7 @@
                     <p>
                         <MBRadioButtonGroup @bind-Value="@Colour"
                                             Items="@ColourItems"
-                                            IsHorizontal="true" />
+                                            IsHorizontal="false" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -74,25 +74,29 @@
                     <p style="display: flex; flex-flow: column nowrap;">
                         <MBRadioButton @bind-Value="@Density"
                                        Density="MBDensity.Default"
-                                       Label="Default Density"
+                                       style="margin-bottom: 2em; "
+                                       TrailingLabelPLUS="Default Density"
                                        RadioGroupName="density-group"
                                        TargetCheckedValue=@MBDensity.Default />
 
                         <MBRadioButton @bind-Value="@Density"
                                        Density=@MBDensity.Minus1
-                                       Label="Density Minus 1"
+                                       style="margin-bottom: 2em; "
+                                       TrailingLabelPLUS="Density Minus 1"
                                        RadioGroupName="density-group"
                                        TargetCheckedValue=@MBDensity.Minus1 />
 
                         <MBRadioButton @bind-Value="@Density"
                                        Density=@MBDensity.Minus2
-                                       Label="Density Minus 2"
+                                       style="margin-bottom: 2em; "
+                                       TrailingLabelPLUS="Density Minus 2"
                                        RadioGroupName="density-group"
                                        TargetCheckedValue=@MBDensity.Minus2 />
 
                         <MBRadioButton @bind-Value="@Density"
                                        Density=@MBDensity.Minus3
-                                       Label="Density Minus 3"
+                                       style="margin-bottom: 2em; "
+                                       TrailingLabelPLUS="Density Minus 3"
                                        RadioGroupName="density-group"
                                        TargetCheckedValue=@MBDensity.Minus3 />
                     </p>
@@ -106,9 +110,9 @@
 @code {
     MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new MBSelectElement<string> { SelectedValue = "brit-short", TrailingLabel = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", TrailingLabel = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", TrailingLabel = "Icelandic Invisible" }
             };
 
 
@@ -130,7 +134,7 @@
                                                            select new MBSelectElement<ColorEnum>
                                                            {
                                                                SelectedValue = c,
-                                                               Label = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),
+                                                               TrailingLabel = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),
                                                                Disabled = (c == ColorEnum.Blue) ? true : (bool?)null
                                                            };
 

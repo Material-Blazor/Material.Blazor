@@ -13,9 +13,10 @@ public record MBSelectElement<T>
 
 
     /// <summary>
-    /// The string label expressing the value.
+    /// The string label(s) expressing the value.
     /// </summary>
-    public string Label { get; set; }
+    public string LeadingLabel { get; set; }
+    public string TrailingLabel { get; set; }
 
 
     /// <summary>

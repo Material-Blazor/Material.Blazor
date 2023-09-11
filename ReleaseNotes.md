@@ -19,9 +19,9 @@ remains unchanged.
 **New components**
 - Added preview of Material Design 3 components:
 	- MBCheckbox (with PLUS label parameters)
-	- MBRadioButton (added PLUS label parameters)
-	- MBRadioButtonGroup (added PLUS label parameters)
-	- MBSwitch (added PLUS label parameters)
+	- MBRadioButton (with PLUS label parameters)
+	- MBRadioButtonGroup (with PLUS label parameters)
+	- MBSwitch (with PLUS label parameters)
 - There are also some experimental MD3 components as we explore the best way to deliver MD3 functionality to MB:
 	- MBProgress (implements both circular & linear progress)
 	- MBTextField (implements both filled and outlined text fields)

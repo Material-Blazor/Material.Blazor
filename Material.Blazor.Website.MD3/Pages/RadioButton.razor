@@ -28,15 +28,15 @@
                         Bound data is an <code>enum</code>.
                     </h3>
 
-                    <p>
+                    <p class="mb-radiobuttongroup__horizontal">
                         <MBRadioButton @bind-Value="@Animal"
-                                       style="margin-right: 2em; "
+                                       style="margin-right: 1em; "
                                        TrailingLabelPLUS=@AnimalEnum.Dog.ToString()
                                        RadioGroupName="animal-group"
                                        TargetCheckedValue=@AnimalEnum.Dog />
 
                         <MBRadioButton @bind-Value="@Animal"
-                                       style="margin-right: 2em; "
+                                       style="margin-right: 1em; "
                                        TrailingLabelPLUS=@AnimalEnum.Fish.ToString()
                                        RadioGroupName="animal-group"
                                        TargetCheckedValue=@AnimalEnum.Fish />

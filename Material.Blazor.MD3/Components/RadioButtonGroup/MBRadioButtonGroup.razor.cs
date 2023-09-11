@@ -1,8 +1,11 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
 
@@ -24,11 +27,6 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
     /// Stack the radio buttons horizontally if true, otherwise vertical placement.
     /// </summary>
     [Parameter] public bool IsHorizontal { get; set; } = true;
-
-    /// <summary>
-    /// Use LeadingLabel if true, otherwise use trailing label.
-    /// </summary>
-    [Parameter] public bool UseLeadingLabel { get; set; } = false;
 
 
     private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
@@ -52,31 +50,30 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
             builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
         }
 
-        foreach(var rb in Items)
+        foreach (var rb in Items)
         {
-            builder.OpenElement(rendSeq++, "div");
+            builder.OpenComponent(rendSeq++, typeof(MBRadioButton<TItem>));
             {
-                builder.AddAttribute(rendSeq++, "style", "margin-right: 2em; ");
-
-                builder.OpenComponent(rendSeq++, typeof(MBRadioButton<TItem>));
+                builder.AddAttribute(rendSeq++, "Density", Density);
+                builder.AddAttribute(rendSeq++, "Disabled", rb.Disabled);
+                builder.AddAttribute(rendSeq++, "LeadingLabelPLUS", rb.LeadingLabel);
+                builder.AddAttribute(rendSeq++, "RadioGroupName", RadioGroupName);
+                if (IsHorizontal)
                 {
-                    builder.AddAttribute(rendSeq++, "Density", Density);
-                    builder.AddAttribute(rendSeq++, "Disabled", rb.Disabled);
-                    //builder.AddAttribute(rendSeq++, "@key", KeyGenerator(rb.SelectedValue));
-                    if (UseLeadingLabel)
-                    {
-                        builder.AddAttribute(rendSeq++, "LeadingLabelPLUS", rb.Label);
-                    }
-                    else
-                    {
-                        builder.AddAttribute(rendSeq++, "TrailingLabelPLUS", rb.Label);
-                    }
-                    builder.AddAttribute(rendSeq++, "RadioGroupName", RadioGroupName);
-                    builder.AddAttribute(rendSeq++, "TargetCheckedValue", rb.SelectedValue);
+                    builder.AddAttribute(rendSeq++, "style", "margin-right: 1em; ");
                 }
-                builder.CloseComponent();
+                else
+                {
+                    builder.AddAttribute(rendSeq++, "style", "margin-bottom: 1em; ");
+                }
+                builder.AddAttribute(rendSeq++, "TargetCheckedValue", rb.SelectedValue);
+                builder.AddAttribute(rendSeq++, "TrailingLabelPLUS", rb.TrailingLabel);
+                builder.AddAttribute(rendSeq++, "Value", ComponentValue);
+                builder.AddAttribute(rendSeq++, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
+                builder.AddAttribute(rendSeq++, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
+                builder.SetKey(KeyGenerator(rb.SelectedValue));
             }
-            builder.CloseElement();
+            builder.CloseComponent();
         }
 
         builder.CloseElement();

@@ -82,9 +82,6 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsScripts Remove="Components\TextField2\MBTextField2.ts" />
-		<InputStaticAssetsScripts Remove="Components\TextField\MBTextField.ts" />
-		<InputStaticAssetsStyles Remove="Components\RadioButtonGroup\MBRadioButtonGroup.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 

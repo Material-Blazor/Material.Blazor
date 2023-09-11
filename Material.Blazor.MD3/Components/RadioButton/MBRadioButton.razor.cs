@@ -17,6 +17,11 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     #region members
 
     /// <summary>
+    /// The radio button's density.
+    /// </summary>
+    [Parameter] public MBDensity? Density { get; set; }
+
+    /// <summary>
     /// Determines if the radiobutton is disabled.
     /// </summary>
     [Parameter] public bool IsDisabled { get; set; } = false;
@@ -47,7 +52,7 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
 
 
 
-    private string radioStyle { get; } = "display: flex; flex-direction: row; flex-grow: 1; align-items: center;";
+    private string radioStyle { get; } = "display: flex; flex-direction: row; flex-grow: 0; align-items: flex-start;";
 
     #endregion
 

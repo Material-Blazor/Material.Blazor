@@ -163,12 +163,12 @@ namespace Material.Blazor.Website.Shared
 
             Densities = new MBSelectElement<Material.Blazor.MBDensity>[]
             {
-            new() {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
-            new() {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
-            new() {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
-            new() {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
-            new() {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
-            new() {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
+            new() {SelectedValue = MBDensity.Default, TrailingLabel = "Default", Disabled = false },
+            new() {SelectedValue = MBDensity.Minus1, TrailingLabel = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
+            new() {SelectedValue = MBDensity.Minus2, TrailingLabel = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
+            new() {SelectedValue = MBDensity.Minus3, TrailingLabel = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
+            new() {SelectedValue = MBDensity.Minus4, TrailingLabel = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
+            new() {SelectedValue = MBDensity.Minus5, TrailingLabel = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
             }.Where(d => d.Disabled != true);
         }
 
