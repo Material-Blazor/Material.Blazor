@@ -15,6 +15,28 @@ public sealed class MBSwitch : InputComponent<bool>
     #region members
 
     /// <summary>
+    /// Determines whether the button has a badge - defaults to false.
+    /// </summary>
+    [Parameter] public bool HasBadge { get; set; }
+
+    /// <summary>
+    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
+    /// </summary>
+    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
+    /// <summary>
+    /// When true collapses the badge.
+    /// </summary>
+    [Parameter] public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
+
+    /// <summary>
+    /// The button's density.
+    /// </summary>
+    [Parameter] public string BadgeValue { get; set; }
+    private string _cachedBadgeValue;
+
+    /// <summary>
     /// Determines whether the switch shows icons.
     /// </summary>
     [Parameter] public bool? Icons { get; set; }
@@ -37,7 +59,7 @@ public sealed class MBSwitch : InputComponent<bool>
 
 
 
-    private string switchStyle { get; } = "display: flex; flex-direction: row; flex-grow: 1; align-items: center;";
+    private string switchStyle { get; } = "display: flex; flex-direction: row; flex-grow: 0; align-items: center;";
 
     #endregion
 

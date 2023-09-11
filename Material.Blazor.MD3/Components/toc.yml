@@ -7,6 +7,9 @@
 - name: Material.Blazor.Internal namespace
   topicUid: Material.Blazor.Internal
 
+- name: MBBadge
+  topicUid: C.MBBadge
+
 - name: MBCheckbox
   topicUid: C.MBCheckbox
 

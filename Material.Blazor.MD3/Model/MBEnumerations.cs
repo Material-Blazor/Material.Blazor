@@ -421,28 +421,28 @@ public enum MBLoggingLevel
 }
 
 
-///// <summary>
-///// Determines the positioning and width of a menu surface.
-///// </summary>
-//public enum MBMenuSurfacePositioning
-//{
-//    /// <summary>
-//    /// Placed with display: relative. and assuming a width determined by its contents.
-//    /// </summary>
-//    Regular,
+/// <summary>
+/// Determines the positioning and width of a menu surface.
+/// </summary>
+public enum MBMenuSurfacePositioning
+{
+    /// <summary>
+    /// Placed with display: relative. and assuming a width determined by its contents.
+    /// </summary>
+    Regular,
 
 
-//    /// <summary>
-//    /// Width set to match the parent anchor - incompatible with Fixed position.
-//    /// </summary>
-//    FullWidth,
+    /// <summary>
+    /// Width set to match the parent anchor - incompatible with Fixed position.
+    /// </summary>
+    FullWidth,
 
 
-//    /// <summary>
-//    /// Places the menu with fixed positioning.
-//    /// </summary>
-//    Fixed
-//}
+    /// <summary>
+    /// Places the menu with fixed positioning.
+    /// </summary>
+    Fixed
+}
 
 
 ///// **** Would prefer to use the following line for the summary however this fails to produce inline documentation and causes the following DocFX warning:

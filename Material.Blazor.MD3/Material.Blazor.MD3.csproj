@@ -82,6 +82,7 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<InputStaticAssetsStyles Remove="Components\Badge\MBBadge.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 

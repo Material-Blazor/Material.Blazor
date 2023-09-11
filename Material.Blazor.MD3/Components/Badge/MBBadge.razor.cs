@@ -1,13 +1,13 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.MD2;
+namespace Material.Blazor;
 
 /// <summary>
 /// A plus component badge placed at the top right of the containing div, overlapping the corner, but inside margin and padding..
 /// </summary>
-public partial class MBBadge : ComponentFoundationMD2
+public partial class MBBadge : ComponentFoundation
 {
     /// <summary>
     /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.

@@ -175,6 +175,9 @@
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
@@ -250,7 +253,7 @@
 			  DestinationFiles="$(ProjectDir)README.md" />
 	</Target>
 	-->
-	
+
 	<!--
 	These two don't work in the IDE
 
@@ -263,5 +266,5 @@
 			  DestinationFiles="$(ProjectDir)README.md" />
 	</Target>
 	-->
-	
+
 </Project>

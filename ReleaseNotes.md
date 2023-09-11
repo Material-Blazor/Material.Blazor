@@ -12,7 +12,7 @@ Released 2023-09-??
 **Updates**
 - Dependabot updates
 - Migrate all projects to .Net 8 RC 1
-- Migrate @material/web to 1.0.0-pre.19
+- Migrate @material/web to 1.0.0-pre.17
 - Our use of the MOQ library has been deprecated. The replacement library is NSubstitute. The pattern for adding additional tests
 remains unchanged.
 
@@ -20,7 +20,7 @@ remains unchanged.
 - Added preview of Material Design 3 components:
 	- MBCheckbox (with PLUS label parameters)
 	- MBRadioButton (with PLUS label parameters)
-	- MBRadioButtonGroup (with PLUS label parameters)
+	- MBRadioButtonGroup (PLUS component)
 	- MBSwitch (with PLUS label parameters)
 - There are also some experimental MD3 components as we explore the best way to deliver MD3 functionality to MB:
 	- MBProgress (implements both circular & linear progress)

@@ -3,28 +3,6 @@
 namespace Material.Blazor.MD2;
 
 /// <summary>
-/// Style for an <see cref="MBBadge"/>.
-/// </summary>
-public enum MBBadgeStyle
-{
-    /// <summary>
-    /// Bears a numeric value.
-    /// </summary> 
-    ValueBearing,
-
-    /// <summary>
-    /// Blank, full sized badge.
-    /// </summary> 
-    BlankFullSized,
-
-    /// <summary>
-    /// Small dot badge.
-    /// </summary> 
-    Dot
-}
-
-
-/// <summary>
 /// Style for an <see cref="MBButton"/> per Material Theme styling.
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
 /// </summary>

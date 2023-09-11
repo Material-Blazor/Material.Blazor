@@ -48,11 +48,12 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
     private long? TooltipId { get; set; }
 
 
+    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+
     /// <summary>
     /// Determines whether to apply the disabled attribute.
     /// </summary>
-    //internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
-    internal bool AppliedDisabled => false;
+    internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
 
 
     /// <summary>
