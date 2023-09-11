@@ -19,11 +19,9 @@ MD2 JS
 */
 import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
-import * as MBDatePicker from '../Components.MD2/DatePicker/MBDatePicker';
 import * as MBDialog from '../Components.MD2/Dialog/MBDialog';
 import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
 import * as MBIconButton from '../Components.MD2/IconButton/MBIconButton'
-import * as MBIconButtonToggle from '../Components.MD2/IconButtonToggle/MBIconButtonToggle'
 import * as MBMenu from '../Components.MD2/Menu/MBMenu';
 import * as MBSelect from '../Components.MD2/Select/MBSelect';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
@@ -35,11 +33,9 @@ import * as MBTooltip from '../Components.MD2/Tooltip/MBTooltip';
 
     MBCard,
     MBDataTable,
-    MBDatePicker,
     MBDialog,
     MBDrawer,
     MBIconButton,
-    MBIconButtonToggle,
     MBMenu,
     MBSelect,
     MBTopAppBar,
