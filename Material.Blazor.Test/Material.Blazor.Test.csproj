@@ -14,7 +14,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="bunit" Version="1.22.19" />
+		<PackageReference Include="bunit" Version="1.23.9" />
 		<PackageReference Include="bunit.core" Version="1.22.19" />
 		<PackageReference Include="bunit.web" Version="1.22.19" />
 		<PackageReference Include="Moq" Version="4.20.2" />
