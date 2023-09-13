@@ -18,7 +18,7 @@ remains unchanged.
 
 **New components**
 - Added preview of Material Design 3 components:
-	- MBCheckbox (with PLUS label parameters)
+	- MBCheckbox (with PLUS label parameters) N.B. - This is a port of the MD2 badge and will be replaced with an MD3 component when available. CSS still needs work in this version.
 	- MBRadioButton (with PLUS label parameters)
 	- MBRadioButtonGroup (PLUS component)
 	- MBSwitch (with PLUS label parameters)

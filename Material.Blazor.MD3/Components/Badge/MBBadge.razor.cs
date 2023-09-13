@@ -9,6 +9,8 @@ namespace Material.Blazor;
 /// </summary>
 public partial class MBBadge : ComponentFoundation
 {
+    #region members
+
     /// <summary>
     /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
     /// </summary>
@@ -26,6 +28,9 @@ public partial class MBBadge : ComponentFoundation
     /// </summary>
     [Parameter] public bool Exited { get; set; }
 
+    #endregion
+
+    #region OnInitializedAsync
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnInitializedAsync()
@@ -37,6 +42,9 @@ public partial class MBBadge : ComponentFoundation
             .AddIf("mb-badge--exited", () => Exited);
     }
 
+    #endregion
+
+    #region SetValueAndExited
 
     /// <summary>
     /// Sets the exited value and calls SHC.
@@ -47,4 +55,7 @@ public partial class MBBadge : ComponentFoundation
         Exited = exited;
         await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
+
+    #endregion
+
 }
