@@ -10,12 +10,23 @@
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
       <meta name="docfx:navrel" content="../../toc.html">
-      <meta name="docfx:tocrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
       
       
       
       
       <meta name="docfx:docurl" content="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Articles/Density.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
   </head>
 
   <script type="module">
@@ -75,248 +86,7 @@
 <h1 id="density">Density</h1>
 
 <h2 id="summary">Summary</h2>
-<p>Material Theme specifies a <a href="https://material.io/develop/web/components/density">density subsystem</a>, applied using SASS mixins. Material.Blazor handles density through component parameters and
-cascading defaults. This parameterization is applied to Material Theme components via CSS classes prepared by Material.Blazor from the SASS mixins. Density is specified by the
-<a class="xref" href="../../api/Material.Blazor.MBDensity.html">MBDensity enumeration</a>, and can be controlled both with Cascading Defaults and direct component parameters.</p>
-<h2 id="density-levels">Density Levels</h2>
-<p>Density is specified by having components rendered increasingly dense as a density number reduces from zero to minus 5. Some components render all density levels, others only a subset, stopping
-at either minus three or minus four. In these cases if you specify a something more dense, the densest available rendering will be supplied. For instance <code>MBButton</code> with density of minus 5 will render with
-density of minus 3.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Density Level</th>
-<th style="text-align: left;">Enumeration</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">0</td>
-<td style="text-align: left;"><code>MBDensity.Default</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">-1</td>
-<td style="text-align: left;"><code>MBDensity.Minus1</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">-2</td>
-<td style="text-align: left;"><code>MBDensity.Minus2</code> and <code>MBDensity.Comfortable</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">-3</td>
-<td style="text-align: left;"><code>MBDensity.Minus3</code> and <code>MBDensity.Compact</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">-4</td>
-<td style="text-align: left;"><code>MBDensity.Minus4</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">-5</td>
-<td style="text-align: left;"><code>MBDensity.Minus5</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="components-applying-density-subsystem">Components Applying Density Subsystem</h2>
-<p>Applicable density levels are shown with a ✔️. Those with a ❌ will display the most dense option available. For instance an <a class="xref" href="../Components/Button/MBButton.html">MBButton</a> with
-a specified density of minus 5 will actually display with a density of minus 3.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Component</th>
-<th style="text-align: center;">0</th>
-<th style="text-align: center;">-1</th>
-<th style="text-align: center;">-2</th>
-<th style="text-align: center;">-3</th>
-<th style="text-align: center;">-4</th>
-<th style="text-align: center;">-5</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/AutocompletePagedField/MBAutocompletePagedField.html">MBAutocompletePagedField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/AutocompleteSelectField/MBAutocompleteSelectField.html">MBAutocompleteSelectField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/Button/MBButton.html">MBButton</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/Checkbox/MBCheckbox.html">MBCheckbox</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/DataTable/MBDataTable.html">MBDataTable<titem></titem></a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/IconButton/MBIconButton.html">MBIconButton</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/IconButtonToggle/MBIconButtonToggle.html">MBIconButtonToggle</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/List/MBList.html">MBList</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/NumericDecimalField/MBNumericDecimalField.html">MBNumericDecimalField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/RadioButton/MBRadioButton.html">MBRadioButton</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/RadioButtonGroup/MBRadioButtonGroup.html">MBRadioButtonGroup</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/Select/MBSelect.html">MBSelect</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/Switch/MBSwitch.html">MBSwitch</a><a href="#fn2"><sup>2</sup></a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/TabBar/MBTabBar.html">MBTabBar</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/TextArea/MBTextArea.html">MBTextArea</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">❌</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a class="xref" href="../Components/TextField/MBTextField.html">MBTextField</a></td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️</td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
-<td style="text-align: center;">❌</td>
-</tr>
-</tbody>
-</table>
-<br>
-<p><strong>1<a name="fn1"></a></strong>: Filled text fields, text areas and selects with density of -2 or below hide lables with <code>display: none;</code> due to a lack of space. Labels remain in the DOM for aria reference.
-<strong>2<a name="fn2"></a></strong>: As of Material Components Web v12.0.0 and therefore Material.Blazor 2.0.0 switch density seems to be deprecated.</p>
+<p>TBD - Density is not yet implemented in MD3</p>
 </article>
 
         <div class="contribution d-print-none">

@@ -3,73 +3,73 @@ sorted: true
 references:
 - uid: A.CascadingDefaults
   name: CascadingDefaults
-  href: Articles/CascadingDefaults.html
+  href: Material.Blazor/Articles/CascadingDefaults.html
 - uid: A.CodeOfConduct
   name: CodeOfConduct
   href: CODE_OF_CONDUCT.html
 - uid: A.CoreComponents
   name: CoreComponents
-  href: Articles/CoreComponents.html
+  href: Material.Blazor/Articles/CoreComponents.html
 - uid: A.Demonstration
   name: Demonstration
-  href: Articles/Demonstration.html
+  href: Material.Blazor/Articles/Demonstration.html
 - uid: A.Density
   name: Density
-  href: Articles/Density.html
+  href: Material.Blazor/Articles/Density.html
 - uid: A.DevelopmentEnvironment
   name: DevelopmentEnvironment
-  href: Articles/DevelopmentEnvironment.html
+  href: Material.Blazor/Articles/DevelopmentEnvironment.html
 - uid: A.FormValidation
   name: FormValidation
-  href: Articles/FormValidation.html
+  href: Material.Blazor/Articles/FormValidation.html
 - uid: A.Icon
   name: Icon
-  href: Articles/Icon.html
+  href: Material.Blazor/Articles/Icon.html
 - uid: A.Installation
   name: Installation
-  href: Articles/Installation.html
+  href: Material.Blazor/Articles/Installation.html
 - uid: A.Introduction
   name: Introduction
-  href: Articles/Introduction.html
+  href: Material.Blazor/Articles/Introduction.html
 - uid: A.License
   name: License
   href: LICENSE.html
 - uid: A.MenuOverflow
   name: MenuOverflow
-  href: Articles/MenuOverflow.html
+  href: Material.Blazor/Articles/MenuOverflow.html
 - uid: A.PlusComponents
   name: PlusComponents
-  href: Articles/PlusComponents.html
+  href: Material.Blazor/Articles/PlusComponents.html
 - uid: A.Principles
   name: Principles
-  href: Articles/Principles.html
+  href: Material.Blazor/Articles/Principles.html
 - uid: A.ReleaseNotes
   name: ReleaseNotes
   href: ReleaseNotes.html
 - uid: A.Services
   name: Services
-  href: Articles/Services.html
+  href: Material.Blazor/Articles/Services.html
 - uid: A.Snackbar
   name: Snackbar
-  href: Articles/Snackbar.html
+  href: Material.Blazor/Articles/Snackbar.html
 - uid: A.ThemingAndCSS
   name: ThemingAndCSS
-  href: Articles/ThemingAndCSS.html
+  href: Material.Blazor/Articles/ThemingAndCSS.html
 - uid: A.Toast
   name: Toast
-  href: Articles/Toast.html
+  href: Material.Blazor/Articles/Toast.html
 - uid: A.Tooltip
   name: Tooltip
-  href: Articles/Tooltip.html
+  href: Material.Blazor/Articles/Tooltip.html
 - uid: A.TwoWayBinding
   name: TwoWayBinding
-  href: Articles/TwoWayBinding.html
+  href: Material.Blazor/Articles/TwoWayBinding.html
 - uid: A.Utilities
   name: Utilities
-  href: Articles/Utilities.html
+  href: Material.Blazor/Articles/Utilities.html
 - uid: A.Workflows
   name: Workflows
-  href: Articles/Workflows.html
+  href: Material.Blazor/Articles/Workflows.html
 - uid: C.MBAnchor
   name: MBAnchor
   href: Material.Blazor/Components/Anchor/MBAnchor.html
