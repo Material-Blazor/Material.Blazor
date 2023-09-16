@@ -17,23 +17,23 @@ public sealed class MBSwitch : InputComponent<bool>
     /// <summary>
     /// Determines whether the button has a badge - defaults to false.
     /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
+    [Parameter] public bool HasBadgePLUS { get; set; }
 
     /// <summary>
     /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
     /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+    [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
 
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
-    [Parameter] public bool BadgeExited { get; set; }
+    [Parameter] public bool BadgeExitedPLUS { get; set; }
     private bool _cachedBadgeExited;
 
     /// <summary>
-    /// The button's density.
+    /// The badge's value.
     /// </summary>
-    [Parameter] public string BadgeValue { get; set; }
+    [Parameter] public string BadgeValuePLUS { get; set; }
     private string _cachedBadgeValue;
 
     /// <summary>
@@ -59,6 +59,7 @@ public sealed class MBSwitch : InputComponent<bool>
 
 
 
+    private MBBadge BadgeRef { get; set; }
     private string switchStyle { get; } = "display: flex; flex-direction: row; flex-grow: 0; align-items: center;";
 
     #endregion
@@ -75,6 +76,28 @@ public sealed class MBSwitch : InputComponent<bool>
             builder.AddAttribute(rendSeq++, "style", switchStyle + style);
             builder.AddAttribute(rendSeq++, "id", id);
             builder.AddAttribute(rendSeq++, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
+
+            if (HasBadgePLUS)
+            {
+                builder.OpenElement(rendSeq++, "div");
+                {
+                    builder.OpenElement(rendSeq++, "span");
+                    {
+                        builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
+                        builder.OpenComponent(rendSeq++, typeof(MBBadge));
+                        {
+                            builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
+                            builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
+                            builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
+                            builder.AddComponentReferenceCapture(rendSeq++,
+                                (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
+                        }
+                        builder.CloseComponent();
+                    }
+                    builder.CloseElement();
+                }
+                builder.CloseElement();
+            }
 
             if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
             {
@@ -126,6 +149,26 @@ public sealed class MBSwitch : InputComponent<bool>
     {
         Value = !Value;
         await ValueChanged.InvokeAsync(Value);
+    }
+
+    #endregion
+
+    #region OnParametersSetAsync
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
+        {
+            _cachedBadgeValue = BadgeValuePLUS;
+            _cachedBadgeExited = BadgeExitedPLUS;
+
+            if (BadgeRef is not null)
+            {
+                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
+            }
+        }
     }
 
     #endregion

@@ -149,6 +149,28 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
+                            <MBSwitch @bind-Value="@ToggleValue"
+                                      HasBadgePLUS="true"
+                                      BadgeValuePLUS="@GeneralValue"
+                                      BadgeExitedPLUS="@Exited"
+                                      TrailingLabelPLUS="Switch" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSwitch @bind-Value="@ToggleValue"
+                                      HasBadgePLUS="true"
+                                      BadgeValuePLUS="@ButtonValue"
+                                      BadgeExitedPLUS="@Exited"
+                                      TrailingLabelPLUS="Switch" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSwitch @bind-Value="@ToggleValue"
+                                      HasBadgePLUS="true"
+                                      BadgeStylePLUS="@MBBadgeStyle.Dot"
+                                      BadgeExitedPLUS="@Exited"
+                                      TrailingLabelPLUS="Switch" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MBOutlinedTextField @bind-Value="@TextFieldValue"
                                                  HasBadge="true"
                                                  BadgeValue="@GeneralValue"

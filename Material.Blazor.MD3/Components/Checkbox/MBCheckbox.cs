@@ -24,7 +24,6 @@ public sealed class MBCheckbox : InputComponent<bool>
     /// </summary>
     [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
 
-
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
@@ -32,7 +31,7 @@ public sealed class MBCheckbox : InputComponent<bool>
     private bool _cachedBadgeExited;
 
     /// <summary>
-    /// The button's density.
+    /// The badge's value.
     /// </summary>
     [Parameter] public string BadgeValuePLUS { get; set; }
     private string _cachedBadgeValue;

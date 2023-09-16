@@ -7,7 +7,7 @@ title: ReleaseNotes
 #### [5.0.0-rc1]
 (https://github.com/Maerial-Blazor/Material.Blazor/tree/5.0.0-rc1)
 
-Released 2023-09-??
+Released 2023-09-16
 
 **Updates**
 - Dependabot updates
@@ -18,7 +18,9 @@ remains unchanged.
 
 **New components**
 - Added preview of Material Design 3 components:
-	- MBCheckbox (with PLUS label parameters) N.B. - This is a port of the MD2 badge and will be replaced with an MD3 component when available. CSS still needs work in this version.
+	- MBCheckbox (with PLUS label parameters) N.B. - This is a port of the MD2 badge and will be replaced with an MD3 component when available.
+CSS still needs work in this version. If the funky rendering is not solved by the time  of RC2 then badges will be
+removed until the MD3 badge component is available.
 	- MBRadioButton (with PLUS label parameters)
 	- MBRadioButtonGroup (PLUS component)
 	- MBSwitch (with PLUS label parameters)

@@ -18,8 +18,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/stargazers)
 [![GitHub stars](https://img.shields.io/github/watchers/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/watchers)
 
-[![GithubActionsRelease](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsRelease.yml?label=actions%20release&logo=github&style=flat-square)](https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsRelease.yml)
-[![GithubActionsWIP](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsWIP.yml?label=actions%20wip&logo=github&style=flat-square)](https://github.com/Material-Blazor/HttpSecurity.AspNet/actions/workflows/GithubActionsWIP.yml)
+[![GithubActionsRelease](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsRelease.yml?label=actions%20release&logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/actions/workflows/GithubActionsRelease.yml)
+[![GithubActionsWIP](https://img.shields.io/github/actions/workflow/status/Material-Blazor/Material.Blazor/GithubActionsWIP.yml?label=actions%20wip&logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/actions/workflows/GithubActionsWIP.yml)
 
 ---
 
