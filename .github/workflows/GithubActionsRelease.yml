@@ -268,6 +268,11 @@ jobs:
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}}
 
+    - name: Create documentation 🔧
+      run: docfx docfx.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: main   
+
     - name: Upload Documentation Artifacts 🔺
       uses: actions/upload-artifact@v3
       with:
