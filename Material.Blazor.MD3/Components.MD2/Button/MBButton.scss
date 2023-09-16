@@ -1,0 +1,24 @@
+﻿@use "@material/button";
+
+.mdc-button {
+    &.dense--5,
+    &.dense--4,
+    &.dense--3,
+    &.dense-compact {
+        @include button.density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include button.density(-2);
+    }
+
+    &.dense--1 {
+        @include button.density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include button.density(0);
+    }
+}

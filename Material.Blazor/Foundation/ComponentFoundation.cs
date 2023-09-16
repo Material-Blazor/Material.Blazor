@@ -17,6 +17,7 @@ namespace Material.Blazor.Internal;
 public abstract class ComponentFoundation : ComponentBase, IDisposable
 {
     #region members
+
     /// <summary>
     /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
     /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
@@ -459,4 +460,5 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         }
     }
     #endregion
+
 }

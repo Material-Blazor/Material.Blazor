@@ -3,8 +3,7 @@
 @inject IMBToastService ToastService
 
 
-<DemonstrationPage ComponentName="RadioButton"
-                   DemoComponent="@this"
+<DemonstrationPage ComponentAndPageName="RadioButton"
                    IsGeneric="true"
                    MaterialIOPage="mdc-radio#selection-controls-radio-buttons"
                    MinDensity="MBDensity.Minus3"
@@ -31,8 +30,6 @@
 
                     <p>
                         <MBRadioButton @bind-Value="@Animal"
-                                       class="supplied-test-class"
-                                       id="supplied-test-id"
                                        Label=@AnimalEnum.Dog.ToString()
                                        RadioGroupName="animal-group"
                                        TargetCheckedValue=@AnimalEnum.Dog />

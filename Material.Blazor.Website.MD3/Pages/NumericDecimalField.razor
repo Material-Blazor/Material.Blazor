@@ -7,10 +7,12 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage ComponentName="NumericDecimalField"
-                   DemoComponent="@this"
-                   @* MaterialDesign3Page="" *@
+<DemonstrationPage AdditionalAPIReferences="@apiTuple"
+                   ComponentAndPageName="NumericDecimalField"
+                   ComponentDirectory="NumericField"
+                   MaterialDesignPage=""
                    RequiresDisableSelection="true"
+                   SuppressComponentDocumentation="true"
                    Title="Numeric Decimal Field Demonstration">
     <Description>
         <p>
@@ -145,7 +147,11 @@
         {
             _decimalValue = value;
 
-            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                level: Material.Blazor.MBToastLevel.Success,
+                heading: "Decimal numeric",
+                message: $"Value: '{_decimalValue.ToString("N2")}'",
+                showIcon: false);
         }
     }
 
@@ -159,7 +165,11 @@
         {
             _moneyByFormat = value;
 
-            ToastService.ShowToast(heading: "Money by format numeric", message: $"Value: '{_moneyByFormat.ToString("C2")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Money by format numeric",
+                message: $"Value: '{_moneyByFormat.ToString("C2")}'",
+                level: Material.Blazor.MBToastLevel.Success, showIcon:
+                false);
         }
     }
 
@@ -173,7 +183,11 @@
         {
             _moneyByPrefix = value;
 
-            ToastService.ShowToast(heading: "Money by Prefix numeric", message: $"Value: '{_moneyByPrefix.ToString("N2")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Money by Prefix numeric",
+                message: $"Value: '{_moneyByPrefix.ToString("N2")}'",
+                level: Material.Blazor.MBToastLevel.Success,
+                showIcon: false);
         }
     }
 
@@ -187,7 +201,11 @@
         {
             _percentByFormat = value;
 
-            ToastService.ShowToast(heading: "Percent by format", message: $"Value: '{_percentByFormat.ToString("N4")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Percent by format",
+                message: $"Value: '{_percentByFormat.ToString("N4")}'",
+                level: Material.Blazor.MBToastLevel.Success,
+                showIcon: false);
         }
     }
 
@@ -200,7 +218,11 @@
         {
             _percentBySuffix = value;
 
-            ToastService.ShowToast(heading: "Percent by suffix", message: $"Value: '{_percentBySuffix.ToString("N4")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Percent by suffix",
+                message: $"Value: '{_percentBySuffix.ToString("N4")}'",
+                level: Material.Blazor.MBToastLevel.Success,
+                showIcon: false);
         }
     }
 
@@ -213,7 +235,11 @@
         {
             _basisPointsBySuffix = value;
 
-            ToastService.ShowToast(heading: "Basis Points by suffix", message: $"Value: '{_basisPointsBySuffix.ToString("N4")}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Basis Points by suffix",
+                message: $"Value: '{_basisPointsBySuffix.ToString("N4")}'",
+                level: Material.Blazor.MBToastLevel.Success,
+                showIcon: false);
         }
     }
 
@@ -226,7 +252,11 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{_popupHelperText}'",
+                level: Material.Blazor.MBToastLevel.Success,
+                showIcon: false);
         }
     }
 
@@ -239,7 +269,27 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Persistent Helper Text",
+                message: $"Value: '{_persistentHelperText}'",
+                level: Material.Blazor.MBToastLevel.Success,
+                showIcon: false);
         }
     }
+
+
+    private Tuple<int, string>[] apiTuple = 
+    {
+       new Tuple<int, string>(0, "MBFilledDecimalField"),
+       new Tuple<int, string>(5, "InternalNumericFieldBase"),
+       new Tuple<int, string>(10, "InternalFloatingPointFieldBase"),
+       new Tuple<int, string>(15, "MBFilledTextField"),
+       new Tuple<int, string>(20, "InternalTextFieldBase"),
+       new Tuple<int, string>(0, "MBOutlinedDecimalField"),
+       new Tuple<int, string>(5, "InternalNumericFieldBase"),
+       new Tuple<int, string>(10, "InternalFloatingPointFieldBase"),
+       new Tuple<int, string>(15, "MBOutlinedTextField"),
+       new Tuple<int, string>(20, "InternalTextFieldBase")
+    };
+
 }

@@ -1,4 +1,4 @@
-﻿using Material.Blazor;
+using Material.Blazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
@@ -18,6 +18,63 @@ namespace Material.Blazor.Internal;
 public abstract class ComponentFoundation : ComponentBase, IDisposable
 {
     #region members
+
+    //[CascadingParameter] private IMBDialog ParentDialog { get; set; }
+    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+
+
+
+    /// <summary>
+    /// Gets or sets a collection of additional attributes that will be applied to the created element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
+
+    /// <summary>
+    /// Indicates whether the component is disabled.
+    /// </summary>
+
+#pragma warning disable BL0007 // Component parameters should be auto properties
+    [Parameter] public bool? Disabled { get; set; }
+#pragma warning restore BL0007 // Component parameters should be auto properties
+
+
+    /// <summary>
+    /// The HTML id attribute is used to specify a unique id for an HTML element.
+    ///
+    /// You cannot have more than one element with the same id in an HTML document.
+    /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+    [Parameter] public string id { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+    /// <summary>
+    /// Additional CSS classes for the component.
+    /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+    [Parameter] public string @class { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+    /// <summary>
+    /// Additional CSS style for the component.
+    /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+    [Parameter] public string style { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+    /// <summary>
+    /// A markup capable tooltip.
+    /// </summary>
+    [Parameter] public string Tooltip { get; set; }
+
+
+
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+    //[Inject] private protected IMBTooltipService TooltipService { get; set; }
+    [Inject] private protected IMBLoggingService LoggingService { get; set; }
+
+
+
     /// <summary>
     /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
     /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
@@ -28,12 +85,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
     private bool? disabled = null;
 
-    //[CascadingParameter] private IMBDialog ParentDialog { get; set; }
-    [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
-    //[Inject] private protected IMBTooltipService TooltipService { get; set; }
-    //[Inject] private protected IMBLoggingService LoggingService { get; set; }
-
-
+    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
 
     /// <summary>
     /// Gets a value for the component's 'id' attribute.
@@ -62,59 +114,18 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <summary>
     /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="ComponentBase.OnInitialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
     /// </summary>
-    //private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
-    #endregion
-
-    #region parameters
-
-    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+    private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
 
     /// <summary>
-    /// Gets or sets a collection of additional attributes that will be applied to the created element.
+    /// The concurrent queue for javascript interop actions.
     /// </summary>
-    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
+    private readonly ConcurrentQueue<Func<Task>> _jsActionQueue = new();
 
 
     /// <summary>
-    /// Indicates whether the component is disabled.
+    /// Semaphore prevents multiple dequeue actions from running concurrently.
     /// </summary>
-
-#pragma warning disable BL0007 // Component parameters should be auto properties
-    [Parameter] public bool? Disabled { get; set; }
-#pragma warning restore BL0007 // Component parameters should be auto properties
-
-
-    /// <summary>
-    /// The HTML id attribute is used to specify a unique id for an HTML element.
-    ///
-    /// You cannot have more than one element with the same id in an HTML document.
-    /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-    [Parameter] public string id { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-
-
-    /// <summary>
-    /// Additional CSS classes for the component.
-    /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-    [Parameter] public string @class { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-    //protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
-
-
-    /// <summary>
-    /// Additional CSS style for the component.
-    /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-    [Parameter] public string style { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-
-
-    /// <summary>
-    /// A markup capable tooltip.
-    /// </summary>
-    [Parameter] public string Tooltip { get; set; }
+    private readonly SemaphoreSlim _jsActionQueueSemaphore = new(1, 1);
 
     #endregion
 
@@ -252,6 +263,67 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         GC.SuppressFinalize(this);
     }
 
+    #endregion
+
+    #region EnqueueJSInteropAction
+
+    /// <summary>
+    /// Enqueues a javascript action (meaning instantiation, component value set or disabled value set)
+    /// and then flushes the queue one by one. This process is required to ensure that rapidly applied 
+    /// values don't clash with one another, but are applied sequentially in order.
+    /// </summary>
+    /// <param name="action"></param>
+    private protected void EnqueueJSInteropAction(Func<Task> action)
+    {
+        _jsActionQueue.Enqueue(action);
+        _ = DequeueActions();
+
+        async Task DequeueActions()
+        {
+            if (!_disposed)
+            {
+                await _jsActionQueueSemaphore.WaitAsync().ConfigureAwait(false);
+            }
+
+            try
+            {
+                while (_jsActionQueue.TryDequeue(out var dequeuedAction))
+                {
+                    if (!_disposed)
+                    {
+                        await dequeuedAction().ConfigureAwait(false);
+                    }
+                }
+
+                if (!_disposed)
+                {
+                    await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+                }
+            }
+            finally
+            {
+                if (!_disposed)
+                {
+                    _ = _jsActionQueueSemaphore.Release();
+                }
+            }
+        }
+    }
+
+    #endregion
+
+    #region InvokeJsVoidAsync
+    /// <summary>
+    /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found). Only
+    /// use for components.
+    /// </summary>
+    /// <param name="identifier"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    private protected async Task InvokeJsVoidAsync(string identifier, params object[] args)
+    {
+        await JsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
+    }
     #endregion
 
     #region OnAfterRender

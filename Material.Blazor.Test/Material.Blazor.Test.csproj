@@ -1,29 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
 		<IsPackable>false</IsPackable>
-		<Configurations>Server;WebAssembly</Configurations>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Server|AnyCPU'">
-		<DefineConstants>BLAZOR_SERVER</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WebAssembly|AnyCPU'">
-		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="bunit" Version="1.22.19" />
-		<PackageReference Include="bunit.core" Version="1.22.19" />
-		<PackageReference Include="bunit.web" Version="1.22.19" />
-		<PackageReference Include="Moq" Version="4.20.2" />
+		<PackageReference Include="bunit" Version="1.23.9" />
+		<PackageReference Include="bunit.core" Version="1.23.9" />
+		<PackageReference Include="bunit.web" Version="1.23.9" />
+		<PackageReference Include="NSubstitute" Version="5.1.0" />
 		<PackageReference Include="xunit" Version="2.5.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0-preview-23424-02" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />

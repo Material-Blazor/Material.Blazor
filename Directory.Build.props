@@ -2,4 +2,18 @@
 	<PropertyGroup>
 		<ArtifactsPath>$(MSBuildThisFileDirectory).artifacts</ArtifactsPath>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<Configurations>Server;WebAssembly</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Server|AnyCPU'">
+		<DefineConstants>BLAZOR_SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WebAssembly|AnyCPU'">
+		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
+	</PropertyGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Material.Blazor.Internal;
+namespace Material.Blazor.Internal.MD2;
 
 /// <summary>
 /// Unique identifiers are necessary for tooltips.

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
 
-namespace Material.Blazor;
+namespace Material.Blazor.MD2;
 
 /// <summary>
 /// Interface for the Material.Blazor tooltip service, developed from the code base of Blazored Toast by Chris Sainty.

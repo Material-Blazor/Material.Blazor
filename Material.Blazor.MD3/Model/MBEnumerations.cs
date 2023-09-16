@@ -71,50 +71,6 @@ public enum MBButtonStyle
 
 
 ///// <summary>
-///// Size for an <see cref="MBCircularProgress"/>.
-///// </summary>
-//public enum MBCircularProgressSize
-//{
-//    /// <summary>
-//    /// A small sized circular progress.
-//    /// </summary>
-//    Small,
-
-//    /// <summary>
-//    /// A medium sized circular progress.
-//    /// </summary>
-//    Medium,
-
-//    /// <summary>
-//    /// A large sized circular progress. This is the default.
-//    /// </summary>
-//    Large
-//}
-
-
-///// <summary>
-///// Type for an <see cref="MBCircularProgress"/>.
-///// </summary>
-//public enum MBCircularProgressType
-//{
-//    /// <summary>
-//    /// An indeterminate circular progress.
-//    /// </summary>
-//    Indeterminate,
-
-//    /// <summary>
-//    /// A determinate circular progress with a value from 0 to 1.
-//    /// </summary>
-//    Determinate,
-
-//    /// <summary>
-//    /// A closed circular progress.
-//    /// </summary>
-//    Closed
-//}
-
-
-///// <summary>
 ///// Determines the allowed selections in <see cref="MBDatePicker"/>
 ///// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="AllowAll"/></para>
 ///// </summary>
@@ -410,28 +366,6 @@ public enum MBItemValidation
 
 
 ///// <summary>
-///// Type for an <see cref="MBLinearProgress"/>.
-///// </summary>
-//public enum MBLinearProgressType
-//{
-//    /// <summary>
-//    /// An indeterminate linear progress.
-//    /// </summary>
-//    Indeterminate,
-
-//    /// <summary>
-//    /// A determinate linear progress with a value from 0 to 1.
-//    /// </summary>
-//    Determinate,
-
-//    /// <summary>
-//    /// A closed linear progress.
-//    /// </summary>
-//    Closed
-//}
-
-
-///// <summary>
 ///// Style for an <see cref="MBList{TItem}"/>. The <see cref="Outlined"/> variety borrows card markup matching <see cref="MBCardStyle.Outlined"/>.
 ///// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="None"/></para>
 ///// </summary>
@@ -487,28 +421,28 @@ public enum MBLoggingLevel
 }
 
 
-///// <summary>
-///// Determines the positioning and width of a menu surface.
-///// </summary>
-//public enum MBMenuSurfacePositioning
-//{
-//    /// <summary>
-//    /// Placed with display: relative. and assuming a width determined by its contents.
-//    /// </summary>
-//    Regular,
+/// <summary>
+/// Determines the positioning and width of a menu surface.
+/// </summary>
+public enum MBMenuSurfacePositioning
+{
+    /// <summary>
+    /// Placed with display: relative. and assuming a width determined by its contents.
+    /// </summary>
+    Regular,
 
 
-//    /// <summary>
-//    /// Width set to match the parent anchor - incompatible with Fixed position.
-//    /// </summary>
-//    FullWidth,
+    /// <summary>
+    /// Width set to match the parent anchor - incompatible with Fixed position.
+    /// </summary>
+    FullWidth,
 
 
-//    /// <summary>
-//    /// Places the menu with fixed positioning.
-//    /// </summary>
-//    Fixed
-//}
+    /// <summary>
+    /// Places the menu with fixed positioning.
+    /// </summary>
+    Fixed
+}
 
 
 ///// **** Would prefer to use the following line for the summary however this fails to produce inline documentation and causes the following DocFX warning:
@@ -535,6 +469,45 @@ public enum MBNumericInputMagnitude
     /// Basis points where the numeric input needs to multiply the value by 10 000 when displaying or editing (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
     /// </summary>
     BasisPoints = 4
+}
+
+
+/// <summary>
+/// Stype for Progress  <see cref="MBProgress"/>.
+/// </summary>
+public enum MBProgressStyle
+{
+    /// <summary>
+    /// An circular progress.
+    /// </summary>
+    Circular,
+
+    /// <summary>
+    /// A linear progress
+    /// </summary>
+    Linear
+}
+
+
+/// <summary>
+/// Type for Progress  <see cref="MBProgress"/>.
+/// </summary>
+public enum MBProgressType
+{
+    /// <summary>
+    /// An indeterminate progress.
+    /// </summary>
+    Indeterminate,
+
+    /// <summary>
+    /// A determinate progress with a value from 0 to 1.
+    /// </summary>
+    Determinate,
+
+    /// <summary>
+    /// A closed progress.
+    /// </summary>
+    Closed
 }
 
 
@@ -661,23 +634,23 @@ public enum MBTextAlignStyle
 }
 
 
-///// <summary>
-///// Material Theme text field and text area input style applied to <see cref="MBTextField"/> and <see cref="MBTextArea"/>.
-///// <para>Applied also to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/></para>
-///// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
-///// </summary>
-//public enum MBTextInputStyle
-//{
-//    /// <summary>
-//    /// The filled style (pending in Material Web Components 6.0.0 for <see cref="MBTextArea"/>). This is the <see cref="MBCascadingDefaults"/> default.
-//    /// </summary>
-//    Filled,
+/// <summary>
+/// Material Theme text field and text area input style applied to <see cref="MBTextField"/> and <see cref="MBTextArea"/>.
+/// <para>Applied also to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/></para>
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
+/// </summary>
+public enum MBTextInputStyle
+{
+    /// <summary>
+    /// The filled style (pending in Material Web Components 6.0.0 for <see cref="MBTextArea"/>). This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>
+    Filled,
 
-//    /// <summary>
-//    /// The outlined style.
-//    /// </summary>
-//    Outlined
-//}
+    /// <summary>
+    /// The outlined style.
+    /// </summary>
+    Outlined
+}
 
 
 ///// <summary>

@@ -1,0 +1,78 @@
+﻿@page "/radiobutton"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentAndPageName="RadioButton"
+                   IsGeneric="true"
+                   MaterialDesignPage="radio"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true"
+                   Title="Radio Button Demonstration">
+    <Description>
+        <p>
+            Individual and grouped radio buttons.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Individual Radio Buttons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Radio buttons are rendered individually and grouped by RadioGroupName. The 'repeat-dog' demonstrates two-way binding.
+                        Bound data is an <code>enum</code>.
+                    </h3>
+
+                    <p class="mb-radiobuttongroup__horizontal">
+                        <MBRadioButton @bind-Value="@Animal"
+                                       style="margin-right: 1em; "
+                                       TrailingLabelPLUS=@AnimalEnum.Dog.ToString()
+                                       RadioGroupName="animal-group"
+                                       TargetCheckedValue=@AnimalEnum.Dog />
+
+                        <MBRadioButton @bind-Value="@Animal"
+                                       style="margin-right: 1em; "
+                                       TrailingLabelPLUS=@AnimalEnum.Fish.ToString()
+                                       RadioGroupName="animal-group"
+                                       TargetCheckedValue=@AnimalEnum.Fish />
+
+                        <MBRadioButton @bind-Value="@Animal"
+                                       TrailingLabelPLUS=@AnimalEnum.Zebra.ToString()
+                                       RadioGroupName="animal-group"
+                                       TargetCheckedValue=@AnimalEnum.Zebra />
+                    </p>
+                    <p>
+                        <MBRadioButton @bind-Value="@Animal"
+                                       TrailingLabelPLUS=@RepeatedDogLabel
+                                       RadioGroupName="repeat-group"
+                                       TargetCheckedValue=@AnimalEnum.Dog />
+
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private enum AnimalEnum { Dog, Fish, Zebra };
+    private string RepeatedDogLabel => AnimalEnum.Dog.ToString() + " repeated";
+
+    private AnimalEnum _animal = AnimalEnum.Fish;
+    private AnimalEnum Animal
+    {
+        get => _animal;
+        set
+        {
+            _animal = value;
+
+            ToastService.ShowToast(heading: "Individual radio buttons", message: $"Value: '{_animal.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+}

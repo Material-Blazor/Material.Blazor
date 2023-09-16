@@ -4,8 +4,40 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.0.0-rc1]
+(https://github.com/Maerial-Blazor/Material.Blazor/tree/5.0.0-rc1)
+
+Released 2023-09-16
+
+**Updates**
+- Dependabot updates
+- Migrate all projects to .Net 8 RC 1
+- Migrate @material/web to 1.0.0-pre.17
+- Our use of the MOQ library has been deprecated. The replacement library is NSubstitute. The pattern for adding additional tests
+remains unchanged.
+
+**New components**
+- Added preview of Material Design 3 components:
+	- MBCheckbox (with PLUS label parameters) N.B. - This is a port of the MD2 badge and will be replaced with an MD3 component when available.
+CSS still needs work in this version. If the funky rendering is not solved by the time  of RC2 then badges will be
+removed until the MD3 badge component is available.
+	- MBRadioButton (with PLUS label parameters)
+	- MBRadioButtonGroup (PLUS component)
+	- MBSwitch (with PLUS label parameters)
+- There are also some experimental MD3 components as we explore the best way to deliver MD3 functionality to MB:
+	- MBProgress (implements both circular & linear progress)
+	- MBTextField (implements both filled and outlined text fields)
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [4.0.0]
-(https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0-preview.21)
+(https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0)
 
 Released 2023-08-10
 

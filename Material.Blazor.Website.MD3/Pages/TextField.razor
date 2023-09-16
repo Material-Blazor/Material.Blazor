@@ -5,10 +5,11 @@
 @inject IMBToastService ToastService
 
 
-<DemonstrationPage ComponentName="TextField"
-                   DemoComponent="@this"
-                   @* MaterialDesign3Page="" *@
+<DemonstrationPage AdditionalAPIReferences="@apiTuple"
+                   ComponentAndPageName="TextField"
+                   MaterialDesignPage="text-field"
                    RequiresDisableSelection="true"
+                   SuppressComponentDocumentation="true"
                    Title="Text Field Demonstration">
     <Description>
         <p>
@@ -310,4 +311,12 @@
     private string TwoWayBinding { get; set; }
 
     private string SupportingText { get; set; }
+
+    private Tuple<int, string>[] apiTuple =
+    {
+        new Tuple<int, string>(0, "MBFilledTextField"),
+        new Tuple<int, string>(10, "InternalTextFieldBase"),
+        new Tuple<int, string>(0, "MBOutlinedTextField"),
+        new Tuple<int, string>(10, "InternalTextFieldBase")
+    };
 }

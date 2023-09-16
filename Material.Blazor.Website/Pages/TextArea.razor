@@ -3,8 +3,7 @@
 @inject IMBToastService ToastService
 
 
-<DemonstrationPage ComponentName="TextArea"
-                   DemoComponent="@this"
+<DemonstrationPage ComponentAndPageName="TextArea"
                    MaterialIOPage="mdc-textfield#text-field"
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
@@ -24,8 +23,6 @@
                     </h2>
 
                     <MBTextArea @bind-Value="@DefaultStyle"
-                                class="supplied-test-class"
-                                id="supplied-test-id"
                                 Label="Filled"
                                 Rows="3"
                                 style="margin: 6px; " />

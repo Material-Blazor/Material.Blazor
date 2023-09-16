@@ -1,0 +1,350 @@
+﻿@page "/toast"
+
+@implements IDisposable
+
+@inject IMBToastService ToastService
+
+@using Material.Blazor
+
+<style>
+    .italic-class {
+        font-style: italic;
+    }
+</style>
+
+@if (OverrideCssDefaults)
+{
+    <style>
+        :root {
+            --mb-toast-color-info: var(--mb-color-on-light-blue-200) !important;
+            --mb-toast-color-success: var(--mb-color-on-green-200) !important;
+            --mb-toast-color-warning: var(--mb-color-on-amber-200) !important;
+            --mb-toast-color-error: var(--mb-color-on-red-200) !important;
+            --mb-toast-filter-info: var(--mb-color-on-light-blue-200) !important;
+            --mb-toast-filter-success: var(--mb-color-on-green-200) !important;
+            --mb-toast-filter-warning: var(--mb-color-on-amber-200) !important;
+            --mb-toast-filter-error: var(--mb-color-on-red-200) !important;
+            --mb-toast-background-color-info: var(--mb-color-light-blue-200) !important;
+            --mb-toast-background-color-success: var(--mb-color-green-200) !important;
+            --mb-toast-background-color-warning: var(--mb-color-amber-200) !important;
+            --mb-toast-background-color-error: var(--mb-color-red-200) !important;
+            --mb-toast-border-radius: 4px 16px !important;
+        }
+    </style>
+}
+
+
+<DemonstrationPage ComponentAndPageName="Toast"
+                   DetailedArticle="Toast"
+                   SuppressComponentDocumentation=true
+                   Title="Toast Demonstration">
+    <Description>
+        <h2>Non-component</h2>
+        <p>
+            Demonstrates toast variations.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Basic Toasts
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                Shows the four varieties of toast with CSS markup and managed timeout.
+                            </h3>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@ToastService.Configuration.Position"
+                                                      Items="@positionItems"
+                                                      Label="Toast Position"
+                                                      SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBCheckbox @bind-Value="@OverrideCssDefaults"
+                                        TrailingLabelPLUS="Override Default CSS" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBOutlinedIntField @bind-Value="@ToastService.Configuration.MaxToastsShowing"
+                                                Label="Max Toasts (0-10)"
+                                                Max="10"
+                                                Min="0"
+                                                NumericFormat="N0" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <p>
+                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
+                                                              Label="Info Toast"
+                                @onclick="@(() => ToastService.ShowToast(
+                                                              level: MBToastLevel.Info,
+                                                              heading: "I'm an Info",
+                                                              message: "Nothing doing here."))"
+                                                              style="background-color: var(--mb-toast-background-color-info); color: var(--mb-toast-color-info); margin-bottom: 1rem;" />
+
+                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
+                                                              Label="Success Toast"
+                                @onclick="@(() => ToastService.ShowToast(
+                                                              level: MBToastLevel.Success,
+                                                              heading: "I'm a SUCCESS",
+                                                              message: "Congratulations!" ))"
+                                                              style="background-color: var(--mb-toast-background-color-success); color: var(--mb-toast-color-success); margin-bottom: 1rem;" />
+
+                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
+                                                              Label="Warning Toast"
+                                @onclick="@(() => ToastService.ShowToast(
+                                                              level: MBToastLevel.Warning,
+                                                              heading: "I'm a WARNING",
+                                                              message: "You have been warned."))"
+                                                              style="background-color: var(--mb-toast-background-color-warning); color: var(--mb-toast-color-warning); margin-bottom: 1rem;" />
+
+                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
+                                                              Label="Error Toast"
+                                @onclick="@(() => ToastService.ShowToast(
+                                                              level: MBToastLevel.Error,
+                                                              heading: "I'm an ERROR",
+                                                              message: "Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it."))"
+                                                              style="background-color: var(--mb-toast-background-color-error); color: var(--mb-toast-color-error); margin-bottom: 1rem;" />
+                            </p>
+                        </div>
+                    </div>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Tailored Toasts
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                Shows how toasts can be tailored through the ShowToast method call.
+                            </h3>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@CssClass"
+                                                          Items="CssClassItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Additional css class"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@CloseMethod"
+                                                          Items="closeMethodItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Close method"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@Heading"
+                                                          Items="headingItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Heading"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@Icon"
+                                                          Items="iconItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@Level"
+                                                          Items="levelItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Level"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@Message"
+                                                          Items="messageItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Message"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@ShowIcon"
+                                                          Items="showIconItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Show icon"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@Timeout"
+                                                          Items="timeoutItems"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Timeout"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
+                                                          Label="Toast with selected options"
+                            @onclick="@CustomiseClick" />
+                        </div>
+                    </div>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool OverrideCssDefaults { get; set; }
+
+    private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
+                                                                                                       select new Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>
+                                                                                                           {
+                                                                                                               SelectedValue = pos,
+                                                                                                               Label = pos.ToString()
+                                                                                                           };
+
+
+    private string CssClass { get; set; }
+    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] CssClassItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+        {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "italic-class", Label = "Italic" },
+                                                };
+
+
+    private MBNotifierCloseMethod CloseMethod { get; set; }
+    private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
+                                                                                                                select new Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>
+                                                                                                                    {
+                                                                                                                        SelectedValue = c,
+                                                                                                                        Label = c.ToString()
+                                                                                                                    };
+
+    private string Heading { get; set; }
+    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] headingItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+        {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+                                                };
+
+
+#nullable enable annotations
+    class MyIcon
+    {
+        public string Name;
+        public Material.Blazor.MD2.IMBIconFoundry? Foundry;
+    }
+#nullable restore annotations
+
+    private MyIcon Icon { get; set; }
+    private readonly Material.Blazor.MD2.MBSelectElementMD2<MyIcon>[] iconItems = new Material.Blazor.MD2.MBSelectElementMD2<MyIcon>[]
+        {
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Round) }, Label = "thumb_up (rounded)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = Material.Blazor.MD2.MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = Material.Blazor.MD2.MBIconHelper.FAFoundry(relativeSize: Material.Blazor.MD2.MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+                                                };
+
+
+    private MBToastLevel Level { get; set; }
+    private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
+                                                                                                 select new Material.Blazor.MD2.MBSelectElementMD2<MBToastLevel>
+                                                                                                     {
+                                                                                                         SelectedValue = c,
+                                                                                                         Label = c.ToString()
+                                                                                                     };
+
+
+    private string Message { get; set; }
+    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] messageItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+        {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+                                                };
+
+
+    private string ShowIcon { get; set; }
+    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] showIconItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+        {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "true", Label = "true" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "false", Label = "false" }
+                                                };
+
+
+    private string Timeout { get; set; }
+    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] timeoutItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+        {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "1000", Label = "1 second" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "10000", Label = "10 seconds" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "60000", Label = "60 seconds" }
+                                                };
+
+
+    private void CustomiseClick()
+    {
+        string appliedCssClass = (CssClass.Length == 0) ? null : CssClass;
+
+        string appliedHeading = (Heading.Length == 0) ? null : Heading;
+
+        bool? appliedShowIcon = (ShowIcon.Length == 0) ? appliedShowIcon = null : appliedShowIcon = Convert.ToBoolean(ShowIcon);
+
+        uint? appliedTimeout = (Timeout.Length == 0) ? appliedTimeout = null : appliedTimeout = Convert.ToUInt32(Timeout);
+
+        ToastService.ShowToast(
+            cssClass: appliedCssClass,
+            closeMethod: CloseMethod,
+            heading: appliedHeading,
+            level: Level,
+            message: Message,
+            iconName: Icon.Name,
+            // iconFoundry: Icon.Foundry,
+            showIcon: appliedShowIcon,
+            timeout: appliedTimeout);
+    }
+
+
+    private bool disposedValue;
+
+
+    /// <inheritdoc/>
+    /// <param name="disposing"></param>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                ToastService.Configuration = Utilities.GetDefaultToastServiceConfiguration();
+            }
+
+            // O: free unmanaged resources (unmanaged objects) and override finalizer
+            // TODO: set large fields to null
+            disposedValue = true;
+        }
+    }
+
+
+    /// <inheritdoc/>
+    public void Dispose()
+    {
+        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+}

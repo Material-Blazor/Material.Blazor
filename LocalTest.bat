@@ -1,1 +1,1 @@
-dotnet test --configuration Release Material.Blazor.Test\Material.Blazor.Test.csproj
+dotnet test --configuration WebAssembly Material.Blazor.Test\Material.Blazor.Test.csproj

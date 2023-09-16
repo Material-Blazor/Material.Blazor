@@ -3,7 +3,7 @@ using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Moq;
+using NSubstitute;
 using System.Globalization;
 using Xunit;
 
@@ -21,13 +21,13 @@ public class Mocking
 
         ctx = new();
         _ = ctx.Services
-            .AddSingleton(new Mock<IMBLoggingService>().Object)
-            .AddSingleton(new Mock<IMBTooltipService>().Object)
-            .AddSingleton(new Mock<IMBToastService>().Object)
-            .AddSingleton(new Mock<IMBSnackbarService>().Object)
-            .AddSingleton(new Mock<ILogger<ComponentFoundation>>().Object)
-            .AddSingleton(new Mock<IMBIcon>().Object)
-            .AddSingleton(new Mock<IMBIconFoundry>().Object);
+            .AddSingleton(Substitute.For<IMBLoggingService>())
+            .AddSingleton(Substitute.For<IMBTooltipService>())
+            .AddSingleton(Substitute.For<IMBToastService>())
+            .AddSingleton(Substitute.For<IMBSnackbarService>())
+            .AddSingleton(Substitute.For<ILogger<ComponentFoundation>>())
+            .AddSingleton(Substitute.For<IMBIcon>())
+            .AddSingleton(Substitute.For<IMBIconFoundry>());
     }
     [Fact]
     public void TryRenderMBAnchor()

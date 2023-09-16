@@ -1,0 +1,35 @@
+﻿- name: Introduction to Material.Blazor Components
+  href: intro.md
+
+- name: Material.Blazor namespace
+  topicUid: Material.Blazor
+
+- name: Material.Blazor.Internal namespace
+  topicUid: Material.Blazor.Internal
+
+- name: MBBadge
+  topicUid: C.MBBadge
+
+- name: MBCheckbox
+  topicUid: C.MBCheckbox
+
+- name: MBCircularProgress
+  topicUid: C.MBCircularProgress
+
+- name: MBLinearProgress
+  topicUid: C.MBLinearProgress
+
+- name: MBProgress
+  topicUid: C.MBProgress
+
+- name: MBRadioButton
+  topicUid: C.MBRadioButton
+
+- name: MBRadioButtonGroup
+  topicUid: C.MBRadioButtonGroup
+
+- name: MBSwitch
+  topicUid: C.MBSwitch
+
+- name: MBTextField2
+  topicUid: C.MBTextField2

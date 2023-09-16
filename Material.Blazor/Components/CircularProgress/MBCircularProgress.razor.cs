@@ -43,7 +43,7 @@ public partial class MBCircularProgress : InputComponent<double>
     /// Set aria-valuenow to an immutable value because MB doesn't want us to re-render,
     /// however we need to allow ShouldRender to return true for class changes.
     /// </summary>
-    private double IntialValue { get; set; }
+    private double InitialValue { get; set; }
 
 
     private MarkupString SVGDeterminate => CircularProgressSize switch
@@ -72,7 +72,7 @@ public partial class MBCircularProgress : InputComponent<double>
         await base.OnInitializedAsync();
 
         ForceShouldRenderToTrue = true;
-        IntialValue = Value;
+        InitialValue = Value;
 
         // Changing the CircularProgressSize after instantiaion is not supported.
         SizeStyle = CircularProgressSize switch
