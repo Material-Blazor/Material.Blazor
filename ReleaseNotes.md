@@ -4,8 +4,31 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.0.0-rc2]
+(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc2)
+
+Released 2023-10-??
+
+**Updates**
+- Dependabot updates
+- Migrate all projects to .Net 8 RC 2
+- Migrate @material/web to 1.0.0-pre.17
+
+**New components**
+- Added preview of Material Design 3 components:
+	- ??
+	- ??
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.0.0-rc1]
-(https://github.com/Maerial-Blazor/Material.Blazor/tree/5.0.0-rc1)
+(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc1)
 
 Released 2023-09-16
 
