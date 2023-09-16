@@ -1,4 +1,4 @@
-﻿name: GithubActionsRelease
+name: GithubActionsRelease
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository
@@ -26,7 +26,7 @@ env:
   outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
   outputMBMD3: ${{github.workspace}}\siteMBMD3
   outputWebMD3: ${{github.workspace}}\siteWebMD3
-  projectMBMD3: 'Material.Blazor/Material.Blazor.MD3.csproj'
+  projectMBMD3: 'Material.Blazor.MD3/Material.Blazor.MD3.csproj'
   projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.MD3.csproj'
 
 jobs:
