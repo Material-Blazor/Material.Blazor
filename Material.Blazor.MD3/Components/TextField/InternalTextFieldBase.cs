@@ -1,5 +1,4 @@
-﻿using Material.Blazor;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.JSInterop;
@@ -15,6 +14,9 @@ namespace Material.Blazor.Internal;
 /// </summary>
 public abstract class InternalTextFieldBase : InputComponent<string>
 {
+
+    #region members
+
 #nullable enable annotations
 
     //[CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
@@ -150,54 +152,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
+    #endregion
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-
-        SetDateErrorMessage();
-
-        //_ = ConditionalCssClasses
-        //    .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-        //    .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-        //    .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
-        //    .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
-        //    .AddIf("mdc-text-field--no-label", () => !ShowLabel)
-        //    .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
-        //    .AddIf("mdc-text-field--with-leading-icon", () => LeadingIcon is not null)
-        //    .AddIf("mdc-text-field--with-trailing-icon", () => TrailingIcon is not null)
-        //    .AddIf("mb-date-field", () => DateTimeField is not null);
-
-        //FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
-
-        if (EditContext != null)
-        {
-            EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
-
-            if (HasRequiredAttribute(ValidationMessageFor))
-            {
-                LabelSuffix = " *";
-            }
-        }
-    }
-
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
-        {
-            _cachedBadgeValue = BadgeValuePLUS;
-            _cachedBadgeExited = BadgeExitedPLUS;
-
-            if (BadgeRef is not null)
-            {
-                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-            }
-        }
-    }
-
+    #region BuildRenderTree
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -238,7 +195,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             {
                 builder.AddAttribute(rendSeq++, "disabled");
             }
-            
+
             builder.AddAttribute(rendSeq++, "class", cssClass);
             builder.AddAttribute(rendSeq++, "style", style);
             builder.AddAttribute(rendSeq++, "id", id);
@@ -249,7 +206,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
 
             builder.AddAttribute(rendSeq++, "label", DisplayLabel);
-            
+
             if (!string.IsNullOrWhiteSpace(Prefix))
             {
                 builder.AddAttribute(rendSeq++, "prefixText", Prefix);
@@ -290,34 +247,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         builder.CloseElement();
     }
 
+    #endregion
 
-    /// <summary>
-    /// Selects the text field content. Used by numeric fields when type is changed to "number".
-    /// </summary>
-    /// <returns></returns>
-    internal async Task SelectFieldContent()
-    {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", ElementReference).ConfigureAwait(false);
-    }
-
-
-    /// <summary>
-    /// Inherited classes must specify the material-web component name.
-    /// </summary>
-    /// <returns></returns>
-    private protected abstract string WebComponentName();
-
-
-
-    protected void SetDateErrorMessage()
-    {
-        DateFieldErrorMessage = "";
-        //if (DateTimeField != null)
-        //{
-        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
-        //}
-    }
-
+    #region Dispose
 
     private bool _disposed = false;
     protected override void Dispose(bool disposing)
@@ -337,6 +269,63 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         base.Dispose(disposing);
     }
 
+    #endregion
+
+    #region OnInitializedAsync
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        SetDateErrorMessage();
+
+        //_ = ConditionalCssClasses
+        //    .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+        //    .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
+        //    .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
+        //    .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
+        //    .AddIf("mdc-text-field--no-label", () => !ShowLabel)
+        //    .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
+        //    .AddIf("mdc-text-field--with-leading-icon", () => LeadingIcon is not null)
+        //    .AddIf("mdc-text-field--with-trailing-icon", () => TrailingIcon is not null)
+        //    .AddIf("mb-date-field", () => DateTimeField is not null);
+
+        //FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
+
+        if (EditContext != null)
+        {
+            EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
+
+            if (HasRequiredAttribute(ValidationMessageFor))
+            {
+                LabelSuffix = " *";
+            }
+        }
+    }
+
+    #endregion
+
+    #region OnParametersSetAsync
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
+        {
+            _cachedBadgeValue = BadgeValuePLUS;
+            _cachedBadgeExited = BadgeExitedPLUS;
+
+            if (BadgeRef is not null)
+            {
+                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
+            }
+        }
+    }
+
+    #endregion
+
+    #region OnValidationStateChangedCallback
 
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
     {
@@ -348,4 +337,43 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             //_ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setSupportingText", ElementReference, SupportingTextReference, SupportingText.Trim(), SupportingTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
+
+    #endregion
+
+    #region SelectFieldContent
+
+    /// <summary>
+    /// Selects the text field content. Used by numeric fields when type is changed to "number".
+    /// </summary>
+    /// <returns></returns>
+    internal async Task SelectFieldContent()
+    {
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", ElementReference).ConfigureAwait(false);
+    }
+
+    #endregion
+
+    #region SetDateErrorMessage
+
+    protected void SetDateErrorMessage()
+    {
+        DateFieldErrorMessage = "";
+        //if (DateTimeField != null)
+        //{
+        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
+        //}
+    }
+
+    #endregion
+
+    #region WebComponentName
+
+    /// <summary>
+    /// Inherited classes must specify the material-web component name.
+    /// </summary>
+    /// <returns></returns>
+    private protected abstract string WebComponentName();
+
+    #endregion
+
 }

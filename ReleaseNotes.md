@@ -1,4 +1,4 @@
-﻿---
+---
 uid: A.ReleaseNotes
 title: ReleaseNotes
 ---
@@ -27,7 +27,7 @@ Released 2023-10-??
 <br />
 
 #### [5.0.0-rc1]
-(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc1)
+(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc.1)
 
 Released 2023-09-16
 
@@ -37,6 +37,7 @@ Released 2023-09-16
 - Migrate @material/web to 1.0.0-pre.17
 - Our use of the MOQ library has been deprecated. The replacement library is NSubstitute. The pattern for adding additional tests
 remains unchanged.
+- Repaired ReleaseNotes.md links to code for 4.0.0 & 5.0.0-rc.1
 
 **New components**
 - Added preview of Material Design 3 components:
@@ -59,7 +60,7 @@ removed until the MD3 badge component is available.
 <br />
 
 #### [4.0.0]
-(https://github.com/Maerial-Blazor/Material.Blazor/tree/4.0.0)
+(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0)
 
 Released 2023-08-10
 
@@ -1359,7 +1360,7 @@ Released 2021-11-10
 <br />
 
 
-#### [1.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.1)
+#### [1.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.1)
 14 September 2020
 
 - First 1.0.0 release candidate having migrated from prior Blazor MDC previews.

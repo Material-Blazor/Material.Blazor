@@ -78,7 +78,7 @@
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Embedded in buttons, icon buttons, checkbox, switch, and text components
+                        Embedded in buttons, icon buttons, checkbox, radiobuttons, switch, and text components
                     </h2>
 
                     <div class="mdc-layout-grid__inner">
@@ -105,22 +105,19 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBIconButton Icon="fa-dog"
-                                                              IconFoundry="@Material.Blazor.MD2.MBIconHelper.FAFoundry()"
+                            <Material.Blazor.MD2.MBIconButton Icon="access_alarms"
                                                               HasBadge="true"
                                                               BadgeValue="@GeneralValue"
                                                               BadgeExited="@Exited" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBIconButton Icon="fa-dog"
-                                                              IconFoundry="@Material.Blazor.MD2.MBIconHelper.FAFoundry()"
+                            <Material.Blazor.MD2.MBIconButton Icon="access_alarms"
                                                               HasBadge="true"
                                                               BadgeValue="@ButtonValue"
                                                               BadgeExited="@Exited" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBIconButton Icon="fa-dog"
-                                                              IconFoundry="@Material.Blazor.MD2.MBIconHelper.FAFoundry()"
+                            <Material.Blazor.MD2.MBIconButton Icon="access_alarms"
                                                               HasBadge="true"
                                                               BadgeStyle="@MBBadgeStyle.Dot"
                                                               BadgeExited="@Exited" />
@@ -147,6 +144,40 @@
                                         BadgeExitedPLUS="@Exited"
                                         TrailingLabelPLUS="Checkbox" />
                         </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBRadioButton @bind-Value="@Animal"
+                                           HasBadgePLUS="true"
+                                           BadgeValuePLUS="@GeneralValue"
+                                           BadgeExitedPLUS="@Exited"
+                                           style="margin-right: 1em; "
+                                           TrailingLabelPLUS=@AnimalEnum.Dog.ToString()
+                                           RadioGroupName="animal-group"
+                                           TargetCheckedValue=@AnimalEnum.Dog />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBRadioButton @bind-Value="@Animal"
+                                           HasBadgePLUS="true"
+                                           BadgeValuePLUS="@ButtonValue"
+                                           BadgeExitedPLUS="@Exited"
+                                           style="margin-right: 1em; "
+                                           TrailingLabelPLUS=@AnimalEnum.Fish.ToString()
+                                           RadioGroupName="animal-group"
+                                           TargetCheckedValue=@AnimalEnum.Fish />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBRadioButton @bind-Value="@Animal"
+                                           HasBadgePLUS="true"
+                                           BadgeStylePLUS="@MBBadgeStyle.Dot"
+                                           BadgeExitedPLUS="@Exited"
+                                           style="margin-right: 1em; "
+                                           TrailingLabelPLUS=@AnimalEnum.Zebra.ToString()
+                                           RadioGroupName="animal-group"
+                                           TargetCheckedValue=@AnimalEnum.Zebra />
+                        </div>
+
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBSwitch @bind-Value="@ToggleValue"
@@ -348,6 +379,16 @@
 
 
 @code {
+    private enum AnimalEnum { Dog, Fish, Zebra };
+    private AnimalEnum _animal;
+    private AnimalEnum Animal
+    {
+        get => _animal;
+        set
+        {
+            _animal = value;
+        }
+    }
     private bool Exited { get; set; } = false;
     private string GeneralValue { get; set; } = "99+";
     private string ButtonValue { get; set; } = "!";

@@ -72,64 +72,44 @@ public sealed class MBCheckbox : InputComponent<bool>
         var rendSeq = 0;
         builder.OpenElement(rendSeq++, "div");
         {
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", checkboxStyle + style);
-            builder.AddAttribute(rendSeq++, "id", id);
-            if (attributesToSplat.Any())
+            builder.OpenElement(rendSeq++, "div");
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-            }
-
-            if (HasBadgePLUS)
-            {
-                builder.OpenElement(rendSeq++, "div");
+                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "style", checkboxStyle + style);
+                builder.AddAttribute(rendSeq++, "id", id);
+                if (attributesToSplat.Any())
                 {
-                    builder.OpenElement(rendSeq++, "span");
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                }
+
+                if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
+                {
+                    var labelSpan =
+                        "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
+                        + LeadingLabelPLUS
+                        + "</Span>";
+                    builder.AddMarkupContent(rendSeq++, "\r\n");
+                    builder.AddMarkupContent(rendSeq++, labelSpan);
+                }
+
+                builder.OpenElement(rendSeq++, "md-checkbox");
+                {
+                    if (AppliedDisabled || IsDisabled)
                     {
-                        builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                        builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                        {
-                            builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                            builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                            builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                            builder.AddComponentReferenceCapture(rendSeq++,
-                                (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                        }
-                        builder.CloseComponent();
+                        builder.AddAttribute(rendSeq++, "disabled");
                     }
-                    builder.CloseElement();
-                }
-                builder.CloseElement();
-            }
 
-            if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
-            {
-                var labelSpan =
-                    "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
-                    + LeadingLabelPLUS
-                    + "</Span>";
-                builder.AddMarkupContent(rendSeq++, "\r\n");
-                builder.AddMarkupContent(rendSeq++, labelSpan);
-            }
+                    if (Value)
+                    {
+                        builder.AddAttribute(rendSeq++, "checked");
+                    }
 
-            builder.OpenElement(rendSeq++, "md-checkbox");
-            {
-                if (AppliedDisabled || IsDisabled)
-                {
-                    builder.AddAttribute(rendSeq++, "disabled");
-                }
+                    if (IsIndeterminate)
+                    {
+                        builder.AddAttribute(rendSeq++, "indeterminate");
+                    }
 
-                if (Value)
-                {
-                    builder.AddAttribute(rendSeq++, "checked");
-                }
-
-                if (IsIndeterminate)
-                {
-                    builder.AddAttribute(rendSeq++, "indeterminate");
-                }
-
-                builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+                    builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
             }
             builder.CloseElement();
 
@@ -142,6 +122,30 @@ public sealed class MBCheckbox : InputComponent<bool>
                 builder.AddMarkupContent(13, "\r\n");
                 builder.AddMarkupContent(14, labelSpan);
             }
+
+                if (HasBadgePLUS)
+                {
+                    builder.OpenElement(rendSeq++, "div");
+                    {
+                        builder.OpenElement(rendSeq++, "span");
+                        {
+                            builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
+                            builder.OpenComponent(rendSeq++, typeof(MBBadge));
+                            {
+                                builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
+                                builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
+                                builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
+                                builder.AddComponentReferenceCapture(rendSeq++,
+                                    (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
+                            }
+                            builder.CloseComponent();
+                        }
+                        builder.CloseElement();
+                    }
+                    builder.CloseElement();
+                }
+            }
+            builder.CloseElement();
         }
         builder.CloseElement();
     }
