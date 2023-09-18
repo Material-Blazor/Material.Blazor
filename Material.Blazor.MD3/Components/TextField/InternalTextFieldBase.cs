@@ -162,13 +162,8 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         var rendSeq = 0;
-        builder.OpenElement(rendSeq++, WebComponentName());
+        builder.OpenElement(rendSeq++, "div");
         {
-            if (attributesToSplat.Any())
-            {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-            }
-
             if (HasBadgePLUS)
             {
                 builder.OpenElement(rendSeq++, "div");
@@ -191,58 +186,67 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 builder.CloseElement();
             }
 
-            if (AppliedDisabled)
+            builder.OpenElement(rendSeq++, WebComponentName());
             {
-                builder.AddAttribute(rendSeq++, "disabled");
-            }
-
-            builder.AddAttribute(rendSeq++, "class", cssClass);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
-
-            builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
-            builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
-            builder.SetUpdatesAttributeName("value");
-
-
-            builder.AddAttribute(rendSeq++, "label", DisplayLabel);
-
-            if (!string.IsNullOrWhiteSpace(Prefix))
-            {
-                builder.AddAttribute(rendSeq++, "prefixText", Prefix);
-            }
-
-            if (!string.IsNullOrWhiteSpace(Suffix))
-            {
-                builder.AddAttribute(rendSeq++, "suffixText", Suffix);
-            }
-
-            if (!string.IsNullOrWhiteSpace(SupportingText))
-            {
-                builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
-            }
-
-            if (!string.IsNullOrWhiteSpace(LeadingIcon))
-            {
-                builder.OpenElement(rendSeq++, "md-icon");
+                if (attributesToSplat.Any())
                 {
-                    builder.AddAttribute(rendSeq++, "slot", "leadingicon");
-                    builder.AddContent(rendSeq++, LeadingIcon);
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
-                builder.CloseElement();
-            }
 
-            if (!string.IsNullOrWhiteSpace(TrailingIcon))
-            {
-                builder.OpenElement(rendSeq++, "md-icon");
+                if (AppliedDisabled)
                 {
-                    builder.AddAttribute(rendSeq++, "slot", "trailingicon");
-                    builder.AddContent(rendSeq++, TrailingIcon);
+                    builder.AddAttribute(rendSeq++, "disabled");
                 }
-                builder.CloseElement();
-            }
 
-            builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
+                builder.AddAttribute(rendSeq++, "class", cssClass);
+                builder.AddAttribute(rendSeq++, "style", style);
+                builder.AddAttribute(rendSeq++, "id", id);
+
+                builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
+                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+                builder.SetUpdatesAttributeName("value");
+
+
+                builder.AddAttribute(rendSeq++, "label", DisplayLabel);
+
+                if (!string.IsNullOrWhiteSpace(Prefix))
+                {
+                    builder.AddAttribute(rendSeq++, "prefixText", Prefix);
+                }
+
+                if (!string.IsNullOrWhiteSpace(Suffix))
+                {
+                    builder.AddAttribute(rendSeq++, "suffixText", Suffix);
+                }
+
+                if (!string.IsNullOrWhiteSpace(SupportingText))
+                {
+                    builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
+                }
+
+                if (!string.IsNullOrWhiteSpace(LeadingIcon))
+                {
+                    builder.OpenElement(rendSeq++, "md-icon");
+                    {
+                        builder.AddAttribute(rendSeq++, "slot", "leadingicon");
+                        builder.AddContent(rendSeq++, LeadingIcon);
+                    }
+                    builder.CloseElement();
+                }
+
+                if (!string.IsNullOrWhiteSpace(TrailingIcon))
+                {
+                    builder.OpenElement(rendSeq++, "md-icon");
+                    {
+                        builder.AddAttribute(rendSeq++, "slot", "trailingicon");
+                        builder.AddContent(rendSeq++, TrailingIcon);
+                    }
+                    builder.CloseElement();
+                }
+
+                builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
+            }
+            builder.CloseElement();
         }
         builder.CloseElement();
     }

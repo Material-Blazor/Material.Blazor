@@ -70,13 +70,8 @@ public sealed class MBSwitch : InputComponent<bool>
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "p");
+        builder.OpenElement(rendSeq++, "div");
         {
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", switchStyle + style);
-            builder.AddAttribute(rendSeq++, "id", id);
-            builder.AddAttribute(rendSeq++, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
-
             if (HasBadgePLUS)
             {
                 builder.OpenElement(rendSeq++, "div");
@@ -99,44 +94,53 @@ public sealed class MBSwitch : InputComponent<bool>
                 builder.CloseElement();
             }
 
-            if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
+            builder.OpenElement(rendSeq++, "div");
             {
-                var labelSpan =
-                    "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
-                    + LeadingLabelPLUS
-                    + "</Span>";
-                builder.AddMarkupContent(rendSeq++, "\r\n");
-                builder.AddMarkupContent(rendSeq++, labelSpan);
-            }
+                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "style", switchStyle + style);
+                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddAttribute(rendSeq++, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
 
-            builder.OpenElement(rendSeq++, "md-switch");
-            {
-                if (attributesToSplat.Any())
+                if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    var labelSpan =
+                        "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
+                        + LeadingLabelPLUS
+                        + "</Span>";
+                    builder.AddMarkupContent(rendSeq++, "\r\n");
+                    builder.AddMarkupContent(rendSeq++, labelSpan);
                 }
 
-                if (AppliedDisabled)
+                builder.OpenElement(rendSeq++, "md-switch");
                 {
-                    builder.AddAttribute(rendSeq++, "disabled");
-                }
+                    if (attributesToSplat.Any())
+                    {
+                        builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    }
 
-                builder.AddAttribute(rendSeq++, "selected", BindConverter.FormatValue(Value));
-                builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
-                builder.AddAttribute(rendSeq++, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
-                builder.AddAttribute(rendSeq++, "show-only-selected-icon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
+                    if (AppliedDisabled)
+                    {
+                        builder.AddAttribute(rendSeq++, "disabled");
+                    }
+
+                    builder.AddAttribute(rendSeq++, "selected", BindConverter.FormatValue(Value));
+                    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+                    builder.AddAttribute(rendSeq++, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
+                    builder.AddAttribute(rendSeq++, "show-only-selected-icon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
+                }
+                builder.CloseElement();
+
+                if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
+                {
+                    var labelSpan =
+                        "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
+                        + TrailingLabelPLUS
+                        + "</Span>";
+                    builder.AddMarkupContent(rendSeq++, "\r\n");
+                    builder.AddMarkupContent(rendSeq++, labelSpan);
+                }
             }
             builder.CloseElement();
-
-            if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
-            {
-                var labelSpan =
-                    "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
-                    + TrailingLabelPLUS
-                    + "</Span>";
-                builder.AddMarkupContent(rendSeq++, "\r\n");
-                builder.AddMarkupContent(rendSeq++, labelSpan);
-            }
         }
         builder.CloseElement();
     }

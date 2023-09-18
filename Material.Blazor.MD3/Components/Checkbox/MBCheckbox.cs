@@ -72,6 +72,28 @@ public sealed class MBCheckbox : InputComponent<bool>
         var rendSeq = 0;
         builder.OpenElement(rendSeq++, "div");
         {
+            if (HasBadgePLUS)
+            {
+                builder.OpenElement(rendSeq++, "div");
+                {
+                    builder.OpenElement(rendSeq++, "span");
+                    {
+                        builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
+                        builder.OpenComponent(rendSeq++, typeof(MBBadge));
+                        {
+                            builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
+                            builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
+                            builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
+                            builder.AddComponentReferenceCapture(rendSeq++,
+                                (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
+                        }
+                        builder.CloseComponent();
+                    }
+                    builder.CloseElement();
+                }
+                builder.CloseElement();
+            }
+
             builder.OpenElement(rendSeq++, "div");
             {
                 builder.AddAttribute(rendSeq++, "class", @class);
@@ -110,39 +132,17 @@ public sealed class MBCheckbox : InputComponent<bool>
                     }
 
                     builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
-            }
-            builder.CloseElement();
+                }
+                builder.CloseElement();
 
-            if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
-            {
-                var labelSpan =
-                    "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
-                    + TrailingLabelPLUS
-                    + "</Span>";
-                builder.AddMarkupContent(13, "\r\n");
-                builder.AddMarkupContent(14, labelSpan);
-            }
-
-                if (HasBadgePLUS)
+                if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
                 {
-                    builder.OpenElement(rendSeq++, "div");
-                    {
-                        builder.OpenElement(rendSeq++, "span");
-                        {
-                            builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                            builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                            {
-                                builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                                builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                                builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                                builder.AddComponentReferenceCapture(rendSeq++,
-                                    (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                            }
-                            builder.CloseComponent();
-                        }
-                        builder.CloseElement();
-                    }
-                    builder.CloseElement();
+                    var labelSpan =
+                        "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
+                        + TrailingLabelPLUS
+                        + "</Span>";
+                    builder.AddMarkupContent(13, "\r\n");
+                    builder.AddMarkupContent(14, labelSpan);
                 }
             }
             builder.CloseElement();
