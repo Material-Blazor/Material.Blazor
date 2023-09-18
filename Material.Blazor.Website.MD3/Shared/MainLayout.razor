@@ -13,23 +13,47 @@
 
     <nav class="mdc-list">
         <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
-        <MBListItem LeadingIcon="error" Label="Badges" @onclick="@(() => ListItemClickHandler("badge"))" />
+        <MBListItem style="color: darkred; "
+                    LeadingIcon="error"
+                    Label="Badges"
+                    @onclick="@(() => ListItemClickHandler("badge"))" />
         <MBListItem LeadingIcon="check_box" Label="Checkbox" @onclick="@(() => ListItemClickHandler("checkbox"))" />
         <MBListItem LeadingIcon="access_time" Label="Circular Progress Indicator" @onclick="@(() => ListItemClickHandler("circularprogress"))" />
         <MBListItem LeadingIcon="touch_app" Label="Icon" @onclick="@(() => ListItemClickHandler("icon"))" />
         <MBListItem LeadingIcon="access_time" Label="Linear Progress Indicator" @onclick="@(() => ListItemClickHandler("linearprogress"))" />
-        <MBListItem LeadingIcon="money" Label="Numeric Decimal Field" @onclick="@(() => ListItemClickHandler("numericdecimalfield"))" />
-        <MBListItem LeadingIcon="money" Label="Numeric Decimal Field 2" @onclick="@(() => ListItemClickHandler("numericdecimalfield2"))" />
-        <MBListItem LeadingIcon="money" Label="Numeric Double Field" @onclick="@(() => ListItemClickHandler("numericdoublefield"))" />
-        <MBListItem LeadingIcon="money" Label="Numeric Int Field" @onclick="@(() => ListItemClickHandler("numericintfield"))" />
+        <MBListItem style="color: blue"
+                    LeadingIcon="money"
+                    Label="Numeric Decimal Field"
+                    @onclick="@(() => ListItemClickHandler("numericdecimalfield"))" />
+        <MBListItem style="color: blue"
+                    LeadingIcon="money"
+                    Label="Numeric Decimal Field 2"
+                    @onclick="@(() => ListItemClickHandler("numericdecimalfield2"))" />
+        <MBListItem style="color: blue"
+                    LeadingIcon="money"
+                    Label="Numeric Double Field"
+                    @onclick="@(() => ListItemClickHandler("numericdoublefield"))" />
+        <MBListItem style="color: blue"
+                    LeadingIcon="money"
+                    Label="Numeric Int Field"
+                    @onclick="@(() => ListItemClickHandler("numericintfield"))" />
         <MBListItem LeadingIcon="access_time" Label="Progress Indicator" @onclick="@(() => ListItemClickHandler("progress"))" />
         <MBListItem LeadingIcon="radio_button_checked" Label="Radio Button" @onclick="@(() => ListItemClickHandler("radiobutton"))" />
-        <MBListItem LeadingIcon="radio_button_checked" Label="Radio Button Group" @onclick="@(() => ListItemClickHandler("radiobuttongroup"))" />
+        <MBListItem style="color: blue"
+                    LeadingIcon="radio_button_checked"
+                    Label="Radio Button Group"
+                    @onclick="@(() => ListItemClickHandler("radiobuttongroup"))" />
         <MBListItem LeadingIcon="switch_left" Label="Switch" @onclick="@(() => ListItemClickHandler("switch"))" />
         <MBListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
         <MBListItem LeadingIcon="text_format" Label="Text Field 2" @onclick="@(() => ListItemClickHandler("textfield2"))" />
-        <MBListItem LeadingIcon="textsms" Label="Toast" @onclick="@(() => ListItemClickHandler("toast"))" />
-        <MBListItem LeadingIcon="http" Label="Typography" @onclick="@(() => ListItemClickHandler("typography"))" />
+        <MBListItem style="color: blue; "
+                    LeadingIcon="textsms"
+                    Label="Toast"
+                    @onclick="@(() => ListItemClickHandler("toast"))" />
+        <MBListItem style="color: darkred; "
+                    LeadingIcon="http"
+                    Label="Typography"
+                    @onclick="@(() => ListItemClickHandler("typography"))" />
     </nav>
 </MBDrawer>
 
