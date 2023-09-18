@@ -57,39 +57,39 @@ public class MBIcon : ComponentFoundation
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "md-icon");
+        builder.OpenElement(rendSeq++, "div");
         {
-            if (attributesToSplat.Any())
-            {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-            }
-
             if (HasBadgePLUS)
             {
-                builder.OpenElement(rendSeq++, "div");
+                builder.OpenElement(rendSeq++, "span");
                 {
-                    builder.OpenElement(rendSeq++, "span");
+                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
+                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
                     {
-                        builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                        builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                        {
-                            builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                            builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                            builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                            builder.AddComponentReferenceCapture(rendSeq++,
-                                (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                        }
-                        builder.CloseComponent();
+                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
+                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
+                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
+                        builder.AddComponentReferenceCapture(rendSeq++,
+                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
                     }
-                    builder.CloseElement();
+                    builder.CloseComponent();
                 }
                 builder.CloseElement();
             }
 
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
-            builder.AddContent(rendSeq++, IconName);
+            builder.OpenElement(rendSeq++, "md-icon");
+            {
+                if (attributesToSplat.Any())
+                {
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                }
+
+                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "style", style);
+                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddContent(rendSeq++, IconName);
+            }
+            builder.CloseElement();
         }
         builder.CloseElement();
     }

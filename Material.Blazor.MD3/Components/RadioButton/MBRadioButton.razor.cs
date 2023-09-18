@@ -93,20 +93,16 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
         {
             if (HasBadgePLUS)
             {
-                builder.OpenElement(rendSeq++, "div");
+                builder.OpenElement(rendSeq++, "span");
                 {
-                    builder.OpenElement(rendSeq++, "span");
+                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
+                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
                     {
-                        builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                        builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                        {
-                            builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                            builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                            builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                            builder.AddComponentReferenceCapture(rendSeq++,
-                                (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                        }
-                        builder.CloseComponent();
+                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
+                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
+                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
+                        builder.AddComponentReferenceCapture(rendSeq++,
+                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
                     }
                     builder.CloseElement();
                 }
