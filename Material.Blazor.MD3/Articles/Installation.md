@@ -39,19 +39,10 @@ All styling really should be done with Material but the application created with
 Material.Blazor works with the following package versions:
 
 - [Material Components v14.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1200-2021-07-27)
-- [Font Awesome Icons version 6.1.1](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
-    ```html
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    ```
-- [Open Iconic Icons version 1.1](https://useiconic.com/open) are also optional and can be included in your HTML `<head>` with the CDN link:
-    ```html
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
-    ```
 
 ## Services and Anchor
 
-Material.Blazor has three services for logging, snackbars, and toasts. We strongly advise you to use these in your project
-because regular component tooltips will fail if you don't, although they are optional. To register the services:
+Material.Blazor has three services for logging, snackbars, and toasts. We strongly advise you to use these in your project.
 
 ```csharp
 services.AddMBServices();

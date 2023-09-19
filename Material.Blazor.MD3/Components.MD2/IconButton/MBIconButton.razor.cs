@@ -28,17 +28,6 @@ public partial class MBIconButton : ComponentFoundationMD2
 
 
     /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    /// <summary>
     /// The button's density.
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }

@@ -44,9 +44,17 @@ public class MBIcon : ComponentFoundation
     /// </summary>
     [Parameter] public string IconName { get; set; }
 
+    /// <summary>
+    /// The icon style.
+    /// </summary>
+    [Parameter] public MBIconStyle IconStyle { get; set; }
+
 
 
     private MBBadge BadgeRef { get; set; }
+    private string iconName { get; set; }
+    private MBIconStyle iconStyle{get;set;}
+    private string localIconClass { get; set; }
 
     #endregion
 
@@ -84,7 +92,7 @@ public class MBIcon : ComponentFoundation
                     builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
 
-                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "class", @class + localIconClass);
                 builder.AddAttribute(rendSeq++, "style", style);
                 builder.AddAttribute(rendSeq++, "id", id);
                 builder.AddContent(rendSeq++, IconName);
@@ -112,6 +120,17 @@ public class MBIcon : ComponentFoundation
                 EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
             }
         }
+
+        iconName = CascadingDefaults.AppliedIconName(IconName);
+        iconStyle = CascadingDefaults.AppliedIconStyle(IconStyle);
+
+        localIconClass = "";
+        localIconClass = iconStyle switch
+        {
+            MBIconStyle.Rounded => "material-symbols-rounded ",
+            MBIconStyle.Sharp => "material-symbols-sharp ",
+            _ => "material-symbols-outlined ",
+        };
     }
 
     #endregion

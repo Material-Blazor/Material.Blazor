@@ -62,15 +62,9 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     [Parameter] public string style { get; set; }
 #pragma warning restore IDE1006 // Naming Styles
 
-    /// <summary>
-    /// A markup capable tooltip.
-    /// </summary>
-    [Parameter] public string Tooltip { get; set; }
-
 
 
     [Inject] private IJSRuntime JsRuntime { get; set; }
-    //[Inject] private protected IMBTooltipService TooltipService { get; set; }
     [Inject] private protected IMBLoggingService LoggingService { get; set; }
 
 
@@ -91,12 +85,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// Gets a value for the component's 'id' attribute.
     /// </summary>
     private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
-
-
-    /// <summary>
-    /// Tooltip id for aria-describedby attribute.
-    /// </summary>
-    private long? TooltipId { get; set; }
 
 
     /// <summary>
@@ -129,21 +117,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
     #endregion
 
-    #region AddTooltip
-
-    /// <summary>
-    /// Adds a tooltip if tooltip text has been provided.
-    /// </summary>
-    //private protected void AddTooltip()
-    //{
-    //    if (!string.IsNullOrWhiteSpace(Tooltip) && TooltipId != null)
-    //    {
-    //        TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
-    //    }
-    //}
-
-    #endregion
-
     # region AttributesToSplat
 
     /// <summary>
@@ -160,10 +133,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         //{
         //    yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
         //}
-        if (!string.IsNullOrWhiteSpace(Tooltip))
-        {
-            yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
-        }
     }
     internal IEnumerable<KeyValuePair<string, object>> OtherAttributesToSplat()
     {
@@ -180,10 +149,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         //{
         //    yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
         //}
-        if (!string.IsNullOrWhiteSpace(Tooltip))
-        {
-            yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
-        }
     }
 
     internal IEnumerable<KeyValuePair<string, object>> EventAttributesToSplat()
@@ -245,12 +210,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         if (_disposed)
         {
             return;
-        }
-
-        if (disposing && TooltipId != null)
-        {
-            //TooltipService.RemoveTooltip(TooltipId.Value);
-            TooltipId = null;
         }
 
         _disposed = true;
@@ -351,7 +310,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             try
             {
                 HasInstantiated = true;
-                //AddTooltip();
             }
             catch (Exception e)
             {
@@ -360,26 +318,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         }
 
         return Task.CompletedTask;
-    }
-
-    #endregion
-
-    #region OnInitialized
-
-    /// <summary>
-    /// Material.Blazor components use "OnInitializedAsync()" only.
-    /// </summary>
-    protected sealed override void OnInitialized()
-    {
-        // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
-
-        // the only thing we do here, is creating an ID for the tooltip, if we have one
-        if (!string.IsNullOrWhiteSpace(Tooltip))
-        {
-            //TooltipId = TooltipIdProvider.NextId();
-        }
-
-        //LoggingService.SetLogger(Logger);
     }
 
     #endregion

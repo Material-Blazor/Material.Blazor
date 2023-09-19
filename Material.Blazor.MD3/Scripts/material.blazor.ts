@@ -25,7 +25,6 @@ import * as MBIconButton from '../Components.MD2/IconButton/MBIconButton'
 import * as MBMenu from '../Components.MD2/Menu/MBMenu';
 import * as MBSelect from '../Components.MD2/Select/MBSelect';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
-import * as MBTooltip from '../Components.MD2/Tooltip/MBTooltip';
 
 (<any>window).MaterialBlazor = {
     MBTextField,
@@ -38,6 +37,5 @@ import * as MBTooltip from '../Components.MD2/Tooltip/MBTooltip';
     MBIconButton,
     MBMenu,
     MBSelect,
-    MBTopAppBar,
-    MBTooltip
+    MBTopAppBar
 };

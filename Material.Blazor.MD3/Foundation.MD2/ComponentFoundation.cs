@@ -18,6 +18,64 @@ namespace Material.Blazor.Internal.MD2;
 public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
 {
     #region members
+    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+    [CascadingParameter] private IMBDialog ParentDialog { get; set; }
+
+
+
+    /// <summary>
+    /// Indicates whether the component is disabled.
+    /// </summary>
+
+#pragma warning disable BL0007 // Component parameters should be auto properties
+    [Parameter]
+    public bool? Disabled
+#pragma warning restore BL0007 // Component parameters should be auto properties
+    {
+        get => disabled;
+        set
+        {
+            if (disabled != value)
+            {
+                disabled = value;
+
+                if (HasInstantiated)
+                {
+                    EnqueueJSInteropAction(OnDisabledSetAsync);
+                }
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// The HTML id attribute is used to specify a unique id for an HTML element.
+    ///
+    /// You cannot have more than one element with the same id in an HTML document.
+    /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+    [Parameter] public string id { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+    /// <summary>
+    /// Additional CSS classes for the component.
+    /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+    [Parameter] public string @class { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+
+
+    /// <summary>
+    /// Additional CSS style for the component.
+    /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+    [Parameter] public string style { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+
     /// <summary>
     /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
     /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
@@ -29,10 +87,9 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
     private bool? disabled = null;
 
     [Inject] private IJSRuntime JsRuntime { get; set; }
-    [CascadingParameter] private IMBDialog ParentDialog { get; set; }
     [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
-    [Inject] private protected IMBTooltipService TooltipService { get; set; }
     [Inject] private protected IMBLoggingService LoggingService { get; set; }
+
 
 
 
@@ -41,14 +98,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
     /// </summary>
     private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
-
-    /// <summary>
-    /// Tooltip id for aria-describedby attribute.
-    /// </summary>
-    private long? TooltipId { get; set; }
-
-
-    [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
 
     /// <summary>
     /// Determines whether to apply the disabled attribute.
@@ -98,77 +147,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
     [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
 
 
-    /// <summary>
-    /// Indicates whether the component is disabled.
-    /// </summary>
-
-#pragma warning disable BL0007 // Component parameters should be auto properties
-    [Parameter] public bool? Disabled
-#pragma warning restore BL0007 // Component parameters should be auto properties
-    {
-        get => disabled;
-        set
-        {
-            if (disabled != value)
-            {
-                disabled = value;
-
-                if (HasInstantiated)
-                {
-                    EnqueueJSInteropAction(OnDisabledSetAsync);
-                }
-            }
-        }
-    }
-
-
-    /// <summary>
-    /// The HTML id attribute is used to specify a unique id for an HTML element.
-    ///
-    /// You cannot have more than one element with the same id in an HTML document.
-    /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-    [Parameter] public string id { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-
-
-    /// <summary>
-    /// Additional CSS classes for the component.
-    /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-    [Parameter] public string @class { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
-
-
-    /// <summary>
-    /// Additional CSS style for the component.
-    /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-    [Parameter] public string style { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-
-
-    /// <summary>
-    /// A markup capable tooltip.
-    /// </summary>
-    [Parameter] public string Tooltip { get; set; }
-
-    #endregion
-
-    #region AddTooltip
-
-    /// <summary>
-    /// Adds a tooltip if tooltip text has been provided.
-    /// </summary>
-    private protected void AddTooltip()
-    {
-        if (!string.IsNullOrWhiteSpace(Tooltip) && TooltipId != null)
-        {
-            TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
-        }
-    }
-
     #endregion
 
     # region AttributesToSplat
@@ -187,10 +165,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
         {
             yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
         }
-        if (!string.IsNullOrWhiteSpace(Tooltip))
-        {
-            yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
-        }
     }
     internal IEnumerable<KeyValuePair<string, object>> OtherAttributesToSplat()
     {
@@ -206,10 +180,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
         if (AppliedDisabled)
         {
             yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
-        }
-        if (!string.IsNullOrWhiteSpace(Tooltip))
-        {
-            yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
         }
     }
 
@@ -265,12 +235,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
         if (_disposed)
         {
             return;
-        }
-
-        if (disposing && TooltipId != null)
-        {
-            TooltipService.RemoveTooltip(TooltipId.Value);
-            TooltipId = null;
         }
 
         _jsActionQueueSemaphore.Dispose();
@@ -335,7 +299,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
                 }
                 
                 HasInstantiated = true;
-                AddTooltip();
             }
             catch (Exception e)
             {
@@ -356,12 +319,6 @@ public abstract class ComponentFoundationMD2 : ComponentBase, IDisposable
     protected sealed override void OnInitialized()
     {
         // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
-
-        // the only thing we do here, is creating an ID for the tooltip, if we have one
-        if (!string.IsNullOrWhiteSpace(Tooltip))
-        {
-            TooltipId = TooltipIdProvider.NextId();
-        }
 
         LoggingService.SetLogger(Logger);
     }

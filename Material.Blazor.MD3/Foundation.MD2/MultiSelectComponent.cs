@@ -31,18 +31,6 @@ public abstract class MultiSelectComponentMD2<T, TListElement> : InputComponentM
     private protected Func<T, object> KeyGenerator { get; set; }
 
 
-#nullable enable annotations
-    /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnParametersSetAsync()
     {

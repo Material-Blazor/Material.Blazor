@@ -9,7 +9,7 @@ namespace Material.Blazor;
 /// 
 /// <para>
 /// Throws a <see cref="System.InvalidOperationException"/> if
-/// <see cref="ShowToast(MBToastLevel, string, string, MBNotifierCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>
+/// <see cref="ShowToast(MBToastLevel, string, string, MBNotifierCloseMethod?, string, string, bool?, uint?, bool)"/>
 /// is called without an <see cref="MBAnchor"/> component used in the app.
 /// </para>
 /// <example>
@@ -50,7 +50,7 @@ public interface IMBToastService
 
     /// <summary>
     /// Shows a toast using the supplied settings. Only the level and message parameters are required, with
-    /// the remainder haveing defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
+    /// the remainder having defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
     /// when registering services. Failing that Material.Blazor provides defaults.
     /// </summary>
     /// <param name="level">Severity of the toast (info, error, etc)</param>
@@ -59,7 +59,6 @@ public interface IMBToastService
     /// <param name="closeMethod">close method</param>
     /// <param name="cssClass">additional css applied to toast</param>
     /// <param name="iconName">Icon name</param>
-    /// <param name="iconFoundry">The icon's foundry</param>
     /// <param name="showIcon">Show or hide icon</param>
     /// <param name="timeout">Length of time before autodismiss</param>
     /// <param name="debug">If true only shows toasts when compiling in DEBUG mode</param>

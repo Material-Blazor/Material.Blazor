@@ -23,8 +23,7 @@ public static class ServiceCollectionExtensions
         return
             serviceCollection
             .AddScoped<IMBLoggingService>(serviceProvider => ActivatorUtilities.CreateInstance<LoggingService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
-            .AddScoped<IMBToastService>(serviceProvider => ActivatorUtilities.CreateInstance<ToastService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()))
-            .AddScoped<Material.Blazor.MD2.IMBTooltipService>(serviceProvider => new Material.Blazor.Internal.MD2.TooltipService());
+            .AddScoped<IMBToastService>(serviceProvider => ActivatorUtilities.CreateInstance<ToastService>(serviceProvider, serviceProvider.GetRequiredService<IOptions<MBServicesOptions>>()));
     }
 
     /// <summary>
@@ -53,7 +52,6 @@ public static class ServiceCollectionExtensions
         return
             serviceCollection
             .AddScoped<IMBLoggingService>(serviceProvider => new LoggingService(options))
-            .AddScoped<IMBToastService>(serviceProvider => new ToastService(options))
-            .AddScoped<Material.Blazor.MD2.IMBTooltipService>(serviceProvider => new Material.Blazor.Internal.MD2.TooltipService());
+            .AddScoped<IMBToastService>(serviceProvider => new ToastService(options));
     }
 }

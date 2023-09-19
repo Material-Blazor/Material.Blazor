@@ -205,7 +205,7 @@
     private bool OverrideCssDefaults { get; set; }
 
     private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
-                                                                                                       select new Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>
+                                                                                                          select new Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>
                                                                                                            {
                                                                                                                SelectedValue = pos,
                                                                                                                Label = pos.ToString()
@@ -222,7 +222,7 @@
 
     private MBNotifierCloseMethod CloseMethod { get; set; }
     private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
-                                                                                                                select new Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>
+                                                                                                                   select new Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>
                                                                                                                     {
                                                                                                                         SelectedValue = c,
                                                                                                                         Label = c.ToString()
@@ -241,7 +241,6 @@
     class MyIcon
     {
         public string Name;
-        public Material.Blazor.MD2.IMBIconFoundry? Foundry;
     }
 #nullable restore annotations
 
@@ -249,13 +248,13 @@
     private readonly Material.Blazor.MD2.MBSelectElementMD2<MyIcon>[] iconItems = new Material.Blazor.MD2.MBSelectElementMD2<MyIcon>[]
         {
         new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Round) }, Label = "thumb_up (rounded)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = Material.Blazor.MD2.MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = Material.Blazor.MD2.MBIconHelper.FAFoundry(relativeSize: Material.Blazor.MD2.MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, Label = "thumb_up (filled / default)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, Label = "thumb_up (outlined)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, Label = "thumb_up (rounded)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, Label = "thumb_up (two-tone)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, Label = "thumb_up (sharp)" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, Label = "fa-ambulance" },
+        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, Label = "fa-ambulance (x-small)" },
                                                 };
 
 
@@ -313,7 +312,6 @@
             level: Level,
             message: Message,
             iconName: Icon.Name,
-            // iconFoundry: Icon.Foundry,
             showIcon: appliedShowIcon,
             timeout: appliedTimeout);
     }

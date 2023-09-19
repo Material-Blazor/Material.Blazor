@@ -23,16 +23,6 @@ public partial class MBTopAppBar : ComponentFoundationMD2
 
 
     /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry IconFoundry { get; set; }
-
-
-    /// <summary>
     /// Render fragment where @Body is referenced.
     /// </summary>
     [Parameter] public RenderFragment ChildContent { get; set; }
