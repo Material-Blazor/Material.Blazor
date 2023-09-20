@@ -20,5 +20,5 @@ Many components such as MBIconButton, MBSelect, and MBTextField take icons. In e
 &nbsp;
 &nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=red)](xref:A.CoreComponents)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Plis&color=red)](xref:A.PlusComponents)
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIcon&color=brightgreen)](xref:Material.Blazor.MBIcon)

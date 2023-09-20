@@ -2,8 +2,6 @@
 
 @inject IMBToastService ToastService
 
-
-
 <DemonstrationPage ComponentAndPageName="Icon"
                    DetailedArticle="Icon"
                    MaterialDesignPage=""
@@ -26,7 +24,7 @@
                                 IconStyle="MBIconStyle.Outlined" />
                     </p>
                     <p>
-                        <MBIcon IconName="favorite"
+                        <MBIcon IconName="home"
                                 IconStyle="MBIconStyle.Outlined" />
                     </p>
                 </Primary>
@@ -45,7 +43,7 @@
                                 IconStyle="MBIconStyle.Rounded" />
                     </p>
                     <p>
-                        <MBIcon IconName="favorite"
+                        <MBIcon IconName="home"
                                 IconStyle="MBIconStyle.Rounded" />
                     </p>
                 </Primary>
@@ -64,11 +62,279 @@
                                 IconStyle="MBIconStyle.Sharp" />
                     </p>
                     <p>
-                        <MBIcon IconName="favorite"
+                        <MBIcon IconName="home"
                                 IconStyle="MBIconStyle.Sharp" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Tailored Icons
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                Shows how icons can be tailored.
+                            </h3>
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBOutlinedTextField @bind-Value="@iconColor"
+                                                 Label="Icon color (name or hex)"
+                                                 style="margin: 6px;" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconFill"
+                                                          Items="@iconFills"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon fill"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconGradient"
+                                                          Items="@iconGradients"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon gradient"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconSize"
+                                                          Items="@iconSizes"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon size"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconStyle"
+                                                          Items="@iconStyles"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon style"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconWeight"
+                                                          Items="@iconWeights"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon weight"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBIcon IconColor="@iconColor"
+                                    IconFill="@mbIconFill"
+                                    IconGradient="@mbIconGradient"
+                                    IconName="close"
+                                    IconSize="@mbIconSize"
+                                    IconStyle="@mbIconStyle"
+                                    IconWeight="@mbIconWeight" />
+                            &nbsp;
+                            <MBIcon IconColor="@iconColor"
+                                    IconFill="@mbIconFill"
+                                    IconGradient="@mbIconGradient"
+                                    IconName="home"
+                                    IconSize="@mbIconSize"
+                                    IconStyle="@mbIconStyle"
+                                    IconWeight="@mbIconWeight" />
+                            &nbsp;
+                            <MBIcon IconColor="@iconColor"
+                                    IconFill="@mbIconFill"
+                                    IconGradient="@mbIconGradient"
+                                    IconName="menu"
+                                    IconSize="@mbIconSize"
+                                    IconStyle="@mbIconStyle"
+                                    IconWeight="@mbIconWeight" />
+                            &nbsp;
+                            <MBIcon IconColor="@iconColor"
+                                    IconFill="@mbIconFill"
+                                    IconGradient="@mbIconGradient"
+                                    IconName="search"
+                                    IconSize="@mbIconSize"
+                                    IconStyle="@mbIconStyle"
+                                    IconWeight="@mbIconWeight" />
+                            &nbsp;
+                            <MBIcon IconColor="@iconColor"
+                                    IconFill="@mbIconFill"
+                                    IconGradient="@mbIconGradient"
+                                    IconName="settings"
+                                    IconSize="@mbIconSize"
+                                    IconStyle="@mbIconStyle"
+                                    IconWeight="@mbIconWeight" />
+                            &nbsp;
+                        </div>
+                    </div>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
+
+@code {
+    private string iconColor { get; set; } = "black";
+
+    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconFills = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "filled", Label = "Filled" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "notfilled", Label = "No fill" }
+            };
+
+    private MBIconFill mbIconFill = MBIconFill.NotFilled;
+    private string _iconFill = "notfilled";
+    private string iconFill
+    {
+        get => _iconFill;
+        set
+        {
+            _iconFill = value;
+
+            mbIconFill = _iconFill switch
+            {
+                "filled" => MBIconFill.Filled,
+                "notfilled" => MBIconFill.NotFilled,
+                _ => throw new Exception("Unknown icon fill"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{_iconFill}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconGradients = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "LowEmphasis", Label = "Low emphasis" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "NormalEmphasis", Label = "Normal emphasis" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "HighEmphasis", Label = "High emphasis" },
+            };
+
+    private MBIconGradient mbIconGradient = MBIconGradient.NormalEmphasis;
+    private string _iconGradient = "NormalEmphasis";
+    private string iconGradient
+    {
+        get => _iconGradient;
+        set
+        {
+            _iconGradient = value;
+
+            mbIconGradient = _iconGradient switch
+            {
+                "LowEmphasis" => MBIconGradient.LowEmphasis,
+                "NormalEmphasis" => MBIconGradient.NormalEmphasis,
+                "HighEmphasis" => MBIconGradient.HighEmphasis,
+                _ => throw new Exception("Unknown icon gradient"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{_iconGradient}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconSizes = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "20", Label = "20px" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "24", Label = "24px" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "40", Label = "40px" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "48", Label = "48px" },
+            };
+
+    private MBIconSize mbIconSize = MBIconSize.Size24;
+    private string _iconSize = "24";
+    private string iconSize
+    {
+        get => _iconSize;
+        set
+        {
+            _iconSize = value;
+
+            mbIconSize = _iconSize switch
+            {
+                "20" => MBIconSize.Size20,
+                "24" => MBIconSize.Size24,
+                "40" => MBIconSize.Size40,
+                "48" => MBIconSize.Size48,
+                _ => throw new Exception("Unknown icon Size"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Size", message: $"Value: '{_iconSize}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconStyles = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "outlined", Label = "Outlined" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "rounded", Label = "Rounded" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "sharp", Label = "Sharp" }
+            };
+
+    private MBIconStyle mbIconStyle = MBIconStyle.Outlined;
+    private string _iconStyle = "outlined";
+    private string iconStyle
+    {
+        get => _iconStyle;
+        set
+        {
+            _iconStyle = value;
+
+            mbIconStyle = _iconStyle switch
+            {
+                "outlined" => MBIconStyle.Outlined,
+                "rounded" => MBIconStyle.Rounded,
+                "sharp" => MBIconStyle.Sharp,
+                _ => throw new Exception("Unknown icon style"),
+            };
+
+            ToastService.ShowToast(heading: "Icon style", message: $"Value: '{_iconStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconWeights = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    {
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "100", Label = "100" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "200", Label = "200" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "300", Label = "300" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "400", Label = "400" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "500", Label = "500" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "600", Label = "600" },
+        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "700", Label = "700" },
+            };
+
+    private MBIconWeight mbIconWeight = MBIconWeight.W400;
+    private string _iconWeight = "400";
+    private string iconWeight
+    {
+        get => _iconWeight;
+        set
+        {
+            _iconWeight = value;
+
+            mbIconWeight = _iconWeight switch
+            {
+                "100" => MBIconWeight.W100,
+                "200" => MBIconWeight.W200,
+                "300" => MBIconWeight.W300,
+                "400" => MBIconWeight.W400,
+                "500" => MBIconWeight.W500,
+                "600" => MBIconWeight.W600,
+                "700" => MBIconWeight.W700,
+                _ => throw new Exception("Unknown icon weight"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Weight", message: $"Value: '{_iconWeight}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+}

@@ -112,6 +112,18 @@ public class MBCascadingDefaults
 
     #region MBIcon
 
+    private string _iconColor = "black";
+    public string IconColor { get => _iconColor; set => SetParameter(ref _iconColor, value); }
+    internal string AppliedIconColor(string iconColor = null) => iconColor ?? IconColor;
+
+    private MBIconFill _iconFill = MBIconFill.NotFilled;
+    public MBIconFill IconFill { get => _iconFill; set => SetParameter(ref _iconFill, value); }
+    internal MBIconFill AppliedIconFill(MBIconFill? iconFill = null) => iconFill ?? IconFill;
+
+    private MBIconGradient _iconGradient = MBIconGradient.NormalEmphasis;
+    public MBIconGradient IconGradient { get => _iconGradient; set => SetParameter(ref _iconGradient, value); }
+    internal MBIconGradient AppliedIconGradient(MBIconGradient? iconGradient = null) => iconGradient ?? IconGradient;
+
     private string _iconName = "Favorite";
     public string IconName { get => _iconName; set => SetParameter(ref _iconName, value); }
     internal string AppliedIconName(string iconName = null) => iconName ?? IconName;
@@ -119,6 +131,14 @@ public class MBCascadingDefaults
     private MBIconStyle _iconStyle = MBIconStyle.Outlined;
     public MBIconStyle IconStyle { get => _iconStyle; set => SetParameter(ref _iconStyle, value); }
     internal MBIconStyle AppliedIconStyle(MBIconStyle? iconStyle = null) => iconStyle ?? IconStyle;
+
+    private MBIconSize _iconSize = MBIconSize.Size24;
+    public MBIconSize IconSize { get => _iconSize; set => SetParameter(ref _iconSize, value); }
+    internal MBIconSize AppliedIconSize(MBIconSize? iconSize = null) => iconSize ?? IconSize;
+
+    private MBIconWeight _iconWeight = MBIconWeight.W400;
+    public MBIconWeight IconWeight { get => _iconWeight; set => SetParameter(ref _iconWeight, value); }
+    internal MBIconWeight AppliedIconWeight(MBIconWeight? iconWeight = null) => iconWeight ?? IconWeight;
 
     #endregion
 
