@@ -84,17 +84,21 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBOutlinedTextField @bind-Value="@iconColor"
+                            <MBOutlinedTextField @bind-Value="@mbIconColor"
                                                  Label="Icon color (name or hex)"
                                                  style="margin: 6px;" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconFill"
-                                                          Items="@iconFills"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
-                                                          Label="Icon fill"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                            Icon fill with discrete input, range 0-1, decimal places 2, steps 10, yielding a value of @mbIconFill.ToString("N2")
+
+                            <Material.Blazor.MD2.MBSlider AriaLabel="Discrete Slider"
+                                                          @bind-Value="@mbIconFill"
+                                                          DecimalPlaces="2"
+                                                          NumSteps="10"
+                                                          SliderType="@Material.Blazor.MD2.MBSliderType.DiscreteWithTickmarks"
+                                                          ValueMax="1"
+                                                          ValueMin="0" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
@@ -130,7 +134,7 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12">
-                            <MBIcon IconColor="@iconColor"
+                            <MBIcon IconColor="@mbIconColor"
                                     IconFill="@mbIconFill"
                                     IconGradient="@mbIconGradient"
                                     IconName="close"
@@ -138,7 +142,7 @@
                                     IconStyle="@mbIconStyle"
                                     IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@iconColor"
+                            <MBIcon IconColor="@mbIconColor"
                                     IconFill="@mbIconFill"
                                     IconGradient="@mbIconGradient"
                                     IconName="home"
@@ -146,7 +150,7 @@
                                     IconStyle="@mbIconStyle"
                                     IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@iconColor"
+                            <MBIcon IconColor="@mbIconColor"
                                     IconFill="@mbIconFill"
                                     IconGradient="@mbIconGradient"
                                     IconName="menu"
@@ -154,7 +158,7 @@
                                     IconStyle="@mbIconStyle"
                                     IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@iconColor"
+                            <MBIcon IconColor="@mbIconColor"
                                     IconFill="@mbIconFill"
                                     IconGradient="@mbIconGradient"
                                     IconName="search"
@@ -162,7 +166,7 @@
                                     IconStyle="@mbIconStyle"
                                     IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@iconColor"
+                            <MBIcon IconColor="@mbIconColor"
                                     IconFill="@mbIconFill"
                                     IconGradient="@mbIconGradient"
                                     IconName="settings"
@@ -179,35 +183,9 @@
 </DemonstrationPage>
 
 @code {
-    private string iconColor { get; set; } = "black";
+    private string mbIconColor { get; set; } = "black";
 
-    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconFills = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
-    {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "filled", Label = "Filled" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "notfilled", Label = "No fill" }
-            };
-
-    private MBIconFill mbIconFill = MBIconFill.NotFilled;
-    private string _iconFill = "notfilled";
-    private string iconFill
-    {
-        get => _iconFill;
-        set
-        {
-            _iconFill = value;
-
-            mbIconFill = _iconFill switch
-            {
-                "filled" => MBIconFill.Filled,
-                "notfilled" => MBIconFill.NotFilled,
-                _ => throw new Exception("Unknown icon fill"),
-            };
-
-            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{_iconFill}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
+    private decimal mbIconFill = 0;
 
     Material.Blazor.MD2.MBSelectElementMD2<string>[] iconGradients = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
     {

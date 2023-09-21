@@ -112,15 +112,6 @@ public enum MBDensity
 #region MBIcon
 
 /// <summary>
-/// Determines <cref="MBIcon"/> fill.
-/// </summary>
-public enum MBIconFill
-{
-    Filled,
-    NotFilled
-}
-
-/// <summary>
 /// Determines <cref="MBIcon"/> gradient.
 /// </summary>
 public enum MBIconGradient

@@ -24,6 +24,7 @@ import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
 import * as MBIconButton from '../Components.MD2/IconButton/MBIconButton'
 import * as MBMenu from '../Components.MD2/Menu/MBMenu';
 import * as MBSelect from '../Components.MD2/Select/MBSelect';
+import * as MBSlider from '../Components.MD2/Slider/MBSlider';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
@@ -37,5 +38,6 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
     MBIconButton,
     MBMenu,
     MBSelect,
+    MBSlider,
     MBTopAppBar
 };

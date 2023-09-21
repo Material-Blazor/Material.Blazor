@@ -116,9 +116,22 @@ public class MBCascadingDefaults
     public string IconColor { get => _iconColor; set => SetParameter(ref _iconColor, value); }
     internal string AppliedIconColor(string iconColor = null) => iconColor ?? IconColor;
 
-    private MBIconFill _iconFill = MBIconFill.NotFilled;
-    public MBIconFill IconFill { get => _iconFill; set => SetParameter(ref _iconFill, value); }
-    internal MBIconFill AppliedIconFill(MBIconFill? iconFill = null) => iconFill ?? IconFill;
+    private decimal _iconFill = 0;
+    public decimal IconFill { get => _iconFill; set => SetParameter(ref _iconFill, value); }
+    internal decimal AppliedIconFill(decimal? iconFill = null)
+    {
+        var potential = iconFill ?? IconFill;
+        if (potential < 0)
+        {
+            potential = 0;
+        }
+        else if (potential > 1)
+        {
+            potential = 1;
+        }
+
+        return potential;
+    }
 
     private MBIconGradient _iconGradient = MBIconGradient.NormalEmphasis;
     public MBIconGradient IconGradient { get => _iconGradient; set => SetParameter(ref _iconGradient, value); }
