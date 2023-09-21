@@ -1,4 +1,4 @@
-﻿name: GithubActionsRelease
+﻿name: GithubActionsRelease-STS7
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository

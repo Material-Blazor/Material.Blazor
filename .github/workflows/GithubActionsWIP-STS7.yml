@@ -1,11 +1,11 @@
-﻿name: GithubActionsWIP
+﻿name: GithubActionsWIP-STS7
 
 on:
   push:
-    branches: [ main ]
+    branches: [ STS-DN7 ]
 
   pull_request:
-    branches: [ main ]
+    branches: [ STS-DN7 ]
 
 env:
   buildPlatform: 'Any CPU'
