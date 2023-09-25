@@ -16,7 +16,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.22.15",
+    "@babel/cli": "^7.23.0",
     "@babel/core": "^7.22.20",
     "@babel/plugin-transform-class-properties": "^7.22.5",
     "@babel/plugin-transform-object-rest-spread": "^7.22.15",
