@@ -16,7 +16,7 @@ Released 2023-10-??
 
 **New components**
 - Added preview of Material Design 3 components:
-	- MBIcon (PLUS component)
+	- ??
 
 **Breaking Changes**
 

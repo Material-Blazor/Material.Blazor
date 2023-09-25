@@ -43,11 +43,7 @@ public class MBIcon : ComponentFoundation
         {
             return;
         }
-        builder.AddContent(
-            0,
-            IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class),
-            style: style,
-            attributes: AttributesToSplat()));
+        builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class), style: style, attributes: AttributesToSplat()));
     }
 
     /// <inheritdoc/>
