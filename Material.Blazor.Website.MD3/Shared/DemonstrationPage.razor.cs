@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Website.Shared
 {
     public partial class DemonstrationPage
     {
-        [Inject] private NavigationManager NavigationManager { get; set; }
+        #region members
 
         [Parameter] public Tuple<int, string>[] AdditionalAPIReferences { get; set; } = null;
         [Parameter] public string ComponentDirectory { get; set; } = "";
@@ -27,31 +26,39 @@ namespace Material.Blazor.Website.Shared
 
 
 
-        private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
+        [Inject] private NavigationManager NavigationManager { get; set; }
+
+
 
         private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
         {
             ThemeDensity = Material.Blazor.MBDensity.Default,
             Disabled = false,
         };
+        private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
+        private List<ReferenceItem> Items { get; set; }
 
+        #endregion
 
-        private class ReferenceItem
+        #region AfterCascadingDefaultsChange
+
+        private async Task AfterCascadingDefaultsChange()
         {
-            public string Title { get; set; }
-            public string Content { get; set; }
-
-            public MarkupString ContentMarkup => new MarkupString(Content);
+            await InvokeAsync(StateHasChanged);
         }
 
+        #endregion
 
-        private List<ReferenceItem> Items { get; set; }
+        #region NeedsTable
 
         private bool NeedsTable =>
             ((ComponentAndPageName != null)
             || (DetailedArticle != null)
             || (MaterialDesignPage != null));
 
+        #endregion
+
+        #region OnInitialized
 
         protected override void OnInitialized()
         {
@@ -172,10 +179,19 @@ namespace Material.Blazor.Website.Shared
             }.Where(d => d.Disabled != true);
         }
 
+        #endregion
 
-        private async Task AfterCascadingDefaultsChange()
+        #region ReferenceItem (class)
+
+        private class ReferenceItem
         {
-            await InvokeAsync(StateHasChanged);
+            public string Title { get; set; }
+            public string Content { get; set; }
+
+            public MarkupString ContentMarkup => new MarkupString(Content);
         }
+
+        #endregion
+
     }
 }

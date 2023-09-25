@@ -401,8 +401,8 @@ public class MBGrid<TRowData> : ComponentFoundation
 
                                             builder.AddAttribute(rendSeq++, "style", styleStr);
                                             builder.OpenComponent(rendSeq++, typeof(MBIcon));
-                                            builder.AddAttribute(rendSeq++, "IconFoundry", value.IconFoundry);
-                                            builder.AddAttribute(rendSeq++, "IconName", value.IconName);
+                                            builder.AddComponentParameter(rendSeq++, "IconFoundry", value.IconFoundry);
+                                            builder.AddComponentParameter(rendSeq++, "IconName", value.IconName);
                                             builder.CloseComponent();
                                         }
                                         catch
