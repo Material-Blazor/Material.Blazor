@@ -5,7 +5,7 @@ namespace Material.Blazor;
 /// <summary>
 /// Material Icons icon.
 /// </summary>
-internal class IconMI : IMBIcon
+internal class Icon_MI : IMBIcon
 {
     private string MaterialIconsTheme
     {
@@ -61,7 +61,7 @@ internal class IconMI : IMBIcon
 
 
 #nullable enable annotations
-    public IconMI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
+    public Icon_MI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
     {
         IconName = iconName;
         Theme = cascadingDefaults.AppliedIconMITheme(foundry?.Theme);

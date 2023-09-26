@@ -14,7 +14,7 @@
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-4">
+        <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -45,8 +45,300 @@
                                 IconName="check" />
                         Open Iconic foundry
                     </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                    fill: false,
+                                    size: MBIconMSSize.Size48,
+                                    style: MBIconMSStyle.Outlined)"
+                                IconName="Home" />
+                        Material Symbol Foundry - Outlined, 48px
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                    fill: false,
+                                    size: MBIconMSSize.Size48,
+                                    style: MBIconMSStyle.Rounded)"
+                                IconName="Home" />
+                        Material Symbol Foundry - Rounded, 48px
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                    fill: false,
+                                    size: MBIconMSSize.Size48,
+                                    style: MBIconMSStyle.Sharp)"
+                                IconName="Home" />
+                        Material Symbol Foundry - Sharp, 48px
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Material Symbol Foundry - Tailored Icons
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                Shows how Material Symbol icons can be tailored.
+                            </h3>
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBTextField @bind-Value="@mbIconColor"
+                                         Label="Icon color (name)"
+                                         style="margin: 0px;" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@mbIconFill"
+                                      Items="@iconFills"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon fill"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@iconGradient"
+                                      Items="@iconGradients"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon gradient"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@iconSize"
+                                      Items="@iconSizes"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon size"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@iconStyle"
+                                      Items="@iconStyles"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon style"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@iconWeight"
+                                      Items="@iconWeights"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon weight"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                        color: @mbIconColor,
+                                        fill: @mbIconFill,
+                                        gradient: @mbIconGradient,
+                                        size: @mbIconSize,
+                                        style: @mbIconStyle,
+                                        weight: @mbIconWeight)"
+                                    IconName="close" />
+                            &nbsp;
+                            <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                        color: @mbIconColor,
+                                        fill: @mbIconFill,
+                                        gradient: @mbIconGradient,
+                                        size: @mbIconSize,
+                                        style: @mbIconStyle,
+                                        weight: @mbIconWeight)"
+                                    IconName="home" />
+                            &nbsp;
+                            <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                        color: @mbIconColor,
+                                        fill: @mbIconFill,
+                                        gradient: @mbIconGradient,
+                                        size: @mbIconSize,
+                                        style: @mbIconStyle,
+                                        weight: @mbIconWeight)"
+                                    IconName="menu" />
+                            &nbsp;
+                            <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                        color: @mbIconColor,
+                                        fill: @mbIconFill,
+                                        gradient: @mbIconGradient,
+                                        size: @mbIconSize,
+                                        style: @mbIconStyle,
+                                        weight: @mbIconWeight)"
+                                    IconName="search" />
+                            &nbsp;
+                            <MBIcon IconFoundry="@MBIconHelper.MSFoundry(
+                                        color: @mbIconColor,
+                                        fill: @mbIconFill,
+                                        gradient: @mbIconGradient,
+                                        size: @mbIconSize,
+                                        style: @mbIconStyle,
+                                        weight: @mbIconWeight)"
+                                    IconName="settings" />
+                            &nbsp;
+                        </div>
+                    </div>
                 </Primary>
             </MBCard>
         </div>
     </PageContent>
 </DemonstrationPage>
+
+
+@code {
+    private string mbIconColor { get; set; } = "black";
+
+
+
+    MBSelectElement<bool>[] iconFills = new MBSelectElement<bool>[]
+    {
+        new MBSelectElement<bool> { SelectedValue = true, Label = "Filled" },
+        new MBSelectElement<bool> { SelectedValue = false, Label = "Not filled" },
+            };
+
+    private bool _iconFill = true;
+    private bool mbIconFill
+    {
+        get => _iconFill;
+        set
+        {
+            _iconFill = value;
+
+            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{_iconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSelectElement<string>[] iconGradients = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "LowEmphasis", Label = "Low emphasis" },
+        new MBSelectElement<string> { SelectedValue = "NormalEmphasis", Label = "Normal emphasis" },
+        new MBSelectElement<string> { SelectedValue = "HighEmphasis", Label = "High emphasis" },
+            };
+
+    private MBIconMSGradient mbIconGradient = MBIconMSGradient.NormalEmphasis;
+    private string _iconGradient = "NormalEmphasis";
+    private string iconGradient
+    {
+        get => _iconGradient;
+        set
+        {
+            _iconGradient = value;
+
+            mbIconGradient = _iconGradient switch
+            {
+                "LowEmphasis" => MBIconMSGradient.LowEmphasis,
+                "NormalEmphasis" => MBIconMSGradient.NormalEmphasis,
+                "HighEmphasis" => MBIconMSGradient.HighEmphasis,
+                _ => throw new Exception("Unknown icon gradient"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{_iconGradient}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSelectElement<string>[] iconSizes = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "20", Label = "20px" },
+        new MBSelectElement<string> { SelectedValue = "24", Label = "24px" },
+        new MBSelectElement<string> { SelectedValue = "40", Label = "40px" },
+        new MBSelectElement<string> { SelectedValue = "48", Label = "48px" },
+            };
+
+    private MBIconMSSize mbIconSize = MBIconMSSize.Size24;
+    private string _iconSize = "24";
+    private string iconSize
+    {
+        get => _iconSize;
+        set
+        {
+            _iconSize = value;
+
+            mbIconSize = _iconSize switch
+            {
+                "20" => MBIconMSSize.Size20,
+                "24" => MBIconMSSize.Size24,
+                "40" => MBIconMSSize.Size40,
+                "48" => MBIconMSSize.Size48,
+                _ => throw new Exception("Unknown icon Size"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Size", message: $"Value: '{_iconSize}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSelectElement<string>[] iconStyles = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "outlined", Label = "Outlined" },
+        new MBSelectElement<string> { SelectedValue = "rounded", Label = "Rounded" },
+        new MBSelectElement<string> { SelectedValue = "sharp", Label = "Sharp" }
+            };
+
+    private MBIconMSStyle mbIconStyle = MBIconMSStyle.Outlined;
+    private string _iconStyle = "outlined";
+    private string iconStyle
+    {
+        get => _iconStyle;
+        set
+        {
+            _iconStyle = value;
+
+            mbIconStyle = _iconStyle switch
+            {
+                "outlined" => MBIconMSStyle.Outlined,
+                "rounded" => MBIconMSStyle.Rounded,
+                "sharp" => MBIconMSStyle.Sharp,
+                _ => throw new Exception("Unknown icon style"),
+            };
+
+            ToastService.ShowToast(heading: "Icon style", message: $"Value: '{_iconStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSelectElement<string>[] iconWeights = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "100", Label = "100" },
+        new MBSelectElement<string> { SelectedValue = "200", Label = "200" },
+        new MBSelectElement<string> { SelectedValue = "300", Label = "300" },
+        new MBSelectElement<string> { SelectedValue = "400", Label = "400" },
+        new MBSelectElement<string> { SelectedValue = "500", Label = "500" },
+        new MBSelectElement<string> { SelectedValue = "600", Label = "600" },
+        new MBSelectElement<string> { SelectedValue = "700", Label = "700" },
+            };
+
+    private MBIconMSWeight mbIconWeight = MBIconMSWeight.W400;
+    private string _iconWeight = "400";
+    private string iconWeight
+    {
+        get => _iconWeight;
+        set
+        {
+            _iconWeight = value;
+
+            mbIconWeight = _iconWeight switch
+            {
+                "100" => MBIconMSWeight.W100,
+                "200" => MBIconMSWeight.W200,
+                "300" => MBIconMSWeight.W300,
+                "400" => MBIconMSWeight.W400,
+                "500" => MBIconMSWeight.W500,
+                "600" => MBIconMSWeight.W600,
+                "700" => MBIconMSWeight.W700,
+                _ => throw new Exception("Unknown icon weight"),
+            };
+
+            ToastService.ShowToast(heading: "Icon Weight", message: $"Value: '{_iconWeight}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+}

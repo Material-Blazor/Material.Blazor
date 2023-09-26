@@ -13,47 +13,23 @@ public partial class MBIconButton : ComponentFoundationMD2
 {
     [CascadingParameter] private MBCard Card { get; set; }
 
-
-    /// <summary>
-    /// Inclusion of touch target
-    /// </summary>
     [Parameter] public bool? TouchTarget { get; set; }
 
 
 #nullable enable annotations
-    /// <summary>
-    /// The icon's name.
-    /// </summary>
-    [Parameter] public string Icon { get; set; }
+    [Parameter] public string IconColor { get; set; }
+    [Parameter] public string IconName { get; set; }
 
 
-    /// <summary>
-    /// The button's density.
-    /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
 
 
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
     [Parameter] public bool HasBadge { get; set; }
 
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
-
-    /// <summary>
-    /// The button's density.
-    /// </summary>
     [Parameter] public string BadgeValue { get; set; }
 
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
     [Parameter] public bool BadgeExited { get; set; }
 
 

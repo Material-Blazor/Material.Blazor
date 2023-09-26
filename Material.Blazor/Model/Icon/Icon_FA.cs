@@ -5,7 +5,7 @@ namespace Material.Blazor.Internal;
 /// <summary>
 /// Font Awesome icon.
 /// </summary>
-internal class IconFA : IMBIcon
+internal class Icon_FA : IMBIcon
 {
     private string IconName { get; }
 
@@ -63,7 +63,7 @@ internal class IconFA : IMBIcon
 
 
 #nullable enable annotations
-    public IconFA(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
+    public Icon_FA(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
     {
         IconName = iconName;
         Style = cascadingDefaults.AppliedIconFAStyle(foundry?.Style);

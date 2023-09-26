@@ -15,11 +15,15 @@
         @if (LeadingIcon != null)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
-                <MBIcon IconName="@LeadingIcon" />
+                <MBIcon IconColor="@ListItemColor"
+                        IconName="@LeadingIcon" />
             </span>
         }
 
-        <span class="mdc-deprecated-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text"
+              style="@styleColor">
+            @Label
+        </span>
     </a>
 }
 else if (Menu != null)
@@ -36,10 +40,14 @@ else if (Menu != null)
         @if (LeadingIcon != null && IsSelectedMenuItem)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
-                <MBIcon IconName="@LeadingIcon" />
+                <MBIcon IconColor="@ListItemColor"
+                        IconName="@LeadingIcon" />
             </span>
         }
 
-        <span class="mdc-deprecated-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text"
+              style="@styleColor">
+            @Label
+        </span>
     </li>
 }

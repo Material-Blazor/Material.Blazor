@@ -85,20 +85,16 @@
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBOutlinedTextField @bind-Value="@mbIconColor"
-                                                 Label="Icon color (name or hex)"
-                                                 style="margin: 6px;" />
+                                                 Label="Icon color (name)"
+                                                 style="margin: 0px;" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            Icon fill with discrete input, range 0-1, decimal places 2, steps 10, yielding a value of @mbIconFill.ToString("N2")
-
-                            <Material.Blazor.MD2.MBSlider AriaLabel="Discrete Slider"
-                                                          @bind-Value="@mbIconFill"
-                                                          DecimalPlaces="2"
-                                                          NumSteps="10"
-                                                          SliderType="@Material.Blazor.MD2.MBSliderType.DiscreteWithTickmarks"
-                                                          ValueMax="1"
-                                                          ValueMin="0" />
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@mbIconFill"
+                                                          Items="@iconFills"
+                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          Label="Icon fill"
+                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
@@ -185,7 +181,27 @@
 @code {
     private string mbIconColor { get; set; } = "black";
 
-    private decimal mbIconFill = 0;
+
+
+    Material.Blazor.MD2.MBSelectElementMD2<bool>[] iconFills = new Material.Blazor.MD2.MBSelectElementMD2<bool>[]
+    {
+        new Material.Blazor.MD2.MBSelectElementMD2<bool> { SelectedValue = true, Label = "Filled" },
+        new Material.Blazor.MD2.MBSelectElementMD2<bool> { SelectedValue = false, Label = "Not filled" },
+            };
+
+    private bool _iconFill = true;
+    private bool mbIconFill
+    {
+        get => _iconFill;
+        set
+        {
+            _iconFill = value;
+
+            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{_iconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
 
     Material.Blazor.MD2.MBSelectElementMD2<string>[] iconGradients = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
     {

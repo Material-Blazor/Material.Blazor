@@ -5,35 +5,21 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor.MD2;
 
-/// <summary>
-/// This is a general purpose Material Theme list item.
-/// </summary>
 public partial class MBListItem : ComponentFoundationMD2
 {
     [CascadingParameter] private MBDrawer Drawer { get; set; }
     [CascadingParameter] private MBMenu Menu { get; set; }
 
-
-#nullable enable annotations
-    /// <summary>
-    /// The list item's label
-    /// </summary>
     [Parameter] public string Label { get; set; }
 
+    [Parameter] public string LeadingIcon { get; set; }
 
-    /// <summary>
-    /// The leading icon's name. No leading icon shown if not set.
-    /// </summary>
-    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string ListItemColor { get; set; } = "Black";
 
-
-    /// <summary>
-    /// Determined whether the list item is in an menu and is in the selected state
-    /// </summary>
     [Parameter] public bool IsSelectedMenuItem { get; set; } = true;
 
 
-#nullable restore annotations
+    private string styleColor { get; set; }
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -53,5 +39,7 @@ public partial class MBListItem : ComponentFoundationMD2
         ConditionalCssClasses
             .AddIf("mdc-menu-item--selected", () => Menu != null && IsSelectedMenuItem)
             .AddIf("mdc-deprecated-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
+
+        styleColor = "color: " + ListItemColor + "; ";
     }
 }

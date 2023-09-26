@@ -6,7 +6,7 @@ namespace Material.Blazor;
 /// <summary>
 /// Open Iconic icon.
 /// </summary>
-internal class IconOI : IMBIcon
+internal class Icon_OI : IMBIcon
 {
     private string IconName { get; }
 
@@ -35,7 +35,7 @@ internal class IconOI : IMBIcon
 
 #nullable enable annotations
 #pragma warning disable IDE0060 // Remove unused parameter
-    public IconOI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
+    public Icon_OI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
     {
         IconName = iconName;
     }
