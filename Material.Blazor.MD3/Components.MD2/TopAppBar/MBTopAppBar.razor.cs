@@ -1,4 +1,5 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor;
+using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// A Material Theme top app bar
 /// </summary>
-public partial class MBTopAppBar : ComponentFoundationMD2
+public partial class MBTopAppBar : ComponentFoundation
 {
     /// <summary>
     /// App bar title.
@@ -35,9 +36,9 @@ public partial class MBTopAppBar : ComponentFoundationMD2
 
 
     /// <summary>
-    /// Top app bar type. See <see cref="MBTopAppBarType"/>
+    /// Top app bar type. See <see cref="MBTopAppBarTypeMD2"/>
     /// </summary>
-    [Parameter] public MBTopAppBarType TopAppBarType { get; set; } = MBTopAppBarType.Standard;
+    [Parameter] public MBTopAppBarTypeMD2 TopAppBarType { get; set; } = MBTopAppBarTypeMD2.Standard;
 
 
     private ElementReference HeaderElem { get; set; }
@@ -49,11 +50,11 @@ public partial class MBTopAppBar : ComponentFoundationMD2
         await base.OnInitializedAsync();
 
         ConditionalCssClasses
-            .AddIf("mdc-top-app-bar--fixed", () => (TopAppBarType & MBTopAppBarType.Fixed) == MBTopAppBarType.Fixed)
-            .AddIf("mdc-top-app-bar--dense", () => (TopAppBarType & MBTopAppBarType.Dense) == MBTopAppBarType.Dense)
-            .AddIf("mdc-top-app-bar--prominent", () => (TopAppBarType & MBTopAppBarType.Prominent) == MBTopAppBarType.Prominent)
-            .AddIf("mdc-top-app-bar--short", () => (TopAppBarType & MBTopAppBarType.Short) == MBTopAppBarType.Short)
-            .AddIf("mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => (TopAppBarType & MBTopAppBarType.ShortCollapsed) == MBTopAppBarType.ShortCollapsed);
+            .AddIf("mdc-top-app-bar--fixed", () => (TopAppBarType & MBTopAppBarTypeMD2.Fixed) == MBTopAppBarTypeMD2.Fixed)
+            .AddIf("mdc-top-app-bar--dense", () => (TopAppBarType & MBTopAppBarTypeMD2.Dense) == MBTopAppBarTypeMD2.Dense)
+            .AddIf("mdc-top-app-bar--prominent", () => (TopAppBarType & MBTopAppBarTypeMD2.Prominent) == MBTopAppBarTypeMD2.Prominent)
+            .AddIf("mdc-top-app-bar--short", () => (TopAppBarType & MBTopAppBarTypeMD2.Short) == MBTopAppBarTypeMD2.Short)
+            .AddIf("mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => (TopAppBarType & MBTopAppBarTypeMD2.ShortCollapsed) == MBTopAppBarTypeMD2.ShortCollapsed);
     }
 
 

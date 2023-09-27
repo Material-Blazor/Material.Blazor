@@ -1,0 +1,460 @@
+﻿@page "/select"
+
+@using Material.Blazor
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentAndPageName="Select"
+                   IsGeneric="true"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Select Demonstration">
+    <Description>
+        <p>
+            Filled and outlined text fields with icon usage, class and style application and finally density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Select Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit select styles.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@DefaultStyle"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Default Style" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@FilledStyle"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Filled Style"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedStyle"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Outlined Style"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icons &amp; Full Width Menu Surface
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries. Note how the menu surface is the same width as the select anchor.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@Icon1"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Filled With Icon"
+                                                      LeadingIcon="print"
+                                                      MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.FullWidth"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@Icon2"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Outlined With Icon"
+                                                      LeadingIcon="home"
+                                                      MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.FullWidth"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two way binding for selects.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@TwoWayBinding"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Two Way Binding" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@TwoWayBinding"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Two Way Binding" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Contents Alignment &amp; Fixed Menu Surface
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Left, center and right aligned text (not the same as right-to-left script). Note how the menu remains fixed as you scroll the page. Using the fixed menu surface position is
+                        particularly useful when a select menu might need to overflow its container, such as in a dialog: using a regular or full width menu surface variants in a dialog causes unwanted overflow results.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@LeftAligned"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Left Aligned"
+                                                      MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.Fixed"
+                                                      TextAlignStyle="@MBTextAlignStyle.Left" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@RightAligned"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Right Aligned"
+                                                      MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.Fixed"
+                                                      TextAlignStyle="@MBTextAlignStyle.Right" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Filled Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Filled density subsystem from default to minus 4.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@FilledDensityDefault"
+                                                      Density="@MBDensity.Default"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Default Density"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@FilledDensityMinus1"
+                                                      Density="@MBDensity.Minus1"
+                                                      Label="Density Minus 1"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@FilledDensityMinus2"
+                                                      Density="@MBDensity.Minus2"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 3"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@FilledDensityMinus3"
+                                                      Density="@MBDensity.Minus3"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 3"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@FilledDensityMinus4"
+                                                      Density="@MBDensity.Minus4"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 4"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Filled" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Outlined Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Outlined density subsystem from default to minus 4.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedDensityDefault"
+                                                      Density="@MBDensity.Default"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Default Density"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedDensityMinus1"
+                                                      Density="@MBDensity.Minus1"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 1"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedDensityMinus2"
+                                                      Density="@MBDensity.Minus2"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 3"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedDensityMinus3"
+                                                      Density="@MBDensity.Minus3"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 3"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedDensityMinus4"
+                                                      Density="@MBDensity.Minus4"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Density Minus 4"
+                                                      SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Disabled
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows the component either entirely disabled or with some items disabled.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@TwoWayBinding"
+                                                      Disabled="true"
+                                                      Items="KittenBreeds"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Disabled Component" />
+                    </p>
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@TwoWayBinding"
+                                                      Items="KittenBreedsNoFake"
+                                                      ItemValidation="@MBItemValidation.NoSelection"
+                                                      Label="Items disabled" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        @*         <div class="mdc-layout-grid__cell--span-4">
+        <Material.Blazor.MD2.MBCard AutoStyled="true">
+        <Primary>
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        Dynamically update Items
+        </h2>
+
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        <code>Items</code> can by dynamically updated with the toggle button. Note that if you remove items from the list,
+        you must change <code>Value</code> accordingly to avoid exceptions if you have <code>ItemValidation="@MBItemValidation.Exception"</code>.
+        </h3>
+
+        <p>
+        <MBIconButtonToggle @bind-Value="@ExtendDynamicItems"
+        IconOn="remove"
+        IconOff="add" />
+        </p>
+        <p>
+        <MBSelect @bind-Value="@ExtendedValue"
+        Items="@DynamicItems"
+        ItemValidation="@MBItemValidation.DefaultToFirst"
+        Label="Items disabled" />
+        </p>
+        </Primary>
+        </Material.Blazor.MD2.MBCard>
+        </div>
+        *@
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        No items
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An MBSelect where the Items collection is empty.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@OutlinedDensityDefault"
+                                                      Items="Enumerable.Empty<MBSelectElement<string>>()"
+                                                      ItemValidation="MBItemValidation.NoSelection"
+                                                      Label="Empty" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Null item
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An MBSelect where the Items collection contains a null value.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@NullValueAllowed"
+                                                      Items="@KittenBreeds.Append(new MBSelectElement<string> { LeadingLabel = "Null", SelectedValue = null })"
+                                                      ItemValidation="MBItemValidation.NoSelection"
+                                                      Label="Value" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Empty string item
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An MBSelect where the initial value of an empty string is not touched until the user chooses from the dropdown. This is accomplished through the use of MBItemValidation.NoSelection.
+                    </h3>
+
+                    <p>
+                        <Material.Blazor.MD2.MBSelect @bind-Value="@DontTouchMyValue"
+                                                      Items="@KittenBreeds"
+                                                      ItemValidation="MBItemValidation.NoSelection"
+                                                      Label="Value" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        @* Used occasionally for test purposes *@
+        @*   <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+        Label="Invoke OnClick()"
+        @onclick="OnClick" />*@
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
+            {
+    new MBSelectElement<string> { SelectedValue = "brit-short", LeadingLabel = "British Shorthair" },
+    new MBSelectElement<string> { SelectedValue = "russ-blue", LeadingLabel = "Russian Blue" },
+    new MBSelectElement<string> { SelectedValue = "ice-invis", LeadingLabel = "Icelandic Invisible" }
+            };
+
+    MBSelectElement<string>[] KittenBreedsExtended = new MBSelectElement<string>[]
+    {
+    new MBSelectElement<string> { SelectedValue = "brit-short", LeadingLabel = "British Shorthair" },
+    new MBSelectElement<string> { SelectedValue = "russ-blue", LeadingLabel = "Russian Blue" },
+    new MBSelectElement<string> { SelectedValue = "ice-invis", LeadingLabel = "Icelandic Invisible" },
+    new MBSelectElement<string> { SelectedValue = "tabby", LeadingLabel = "Tabby" },
+    new MBSelectElement<string> { SelectedValue = "siam", LeadingLabel = "Siamese" }
+    };
+
+    MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
+    {
+    new MBSelectElement<string> { SelectedValue = "brit-short", LeadingLabel = "British Shorthair" },
+    new MBSelectElement<string> { SelectedValue = "russ-blue", LeadingLabel = "Russian Blue" },
+    new MBSelectElement<string> { SelectedValue = "ice-invis", LeadingLabel = "Icelandic Invisible" },
+    new MBSelectElement<string> { SelectedValue = "disabled1", LeadingLabel = "Mr. Snuggles", Disabled = true },
+    new MBSelectElement<string> { SelectedValue = "disabled2", LeadingLabel = "Roger Rabbit", Disabled = true }
+    };
+
+
+    private string DefaultStyle;
+    private string FilledStyle;
+    private string OutlinedStyle;
+
+    private string Icon1;
+    private string Icon2;
+
+    private string LeftAligned;
+    private string RightAligned;
+
+    private string TwoWayBinding;
+
+    private string FilledDensityDefault;
+    private string FilledDensityMinus1;
+    private string FilledDensityMinus2;
+    private string FilledDensityMinus3;
+    private string FilledDensityMinus4;
+
+    private string NullValueAllowed;
+
+    private string DontTouchMyValue = "";
+
+    private void OnClick()
+    {
+
+    }
+    private string OutlinedDensityDefault;
+    private string OutlinedDensityMinus1;
+    private string OutlinedDensityMinus2;
+    private string OutlinedDensityMinus3;
+    private string OutlinedDensityMinus4;
+
+    private string ExtendedValue;
+
+    private bool ExtendDynamicItems = false;
+    private MBSelectElement<string>[] DynamicItems => ExtendDynamicItems ? KittenBreedsExtended : KittenBreeds;
+}

@@ -1,11 +1,11 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.MD2;
 
-public partial class MBListItem : ComponentFoundationMD2
+public partial class MBListItem : ComponentFoundation
 {
     [CascadingParameter] private MBDrawer Drawer { get; set; }
     [CascadingParameter] private MBMenu Menu { get; set; }

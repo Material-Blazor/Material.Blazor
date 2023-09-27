@@ -1,6 +1,6 @@
 ﻿@namespace Material.Blazor.MD2
-@using Material.Blazor.Internal.MD2;
-@inherits SingleSelectComponentMD2<TItem, MBSelectElementMD2<TItem>>
+@using Material.Blazor.Internal;
+@inherits SingleSelectComponent<TItem, MBSelectElement<TItem>>
 @typeparam TItem
 
 
@@ -27,7 +27,7 @@
          aria-disabled="@AppliedDisabled"
          aria-labelledby="@labelId @selectedTextId">
 
-        @if (AppliedInputStyle == MBSelectInputStyle.Outlined)
+        @if (AppliedInputStyle == MBSelectInputStyleMD2.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -77,7 +77,7 @@
             </svg>
         </span>
 
-        @if (AppliedInputStyle == MBSelectInputStyle.Filled)
+        @if (AppliedInputStyle == MBSelectInputStyleMD2.Filled)
         {
             <span class="mdc-line-ripple"></span>
         }
@@ -95,13 +95,13 @@
 
                 <li @key="@KeyGenerator(item.SelectedValue)"
                     class="@listClass @AlignClass"
-                    data-value="@item.Label"
+                    data-value="@item.LeadingLabel"
                     aria-selected="@selected"
                     aria-disabled="@item.Disabled"
                     role="option">
 
                     <span class="mdc-deprecated-list-item__ripple"></span>
-                    <span class="mdc-deprecated-list-item__text mb-full-width">@item.Label</span>
+                    <span class="mdc-deprecated-list-item__text mb-full-width">@item.LeadingLabel</span>
                 </li>
             }
         </ul>

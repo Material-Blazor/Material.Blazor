@@ -1,7 +1,5 @@
 ﻿using GoogleAnalytics.Blazor;
 using Material.Blazor;
-using Material.Blazor.Internal.MD2;
-using Material.Blazor.MD2;
 using Material.Blazor.Website.MD3;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

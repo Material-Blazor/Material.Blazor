@@ -10,7 +10,7 @@ namespace Material.Blazor;
 /// </summary>
 /// <remarks>
 /// For example the default style for
-/// a material button is <see cref="MBButtonStyle.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
+/// a material button is <see cref="MBButtonStyleMD2.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
 /// to another value and your whole application within the cascading value will change appearance. You can of course
 /// nest cascading values in the normal manner. Exposes a property <see cref="Version"/> that is incremented each time another
 /// property is updated; <see cref="Version"/> can be used with an `@key(CascadingDefaults.Version)` attribute to force components
@@ -78,7 +78,7 @@ public class MBCascadingDefaults
     /// The disabled state to apply.
     /// </summary>
     /// <param name="disabled">The required disabled state</param>
-    /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
+    /// <returns>The <see cref="MBCardStyleMD2"/> to apply.</returns>
     internal bool AppliedDisabled(bool? disabled = null) => disabled ?? Disabled;
 
 
@@ -154,7 +154,7 @@ public class MBCascadingDefaults
     /// The value to apply to an <see cref="MBSwitch"/>.
     /// </summary>
     /// <param name="style">The style parameter passed to the <see cref="MBSelect{TItem}"/></param>
-    /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
+    /// <returns>The <see cref="MBSelectInputStyleMD2"/> to apply.</returns>
     internal bool AppliedSwitchIcons(bool? icons = null) => icons ?? SwitchIcons;
 
 
@@ -169,7 +169,7 @@ public class MBCascadingDefaults
     /// The value to apply to an <see cref="MBSwitch"/>.
     /// </summary>
     /// <param name="style">The style parameter passed to the <see cref="MBSelect{TItem}"/></param>
-    /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
+    /// <returns>The <see cref="MBSelectInputStyleMD2"/> to apply.</returns>
     internal bool AppliedSwitchSwitchShowOnlySelectedIcon(bool? switchShowOnlySelectedIcon = null) => switchShowOnlySelectedIcon ?? SwitchShowOnlySelectedIcon;
 
     #endregion

@@ -1,4 +1,5 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor;
+using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// A Material Theme select.
 /// </summary>
-public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectElementMD2<TItem>>
+public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElement<TItem>>
 {
 #nullable enable annotations
     /// <summary>
@@ -19,16 +20,16 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
 
 
     /// <summary>
-    /// The select's <see cref="MBSelectInputStyle"/>.
+    /// The select's <see cref="MBSelectInputStyleMD2"/>.
     /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
     /// </summary>
-    [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
+    [Parameter] public MBSelectInputStyleMD2? SelectInputStyle { get; set; }
 
 
     /// <summary>
     /// Regular, fullwidth or fixed positioning/width.
     /// </summary>
-    [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+    [Parameter] public MBMenuSurfacePositioningMD2 MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioningMD2.Regular;
 
 
     /// <summary>
@@ -84,9 +85,9 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
     private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
-    private string AlignClass => Utilities.GetTextAlignClass(Material.Blazor.MD2.MBTextAlignStyle.Left);
+    private string AlignClass => Utilities.GetTextAlignClass(Material.Blazor.MBTextAlignStyle.Left);
     private MBDensity AppliedDensity => MBDensity.Default;
-    private MBSelectInputStyle AppliedInputStyle => MBSelectInputStyle.Outlined;
+    private MBSelectInputStyleMD2 AppliedInputStyle => MBSelectInputStyleMD2.Outlined;
     private string FloatingLabelClass { get; set; } = "";
     private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
     private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
@@ -111,7 +112,7 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
                 CssClassName = "\"dense-default\""
             };
 
-            var suffix = AppliedInputStyle == MBSelectInputStyle.Filled ? "--filled" : "--outlined";
+            var suffix = AppliedInputStyle == MBSelectInputStyleMD2.Filled ? "--filled" : "--outlined";
             suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
 
             d.CssClassName += suffix;
@@ -148,19 +149,19 @@ public partial class MBSelect<TItem> : SingleSelectComponentMD2<TItem, MBSelectE
         bool hasValue;
         TItem potentialComponentValue;
 
-        (hasValue, potentialComponentValue) = ValidateItemList(Items, Material.Blazor.MD2.MBItemValidation.DefaultToFirst);
+        (hasValue, potentialComponentValue) = ValidateItemList(Items, Material.Blazor.MBItemValidation.DefaultToFirst);
 
         if (hasValue)
         {
             ComponentValue = potentialComponentValue;
         }
-        SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.Label) : "";
+        SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.LeadingLabel) : "";
         FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
         _ = ConditionalCssClasses
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-            .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
-            .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)
+            .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyleMD2.Filled)
+            .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyleMD2.Outlined)
             .AddIf("mdc-select--no-label", () => !ShowLabel)
             .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
             .AddIf("mdc-select--disabled", () => AppliedDisabled);

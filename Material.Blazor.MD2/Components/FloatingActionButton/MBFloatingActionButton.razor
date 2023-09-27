@@ -1,0 +1,46 @@
+﻿@namespace Material.Blazor.MD2
+@inherits ComponentFoundationMD2
+
+@if (Type == MBFloatingActionButtonType.Mini)
+{
+    <MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
+        <button @ref="@ElementReference"
+                class="mdc-fab @ActiveConditionalClasses @(@class)"
+                style="@style"
+                id="@id"
+                @attributes="@AttributesToSplat()">
+
+            <div class="mdc-fab__ripple"></div>
+            <MBIcon class="mdc-fab__icon"
+                    IconFoundry="@IconFoundry"
+                    IconName="@Icon" />
+            <div class="mdc-fab__touch"></div>
+        </button>
+    </MBTouchTargetWrapper>
+}
+else
+{
+    <button @ref="@ElementReference"
+            class="mdc-fab @ActiveConditionalClasses @(@class)"
+            style="@style"
+            id="@id"
+            @attributes="@AttributesToSplat()">
+
+        <div class="mdc-fab__ripple"></div>
+
+        @if (Type == MBFloatingActionButtonType.ExtendedNoIcon || Type == MBFloatingActionButtonType.ExtendedTrailingIcon)
+        {
+            <span class="mdc-fab__label">@Label</span>
+        }
+
+        @if (Type != MBFloatingActionButtonType.ExtendedNoIcon)
+        {
+            <MBIcon class="mdc-fab__icon" IconName="@Icon" IconFoundry="@IconFoundry" />
+        }
+
+        @if (Type == MBFloatingActionButtonType.ExtendedLeadingIcon)
+        {
+            <span class="mdc-fab__label">@Label</span>
+        }
+    </button>
+}

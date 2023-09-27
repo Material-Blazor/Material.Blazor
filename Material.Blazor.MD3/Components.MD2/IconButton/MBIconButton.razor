@@ -1,5 +1,5 @@
 ﻿@namespace Material.Blazor.MD2
-@inherits ComponentFoundationMD2
+@inherits ComponentFoundation
 
 
 <MBTouchTargetWrapper ApplyTouchTargetWrapper="false">
@@ -11,7 +11,7 @@
             @attributes="@AttributesToSplat()">
 
         <div class="mdc-icon-button__ripple"></div>
-        <MBIcon IconColor="white"
+        <MBIcon IconColor="@IconColor"
                 IconName="@IconName" />
 
         @if (HasBadge)

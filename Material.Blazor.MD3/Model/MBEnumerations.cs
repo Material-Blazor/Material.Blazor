@@ -27,13 +27,13 @@ public enum MBBadgeStyle
 
 #endregion
 
-#region MBButton
+#region MBButtonStyleMD2
 
 /// <summary>
 /// Style for an <see cref="MBButton"/> per Material Theme styling.
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
 /// </summary>
-public enum MBButtonStyle
+public enum MBButtonStyleMD2
 {
     /// <summary>
     /// Contained style, raised.
@@ -54,6 +54,27 @@ public enum MBButtonStyle
     /// Regular or default style. This is the <see cref="MBCascadingDefaults"/> default.
     /// </summary>  
     Text
+}
+
+#endregion
+
+#region MBCardStyleMD2
+
+/// <summary>
+/// Style for an <see cref="MBCard"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Default"/></para>
+/// </summary>
+public enum MBCardStyleMD2
+{
+    /// <summary>
+    /// Default style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>
+    Default,
+
+    /// <summary>
+    /// Outlined style.
+    /// </summary>
+    Outlined
 }
 
 #endregion
@@ -158,6 +179,31 @@ public enum MBIconWeight
 
 #endregion
 
+#region MBInputEventTypeMD2
+
+/// <summary>
+/// Determines how an <see cref="MBSlider"/> responds to user events.
+/// </summary>
+public enum MBInputEventTypeMD2
+{
+    /// <summary>
+    /// Emits events only when the thumb is released via an change event.
+    /// </summary>
+    OnChange,
+
+    /// <summary>
+    /// Emits debounced events during slider movement via input events. Debouncing requires the slider to be still for a period before emitting an event.
+    /// </summary>
+    OnInputDebounced,
+
+    /// <summary>
+    /// Emits throttled events during slider movement via input events. Throttling emits events even while the slider is moving.
+    /// </summary>
+    OnInputThrottled
+}
+
+#endregion
+
 #region MBItemValidation
 
 /// <summary>
@@ -199,6 +245,33 @@ public enum MBLoggingLevel
     Error = 4,
     Critical = 5,
     None = 0,
+}
+
+#endregion
+
+#region MBMenuSurfacePositioningMD2
+
+/// <summary>
+/// Determines the positioning and width of a menu surface.
+/// </summary>
+public enum MBMenuSurfacePositioningMD2
+{
+    /// <summary>
+    /// Placed with display: relative. and assuming a width determined by its contents.
+    /// </summary>
+    Regular,
+
+
+    /// <summary>
+    /// Width set to match the parent anchor - incompatible with Fixed position.
+    /// </summary>
+    FullWidth,
+
+
+    /// <summary>
+    /// Places the menu with fixed positioning.
+    /// </summary>
+    Fixed
 }
 
 #endregion
@@ -291,6 +364,53 @@ public enum MBProgressType
     /// A closed progress.
     /// </summary>
     Closed
+}
+
+#endregion
+
+#region MBSelectInputStyleMD2
+
+/// <summary>
+/// Material Theme select input style applied to <see cref="MBSelect{TItem}"/>.
+/// <para>Applied also to <seealso cref="MBDatePicker"/></para>
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
+/// </summary>
+public enum MBSelectInputStyleMD2
+{
+    /// <summary>
+    /// The filled style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>
+    Filled,
+
+    /// <summary>
+    /// The outlined style.
+    /// </summary>
+    Outlined
+}
+
+#endregion
+
+#region MBSliderTypeMD2
+
+/// <summary>
+/// Determines the type of an <see cref="MBSlider"/>.
+/// </summary>
+public enum MBSliderTypeMD2
+{
+    /// <summary>
+    /// Continuous value.
+    /// </summary>
+    Continuous,
+
+    /// <summary>
+    /// Discrete values.
+    /// </summary>
+    Discrete,
+
+    /// <summary>
+    /// Discrete values with tickmarks.
+    /// </summary>
+    DiscreteWithTickmarks
 }
 
 #endregion
@@ -429,3 +549,44 @@ public enum MBToastPosition
 
 #endregion
 
+#region MBTopAppBarTypeMD2
+
+/// <summary>
+/// Material Theme top app bar type applied to an <see cref="MBTopAppBar"/>.
+/// </summary>
+[Flags]
+public enum MBTopAppBarTypeMD2
+{
+    /// <summary>
+    /// The standard variety.
+    /// </summary>
+    Standard = 0,
+
+    /// <summary>
+    /// The fixed variety.
+    /// </summary>
+    Fixed = 1 << 0,
+
+
+    /// <summary>
+    /// The dense variety.
+    /// </summary>
+    Dense = 1 << 1,
+
+    /// <summary>
+    /// The prominent variety.
+    /// </summary>
+    Prominent = 1 << 2,
+
+    /// <summary>
+    /// The short variety.
+    /// </summary>
+    Short = 1 << 3,
+
+    /// <summary>
+    /// The short collapsed variety.
+    /// </summary>
+    ShortCollapsed = 1 << 4
+}
+
+#endregion

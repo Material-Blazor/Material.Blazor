@@ -1,0 +1,28 @@
+﻿@namespace Material.Blazor.MD2.Internal
+@inherits ComponentFoundationMD2
+
+
+<div class="mb-drag-and-drop-list__card-contents">
+    @if (AppliedDisabled)
+    {
+        <div class="mb-drag-and-drop-list__draggable mb-drag-and-drop-list__disabled"
+             disabled>
+
+            <MBIcon IconName="drag_indicator" />
+        </div>
+    }
+    else
+    {
+        <div class="mb-drag-and-drop-list__draggable"
+             draggable="true"
+             @ondragstart="@OnDragStart"
+             @ondragend="@OnDragEnd">
+
+            <MBIcon IconName="drag_indicator" />
+        </div>
+    }
+
+    <div class="@UserContentClass">
+        @ChildContent
+    </div>
+</div>

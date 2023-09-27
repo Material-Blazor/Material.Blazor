@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
 
@@ -9,7 +9,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// This is a general purpose Material Theme drawer.
 /// </summary>
-public partial class MBDrawer : ComponentFoundationMD2
+public partial class MBDrawer : ComponentFoundation
 {
     /// <summary>
     /// The drawer contents.

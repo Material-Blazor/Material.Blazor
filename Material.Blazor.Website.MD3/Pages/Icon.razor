@@ -92,41 +92,41 @@
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@mbIconFill"
                                                           Items="@iconFills"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Icon fill"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@iconGradient"
                                                           Items="@iconGradients"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Icon gradient"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@iconSize"
                                                           Items="@iconSizes"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Icon size"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@iconStyle"
                                                           Items="@iconStyles"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Icon style"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@iconWeight"
                                                           Items="@iconWeights"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Icon weight"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12">
@@ -183,10 +183,10 @@
 
 
 
-    Material.Blazor.MD2.MBSelectElementMD2<bool>[] iconFills = new Material.Blazor.MD2.MBSelectElementMD2<bool>[]
+    MBSelectElement<bool>[] iconFills = new MBSelectElement<bool>[]
     {
-        new Material.Blazor.MD2.MBSelectElementMD2<bool> { SelectedValue = true, Label = "Filled" },
-        new Material.Blazor.MD2.MBSelectElementMD2<bool> { SelectedValue = false, Label = "Not filled" },
+        new MBSelectElement<bool> { SelectedValue = true, LeadingLabel = "Filled" },
+        new MBSelectElement<bool> { SelectedValue = false, LeadingLabel = "Not filled" },
             };
 
     private bool _iconFill = true;
@@ -203,11 +203,11 @@
 
 
 
-    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconGradients = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    MBSelectElement<string>[] iconGradients = new MBSelectElement<string>[]
     {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "LowEmphasis", Label = "Low emphasis" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "NormalEmphasis", Label = "Normal emphasis" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "HighEmphasis", Label = "High emphasis" },
+        new MBSelectElement<string> { SelectedValue = "LowEmphasis", LeadingLabel = "Low emphasis" },
+        new MBSelectElement<string> { SelectedValue = "NormalEmphasis", LeadingLabel = "Normal emphasis" },
+        new MBSelectElement<string> { SelectedValue = "HighEmphasis", LeadingLabel = "High emphasis" },
             };
 
     private MBIconGradient mbIconGradient = MBIconGradient.NormalEmphasis;
@@ -233,12 +233,12 @@
 
 
 
-    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconSizes = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    MBSelectElement<string>[] iconSizes = new MBSelectElement<string>[]
     {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "20", Label = "20px" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "24", Label = "24px" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "40", Label = "40px" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "48", Label = "48px" },
+        new MBSelectElement<string> { SelectedValue = "20", LeadingLabel = "20px" },
+        new MBSelectElement<string> { SelectedValue = "24", LeadingLabel = "24px" },
+        new MBSelectElement<string> { SelectedValue = "40", LeadingLabel = "40px" },
+        new MBSelectElement<string> { SelectedValue = "48", LeadingLabel = "48px" },
             };
 
     private MBIconSize mbIconSize = MBIconSize.Size24;
@@ -265,11 +265,11 @@
 
 
 
-    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconStyles = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    MBSelectElement<string>[] iconStyles = new MBSelectElement<string>[]
     {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "outlined", Label = "Outlined" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "rounded", Label = "Rounded" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "sharp", Label = "Sharp" }
+        new MBSelectElement<string> { SelectedValue = "outlined", LeadingLabel = "Outlined" },
+        new MBSelectElement<string> { SelectedValue = "rounded", LeadingLabel = "Rounded" },
+        new MBSelectElement<string> { SelectedValue = "sharp", LeadingLabel = "Sharp" }
             };
 
     private MBIconStyle mbIconStyle = MBIconStyle.Outlined;
@@ -295,15 +295,15 @@
 
 
 
-    Material.Blazor.MD2.MBSelectElementMD2<string>[] iconWeights = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    MBSelectElement<string>[] iconWeights = new MBSelectElement<string>[]
     {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "100", Label = "100" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "200", Label = "200" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "300", Label = "300" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "400", Label = "400" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "500", Label = "500" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "600", Label = "600" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "700", Label = "700" },
+        new MBSelectElement<string> { SelectedValue = "100", LeadingLabel = "100" },
+        new MBSelectElement<string> { SelectedValue = "200", LeadingLabel = "200" },
+        new MBSelectElement<string> { SelectedValue = "300", LeadingLabel = "300" },
+        new MBSelectElement<string> { SelectedValue = "400", LeadingLabel = "400" },
+        new MBSelectElement<string> { SelectedValue = "500", LeadingLabel = "500" },
+        new MBSelectElement<string> { SelectedValue = "600", LeadingLabel = "600" },
+        new MBSelectElement<string> { SelectedValue = "700", LeadingLabel = "700" },
             };
 
     private MBIconWeight mbIconWeight = MBIconWeight.W400;

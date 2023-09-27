@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 
 using System.Threading.Tasks;
@@ -10,19 +10,19 @@ namespace Material.Blazor.MD2;
 /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--button" class when 
 /// placed inside an <see cref="MBCard"/>.
 /// </summary>
-public partial class MBButton : ComponentFoundationMD2
+public partial class MBButton : ComponentFoundation
 {
     [CascadingParameter] private MBCard Card { get; set; }
 
-    [CascadingParameter] private MBDialog Dialog { get; set; }
+    //[CascadingParameter] private MBDialog Dialog { get; set; }
 
 
 #nullable enable annotations
     /// <summary>
-    /// The button's Material Theme style - see <see cref="MBButtonStyle"/>.
+    /// The button's Material Theme style - see <see cref="MBButtonStyleMD2"/>.
     /// <para>Overrides <see cref="MBCascadingDefaults.ButtonStyle"/>, <see cref="MBCascadingDefaults.CardActionButtonStyle"/> or <see cref="MBCascadingDefaults.DialogActionButtonStyle"/> as relevant.</para>
     /// </summary>
-    [Parameter] public MBButtonStyle ButtonStyle { get; set; } = MBButtonStyle.Outlined;
+    [Parameter] public MBButtonStyleMD2 ButtonStyle { get; set; } = MBButtonStyleMD2.Outlined;
 
 
     /// <summary>
@@ -95,9 +95,9 @@ public partial class MBButton : ComponentFoundationMD2
         await base.OnInitializedAsync();
 
         ConditionalCssClasses
-            .AddIf("mdc-button--raised", () => ButtonStyle == MBButtonStyle.ContainedRaised)
-            .AddIf("mdc-button--unelevated", () => ButtonStyle == MBButtonStyle.ContainedUnelevated)
-            .AddIf("mdc-button--outlined", () => ButtonStyle == MBButtonStyle.Outlined)
+            .AddIf("mdc-button--raised", () => ButtonStyle == MBButtonStyleMD2.ContainedRaised)
+            .AddIf("mdc-button--unelevated", () => ButtonStyle == MBButtonStyleMD2.ContainedUnelevated)
+            .AddIf("mdc-button--outlined", () => ButtonStyle == MBButtonStyleMD2.Outlined)
             .AddIf("mdc-button--icon-leading", () => !string.IsNullOrWhiteSpace(LeadingIcon))
             .AddIf("mdc-button--icon-trailing", () => !string.IsNullOrWhiteSpace(TrailingIcon))
             .AddIf("mdc-card__action mdc-card__action--button", () => Card != null);

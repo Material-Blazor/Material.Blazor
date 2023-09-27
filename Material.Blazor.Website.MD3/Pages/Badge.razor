@@ -83,21 +83,21 @@
 
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.Outlined"
+                            <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.Outlined"
                                                           Label="Outlined Button"
                                                           HasBadge="true"
                                                           BadgeValue="@GeneralValue"
                                                           BadgeExited="@Exited" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.Outlined"
+                            <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.Outlined"
                                                           Label="Outlined Button"
                                                           HasBadge="true"
                                                           BadgeValue="@ButtonValue"
                                                           BadgeExited="@Exited" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.Outlined"
+                            <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.Outlined"
                                                           Label="Outlined Button"
                                                           HasBadge="true"
                                                           BadgeStyle="@MBBadgeStyle.Dot"
@@ -105,19 +105,22 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBIconButton IconName="home"
+                            <Material.Blazor.MD2.MBIconButton IconColor="darkblue"
+                                                              IconName="home"
                                                               HasBadge="true"
                                                               BadgeValue="@GeneralValue"
                                                               BadgeExited="@Exited" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBIconButton IconName="home"
+                            <Material.Blazor.MD2.MBIconButton IconColor="darkblue"
+                                                              IconName="home"
                                                               HasBadge="true"
                                                               BadgeValue="@ButtonValue"
                                                               BadgeExited="@Exited" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBIconButton IconName="home"
+                            <Material.Blazor.MD2.MBIconButton IconColor="darkblue"
+                                                              IconName="home"
                                                               HasBadge="true"
                                                               BadgeStyle="@MBBadgeStyle.Dot"
                                                               BadgeExited="@Exited" />
@@ -226,32 +229,32 @@
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@SelectValue"
                                                           Items="@KittenBreeds"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.NoSelection"
+                                                          ItemValidation="@MBItemValidation.NoSelection"
                                                           HasBadge="true"
                                                           BadgeValue="@GeneralValue"
                                                           BadgeExited="@Exited"
                                                           Label="Select"
-                                                          SelectInputStyle="Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@SelectValue"
                                                           Items="@KittenBreeds"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.NoSelection"
+                                                          ItemValidation="@MBItemValidation.NoSelection"
                                                           HasBadge="true"
                                                           BadgeValue="@ButtonValue"
                                                           BadgeExited="@Exited"
                                                           Label="Select"
-                                                          SelectInputStyle="Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@SelectValue"
                                                           Items="@KittenBreeds"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.NoSelection"
+                                                          ItemValidation="@MBItemValidation.NoSelection"
                                                           HasBadge="true"
                                                           BadgeStyle="@MBBadgeStyle.Dot"
                                                           BadgeExited="@Exited"
                                                           Label="Select"
-                                                          SelectInputStyle="Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         @*
@@ -397,11 +400,11 @@
 
     private string SelectValue { get; set; } = KittenBreeds[0].SelectedValue;
 
-    private static Material.Blazor.MD2.MBSelectElementMD2<string>[] KittenBreeds = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    private static Material.Blazor.MBSelectElement<string>[] KittenBreeds = new Material.Blazor.MBSelectElement<string>[]
     {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new MBSelectElement<string> { SelectedValue = "brit-short", LeadingLabel = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", LeadingLabel = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", LeadingLabel = "Icelandic Invisible" }
     };
 
     //private string SegmentedButtonValue { get; set; } = ThisThat[0].SelectedValue;

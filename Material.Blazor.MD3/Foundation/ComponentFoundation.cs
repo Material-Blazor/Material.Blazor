@@ -1,8 +1,4 @@
-using Material.Blazor;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -10,32 +6,57 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
+
 namespace Material.Blazor.Internal;
 
 /// <summary>
-/// The base class for all Material.Blazor components.
+/// The base class for all Material.Blazor.MD2 components.
 /// </summary>
 public abstract class ComponentFoundation : ComponentBase, IDisposable
 {
     #region members
 
-    //[CascadingParameter] private IMBDialog ParentDialog { get; set; }
+    #region Cascading parameters
+
     [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+    [CascadingParameter] private IMBDialog ParentDialog { get; set; }
 
+    #endregion
 
+    #region Parameters
 
     /// <summary>
     /// Gets or sets a collection of additional attributes that will be applied to the created element.
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
 
+
     /// <summary>
     /// Indicates whether the component is disabled.
     /// </summary>
 
 #pragma warning disable BL0007 // Component parameters should be auto properties
-    [Parameter] public bool? Disabled { get; set; }
+    [Parameter]
+    public bool? Disabled
 #pragma warning restore BL0007 // Component parameters should be auto properties
+    {
+        get => disabled;
+        set
+        {
+            if (disabled != value)
+            {
+                disabled = value;
+
+                if (HasInstantiated)
+                {
+                    EnqueueJSInteropAction(OnDisabledSetAsync);
+                }
+            }
+        }
+    }
 
 
     /// <summary>
@@ -54,6 +75,8 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 #pragma warning disable IDE1006 // Naming Styles
     [Parameter] public string @class { get; set; }
 #pragma warning restore IDE1006 // Naming Styles
+    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+
 
     /// <summary>
     /// Additional CSS style for the component.
@@ -63,28 +86,35 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 #pragma warning restore IDE1006 // Naming Styles
 
 
+    /// <summary>
+    /// A markup capable tooltip.
+    /// </summary>
+    [Parameter] public string Tooltip { get; set; }
+
+    #endregion
+
+    #region Injected properties
 
     [Inject] private IJSRuntime JsRuntime { get; set; }
+    [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
+
+//    [Inject] private protected IMBTooltipService TooltipService { get; set; }
     [Inject] private protected IMBLoggingService LoggingService { get; set; }
 
+    #endregion
 
-
-    /// <summary>
-    /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
-    /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
-    /// </summary>
-    /// <remarks>
-    /// Includes "formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page" 
-    /// </remarks>
-    private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
-    private bool? disabled = null;
-
-    protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+    #region Other members
 
     /// <summary>
     /// Gets a value for the component's 'id' attribute.
     /// </summary>
     private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
+
+
+    /// <summary>
+    /// Tooltip id for aria-describedby attribute.
+    /// </summary>
+    private long? TooltipId { get; set; }
 
 
     /// <summary>
@@ -104,6 +134,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// </summary>
     private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
 
+
     /// <summary>
     /// The concurrent queue for javascript interop actions.
     /// </summary>
@@ -115,9 +146,36 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// </summary>
     private readonly SemaphoreSlim _jsActionQueueSemaphore = new(1, 1);
 
+    /// <summary>
+    /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor.MD2. Works with 
+    /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
+    /// </summary>
+    /// <remarks>
+    /// Includes "formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page" 
+    /// </remarks>
+    private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
+    private bool? disabled = null;
+
     #endregion
 
-    # region AttributesToSplat
+    #endregion
+
+    #region AddTooltip (MD2)
+
+    /// <summary>
+    /// Adds a tooltip if tooltip text has been provided.
+    /// </summary>
+    private protected void AddTooltip()
+    {
+        //if (!string.IsNullOrWhiteSpace(Tooltip) && TooltipId != null)
+        //{
+        //    TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
+        //}
+    }
+
+    #endregion
+
+    # region AttributesToSplat (Tooltip elements)
 
     /// <summary>
     /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes.
@@ -129,10 +187,14 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             yield return attribute;
         }
 
-        //if (AppliedDisabled)
-        //{
-        //    yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
-        //}
+        if (AppliedDisabled)
+        {
+            yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
+        }
+        if (!string.IsNullOrWhiteSpace(Tooltip))
+        {
+            yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
+        }
     }
     internal IEnumerable<KeyValuePair<string, object>> OtherAttributesToSplat()
     {
@@ -145,10 +207,14 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             yield return attribute;
         }
 
-        //if (AppliedDisabled)
-        //{
-        //    yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
-        //}
+        if (AppliedDisabled)
+        {
+            yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
+        }
+        if (!string.IsNullOrWhiteSpace(Tooltip))
+        {
+            yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
+        }
     }
 
     internal IEnumerable<KeyValuePair<string, object>> EventAttributesToSplat()
@@ -162,7 +228,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     #region CheckAttributeValidity
 
     /// <summary>
-    /// Material.Blazor allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MBCascadingDefaults"/>.
+    /// Material.Blazor.MD2 allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MBCascadingDefaults"/>.
     /// This method checks validity against that list.
     /// </summary>
     private void CheckAttributeValidity()
@@ -175,7 +241,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         if (UnmatchedAttributes.ContainsKey("disabled"))
         {
             throw new ArgumentException(
-                $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
+                $"Material.Blazor.MD2: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor.MD2 reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
         }
 
         if (!CascadingDefaults.ConstrainSplattableAttributes)
@@ -192,17 +258,17 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
                 .Except(EssentialSplattableAttributes)   // filter common attribute names
                 .Except(CascadingDefaults.AllowedSplattableAttributes, StringComparer.InvariantCultureIgnoreCase); // filter user-specified attribute names, ignoring case
 
-        //if (forbidden.Any())
-        //{
-        //    var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attribute(s) in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
+        if (forbidden.Any())
+        {
+            var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attribute(s) in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
 
-        //    throw new ArgumentException($"Material.Blazor: {message}");
-        //}
+            throw new ArgumentException($"Material.Blazor.MD2: {message}");
+        }
     }
 
     #endregion
 
-    #region Dispose
+    #region Dispose (MD2 elements)
 
     private bool _disposed;
     protected virtual void Dispose(bool disposing)
@@ -211,6 +277,14 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         {
             return;
         }
+
+        //if (disposing && TooltipId != null)
+        //{
+        //    TooltipService.RemoveTooltip(TooltipId.Value);
+        //    TooltipId = null;
+        //}
+
+        _jsActionQueueSemaphore.Dispose();
 
         _disposed = true;
     }
@@ -285,10 +359,22 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     }
     #endregion
 
+    #region InstantiateMcwComponent
+
+    /// <summary>
+    /// Components should override this with a function to be called when Material.Blazor.MD2 wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync(bool)"/>, which should not be overridden.
+    /// </summary>
+    internal virtual Task InstantiateMcwComponent()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
     #region OnAfterRender
 
     /// <summary>
-    /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override "ComponentBase.OnAfterRender(bool)".
+    /// Material.Blazor.MD2 components descending from <see cref="ComponentFoundation"/> _*must not*_ override "ComponentBase.OnAfterRender(bool)".
     /// </summary>
     protected sealed override void OnAfterRender(bool firstRender)
     {
@@ -297,10 +383,10 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
     #endregion
 
-    #region OnAfterRenderAsync
+    #region OnAfterRenderAsync (Tooltip elements)
 
     /// <summary>
-    /// Material.Blazor components generally *should not* override this because it handles the case where components need
+    /// Material.Blazor.MD2 components generally *should not* override this because it handles the case where components need
     /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
     /// </summary>
     protected override Task OnAfterRenderAsync(bool firstRender)
@@ -309,11 +395,21 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         {
             try
             {
+                if (ParentDialog != null && !ParentDialog.HasInstantiated)
+                {
+                    ParentDialog.RegisterLayoutAction(this);
+                }
+                else
+                {
+                    EnqueueJSInteropAction(InstantiateMcwComponent);
+                }
+
                 HasInstantiated = true;
+                AddTooltip();
             }
             catch (Exception e)
             {
-                //LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
+                LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
             }
         }
 
@@ -322,10 +418,30 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
     #endregion
 
+    #region OnInitialized (Tooltip elements)
+
+    /// <summary>
+    /// Material.Blazor.MD2 components use "OnInitializedAsync()" only.
+    /// </summary>
+    protected sealed override void OnInitialized()
+    {
+        // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
+
+        // the only thing we do here, is creating an ID for the tooltip, if we have one
+        //if (!string.IsNullOrWhiteSpace(Tooltip))
+        //{
+        //    TooltipId = TooltipIdProvider.NextId();
+        //}
+
+        LoggingService.SetLogger(Logger);
+    }
+
+    #endregion
+
     #region OnParametersSet
 
     /// <summary>
-    /// Material.Blazor components use <see cref="OnParametersSetAsync()"/> only.
+    /// Material.Blazor.MD2 components use <see cref="OnParametersSetAsync()"/> only.
     /// </summary>
     protected sealed override void OnParametersSet()
     {
@@ -347,4 +463,19 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     }
 
     #endregion
+
+    #region OnDisabledSetAsync
+
+    /// <summary>
+    /// Derived components can override this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
+    /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual Task OnDisabledSetAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    #endregion
+
 }

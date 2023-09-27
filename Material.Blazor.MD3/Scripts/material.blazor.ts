@@ -17,6 +17,7 @@ import * as MBTextField2 from '../Components/TextField2/MBTextField2';
 /*
 MD2 JS
 */
+import * as MBButton from '../Components.MD2/Button/MBButton';
 import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
 import * as MBDialog from '../Components.MD2/Dialog/MBDialog';
@@ -31,6 +32,7 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
     MBTextField,
     MBTextField2,
 
+    MBButton,
     MBCard,
     MBDataTable,
     MBDialog,

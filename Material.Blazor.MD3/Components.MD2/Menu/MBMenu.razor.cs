@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -10,10 +10,10 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// This is a general purpose Material Theme menu.
 /// </summary>
-public partial class MBMenu : ComponentFoundationMD2
+public partial class MBMenu : ComponentFoundation
 {
     /// <summary>
-    /// A render fragement as a set of <see cref="MBListItem"/>s.
+    /// A render fragment as a set of <see cref="MBListItem"/>s.
     /// </summary>
     [Parameter] public RenderFragment ChildContent { get; set; }
 
@@ -21,7 +21,7 @@ public partial class MBMenu : ComponentFoundationMD2
     /// <summary>
     /// Regular, fullwidth or fixed positioning/width.
     /// </summary>
-    [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+    [Parameter] public MBMenuSurfacePositioningMD2 MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioningMD2.Regular;
 
 
     /// <summary>
@@ -41,7 +41,7 @@ public partial class MBMenu : ComponentFoundationMD2
         await base.OnInitializedAsync();
 
         ConditionalCssClasses
-            .AddIf(GetMenuSurfacePositioningClass(MenuSurfacePositioning), () => MenuSurfacePositioning != MBMenuSurfacePositioning.Regular);
+            .AddIf(GetMenuSurfacePositioningClass(MenuSurfacePositioning), () => MenuSurfacePositioning != MBMenuSurfacePositioningMD2.Regular);
 
         ObjectReference = DotNetObjectReference.Create(this);
     }
@@ -115,11 +115,11 @@ public partial class MBMenu : ComponentFoundationMD2
     /// </summary>
     /// <param name="surfacePositioning"></param>
     /// <returns></returns>
-    internal static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
+    internal static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioningMD2 surfacePositioning) =>
         surfacePositioning switch
         {
-            MBMenuSurfacePositioning.FullWidth => "mdc-menu-surface--fullwidth",
-            MBMenuSurfacePositioning.Fixed => "mdc-menu-surface--fixed",
+            MBMenuSurfacePositioningMD2.FullWidth => "mdc-menu-surface--fullwidth",
+            MBMenuSurfacePositioningMD2.Fixed => "mdc-menu-surface--fixed",
             _ => ""
         };
 }

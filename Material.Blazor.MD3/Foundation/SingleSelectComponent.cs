@@ -92,9 +92,10 @@ public abstract class SingleSelectComponent<T, TListElement> :
             switch (appliedItemValidation)
             {
                 case MBItemValidation.DefaultToFirst:
-                    var defaultValue = items.FirstOrDefault().SelectedValue;
+                    //var defaultValue = items.FirstOrDefault().SelectedValue;
                     //AllowNextShouldRender();
-                    return (true, defaultValue);
+                    //return (true, defaultValue);
+                    return (false, default);
 
                 case MBItemValidation.Exception:
                     var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";

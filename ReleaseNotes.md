@@ -10,12 +10,13 @@ title: ReleaseNotes
 Released 2023-10-??
 
 **Updates**
-- Dependabot updates
-- Migrate all projects to .Net 8 RC 2
-- Migrate @material/web to 1.0.0-pre.17
+- MD2/MD3: Dependabot updates
+- MD2/MD3: Migrate all projects to .Net 8 RC 2
+- MD3: Migrate @material/web to 1.0.0-pre.17
+- MD2: Added new IconFoundry (Material Symbols) and corresponding support and demonstration files
 
 **New components**
-- Added preview of Material Design 3 components:
+- MD3: Added preview components:
 	- MBIcon
 
 **Breaking Changes**

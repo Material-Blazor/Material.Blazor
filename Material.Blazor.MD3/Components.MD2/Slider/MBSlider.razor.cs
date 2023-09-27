@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -9,12 +9,12 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// A Material Theme single-thumb slider.
 /// </summary>
-public partial class MBSlider : InputComponentMD2<decimal>
+public partial class MBSlider : InputComponent<decimal>
 {
     /// <summary>
-    /// The type of slider - defaults to <see cref="MBSliderType.Continuous"/>.
+    /// The type of slider - defaults to <see cref="MBSliderTypeMD2.Continuous"/>.
     /// </summary>
-    [Parameter] public MBSliderType SliderType { get; set; } = MBSliderType.Continuous;
+    [Parameter] public MBSliderTypeMD2 SliderType { get; set; } = MBSliderTypeMD2.Continuous;
 
 
     /// <summary>
@@ -36,9 +36,9 @@ public partial class MBSlider : InputComponentMD2<decimal>
 
 
     /// <summary>
-    /// Specifies how slider events are emitted, see <see cref="MBInputEventType"/>.
+    /// Specifies how slider events are emitted, see <see cref="MBInputEventTypeMD2"/>.
     /// </summary>
-    [Parameter] public MBInputEventType EventType { get; set; } = MBInputEventType.OnChange;
+    [Parameter] public MBInputEventTypeMD2 EventType { get; set; } = MBInputEventTypeMD2.OnChange;
 
 
     /// <summary>
@@ -92,7 +92,7 @@ public partial class MBSlider : InputComponentMD2<decimal>
         TabIndex = AppliedDisabled ? -1 : 0;
         RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
-        if (SliderType == MBSliderType.Continuous)
+        if (SliderType == MBSliderTypeMD2.Continuous)
         {
             ValueStepIncrement = Convert.ToDecimal(Math.Pow(10, -DecimalPlaces));
         }
@@ -102,8 +102,8 @@ public partial class MBSlider : InputComponentMD2<decimal>
         }
 
         ConditionalCssClasses
-            .AddIf("mdc-slider--discrete", () => SliderType != MBSliderType.Continuous)
-            .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
+            .AddIf("mdc-slider--discrete", () => SliderType != MBSliderTypeMD2.Continuous)
+            .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderTypeMD2.DiscreteWithTickmarks)
             .AddIf("mdc-slider--disabled", () => AppliedDisabled);
 
         var disabledClassMarkup = AppliedDisabled ? " mdc-slider--disabled" : "";

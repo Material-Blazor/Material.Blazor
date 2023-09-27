@@ -136,9 +136,12 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
                         builder.AddAttribute(rendSeq++, "disabled");
                     }
 
-                    if (Value.Equals(TargetCheckedValue))
+                    if (Value != null)
                     {
-                        builder.AddAttribute(rendSeq++, "checked");
+                        if (Value.Equals(TargetCheckedValue))
+                        {
+                            builder.AddAttribute(rendSeq++, "checked");
+                        }
                     }
 
                     builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));

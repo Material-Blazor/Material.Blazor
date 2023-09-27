@@ -20,6 +20,14 @@
                     LeadingIcon="error"
                     Label="Badges"
                     @onclick="@(() => ListItemClickHandler("badge"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="touch_app"
+                    Label="Button"
+                    @onclick="@(() => ListItemClickHandler("button"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="dashboard"
+                    Label="Card"
+                    @onclick="@(() => ListItemClickHandler("card"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="check_box"
                     Label="Checkbox"
@@ -28,13 +36,34 @@
                     LeadingIcon="access_time"
                     Label="Circular Progress Indicator"
                     @onclick="@(() => ListItemClickHandler("circularprogress"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="table_chart"
+                    Label="Data Table"
+                    @onclick="@(() => ListItemClickHandler("datatable"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="picture_in_picture"
+                    Label="Dialog"
+                    @onclick="@(() => ListItemClickHandler("dialog"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="view_headline"
+                    Label="Drawer"
+                    @onclick="@(() => ListItemClickHandler("drawer"))" />
         <MBListItem ListItemColor="darkblue"
                     LeadingIcon="touch_app"
-                    Label="Icon" @onclick="@(() => ListItemClickHandler("icon"))" />
+                    Label="Icon"
+                    @onclick="@(() => ListItemClickHandler("icon"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="touch_app"
+                    Label="Icon Button"
+                    @onclick="@(() => ListItemClickHandler("iconbutton"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="access_time"
                     Label="Linear Progress Indicator"
                     @onclick="@(() => ListItemClickHandler("linearprogress"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="menu"
+                    Label="Menu"
+                    @onclick="@(() => ListItemClickHandler("menu"))" />
         <MBListItem ListItemColor="darkblue"
                     LeadingIcon="money"
                     Label="Numeric Decimal Field"
@@ -63,6 +92,14 @@
                     LeadingIcon="radio_button_checked"
                     Label="Radio Button Group"
                     @onclick="@(() => ListItemClickHandler("radiobuttongroup"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="arrow_drop_down"
+                    Label="Select"
+                    @onclick="@(() => ListItemClickHandler("select"))" />
+        <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="straighten"
+                    Label="Slider"
+                    @onclick="@(() => ListItemClickHandler("slider"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="switch_left"
                     Label="Switch"
@@ -80,6 +117,10 @@
                     Label="Toast"
                     @onclick="@(() => ListItemClickHandler("toast"))" />
         <MBListItem ListItemColor="darkred; "
+                    LeadingIcon="border_top"
+                    Label="Top App Bar"
+                    @onclick="@(() => ListItemClickHandler("topappbar"))" />
+        <MBListItem ListItemColor="darkred; "
                     LeadingIcon="http"
                     Label="Typography"
                     @onclick="@(() => ListItemClickHandler("typography"))" />
@@ -91,7 +132,7 @@
                  @onclick="@SideBarToggle"
                  NavIcon="menu"
                  ScrollTarget="#main-content"
-                 TopAppBarType="@MBTopAppBarType.Dense"
+                 TopAppBarType="@MBTopAppBarTypeMD2.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
     </MBTopAppBar>
 

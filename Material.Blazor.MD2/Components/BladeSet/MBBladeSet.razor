@@ -1,0 +1,27 @@
+﻿@namespace Material.Blazor.MD2
+@inherits ComponentFoundation
+
+<CascadingValue Value="@this" IsFixed="true">
+    <mb-bladeset class="@(@class)" style="@style">
+        <mb-bladeset-main-content class="@MainContentAdditionalCss" style="@MainContentAdditionalStyles">
+            @PageContent
+        </mb-bladeset-main-content>
+
+        @if (Blades.Any())
+        {
+            <mb-blades class="@BladesAdditionalCss" style="@BladesAdditionalStyles">
+                @foreach (var bladeInfo in Blades.Values.OrderBy(b => b.Created))
+                {
+                    <mb-blade class="@bladeInfo.AdditionalCss"
+                              style="@bladeInfo.AdditionalStyles"
+                              @key="@bladeInfo"
+                              @ref="@bladeInfo.BladeElementReference">
+                        <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
+                            @bladeInfo.BladeContent
+                        </mb-blade-content>
+                    </mb-blade>
+                }
+            </mb-blades>
+        }
+    </mb-bladeset>
+</CascadingValue>

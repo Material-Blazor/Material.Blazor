@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -9,7 +9,7 @@ namespace Material.Blazor.MD2;
 /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--icon" class when 
 /// placed inside an <see cref="MBCard"/>.
 /// </summary>
-public partial class MBIconButton : ComponentFoundationMD2
+public partial class MBIconButton : ComponentFoundation
 {
     [CascadingParameter] private MBCard Card { get; set; }
 
@@ -17,7 +17,7 @@ public partial class MBIconButton : ComponentFoundationMD2
 
 
 #nullable enable annotations
-    [Parameter] public string IconColor { get; set; }
+    [Parameter] public string IconColor { get; set; } = "white";
     [Parameter] public string IconName { get; set; }
 
 

@@ -1,5 +1,5 @@
 ﻿@namespace Material.Blazor.MD2
-@inherits InputComponentMD2<decimal>
+@inherits InputComponent<decimal>
 
 <div @ref="@ElementReference"
      class="mdc-slider @ActiveConditionalClasses @(@class)"
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    @if (SliderType == MBSliderType.DiscreteWithTickmarks)
+    @if (SliderType == MBSliderTypeMD2.DiscreteWithTickmarks)
     {
         <div class="mdc-slider__tick-marks">
 
@@ -60,7 +60,7 @@
             aria-valuemax="@ValueMax.ToString(Format)"
             aria-valuenow="@Value.ToString(Format)">*@
 
-        @if (SliderType != MBSliderType.Continuous)
+        @if (SliderType != MBSliderTypeMD2.Continuous)
         {
             <div class="mdc-slider__value-indicator-container">
                 <div class="mdc-slider__value-indicator">
