@@ -20,12 +20,14 @@
                         Outlined Icon
                     </h2>
                     <p>
-                        <MBIcon IconName="access_alarms"
-                                IconStyle="MBIconStyle.Outlined" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            name: "access_alarms",
+                            style: @MBIconStyle.Outlined)" />
                     </p>
                     <p>
-                        <MBIcon IconName="home"
-                                IconStyle="MBIconStyle.Outlined" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            name: "home",
+                            style: @MBIconStyle.Outlined)" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -39,12 +41,14 @@
                     </h2>
 
                     <p>
-                        <MBIcon IconName="access_alarms"
-                                IconStyle="MBIconStyle.Rounded" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            name: "access_alarms",
+                            style: @MBIconStyle.Rounded)" />
                     </p>
                     <p>
-                        <MBIcon IconName="home"
-                                IconStyle="MBIconStyle.Rounded" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            name: "home",
+                            style: @MBIconStyle.Rounded)" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -58,12 +62,14 @@
                     </h2>
 
                     <p>
-                        <MBIcon IconName="access_alarms"
-                                IconStyle="MBIconStyle.Sharp" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            name: "access_alarms",
+                            style: @MBIconStyle.Sharp)" />
                     </p>
                     <p>
-                        <MBIcon IconName="home"
-                                IconStyle="MBIconStyle.Sharp" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            name: "home",
+                            style: @MBIconStyle.Sharp)" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -130,45 +136,99 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12">
-                            <MBIcon IconColor="@mbIconColor"
-                                    IconFill="@mbIconFill"
-                                    IconGradient="@mbIconGradient"
-                                    IconName="close"
-                                    IconSize="@mbIconSize"
-                                    IconStyle="@mbIconStyle"
-                                    IconWeight="@mbIconWeight" />
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                MBIcon with Parameters
+                            </h2>
+                            <MBIconWithParameters IconColor="@mbIconColor"
+                                                  IconFill="@mbIconFill"
+                                                  IconGradient="@mbIconGradient"
+                                                  IconName="close"
+                                                  IconSize="@mbIconSize"
+                                                  IconStyle="@mbIconStyle"
+                                                  IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@mbIconColor"
-                                    IconFill="@mbIconFill"
-                                    IconGradient="@mbIconGradient"
-                                    IconName="home"
-                                    IconSize="@mbIconSize"
-                                    IconStyle="@mbIconStyle"
-                                    IconWeight="@mbIconWeight" />
+                            <MBIconWithParameters IconColor="@mbIconColor"
+                                                  IconFill="@mbIconFill"
+                                                  IconGradient="@mbIconGradient"
+                                                  IconName="home"
+                                                  IconSize="@mbIconSize"
+                                                  IconStyle="@mbIconStyle"
+                                                  IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@mbIconColor"
-                                    IconFill="@mbIconFill"
-                                    IconGradient="@mbIconGradient"
-                                    IconName="menu"
-                                    IconSize="@mbIconSize"
-                                    IconStyle="@mbIconStyle"
-                                    IconWeight="@mbIconWeight" />
+                            <MBIconWithParameters IconColor="@mbIconColor"
+                                                  IconFill="@mbIconFill"
+                                                  IconGradient="@mbIconGradient"
+                                                  IconName="menu"
+                                                  IconSize="@mbIconSize"
+                                                  IconStyle="@mbIconStyle"
+                                                  IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@mbIconColor"
-                                    IconFill="@mbIconFill"
-                                    IconGradient="@mbIconGradient"
-                                    IconName="search"
-                                    IconSize="@mbIconSize"
-                                    IconStyle="@mbIconStyle"
-                                    IconWeight="@mbIconWeight" />
+                            <MBIconWithParameters IconColor="@mbIconColor"
+                                                  IconFill="@mbIconFill"
+                                                  IconGradient="@mbIconGradient"
+                                                  IconName="search"
+                                                  IconSize="@mbIconSize"
+                                                  IconStyle="@mbIconStyle"
+                                                  IconWeight="@mbIconWeight" />
                             &nbsp;
-                            <MBIcon IconColor="@mbIconColor"
-                                    IconFill="@mbIconFill"
-                                    IconGradient="@mbIconGradient"
-                                    IconName="settings"
-                                    IconSize="@mbIconSize"
-                                    IconStyle="@mbIconStyle"
-                                    IconWeight="@mbIconWeight" />
+                            <MBIconWithParameters IconColor="@mbIconColor"
+                                                  IconFill="@mbIconFill"
+                                                  IconGradient="@mbIconGradient"
+                                                  IconName="settings"
+                                                  IconSize="@mbIconSize"
+                                                  IconStyle="@mbIconStyle"
+                                                  IconWeight="@mbIconWeight" />
+                            &nbsp;
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                MBIcon with Descriptor
+                            </h2>
+                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "close",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                            &nbsp;
+                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "home",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                            &nbsp;
+                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "menu",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                            &nbsp;
+                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "search",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                            &nbsp;
+                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "settings",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
                             &nbsp;
                         </div>
                     </div>

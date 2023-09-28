@@ -124,10 +124,6 @@ public class MBCascadingDefaults
     public MBIconGradient IconGradient { get => _iconGradient; set => SetParameter(ref _iconGradient, value); }
     internal MBIconGradient AppliedIconGradient(MBIconGradient? iconGradient = null) => iconGradient ?? IconGradient;
 
-    private string _iconName = "Favorite";
-    public string IconName { get => _iconName; set => SetParameter(ref _iconName, value); }
-    internal string AppliedIconName(string iconName = null) => iconName ?? IconName;
-
     private MBIconStyle _iconStyle = MBIconStyle.Outlined;
     public MBIconStyle IconStyle { get => _iconStyle; set => SetParameter(ref _iconStyle, value); }
     internal MBIconStyle AppliedIconStyle(MBIconStyle? iconStyle = null) => iconStyle ?? IconStyle;

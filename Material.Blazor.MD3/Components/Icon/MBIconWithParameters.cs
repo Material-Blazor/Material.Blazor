@@ -12,14 +12,17 @@ namespace Material.Blazor;
 /// Renders icons from the Material Symbol Font. Material Symbols are essential for
 /// Material.Blazor and are included by the library's CSS.
 /// </summary>
-public class MBIcon : ComponentFoundation
+public class MBIconWithParameters : ComponentFoundation
 {
     #region members
+
+    [CascadingParameter(Name = "IsInsideMBTabBar")] private bool IsInsideMBTabBar { get; set; }
+
 
     /// <summary>
     /// Determines whether the button has a badge - defaults to false.
     /// </summary>
-    [Parameter] public bool HasBadgePLUS { get; set; } = false;
+    [Parameter] public bool HasBadgePLUS { get; set; }
 
     /// <summary>
     /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
@@ -38,33 +41,45 @@ public class MBIcon : ComponentFoundation
     [Parameter] public string BadgeValuePLUS { get; set; }
     private string _cachedBadgeValue;
 
-
-
-    [Parameter] public IconDescriptor Descriptor { get; set; }
     /// <summary>
-    /// The icon attributes.
+    /// The icon color attribute.
     /// </summary>
-    public static IconDescriptor IconDescriptorConstructor(
-        string color = null,
-        bool? fill = null,
-        MBIconGradient? gradient = null,
-        string name = null,
-        MBIconSize? size = null,
-        MBIconStyle? style = null,
-        MBIconWeight? weight = null)
-        =>
-        new IconDescriptor(
-            color,
-            fill,
-            gradient,
-            name,
-            size,
-            style,
-            weight);
+    [Parameter] public string IconColor { get; set; }
+
+    /// <summary>
+    /// The icon fill attribute.
+    /// </summary>
+    [Parameter] public bool? IconFill { get; set; }
+
+    /// <summary>
+    /// The icon gradient attribute.
+    /// </summary>
+    [Parameter] public MBIconGradient? IconGradient { get; set; }
+
+    /// <summary>
+    /// The icon name.
+    /// </summary>
+    [Parameter] public string IconName { get; set; }
+
+    /// <summary>
+    /// The icon size.
+    /// </summary>
+    [Parameter] public MBIconSize? IconSize { get; set; }
+
+    /// <summary>
+    /// The icon style.
+    /// </summary>
+    [Parameter] public MBIconStyle? IconStyle { get; set; }
+
+    /// <summary>
+    /// The icon weight attribute.
+    /// </summary>
+    [Parameter] public MBIconWeight? IconWeight { get; set; }
 
 
 
-    private MBBadge badgeRef { get; set; }
+
+    private MBBadge BadgeRef { get; set; }
     private string iconColor { get; set; }
     private string iconDerivedClass { get; set; }
     private string iconDerivedStyle { get; set; }
@@ -103,7 +118,7 @@ public class MBIcon : ComponentFoundation
                         builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
                         builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
                         builder.AddComponentReferenceCapture(rendSeq++,
-                            (__value) => { badgeRef = (Material.Blazor.MBBadge)__value; });
+                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
                     }
                     builder.CloseComponent();
                 }
@@ -125,7 +140,7 @@ public class MBIcon : ComponentFoundation
                 {
                     builder.AddAttribute(rendSeq++, "class", iconDerivedClass);
                     builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
-                    builder.AddContent(rendSeq++, iconName);
+                    builder.AddContent(rendSeq++, IconName);
                 }
                 builder.CloseElement();
             }
@@ -140,38 +155,32 @@ public class MBIcon : ComponentFoundation
 
     protected override async Task OnParametersSetAsync()
     {
-        await base.OnParametersSetAsync();
+        await base.OnParametersSetAsync().ConfigureAwait(false);
 
         if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
         {
             _cachedBadgeValue = BadgeValuePLUS;
             _cachedBadgeExited = BadgeExitedPLUS;
 
-            if (badgeRef is not null)
+            if (BadgeRef is not null)
             {
-                EnqueueJSInteropAction(() => badgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
+                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
             }
         }
 
-        //if (Descriptor is null)
-        //{
-        //    shouldNotRender = true;
-        //    return;
-        //}
-
-        shouldNotRender = string.IsNullOrWhiteSpace(Descriptor.Name);
-        if (shouldNotRender) 
+        shouldNotRender = string.IsNullOrWhiteSpace(IconName);
+        if (shouldNotRender)
         {
             return;
         }
 
-        iconColor = CascadingDefaults.AppliedIconColor(Descriptor.Color);
-        iconFill = CascadingDefaults.AppliedIconFill(Descriptor.Fill);
-        iconGradient = CascadingDefaults.AppliedIconGradient(Descriptor.Gradient);
-        iconName = Descriptor.Name;
-        iconSize = CascadingDefaults.AppliedIconSize(Descriptor.Size);
-        iconStyle = CascadingDefaults.AppliedIconStyle(Descriptor.Style);
-        iconWeight = CascadingDefaults.AppliedIconWeight(Descriptor.Weight);
+        iconColor = CascadingDefaults.AppliedIconColor(IconColor);
+        iconFill = CascadingDefaults.AppliedIconFill(IconFill);
+        iconGradient = CascadingDefaults.AppliedIconGradient(IconGradient);
+        iconName = IconName;
+        iconSize = CascadingDefaults.AppliedIconSize(IconSize);
+        iconStyle = CascadingDefaults.AppliedIconStyle(IconStyle);
+        iconWeight = CascadingDefaults.AppliedIconWeight(IconWeight);
 
         // Set the icon class
 

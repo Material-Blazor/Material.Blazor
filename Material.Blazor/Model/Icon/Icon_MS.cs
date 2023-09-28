@@ -7,21 +7,6 @@ namespace Material.Blazor;
 /// </summary>
 internal class Icon_MS : IMBIcon
 {
-    private string MaterialIconsTheme
-    {
-        get
-        {
-            return "material-icons" + msStyle switch
-            {
-                MBIconMSStyle.Outlined => "-outlined",
-                MBIconMSStyle.Rounded => "-round",
-                MBIconMSStyle.Sharp => "-sharp",
-                _ => throw new System.NotImplementedException(),
-            };
-        }
-    }
-
-
     private string IconName { get; }
 
 

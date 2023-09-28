@@ -15,7 +15,7 @@
         @if (LeadingIcon != null)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
-                <MBIcon IconColor="@ListItemColor"
+                <MBIconWithParameters IconColor="@ListItemColor"
                         IconName="@LeadingIcon" />
             </span>
         }
@@ -40,7 +40,7 @@ else if (Menu != null)
         @if (LeadingIcon != null && IsSelectedMenuItem)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
-                <MBIcon IconColor="@ListItemColor"
+                <MBIconWithParameters IconColor="@ListItemColor"
                         IconName="@LeadingIcon" />
             </span>
         }

@@ -15,7 +15,7 @@
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
-            <MBIcon aria-hidden="true"
+            <MBIconWithParameters aria-hidden="true"
                     class="mdc-button__icon"
                     IconName="@LeadingIcon" />
         }
@@ -24,7 +24,7 @@
 
         @if (!string.IsNullOrWhiteSpace(TrailingIcon))
         {
-            <MBIcon aria-hidden="true"
+            <MBIconWithParameters aria-hidden="true"
                     class="mdc-button__icon"
                     IconName="@TrailingIcon" />
         }
