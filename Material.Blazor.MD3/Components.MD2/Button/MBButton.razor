@@ -15,18 +15,20 @@
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
-            <MBIconWithParameters aria-hidden="true"
+            <MBIcon aria-hidden="true"
                     class="mdc-button__icon"
-                    IconName="@LeadingIcon" />
+                    Descriptor="@MBIcon.IconDescriptorConstructor(
+                        name: @LeadingIcon)" />
         }
 
         <span class="mdc-button__label">@Label</span>
 
         @if (!string.IsNullOrWhiteSpace(TrailingIcon))
         {
-            <MBIconWithParameters aria-hidden="true"
+            <MBIcon aria-hidden="true"
                     class="mdc-button__icon"
-                    IconName="@TrailingIcon" />
+                    Descriptor="@MBIcon.IconDescriptorConstructor(
+                        name: @TrailingIcon)" />
         }
 
         @if (HasBadge)

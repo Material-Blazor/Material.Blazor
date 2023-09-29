@@ -1,4 +1,6 @@
-﻿using Material.Blazor.Internal;
+﻿#define xxxBuildAsTypography
+
+using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -40,20 +42,20 @@ public class MBIcon : ComponentFoundation
 
 
 
-    [Parameter] public IconDescriptor Descriptor { get; set; }
+    [Parameter] public MBIconDescriptor Descriptor { get; set; }
     /// <summary>
     /// The icon attributes.
     /// </summary>
-    public static IconDescriptor IconDescriptorConstructor(
+    public static MBIconDescriptor IconDescriptorConstructor(
         string color = null,
-        bool? fill = null,
+        decimal? fill = null,
         MBIconGradient? gradient = null,
         string name = null,
         MBIconSize? size = null,
         MBIconStyle? style = null,
         MBIconWeight? weight = null)
         =>
-        new IconDescriptor(
+        new MBIconDescriptor(
             color,
             fill,
             gradient,
@@ -68,7 +70,7 @@ public class MBIcon : ComponentFoundation
     private string iconColor { get; set; }
     private string iconDerivedClass { get; set; }
     private string iconDerivedStyle { get; set; }
-    private bool iconFill { get; set; }
+    private decimal iconFill { get; set; }
     private MBIconGradient iconGradient { get; set; }
     private string iconName { get; set; }
     private MBIconSize iconSize { get; set; }
@@ -110,6 +112,8 @@ public class MBIcon : ComponentFoundation
                 builder.CloseElement();
             }
 
+#if BuildAsTypography
+
             builder.OpenElement(rendSeq++, "div");
             {
                 if (attributesToSplat.Any())
@@ -130,11 +134,35 @@ public class MBIcon : ComponentFoundation
                 builder.CloseElement();
             }
             builder.CloseElement();
+
+#else
+
+            builder.OpenElement(rendSeq++, "div");
+            {
+                if (attributesToSplat.Any())
+                {
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                }
+
+                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "style", style);
+                builder.AddAttribute(rendSeq++, "id", id);
+
+                builder.OpenElement(rendSeq++, "md-icon");
+                {
+                    builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
+                    builder.AddContent(rendSeq++, iconName.ToLower());
+                }
+                builder.CloseElement();
+            }
+            builder.CloseElement();
+
+#endif
         }
         builder.CloseElement();
     }
 
-    #endregion
+#endregion
 
     #region OnParametersSetAsync
 
@@ -153,12 +181,6 @@ public class MBIcon : ComponentFoundation
             }
         }
 
-        //if (Descriptor is null)
-        //{
-        //    shouldNotRender = true;
-        //    return;
-        //}
-
         shouldNotRender = string.IsNullOrWhiteSpace(Descriptor.Name);
         if (shouldNotRender) 
         {
@@ -173,6 +195,7 @@ public class MBIcon : ComponentFoundation
         iconStyle = CascadingDefaults.AppliedIconStyle(Descriptor.Style);
         iconWeight = CascadingDefaults.AppliedIconWeight(Descriptor.Weight);
 
+#if BuildAsTypography
         // Set the icon class
 
         iconDerivedClass = "";
@@ -259,6 +282,112 @@ public class MBIcon : ComponentFoundation
         }
 
         iconDerivedStyle = fontStyle + fontVariation;
+#else
+        // Set the icon style
+
+        var fontStyle = "";
+        var fontVariation = " font-variation-settings:";
+
+        // Icon font
+        fontStyle += "--md-icon-font: " + iconStyle switch
+        {
+            MBIconStyle.Outlined => "'Material Symbols Outlined'; ",
+            MBIconStyle.Rounded => "'Material Symbols Rounded'; ",
+            MBIconStyle.Sharp => "'Material Symbols Sharp'; ",
+            _ => throw new System.Exception("Unknown Icon Style")
+        };
+
+        // Icon color
+        fontStyle += " color: " + iconColor + ";";
+
+        // Icon fill
+        fontVariation += " 'FILL' " + iconFill.ToString() + ",";
+
+        // Icon gradient
+        _ = iconGradient switch
+        {
+            MBIconGradient.LowEmphasis => fontVariation += " 'GRAD' -25,",
+            MBIconGradient.NormalEmphasis => fontVariation += " 'GRAD' 0,",
+            MBIconGradient.HighEmphasis => fontVariation += " 'GRAD' 200,",
+            _ => throw new System.Exception("Unknown Icon Gradient")
+        };
+
+        // Icon  size
+        switch (iconSize)
+        {
+            case MBIconSize.Size20:
+                fontStyle += " font-size: 20px;";
+                fontStyle += " height: 20px;";
+                fontStyle += " width: 20px;";
+                fontVariation += " 'opsz' 20,";
+                break;
+
+            case MBIconSize.Size24:
+                fontStyle += " font-size: 24px;";
+                fontStyle += " height: 24px;";
+                fontStyle += " width: 24px;";
+                fontVariation += " 'opsz' 24,";
+                break;
+
+            case MBIconSize.Size40:
+                fontStyle += " font-size: 40px;";
+                fontStyle += " height: 40px;";
+                fontStyle += " width: 40px;";
+                fontVariation += " 'opsz' 40,";
+                break;
+
+            case MBIconSize.Size48:
+                fontStyle += " font-size: 48px;";
+                fontStyle += " height: 48px;";
+                fontStyle += " width: 48px;";
+                fontVariation += " 'opsz' 48,";
+                break;
+
+            default:
+                throw new System.Exception("Unknown Icon Size");
+        };
+
+        // Icon weight
+        //_ = iconWeight switch
+        //{
+        //    MBIconWeight.W100 => fontStyle += " font-weight: 100;",
+        //    MBIconWeight.W200 => fontStyle += " font-weight: 200;",
+        //    MBIconWeight.W300 => fontStyle += " font-weight: 300,",
+        //    MBIconWeight.W400 => fontStyle += " font-weight: 400,",
+        //    MBIconWeight.W500 => fontStyle += " font-weight: 500,",
+        //    MBIconWeight.W600 => fontStyle += " font-weight: 600,",
+        //    MBIconWeight.W700 => fontStyle += " font-weight: 700,",
+        //    _ => throw new System.Exception("Unknown Icon Weight")
+        //};
+        // Icon weight
+        _ = iconWeight switch
+        {
+            MBIconWeight.W100 => fontVariation += " 'wght' 100,",
+            MBIconWeight.W200 => fontVariation += " 'wght' 200,",
+            MBIconWeight.W300 => fontVariation += " 'wght' 300,",
+            MBIconWeight.W400 => fontVariation += " 'wght' 400,",
+            MBIconWeight.W500 => fontVariation += " 'wght' 500,",
+            MBIconWeight.W600 => fontVariation += " 'wght' 600,",
+            MBIconWeight.W700 => fontVariation += " 'wght' 700,",
+            _ => throw new System.Exception("Unknown Icon Weight")
+        };
+
+
+        // Fix the trailing part of the variation string
+        if (fontVariation.EndsWith(','))
+        {
+            fontVariation = fontVariation.TrimEnd(',');
+            fontVariation += ';';
+        }
+
+        if (fontVariation.EndsWith(':'))
+        {
+            fontVariation = null;
+        }
+
+        iconDerivedStyle = fontStyle + fontVariation;
+
+#endif
     }
 
     #endregion

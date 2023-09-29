@@ -52,9 +52,9 @@
             }
         }
 
-        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+        @if (!(LeadingIconDescriptor is null))
         {
-            <MBIconWithParameters IconName="@LeadingIcon" class="mdc-select__icon" tabindex="-1" role="button" />
+            <MBIcon Descriptor="@LeadingIconDescriptor" />
         }
 
         <span class="mdc-select__selected-text-container">

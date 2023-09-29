@@ -40,9 +40,9 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
 
 
     /// <summary>
-    /// The leading icon's name. No leading icon shown if not set.
+    /// The leading icon's descriptor. No leading icon shown if not set.
     /// </summary>
-    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public MBIconDescriptor? LeadingIconDescriptor { get; set; }
 
 
     /// <summary>
@@ -113,7 +113,7 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             };
 
             var suffix = AppliedInputStyle == MBSelectInputStyleMD2.Filled ? "--filled" : "--outlined";
-            suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+            suffix += (LeadingIconDescriptor is null) ? "" : "-with-leading-icon";
 
             d.CssClassName += suffix;
 
@@ -163,7 +163,7 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyleMD2.Filled)
             .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyleMD2.Outlined)
             .AddIf("mdc-select--no-label", () => !ShowLabel)
-            .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
+            .AddIf("mdc-select--with-leading-icon", () => !(LeadingIconDescriptor is null))
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
         ObjectReference = DotNetObjectReference.Create(this);

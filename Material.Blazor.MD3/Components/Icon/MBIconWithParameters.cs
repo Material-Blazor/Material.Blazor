@@ -49,7 +49,7 @@ public class MBIconWithParameters : ComponentFoundation
     /// <summary>
     /// The icon fill attribute.
     /// </summary>
-    [Parameter] public bool? IconFill { get; set; }
+    [Parameter] public decimal? IconFill { get; set; }
 
     /// <summary>
     /// The icon gradient attribute.
@@ -83,7 +83,7 @@ public class MBIconWithParameters : ComponentFoundation
     private string iconColor { get; set; }
     private string iconDerivedClass { get; set; }
     private string iconDerivedStyle { get; set; }
-    private bool iconFill { get; set; }
+    private decimal iconFill { get; set; }
     private MBIconGradient iconGradient { get; set; }
     private string iconName { get; set; }
     private MBIconSize iconSize { get; set; }
@@ -140,7 +140,7 @@ public class MBIconWithParameters : ComponentFoundation
                 {
                     builder.AddAttribute(rendSeq++, "class", iconDerivedClass);
                     builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
-                    builder.AddContent(rendSeq++, IconName);
+                    builder.AddContent(rendSeq++, IconName.ToLower());
                 }
                 builder.CloseElement();
             }
@@ -203,8 +203,7 @@ public class MBIconWithParameters : ComponentFoundation
         fontStyle += " color: " + iconColor + ";";
 
         // Icon fill
-        var fillValue = iconFill ? "1" : "0";
-        fontVariation += " 'FILL' " + fillValue + ",";
+        fontVariation += " 'FILL' " + iconFill.ToString() + ",";
 
         // Icon gradient
         _ = iconGradient switch

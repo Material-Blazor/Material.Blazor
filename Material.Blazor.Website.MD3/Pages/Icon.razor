@@ -91,16 +91,18 @@
 
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBOutlinedTextField @bind-Value="@mbIconColor"
-                                                 Label="Icon color (name)"
+                                                 Label="Icon color (ex: 'red' or '#FF0000')"
                                                  style="margin: 0px;" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@mbIconFill"
-                                                          Items="@iconFills"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon fill"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">Icon fill</h3>
+                            <Material.Blazor.MD2.MBSlider @bind-Value="@mbIconFill"
+                                                          DecimalPlaces="1"
+                                                          NumSteps="10"
+                                                          SliderType="@MBSliderTypeMD2.DiscreteWithTickmarks"
+                                                          ValueMax="1"
+                                                          ValueMin="0" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
@@ -135,57 +137,60 @@
                                                           SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
-                        <div class="mdc-layout-grid__cell--span-12">
+                        <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: column;">
                             <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                                MBIcon with Parameters
+                                MBIcon with Parameters using Typography
                             </h2>
-                            <MBIconWithParameters IconColor="@mbIconColor"
-                                                  IconFill="@mbIconFill"
-                                                  IconGradient="@mbIconGradient"
-                                                  IconName="close"
-                                                  IconSize="@mbIconSize"
-                                                  IconStyle="@mbIconStyle"
-                                                  IconWeight="@mbIconWeight" />
-                            &nbsp;
-                            <MBIconWithParameters IconColor="@mbIconColor"
-                                                  IconFill="@mbIconFill"
-                                                  IconGradient="@mbIconGradient"
-                                                  IconName="home"
-                                                  IconSize="@mbIconSize"
-                                                  IconStyle="@mbIconStyle"
-                                                  IconWeight="@mbIconWeight" />
-                            &nbsp;
-                            <MBIconWithParameters IconColor="@mbIconColor"
-                                                  IconFill="@mbIconFill"
-                                                  IconGradient="@mbIconGradient"
-                                                  IconName="menu"
-                                                  IconSize="@mbIconSize"
-                                                  IconStyle="@mbIconStyle"
-                                                  IconWeight="@mbIconWeight" />
-                            &nbsp;
-                            <MBIconWithParameters IconColor="@mbIconColor"
-                                                  IconFill="@mbIconFill"
-                                                  IconGradient="@mbIconGradient"
-                                                  IconName="search"
-                                                  IconSize="@mbIconSize"
-                                                  IconStyle="@mbIconStyle"
-                                                  IconWeight="@mbIconWeight" />
-                            &nbsp;
-                            <MBIconWithParameters IconColor="@mbIconColor"
-                                                  IconFill="@mbIconFill"
-                                                  IconGradient="@mbIconGradient"
-                                                  IconName="settings"
-                                                  IconSize="@mbIconSize"
-                                                  IconStyle="@mbIconStyle"
-                                                  IconWeight="@mbIconWeight" />
-                            &nbsp;
+                            <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: row;">
+                                <MBIconWithParameters IconColor="@mbIconColor"
+                                                      IconFill="@mbIconFill"
+                                                      IconGradient="@mbIconGradient"
+                                                      IconName="close"
+                                                      IconSize="@mbIconSize"
+                                                      IconStyle="@mbIconStyle"
+                                                      IconWeight="@mbIconWeight" />
+                                &nbsp;
+                                <MBIconWithParameters IconColor="@mbIconColor"
+                                                      IconFill="@mbIconFill"
+                                                      IconGradient="@mbIconGradient"
+                                                      IconName="home"
+                                                      IconSize="@mbIconSize"
+                                                      IconStyle="@mbIconStyle"
+                                                      IconWeight="@mbIconWeight" />
+                                &nbsp;
+                                <MBIconWithParameters IconColor="@mbIconColor"
+                                                      IconFill="@mbIconFill"
+                                                      IconGradient="@mbIconGradient"
+                                                      IconName="menu"
+                                                      IconSize="@mbIconSize"
+                                                      IconStyle="@mbIconStyle"
+                                                      IconWeight="@mbIconWeight" />
+                                &nbsp;
+                                <MBIconWithParameters IconColor="@mbIconColor"
+                                                      IconFill="@mbIconFill"
+                                                      IconGradient="@mbIconGradient"
+                                                      IconName="search"
+                                                      IconSize="@mbIconSize"
+                                                      IconStyle="@mbIconStyle"
+                                                      IconWeight="@mbIconWeight" />
+                                &nbsp;
+                                <MBIconWithParameters IconColor="@mbIconColor"
+                                                      IconFill="@mbIconFill"
+                                                      IconGradient="@mbIconGradient"
+                                                      IconName="settings"
+                                                      IconSize="@mbIconSize"
+                                                      IconStyle="@mbIconStyle"
+                                                      IconWeight="@mbIconWeight" />
+                                &nbsp;
+                            </div>
                         </div>
 
-                        <div class="mdc-layout-grid__cell--span-12">
+                        <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: column;">
                             <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                                MBIcon with Descriptor
+                                MBIcon with Descriptor using &lt;md-icon&gt;
                             </h2>
-                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: row;">
+                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -193,8 +198,8 @@
                                                   size: @mbIconSize,
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
-                            &nbsp;
-                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                &nbsp;
+                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -202,8 +207,8 @@
                                                   size: @mbIconSize,
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
-                            &nbsp;
-                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                &nbsp;
+                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -211,8 +216,8 @@
                                                   size: @mbIconSize,
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
-                            &nbsp;
-                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                &nbsp;
+                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -220,8 +225,8 @@
                                                   size: @mbIconSize,
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
-                            &nbsp;
-                            <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                &nbsp;
+                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -229,7 +234,8 @@
                                                   size: @mbIconSize,
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
-                            &nbsp;
+                                &nbsp;
+                            </div>
                         </div>
                     </div>
                 </Primary>
@@ -243,14 +249,8 @@
 
 
 
-    MBSelectElement<bool>[] iconFills = new MBSelectElement<bool>[]
-    {
-        new MBSelectElement<bool> { SelectedValue = true, LeadingLabel = "Filled" },
-        new MBSelectElement<bool> { SelectedValue = false, LeadingLabel = "Not filled" },
-            };
-
-    private bool _iconFill = true;
-    private bool mbIconFill
+    private decimal _iconFill = 0;
+    private decimal mbIconFill
     {
         get => _iconFill;
         set

@@ -18,7 +18,6 @@ MBIcon's parameters are
 
 Many components such as MBIconButton, MBSelect, and MBTextField take icons. In every instance these components use IconDescriptor.
 &nbsp;
-&nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Plis&color=red)](xref:A.PlusComponents)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIcon&color=brightgreen)](xref:Material.Blazor.MBIcon)

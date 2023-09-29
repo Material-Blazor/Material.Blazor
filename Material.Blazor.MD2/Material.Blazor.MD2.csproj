@@ -1,29 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Version>5.0.0-preview.WIP</Version>
-		<PackageLicenseFile></PackageLicenseFile>
-		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
-		<Company>Material.Blazor.MD2</Company>
-		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
-		<RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor.MD2</RepositoryUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes></PackageReleaseNotes>
-		<NeutralLanguage>en</NeutralLanguage>
-		<Copyright>Dioptra and Optimium Health</Copyright>
-		<PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
-		<Product>Material.Blazor.MD2</Product>
-		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -36,145 +14,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Components\AutocompletePagedField\MBAutocompletePagedField.razor.cs" />
-	  <Compile Remove="Components\AutocompleteSelectField\MBAutocompleteSelectField.razor.cs" />
-	  <Compile Remove="Components\AutocompleteTextField\MBAutocompleteTextField.razor.cs" />
-	  <Compile Remove="Components\Carousel\InternalCarouselPanel.razor.cs" />
-	  <Compile Remove="Components\Carousel\MBCarousel.razor.cs" />
-	  <Compile Remove="Components\ConfirmationDialog\MBConfirmationDialog.razor.cs" />
-	  <Compile Remove="Components\DatePicker\InternalDatePickerDayButton.razor.cs" />
-	  <Compile Remove="Components\DatePicker\InternalDatePickerPanel.razor.cs" />
-	  <Compile Remove="Components\DatePicker\InternalDatePickerYearButton.razor.cs" />
-	  <Compile Remove="Components\DatePicker\MBDatePicker.razor.cs" />
-	  <Compile Remove="Components\DateTimeField\MBDateTimeField.razor.cs" />
-	  <Compile Remove="Components\DebouncedTextField\MBDebouncedTextField.razor.cs" />
-	  <Compile Remove="Components\DragAndDropList\InternalDragAndDropItem.razor.cs" />
-	  <Compile Remove="Components\DragAndDropList\InternalDragAndDropSpacer.razor.cs" />
-	  <Compile Remove="Components\DragAndDropList\MBDragAndDropList.razor.cs" />
-	  <Compile Remove="Components\FloatingActionButton\MBFloatingActionButton.razor.cs" />
-	  <Compile Remove="Components\Grid\MBEnumerationsGrid.cs" />
-	  <Compile Remove="Components\Grid\MBGrid.cs" />
-	  <Compile Remove="Components\Grid\MBGridColumnConfiguration.cs" />
-	  <Compile Remove="Components\Grid\MBGridMT.cs" />
-	  <Compile Remove="Components\IconButtonToggle\MBIconButtonToggle.razor.cs" />
-	  <Compile Remove="Components\IntSlider\MBIntSlider.razor.cs" />
-	  <Compile Remove="Components\PagedDataList\MBPagedDataList.razor.cs" />
-	  <Compile Remove="Components\Paginator\MBPaginator.razor.cs" />
-	  <Compile Remove="Components\SegmentedButtonMulti\MBSegmentedButtonMulti.razor.cs" />
-	  <Compile Remove="Components\SegmentedButtonSingle\MBSegmentedButtonSingle.razor.cs" />
-	  <Compile Remove="Components\Shield\MBShield.razor.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<None Include="Components\AutocompletePagedField\MBAutocompletePagedField.razor" />
-		<None Include="Components\AutocompletePagedField\MBAutocompletePagedField.razor.cs" />
-		<None Include="Components\AutocompleteSelectField\MBAutocompleteSelectField.razor" />
-		<None Include="Components\AutocompleteSelectField\MBAutocompleteSelectField.razor.cs" />
-		<None Include="Components\AutocompleteTextField\MBAutocompleteTextField.razor" />
-		<None Include="Components\AutocompleteTextField\MBAutocompleteTextField.razor.cs" />
-		<None Include="Components\Carousel\InternalCarouselPanel.razor" />
-		<None Include="Components\Carousel\InternalCarouselPanel.razor.cs" />
-		<None Include="Components\Carousel\MBCarousel.razor" />
-		<None Include="Components\Carousel\MBCarousel.razor.cs" />
-		<None Include="Components\ConfirmationDialog\MBConfirmationDialog.razor" />
-		<None Include="Components\ConfirmationDialog\MBConfirmationDialog.razor.cs" />
-		<None Include="Components\DatePicker\InternalDatePickerDayButton.razor" />
-		<None Include="Components\DatePicker\InternalDatePickerDayButton.razor.cs" />
-		<None Include="Components\DatePicker\InternalDatePickerPanel.razor" />
-		<None Include="Components\DatePicker\InternalDatePickerPanel.razor.cs" />
-		<None Include="Components\DatePicker\InternalDatePickerYearButton.razor" />
-		<None Include="Components\DatePicker\InternalDatePickerYearButton.razor.cs" />
-		<None Include="Components\DatePicker\MBDatePicker.razor" />
-		<None Include="Components\DatePicker\MBDatePicker.razor.cs" />
-		<None Include="Components\DateTimeField\MBDateTimeField.razor" />
-		<None Include="Components\DateTimeField\MBDateTimeField.razor.cs" />
-		<None Include="Components\DebouncedTextField\MBDebouncedTextField.razor" />
-		<None Include="Components\DebouncedTextField\MBDebouncedTextField.razor.cs" />
-		<None Include="Components\DragAndDropList\InternalDragAndDropItem.razor" />
-		<None Include="Components\DragAndDropList\InternalDragAndDropItem.razor.cs" />
-		<None Include="Components\DragAndDropList\InternalDragAndDropSpacer.razor" />
-		<None Include="Components\DragAndDropList\InternalDragAndDropSpacer.razor.cs" />
-		<None Include="Components\DragAndDropList\MBDragAndDropList.razor" />
-		<None Include="Components\DragAndDropList\MBDragAndDropList.razor.cs" />
-		<None Include="Components\FloatingActionButton\MBFloatingActionButton.razor" />
-		<None Include="Components\FloatingActionButton\MBFloatingActionButton.razor.cs" />
-		<None Include="Components\Grid\MBEnumerationsGrid.cs" />
-		<None Include="Components\Grid\MBGrid.cs" />
-		<None Include="Components\Grid\MBGridColumnConfiguration.cs" />
-		<None Include="Components\Grid\MBGridMT.cs" />
-		<None Include="Components\IconButtonToggle\MBIconButtonToggle.razor" />
-		<None Include="Components\IconButtonToggle\MBIconButtonToggle.razor.cs" />
-		<None Include="Components\IntSlider\MBIntSlider.razor" />
-		<None Include="Components\IntSlider\MBIntSlider.razor.cs" />
-		<None Include="Components\PagedDataList\MBPagedDataList.razor" />
-		<None Include="Components\PagedDataList\MBPagedDataList.razor.cs" />
-		<None Include="Components\Paginator\MBPaginator.razor" />
-		<None Include="Components\Paginator\MBPaginator.razor.cs" />
-		<None Include="Components\SegmentedButtonMulti\MBSegmentedButtonMulti.razor" />
-		<None Include="Components\SegmentedButtonMulti\MBSegmentedButtonMulti.razor.cs" />
-		<None Include="Components\SegmentedButtonSingle\MBSegmentedButtonSingle.razor" />
-		<None Include="Components\SegmentedButtonSingle\MBSegmentedButtonSingle.razor.cs" />
-		<None Include="Components\Shield\MBShield.razor" />
-		<None Include="Components\Shield\MBShield.razor.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<WarningLevel>5</WarningLevel>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<!--Keep these four Removes-->
-		<Content Remove="Components\AutocompletePagedField\MBAutocompletePagedField.razor" />
-		<Content Remove="Components\AutocompleteSelectField\MBAutocompleteSelectField.razor" />
-		<Content Remove="Components\AutocompleteTextField\MBAutocompleteTextField.razor" />
-		<Content Remove="Components\Carousel\InternalCarouselPanel.razor" />
-		<Content Remove="Components\Carousel\MBCarousel.razor" />
-		<Content Remove="Components\ConfirmationDialog\MBConfirmationDialog.razor" />
-		<Content Remove="Components\DatePicker\InternalDatePickerDayButton.razor" />
-		<Content Remove="Components\DatePicker\InternalDatePickerPanel.razor" />
-		<Content Remove="Components\DatePicker\InternalDatePickerYearButton.razor" />
-		<Content Remove="Components\DatePicker\MBDatePicker.razor" />
-		<Content Remove="Components\DateTimeField\MBDateTimeField.razor" />
-		<Content Remove="Components\DebouncedTextField\MBDebouncedTextField.razor" />
-		<Content Remove="Components\DragAndDropList\InternalDragAndDropItem.razor" />
-		<Content Remove="Components\DragAndDropList\InternalDragAndDropSpacer.razor" />
-		<Content Remove="Components\DragAndDropList\MBDragAndDropList.razor" />
-		<Content Remove="Components\FloatingActionButton\MBFloatingActionButton.razor" />
-		<Content Remove="Components\IconButtonToggle\MBIconButtonToggle.razor" />
-		<Content Remove="Components\IntSlider\MBIntSlider.razor" />
-		<Content Remove="Components\PagedDataList\MBPagedDataList.razor" />
-		<Content Remove="Components\Paginator\MBPaginator.razor" />
-		<Content Remove="Components\SegmentedButtonMulti\MBSegmentedButtonMulti.razor" />
-		<Content Remove="Components\SegmentedButtonSingle\MBSegmentedButtonSingle.razor" />
-		<Content Remove="Components\Shield\MBShield.razor" />
-		<Content Remove="tsconfig.json" />
-		<Content Remove="wwwroot\intermediate.js" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="tsconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="wwwroot\" />
-	</ItemGroup>
-
-	<ProjectExtensions>
-		<VisualStudio>
-			<UserProperties />
-		</VisualStudio>
-	</ProjectExtensions>
 
 </Project>

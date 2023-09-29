@@ -116,9 +116,9 @@ public class MBCascadingDefaults
     public string IconColor { get => _iconColor; set => SetParameter(ref _iconColor, value); }
     internal string AppliedIconColor(string iconColor = null) => iconColor ?? IconColor;
 
-    private bool _iconFill = true;
-    public bool IconFill { get => _iconFill; set => SetParameter(ref _iconFill, value); }
-    internal bool AppliedIconFill(bool? iconFill = null) => iconFill ?? IconFill;
+    private decimal _iconFill = 1;
+    public decimal IconFill { get => _iconFill; set => SetParameter(ref _iconFill, value); }
+    internal decimal AppliedIconFill(decimal? iconFill = null) => iconFill ?? IconFill;
     
     private MBIconGradient _iconGradient = MBIconGradient.NormalEmphasis;
     public MBIconGradient IconGradient { get => _iconGradient; set => SetParameter(ref _iconGradient, value); }
