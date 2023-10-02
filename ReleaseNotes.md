@@ -10,7 +10,7 @@ title: ReleaseNotes
 Released 2023-10-??
 
 **Updates**
-- MD2/MD3: Dependabot updates
+- MD2/MD3: Dependabot and NuGet updates
 - MD2/MD3: Migrate all projects to .Net 8 RC 2
 - MD3: Migrate @material/web to 1.0.0
 - MD2: Added new IconFoundry (Material Symbols) and corresponding support and demonstration files
