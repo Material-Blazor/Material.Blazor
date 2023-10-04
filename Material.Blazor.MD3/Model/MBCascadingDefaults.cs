@@ -188,6 +188,23 @@ public class MBCascadingDefaults
     /// <returns>The <see cref="MBTextAlignStyle"/> to apply.</returns>
     internal MBTextAlignStyle AppliedStyle(MBTextAlignStyle? style = null) => style ?? TextAlignStyle;
 
+
+    private MBTextInputStyle _textInputStyle = MBTextInputStyle.Outlined;
+    /// <summary>
+    /// The default text input style for an <see cref="MBTextField"/>, an <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/>, initialized to <see cref="MBTextInputStyle.Default"/> if not explicitly set.
+    /// </summary>
+    /// <remarks>
+    /// Also applied to <seealso cref="MBAutocompletePagedField{TItem}"/>,  <seealso cref="MBAutocompleteSelectField{TItem}"/>,  <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/>.
+    /// </remarks>
+    public MBTextInputStyle TextInputStyle { get => _textInputStyle; set => SetParameter(ref _textInputStyle, value); }
+
+    /// <summary>
+    /// The text input style to apply to an <see cref="MBTextField"/>, an <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/>.
+    /// </summary>
+    /// <param name="style">The text Input style parameter passed to the <see cref="MBTextField"/>, <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/></param>
+    /// <returns>The <see cref="MBTextInputStyle"/> to apply.</returns>
+    internal MBTextInputStyle AppliedStyle(MBTextInputStyle? style = null) => style ?? TextInputStyle;
+
     #endregion
 
     #endregion

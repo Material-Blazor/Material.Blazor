@@ -3,9 +3,9 @@
 namespace Material.Blazor;
 
 /// <summary>
-/// A Material.Blazor filled style formatted decimal field.
+/// A Material.Blazor formatted decimal field.
 /// </summary>
-public sealed class MBFilledDecimalField : InternalFloatingPointFieldBase<decimal, MBFilledTextField>
+public sealed class MBDecimalField : InternalFloatingPointFieldBase<decimal, MBTextField>
 {
     private protected override decimal ConvertFromDecimal(decimal decimalValue)
     {

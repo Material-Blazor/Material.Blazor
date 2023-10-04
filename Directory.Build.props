@@ -8,11 +8,11 @@
 		<Configurations>Server;WebAssembly</Configurations>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Server|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)'=='Server'">
 		<DefineConstants>BLAZOR_SERVER</DefineConstants>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WebAssembly|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)'=='WebAssembly'">
 		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
 	</PropertyGroup>
 

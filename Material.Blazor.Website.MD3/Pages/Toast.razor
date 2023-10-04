@@ -61,26 +61,26 @@
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@ToastService.Configuration.Position"
-                                                      Items="@positionItems"
-                                                      LeadingLabel="Toast Position"
-                                                      SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                                                          Items="@positionItems"
+                                                          LeadingLabel="Toast Position"
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBCheckbox @bind-Value="@OverrideCssDefaults"
                                         TrailingLabelPLUS="Override Default CSS" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBOutlinedIntField @bind-Value="@ToastService.Configuration.MaxToastsShowing"
-                                                LeadingLabel="Max Toasts (0-10)"
-                                                Max="10"
-                                                Min="0"
-                                                NumericFormat="N0" />
+                            <MBIntField @bind-Value="@ToastService.Configuration.MaxToastsShowing"
+                                        LeadingLabel="Max Toasts (0-10)"
+                                        Max="10"
+                                        Min="0"
+                                        NumericFormat="N0" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-12">
                             <p>
                                 <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedRaised"
                                                               LeadingLabel="Info Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                                              @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Info,
                                                               heading: "I'm an Info",
                                                               message: "Nothing doing here."))"
@@ -88,7 +88,7 @@
 
                                 <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedRaised"
                                                               LeadingLabel="Success Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                                              @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Success,
                                                               heading: "I'm a SUCCESS",
                                                               message: "Congratulations!" ))"
@@ -96,7 +96,7 @@
 
                                 <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedRaised"
                                                               LeadingLabel="Warning Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                                              @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Warning,
                                                               heading: "I'm a WARNING",
                                                               message: "You have been warned."))"
@@ -104,7 +104,7 @@
 
                                 <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedRaised"
                                                               LeadingLabel="Error Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                                              @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Error,
                                                               heading: "I'm an ERROR",
                                                               message: "Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it."))"
@@ -190,7 +190,7 @@
                         <div class="mdc-layout-grid__cell--span-12">
                             <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedRaised"
                                                           LeadingLabel="Toast with selected options"
-                            @onclick="@CustomiseClick" />
+                                                          @onclick="@CustomiseClick" />
                         </div>
                     </div>
                 </Primary>
@@ -205,11 +205,11 @@
     private bool OverrideCssDefaults { get; set; }
 
     private readonly IEnumerable<MBSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
-                                                                                                          select new MBSelectElement<MBToastPosition>
-                                                                                                           {
-                                                                                                               SelectedValue = pos,
-                                                                                                               LeadingLabel = pos.ToString()
-                                                                                                           };
+                                                                                   select new MBSelectElement<MBToastPosition>
+                                                                                       {
+                                                                                           SelectedValue = pos,
+                                                                                           LeadingLabel = pos.ToString()
+                                                                                       };
 
 
     private string CssClass { get; set; }
@@ -222,11 +222,11 @@
 
     private MBNotifierCloseMethod CloseMethod { get; set; }
     private readonly IEnumerable<MBSelectElement<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
-                                                                                                                   select new MBSelectElement<MBNotifierCloseMethod>
-                                                                                                                    {
-                                                                                                                        SelectedValue = c,
-                                                                                                                        LeadingLabel = c.ToString()
-                                                                                                                    };
+                                                                                            select new MBSelectElement<MBNotifierCloseMethod>
+                                                                                                {
+                                                                                                    SelectedValue = c,
+                                                                                                    LeadingLabel = c.ToString()
+                                                                                                };
 
     private string Heading { get; set; }
     private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
@@ -260,11 +260,11 @@
 
     private MBToastLevel Level { get; set; }
     private readonly IEnumerable<MBSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
-                                                                                                 select new MBSelectElement<MBToastLevel>
-                                                                                                     {
-                                                                                                         SelectedValue = c,
-                                                                                                         LeadingLabel = c.ToString()
-                                                                                                     };
+                                                                             select new MBSelectElement<MBToastLevel>
+                                                                                 {
+                                                                                     SelectedValue = c,
+                                                                                     LeadingLabel = c.ToString()
+                                                                                 };
 
 
     private string Message { get; set; }

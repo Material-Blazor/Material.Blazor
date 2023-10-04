@@ -47,22 +47,22 @@ public class MBIcon : ComponentFoundation
     /// The icon attributes.
     /// </summary>
     public static MBIconDescriptor IconDescriptorConstructor(
+        string name,
         string color = null,
         decimal? fill = null,
         MBIconGradient? gradient = null,
-        string name = null,
         MBIconSize? size = null,
         MBIconStyle? style = null,
         MBIconWeight? weight = null)
         =>
         new MBIconDescriptor(
-            color,
-            fill,
-            gradient,
-            name,
-            size,
-            style,
-            weight);
+            name: name,
+            color: color,
+            fill: fill,
+            gradient: gradient,
+            size: size,
+            style: style,
+            weight: weight);
 
 
 
@@ -74,6 +74,7 @@ public class MBIcon : ComponentFoundation
     private MBIconGradient iconGradient { get; set; }
     private string iconName { get; set; }
     private MBIconSize iconSize { get; set; }
+    private string iconSlot { get; set; }
     private MBIconStyle iconStyle { get; set; }
     private MBIconWeight iconWeight { get; set; }
     private bool shouldNotRender { get; set; }
@@ -150,6 +151,10 @@ public class MBIcon : ComponentFoundation
 
                 builder.OpenElement(rendSeq++, "md-icon");
                 {
+                    if (!string.IsNullOrWhiteSpace(iconSlot))
+                    {
+                        builder.AddAttribute(rendSeq++, "slot", iconSlot);
+                    }
                     builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
                     builder.AddContent(rendSeq++, iconName.ToLower());
                 }
@@ -192,6 +197,7 @@ public class MBIcon : ComponentFoundation
         iconGradient = CascadingDefaults.AppliedIconGradient(Descriptor.Gradient);
         iconName = Descriptor.Name;
         iconSize = CascadingDefaults.AppliedIconSize(Descriptor.Size);
+        iconSlot = Descriptor.Slot;
         iconStyle = CascadingDefaults.AppliedIconStyle(Descriptor.Style);
         iconWeight = CascadingDefaults.AppliedIconWeight(Descriptor.Weight);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.JSInterop;
@@ -11,73 +12,87 @@ namespace Material.Blazor.Internal;
 
 /// <summary>
 /// Base component for Filled and Outlined Text Fields.
+/// Required for NumericFields otherwise could have been implemented directly in
+/// MBTextField.cs
 /// </summary>
 public abstract class InternalTextFieldBase : InputComponent<string>
 {
-
-    #region members
-
-#nullable enable annotations
-
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+    
     //[CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
 
+
+#nullable enable annotations
 
     /// <summary>
     /// Determines whether the button has a badge - defaults to false.
     /// </summary>
-    [Parameter] public bool HasBadgePLUS { get; set; }
+    [Parameter] public bool HasBadge { get; set; }
+
 
     /// <summary>
     /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
     /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
+    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
 
     /// <summary>
     /// When true collapses the badge.
     /// </summary>
-    [Parameter] public bool BadgeExitedPLUS { get; set; }
+    [Parameter]
+    public bool BadgeExited { get; set; }
     private bool _cachedBadgeExited;
 
+
     /// <summary>
-    /// The badge's value.
+    /// The button's density.
     /// </summary>
-    [Parameter] public string BadgeValuePLUS { get; set; }
+    [Parameter]
+    public string BadgeValue { get; set; }
     private string _cachedBadgeValue;
+
 
     /// <summary>
     /// The text field's density.
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
 
+
     /// <summary>
     /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
     /// </summary>
     [Parameter] public string SupportingText { get; set; } = "";
+
 
     /// <summary>
     /// Makes the <see cref="SupportingText"/> persistent if true.
     /// </summary>
     [Parameter] public bool SupportingTextPersistent { get; set; } = false;
 
+
     /// <summary>
     /// The leading icon's name. No leading icon shown if not set.
     /// </summary>
-    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
+
 
     /// <summary>
     /// Field label.
     /// </summary>
     [Parameter] public string? Label { get; set; }
 
+
     /// <summary>
     /// Prefix text.
     /// </summary>
     [Parameter] public string? Prefix { get; set; }
 
+
     /// <summary>
     /// Suffix text.
     /// </summary>
     [Parameter] public string? Suffix { get; set; }
+
 
     /// <summary>
     /// The text alignment style.
@@ -85,10 +100,19 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// </summary>
     [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
 
+
+    /// <summary>
+    /// The text field style.
+    /// <para>Overrides <see cref="MBCascadingDefaults.TextFieldStyle"/></para>
+    /// </summary>
+    [Parameter] public MBTextInputStyle TextInputStyle { get; set; } = MBTextInputStyle.Outlined;
+
+
     /// <summary>
     /// The trailing icon's name. No leading icon shown if not set.
     /// </summary>
-    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public MBIconDescriptor? TrailingIcon { get; set; }
+
 
     /// <summary>
     /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
@@ -96,12 +120,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// <code>ValidationMessage</code>'s <code>For</code> parameter.
     /// </summary>
     [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
-
-
-
-    [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
 
 #nullable restore annotations
 
@@ -121,7 +139,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
 
     //private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-    private MBBadge BadgeRef { get; set; }
     private string DisplayLabel => Label + LabelSuffix;
     private string DateFieldErrorMessage { get; set; }
     private string LabelSuffix { get; set; } = "";
@@ -152,126 +169,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
-    #endregion
-
-    #region BuildRenderTree
-
-    protected override void BuildRenderTree(RenderTreeBuilder builder)
-    {
-        var attributesToSplat = AttributesToSplat().ToArray();
-        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
-
-        var rendSeq = 0;
-        builder.OpenElement(rendSeq++, "div");
-        {
-            if (HasBadgePLUS)
-            {
-                builder.OpenElement(rendSeq++, "span");
-                {
-                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                    {
-                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                        builder.AddComponentReferenceCapture(rendSeq++,
-                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                    }
-                    builder.CloseElement();
-                }
-                builder.CloseElement();
-            }
-
-            builder.OpenElement(rendSeq++, WebComponentName());
-            {
-                if (attributesToSplat.Any())
-                {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-                }
-
-                if (AppliedDisabled)
-                {
-                    builder.AddAttribute(rendSeq++, "disabled");
-                }
-
-                builder.AddAttribute(rendSeq++, "class", cssClass);
-                builder.AddAttribute(rendSeq++, "style", style);
-                builder.AddAttribute(rendSeq++, "id", id);
-
-                builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
-                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
-                builder.SetUpdatesAttributeName("value");
-
-
-                builder.AddAttribute(rendSeq++, "label", DisplayLabel);
-
-                if (!string.IsNullOrWhiteSpace(Prefix))
-                {
-                    builder.AddAttribute(rendSeq++, "prefixText", Prefix);
-                }
-
-                if (!string.IsNullOrWhiteSpace(Suffix))
-                {
-                    builder.AddAttribute(rendSeq++, "suffixText", Suffix);
-                }
-
-                if (!string.IsNullOrWhiteSpace(SupportingText))
-                {
-                    builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
-                }
-
-                if (!string.IsNullOrWhiteSpace(LeadingIcon))
-                {
-                    builder.OpenElement(rendSeq++, "md-icon");
-                    {
-                        builder.AddAttribute(rendSeq++, "slot", "leadingicon");
-                        builder.AddContent(rendSeq++, LeadingIcon);
-                    }
-                    builder.CloseElement();
-                }
-
-                if (!string.IsNullOrWhiteSpace(TrailingIcon))
-                {
-                    builder.OpenElement(rendSeq++, "md-icon");
-                    {
-                        builder.AddAttribute(rendSeq++, "slot", "trailingicon");
-                        builder.AddContent(rendSeq++, TrailingIcon);
-                    }
-                    builder.CloseElement();
-                }
-
-                builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
-            }
-            builder.CloseElement();
-        }
-        builder.CloseElement();
-    }
-
-    #endregion
-
-    #region Dispose
-
-    private bool _disposed = false;
-    protected override void Dispose(bool disposing)
-    {
-        if (_disposed)
-        {
-            return;
-        }
-
-        if (disposing && EditContext != null)
-        {
-            EditContext.OnValidationStateChanged -= OnValidationStateChangedCallback;
-        }
-
-        _disposed = true;
-
-        base.Dispose(disposing);
-    }
-
-    #endregion
-
-    #region OnInitializedAsync
 
     protected override async Task OnInitializedAsync()
     {
@@ -303,29 +200,140 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         }
     }
 
-    #endregion
-
-    #region OnParametersSetAsync
 
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
 
-        if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
         {
-            _cachedBadgeValue = BadgeValuePLUS;
-            _cachedBadgeExited = BadgeExitedPLUS;
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
 
-            if (BadgeRef is not null)
-            {
-                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-            }
+            //if (Badge is not null)
+            //{
+            //    EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            //}
         }
     }
 
-    #endregion
 
-    #region OnValidationStateChangedCallback
+    protected override void BuildRenderTree(RenderTreeBuilder builder)
+    {
+        var attributesToSplat = AttributesToSplat().ToArray();
+        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
+
+        var rendSeq = 0;
+        builder.OpenElement(rendSeq++, WebComponentName());
+        {
+            if (attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+            }
+
+            if (AppliedDisabled)
+            {
+                builder.AddAttribute(rendSeq++, "disabled");
+            }
+            
+            builder.AddAttribute(rendSeq++, "class", cssClass);
+            builder.AddAttribute(rendSeq++, "style", style);
+            builder.AddAttribute(rendSeq++, "id", id);
+
+            builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
+            builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+            builder.SetUpdatesAttributeName("value");
+
+
+            builder.AddAttribute(rendSeq++, "label", DisplayLabel);
+            
+            if (!string.IsNullOrWhiteSpace(Prefix))
+            {
+                builder.AddAttribute(rendSeq++, "prefixText", Prefix);
+            }
+
+            if (!string.IsNullOrWhiteSpace(Suffix))
+            {
+                builder.AddAttribute(rendSeq++, "suffixText", Suffix);
+            }
+
+            if (!string.IsNullOrWhiteSpace(SupportingText))
+            {
+                builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
+            }
+
+            if (LeadingIcon is not null)
+            {
+                builder.OpenComponent(rendSeq++, typeof(MBIcon));
+                {
+                    LeadingIcon.Slot = "leading-icon";
+                    builder.AddComponentParameter(rendSeq++, "Descriptor", LeadingIcon);
+                }
+                builder.CloseElement();
+            }
+
+            if (TrailingIcon is not null)
+            {
+                builder.OpenComponent(rendSeq++, typeof(MBIcon));
+                {
+                    TrailingIcon.Slot = "trailing-icon";
+                    builder.AddComponentParameter(rendSeq++, "Descriptor", TrailingIcon);
+                }
+                builder.CloseElement();
+            }
+
+            builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
+        }
+        builder.CloseElement();
+    }
+
+
+    /// <summary>
+    /// Selects the text field content. Used by numeric fields when type is changed to "number".
+    /// </summary>
+    /// <returns></returns>
+    internal async Task SelectFieldContent()
+    {
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField2.selectFieldContent", ElementReference).ConfigureAwait(false);
+    }
+
+
+    /// <summary>
+    /// Inherited classes must specify the material-web compoent name.
+    /// </summary>
+    /// <returns></returns>
+    private protected abstract string WebComponentName();
+
+
+
+    protected void SetDateErrorMessage()
+    {
+        DateFieldErrorMessage = "";
+        //if (DateTimeField != null)
+        //{
+        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
+        //}
+    }
+
+
+    private bool _disposed = false;
+    protected override void Dispose(bool disposing)
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        if (disposing && EditContext != null)
+        {
+            EditContext.OnValidationStateChanged -= OnValidationStateChangedCallback;
+        }
+
+        _disposed = true;
+
+        base.Dispose(disposing);
+    }
+
 
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
     {
@@ -337,43 +345,4 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             //_ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setSupportingText", ElementReference, SupportingTextReference, SupportingText.Trim(), SupportingTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
-
-    #endregion
-
-    #region SelectFieldContent
-
-    /// <summary>
-    /// Selects the text field content. Used by numeric fields when type is changed to "number".
-    /// </summary>
-    /// <returns></returns>
-    internal async Task SelectFieldContent()
-    {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", ElementReference).ConfigureAwait(false);
-    }
-
-    #endregion
-
-    #region SetDateErrorMessage
-
-    protected void SetDateErrorMessage()
-    {
-        DateFieldErrorMessage = "";
-        //if (DateTimeField != null)
-        //{
-        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
-        //}
-    }
-
-    #endregion
-
-    #region WebComponentName
-
-    /// <summary>
-    /// Inherited classes must specify the material-web component name.
-    /// </summary>
-    /// <returns></returns>
-    private protected abstract string WebComponentName();
-
-    #endregion
-
 }

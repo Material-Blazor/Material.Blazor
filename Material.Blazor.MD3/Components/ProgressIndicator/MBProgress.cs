@@ -10,10 +10,6 @@ namespace Material.Blazor;
 /// </summary>
 public sealed class MBProgress : ComponentFoundation
 {
-    //private protected override string WebComponentName()
-    //{
-    //    return ;
-    //}
     #region members
 
     /// <summary>

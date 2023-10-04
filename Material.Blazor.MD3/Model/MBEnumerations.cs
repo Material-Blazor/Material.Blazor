@@ -448,7 +448,7 @@ public enum MBTextAlignStyle
 
 /// <summary>
 /// Material Theme text field and text area input style applied to <see cref="MBTextField"/> and <see cref="MBTextArea"/>.
-/// <para>Applied also to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/></para>
+/// <para>Applied also to <see also cref="MBAutocompleteTextField"/>, <see also cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
 /// </summary>
 public enum MBTextInputStyle

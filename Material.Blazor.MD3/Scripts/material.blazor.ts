@@ -12,7 +12,6 @@ import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/switch/switch.js';
 
 import * as MBTextField from '../Components/TextField/MBTextField';
-import * as MBTextField2 from '../Components/TextField2/MBTextField2';
 
 /*
 MD2 JS
@@ -30,7 +29,6 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
     MBTextField,
-    MBTextField2,
 
     MBButton,
     MBCard,

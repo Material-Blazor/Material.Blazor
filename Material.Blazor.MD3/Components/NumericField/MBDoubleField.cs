@@ -4,9 +4,9 @@ using System;
 namespace Material.Blazor;
 
 /// <summary>
-/// A Material.Blazor outlined style formatted decimal field.
+/// A Material.Blazor formatted double field.
 /// </summary>
-public sealed class MBOutlinedDoubleField : InternalFloatingPointFieldBase<double, MBOutlinedTextField>
+public sealed class MBDoubleField : InternalFloatingPointFieldBase<double, MBTextField>
 {
     private protected override double ConvertFromDecimal(decimal decimalValue)
     {

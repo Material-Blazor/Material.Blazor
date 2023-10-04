@@ -19,6 +19,7 @@ namespace Material.Blazor.Website.Shared
         [Parameter] public string DetailedArticle { get; set; }
         [Parameter] public bool IsGeneric { get; set; } = false;
         [Parameter] public string MaterialDesignPage { get; set; } = "";
+        [Parameter] public string MaterialWebPage { get; set; } = "";
         [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
         [Parameter] public RenderFragment PageContent { get; set; }
         [Parameter] public bool RequiresDisableSelection { get; set; } = false;
@@ -50,7 +51,8 @@ namespace Material.Blazor.Website.Shared
         private bool NeedsTable =>
             ((ComponentAndPageName != null)
             || (DetailedArticle != null)
-            || (MaterialDesignPage != null));
+            || (MaterialDesignPage != null)
+            || (MaterialWebPage != null));
 
 
         protected override void OnInitialized()
@@ -139,6 +141,28 @@ namespace Material.Blazor.Website.Shared
                 });
             }
 
+            if (!string.IsNullOrWhiteSpace(MaterialWebPage))
+            {
+                string[] pages;
+                if (MaterialWebPage.Contains(";"))
+                {
+                    pages = MaterialWebPage.Split(';');
+                }
+                else
+                {
+                    pages = new string[1] { MaterialWebPage };
+                }
+
+                foreach (var page in pages)
+                {
+                    Items.Add(new ReferenceItem
+                    {
+                        Title = "Material Web 3",
+                        Content = $"<a href=\"https://material-web.dev/components/" + page + "/\" target=\"_blank\" >" + page + " page link</a>"
+                    });
+                }
+            }
+
             if (!string.IsNullOrWhiteSpace(MaterialDesignPage))
             {
                 string[] pages;
@@ -156,7 +180,7 @@ namespace Material.Blazor.Website.Shared
                     Items.Add(new ReferenceItem
                     {
                         Title = "Material Design 3",
-                        Content = $"<a href=\"https://material-web.dev/components/" + page + "/\" target=\"_blank\" >" + page + " page link</a>"
+                        Content = $"<a href=\"https://m3.material.io/components/" + page + "/\" target=\"_blank\" >" + page + " page link</a>"
                     });
                 }
             }
