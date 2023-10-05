@@ -163,7 +163,7 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyleMD2.Filled)
             .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyleMD2.Outlined)
             .AddIf("mdc-select--no-label", () => !ShowLabel)
-            .AddIf("mdc-select--with-leading-icon", () => !(LeadingIconDescriptor is null))
+            .AddIf("mdc-select--with-leading-icon", () => LeadingIconDescriptor is not null)
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
         ObjectReference = DotNetObjectReference.Create(this);

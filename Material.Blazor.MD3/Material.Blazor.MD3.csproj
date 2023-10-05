@@ -55,7 +55,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />
+		<!--<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />-->
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.*" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
@@ -215,18 +216,22 @@
 		<Message Importance="high" Text="***** npm install" />
 		<Exec Command="npm install" />
 
-		<!--<Message Importance="high" Text="***** downloadfiles" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
-    </DownloadFile>-->
+		<Message Importance="high" Text="***** downloadfiles" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-components-symbols-outlined.scss" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-components-symbols-rounded.scss" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-components-symbols-sharp.scss" />
 
 		<Message Importance="high" Text="***** npm run build-css" />
 		<Exec Command="npm run build-css" />
 
 		<Message Importance="high" Text="***** npm run build-min-css" />
 		<Exec Command="npm run build-min-css" />
-
-		<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
-    <Delete Files="wwwroot\material-components-icons.css" />-->
 
 	</Target>
 

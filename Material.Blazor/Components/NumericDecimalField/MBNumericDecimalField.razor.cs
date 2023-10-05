@@ -179,7 +179,7 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
                 return "";
             }
 
-            if (!(NumericSingularFormat is null) && Utilities.DecimalEqual(Math.Abs(ComponentValue), 1))
+            if ((NumericSingularFormat is not null) && Utilities.DecimalEqual(Math.Abs(ComponentValue), 1))
             {
                 return NumericSingularFormat;
             }

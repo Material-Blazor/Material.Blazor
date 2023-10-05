@@ -1,7 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<!--
+	Attempting to multi-target .Net 6/7/8 fails for multiple reasons:
+		.Net 6 - Several components use features that were not available until .Net 7
+		.Net 7/8 - Parallel execution of 'npm install' fail
+	The only possible work-around is to have two projects, the first being Material.Blazor
+	which would be the referenced project from the other projects and targeting only .Net 8
+	and the second a .Net7/8 multi-targeted csproj that did not build scripts/styles. Both 
+	would need to be executed during the GHA step which builds the NuGet package.
+	
+	At the moment, this is deemed too expensive in support time
+	-->
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+		<!--<TargetFrameworks>net7.0;net8.0</TargetFrameworks>-->
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Version>5.0.0-preview.WIP</Version>
 		<PackageLicenseFile></PackageLicenseFile>
@@ -19,7 +31,7 @@
 		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
 	</PropertyGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+	<!--<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.11" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.11" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
@@ -31,8 +43,15 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
-	</ItemGroup>
+	</ItemGroup>-->
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
+	</ItemGroup>
+	
 	<PropertyGroup>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
@@ -96,7 +115,6 @@
 
 	<ItemGroup>
 		<Folder Include="wwwroot\" />
-		<Folder Include="Components\Carousel\" />
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
