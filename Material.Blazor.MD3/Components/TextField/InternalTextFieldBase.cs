@@ -17,82 +17,75 @@ namespace Material.Blazor.Internal;
 /// </summary>
 public abstract class InternalTextFieldBase : InputComponent<string>
 {
-    [Inject] private IJSRuntime JsRuntime { get; set; }
-    
-    //[CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
-
+    #region members
 
 #nullable enable annotations
 
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
+    #region cascading parameters
 
+    //[CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
+
+    #endregion
+
+    #region parameters
+
+    /// <summary>
+    /// When true collapses the badge.
+    /// </summary>
+    [Parameter] public bool BadgeExited { get; set; }
+    private bool _cachedBadgeExited;
 
     /// <summary>
     /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
     /// </summary>
     [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
-
     /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter]
-    public bool BadgeExited { get; set; }
-    private bool _cachedBadgeExited;
-
-
-    /// <summary>
-    /// The button's density.
+    /// The badge value.
     /// </summary>
     [Parameter]
     public string BadgeValue { get; set; }
     private string _cachedBadgeValue;
-
 
     /// <summary>
     /// The text field's density.
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
 
-
     /// <summary>
-    /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
+    /// Determines whether the button has a badge - defaults to false.
     /// </summary>
-    [Parameter] public string SupportingText { get; set; } = "";
-
-
-    /// <summary>
-    /// Makes the <see cref="SupportingText"/> persistent if true.
-    /// </summary>
-    [Parameter] public bool SupportingTextPersistent { get; set; } = false;
-
-
-    /// <summary>
-    /// The leading icon's name. No leading icon shown if not set.
-    /// </summary>
-    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
-
+    [Parameter] public bool HasBadge { get; set; }
 
     /// <summary>
     /// Field label.
     /// </summary>
     [Parameter] public string? Label { get; set; }
 
+    /// <summary>
+    /// The leading icon's name. No leading icon shown if not set.
+    /// </summary>
+    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
 
     /// <summary>
     /// Prefix text.
     /// </summary>
     [Parameter] public string? Prefix { get; set; }
 
-
     /// <summary>
     /// Suffix text.
     /// </summary>
     [Parameter] public string? Suffix { get; set; }
 
+    /// <summary>
+    /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
+    /// </summary>
+    [Parameter] public string SupportingText { get; set; } = "";
+
+    /// <summary>
+    /// Makes the <see cref="SupportingText"/> persistent if true.
+    /// </summary>
+    [Parameter] public bool SupportingTextPersistent { get; set; } = false;
 
     /// <summary>
     /// The text alignment style.
@@ -100,19 +93,16 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// </summary>
     [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
 
-
     /// <summary>
-    /// The text field style.
-    /// <para>Overrides <see cref="MBCascadingDefaults.TextFieldStyle"/></para>
+    /// The text input style.
+    /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
     /// </summary>
     [Parameter] public MBTextInputStyle TextInputStyle { get; set; } = MBTextInputStyle.Outlined;
-
 
     /// <summary>
     /// The trailing icon's name. No leading icon shown if not set.
     /// </summary>
     [Parameter] public MBIconDescriptor? TrailingIcon { get; set; }
-
 
     /// <summary>
     /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
@@ -121,8 +111,23 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// </summary>
     [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
+    #endregion
+
 #nullable restore annotations
 
+    #region injected members
+
+    [Inject] private IJSRuntime JsRuntime { get; set; }
+
+    #endregion
+
+    #region local members
+
+    private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
+
+    private string DateFieldErrorMessage { get; set; }
+
+    private string DisplayLabel => Label + LabelSuffix;
 
     /// <summary>
     /// The <code>@ref</code> reference for the top level <code>&lt;label&gt;</code> code block with
@@ -130,6 +135,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// </summary>
     internal ElementReference ElementReference { get; set; }
 
+    private string LabelSuffix { get; set; } = "";
+
+    private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
 
     /// <summary>
     /// Used by <see cref="MBNumericDoubleField"/> to force the text field to select
@@ -137,86 +145,31 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// </summary>
     internal bool SelectAllText { get; set; } = false;
 
+    private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
-    //private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-    private string DisplayLabel => Label + LabelSuffix;
-    private string DateFieldErrorMessage { get; set; }
-    private string LabelSuffix { get; set; } = "";
-    private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
+
+
+
     //private MBBadge Badge { get; set; }
-
-
-
-
     //private readonly string labelId = Utilities.GenerateUniqueElementName();
     //private readonly string SupportingTextId = Utilities.GenerateUniqueElementName();
-
-
     //private MBCascadingDefaults.DensityInfo DensityInfo
     //{
     //    get
     //    {
     //        var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
-
     //        //var suffix = AppliedInputStyle == MBTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
     //        //suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
-
     //        //d.CssClassName += suffix;
-
     //        return d;
     //    }
     //}
 
-    private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
+    #endregion
 
+    #endregion
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-
-        SetDateErrorMessage();
-
-        //_ = ConditionalCssClasses
-        //    .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-        //    .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-        //    .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
-        //    .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
-        //    .AddIf("mdc-text-field--no-label", () => !ShowLabel)
-        //    .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
-        //    .AddIf("mdc-text-field--with-leading-icon", () => LeadingIcon is not null)
-        //    .AddIf("mdc-text-field--with-trailing-icon", () => TrailingIcon is not null)
-        //    .AddIf("mb-date-field", () => DateTimeField is not null);
-
-        //FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
-
-        if (EditContext != null)
-        {
-            EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
-
-            if (HasRequiredAttribute(ValidationMessageFor))
-            {
-                LabelSuffix = " *";
-            }
-        }
-    }
-
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
-        {
-            _cachedBadgeValue = BadgeValue;
-            _cachedBadgeExited = BadgeExited;
-
-            //if (Badge is not null)
-            //{
-            //    EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
-            //}
-        }
-    }
-
+    #region BuildRenderTree
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -224,7 +177,17 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         var rendSeq = 0;
-        builder.OpenElement(rendSeq++, WebComponentName());
+        var componentName = "";
+        if (TextInputStyle == MBTextInputStyle.Outlined)
+        {
+            componentName = "md-outlined-text-field";
+        }
+        else
+        {
+            componentName = "md-filled-text-field";
+        }
+
+        builder.OpenElement(rendSeq++, componentName);
         {
             if (attributesToSplat.Any())
             {
@@ -235,7 +198,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             {
                 builder.AddAttribute(rendSeq++, "disabled");
             }
-            
+
             builder.AddAttribute(rendSeq++, "class", cssClass);
             builder.AddAttribute(rendSeq++, "style", style);
             builder.AddAttribute(rendSeq++, "id", id);
@@ -246,7 +209,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
 
             builder.AddAttribute(rendSeq++, "label", DisplayLabel);
-            
+
             if (!string.IsNullOrWhiteSpace(Prefix))
             {
                 builder.AddAttribute(rendSeq++, "prefixText", Prefix);
@@ -287,34 +250,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         builder.CloseElement();
     }
 
+    #endregion
 
-    /// <summary>
-    /// Selects the text field content. Used by numeric fields when type is changed to "number".
-    /// </summary>
-    /// <returns></returns>
-    internal async Task SelectFieldContent()
-    {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField2.selectFieldContent", ElementReference).ConfigureAwait(false);
-    }
-
-
-    /// <summary>
-    /// Inherited classes must specify the material-web compoent name.
-    /// </summary>
-    /// <returns></returns>
-    private protected abstract string WebComponentName();
-
-
-
-    protected void SetDateErrorMessage()
-    {
-        DateFieldErrorMessage = "";
-        //if (DateTimeField != null)
-        //{
-        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
-        //}
-    }
-
+    #region Dispose
 
     private bool _disposed = false;
     protected override void Dispose(bool disposing)
@@ -334,6 +272,50 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         base.Dispose(disposing);
     }
 
+    #endregion
+
+    #region OnInitializedAsync
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        SetDateErrorMessage();
+
+        if (EditContext != null)
+        {
+            EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
+
+            if (HasRequiredAttribute(ValidationMessageFor))
+            {
+                LabelSuffix = " *";
+            }
+        }
+    }
+
+    #endregion
+
+    #region OnParametersSetAsync
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            //if (Badge is not null)
+            //{
+            //    EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            //}
+        }
+    }
+
+    #endregion
+
+    #region OnValidationStateChangedCallback
 
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
     {
@@ -345,4 +327,33 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             //_ = InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setSupportingText", ElementReference, SupportingTextReference, SupportingText.Trim(), SupportingTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
+
+    #endregion
+
+    #region SelectFieldContent
+
+    /// <summary>
+    /// Selects the text field content. Used by numeric fields when type is changed to "number".
+    /// </summary>
+    /// <returns></returns>
+    internal async Task SelectFieldContent()
+    {
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField2.selectFieldContent", ElementReference).ConfigureAwait(false);
+    }
+
+    #endregion
+
+    #region SetDateErrorMessage
+
+    protected void SetDateErrorMessage()
+    {
+        DateFieldErrorMessage = "";
+        //if (DateTimeField != null)
+        //{
+        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
+        //}
+    }
+
+    #endregion
+
 }

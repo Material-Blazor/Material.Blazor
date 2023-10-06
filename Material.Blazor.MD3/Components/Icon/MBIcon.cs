@@ -47,19 +47,19 @@ public class MBIcon : ComponentFoundation
     /// The icon attributes.
     /// </summary>
     public static MBIconDescriptor IconDescriptorConstructor(
-        string name,
         string color = null,
         decimal? fill = null,
         MBIconGradient? gradient = null,
+        string name = null,
         MBIconSize? size = null,
         MBIconStyle? style = null,
         MBIconWeight? weight = null)
         =>
         new MBIconDescriptor(
-            name,
             color: color,
             fill: fill,
             gradient: gradient,
+            name: name,
             size: size,
             style: style,
             weight: weight);
@@ -188,7 +188,7 @@ public class MBIcon : ComponentFoundation
         iconColor = CascadingDefaults.AppliedIconColor(Descriptor.Color);
         iconFill = CascadingDefaults.AppliedIconFill(Descriptor.Fill);
         iconGradient = CascadingDefaults.AppliedIconGradient(Descriptor.Gradient);
-        iconName = Descriptor.Name;
+        iconName = CascadingDefaults.AppliedIconName(Descriptor.Name);
         iconSize = CascadingDefaults.AppliedIconSize(Descriptor.Size);
         iconSlot = Descriptor.Slot;
         iconStyle = CascadingDefaults.AppliedIconStyle(Descriptor.Style);

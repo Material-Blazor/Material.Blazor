@@ -124,6 +124,10 @@ public class MBCascadingDefaults
     public MBIconGradient IconGradient { get => _iconGradient; set => SetParameter(ref _iconGradient, value); }
     internal MBIconGradient AppliedIconGradient(MBIconGradient? iconGradient = null) => iconGradient ?? IconGradient;
 
+    private string _iconName = "home";
+    public string IconName { get => _iconName; set => SetParameter(ref _iconName, value); }
+    internal string AppliedIconName(string iconName = null) => iconName ?? IconName;
+
     private MBIconStyle _iconStyle = MBIconStyle.Outlined;
     public MBIconStyle IconStyle { get => _iconStyle; set => SetParameter(ref _iconStyle, value); }
     internal MBIconStyle AppliedIconStyle(MBIconStyle? iconStyle = null) => iconStyle ?? IconStyle;
@@ -187,6 +191,22 @@ public class MBCascadingDefaults
     /// <param name="style">The text align style parameter passed to the <see cref="MBTextField"/>, <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/></param>
     /// <returns>The <see cref="MBTextAlignStyle"/> to apply.</returns>
     internal MBTextAlignStyle AppliedStyle(MBTextAlignStyle? style = null) => style ?? TextAlignStyle;
+
+
+    private MBDensity? _textFieldDensity = null;
+    /// <summary>
+    /// The default density for an <see cref="MBTextField"/>, <see cref="MBTextArea"/>, <see cref="MBAutocompleteTextField"/>, <see cref="MBDebouncedTextField"/>, 
+    /// <see cref="MBNumericDoubleField"/> or <see cref="MBNumericIntField"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+    /// </summary>
+    public MBDensity TextFieldDensity { get => _textFieldDensity ?? ThemeDensity; set => SetParameter(ref _textFieldDensity, value); }
+
+    /// <summary>
+    /// The density to apply to an an <see cref="MBTextField"/>, <see cref="MBTextArea"/>, <see cref="MBAutocompleteTextField"/>, <see cref="MBDebouncedTextField"/>, 
+    /// <see cref="MBNumericDoubleField"/> or <see cref="MBNumericIntField"/>, initialized to <see cref="MBDensity.Default"/>.
+    /// </summary>
+    /// <param name="density">The density parameter passed to the <see cref="MBTextField"/></param>
+    /// <returns></returns>
+    internal MBDensity AppliedTextFieldDensity(MBDensity? density) => density ?? TextFieldDensity;
 
 
     private MBTextInputStyle _textInputStyle = MBTextInputStyle.Outlined;

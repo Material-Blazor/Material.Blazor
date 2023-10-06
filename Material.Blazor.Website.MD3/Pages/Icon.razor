@@ -13,68 +13,6 @@
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Outlined Icon
-                    </h2>
-                    <p>
-                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
-                            name: "access_alarms",
-                            style: @MBIconStyle.Outlined)" />
-                    </p>
-                    <p>
-                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
-                            name: "home",
-                            style: @MBIconStyle.Outlined)" />
-                    </p>
-                </Primary>
-            </Material.Blazor.MD2.MBCard>
-        </div>
-
-        <div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Rounded Icon
-                    </h2>
-
-                    <p>
-                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
-                            name: "access_alarms",
-                            style: @MBIconStyle.Rounded)" />
-                    </p>
-                    <p>
-                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
-                            name: "home",
-                            style: @MBIconStyle.Rounded)" />
-                    </p>
-                </Primary>
-            </Material.Blazor.MD2.MBCard>
-        </div>
-
-        <div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Sharp Icon
-                    </h2>
-
-                    <p>
-                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
-                            name: "access_alarms",
-                            style: @MBIconStyle.Sharp)" />
-                    </p>
-                    <p>
-                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
-                            name: "home",
-                            style: @MBIconStyle.Sharp)" />
-                    </p>
-                </Primary>
-            </Material.Blazor.MD2.MBCard>
-        </div>
-
         <div class="mdc-layout-grid__cell--span-12">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
@@ -201,7 +139,7 @@
                                 MBIcon with Descriptor using &lt;md-icon&gt;
                             </h2>
                             <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: row;">
-                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+@*                                 <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -209,7 +147,7 @@
                                                   size: @mbIconSize,
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
-                                &nbsp;
+ *@                                &nbsp;
                                 <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
@@ -219,7 +157,7 @@
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
                                 &nbsp;
-                                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+@*                                 <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: @mbIconColor,
                                                   fill: @mbIconFill,
                                                   gradient: @mbIconGradient,
@@ -246,7 +184,7 @@
                                                   style: @mbIconStyle,
                                                   weight: @mbIconWeight)" />
                                 &nbsp;
-                            </div>
+ *@                            </div>
                         </div>
                     </div>
                 </Primary>
@@ -283,7 +221,7 @@
         {
             _iconFill = value;
 
-            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{_iconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{mbIconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
     // private decimal mbIconFill = 1.0m;
@@ -313,7 +251,7 @@
                 _ => throw new Exception("Unknown icon gradient"),
             };
 
-            ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{_iconGradient}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{mbIconGradient.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 

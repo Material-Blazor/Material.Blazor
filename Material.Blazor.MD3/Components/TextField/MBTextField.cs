@@ -8,16 +8,4 @@ namespace Material.Blazor;
 /// </summary>
 public sealed class MBTextField : InternalTextFieldBase
 {
-    private protected override string WebComponentName()
-    {
-        if (TextInputStyle == MBTextInputStyle.Outlined)
-        {
-            return "md-outlined-text-field";
-        }
-        else
-        {
-            return "md-filled-text-field";
-        }
-
-    }
 }

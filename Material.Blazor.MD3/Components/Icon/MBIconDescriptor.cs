@@ -23,10 +23,10 @@ public class MBIconDescriptor
     }
 
     public MBIconDescriptor(
-        string name,
         string color = null,
         decimal? fill = null,
         MBIconGradient? gradient = null,
+        string name = null,
         MBIconSize? size = null,
         MBIconStyle? style = null,
         MBIconWeight? weight = null)
