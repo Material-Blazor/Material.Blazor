@@ -4,6 +4,9 @@
   "description": "NPM build steps for Material.Blazor",
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
   "scripts": {
+    "build-curl1": "curl https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700 --output styles\\_material-symbols-outlined.scss --user-agent \"Mozilla/5.0,(Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\"",
+    "build-curl2": "curl https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700 --output styles\\_material-symbols-rounded.scss --user-agent \"Mozilla/5.0,(Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\"",
+    "build-curl3": "curl https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:wght@100..700 --output styles\\_material-symbols-sharp.scss --user-agent \"Mozilla/5.0,(Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\"",
     "build-css": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.css",
     "build-min-css": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.min.css",
     "build-js": "terser wwwroot/intermediate.js --beautify --output wwwroot/material.blazor.js",

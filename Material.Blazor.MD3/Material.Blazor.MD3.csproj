@@ -89,7 +89,6 @@
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<InputStaticAssetsScripts Remove="Scripts\lodashparts.ts" />
 		<InputStaticAssetsStyles Remove="Components\Badge\MBBadge.scss" />
-		<InputStaticAssetsStyles Remove="Styles\_material-components-icons.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
@@ -216,16 +215,25 @@
 		<Message Importance="high" Text="***** npm install" />
 		<Exec Command="npm install" />
 
-		<Message Importance="high" Text="***** downloadfiles" />
+		<!--<Message Importance="high" Text="***** downloadfiles" />
+		
+		ISSUE - The UserAgent used by DownloadFile results in TrueType fonts. See the curl
+		commands in package.json that get around this behavior.
+		
 		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
 					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
-					  DestinationFilename="_material-components-symbols-outlined.scss" />
+					  DestinationFilename="_material-symbols-outlined.scss" />
 		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
-					  DestinationFilename="_material-components-symbols-rounded.scss" />
+					  DestinationFilename="_material-symbols-rounded.scss" />
 		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
-					  DestinationFilename="_material-components-symbols-sharp.scss" />
+					  DestinationFilename="_material-symbols-sharp.scss" />-->
+
+		<Message Importance="high" Text="***** download font files" />
+		<Exec Command="npm run build-curl1" />
+		<Exec Command="npm run build-curl2" />
+		<Exec Command="npm run build-curl3" />
 
 		<Message Importance="high" Text="***** npm run build-css" />
 		<Exec Command="npm run build-css" />

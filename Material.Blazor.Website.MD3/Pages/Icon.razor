@@ -96,13 +96,24 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
+                            @*
                             <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">Icon fill</h3>
                             <Material.Blazor.MD2.MBSlider @bind-Value="@mbIconFill"
-                                                          DecimalPlaces="1"
-                                                          NumSteps="10"
-                                                          SliderType="@MBSliderTypeMD2.DiscreteWithTickmarks"
-                                                          ValueMax="1"
-                                                          ValueMin="0" />
+                            ContinuousInputDelay="300"
+                            DecimalPlaces="1"
+                            NumSteps="10"
+                            EventType="@MBInputEventTypeMD2.OnInputThrottled"
+                            SliderType="@MBSliderTypeMD2.DiscreteWithTickmarks"
+                            ValueMax="1"
+                            ValueMin="0" />
+                            *@
+
+                            <Material.Blazor.MD2.MBSelect @bind-Value="@mbIconFill"
+                                                          Items="@iconFills"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
+                                                          Label="Icon fill"
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
@@ -178,7 +189,6 @@
                                                       IconFill="@mbIconFill"
                                                       IconGradient="@mbIconGradient"
                                                       IconName="settings"
-                                                      cd ..
                                                       IconSize="@mbIconSize"
                                                       IconStyle="@mbIconStyle"
                                                       IconWeight="@mbIconWeight" />
@@ -250,7 +260,22 @@
 
 
 
-    private decimal _iconFill = 0;
+    MBSelectElement<decimal>[] iconFills = new MBSelectElement<decimal>[]
+    {
+        new MBSelectElement<decimal> { SelectedValue = 0.0m, LeadingLabel = "0.0" },
+        new MBSelectElement<decimal> { SelectedValue = 0.1m, LeadingLabel = "0.1" },
+        new MBSelectElement<decimal> { SelectedValue = 0.2m, LeadingLabel = "0.2" },
+        new MBSelectElement<decimal> { SelectedValue = 0.3m, LeadingLabel = "0.3" },
+        new MBSelectElement<decimal> { SelectedValue = 0.4m, LeadingLabel = "0.4" },
+        new MBSelectElement<decimal> { SelectedValue = 0.5m, LeadingLabel = "0.5" },
+        new MBSelectElement<decimal> { SelectedValue = 0.6m, LeadingLabel = "0.6" },
+        new MBSelectElement<decimal> { SelectedValue = 0.7m, LeadingLabel = "0.7" },
+        new MBSelectElement<decimal> { SelectedValue = 0.8m, LeadingLabel = "0.8" },
+        new MBSelectElement<decimal> { SelectedValue = 0.9m, LeadingLabel = "0.9" },
+        new MBSelectElement<decimal> { SelectedValue = 1.0m, LeadingLabel = "1.0" },
+            };
+
+    private decimal _iconFill = 1.0m;
     private decimal mbIconFill
     {
         get => _iconFill;
@@ -261,7 +286,7 @@
             ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{_iconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
-
+    // private decimal mbIconFill = 1.0m;
 
 
     MBSelectElement<string>[] iconGradients = new MBSelectElement<string>[]
