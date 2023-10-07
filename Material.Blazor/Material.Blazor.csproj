@@ -213,7 +213,7 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (M.B Scripts)" />
 		<Exec Command="npm install" />
 
 		<!-- The files that were deleted were incorrectly shipped with an earlier version of material-components-web (12.0.0?). Deletion no longer required -->
@@ -221,16 +221,16 @@
 		<Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
 		<Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />-->
 
-		<Message Importance="high" Text="***** npm run build-scripts" />
+		<Message Importance="high" Text="***** npm run build-scripts (M.B Scripts)" />
 		<Exec Command="npm run build-scripts" />
 
-		<Message Importance="high" Text="***** npm run build-js" />
+		<Message Importance="high" Text="***** npm run build-js (M.B Scripts)" />
 		<Exec Command="npm run build-js" />
 
-		<Message Importance="high" Text="***** npm run build-min-js" />
+		<Message Importance="high" Text="***** npm run build-min-js (M.B Scripts)" />
 		<Exec Command="npm run build-min-js" />
 
-		<Message Importance="high" Text="***** delete intermediate.js" />
+		<Message Importance="high" Text="***** delete intermediate.js (M.B Scripts)" />
 		<Delete Files="wwwroot\intermediate.js" />
 
 
@@ -242,7 +242,7 @@
 		<Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (M.B Styles)" />
 		<Exec Command="npm install" />
 
 		<!--
@@ -265,23 +265,23 @@
 					  DestinationFilename="_material-symbols-sharp.scss" />
 		-->
 
-		<Message Importance="high" Text="***** download font files" />
-		<Exec Command="npm run build-curl1" />
-		<Exec Command="npm run build-curl2" />
-		<Exec Command="npm run build-curl3" />
-		<Exec Command="npm run build-curl4" />
+		<Message Importance="high" Text="***** download font files (M.B Styles)" />
+		<Exec Command="npm run build-acquire-font-MI" />
+		<Exec Command="npm run build-acquire-font-MSO" />
+		<Exec Command="npm run build-acquire-font-MSR" />
+		<Exec Command="npm run build-acquire-font-MSS" />
 
 
-		<Message Importance="high" Text="***** npm run build-css" />
+		<Message Importance="high" Text="***** npm run build-css (M.B Styles)" />
 		<Exec Command="npm run build-css" />
 
-		<Message Importance="high" Text="***** npm run build-min-css" />
+		<Message Importance="high" Text="***** npm run build-min-css (M.B Styles)" />
 		<Exec Command="npm run build-min-css" />
 
-		<Message Importance="high" Text="***** npm run build-material-css" />
+		<Message Importance="high" Text="***** npm run build-material-css (M.B Styles)" />
 		<Exec Command="npm run build-material-css" />
 
-		<Message Importance="high" Text="***** npm run build-material-min-css" />
+		<Message Importance="high" Text="***** npm run build-material-min-css (M.B Styles)" />
 		<Exec Command="npm run build-material-min-css" />
 
 	</Target>
