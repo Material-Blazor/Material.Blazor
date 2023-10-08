@@ -32,20 +32,16 @@ public class MBIcon : ComponentFoundation
     /// When true collapses the badge.
     /// </summary>
     [Parameter] public bool BadgeExitedPLUS { get; set; }
-    private bool _cachedBadgeExited;
 
     /// <summary>
     /// The badge's value.
     /// </summary>
     [Parameter] public string BadgeValuePLUS { get; set; }
-    private string _cachedBadgeValue;
 
-
-
-    [Parameter] public MBIconDescriptor Descriptor { get; set; }
     /// <summary>
-    /// The icon attributes.
+    /// The icon attributes and a constructor for same.
     /// </summary>
+    [Parameter] public MBIconDescriptor Descriptor { get; set; }
     public static MBIconDescriptor IconDescriptorConstructor(
         string color = null,
         decimal? fill = null,
@@ -66,18 +62,9 @@ public class MBIcon : ComponentFoundation
 
 
 
-    private MBBadge badgeRef { get; set; }
-    private string iconColor { get; set; }
-    private string iconDerivedClass { get; set; }
-    private string iconDerivedStyle { get; set; }
-    private decimal iconFill { get; set; }
-    private MBIconGradient iconGradient { get; set; }
-    private string iconName { get; set; }
-    private MBIconSize iconSize { get; set; }
-    private string iconSlot { get; set; }
-    private MBIconStyle iconStyle { get; set; }
-    private MBIconWeight iconWeight { get; set; }
-    private bool shouldNotRender { get; set; }
+    private bool _cachedBadgeExited { get; set; }
+    private string _cachedBadgeValue { get; set; }
+    MBBadge badgeRef { get; set; }
 
     #endregion
 
@@ -85,11 +72,6 @@ public class MBIcon : ComponentFoundation
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        if (shouldNotRender)
-        {
-            return;
-        }
-
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
@@ -112,6 +94,17 @@ public class MBIcon : ComponentFoundation
                 }
                 builder.CloseElement();
             }
+            if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
+            {
+                _cachedBadgeValue = BadgeValuePLUS;
+                _cachedBadgeExited = BadgeExitedPLUS;
+
+                if (badgeRef is not null)
+                {
+                    EnqueueJSInteropAction(() => badgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
+                }
+            }
+
 
             builder.OpenElement(rendSeq++, "div");
             {
@@ -124,75 +117,34 @@ public class MBIcon : ComponentFoundation
                 builder.AddAttribute(rendSeq++, "style", style);
                 builder.AddAttribute(rendSeq++, "id", id);
 
+
                 BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
-                    shouldNotRender);
+                    CascadingDefaults,
+                    Descriptor,
+                    null);
             }
             builder.CloseElement();
         }
         builder.CloseElement();
     }
 
-    private void BuildRenderTreeWorker(
+    public static void BuildRenderTreeWorker(
         RenderTreeBuilder builder,
         ref int rendSeq,
-        bool skipRender)
+        MBCascadingDefaults cascadingDefaults,
+        MBIconDescriptor descriptor,
+        string slot)
     {
-        if (skipRender)
-        {
-            return;
-        }
-
-        builder.OpenElement(rendSeq++, "div");
-        {
-            builder.OpenElement(rendSeq++, "md-icon");
-            {
-                if (!string.IsNullOrWhiteSpace(iconSlot))
-                {
-                    builder.AddAttribute(rendSeq++, "slot", iconSlot);
-                }
-                builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
-                builder.AddContent(rendSeq++, iconName.ToLower());
-            }
-            builder.CloseElement();
-        }
-        builder.CloseElement();
-    }
-
-    #endregion
-
-    #region OnParametersSetAsync
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
-        {
-            _cachedBadgeValue = BadgeValuePLUS;
-            _cachedBadgeExited = BadgeExitedPLUS;
-
-            if (badgeRef is not null)
-            {
-                EnqueueJSInteropAction(() => badgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-            }
-        }
-
-        shouldNotRender = string.IsNullOrWhiteSpace(Descriptor.Name);
-        if (shouldNotRender)
-        {
-            return;
-        }
-
-        iconColor = CascadingDefaults.AppliedIconColor(Descriptor.Color);
-        iconFill = CascadingDefaults.AppliedIconFill(Descriptor.Fill);
-        iconGradient = CascadingDefaults.AppliedIconGradient(Descriptor.Gradient);
-        iconName = CascadingDefaults.AppliedIconName(Descriptor.Name);
-        iconSize = CascadingDefaults.AppliedIconSize(Descriptor.Size);
-        iconSlot = Descriptor.Slot;
-        iconStyle = CascadingDefaults.AppliedIconStyle(Descriptor.Style);
-        iconWeight = CascadingDefaults.AppliedIconWeight(Descriptor.Weight);
+        var iconColor = cascadingDefaults.AppliedIconColor(descriptor.Color);
+        var iconFill = cascadingDefaults.AppliedIconFill(descriptor.Fill);
+        var iconGradient = cascadingDefaults.AppliedIconGradient(descriptor.Gradient);
+        var iconName = cascadingDefaults.AppliedIconName(descriptor.Name);
+        var iconSize = cascadingDefaults.AppliedIconSize(descriptor.Size);
+        var iconSlot = slot;
+        var iconStyle = cascadingDefaults.AppliedIconStyle(descriptor.Style);
+        var iconWeight = cascadingDefaults.AppliedIconWeight(descriptor.Weight);
 
         // Set the icon style
 
@@ -296,8 +248,18 @@ public class MBIcon : ComponentFoundation
             fontVariation = null;
         }
 
-        iconDerivedStyle = fontStyle + fontVariation;
+        var iconDerivedStyle = fontStyle + fontVariation;
 
+        builder.OpenElement(rendSeq++, "md-icon");
+        {
+            if (!string.IsNullOrWhiteSpace(iconSlot))
+            {
+                builder.AddAttribute(rendSeq++, "slot", iconSlot);
+            }
+            builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
+            builder.AddContent(rendSeq++, iconName.ToLower());
+        }
+        builder.CloseElement();
     }
 
     #endregion

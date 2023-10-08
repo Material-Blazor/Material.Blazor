@@ -1,8 +1,10 @@
 ﻿using Material.Blazor;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.JSInterop;
+
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -227,22 +229,22 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
             if (LeadingIcon is not null)
             {
-                builder.OpenComponent(rendSeq++, typeof(MBIcon));
-                {
-                    LeadingIcon.Slot = "leading-icon";
-                    builder.AddComponentParameter(rendSeq++, "Descriptor", LeadingIcon);
-                }
-                builder.CloseElement();
+                MBIcon.BuildRenderTreeWorker(
+                    builder,
+                    ref rendSeq,
+                    CascadingDefaults,
+                    LeadingIcon,
+                    "leading-icon");
             }
 
             if (TrailingIcon is not null)
             {
-                builder.OpenComponent(rendSeq++, typeof(MBIcon));
-                {
-                    TrailingIcon.Slot = "trailing-icon";
-                    builder.AddComponentParameter(rendSeq++, "Descriptor", TrailingIcon);
-                }
-                builder.CloseElement();
+                MBIcon.BuildRenderTreeWorker(
+                    builder,
+                    ref rendSeq,
+                    CascadingDefaults,
+                    TrailingIcon,
+                    "trailing-icon");
             }
 
             builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);

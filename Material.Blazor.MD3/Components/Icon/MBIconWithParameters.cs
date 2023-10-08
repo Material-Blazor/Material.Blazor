@@ -177,7 +177,7 @@ public class MBIconWithParameters : ComponentFoundation
         iconColor = CascadingDefaults.AppliedIconColor(IconColor);
         iconFill = CascadingDefaults.AppliedIconFill(IconFill);
         iconGradient = CascadingDefaults.AppliedIconGradient(IconGradient);
-        iconName = IconName;
+        iconName = CascadingDefaults.AppliedIconName(IconName);
         iconSize = CascadingDefaults.AppliedIconSize(IconSize);
         iconStyle = CascadingDefaults.AppliedIconStyle(IconStyle);
         iconWeight = CascadingDefaults.AppliedIconWeight(IconWeight);

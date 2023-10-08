@@ -6,7 +6,7 @@
 public class MBIconDescriptor
 {
     /// <summary>
-    /// The Material Symbols descriptors.
+    /// The Material Symbols descriptor.
     /// </summary>
     
     public string Color { get; }
@@ -14,7 +14,6 @@ public class MBIconDescriptor
     public MBIconGradient? Gradient { get; }
     public string Name { get; }
     public MBIconSize? Size { get; }
-    public string Slot { get; set; }
     public MBIconStyle? Style { get; }
     public MBIconWeight? Weight { get; }
 
@@ -36,7 +35,6 @@ public class MBIconDescriptor
         Gradient = gradient;
         Name = name;
         Size = size;
-        Slot = null;
         Style = style;
         Weight = weight;
     }
