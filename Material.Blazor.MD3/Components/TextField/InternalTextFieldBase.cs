@@ -32,32 +32,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     #region parameters
 
     /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter] public bool BadgeExited { get; set; }
-    private bool _cachedBadgeExited;
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
-
-    /// <summary>
-    /// The badge value.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue { get; set; }
-    private string _cachedBadgeValue;
-
-    /// <summary>
     /// The text field's density.
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
 
     /// <summary>
     /// Field label.
@@ -152,7 +129,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
 
 
-    //private MBBadge Badge { get; set; }
     //private readonly string labelId = Utilities.GenerateUniqueElementName();
     //private readonly string SupportingTextId = Utilities.GenerateUniqueElementName();
     //private MBCascadingDefaults.DensityInfo DensityInfo
@@ -292,26 +268,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             {
                 LabelSuffix = " *";
             }
-        }
-    }
-
-    #endregion
-
-    #region OnParametersSetAsync
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
-        {
-            _cachedBadgeValue = BadgeValue;
-            _cachedBadgeExited = BadgeExited;
-
-            //if (Badge is not null)
-            //{
-            //    EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
-            //}
         }
     }
 

@@ -1,6 +1,4 @@
-﻿#define xxxBuildAsTypography
-
-using Material.Blazor.Internal;
+﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -12,31 +10,11 @@ namespace Material.Blazor;
 
 /// <summary>
 /// Renders icons from the Material Symbol Font. Material Symbols are essential for
-/// Material.Blazor and are included by the library's CSS.
+/// Material.Blazor and are included in the library's CSS.
 /// </summary>
 public class MBIcon : ComponentFoundation
 {
     #region members
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadgePLUS { get; set; } = false;
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter] public bool BadgeExitedPLUS { get; set; }
-
-    /// <summary>
-    /// The badge's value.
-    /// </summary>
-    [Parameter] public string BadgeValuePLUS { get; set; }
 
     /// <summary>
     /// The icon attributes and a constructor for same.
@@ -62,10 +40,6 @@ public class MBIcon : ComponentFoundation
 
 
 
-    private bool _cachedBadgeExited { get; set; }
-    private string _cachedBadgeValue { get; set; }
-    MBBadge badgeRef { get; set; }
-
     #endregion
 
     #region BuildRenderTree
@@ -77,55 +51,22 @@ public class MBIcon : ComponentFoundation
 
         builder.OpenElement(rendSeq++, "div");
         {
-            if (HasBadgePLUS)
+            if (attributesToSplat.Any())
             {
-                builder.OpenElement(rendSeq++, "span");
-                {
-                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                    {
-                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                        builder.AddComponentReferenceCapture(rendSeq++,
-                            (__value) => { badgeRef = (Material.Blazor.MBBadge)__value; });
-                    }
-                    builder.CloseComponent();
-                }
-                builder.CloseElement();
-            }
-            if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
-            {
-                _cachedBadgeValue = BadgeValuePLUS;
-                _cachedBadgeExited = BadgeExitedPLUS;
-
-                if (badgeRef is not null)
-                {
-                    EnqueueJSInteropAction(() => badgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-                }
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-
-            builder.OpenElement(rendSeq++, "div");
-            {
-                if (attributesToSplat.Any())
-                {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-                }
-
-                builder.AddAttribute(rendSeq++, "class", @class);
-                builder.AddAttribute(rendSeq++, "style", style);
-                builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(rendSeq++, "class", @class);
+            builder.AddAttribute(rendSeq++, "style", style);
+            builder.AddAttribute(rendSeq++, "id", id);
 
 
-                BuildRenderTreeWorker(
-                    builder,
-                    ref rendSeq,
-                    CascadingDefaults,
-                    Descriptor,
-                    null);
-            }
-            builder.CloseElement();
+            BuildRenderTreeWorker(
+                builder,
+                ref rendSeq,
+                CascadingDefaults,
+                Descriptor,
+                null);
         }
         builder.CloseElement();
     }

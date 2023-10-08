@@ -88,7 +88,6 @@
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<InputStaticAssetsScripts Remove="Scripts\lodashparts.ts" />
-		<InputStaticAssetsStyles Remove="Components\Badge\MBBadge.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 

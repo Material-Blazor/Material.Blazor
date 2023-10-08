@@ -50,33 +50,6 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
 
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
-
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
-
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter]
-    public bool BadgeExited { get; set; }
-    private bool _cachedBadgeExited;
-
-
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter]
-    public string BadgeValue { get; set; }
-    private string _cachedBadgeValue;
 #nullable restore annotations
 
 
@@ -94,7 +67,6 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     private ElementReference SelectReference { get; set; }
     private string SelectedText { get; set; } = "";
     private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
-    private MBBadge Badge { get; set; }
 
 
     internal class DensityInfoClass
@@ -174,17 +146,6 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
-        {
-            _cachedBadgeValue = BadgeValue;
-            _cachedBadgeExited = BadgeExited;
-
-            if (Badge is not null)
-            {
-                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
-            }
-        }
 
         KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
     }

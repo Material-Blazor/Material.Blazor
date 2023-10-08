@@ -2,31 +2,6 @@ using System;
 
 namespace Material.Blazor;
 
-#region MBBadge
-
-/// <summary>
-/// Style for an <see cref="MBBadge"/>.
-/// </summary>
-public enum MBBadgeStyle
-{
-    /// <summary>
-    /// Bears a numeric value.
-    /// </summary> 
-    ValueBearing,
-
-    /// <summary>
-    /// Blank, full sized badge.
-    /// </summary> 
-    BlankFullSized,
-
-    /// <summary>
-    /// Small dot badge.
-    /// </summary> 
-    Dot
-}
-
-#endregion
-
 #region MBButtonStyleMD2
 
 /// <summary>

@@ -19,27 +19,6 @@ public class MBIconWithParameters : ComponentFoundation
     [CascadingParameter(Name = "IsInsideMBTabBar")] private bool IsInsideMBTabBar { get; set; }
 
 
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadgePLUS { get; set; }
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter] public bool BadgeExitedPLUS { get; set; }
-    private bool _cachedBadgeExited;
-
-    /// <summary>
-    /// The badge's value.
-    /// </summary>
-    [Parameter] public string BadgeValuePLUS { get; set; }
-    private string _cachedBadgeValue;
 
     /// <summary>
     /// The icon color attribute.
@@ -79,7 +58,6 @@ public class MBIconWithParameters : ComponentFoundation
 
 
 
-    private MBBadge BadgeRef { get; set; }
     private string iconColor { get; set; }
     private string iconDerivedClass { get; set; }
     private string iconDerivedStyle { get; set; }
@@ -89,7 +67,6 @@ public class MBIconWithParameters : ComponentFoundation
     private MBIconSize iconSize { get; set; }
     private MBIconStyle iconStyle { get; set; }
     private MBIconWeight iconWeight { get; set; }
-    private bool shouldNotRender { get; set; }
 
     #endregion
 
@@ -97,34 +74,11 @@ public class MBIconWithParameters : ComponentFoundation
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        if (shouldNotRender)
-        {
-            return;
-        }
-
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
         builder.OpenElement(rendSeq++, "div");
         {
-            if (HasBadgePLUS)
-            {
-                builder.OpenElement(rendSeq++, "span");
-                {
-                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                    {
-                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                        builder.AddComponentReferenceCapture(rendSeq++,
-                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                    }
-                    builder.CloseComponent();
-                }
-                builder.CloseElement();
-            }
-
             builder.OpenElement(rendSeq++, "div");
             {
                 if (attributesToSplat.Any())
@@ -156,23 +110,6 @@ public class MBIconWithParameters : ComponentFoundation
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
-        {
-            _cachedBadgeValue = BadgeValuePLUS;
-            _cachedBadgeExited = BadgeExitedPLUS;
-
-            if (BadgeRef is not null)
-            {
-                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-            }
-        }
-
-        shouldNotRender = string.IsNullOrWhiteSpace(IconName);
-        if (shouldNotRender)
-        {
-            return;
-        }
 
         iconColor = CascadingDefaults.AppliedIconColor(IconColor);
         iconFill = CascadingDefaults.AppliedIconFill(IconFill);

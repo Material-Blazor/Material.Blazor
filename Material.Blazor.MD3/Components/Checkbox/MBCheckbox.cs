@@ -1,7 +1,9 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,29 +15,6 @@ namespace Material.Blazor;
 public sealed class MBCheckbox : InputComponent<bool>
 {
     #region members
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadgePLUS { get; set; }
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter] public bool BadgeExitedPLUS { get; set; }
-    private bool _cachedBadgeExited;
-
-    /// <summary>
-    /// The badge's value.
-    /// </summary>
-    [Parameter] public string BadgeValuePLUS { get; set; }
-    private string _cachedBadgeValue;
-
 
     /// <summary>
     /// Determines if the checkbox is disabled.
@@ -59,7 +38,6 @@ public sealed class MBCheckbox : InputComponent<bool>
 
 
 
-    private MBBadge BadgeRef { get; set; }
     private string checkboxStyle { get; } = "display: flex; flex-direction: row; flex-grow: 1; align-items: center;";
 
     #endregion
@@ -72,24 +50,6 @@ public sealed class MBCheckbox : InputComponent<bool>
         var rendSeq = 0;
         builder.OpenElement(rendSeq++, "div");
         {
-            if (HasBadgePLUS)
-            {
-                builder.OpenElement(rendSeq++, "span");
-                {
-                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                    {
-                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                        builder.AddComponentReferenceCapture(rendSeq++,
-                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                    }
-                    builder.CloseComponent();
-                }
-                builder.CloseElement();
-            }
-
             builder.OpenElement(rendSeq++, "div");
             {
                 builder.AddAttribute(rendSeq++, "class", @class);
@@ -154,26 +114,6 @@ public sealed class MBCheckbox : InputComponent<bool>
     {
         Value = !Value;
         await ValueChanged.InvokeAsync(Value);
-    }
-
-    #endregion
-
-    #region OnParametersSetAsync
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        if (BadgeRef is not null)
-        {
-            if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
-            {
-                _cachedBadgeValue = BadgeValuePLUS;
-                _cachedBadgeExited = BadgeExitedPLUS;
-
-                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-            }
-        }
     }
 
     #endregion

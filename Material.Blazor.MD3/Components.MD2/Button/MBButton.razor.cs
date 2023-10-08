@@ -61,29 +61,6 @@ public partial class MBButton : ComponentFoundation
     [Parameter] public string DialogAction { get; set; }
 
 
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
-
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
-
-
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter] public string BadgeValue { get; set; }
-
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter] public bool BadgeExited { get; set; }
-
 #nullable restore annotations
 
     private ElementReference ElementReference { get; set; }

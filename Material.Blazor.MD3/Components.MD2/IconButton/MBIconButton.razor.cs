@@ -24,15 +24,6 @@ public partial class MBIconButton : ComponentFoundation
     [Parameter] public MBDensity? Density { get; set; }
 
 
-    [Parameter] public bool HasBadge { get; set; }
-
-    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
-
-    [Parameter] public string BadgeValue { get; set; }
-
-    [Parameter] public bool BadgeExited { get; set; }
-
-
     private bool AppliedTouchTarget => false;
     private ElementReference ElementReference { get; set; }
 

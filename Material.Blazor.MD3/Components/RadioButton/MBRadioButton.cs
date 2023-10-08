@@ -1,8 +1,9 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
-using System;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,31 +16,6 @@ namespace Material.Blazor;
 public partial class MBRadioButton<TItem> : InputComponent<TItem>
 {
     #region members
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadgePLUS { get; set; }
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStylePLUS { get; set; } = MBBadgeStyle.ValueBearing;
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter]
-    public bool BadgeExitedPLUS { get; set; }
-    private bool _cachedBadgeExited;
-
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter]
-    public string BadgeValuePLUS { get; set; }
-    private string _cachedBadgeValue;
-
 
     /// <summary>
     /// The radio button's density.
@@ -77,7 +53,6 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
 
 
 
-    private MBBadge BadgeRef { get; set; }
     private string radioStyle { get; } = "display: flex; flex-direction: row; flex-grow: 0; align-items: flex-start;";
 
     #endregion
@@ -91,24 +66,6 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
 
         builder.OpenElement(rendSeq++, "div");
         {
-            if (HasBadgePLUS)
-            {
-                builder.OpenElement(rendSeq++, "span");
-                {
-                    builder.AddAttribute(rendSeq++, "class", "mb-badge-container");
-                    builder.OpenComponent(rendSeq++, typeof(MBBadge));
-                    {
-                        builder.AddComponentParameter(rendSeq++, "BadgeStyle", BadgeStylePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Value", BadgeValuePLUS);
-                        builder.AddComponentParameter(rendSeq++, "Exited", BadgeExitedPLUS);
-                        builder.AddComponentReferenceCapture(rendSeq++,
-                            (__value) => { BadgeRef = (Material.Blazor.MBBadge)__value; });
-                    }
-                    builder.CloseElement();
-                }
-                builder.CloseElement();
-            }
-
             builder.OpenElement(rendSeq++, "div");
             {
                 builder.AddAttribute(rendSeq++, "class", @class);
@@ -172,26 +129,6 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     {
         Value = TargetCheckedValue;
         await ValueChanged.InvokeAsync(Value);
-    }
-
-    #endregion
-
-    #region OnParametersSetAsync
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        if (BadgeRef is not null)
-        {
-            if (_cachedBadgeValue != BadgeValuePLUS || _cachedBadgeExited != BadgeExitedPLUS)
-            {
-                _cachedBadgeValue = BadgeValuePLUS;
-                _cachedBadgeExited = BadgeExitedPLUS;
-
-                EnqueueJSInteropAction(() => BadgeRef.SetValueAndExited(BadgeValuePLUS, BadgeExitedPLUS));
-            }
-        }
     }
 
     #endregion
