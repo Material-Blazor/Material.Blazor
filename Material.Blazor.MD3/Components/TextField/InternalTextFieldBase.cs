@@ -29,7 +29,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     #endregion
 
-    #region parameters
+    #region non-cascading parameters
 
     /// <summary>
     /// The text field's density.
@@ -42,9 +42,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     [Parameter] public string? Label { get; set; }
 
     /// <summary>
-    /// The leading icon's name. No leading icon shown if not set.
+    /// The leading icon's descriptor. No leading icon is shown if not set.
     /// </summary>
-    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
+    [Parameter] public MBIconDescriptor? LeadingIconPLUS { get; set; }
 
     /// <summary>
     /// Prefix text.
@@ -79,9 +79,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     [Parameter] public MBTextInputStyle TextInputStyle { get; set; } = MBTextInputStyle.Outlined;
 
     /// <summary>
-    /// The trailing icon's name. No leading icon shown if not set.
+    /// The trailing icon's descriptor. No trailing icon is shown if not set.
     /// </summary>
-    [Parameter] public MBIconDescriptor? TrailingIcon { get; set; }
+    [Parameter] public MBIconDescriptor? TrailingIconPLUS { get; set; }
 
     /// <summary>
     /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
@@ -155,15 +155,12 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         var rendSeq = 0;
-        var componentName = "";
-        if (TextInputStyle == MBTextInputStyle.Outlined)
+        var componentName = TextInputStyle switch
         {
-            componentName = "md-outlined-text-field";
-        }
-        else
-        {
-            componentName = "md-filled-text-field";
-        }
+            MBTextInputStyle.Outlined => "md-outlined-text-field",
+            MBTextInputStyle.Filled => "md-filled-text-field",
+            _ => throw new System.Exception("Unknown TextInputStyle")
+        };
 
         builder.OpenElement(rendSeq++, componentName);
         {
@@ -203,23 +200,23 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
             }
 
-            if (LeadingIcon is not null)
+            if (LeadingIconPLUS is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
                     CascadingDefaults,
-                    LeadingIcon,
+                    LeadingIconPLUS,
                     "leading-icon");
             }
 
-            if (TrailingIcon is not null)
+            if (TrailingIconPLUS is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
                     CascadingDefaults,
-                    TrailingIcon,
+                    TrailingIconPLUS,
                     "trailing-icon");
             }
 
@@ -296,7 +293,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// <returns></returns>
     internal async Task SelectFieldContent()
     {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField2.selectFieldContent", ElementReference).ConfigureAwait(false);
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", ElementReference).ConfigureAwait(false);
     }
 
     #endregion

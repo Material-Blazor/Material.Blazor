@@ -23,32 +23,33 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Default and explicit button styles.
+                        Explicit button styles.
                     </h3>
 
                     <p>
-                        <Material.Blazor.MD2.MBButton Label="Default (Text) Style"
-                                                      @onclick="@(() => ButtonClick("Default Style"))" />
+                        <MBButton ButtonStyle="@MBButtonStyle.Elevated"
+                                  Label="Elevated Style"
+                                  @onclick="@(() => ButtonClick("Elevated Style"))" />
                     </p>
                     <p>
-                        <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.Text"
-                                                      Label="Explicit Text Style"
-                                                      @onclick="@(() => ButtonClick("Text Style"))" />
+                        <MBButton ButtonStyle="@MBButtonStyle.Filled"
+                                  Label="Filled Style"
+                                  @onclick="@(() => ButtonClick("Filled Style"))" />
                     </p>
                     <p>
-                        <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.Outlined"
-                                                      Label="Outlined Style"
-                                                      @onclick="@(() => ButtonClick("Outlined Style"))" />
+                        <MBButton ButtonStyle="@MBButtonStyle.FilledTonal"
+                                  Label="FilledTonal Style"
+                                  @onclick="@(() => ButtonClick("FilledTonal Style"))" />
                     </p>
                     <p>
-                        <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedUnelevated"
-                                                      Label="Contained Style"
-                                                      @onclick="@(() => ButtonClick("Contained Style"))" />
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Outlined Style"
+                                  @onclick="@(() => ButtonClick("Outlined Style"))" />
                     </p>
                     <p>
-                        <Material.Blazor.MD2.MBButton ButtonStyle="@MBButtonStyleMD2.ContainedRaised"
-                                                      Label="Contained Raised Style"
-                                                      @onclick="@(() => ButtonClick("Contained Raised Style"))" />
+                        <MBButton ButtonStyle="@MBButtonStyle.Text"
+                                  Label="Text Style"
+                                  @onclick="@(() => ButtonClick("Text Style"))" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -56,7 +57,7 @@
 
 
 
-        <div class="mdc-layout-grid__cell--span-4">
+@*         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -158,7 +159,7 @@
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
-    </PageContent>
+ *@    </PageContent>
 </DemonstrationPage>
 
 

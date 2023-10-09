@@ -22,15 +22,14 @@ public sealed class MBSwitch : InputComponent<bool>
     [Parameter] public bool? Icons { get; set; }
 
     /// <summary>
-    /// Determines shows icons only in the selected state.
-    /// </summary>
-    [Parameter] public bool? ShowOnlySelectedIcon { get; set; }
-
-    /// <summary>
     /// Provides a leading label for the checkbox.
     /// </summary>
     [Parameter] public string LeadingLabelPLUS { get; set; }
 
+    /// <summary>
+    /// Determines shows icons only in the selected state.
+    /// </summary>
+    [Parameter] public bool? ShowOnlySelectedIcon { get; set; }
 
     /// <summary>
     /// Provides a trailing label for the checkbox.
@@ -54,7 +53,6 @@ public sealed class MBSwitch : InputComponent<bool>
             builder.AddAttribute(rendSeq++, "class", @class);
             builder.AddAttribute(rendSeq++, "style", switchStyle + style);
             builder.AddAttribute(rendSeq++, "id", id);
-            builder.AddAttribute(rendSeq++, "style", "display: flex; flex-flow: row nowrap; align-items: center;");
 
             if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
             {

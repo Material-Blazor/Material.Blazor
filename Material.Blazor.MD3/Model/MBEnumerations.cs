@@ -2,8 +2,43 @@ using System;
 
 namespace Material.Blazor;
 
-#region MBButtonStyleMD2
+#region MBButtonStyle
 
+/// <summary>
+/// Style for an <see cref="MBButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
+/// </summary>
+public enum MBButtonStyle
+{
+    /// <summary>
+    /// Elevated style
+    /// </summary> 
+    Elevated,
+
+    /// <summary>
+    /// Filled style
+    /// </summary> 
+    Filled,
+
+    /// <summary>
+    /// FilledTonal style
+    /// </summary> 
+    FilledTonal,
+
+    /// <summary>
+    /// Outlined style
+    /// </summary> 
+    Outlined,
+
+    /// <summary>
+    /// Text style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>  
+    Text
+}
+
+#endregion
+
+#region MBButtonStyleMD2
 /// <summary>
 /// Style for an <see cref="MBButton"/> per Material Theme styling.
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
