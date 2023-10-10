@@ -16,6 +16,9 @@ public sealed class MBButton : ComponentFoundation
 {
     #region members
 
+    [Parameter] public MBDensity Density { get; set; }
+    [Parameter] public MBIconDescriptor IconDescriptor { get; set; }
+    [Parameter] public bool IconIsTrailing { get; set; }
     [Parameter] public MBButtonStyle? ButtonStyle { get; set; }
     [Parameter] public string Label { get; set; }
 
@@ -37,11 +40,6 @@ public sealed class MBButton : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-            if (AppliedDisabled)
-            {
-                builder.AddAttribute(rendSeq++, "disabled");
-            }
-
             var componentName = CascadingDefaults.AppliedButtonStyle(ButtonStyle) switch
             {
                 MBButtonStyle.Elevated => "md-elevated-button",
@@ -49,24 +47,39 @@ public sealed class MBButton : ComponentFoundation
                 MBButtonStyle.FilledTonal => "md-filled-tonal-button",
                 MBButtonStyle.Outlined => "md-outlined-button",
                 MBButtonStyle.Text => "md-text-button",
-                _ => throw new System.Exception("Unknown TextInputStyle")
+                _ => throw new System.Exception("Unknown ButtonStyle")
             };
 
             builder.OpenElement(rendSeq++, componentName);
             {
+                if (AppliedDisabled)
+                {
+                    builder.AddAttribute(rendSeq++, "disabled");
+                }
+
+                if (IconIsTrailing)
+                {
+                    builder.AddAttribute(rendSeq++, "trailing-icon");
+                }
+
                 if (!string.IsNullOrWhiteSpace(Label))
                 {
                     builder.AddContent(rendSeq++, Label);
                 }
+
+                if (IconDescriptor is not null)
+                {
+                    MBIcon.BuildRenderTreeWorker(
+                        builder,
+                        ref rendSeq,
+                        CascadingDefaults,
+                        IconDescriptor,
+                        "icon");
+                }
             }
             builder.CloseElement();
 
-            // Need to handle icon, icon placement, onclick, disabled
-
-            //    if (AppliedDisabled)
-            //    {
-            //        builder.AddAttribute(rendSeq++, "disabled");
-            //    }
+            // Consider throttle
 
             //    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
         }
