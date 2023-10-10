@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -9,63 +9,19 @@ namespace Material.Blazor.MD2;
 /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--icon" class when 
 /// placed inside an <see cref="MBCard"/>.
 /// </summary>
-public partial class MBIconButton : ComponentFoundationMD2
+public partial class MBIconButton : ComponentFoundation
 {
     [CascadingParameter] private MBCard Card { get; set; }
 
-
-    /// <summary>
-    /// Inclusion of touch target
-    /// </summary>
     [Parameter] public bool? TouchTarget { get; set; }
 
 
 #nullable enable annotations
-    /// <summary>
-    /// The icon's name.
-    /// </summary>
-    [Parameter] public string Icon { get; set; }
+    [Parameter] public string IconColor { get; set; } = "white";
+    [Parameter] public string IconName { get; set; }
 
 
-    /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    /// <summary>
-    /// The button's density.
-    /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
-
-
-    /// <summary>
-    /// Determines whether the button has a badge - defaults to false.
-    /// </summary>
-    [Parameter] public bool HasBadge { get; set; }
-
-
-    /// <summary>
-    /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
-    /// </summary>
-    [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
-
-
-    /// <summary>
-    /// The button's density.
-    /// </summary>
-    [Parameter] public string BadgeValue { get; set; }
-
-
-    /// <summary>
-    /// When true collapses the badge.
-    /// </summary>
-    [Parameter] public bool BadgeExited { get; set; }
 
 
     private bool AppliedTouchTarget => false;

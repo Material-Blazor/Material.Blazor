@@ -25,6 +25,7 @@ public class MBIcon : ComponentFoundation
     /// <summary>
     /// The foundry.
     /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+    /// <para><c>IconFoundry="IconHelper.MSIcon()"</c></para>
     /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
     /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
     /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>

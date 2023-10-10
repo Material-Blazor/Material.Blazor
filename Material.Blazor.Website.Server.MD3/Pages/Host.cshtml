@@ -18,20 +18,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Material.Blazor</title>
+    <title>Material.Blazor.MD3</title>
     <base href="/" />
 
-    @*    We load all of the MD2 resources as the website is a mix of MD2 structure with MD3 components (for now)*@
-
     <link href="_content/Material.Blazor.MD3/material.blazor.min.css" rel="stylesheet">
-
+    
     <link href="_content/Material.Blazor.Website.MD3/icon-512.png" rel="apple-touch-icon" sizes="512x512">
     <link href="_content/Material.Blazor.Website.MD3/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
     <link href="_content/Material.Blazor.Website.MD3/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
     <link id="app-style" href="_content/Material.Blazor.Website.MD3/css/material-default-theme.min.css" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
@@ -39,8 +34,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Shrikhand" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />    <!-- Global site tag (gtag.js) - Google Analytics -->
     @if (PlatformDetermination.IsBlazorServer)
     {
         <component type="typeof(HeadOutlet)" render-mode="@renderMode" />

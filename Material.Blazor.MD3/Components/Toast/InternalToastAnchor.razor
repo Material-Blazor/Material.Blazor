@@ -16,7 +16,8 @@
                 {
                     <div class="mb-toast__icon">
                         <MBIcon aria-hidden="true"
-                                IconName="@toast.Settings.AppliedIconName" />
+                                Descriptor="@MBIcon.IconDescriptorConstructor(
+                                    name: @toast.Settings.AppliedIconName)" />
                     </div>
                 }
 
@@ -34,8 +35,9 @@
                 @if (toast.Settings.CloseMethod != MBNotifierCloseMethod.Timeout)
                 {
                     <div class="mb-toast__icon">
-                        <MBIcon IconName="close"
-                        @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))" />
+                        <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                    name: "close")"
+                                @onclick="@(async () => await CloseToastAsync(toast.Id).ConfigureAwait(false))" />
                     </div>
                 }
             </div>

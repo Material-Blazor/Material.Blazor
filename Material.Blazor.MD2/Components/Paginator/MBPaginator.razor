@@ -1,0 +1,52 @@
+﻿@namespace Material.Blazor.MD2
+@inherits ComponentFoundationMD2
+
+
+<div class="mdc-data-table__pagination @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+    <div class="mdc-data-table__pagination-trailing">
+        <div class="mdc-data-table__pagination-rows-per-page">
+            <div class="mdc-data-table__pagination-rows-per-page-label">
+                @ItemsText
+            </div>
+
+            @if (ItemsPerPageSelection.Count() > 1)
+            {
+                <div class="mdc-data-table__pagination-rows-per-page-select">
+                    <MBIconButtonToggle @bind-Value="@ToggleOn"
+                                        IconOff="arrow_drop_down"
+                                        IconOn="arrow_drop_up"
+                                        @ref="@IconButtonToggle" />
+                        <div class="mdc-menu-surface--anchor">
+                            <MBMenu OnMenuClosed="@OnMenuClosed"
+                                @ref="Menu">
+                                @foreach (var itemsPerPage in ItemsPerPageSelection)
+                                {
+                                    <MBListItem @key="@itemsPerPage"
+                                                Label="@itemsPerPage.ToString("G0")"
+                                                @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
+                                }
+                            </MBMenu>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mdc-data-table__pagination-navigation">
+            @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
+            <div class="mdc-data-table__pagination-total">
+                <span class="hidden" aria-hidden="true">@MaxPositionText</span>
+                <span>@PositionText</span>
+            </div>
+        </div>
+
+        <div class="mdc-data-table__pagination-navigation">
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="first_page" @onclick="@OnFirstClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="last_page" @onclick="@OnLastClick" Disabled="@NextDisabled" data-prev-page="true" />
+        </div>
+    </div>
+</div>

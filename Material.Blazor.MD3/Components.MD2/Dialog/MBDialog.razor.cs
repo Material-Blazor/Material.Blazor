@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -10,7 +10,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// This is a general purpose Material Theme dialog.
 /// </summary>
-public partial class MBDialog : ComponentFoundationMD2, IMBDialog
+public partial class MBDialog : ComponentFoundation, IMBDialog
 {
     /// <summary>
     /// The dialog title.
@@ -66,7 +66,7 @@ public partial class MBDialog : ComponentFoundationMD2, IMBDialog
     private bool HasButtons => Buttons != null;
     private bool HasCustomHeader => CustomHeader != null;
     private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
-    private List<ComponentFoundationMD2> LayoutChildren { get; set; } = new List<ComponentFoundationMD2>();
+    private List<ComponentFoundation> LayoutChildren { get; set; } = new List<ComponentFoundation>();
     private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
     private string OverflowClass => OverflowVisible ? "mb-dialog-overflow-visible" : "";
 
@@ -118,7 +118,7 @@ public partial class MBDialog : ComponentFoundationMD2, IMBDialog
 
 
     /// <inheritdoc/>
-    void IMBDialog.RegisterLayoutAction(ComponentFoundationMD2 child)
+    void IMBDialog.RegisterLayoutAction(ComponentFoundation child)
     {
         LayoutChildren.Add(child);
     }

@@ -61,54 +61,54 @@
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@ToastService.Configuration.Position"
-                                                      Items="@positionItems"
-                                                      Label="Toast Position"
-                                                      SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          Items="@positionItems"
+                                                          LeadingLabel="Toast Position"
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBCheckbox @bind-Value="@OverrideCssDefaults"
                                         TrailingLabelPLUS="Override Default CSS" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBOutlinedIntField @bind-Value="@ToastService.Configuration.MaxToastsShowing"
-                                                Label="Max Toasts (0-10)"
-                                                Max="10"
-                                                Min="0"
-                                                NumericFormat="N0" />
+                            <MBIntField @bind-Value="@ToastService.Configuration.MaxToastsShowing"
+                                        LeadingLabel="Max Toasts (0-10)"
+                                        Max="10"
+                                        Min="0"
+                                        NumericFormat="N0" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-12">
                             <p>
-                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
-                                                              Label="Info Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                          Label="Info Toast"
+                                          @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Info,
                                                               heading: "I'm an Info",
                                                               message: "Nothing doing here."))"
-                                                              style="background-color: var(--mb-toast-background-color-info); color: var(--mb-toast-color-info); margin-bottom: 1rem;" />
+                                          style="--md-sys-color-primary: var(--mb-toast-background-color-info); color: var(--mb-toast-color-info); margin-bottom: 1rem;" />
 
-                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
-                                                              Label="Success Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                          Label="Success Toast"
+                                          @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Success,
                                                               heading: "I'm a SUCCESS",
                                                               message: "Congratulations!" ))"
-                                                              style="background-color: var(--mb-toast-background-color-success); color: var(--mb-toast-color-success); margin-bottom: 1rem;" />
+                                          style="--md-sys-color-primary: var(--mb-toast-background-color-success); color: var(--mb-toast-color-success); margin-bottom: 1rem;" />
 
-                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
-                                                              Label="Warning Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                          Label="Warning Toast"
+                                          @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Warning,
                                                               heading: "I'm a WARNING",
                                                               message: "You have been warned."))"
-                                                              style="background-color: var(--mb-toast-background-color-warning); color: var(--mb-toast-color-warning); margin-bottom: 1rem;" />
+                                          style="--md-sys-color-primary: var(--mb-toast-background-color-warning); color: var(--mb-toast-color-warning); margin-bottom: 1rem;" />
 
-                                <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
-                                                              Label="Error Toast"
-                                @onclick="@(() => ToastService.ShowToast(
+                                <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                          Label="Error Toast"
+                                          @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Error,
                                                               heading: "I'm an ERROR",
                                                               message: "Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it. Go fix it."))"
-                                                              style="background-color: var(--mb-toast-background-color-error); color: var(--mb-toast-color-error); margin-bottom: 1rem;" />
+                                          style="--md-sys-color-primary: var(--mb-toast-background-color-error); color: var(--mb-toast-color-error); margin-bottom: 1rem;" />
                             </p>
                         </div>
                     </div>
@@ -133,64 +133,64 @@
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@CssClass"
                                                           Items="CssClassItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Additional css class"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@CloseMethod"
                                                           Items="closeMethodItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Close method"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@Heading"
                                                           Items="headingItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Heading"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@Icon"
                                                           Items="iconItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Icon"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@Level"
                                                           Items="levelItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Level"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@Message"
                                                           Items="messageItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Message"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@ShowIcon"
                                                           Items="showIconItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Show icon"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <Material.Blazor.MD2.MBSelect @bind-Value="@Timeout"
                                                           Items="timeoutItems"
-                                                          ItemValidation="@Material.Blazor.MD2.MBItemValidation.DefaultToFirst"
+                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
                                                           Label="Timeout"
-                                                          SelectInputStyle="@Material.Blazor.MD2.MBSelectInputStyle.Outlined" />
+                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12">
-                            <Material.Blazor.MD2.MBButton ButtonStyle="@Material.Blazor.MD2.MBButtonStyle.ContainedRaised"
-                                                          Label="Toast with selected options"
-                            @onclick="@CustomiseClick" />
+                            <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                      Label="Toast with selected options"
+                                      @onclick="@CustomiseClick" />
                         </div>
                     </div>
                 </Primary>
@@ -204,36 +204,36 @@
 @code {
     private bool OverrideCssDefaults { get; set; }
 
-    private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
-                                                                                                       select new Material.Blazor.MD2.MBSelectElementMD2<MBToastPosition>
-                                                                                                           {
-                                                                                                               SelectedValue = pos,
-                                                                                                               Label = pos.ToString()
-                                                                                                           };
+    private readonly IEnumerable<MBSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
+                                                                                   select new MBSelectElement<MBToastPosition>
+                                                                                       {
+                                                                                           SelectedValue = pos,
+                                                                                           LeadingLabel = pos.ToString()
+                                                                                       };
 
 
     private string CssClass { get; set; }
-    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] CssClassItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    private readonly MBSelectElement<string>[] CssClassItems = new MBSelectElement<string>[]
         {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "italic-class", Label = "Italic" },
+        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
+        new MBSelectElement<string> { SelectedValue = "italic-class", LeadingLabel = "Italic" },
                                                 };
 
 
     private MBNotifierCloseMethod CloseMethod { get; set; }
-    private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
-                                                                                                                select new Material.Blazor.MD2.MBSelectElementMD2<MBNotifierCloseMethod>
-                                                                                                                    {
-                                                                                                                        SelectedValue = c,
-                                                                                                                        Label = c.ToString()
-                                                                                                                    };
+    private readonly IEnumerable<MBSelectElement<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
+                                                                                            select new MBSelectElement<MBNotifierCloseMethod>
+                                                                                                {
+                                                                                                    SelectedValue = c,
+                                                                                                    LeadingLabel = c.ToString()
+                                                                                                };
 
     private string Heading { get; set; }
-    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] headingItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
         {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
+        new MBSelectElement<string> { SelectedValue = "Run of the mill heading", LeadingLabel = "Run of the mill heading" },
+        new MBSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", LeadingLabel = "Heading that will be truncated" }
                                                 };
 
 
@@ -241,64 +241,63 @@
     class MyIcon
     {
         public string Name;
-        public Material.Blazor.MD2.IMBIconFoundry? Foundry;
     }
 #nullable restore annotations
 
     private MyIcon Icon { get; set; }
-    private readonly Material.Blazor.MD2.MBSelectElementMD2<MyIcon>[] iconItems = new Material.Blazor.MD2.MBSelectElementMD2<MyIcon>[]
+    private readonly MBSelectElement<MyIcon>[] iconItems = new MBSelectElement<MyIcon>[]
         {
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Round) }, Label = "thumb_up (rounded)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = Material.Blazor.MD2.MBIconHelper.MIFoundry(theme: Material.Blazor.MD2.MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = Material.Blazor.MD2.MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
-        new Material.Blazor.MD2.MBSelectElementMD2<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = Material.Blazor.MD2.MBIconHelper.FAFoundry(relativeSize: Material.Blazor.MD2.MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, LeadingLabel = "directions_run" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (filled / default)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (outlined)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (rounded)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (two-tone)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (sharp)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, LeadingLabel = "fa-ambulance" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, LeadingLabel = "fa-ambulance (x-small)" },
                                                 };
 
 
     private MBToastLevel Level { get; set; }
-    private readonly IEnumerable<Material.Blazor.MD2.MBSelectElementMD2<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
-                                                                                                 select new Material.Blazor.MD2.MBSelectElementMD2<MBToastLevel>
-                                                                                                     {
-                                                                                                         SelectedValue = c,
-                                                                                                         Label = c.ToString()
-                                                                                                     };
+    private readonly IEnumerable<MBSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
+                                                                             select new MBSelectElement<MBToastLevel>
+                                                                                 {
+                                                                                     SelectedValue = c,
+                                                                                     LeadingLabel = c.ToString()
+                                                                                 };
 
 
     private string Message { get; set; }
-    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] messageItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    private readonly MBSelectElement<string>[] messageItems = new MBSelectElement<string>[]
         {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+        new MBSelectElement<string> { SelectedValue = "Run of the mill message", LeadingLabel = "Run of the mill message" },
+        new MBSelectElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", LeadingLabel = "Message with markup" },
+        new MBSelectElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", LeadingLabel = "Message that will be truncated" }
                                                 };
 
 
     private string ShowIcon { get; set; }
-    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] showIconItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    private readonly MBSelectElement<string>[] showIconItems = new MBSelectElement<string>[]
         {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "true", Label = "true" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "false", Label = "false" }
+        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
+        new MBSelectElement<string> { SelectedValue = "true", LeadingLabel = "true" },
+        new MBSelectElement<string> { SelectedValue = "false", LeadingLabel = "false" }
                                                 };
 
 
     private string Timeout { get; set; }
-    private readonly Material.Blazor.MD2.MBSelectElementMD2<string>[] timeoutItems = new Material.Blazor.MD2.MBSelectElementMD2<string>[]
+    private readonly MBSelectElement<string>[] timeoutItems = new MBSelectElement<string>[]
         {
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "", Label = "Toast Svc Default" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "1000", Label = "1 second" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "10000", Label = "10 seconds" },
-        new Material.Blazor.MD2.MBSelectElementMD2<string> { SelectedValue = "60000", Label = "60 seconds" }
+        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
+        new MBSelectElement<string> { SelectedValue = "1000", LeadingLabel = "1 second" },
+        new MBSelectElement<string> { SelectedValue = "10000", LeadingLabel = "10 seconds" },
+        new MBSelectElement<string> { SelectedValue = "60000", LeadingLabel = "60 seconds" }
                                                 };
 
 
     private void CustomiseClick()
     {
-        string appliedCssClass = (CssClass.Length == 0) ? null : CssClass;
+        string appliedCssClass = (CssClass is null || CssClass.Length == 0) ? null : CssClass;
 
         string appliedHeading = (Heading.Length == 0) ? null : Heading;
 
@@ -313,7 +312,6 @@
             level: Level,
             message: Message,
             iconName: Icon.Name,
-            // iconFoundry: Icon.Foundry,
             showIcon: appliedShowIcon,
             timeout: appliedTimeout);
     }

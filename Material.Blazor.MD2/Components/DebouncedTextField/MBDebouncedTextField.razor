@@ -1,0 +1,24 @@
+﻿@namespace Material.Blazor.MD2
+
+@inherits InputComponentMD2<string>
+
+
+<MBTextField class="@(@class)"
+             style="@style"
+             id="@id"
+             @attributes="AttributesToSplat()"
+             Density="@Density"
+             Disabled=@AppliedDisabled
+             HelperText="@HelperText"
+             HelperTextPersistent="@HelperTextPersistent"
+             IconFoundry="@IconFoundry"
+             Label="@Label"
+             LeadingIcon="@LeadingIcon"
+             @oninput="@OnTextInput"
+             Prefix="@Prefix"
+             Suffix="@Suffix"
+             TextAlignStyle="@TextAlignStyle"
+             TextInputStyle="@TextInputStyle"
+             TrailingIcon="@TrailingIcon"
+             @ref="@TextField"
+             Value="@Value" />

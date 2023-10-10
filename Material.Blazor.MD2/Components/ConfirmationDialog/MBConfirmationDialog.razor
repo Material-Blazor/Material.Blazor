@@ -1,0 +1,41 @@
+﻿@namespace Material.Blazor.MD2
+@inherits ComponentFoundationMD2
+
+<MBDialog @ref="@Dialog" Title="@Title" OverflowVisible="@OverflowVisible">
+    <Body>
+        @Body
+        <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
+        <p>
+            <MBTextField @bind-Value="@EnteredText"
+                         class="mb-full-width"
+                         Disabled="ConfirmationDisabled"
+                         @oninput="@OnInput" />
+        </p>
+    </Body>
+    <Buttons>
+        @if (ConfirmedButtons is null || UnconfirmedButtons is null)
+        {
+            <MBButton ButtonStyle="@(Confirmed ? MBButtonStyle.ContainedUnelevated : MBButtonStyle.Text)"
+                      DialogAction="@ConfirmActionResult"
+                      Disabled="@(!Confirmed)"
+                      Label="OK"
+                      LeadingIcon="check" />
+
+            <MBButton ButtonStyle="@MBButtonStyle.Text"
+                      DialogAction="@CancelActionResult"
+                      Label="Cancel"
+                      LeadingIcon="cancel" />
+        }
+        else
+        {
+            if (Confirmed)
+            {
+                @ConfirmedButtons
+            }
+            else
+            {
+                @UnconfirmedButtons
+            }
+        }
+    </Buttons>
+</MBDialog>

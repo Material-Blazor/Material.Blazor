@@ -1,0 +1,43 @@
+﻿@page "/iconbutton"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentAndPageName="IconButton"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true"
+                   Title="Icon Button Demonstration">
+    <Description>
+        <p>
+            Shows an icon button and density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon Button
+                    </h2>
+
+                    <p>
+                        <Material.Blazor.MD2.MBIconButton IconName="home"
+                                                          IconColor="darkblue"
+                                                          @onclick="@(() => ButtonClick("Icon Button"))" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}

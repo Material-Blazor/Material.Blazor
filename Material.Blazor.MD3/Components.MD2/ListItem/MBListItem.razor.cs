@@ -1,48 +1,25 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.MD2;
 
-/// <summary>
-/// This is a general purpose Material Theme list item.
-/// </summary>
-public partial class MBListItem : ComponentFoundationMD2
+public partial class MBListItem : ComponentFoundation
 {
     [CascadingParameter] private MBDrawer Drawer { get; set; }
     [CascadingParameter] private MBMenu Menu { get; set; }
 
-
-#nullable enable annotations
-    /// <summary>
-    /// The list item's label
-    /// </summary>
     [Parameter] public string Label { get; set; }
 
+    [Parameter] public string LeadingIcon { get; set; }
 
-    /// <summary>
-    /// The leading icon's name. No leading icon shown if not set.
-    /// </summary>
-    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string ListItemColor { get; set; } = "Black";
 
-
-    /// <summary>
-    /// Determined whether the list item is in an menu and is in the selected state
-    /// </summary>
     [Parameter] public bool IsSelectedMenuItem { get; set; } = true;
 
 
-    /// <summary>
-    /// The foundry to use for both leading and trailing icons.
-    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-    /// </summary>
-    [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
+    private string styleColor { get; set; }
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -62,5 +39,7 @@ public partial class MBListItem : ComponentFoundationMD2
         ConditionalCssClasses
             .AddIf("mdc-menu-item--selected", () => Menu != null && IsSelectedMenuItem)
             .AddIf("mdc-deprecated-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
+
+        styleColor = "color: " + ListItemColor + "; ";
     }
 }

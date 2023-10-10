@@ -1,6 +1,11 @@
 ﻿/*
 MD3 JS
 */
+import '@material/web/button/elevated-button.js';
+import '@material/web/button/filled-button.js';
+import '@material/web/button/filled-tonal-button.js';
+import '@material/web/button/outlined-button.js';
+import '@material/web/button/text-button.js';
 import '@material/web/checkbox/checkbox.js';
 import '@material/web/icon/icon.js';
 import '@material/web/iconbutton/icon-button.js';
@@ -12,7 +17,6 @@ import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/switch/switch.js';
 
 import * as MBTextField from '../Components/TextField/MBTextField';
-import * as MBTextField2 from '../Components/TextField2/MBTextField2';
 
 /*
 MD2 JS
@@ -24,12 +28,11 @@ import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
 import * as MBIconButton from '../Components.MD2/IconButton/MBIconButton'
 import * as MBMenu from '../Components.MD2/Menu/MBMenu';
 import * as MBSelect from '../Components.MD2/Select/MBSelect';
+import * as MBSlider from '../Components.MD2/Slider/MBSlider';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
-import * as MBTooltip from '../Components.MD2/Tooltip/MBTooltip';
 
 (<any>window).MaterialBlazor = {
     MBTextField,
-    MBTextField2,
 
     MBCard,
     MBDataTable,
@@ -38,6 +41,6 @@ import * as MBTooltip from '../Components.MD2/Tooltip/MBTooltip';
     MBIconButton,
     MBMenu,
     MBSelect,
-    MBTopAppBar,
-    MBTooltip
+    MBSlider,
+    MBTopAppBar
 };

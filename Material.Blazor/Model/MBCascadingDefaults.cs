@@ -17,6 +17,8 @@ namespace Material.Blazor;
 /// </remarks>
 public class MBCascadingDefaults
 {
+    #region ATTRIBUTE SPLATTING AND VALIDATION
+
     /*************************************************************************************************************
      * 
      * 
@@ -57,7 +59,9 @@ public class MBCascadingDefaults
     /// <returns></returns>
     internal MBItemValidation AppliedItemValidation(MBItemValidation? criteria = null) => criteria ?? ItemValidation;
 
+    #endregion
 
+    #region Icons
 
     /*************************************************************************************************************
      * 
@@ -66,6 +70,8 @@ public class MBCascadingDefaults
      * 
      * 
      ************************************************************************************************************/
+
+    #region MBIconFoundry
 
     private MBIconFoundryName _iconFoundryName = MBIconFoundryName.MaterialIcons;
     /// <summary>
@@ -80,7 +86,9 @@ public class MBCascadingDefaults
     /// <returns>The <see cref="IconFoundryName"/> to apply.</returns>
     internal MBIconFoundryName AppliedIconFoundryName(MBIconFoundryName? iconFoundryName = null) => iconFoundryName ?? IconFoundryName;
 
+    #endregion
 
+    #region MBIconMI
 
     private MBIconMITheme _iconMITheme = MBIconMITheme.Filled;
     /// <summary>
@@ -95,7 +103,41 @@ public class MBCascadingDefaults
     /// <returns>The <see cref="IconMITheme"/> to apply.</returns>
     internal MBIconMITheme AppliedIconMITheme(MBIconMITheme? iconMITheme = null) => iconMITheme ?? IconMITheme;
 
+    #endregion
 
+    #region MBIconMS
+
+    private string _iconMSColor = "black";
+    public string IconMSColor { get => _iconMSColor; set => SetParameter(ref _iconMSColor, value); }
+    internal string AppliedIconMSColor(string iconMSColor = null) => iconMSColor ?? IconMSColor;
+
+    private bool _iconMSFill = true;
+    public bool IconMSFill { get => _iconMSFill; set => SetParameter(ref _iconMSFill, value); }
+    internal bool AppliedIconMSFill(bool? iconMSFill = null) => iconMSFill ?? IconMSFill;
+
+    private MBIconMSGradient _iconMSGradient = MBIconMSGradient.NormalEmphasis;
+    public MBIconMSGradient IconMSGradient { get => _iconMSGradient; set => SetParameter(ref _iconMSGradient, value); }
+    internal MBIconMSGradient AppliedIconMSGradient(MBIconMSGradient? iconMSGradient = null) => iconMSGradient ?? IconMSGradient;
+
+    private string _iconMSName = "Favorite";
+    public string IconMSName { get => _iconMSName; set => SetParameter(ref _iconMSName, value); }
+    internal string AppliedIconMSName(string iconMSName = null) => iconMSName ?? IconMSName;
+
+    private MBIconMSStyle _iconMSStyle = MBIconMSStyle.Outlined;
+    public MBIconMSStyle IconMSStyle { get => _iconMSStyle; set => SetParameter(ref _iconMSStyle, value); }
+    internal MBIconMSStyle AppliedIconMSStyle(MBIconMSStyle? iconMSStyle = null) => iconMSStyle ?? IconMSStyle;
+
+    private MBIconMSSize _iconMSSize = MBIconMSSize.Size24;
+    public MBIconMSSize IconMSSize { get => _iconMSSize; set => SetParameter(ref _iconMSSize, value); }
+    internal MBIconMSSize AppliedIconMSSize(MBIconMSSize? iconMSSize = null) => iconMSSize ?? IconMSSize;
+
+    private MBIconMSWeight _iconMSWeight = MBIconMSWeight.W400;
+    public MBIconMSWeight IconMSWeight { get => _iconMSWeight; set => SetParameter(ref _iconMSWeight, value); }
+    internal MBIconMSWeight AppliedIconMSWeight(MBIconMSWeight? iconMSWeight = null) => iconMSWeight ?? IconMSWeight;
+
+    #endregion
+
+    #region MBIconFA
 
     private MBIconFAStyle _iconFAStyle = MBIconFAStyle.Solid;
     /// <summary>
@@ -125,7 +167,11 @@ public class MBCascadingDefaults
     /// <returns>The <see cref="IconFARelativeSize"/> to apply.</returns>
     internal MBIconFARelativeSize AppliedIconFARelativeSize(MBIconFARelativeSize? iconFARelativeSize = null) => iconFARelativeSize ?? IconFARelativeSize;
 
+    #endregion
 
+    #endregion
+
+    #region MDC CORE COMPONENTS
 
     /*************************************************************************************************************
      * 
@@ -310,7 +356,9 @@ public class MBCascadingDefaults
     /// <returns>The <see cref="MBTextInputStyle"/> to apply.</returns>
     internal MBTextInputStyle AppliedStyle(MBTextInputStyle? style = null) => style ?? TextInputStyle;
 
+    #endregion
 
+    #region PLUS COMPONENTS
 
     /*************************************************************************************************************
      * 
@@ -378,7 +426,9 @@ public class MBCascadingDefaults
     /// <returns>The interval in milliseconds to apply.</returns>
     internal int AppliedDebounceInterval(int? debounceInterval = null) => debounceInterval ?? 300;
 
+    #endregion
 
+    #region COMPONENT DENSITY
 
     /*************************************************************************************************************
      * 
@@ -581,7 +631,9 @@ public class MBCascadingDefaults
         };
     }
 
+    #endregion
 
+    #region COMPONENT ACCESSIBILITY
 
     /*************************************************************************************************************
      * 
@@ -598,7 +650,9 @@ public class MBCascadingDefaults
     public bool TouchTarget { get => _TouchTarget; set => SetParameter(ref _TouchTarget, value); }
     internal bool AppliedTouchTarget(bool? touchTarget) => touchTarget ?? TouchTarget;
 
+    #endregion
 
+    #region VERSION
 
     /*************************************************************************************************************
      * 
@@ -614,7 +668,10 @@ public class MBCascadingDefaults
     /// </summary>
     public int Version { get; private set; } = 0;
 
+    #endregion
 
+
+    #region ShallowCopy
 
     /// <summary>
     /// Returns a shallow copy of the cascading defaults.
@@ -625,7 +682,9 @@ public class MBCascadingDefaults
         return (MBCascadingDefaults)MemberwiseClone();
     }
 
+    #endregion
 
+    #region SetParameter
 
     private void SetParameter<T>(ref T privateParameter, T value)
     {
@@ -636,4 +695,7 @@ public class MBCascadingDefaults
             Version++;
         }
     }
+
+    #endregion
+
 }

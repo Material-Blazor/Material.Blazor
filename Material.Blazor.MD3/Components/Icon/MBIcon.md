@@ -6,15 +6,17 @@ title: MBIcon
 
 ## Summary
 
-An icon component that generates HTML markup for an icon either for the default foundry or the one specified.
+Material.Blazor allows you to style Material Icons. These icons are loaded
+from the Material Symbols font.They support variations of style, size, weight, fill, and color.
 
-## Details
+## Using MBIcon
 
-- The Material Icons foundry is supplied by Google and referenced in the Material.Blazor bundled CSS.
-- You can also use Font Awesome version 5 and Open Iconic version 1.1 icon foundries. You will need to reference CDN or local CSS files for these two fonts.
+MBIcon's parameters are 
+- IconDescriptor (required).
 
-&nbsp;
+## Other Components
 
+Many components such as MBIconButton, MBSelect, and MBTextField take icons. In every instance these components use IconDescriptor.
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)

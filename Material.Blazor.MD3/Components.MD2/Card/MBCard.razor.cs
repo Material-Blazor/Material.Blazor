@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -7,13 +7,13 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// A Material Theme card with three elements: primary, primary action buttons and action icons.
 /// </summary>
-public partial class MBCard : ComponentFoundationMD2
+public partial class MBCard : ComponentFoundation
 {
     /// <summary>
-    /// The card style - see <see cref="MBCardStyle"/>
+    /// The card style - see <see cref="MBCardStyleMD2"/>
     /// <para>Overrides <see cref="MBCascadingDefaults.CardStyle"/></para>
     /// </summary>
-    [Parameter] public MBCardStyle? CardStyle { get; set; }
+    [Parameter] public MBCardStyleMD2? CardStyle { get; set; }
 
 
     /// <summary>

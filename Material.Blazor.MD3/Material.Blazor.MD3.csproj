@@ -26,6 +26,10 @@
 		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<ImplicitUsings>disable</ImplicitUsings>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
@@ -51,10 +55,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
+		<!--<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />-->
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.2.23480.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.2.23480.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.2.23479.6" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.2.23479.6" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,7 +87,7 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsStyles Remove="Components\Badge\MBBadge.scss" />
+		<InputStaticAssetsScripts Remove="Scripts\lodashparts.ts" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
@@ -179,27 +184,22 @@
 	</ItemGroup>
 
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
+		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.MD3 Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (M.B.MD3 Scripts)" />
 		<Exec Command="npm install" />
 
-		<!-- The files that were deleted were incorrectly shipped with an earlier version of material-components-web (12.0.0?). Deletion no longer required -->
-		<!--<Delete Files="node_modules\@material\segmented-button\segment\adapter.ts;node_modules\@material\segmented-button\segment\component.ts;node_modules\@material\segmented-button\segment\constants.ts;node_modules\@material\segmented-button\segment\foundation.ts;node_modules\@material\segmented-button\segment\index.ts" />
-		<Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
-		<Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />-->
-
-		<Message Importance="high" Text="***** npm run build-scripts" />
+		<Message Importance="high" Text="***** npm run build-scripts (M.B.MD3 Scripts)" />
 		<Exec Command="npm run build-scripts" />
 
-		<Message Importance="high" Text="***** npm run build-js" />
+		<Message Importance="high" Text="***** npm run build-js (M.B.MD3 Scripts)" />
 		<Exec Command="npm run build-js" />
 
-		<Message Importance="high" Text="***** npm run build-min-js" />
+		<Message Importance="high" Text="***** npm run build-min-js (M.B.MD3 Scripts)" />
 		<Exec Command="npm run build-min-js" />
 
-		<Message Importance="high" Text="***** delete intermediate.js" />
+		<Message Importance="high" Text="***** delete intermediate.js (M.B.MD3 Scripts)" />
 		<Delete Files="wwwroot\intermediate.js" />
 
 
@@ -208,24 +208,37 @@
 	</Target>
 
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-		<Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
+		<Message Importance="high" Text="***** mkdir wwwroot (M.B.MD3 Styles)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (M.B.MD3 Styles)" />
 		<Exec Command="npm install" />
 
 		<!--<Message Importance="high" Text="***** downloadfiles" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
-    </DownloadFile>-->
+		
+		ISSUE - The UserAgent used by DownloadFile results in TrueType fonts. See the curl
+		commands in package.json that get around this behavior.
+		
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-symbols-outlined.scss" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-symbols-rounded.scss" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-symbols-sharp.scss" />-->
 
-		<Message Importance="high" Text="***** npm run build-css" />
+		<Message Importance="high" Text="***** download font files (M.B.MD3 Styles)" />
+		<Exec Command="npm run build-acquire-font-MSO" />
+		<Exec Command="npm run build-acquire-font-MSR" />
+		<Exec Command="npm run build-acquire-font-MSS" />
+
+		<Message Importance="high" Text="***** npm run build-css (M.B.MD3 Styles)" />
 		<Exec Command="npm run build-css" />
 
-		<Message Importance="high" Text="***** npm run build-min-css" />
+		<Message Importance="high" Text="***** npm run build-min-css (M.B.MD3 Styles)" />
 		<Exec Command="npm run build-min-css" />
-
-		<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
-    <Delete Files="wwwroot\material-components-icons.css" />-->
 
 	</Target>
 

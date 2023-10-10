@@ -1,0 +1,157 @@
+﻿@use "@material/theme";
+@use 'sass:color';
+@use "sass:math";
+
+$autospaced-separator-height: 24px;
+
+$drop-zone-overlap: 12px;
+$drop-zone-height: $autospaced-separator-height + 2 * $drop-zone-overlap;
+$drop-zone-rule-width: 2px;
+$drop-zone-border-width: 4px;
+$drop-zone-hr-top-margin: math.div($drop-zone-rule-width, 2);
+$drag-zone-height: 48px;
+$drag-zone-width: 60px;
+
+$hover-transition-time: 120ms;
+$animation-time: 3000ms;
+
+.mb-drag-and-drop-list {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.mb-drag-and-drop__has-moved {
+    animation: mbDragAndDropHasMoved $animation-time;
+}
+
+.mb-drag-and-drop-list__card-contents {
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.mb-drag-and-drop-list__draggable {
+    height: $drag-zone-height;
+    width: $drag-zone-width;
+    flex-grow: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    cursor: move;
+
+    & > i {
+        margin: auto;
+    }
+
+    &.mb-drag-and-drop-list__disabled {
+        cursor: default;
+
+        & > i {
+            color: var(--mdc-theme-text-disabled-on-light);
+        }
+    }
+}
+
+.mb-drag-and-drop-list__user-content {
+    height: fit-content;
+    width: fit-content;
+    flex-grow: 1;
+    margin: 0px;
+}
+
+.mb-drag-and-drop-list__separator {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: 0px;
+    width: 100%;
+    z-index: 1;
+
+    &.mb-drag-and-drop-list__autospaced {
+        height: $autospaced-separator-height;
+    }
+
+    & > .mb-drag-and-drop-list__drop-target {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 100%;
+        height: $drop-zone-height;
+        background-color: rgba(0, 0, 0, 0);
+        border: dotted;
+        border-color: rgba(0, 0, 0, 0);
+        border-width: $drop-zone-border-width;
+        transition: ease-in-out $hover-transition-time;
+
+        & > hr {
+            margin: $drop-zone-hr-top-margin 0 0 0;
+            width: 100%;
+            border: none;
+            border-top: $drop-zone-rule-width dotted var(--mdc-theme-secondary);
+            color: rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0);
+            height: $drop-zone-rule-width;
+            pointer-events: none;
+            transition: ease-in-out $hover-transition-time;
+        }
+
+        &.mb-drag-and-drop-list__hover {
+            background-color: rgba(theme.$on-surface, 0.04);
+            border-color: var(--mdc-theme-secondary);
+
+            & > hr {
+                border-top-color: rgba(0, 0, 0, 0);
+            }
+        }
+    }
+
+    & > .mb-drag-and-drop-list__rule {
+        display: flex;
+        flex-flow: row nowrap;
+        height: 100%;
+        align-items: center;
+
+        &.mb-drag-and-drop-list__hover {
+            opacity: 0;
+        }
+    }
+}
+
+@keyframes mbDragAndDropHasMoved {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+@-webkit-keyframes mbDragAndDropHasMoved {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        opacity: 1;
+        animation-timing-function: ease-in-out;
+    }
+}

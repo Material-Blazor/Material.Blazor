@@ -1,0 +1,150 @@
+﻿.mb-hidden {
+    visibility: hidden;
+}
+
+.mb-visible {
+    visibility: visible;
+}
+
+.mb-slide-in-from-left {
+    animation: slideInFromLeft ease 200ms;
+    -webkit-animation: slideInFromLeft ease 200ms;
+}
+
+@-webkit-keyframes slideInFromLeft {
+    0% {
+        margin-left: -12px;
+        margin-right: 12px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        margin-left: -12px;
+        margin-right: 12px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.mb-slide-in-from-right {
+    animation: slideInFromRight ease 200ms;
+    -webkit-animation: slideInFromRight ease 200ms;
+}
+
+@-webkit-keyframes slideInFromRight {
+    0% {
+        margin-left: 12px;
+        margin-right: -12px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        margin-left: 12px;
+        margin-right: -12px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.mb-slide-out-to-left {
+    animation: slideOutToLeft ease-out 10000ms;
+    -webkit-animation: slideOutToLeft ease-out 10000ms;
+}
+
+@-webkit-keyframes slideOutToLeft {
+    0% {
+        opacity: 1;
+    }
+
+    1% {
+        margin-left: -12px;
+        margin-right: 12px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: -12px;
+        margin-right: 12px;
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        opacity: 1;
+    }
+
+    1% {
+        margin-left: -12px;
+        margin-right: 12px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: -12px;
+        margin-right: 12px;
+        opacity: 0;
+    }
+}
+
+
+.mb-slide-out-to-right {
+    animation: slideOutToRight ease-out 10000ms;
+    -webkit-animation: slideOutToRight ease-out 10000ms;
+}
+
+@-webkit-keyframes slideOutToRight {
+    0% {
+        opacity: 1;
+    }
+
+    1% {
+        margin-left: 12px;
+        margin-right: -12px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 12px;
+        margin-right: -12px;
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        opacity: 1;
+    }
+
+    1% {
+        margin-left: 12px;
+        margin-right: -12px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 12px;
+        margin-right: -12px;
+        opacity: 0;
+    }
+}

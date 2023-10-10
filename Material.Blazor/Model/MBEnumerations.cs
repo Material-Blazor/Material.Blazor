@@ -218,7 +218,11 @@ public enum MBFloatingActionButtonType
 
 
 /// <summary>
-/// Specifies whether to use Material Icons from Google or Font Awesome Icons.
+/// Specifies whether to use
+///     Material Icons from Google
+///     Material Symbols from Google
+///     Font Awesome Icons
+///     Open Iconic Icons
 /// <para>See <see cref="MBIconHelper"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="MaterialIcons"/></para>
 /// </summary>
@@ -228,6 +232,11 @@ public enum MBIconFoundryName
     /// Google Material Icons. This is the <see cref="MBCascadingDefaults"/> default.
     /// </summary>
     MaterialIcons,
+
+    /// <summary>
+    /// Google Material Symbols.
+    /// </summary>
+    MaterialSymbols,
 
     /// <summary>
     /// Font Awesome Icons.
@@ -244,7 +253,7 @@ public enum MBIconFoundryName
 
 /// <summary>
 /// Sets the Google Material Icons theme.
-/// <para>See <see cref="MBIconHelper.MIFoundry(MBIconMITheme?)"/>, <seealso cref="IconMI"/> and <seealso cref="IconFoundryMI"/></para>
+/// <para>See <see cref="MBIconHelper.MIFoundry(MBIconMITheme?)"/>, <seealso cref="Icon_MI"/> and <seealso cref="IconFoundryMI"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
 /// </summary>
 public enum MBIconMITheme
@@ -276,9 +285,61 @@ public enum MBIconMITheme
 
 
 
+#region MBIconMS
+
+/// <summary>
+/// Determines <cref="MBIconMS"/> gradient.
+/// </summary>
+public enum MBIconMSGradient
+{
+    LowEmphasis,
+    NormalEmphasis,
+    HighEmphasis
+}
+
+/// <summary>
+/// Determines how an <cref="MBIconMS"/> is visually styled at the gross level.
+/// </summary>
+public enum MBIconMSStyle
+{
+    Outlined,
+    Rounded,
+    Sharp
+}
+
+/// <summary>
+/// Determines an <cref="MBIconMS"/> size.
+/// </summary>
+public enum MBIconMSSize
+{
+    Size20,
+    Size24,
+    Size40,
+    Size48,
+}
+
+/// <summary>
+/// Determines an <cref="MBIconMS"/> weight.
+/// </summary>
+public enum MBIconMSWeight
+{
+    W100,
+    W200,
+    W300,
+    W400,
+    W500,
+    W600,
+    W700,
+}
+
+#endregion
+
+
+
+
 /// <summary>
 /// Sets the Font Awesome style.
-/// <para>See <see cref="MBIconHelper.FAFoundry(MBIconFAStyle?, MBIconFARelativeSize?)"/>, <seealso cref="Internal.IconFA"/> and <seealso cref="IconFoundryFA"/></para>
+/// <para>See <see cref="MBIconHelper.FAFoundry(MBIconFAStyle?, MBIconFARelativeSize?)"/>, <seealso cref="Internal.Icon_FA"/> and <seealso cref="IconFoundryFA"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Solid"/> (all other styles except <see cref="Brands"/> require a paid-for Font Awesome PRO licence)</para>
 /// </summary>
 public enum MBIconFAStyle
@@ -312,7 +373,7 @@ public enum MBIconFAStyle
 
 /// <summary>
 /// Sets the Font Awesome relative size.
-/// <para>See <see cref="MBIconHelper.FAFoundry(MBIconFAStyle?, MBIconFARelativeSize?)"/>, <seealso cref="Internal.IconFA"/> and <seealso cref="IconFoundryFA"/></para>
+/// <para>See <see cref="MBIconHelper.FAFoundry(MBIconFAStyle?, MBIconFARelativeSize?)"/>, <seealso cref="Internal.Icon_FA"/> and <seealso cref="IconFoundryFA"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Regular"/></para>
 /// </summary>
 public enum MBIconFARelativeSize

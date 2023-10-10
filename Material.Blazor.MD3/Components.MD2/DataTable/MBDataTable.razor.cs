@@ -1,4 +1,4 @@
-﻿using Material.Blazor.Internal.MD2;
+﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace Material.Blazor.MD2;
 /// <summary>
 /// This is a general purpose Material Theme data table.
 /// </summary>
-public partial class MBDataTable<TItem> : ComponentFoundationMD2
+public partial class MBDataTable<TItem> : ComponentFoundation
 {
     /// <summary>
     /// A function delegate to return the parameters for <c>@key</c> attributes. If unused

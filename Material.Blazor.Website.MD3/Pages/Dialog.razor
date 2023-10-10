@@ -1,0 +1,471 @@
+﻿@page "/dialog"
+
+
+@inject IMBToastService ToastService
+
+
+@using System.ComponentModel.DataAnnotations;
+
+
+<DemonstrationPage ComponentAndPageName="Dialog"
+                   MinDensity="@MBDensity.Minus4"
+                   Title="Dialog Demonstration">
+    <Description>
+        <p>
+            Dialog samples. Click each card to launch a dialog.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <PrimaryAction>
+                    <div class="mb-card__autostyled">
+                        <h1 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            TBD
+                        </h1>
+                    </div>
+                </PrimaryAction>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+            @*         <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog1Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        General Dialog
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        Launches a general dialog. Look at the result shown in a toast when you click a button, hit escape of click the scrim. Shows
+        a checkbox and radio buttons to demonstrate that these are correctly initiated with Material Theme javascript when rendered inside a dialog.
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog2Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        Disabled Scrim and Escape
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        A general dialog with scrim and escape key actions disabled.
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog3Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        Date Picker Dialog
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        Shows that a date picker's popup menu is able to render outside the dialog <code>&lt;div&gt;</code> block.
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog4Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        Logon Dialog
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        Shows a dialog that uses an edit form and validation annotations. It also demonstrates the altenative form of having submit and cancel methods
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog5Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        No Body
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        Shows a dialog with no body
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog6Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        No Title
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        Shows a dialog with no title
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+        <MBCard AutoStyled="true"
+        @onclick="@ShowDialog7Async">
+        <PrimaryAction>
+        <div class="mb-card__autostyled">
+        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+        Header
+        </h2>
+        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+        Shows a dialog with a header
+        </h3>
+        </div>
+        </PrimaryAction>
+        </MBCard>
+        </div>
+
+
+        <MBDialog @ref="@Dialog1"
+        Title="General dialog">
+        <Body>
+        <p>Please choose a fruit.</p>
+        <MBCheckbox @bind-Value="@Check"
+        Label="Check me" />
+        <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
+        Items="@StringItems"
+        ItemValidation="@MBItemValidation.DefaultToFirst"
+        Vertical="true" />
+        </Body>
+        <Buttons>
+        <MBButton DialogAction="orange button clicked"
+        Label="Orange"
+        data-mdc-dialog-action="orange" />
+        <MBButton ButtonStyle="@MBButtonStyle.Text"
+        DialogAction="apple button clicked"
+        Label="Apple"
+        data-mdc-dialog-action="apple" />
+        </Buttons>
+        </MBDialog>
+
+
+        <MBDialog EscapeKeyAction=""
+        @ref="@Dialog2"
+        ScrimClickAction=""
+        Title="General Dialog with Scrim and Escape Disabled (using HideAsync)">
+        <Body>
+        <p>Please choose a fruit.</p>
+        <p>
+        <MBCheckbox @bind-Value="@Check"
+        Label="Check me" />
+        </p>
+        </Body>
+        <Buttons>
+        <MBButton Label="Orange"
+        data-mdc-dialog-action="orange"
+        @onclick="@(() => OnButtonClick(" orange notified by @onclick"))" />
+        <MBButton Label="Apple"
+        data-mdc-dialog-action="apple"
+        @onclick="@(() => OnButtonClick(" apple notified by @onclick"))"
+        ButtonStyle="@MBButtonStyle.Text" />
+        </Buttons>
+        </MBDialog>
+
+
+        <MBDialog @ref="@Dialog3"
+        Title="Date Picker Dialog">
+        <Body>
+        <p>Set the date.</p>
+        <MBDatePicker @bind-Value="@Date5"
+        Label="The date"
+        MaxDate="@MaxDate"
+        MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+        MinDate="@MinDate"
+        SelectInputStyle="MBSelectInputStyle.Outlined" />
+        </Body>
+        <Buttons>
+        <MBButton DialogAction="orange"
+        Label="Orange" />
+        <MBButton ButtonStyle="@MBButtonStyle.Text"
+        DialogAction="apple"
+        Label="Apple" />
+        </Buttons>
+        </MBDialog>
+
+        <MBDialog EscapeKeyAction=""
+        @ref="@Dialog4"
+        ScrimClickAction=""
+        Title="Logon Dialog">
+        <Body>
+        <EditForm Model="@UserLogon"
+        OnInvalidSubmit="@Dialog4Invalid"
+        OnValidSubmit="@Dialog4Submitted">
+        <DataAnnotationsValidator />
+
+        <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+        <MBTextField @bind-Value="@UserLogon.UserID"
+        Label="User ID"
+        style="width: 100%; margin-top: 6px;"
+        TextInputStyle="@MBTextInputStyle.Outlined"
+        TrailingIcon="person"
+        ValidationMessageFor="@(() => UserLogon.UserID)" />
+        </div>
+        <div class="mdc-layout-grid__cell--span-12">
+        <MBTextField @bind-Value="@UserLogon.Password"
+        HelperText="Min 8 Characters"
+        HelperTextPersistent="true"
+        Label="Password"
+        style="width: 100%;"
+        TextInputStyle="@MBTextInputStyle.Outlined"
+        TrailingIcon="lock_outline"
+        type="password"
+        ValidationMessageFor="@(() => UserLogon.Password)" />
+        </div>
+        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+        <MBButton Label="Logon"
+        style="margin: 0.75em 0.25em 0.25em 0.25em;"
+        type="submit" />
+        <MBButton Label="Cancel"
+        @onclick="@Dialog4Canceled"
+        style="margin: 0.75em 0.25em 0.25em 0.25em;"
+        type="button" />
+        </div>
+        </div>
+        </EditForm>
+        </Body>
+        </MBDialog>
+
+        <MBDialog @ref="@Dialog5"
+        Title="No Body">
+        <Buttons>
+        <MBButton DialogAction="ok"
+        Label="OK" />
+        <MBButton ButtonStyle="@MBButtonStyle.Text"
+        Label="Cancel"
+        DialogAction="cancel" />
+        </Buttons>
+        </MBDialog>
+
+        <MBDialog @ref="@Dialog6">
+        <Body>
+        <p>No Title</p>
+        </Body>
+        <Buttons>
+        <MBButton DialogAction="ok"
+        Label="OK" />
+        <MBButton ButtonStyle="@MBButtonStyle.Text"
+        DialogAction="cancel"
+        Label="Cancel" />
+        </Buttons>
+        </MBDialog>
+
+        <MBDialog EscapeKeyAction=""
+        @ref="@Dialog7"
+        ScrimClickAction=""
+        Title="Logon Dialog">
+        <CustomHeader>
+        <h1>This is an h1 header</h1>
+        <h1>This is also an h1 header</h1>
+        </CustomHeader>
+        <Body>
+        <EditForm Model="@UserLogon"
+        OnInvalidSubmit="@Dialog7Invalid"
+        OnValidSubmit="@Dialog7Submitted">
+        <DataAnnotationsValidator />
+
+        <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+        <MBTextField @bind-Value="@UserLogon.UserID"
+        Label="User ID"
+        style="width: 100%; margin-top: 6px;"
+        TextInputStyle="@MBTextInputStyle.Outlined"
+        TrailingIcon="person"
+        ValidationMessageFor="@(() => UserLogon.UserID)" />
+        </div>
+        <div class="mdc-layout-grid__cell--span-12">
+        <MBTextField @bind-Value="@UserLogon.Password"
+        HelperText="Min 8 Characters"
+        HelperTextPersistent="true"
+        Label="Password"
+        style="width: 100%;"
+        TextInputStyle="@MBTextInputStyle.Outlined"
+        TrailingIcon="lock_outline"
+        type="password"
+        ValidationMessageFor="@(() => UserLogon.Password)" />
+        </div>
+        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+        <MBButton Label="Logon"
+        style="margin: 0.75em 0.25em 0.25em 0.25em;"
+        type="submit" />
+        <MBButton Label="Cancel"
+        @onclick="@Dialog7Canceled"
+        style="margin: 0.75em 0.25em 0.25em 0.25em;"
+        type="button" />
+        </div>
+        </div>
+        </EditForm>
+        </Body>
+        </MBDialog>
+
+        *@
+    </PageContent>
+
+</DemonstrationPage>
+
+
+
+            @code {
+                // private bool DisableInput { get; set; } = false;
+                // private MBDialog Dialog1 { get; set; }
+                // private MBDialog Dialog2 { get; set; }
+                // private MBDialog Dialog3 { get; set; }
+                // private MBDialog Dialog4 { get; set; }
+                // private MBDialog Dialog5 { get; set; }
+                // private MBDialog Dialog6 { get; set; }
+                // private MBDialog Dialog7 { get; set; }
+
+                // private bool Check { get; set; }
+
+                // private string _radioButtonResult1 = "brit-short";
+                // private string RadioButtonResult1
+                // {
+                //     get => _radioButtonResult1;
+                //     set
+                //     {
+                //         _radioButtonResult1 = value;
+
+                //         ToastService.ShowToast(heading: "Dialog 1 Radio Click", message: $"Value: '{_radioButtonResult1}'", level: MBToastLevel.Success, showIcon: false);
+                //     }
+                // }
+
+                // private MBSelectElement<string>[] StringItems = new MBSelectElement<string>[]
+                // {
+                //     new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+                //     new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+                //     new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+                // };
+
+                // private async Task ShowDialog1Async()
+                // {
+                //     var result = await Dialog1.ShowAsync();
+                //     ToastService.ShowToast(heading: "General Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private async Task ShowDialog2Async()
+                // {
+                //     var result = await Dialog2.ShowAsync();
+                //     ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private async Task OnButtonClick(string button)
+                // {
+                //     await Dialog2.HideAsync();
+                //     ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc by @onclick", message: $"Value: '{button}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private DateTime MinDate { get; set; } = new DateTime(2015, 1, 1);
+                // private DateTime MaxDate { get; set; } = new DateTime(2025, 12, 31);
+                // private DateTime Date5 { get; set; } = DateTime.Today;
+
+                // private async Task ShowDialog3Async()
+                // {
+                //     var result = await Dialog3.ShowAsync();
+                //     ToastService.ShowToast(heading: "Datepicker Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private UserLogonDefinition UserLogon { get; set; }
+                // private async Task ShowDialog4Async()
+                // {
+                //     UserLogon = new UserLogonDefinition();
+                //     _ = Dialog4.ShowAsync();
+                //     await Task.CompletedTask;
+                // }
+
+                // private async Task Dialog4Submitted()
+                // {
+                //     await Dialog4.HideAsync();
+                //     ToastService.ShowToast(heading: "Logon Dialog Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private void Dialog4Invalid()
+                // {
+                //     ToastService.ShowToast(heading: "Logon Dialog Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+                // }
+
+                // private async Task Dialog4Canceled()
+                // {
+                //     await Dialog4.HideAsync();
+                //     ToastService.ShowToast(heading: "Logon Dialog Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private async Task ShowDialog5Async()
+                // {
+                //     var result = await Dialog5.ShowAsync();
+                //     ToastService.ShowToast(heading: "No Body Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private async Task ShowDialog6Async()
+                // {
+                //     var result = await Dialog6.ShowAsync();
+                //     ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private async Task ShowDialog7Async()
+                // {
+                //     UserLogon = new UserLogonDefinition();
+                //     _ = Dialog7.ShowAsync();
+                //     await Task.CompletedTask;
+                // }
+
+                // private async Task Dialog7Submitted()
+                // {
+                //     await Dialog7.HideAsync();
+                //     ToastService.ShowToast(heading: "Logon Dialog #2 Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private void Dialog7Invalid()
+                // {
+                //     ToastService.ShowToast(heading: "Logon Dialog #2 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+                // }
+
+                // private async Task Dialog7Canceled()
+                // {
+                //     await Dialog7.HideAsync();
+                //     ToastService.ShowToast(heading: "Logon Dialog #2 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+                // }
+
+                // private class UserLogonDefinition
+                // {
+                //     [Required(ErrorMessage = "UserID is required")]
+                //     public string UserID { get; set; }
+
+
+                //     [Required(ErrorMessage = "Password is required")]
+                //     [MinLength(8, ErrorMessage = "Password at least 8 characters.")]
+                //     public string Password { get; set; }
+                // }
+            }

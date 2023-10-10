@@ -75,7 +75,7 @@ public class MBToastSettings
 
     internal string AppliedCssClass => CssClass ?? "";
 
-    internal bool AppliedShowIcon => (AppliedIconName != null) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? MBToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
+    internal bool AppliedShowIcon => (AppliedIconName is not null) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? MBToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
 
     internal string AppliedIconName => string.IsNullOrWhiteSpace(IconName) ? ConfigIconName : IconName;
 

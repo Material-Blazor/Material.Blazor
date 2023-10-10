@@ -1,5 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using System;
+using System.Drawing;
 
 namespace Material.Blazor;
 
@@ -25,6 +26,27 @@ public class MBIconHelper : IMBIcon
     /// <returns><see cref="IMBIconFoundry"/> to be passed to a Material.Blazor component.</returns>
     public static IMBIconFoundry MIFoundry(MBIconMITheme? theme = null) => new IconFoundryMI(theme);
 
+
+    /// <summary>
+    /// Returns a new Material Symbols foundry.
+    /// </summary>
+    /// <param name="theme">Optional <see cref="MBIconMSStyle"/> specifying the Material Styles style.</param>
+    /// <returns><see cref="IMBIconFoundry"/> to be passed to a Material.Blazor component.</returns>
+    public static IMBIconFoundry MSFoundry(
+        string color = null,
+        bool? fill = null,
+        MBIconMSGradient? gradient = null,
+        MBIconMSSize? size = null,
+        MBIconMSStyle? style = null,
+        MBIconMSWeight? weight = null)
+        =>
+        new IconFoundryMS(
+            color,
+            fill,
+            gradient,
+            size,
+            style,
+            weight);
 
     /// <summary>
     /// Returns a new Font Awesome foundry.
@@ -54,9 +76,10 @@ public class MBIconHelper : IMBIcon
 
         UnderlyingIcon = iconFoundry switch
         {
-            MBIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
-            MBIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
-            MBIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
+            MBIconFoundryName.MaterialIcons => new Icon_MI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
+            MBIconFoundryName.MaterialSymbols => new Icon_MS(cascadingDefaults, iconName, (IconFoundryMS?)foundry),
+            MBIconFoundryName.FontAwesome => new Icon_FA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
+            MBIconFoundryName.OpenIconic => new Icon_OI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
             _ => throw new NotImplementedException(),
         };
     }

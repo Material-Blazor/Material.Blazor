@@ -7,7 +7,7 @@
 
 <DemonstrationPage AdditionalAPIReferences="@apiTuple"
                    ComponentAndPageName="TextField"
-                   MaterialDesignPage="text-field"
+                   MaterialWebPage="text-field"
                    RequiresDisableSelection="true"
                    SuppressComponentDocumentation="true"
                    Title="Text Field Demonstration">
@@ -29,13 +29,15 @@
                         Default and explicit text field styles.
                     </h3>
 
-                    <MBFilledTextField @bind-Value="@FilledStyle"
-                                       Label="Explicit Filled Style"
-                                       style="margin: 6px;" />
+                    <MBTextField @bind-Value="@FilledStyle"
+                                 Label="Explicit Filled Style"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBOutlinedTextField @bind-Value="@OutlinedStyle"
-                                         Label="Outlined Style"
-                                         style="margin: 6px;" />
+                    <MBTextField @bind-Value="@OutlinedStyle"
+                                 Label="Outlined Style"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -50,24 +52,36 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Leading and trailing icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
+                        Leading and trailing icons.
                     </h3>
 
-                    <MBFilledTextField Label="Leading Icon"
-                                       LeadingIcon="print"
-                                       style="margin: 6px;" />
+                    <MBTextField Label="Leading Icon"
+                                 LeadingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                              name: "home",
+                                              style: @MBIconStyle.Outlined)"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBFilledTextField Label="Trailing Icon"
-                                       style="margin: 6px;"
-                                       TrailingIcon="import_contacts" />
+                    <MBTextField Label="Trailing Icon"
+                                 style="margin: 6px;"
+                                 TrailingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                               name: "home",
+                                               style: @MBIconStyle.Outlined)"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBOutlinedTextField Label="Leading Icon"
-                                         LeadingIcon="edit"
-                                         style="margin: 6px; " />
+                    <MBTextField Label="Leading Icon"
+                                 LeadingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                              name: "favorite",
+                                              style: @MBIconStyle.Outlined)"
+                                 style="margin: 6px; "
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Label="Trailing Icon"
-                                         style="margin: 6px; "
-                                         TrailingIcon="mic" />
+                    <MBTextField Label="Trailing Icon"
+                                 style="margin: 6px; "
+                                 TrailingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                               name: "favorite",
+                                               style: @MBIconStyle.Outlined)"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -85,21 +99,25 @@
                         Prefix and Suffix text applied within fields.
                     </h3>
 
-                    <MBFilledTextField Label="Prefix"
-                                       Prefix="$"
-                                       style="margin: 6px;" />
+                    <MBTextField Label="Prefix"
+                                 Prefix="$"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBFilledTextField Label="Suffix"
-                                       Suffix="%"
-                                       style="margin: 6px;" />
+                    <MBTextField Label="Suffix"
+                                 Suffix="%"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBOutlinedTextField Label="Prefix"
-                                         Prefix="$"
-                                         style="margin: 6px;" />
+                    <MBTextField Label="Prefix"
+                                 Prefix="$"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Label="Suffix"
-                                         Suffix="%"
-                                         style="margin: 6px;" />
+                    <MBTextField Label="Suffix"
+                                 Suffix="%"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -123,12 +141,14 @@
                         Background color set by CSS class and style attributes.
                     </h3>
 
-                    <MBOutlinedTextField class="text-green"
-                                         Label="Green by class"
-                                         style="margin: 6px;" />
+                    <MBTextField class="text-green"
+                                 Label="Green by class"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Label="Amber by style"
-                                         style="margin: 6px; background-color: var(--mb-color-amber-800);" />
+                    <MBTextField Label="Amber by style"
+                                 style="margin: 6px; background-color: var(--mb-color-amber-800);"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -146,17 +166,20 @@
                         Left, center and right aligned text (not the same as right-to-left script).
                     </h3>
 
-                    <MBOutlinedTextField Label="Left Aligned"
-                                         style="margin: 6px; "
-                                         TextAlignStyle="@Material.Blazor.MBTextAlignStyle.Left" />
+                    <MBTextField Label="Left Aligned"
+                                 style="margin: 6px; "
+                                 TextAlignStyle="@Material.Blazor.MBTextAlignStyle.Left"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Label="Centered"
-                                         style="margin: 6px; "
-                                         TextAlignStyle="@Material.Blazor.MBTextAlignStyle.Center" />
+                    <MBTextField Label="Centered"
+                                 style="margin: 6px; "
+                                 TextAlignStyle="@Material.Blazor.MBTextAlignStyle.Center"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Label="Right Aligned"
-                                         style="margin: 6px; "
-                                         TextAlignStyle="@Material.Blazor.MBTextAlignStyle.Right" />
+                    <MBTextField Label="Right Aligned"
+                                 style="margin: 6px; "
+                                 TextAlignStyle="@Material.Blazor.MBTextAlignStyle.Right"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -174,10 +197,11 @@
                         Standard HTML input obscuring with <code>type="password"</code>
                     </h3>
 
-                    <MBOutlinedTextField @bind-Value="@Password"
-                                         Label="Password"
-                                         style="margin: 6px; "
-                                         type="password" />
+                    <MBTextField @bind-Value="@Password"
+                                 Label="Password"
+                                 style="margin: 6px; "
+                                 type="password"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -195,12 +219,14 @@
                         Shows two way binding for text fields.
                     </h3>
 
-                    <MBOutlinedTextField @bind-Value="@TwoWayBinding"
-                                         Label="First Linked Field"
-                                         style="margin: 6px; " />
-                    <MBOutlinedTextField @bind-Value="@TwoWayBinding"
-                                         Label="Second Linked Field"
-                                         style="margin: 6px; " />
+                    <MBTextField @bind-Value="@TwoWayBinding"
+                                 Label="First Linked Field"
+                                 style="margin: 6px; "
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
+                    <MBTextField @bind-Value="@TwoWayBinding"
+                                 Label="Second Linked Field"
+                                 style="margin: 6px; "
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -218,10 +244,11 @@
                         Shows supporting text.
                     </h3>
 
-                    <MBOutlinedTextField @bind-Value="@SupportingText"
-                                         SupportingText="Some supporting text"
-                                         Label="Persistent Supporting Text"
-                                         style="margin: 6px;" />
+                    <MBTextField @bind-Value="@SupportingText"
+                                 SupportingText="Some supporting text"
+                                 Label="Persistent Supporting Text"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -239,25 +266,30 @@
                         Filled density subsystem from default to minus 4.
                     </h3>
 
-                    <MBFilledTextField Density="@Material.Blazor.MBDensity.Default"
-                                       Label="Default Density"
-                                       style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Default"
+                                 Label="Default Density"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBFilledTextField Density="@Material.Blazor.MBDensity.Minus1"
-                                       Label="Density Minus 1"
-                                       style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus1"
+                                 Label="Density Minus 1"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBFilledTextField Density="@Material.Blazor.MBDensity.Minus2"
-                                       Label="Density Minus 2"
-                                       style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus2"
+                                 Label="Density Minus 2"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBFilledTextField Density="@Material.Blazor.MBDensity.Minus3"
-                                       Label="Density Minus 3"
-                                       style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus3"
+                                 Label="Density Minus 3"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
 
-                    <MBFilledTextField Density="@Material.Blazor.MBDensity.Minus4"
-                                       Label="Density Minus 4"
-                                       style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus4"
+                                 Label="Density Minus 4"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Filled" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -275,25 +307,30 @@
                         Outlined density subsystem from default to minus 4.
                     </h3>
 
-                    <MBOutlinedTextField Density="@Material.Blazor.MBDensity.Default"
-                                         Label="Default Density"
-                                         style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Default"
+                                 Label="Default Density"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Density="@Material.Blazor.MBDensity.Minus1"
-                                         Label="Density Minus 1"
-                                         style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus1"
+                                 Label="Density Minus 1"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Density="@Material.Blazor.MBDensity.Minus2"
-                                         Label="Density Minus 2"
-                                         style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus2"
+                                 Label="Density Minus 2"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Density="@Material.Blazor.MBDensity.Minus3"
-                                         Label="Density Minus 3"
-                                         style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus3"
+                                 Label="Density Minus 3"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
 
-                    <MBOutlinedTextField Density="@Material.Blazor.MBDensity.Minus4"
-                                         Label="Density Minus 4"
-                                         style="margin: 6px;" />
+                    <MBTextField Density="@Material.Blazor.MBDensity.Minus4"
+                                 Label="Density Minus 4"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -314,9 +351,7 @@
 
     private Tuple<int, string>[] apiTuple =
     {
-        new Tuple<int, string>(0, "MBFilledTextField"),
-        new Tuple<int, string>(10, "InternalTextFieldBase"),
-        new Tuple<int, string>(0, "MBOutlinedTextField"),
+        new Tuple<int, string>(0, "MBTextField"),
         new Tuple<int, string>(10, "InternalTextFieldBase")
     };
 }

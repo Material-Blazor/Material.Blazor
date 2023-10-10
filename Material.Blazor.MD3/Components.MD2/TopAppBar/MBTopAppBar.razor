@@ -1,5 +1,5 @@
 ﻿@namespace Material.Blazor.MD2
-@inherits ComponentFoundationMD2
+@inherits ComponentFoundation
 
 
 <header @ref="HeaderElem"
@@ -14,8 +14,7 @@
             {
                 <MBIconButton @attributes="@EventAttributesToSplat()"
                               class="mdc-top-app-bar__action-item--unbounded"
-                              Icon="@NavIcon"
-                              IconFoundry="@IconFoundry" />
+                              IconName="@NavIcon" />
             }
 
             <span class="mdc-top-app-bar__title">@Title</span>

@@ -11,6 +11,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 
 | Component | Notes |
 | :-------- | :---- |
+| [MBIcon](xref:C.MBIcon) | A Material Symbol |
 
 ## Experimental Component List
 

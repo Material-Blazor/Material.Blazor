@@ -1,0 +1,35 @@
+﻿$paginator-height: 48px;
+$paginator-spacing: 18px;
+$position-text-spacing: 6px;
+
+.mdc-data-table__pagination-rows-per-page {
+    margin-right: 0 !important;
+}
+
+.mdc-data-table__pagination-navigation {
+    margin-left: 12px !important;
+}
+.mdc-data-table__pagination-button {
+    margin-right: 0 !important;
+}
+
+.mdc-data-table__pagination.no-border {
+    border-top: 0 !important;
+}
+
+.mdc-data-table__pagination-total {
+    margin: 0 !important;
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+
+    & .hidden {
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+.mdc-data-table__pagination-rows-per-page-select {
+    width: auto !important;
+    min-width: 0 !important;
+}

@@ -1,7 +1,10 @@
 ﻿@charset "UTF-8";
 
 @use '_colors.scss';
-@use "_material-components-icons.scss";
+@use '_material-icons.scss';
+@use '_material-symbols-outlined.scss';
+@use '_material-symbols-rounded.scss';
+@use '_material-symbols-sharp.scss';
 
 @use '../Components/AutocompletePagedField/MBAutocompletePagedField.scss';
 @use '../Components/AutocompleteTextField/MBAutocompleteTextField.scss';

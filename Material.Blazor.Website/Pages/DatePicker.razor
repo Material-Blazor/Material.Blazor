@@ -2,8 +2,9 @@
 
 @inject IMBToastService ToastService
 
+@* 
 @using Nager.Date
-
+ *@
 
 
 <DemonstrationPage ComponentAndPageName="DatePicker"
@@ -76,7 +77,9 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Control which dates are selectable, first with Mondays, Wednesdays and Fridays and second with business days in England, using the <a href="https://www.nuget.org/packages/Nager.Date/" target="_blank">Nager.Date nuget package</a>.
+                        Control which dates are selectable, first with Mondays, Wednesdays and Fridays and the second with weekend days.
+                        Commented in the code is an example of business days in England, using the <a href="https://www.nuget.org/packages/Nager.Date/" target="_blank">Nager.Date nuget package</a>.
+                        It is commented because the Nager.Date package now requires a license key.
                     </h3>
 
                     <p>
@@ -91,6 +94,17 @@
                     </p>
 
                     <p>
+                        <MBDatePicker @bind-Value="@MonWedFri"
+                                      Label="Sat or Sun"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      DateIsSelectable="(date) => date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min" />
+                    </p>
+@* 
+                    <p>
                         <MBDatePicker @bind-Value="@EnglandBusinessDay"
                                       Label="England Business Day"
                                       DateFormat="ddd MMM dd, yyyy"
@@ -100,6 +114,7 @@
                                       MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
                                       MinDate="@Min" />
                     </p>
+ *@
                 </Primary>
             </MBCard>
         </div>
@@ -250,17 +265,17 @@
     }
 
 
-    private DateTime _englandBusinessDay = new DateTime(2021, 4, 6);
-    private DateTime EnglandBusinessDay
-    {
-        get => _englandBusinessDay;
-        set
-        {
-            _englandBusinessDay = value;
+    // private DateTime _englandBusinessDay = DateTime.Now;
+    // private DateTime EnglandBusinessDay
+    // {
+    //     get => _englandBusinessDay;
+    //     set
+    //     {
+    //         _englandBusinessDay = value;
 
-            ToastService.ShowToast(heading: "England Business Day selectable", message: $"Value: {_englandBusinessDay.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    //         ToastService.ShowToast(heading: "England Business Day selectable", message: $"Value: {_englandBusinessDay.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+    //     }
+    // }
 
 
     private DateTime _customStyle = new DateTime(2021, 1, 8);

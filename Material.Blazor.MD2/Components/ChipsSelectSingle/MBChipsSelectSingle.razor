@@ -1,0 +1,11 @@
+﻿@namespace Material.Blazor.MD2
+
+@inherits SingleSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
+@typeparam TItem
+
+
+<CascadingValue Value="@this" IsFixed="true">
+    <MBChipsSelectMulti @bind-Value="@MultiValues"
+                        Items="@Items"
+                        @ref="@ChipsSelectMulti" />
+</CascadingValue>

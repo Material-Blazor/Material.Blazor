@@ -1,6 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<!--
+	Attempting to multi-target .Net 6/7/8 fails for multiple reasons:
+		.Net 6 - Several components use features that were not available until .Net 7
+		.Net 7/8 - Parallel execution of 'npm install' fail
+	The only possible work-around is to have two projects, the first being Material.Blazor
+	which would be the referenced project from the other projects and targeting only .Net 8
+	and the second a .Net7/8 multi-targeted csproj that did not build scripts/styles. Both 
+	would need to be executed during the GHA step which builds the NuGet package.
+	
+	At the moment, this is deemed too expensive in support time and M.B is built with
+	a target framework of net8.0
+	-->
 
 	<PropertyGroup>
+		<!--<TargetFrameworks>net7.0;net8.0</TargetFrameworks>-->
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Version>5.0.0-preview.WIP</Version>
 		<PackageLicenseFile></PackageLicenseFile>
@@ -18,12 +32,33 @@
 		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
 	</PropertyGroup>
 
+	<!--<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.11" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.2.23480.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.2.23480.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.2.23479.6" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.2.23479.6" />
+	</ItemGroup>
+	
 	<PropertyGroup>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -49,13 +84,6 @@
 		<Content Remove="package.json" />
 		<Content Remove="tsconfig.json" />
 		<Content Remove="wwwroot\intermediate.js" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.1.23421.29" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.1.23419.4" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -88,7 +116,6 @@
 
 	<ItemGroup>
 		<Folder Include="wwwroot\" />
-		<Folder Include="Components\Carousel\" />
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
@@ -186,7 +213,7 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (M.B Scripts)" />
 		<Exec Command="npm install" />
 
 		<!-- The files that were deleted were incorrectly shipped with an earlier version of material-components-web (12.0.0?). Deletion no longer required -->
@@ -194,16 +221,16 @@
 		<Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
 		<Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />-->
 
-		<Message Importance="high" Text="***** npm run build-scripts" />
+		<Message Importance="high" Text="***** npm run build-scripts (M.B Scripts)" />
 		<Exec Command="npm run build-scripts" />
 
-		<Message Importance="high" Text="***** npm run build-js" />
+		<Message Importance="high" Text="***** npm run build-js (M.B Scripts)" />
 		<Exec Command="npm run build-js" />
 
-		<Message Importance="high" Text="***** npm run build-min-js" />
+		<Message Importance="high" Text="***** npm run build-min-js (M.B Scripts)" />
 		<Exec Command="npm run build-min-js" />
 
-		<Message Importance="high" Text="***** delete intermediate.js" />
+		<Message Importance="high" Text="***** delete intermediate.js (M.B Scripts)" />
 		<Delete Files="wwwroot\intermediate.js" />
 
 
@@ -215,26 +242,46 @@
 		<Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (M.B Styles)" />
 		<Exec Command="npm install" />
 
-		<!--<Message Importance="high" Text="***** downloadfiles" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
-    </DownloadFile>-->
+		<!--
+		<Message Importance="high" Text="***** downloadfiles" />
+		
+		ISSUE - The UserAgent used by DownloadFile results in TrueType fonts. See the curl
+		commands in package.json that get around this behavior.
+		
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-icons.css" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-symbols-outlined.scss" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-symbols-rounded.scss" />
+		<DownloadFile SourceUrl="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+					  DestinationFolder="$(MSBuildProjectDirectory)\styles"
+					  DestinationFilename="_material-symbols-sharp.scss" />
+		-->
 
-		<Message Importance="high" Text="***** npm run build-css" />
+		<Message Importance="high" Text="***** download font files (M.B Styles)" />
+		<Exec Command="npm run build-acquire-font-MI" />
+		<Exec Command="npm run build-acquire-font-MSO" />
+		<Exec Command="npm run build-acquire-font-MSR" />
+		<Exec Command="npm run build-acquire-font-MSS" />
+
+
+		<Message Importance="high" Text="***** npm run build-css (M.B Styles)" />
 		<Exec Command="npm run build-css" />
 
-		<Message Importance="high" Text="***** npm run build-min-css" />
+		<Message Importance="high" Text="***** npm run build-min-css (M.B Styles)" />
 		<Exec Command="npm run build-min-css" />
 
-		<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
-    <Delete Files="wwwroot\material-components-icons.css" />-->
-
-		<Message Importance="high" Text="***** npm run build-material-css" />
+		<Message Importance="high" Text="***** npm run build-material-css (M.B Styles)" />
 		<Exec Command="npm run build-material-css" />
 
-		<Message Importance="high" Text="***** npm run build-material-min-css" />
+		<Message Importance="high" Text="***** npm run build-material-min-css (M.B Styles)" />
 		<Exec Command="npm run build-material-min-css" />
 
 	</Target>

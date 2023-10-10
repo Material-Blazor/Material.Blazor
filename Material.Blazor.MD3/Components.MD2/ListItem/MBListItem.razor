@@ -1,5 +1,5 @@
 ﻿@namespace Material.Blazor.MD2
-@inherits ComponentFoundationMD2
+@inherits ComponentFoundation
 
 
 @if (Drawer != null)
@@ -15,12 +15,16 @@
         @if (LeadingIcon != null)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
-                <MBIcon IconFoundry="@IconFoundry"
-                        IconName="@LeadingIcon" />
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            color: ListItemColor,
+                            name: @LeadingIcon)" />
             </span>
         }
 
-        <span class="mdc-deprecated-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text"
+              style="@styleColor">
+            @Label
+        </span>
     </a>
 }
 else if (Menu != null)
@@ -37,11 +41,15 @@ else if (Menu != null)
         @if (LeadingIcon != null && IsSelectedMenuItem)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
-                <MBIcon IconFoundry="@IconFoundry"
-                        IconName="@LeadingIcon" />
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                            color: ListItemColor,
+                            name: @LeadingIcon)" />
             </span>
         }
 
-        <span class="mdc-deprecated-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text"
+              style="@styleColor">
+            @Label
+        </span>
     </li>
 }

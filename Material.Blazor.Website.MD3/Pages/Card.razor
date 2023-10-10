@@ -1,0 +1,191 @@
+﻿@page "/card"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentAndPageName="Card"
+                   Title="Card Demonstration"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Demonstrates cards, with a focus on actions. The demonstration website already makes substantial use of varying card types. Note that cards cannot be disabled, although buttons on the cards can.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                    @onclick="@(() => CardClick("First card"))">
+                <PrimaryAction>
+                    <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+                    </div>
+                    <div class="mb-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
+                </PrimaryAction>
+
+                <ActionButtons>
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
+                </ActionButtons>
+
+                <ActionIcons>
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
+                </ActionIcons>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                    class="mb-basic-with-text-over-media"
+                    @onclick="@(() => CardClick("Second card"))">
+                <PrimaryAction>
+                    <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);">
+                        <div class="mdc-card__media-content mb-card__media-content">
+                            <div class="mb-card__autostyled">
+                                <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                                <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+                            </div>
+                        </div>
+                    </div>
+                </PrimaryAction>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                    CardStyle="MBCardStyleMD2.Outlined"
+                    class="mb-basic-with-header"
+                    @onclick="@(() => CardClick("Third card"))">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+                </Primary>
+
+                <PrimaryAction>
+                    <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
+                    <div class="mb-card__secondary mdc-typography mdc-typography--body2">by Kurt Wagner</div>
+                </PrimaryAction>
+
+                <ActionButtons>
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
+                </ActionButtons>
+
+                <ActionIcons>
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
+                </ActionIcons>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                    @onclick="@(() => CardClick("Fourth card"))">
+                <PrimaryAction>
+                    <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+                    </div>
+                    <div class="mb-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
+                </PrimaryAction>
+
+                <ActionButtons>
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
+                </ActionButtons>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                    @onclick="@(() => CardClick("Fifth card"))">
+                <PrimaryAction>
+                    <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+                    </div>
+                    <div class="mb-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
+                </PrimaryAction>
+
+                <ActionIcons>
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
+                </ActionIcons>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                    class="mb-ui-control" 
+                    @onclick="@(() => CardClick("Sixth card"))">
+                <PrimaryAction>
+                    <div class="mdc-card__media mdc-card__media--square mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+                    </div>
+                </PrimaryAction>
+
+                <ActionButtons>
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
+                </ActionButtons>
+
+                <ActionIcons>
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
+                </ActionIcons>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private void CardClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Card Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+
+
+
+    private void ButtonClick()
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: "", level: MBToastLevel.Success, showIcon: false);
+    }
+
+
+
+    private void IconButtonClick()
+    {
+        ToastService.ShowToast(heading: "Icon Button Clicked", message: "", level: MBToastLevel.Success, showIcon: false);
+    }
+}

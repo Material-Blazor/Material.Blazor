@@ -1,0 +1,10 @@
+﻿@namespace Material.Blazor.MD2.Internal
+@inherits ComponentFoundationMD2
+
+<MBButton ButtonStyle="@ButtonStyle"
+          class="mb-dp-year-pad__button"
+          Disabled="@ButtonDisabled"
+          Label="@DisplayYear.ToString()"
+          @onclick="@OnClickAsync"
+          id="@CurrentYearIdHelper"
+          type="button" />

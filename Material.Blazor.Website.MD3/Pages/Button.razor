@@ -1,0 +1,209 @@
+﻿@page "/button"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentAndPageName="Button"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true"
+                   Title="Button Demonstration">
+    <Description>
+        <p>
+            Shows regular button styles, icon usage, class and style, &amp; density application.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Explicit button styles.
+                    </h3>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Elevated"
+                                  Label="Elevated Style"
+                                  @onclick="@(() => ButtonClick("Elevated Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Filled"
+                                  Label="Filled Style"
+                                  @onclick="@(() => ButtonClick("Filled Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.FilledTonal"
+                                  Label="FilledTonal Style"
+                                  @onclick="@(() => ButtonClick("FilledTonal Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Outlined Style"
+                                  @onclick="@(() => ButtonClick("Outlined Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Text"
+                                  Label="Text Style"
+                                  @onclick="@(() => ButtonClick("Text Style"))" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Leading and trailing icons
+                    </h3>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  IconDescriptor=@MBIcon.IconDescriptorConstructor(
+                                  color: "--md-sys-color-on-surface",
+                                  name: "flight_takeoff"
+                                  )
+                                  Label="Leading Icon"
+                                  @onclick="@(() => ButtonClick("Leading Icon"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Trailing Icon"
+                                  IconDescriptor=@MBIcon.IconDescriptorConstructor(
+                                  color: "--md-sys-color-on-surface",
+                                  name: "flight_land"
+                                  )
+                                  IconIsTrailing="true"
+                                  @onclick="@(() => ButtonClick("Trailing Icon"))" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Theming
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Applying CSS class attributes to control color, shape, and typography.
+                    </h3>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Elevated"
+                                  Label="Custom Elevated"
+                                  @onclick="@(() => ButtonClick("Custom elevated"))"
+                                  style="--md-elevated-button-container-shape: 0px;
+                                            --md-elevated-button-label-text-font: system-ui;
+                                            --md-sys-color-surface-container-low: #FAFDFC;
+                                            --md-sys-color-primary: #191C1C;" />
+                    </p>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Filled"
+                                  Label="Custom Filled"
+                                  @onclick="@(() => ButtonClick("Custom filled"))"
+                                  style="--md-filled-button-container-shape: 0px;
+                                            --md-filled-button-label-text-font: system-ui;
+                                            --md-sys-color-primary: #006A6A;
+                                            --md-sys-color-on-primary: #FFFFFF;" />
+                    </p>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.FilledTonal"
+                                  Label="Custom FilledTonal"
+                                  @onclick="@(() => ButtonClick("Custom filled tonal"))"
+                                  style="--md-filled-tonal-button-container-shape: 0px;
+                                            --md-filled-tonal-button-label-text-font: system-ui;
+                                            --md-sys-color-secondary-container: #CCE8E7;
+                                            --md-sys-color-on-secondary-container: #051F1F;" />
+                    </p>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Custom Outlined"
+                                  @onclick="@(() => ButtonClick("Custom outlined"))"
+                                  style="--md-outlined-button-container-shape: 0px;
+                                            --md-outlined-button-label-text-font: system-ui;
+                                            --md-sys-color-primary: #006A6A;
+                                            --md-sys-color-outline: #6F7979;" />
+                    </p>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Text"
+                                  Label="Custom Text"
+                                  @onclick="@(() => ButtonClick("Custom text"))"
+                                  style="--md-text-button-label-text-font: system-ui;
+                                            --md-sys-color-primary: #006A6A;" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 3.
+                    </h3>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Density="@MBDensity.Default"
+                                  Label="Default Density"
+                                  @onclick="@(() => ButtonClick("Button Default Density"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Density="@MBDensity.Minus1"
+                                  Label="Density Minus 1"
+                                  @onclick="@(() => ButtonClick("Button Density Minus 1"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Density="@MBDensity.Minus2"
+                                  Label="Density Minus 2"
+                                  @onclick="@(() => ButtonClick("Button Density Minus 2"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Density="@MBDensity.Minus3"
+                                  Label="Density Minus 3"
+                                  @onclick="@(() => ButtonClick("Button Density Minus 3"))" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}
