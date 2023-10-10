@@ -7,7 +7,7 @@ title: ReleaseNotes
 #### [5.0.0-rc2]
 (https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc2)
 
-Released 2023-10-??
+Released 2023-10-10
 
 **Updates**
 - MD2/MD3: Dependabot and NuGet updates
@@ -19,6 +19,7 @@ Released 2023-10-??
 
 **New components**
 - MD3: Added preview components:
+    - MBButton
 	- MBIcon
 
 **Breaking Changes**

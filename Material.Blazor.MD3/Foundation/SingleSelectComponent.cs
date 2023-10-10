@@ -84,7 +84,7 @@ public abstract class SingleSelectComponent<T, TListElement> :
 
         if (items.GroupBy(i => i.SelectedValue).Any(g => g.Count() > 1))
         {
-            throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
+            throw new ArgumentException(componentName + " has multiple entities in the List with the same SelectedValue");
         }
 
         if (!items.Any(i => Equals(i.SelectedValue, Value)))
@@ -92,10 +92,10 @@ public abstract class SingleSelectComponent<T, TListElement> :
             switch (appliedItemValidation)
             {
                 case MBItemValidation.DefaultToFirst:
-                    //var defaultValue = items.FirstOrDefault().SelectedValue;
+                    var defaultValue = items.FirstOrDefault().SelectedValue;
                     //AllowNextShouldRender();
-                    //return (true, defaultValue);
-                    return (false, default);
+                    return (true, defaultValue);
+                    //return (false, default);
 
                 case MBItemValidation.Exception:
                     var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";

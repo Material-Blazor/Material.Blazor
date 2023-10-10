@@ -21,7 +21,6 @@ import * as MBTextField from '../Components/TextField/MBTextField';
 /*
 MD2 JS
 */
-import * as MBButton from '../Components.MD2/Button/MBButton';
 import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
 import * as MBDialog from '../Components.MD2/Dialog/MBDialog';
@@ -35,7 +34,6 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 (<any>window).MaterialBlazor = {
     MBTextField,
 
-    MBButton,
     MBCard,
     MBDataTable,
     MBDialog,

@@ -17,6 +17,7 @@ The content of a c# file is broken into sections most of which use regions to ai
 - namespace
   - The namespace is specified using the C# 10 file scoped namespace.
 - class
+  - The class declaration and its supporting open/close braces do not reside in a region.
 - members
 - ctor
 - individual methods and internal classes

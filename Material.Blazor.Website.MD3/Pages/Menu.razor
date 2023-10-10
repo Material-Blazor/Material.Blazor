@@ -24,7 +24,10 @@
                     </h3>
 
                     <p>
-                        <Material.Blazor.MD2.MBButton Label="Open Menu" @onclick="@OpenMenuAsync" />
+                        <MBButton 
+                            ButtonStyle="@MBButtonStyle.Outlined"
+                            Label="Open Menu" 
+                            @onclick="@OpenMenuAsync" />
                     </p>
 
                     <div class="mdc-menu-surface--anchor">
