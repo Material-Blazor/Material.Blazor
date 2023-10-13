@@ -153,6 +153,17 @@ public class MBCascadingDefaults
 
     #endregion
 
+    #region MBIconButton
+
+    private MBIconButtonStyle _iconButtonStyle = MBIconButtonStyle.Icon;
+    /// <summary>
+    /// The default style for an <see cref="MBIconButton"/>, initialized to <see cref="MBIconButtonStyle.Icon"/> if not explicitly set.
+    /// </summary>
+    public MBIconButtonStyle IconButtonStyle { get => _iconButtonStyle; set => SetParameter(ref _iconButtonStyle, value); }
+    internal MBIconButtonStyle AppliedIconButtonStyle(MBIconButtonStyle? iconButtonStyle = null) => iconButtonStyle ?? IconButtonStyle;
+
+    #endregion
+
     #region MBSwitch
 
     private bool _switchIcons = false;

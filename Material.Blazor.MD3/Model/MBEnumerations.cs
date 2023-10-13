@@ -189,6 +189,37 @@ public enum MBIconWeight
 
 #endregion
 
+#region MBIconButtonStyle
+
+/// <summary>
+/// Style for an <see cref="MBIconButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
+/// </summary>
+public enum MBIconButtonStyle
+{
+    /// <summary>
+    /// Filled style
+    /// </summary> 
+    Filled,
+
+    /// <summary>
+    /// Icon style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>  
+    Icon,
+
+    /// <summary>
+    /// FilledTonal style
+    /// </summary> 
+    FilledTonal,
+
+    /// <summary>
+    /// Outlined style
+    /// </summary> 
+    Outlined,
+}
+
+#endregion
+
 #region MBInputEventTypeMD2
 
 /// <summary>

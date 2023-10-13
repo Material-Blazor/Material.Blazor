@@ -5,12 +5,13 @@
 
 
 <DemonstrationPage ComponentAndPageName="IconButton"
+                   MaterialWebPage="icon-button"
                    MinDensity="MBDensity.Minus3"
                    RequiresDisableSelection="true"
                    Title="Icon Button Demonstration">
     <Description>
         <p>
-            Shows an icon button and density.
+            Shows an icon buttons and density.
         </p>
     </Description>
 
@@ -19,13 +20,39 @@
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Icon Button
+                        Icon Buttons
                     </h2>
 
                     <p>
-                        <Material.Blazor.MD2.MBIconButton IconName="home"
-                                                          IconColor="darkblue"
-                                                          @onclick="@(() => ButtonClick("Icon Button"))" />
+                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "check")"
+                                      IconButtonStyle="@MBIconButtonStyle.Icon"
+                                      @onclick="@(() => ButtonClick("Icon Button"))" />
+                    </p>
+
+                    <p>
+                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "check")"
+                                      IconButtonStyle="@MBIconButtonStyle.Filled"
+                                      @onclick="@(() => ButtonClick("Filled Icon Button"))" />
+                    </p>
+
+                    <p>
+                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "check")"
+                                      IconButtonStyle="@MBIconButtonStyle.FilledTonal"
+                                      @onclick="@(() => ButtonClick("Filled Tonal Icon Button"))" />
+                    </p>
+
+                    <p>
+                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "check")"
+                                      IconButtonStyle="@MBIconButtonStyle.Outlined"
+                                      @onclick="@(() => ButtonClick("Outlined Icon Button"))" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>

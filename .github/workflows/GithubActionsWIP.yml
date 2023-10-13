@@ -67,11 +67,11 @@ jobs:
 
     steps:
     - id: setVersion
-      run: echo "version=5.0.0-rc.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      run: echo "version=5.0.0-wip.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################
-# Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
+# Run the test project. Should this fail, the build & deploy steps are skipped
 ############################################################################################################
   test:
     name: Run .NET tests

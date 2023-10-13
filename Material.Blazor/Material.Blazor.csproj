@@ -115,6 +115,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Articles\images\source\" />
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 

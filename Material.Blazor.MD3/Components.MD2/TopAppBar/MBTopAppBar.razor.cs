@@ -24,6 +24,12 @@ public partial class MBTopAppBar : ComponentFoundation
 
 
     /// <summary>
+    /// Navigation button icon color.
+    /// </summary>
+    [Parameter] public string NavIconColor { get; set; }
+
+
+    /// <summary>
     /// Render fragment where @Body is referenced.
     /// </summary>
     [Parameter] public RenderFragment ChildContent { get; set; }

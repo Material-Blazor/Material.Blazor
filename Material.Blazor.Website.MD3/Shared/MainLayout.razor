@@ -44,7 +44,7 @@
                     LeadingIcon="touch_app"
                     Label="Icon"
                     @onclick="@(() => ListItemClickHandler("icon"))" />
-        <MBListItem ListItemColor="darkred"
+        <MBListItem ListItemColor="darkblue"
                     LeadingIcon="touch_app"
                     Label="Icon Button"
                     @onclick="@(() => ListItemClickHandler("iconbutton"))" />
@@ -103,6 +103,7 @@
     <MBTopAppBar Title="Material.Blazor"
                  @onclick="@SideBarToggle"
                  NavIcon="menu"
+                 NavIconColor="white"
                  ScrollTarget="#main-content"
                  TopAppBarType="@MBTopAppBarTypeMD2.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">

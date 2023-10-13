@@ -1,11 +1,10 @@
 ﻿@page "/"
 
-@namespace Material.Blazor.Website.Server.Pages
+@namespace Material.Blazor.Website.Server.MD3
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @using Material.Blazor.Website.MD3;
-@using Material.Blazor.Website.Server.MD3
 @using Microsoft.AspNetCore.Components.Web
 
 @{
@@ -28,11 +27,7 @@
     <link href="_content/Material.Blazor.Website.MD3/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
     <link id="app-style" href="_content/Material.Blazor.Website.MD3/css/material-default-theme.min.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Shrikhand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700" rel="stylesheet">
 
     @if (PlatformDetermination.IsBlazorServer)
     {
