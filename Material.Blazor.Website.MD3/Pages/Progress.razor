@@ -6,7 +6,6 @@
 <DemonstrationPage ComponentAndPageName="Progress"
                    ComponentDirectory="ProgressIndicator"
                    MaterialWebPage="progress"
-                   MaterialDesignPage="progress-indicators/overview"
                    RequiresDisableSelection="false"
                    Title="Progress Demonstration">
     <Description>
@@ -85,6 +84,18 @@
                         Determinate
                     </h2>
                     <MBProgress ProgressStyle="MBProgressStyle.Linear"
+                                ProgressType="MBProgressType.Determinate"
+                                ProgressLevel=@progressLevel
+                                style="margin: 6px;" />
+                    <br />
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Determinate with buffer
+                    </h2>
+                    @{
+                        var bufferLevel = progressLevel + (1 - progressLevel) / 5;
+                    }
+                    <MBProgress ProgressBufferLevel="@bufferLevel"
+                                ProgressStyle="MBProgressStyle.Linear"
                                 ProgressType="MBProgressType.Determinate"
                                 ProgressLevel=@progressLevel
                                 style="margin: 6px;" />

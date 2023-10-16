@@ -16,6 +16,9 @@
 - name: MBCircularProgress
   topicUid: C.MBCircularProgress
 
+- name: MBIconButton
+  topicUid: C.MBIconButton
+
 - name: MBLinearProgress
   topicUid: C.MBLinearProgress
 

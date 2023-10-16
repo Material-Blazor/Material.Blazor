@@ -1,6 +1,8 @@
 ﻿using Material.Blazor.Internal;
-using Microsoft.AspNetCore.Components.Rendering;
+
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+
 using System.Linq;
 
 namespace Material.Blazor;
@@ -11,6 +13,11 @@ namespace Material.Blazor;
 public sealed class MBProgress : ComponentFoundation
 {
     #region members
+
+    /// <summary>
+    /// The progress indicator buffer level for linear determinate progress.
+    /// </summary>
+    [Parameter] public double? ProgressBufferLevel { get; set; } = null;
 
     /// <summary>
     /// The progress indicator 4 color option for indeterminate progress.
@@ -69,6 +76,11 @@ public sealed class MBProgress : ComponentFoundation
         if (ProgressType == MBProgressType.Determinate)
         {
             builder.AddAttribute(5, "value", ProgressLevel.ToString());
+
+            if ((ProgressStyle == MBProgressStyle.Linear) && ProgressBufferLevel is not null)
+            {
+                builder.AddAttribute(5, "buffer", ProgressBufferLevel.ToString());
+            }
         }
 
         if (AppliedDisabled)

@@ -15,7 +15,6 @@ Either supports indeterminate or determinate characteristics.
 - Applies [density subsystem](xref:A.Density).
 
 ## Notes
-- Closed progress type is not yet implemented
 - Density is not yet implemented
 
 ## Reserved Attributes

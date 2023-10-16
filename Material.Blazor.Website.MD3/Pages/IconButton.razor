@@ -20,11 +20,11 @@
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Icon Buttons
+                        Icon Buttons showing all four styles
                     </h2>
 
                     <p>
-                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: "darkblue",
                                                   name: "check")"
                                       IconButtonStyle="@MBIconButtonStyle.Icon"
@@ -32,7 +32,7 @@
                     </p>
 
                     <p>
-                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: "darkblue",
                                                   name: "check")"
                                       IconButtonStyle="@MBIconButtonStyle.Filled"
@@ -40,7 +40,7 @@
                     </p>
 
                     <p>
-                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: "darkblue",
                                                   name: "check")"
                                       IconButtonStyle="@MBIconButtonStyle.FilledTonal"
@@ -48,11 +48,106 @@
                     </p>
 
                     <p>
-                        <MBIconButton Descriptor="@MBIcon.IconDescriptorConstructor(
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
                                                   color: "darkblue",
                                                   name: "check")"
                                       IconButtonStyle="@MBIconButtonStyle.Outlined"
                                       @onclick="@(() => ButtonClick("Outlined Icon Button"))" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon Buttons showing all four styles in toggle fashion
+                    </h2>
+                    <p>
+                        <MBSwitch @bind-Value="@toggle"
+                                  @bind-Value:after="@(() => ComponentValueChanged(toggle, "Toggle"))"
+                                  TrailingLabelPLUS="Selected" />
+
+
+                    </p>
+                    <p>
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "close")"
+                                      IconButtonStyle="@MBIconButtonStyle.Icon"
+                                      @onclick="@(() => ButtonClick("Icon Button toggle"))"
+                                      ToggleIconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                            color: "darkgreen",
+                                            name: "check")"
+                                      ToggleIconSelected="@toggle" />
+                    </p>
+
+                    <p>
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "close")"
+                                      IconButtonStyle="@MBIconButtonStyle.Filled"
+                                      @onclick="@(() => ButtonClick("Filled Icon Button toggle"))"
+                                      ToggleIconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                            color: "white",
+                                            name: "check")"
+                                      ToggleIconSelected="@toggle" />
+                    </p>
+
+                    <p>
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "close")"
+                                      IconButtonStyle="@MBIconButtonStyle.FilledTonal"
+                                      @onclick="@(() => ButtonClick("Filled Tonal Icon Button toggle"))"
+                                      ToggleIconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                            color: "darkgreen",
+                                            name: "check")"
+                                      ToggleIconSelected="@toggle" />
+                    </p>
+
+                    <p>
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "close")"
+                                      IconButtonStyle="@MBIconButtonStyle.Outlined"
+                                      @onclick="@(() => ButtonClick("Outlined Icon Button toggle"))"
+                                      ToggleIconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                            color: "white",
+                                            name: "check")"
+                                      ToggleIconSelected="@toggle" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon button with a link
+                    </h2>
+                    <p>
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "check")"
+                                      IconButtonStyle="@MBIconButtonStyle.Icon"
+                                      IconLink="https://material-web.dev/components/icon-button/"
+                                      @onclick="@(() => ButtonClick("Icon Button with link"))" />
+                    </p>
+
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon button with a link and target
+                    </h2>
+                    <p>
+                        <MBIconButton IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: "darkblue",
+                                                  name: "check")"
+                                      IconButtonStyle="@MBIconButtonStyle.Icon"
+                                      IconLink="https://material-web.dev/components/icon-button/"
+                                      IconLinkTarget="_blank"
+                                      @onclick="@(() => ButtonClick("Icon Button with link and target"))" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -63,8 +158,16 @@
 
 
 @code {
+    private bool toggle { get; set; }
+
     private void ButtonClick(string notification)
     {
         ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
     }
+
+    private void ComponentValueChanged(bool value, string componentName)
+    {
+        ToastService.ShowToast(heading: $"{componentName} Clicked", message: $"Two way binding Value: {value}", level: MBToastLevel.Success, showIcon: false);
+    }
+
 }

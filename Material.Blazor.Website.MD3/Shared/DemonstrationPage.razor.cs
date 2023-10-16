@@ -18,7 +18,6 @@ namespace Material.Blazor.Website.Shared
         [Parameter] public RenderFragment Description { get; set; }
         [Parameter] public string DetailedArticle { get; set; }
         [Parameter] public bool IsGeneric { get; set; } = false;
-        [Parameter] public string MaterialDesignPage { get; set; } = "";
         [Parameter] public string MaterialWebPage { get; set; } = "";
         [Parameter] public MBDensity MinDensity { get; set; } = MBDensity.Default;
         [Parameter] public RenderFragment PageContent { get; set; }
@@ -51,7 +50,6 @@ namespace Material.Blazor.Website.Shared
         private bool NeedsTable =>
             ((ComponentAndPageName != null)
             || (DetailedArticle != null)
-            || (MaterialDesignPage != null)
             || (MaterialWebPage != null));
 
 
@@ -159,28 +157,6 @@ namespace Material.Blazor.Website.Shared
                     {
                         Title = "Material Web 3",
                         Content = $"<a href=\"https://material-web.dev/components/" + page + "/\" target=\"_blank\" >" + page + " page link</a>"
-                    });
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(MaterialDesignPage))
-            {
-                string[] pages;
-                if (MaterialDesignPage.Contains(";"))
-                {
-                    pages = MaterialDesignPage.Split(';');
-                }
-                else
-                {
-                    pages = new string[1] { MaterialDesignPage };
-                }
-
-                foreach (var page in pages)
-                {
-                    Items.Add(new ReferenceItem
-                    {
-                        Title = "Material Design 3",
-                        Content = $"<a href=\"https://m3.material.io/components/" + page + "/\" target=\"_blank\" >" + page + " page link</a>"
                     });
                 }
             }

@@ -16,9 +16,40 @@ public sealed class MBIconButton : ComponentFoundation
 {
     #region members
 
+    /// <summary>
+    /// The density attribute.
+    /// </summary>
     [Parameter] public MBDensity Density { get; set; }
+
+    /// <summary>
+    /// The primary icon attributes.
+    /// </summary>
     [Parameter] public MBIconDescriptor IconDescriptor { get; set; }
+
+    /// <summary>
+    /// The icon style (outlined, filled, etc).
+    /// </summary>
     [Parameter] public MBIconButtonStyle? IconButtonStyle { get; set; }
+
+    /// <summary>
+    /// The icon link (url, valid only with the style of Icon).
+    /// </summary>
+    [Parameter] public string IconLink { get; set; }
+
+    /// <summary>
+    /// The target for a link.
+    /// </summary>
+    [Parameter] public string IconLinkTarget { get; set; }
+
+    /// <summary>
+    /// A secondary icon used in the setting of a toggle
+    /// </summary>
+    [Parameter] public MBIconDescriptor ToggleIconDescriptor { get; set; }
+
+    /// <summary>
+    /// A secondary icon used in the setting of a toggle
+    /// </summary>
+    [Parameter] public bool ToggleIconSelected { get; set; }
 
     #endregion
 
@@ -44,6 +75,25 @@ public sealed class MBIconButton : ComponentFoundation
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
+            if ((componentName.StartsWith("md-icon-button")) && (!string.IsNullOrEmpty(IconLink)))
+            {
+                builder.AddAttribute(rendSeq++, "href", IconLink);
+
+                if (!string.IsNullOrEmpty(IconLinkTarget))
+                {
+                    builder.AddAttribute(rendSeq++, "target", IconLinkTarget);
+                }
+            }
+
+            if (ToggleIconDescriptor is not null)
+            {
+                builder.AddAttribute(rendSeq++, "toggle");
+                if (ToggleIconSelected)
+                {
+                    builder.AddAttribute(rendSeq++, "selected");
+                }
+            }
+
             builder.AddAttribute(rendSeq++, "class", @class);
             builder.AddAttribute(rendSeq++, "style", style);
             builder.AddAttribute(rendSeq++, "id", id);
@@ -60,6 +110,16 @@ public sealed class MBIconButton : ComponentFoundation
                     CascadingDefaults,
                     IconDescriptor,
                     "");
+            }
+
+            if (ToggleIconDescriptor is not null)
+            {
+                MBIcon.BuildRenderTreeWorker(
+                    builder,
+                    ref rendSeq,
+                    CascadingDefaults,
+                    ToggleIconDescriptor,
+                    "selected");
             }
         }
         builder.CloseElement();
