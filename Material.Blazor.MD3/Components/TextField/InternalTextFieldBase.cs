@@ -155,7 +155,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         var rendSeq = 0;
-        var componentName = TextInputStyle switch
+        var componentName = CascadingDefaults.AppliedStyle(TextInputStyle) switch
         {
             MBTextInputStyle.Outlined => "md-outlined-text-field",
             MBTextInputStyle.Filled => "md-filled-text-field",

@@ -409,14 +409,14 @@ public enum MBProgressType
 
 #endregion
 
-#region MBSelectInputStyleMD2
+#region MBSelectInputStyle
 
 /// <summary>
 /// Material Theme select input style applied to <see cref="MBSelect{TItem}"/>.
 /// <para>Applied also to <seealso cref="MBDatePicker"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
 /// </summary>
-public enum MBSelectInputStyleMD2
+public enum MBSelectInputStyle
 {
     /// <summary>
     /// The filled style. This is the <see cref="MBCascadingDefaults"/> default.

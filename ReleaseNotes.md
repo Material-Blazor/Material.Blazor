@@ -37,7 +37,7 @@ Released 2023-10-10
 - MD2/MD3: Automated retrieval of Google font SCSS source files
 - MD2: Added new IconFoundry (Material Symbols) and corresponding support and demonstration files
 - MD2: Removed English business day demo from the DatePicker example due to license issues with the Nager.Date package. For reference the code is available in commented form in DatePicker.razor file in Material.Blazor.Website.
-- MD3: Migrate @material/web to 1.0.0
+- MD3: Migrate @material/web to 1.0.0 [[PLACEHOLDER ]]
 
 **New components**
 - MD3: Added preview components:
@@ -60,22 +60,19 @@ Released 2023-09-16
 **Updates**
 - Dependabot updates
 - Migrate all projects to .Net 8 RC 1
-- Migrate @material/web to 1.0.0-pre.17
+- Migrate @material/web to 1.0.0
 - Our use of the MOQ library has been deprecated. The replacement library is NSubstitute. The pattern for adding additional tests
 remains unchanged.
 - Repaired ReleaseNotes.md links to code for 4.0.0 & 5.0.0-rc.1
 
 **New components**
 - Added preview of Material Design 3 components:
-	- MBCheckbox (with PLUS label parameters) N.B. - This is a port of the MD2 badge and will be replaced with an MD3 component when available.
-CSS still needs work in this version. If the funky rendering is not solved by the time  of RC2 then badges will be
-removed until the MD3 badge component is available.
+	- MBCheckbox (with PLUS label parameters)
+	- MBProgress (implements both circular & linear progress, deprecated separate components)
 	- MBRadioButton (with PLUS label parameters)
 	- MBRadioButtonGroup (PLUS component)
 	- MBSwitch (with PLUS label parameters)
-- There are also some experimental MD3 components as we explore the best way to deliver MD3 functionality to MB:
-	- MBProgress (implements both circular & linear progress)
-	- MBTextField (implements both filled and outlined text fields)
+	- MBTextField (implements both filled and outlined text fields, deprecated separate components)
 
 **Breaking Changes**
 

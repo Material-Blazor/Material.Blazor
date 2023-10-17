@@ -60,10 +60,10 @@
                             </h3>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@ToastService.Configuration.Position"
-                                                          Items="@positionItems"
-                                                          LeadingLabel="Toast Position"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@ToastService.Configuration.Position"
+                                      Items="@positionItems"
+                                      SelectedLabel="Toast Position"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBCheckbox @bind-Value="@OverrideCssDefaults"
@@ -71,7 +71,7 @@
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBIntField @bind-Value="@ToastService.Configuration.MaxToastsShowing"
-                                        LeadingLabel="Max Toasts (0-10)"
+                                        SelectedLabel="Max Toasts (0-10)"
                                         Max="10"
                                         Min="0"
                                         NumericFormat="N0" />
@@ -131,60 +131,60 @@
                             </h3>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@CssClass"
-                                                          Items="CssClassItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Additional css class"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@CssClass"
+                                      Items="CssClassItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Additional css class"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@CloseMethod"
-                                                          Items="closeMethodItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Close method"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@CloseMethod"
+                                      Items="closeMethodItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Close method"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@Heading"
-                                                          Items="headingItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Heading"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@Heading"
+                                      Items="headingItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Heading"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@Icon"
-                                                          Items="iconItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@Icon"
+                                      Items="iconItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@Level"
-                                                          Items="levelItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Level"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@Level"
+                                      Items="levelItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Level"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@Message"
-                                                          Items="messageItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Message"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@Message"
+                                      Items="messageItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Message"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@ShowIcon"
-                                                          Items="showIconItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Show icon"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@ShowIcon"
+                                      Items="showIconItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Show icon"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@Timeout"
-                                                          Items="timeoutItems"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Timeout"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@Timeout"
+                                      Items="timeoutItems"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Timeout"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12">
@@ -204,36 +204,36 @@
 @code {
     private bool OverrideCssDefaults { get; set; }
 
-    private readonly IEnumerable<MBSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
-                                                                                   select new MBSelectElement<MBToastPosition>
-                                                                                       {
-                                                                                           SelectedValue = pos,
-                                                                                           LeadingLabel = pos.ToString()
-                                                                                       };
+    private readonly IEnumerable<MBSingleSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
+                                                                                         select new MBSingleSelectElement<MBToastPosition>
+                                                                                             {
+                                                                                                 SelectedValue = pos,
+                                                                                                 TrailingLabel = pos.ToString()
+                                                                                             };
 
 
     private string CssClass { get; set; }
-    private readonly MBSelectElement<string>[] CssClassItems = new MBSelectElement<string>[]
+    private readonly MBSingleSelectElement<string>[] CssClassItems = new MBSingleSelectElement<string>[]
         {
-        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
-        new MBSelectElement<string> { SelectedValue = "italic-class", LeadingLabel = "Italic" },
+        new MBSingleSelectElement<string> { SelectedValue = "", TrailingLabel = "Toast Svc Default" },
+        new MBSingleSelectElement<string> { SelectedValue = "italic-class", TrailingLabel = "Italic" },
                                                 };
 
 
     private MBNotifierCloseMethod CloseMethod { get; set; }
-    private readonly IEnumerable<MBSelectElement<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
-                                                                                            select new MBSelectElement<MBNotifierCloseMethod>
-                                                                                                {
-                                                                                                    SelectedValue = c,
-                                                                                                    LeadingLabel = c.ToString()
-                                                                                                };
+    private readonly IEnumerable<MBSingleSelectElement<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
+                                                                                                  select new MBSingleSelectElement<MBNotifierCloseMethod>
+                                                                                                      {
+                                                                                                          SelectedValue = c,
+                                                                                                          TrailingLabel = c.ToString()
+                                                                                                      };
 
     private string Heading { get; set; }
-    private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
+    private readonly MBSingleSelectElement<string>[] headingItems = new MBSingleSelectElement<string>[]
         {
-        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
-        new MBSelectElement<string> { SelectedValue = "Run of the mill heading", LeadingLabel = "Run of the mill heading" },
-        new MBSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", LeadingLabel = "Heading that will be truncated" }
+        new MBSingleSelectElement<string> { SelectedValue = "", TrailingLabel = "Toast Svc Default" },
+        new MBSingleSelectElement<string> { SelectedValue = "Run of the mill heading", TrailingLabel = "Run of the mill heading" },
+        new MBSingleSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", TrailingLabel = "Heading that will be truncated" }
                                                 };
 
 
@@ -245,53 +245,53 @@
 #nullable restore annotations
 
     private MyIcon Icon { get; set; }
-    private readonly MBSelectElement<MyIcon>[] iconItems = new MBSelectElement<MyIcon>[]
+    private readonly MBSingleSelectElement<MyIcon>[] iconItems = new MBSingleSelectElement<MyIcon>[]
         {
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, LeadingLabel = "directions_run" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (filled / default)" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (outlined)" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (rounded)" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (two-tone)" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, LeadingLabel = "thumb_up (sharp)" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, LeadingLabel = "fa-ambulance" },
-        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, LeadingLabel = "fa-ambulance (x-small)" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, TrailingLabel = "directions_run" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, TrailingLabel = "thumb_up (filled / default)" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, TrailingLabel = "thumb_up (outlined)" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, TrailingLabel = "thumb_up (rounded)" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, TrailingLabel = "thumb_up (two-tone)" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up" }, TrailingLabel = "thumb_up (sharp)" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, TrailingLabel = "fa-ambulance" },
+        new MBSingleSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance" }, TrailingLabel = "fa-ambulance (x-small)" },
                                                 };
 
 
     private MBToastLevel Level { get; set; }
-    private readonly IEnumerable<MBSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
-                                                                             select new MBSelectElement<MBToastLevel>
-                                                                                 {
-                                                                                     SelectedValue = c,
-                                                                                     LeadingLabel = c.ToString()
-                                                                                 };
+    private readonly IEnumerable<MBSingleSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
+                                                                                   select new MBSingleSelectElement<MBToastLevel>
+                                                                                       {
+                                                                                           SelectedValue = c,
+                                                                                           TrailingLabel = c.ToString()
+                                                                                       };
 
 
     private string Message { get; set; }
-    private readonly MBSelectElement<string>[] messageItems = new MBSelectElement<string>[]
+    private readonly MBSingleSelectElement<string>[] messageItems = new MBSingleSelectElement<string>[]
         {
-        new MBSelectElement<string> { SelectedValue = "Run of the mill message", LeadingLabel = "Run of the mill message" },
-        new MBSelectElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", LeadingLabel = "Message with markup" },
-        new MBSelectElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", LeadingLabel = "Message that will be truncated" }
+        new MBSingleSelectElement<string> { SelectedValue = "Run of the mill message", TrailingLabel = "Run of the mill message" },
+        new MBSingleSelectElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", TrailingLabel = "Message with markup" },
+        new MBSingleSelectElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", TrailingLabel = "Message that will be truncated" }
                                                 };
 
 
     private string ShowIcon { get; set; }
-    private readonly MBSelectElement<string>[] showIconItems = new MBSelectElement<string>[]
+    private readonly MBSingleSelectElement<string>[] showIconItems = new MBSingleSelectElement<string>[]
         {
-        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
-        new MBSelectElement<string> { SelectedValue = "true", LeadingLabel = "true" },
-        new MBSelectElement<string> { SelectedValue = "false", LeadingLabel = "false" }
+        new MBSingleSelectElement<string> { SelectedValue = "", TrailingLabel = "Toast Svc Default" },
+        new MBSingleSelectElement<string> { SelectedValue = "true", TrailingLabel = "true" },
+        new MBSingleSelectElement<string> { SelectedValue = "false", TrailingLabel = "false" }
                                                 };
 
 
     private string Timeout { get; set; }
-    private readonly MBSelectElement<string>[] timeoutItems = new MBSelectElement<string>[]
+    private readonly MBSingleSelectElement<string>[] timeoutItems = new MBSingleSelectElement<string>[]
         {
-        new MBSelectElement<string> { SelectedValue = "", LeadingLabel = "Toast Svc Default" },
-        new MBSelectElement<string> { SelectedValue = "1000", LeadingLabel = "1 second" },
-        new MBSelectElement<string> { SelectedValue = "10000", LeadingLabel = "10 seconds" },
-        new MBSelectElement<string> { SelectedValue = "60000", LeadingLabel = "60 seconds" }
+        new MBSingleSelectElement<string> { SelectedValue = "", TrailingLabel = "Toast Svc Default" },
+        new MBSingleSelectElement<string> { SelectedValue = "1000", TrailingLabel = "1 second" },
+        new MBSingleSelectElement<string> { SelectedValue = "10000", TrailingLabel = "10 seconds" },
+        new MBSingleSelectElement<string> { SelectedValue = "60000", TrailingLabel = "60 seconds" }
                                                 };
 
 

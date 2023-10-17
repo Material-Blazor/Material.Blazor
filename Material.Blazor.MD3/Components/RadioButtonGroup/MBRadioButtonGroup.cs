@@ -14,7 +14,7 @@ namespace Material.Blazor;
 /// <summary>
 /// A group of <see cref="MBRadioButton{TItem}"/>s displayed horizontally or vertically.
 /// </summary>
-public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MBSelectElement<TItem>>
+public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MBSingleSelectElement<TItem>>
 {
     #region members
 
@@ -42,40 +42,41 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
         var rendSeq = 0;
 
         builder.OpenElement(rendSeq++, "div");
-        builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
-        builder.AddAttribute(rendSeq++, "style", @style);
-        builder.AddAttribute(rendSeq++, "id", id);
-        if (attributesToSplat.Any())
         {
-            builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-        }
-
-        foreach (var rb in Items)
-        {
-            builder.OpenComponent(rendSeq++, typeof(MBRadioButton<TItem>));
+            builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
+            builder.AddAttribute(rendSeq++, "style", @style);
+            builder.AddAttribute(rendSeq++, "id", id);
+            if (attributesToSplat.Any())
             {
-                builder.AddAttribute(rendSeq++, "Density", Density);
-                builder.AddAttribute(rendSeq++, "Disabled", rb.Disabled);
-                builder.AddAttribute(rendSeq++, "LeadingLabelPLUS", rb.LeadingLabel);
-                builder.AddAttribute(rendSeq++, "RadioGroupName", RadioGroupName);
-                if (IsHorizontal)
-                {
-                    builder.AddAttribute(rendSeq++, "style", "margin-right: 1em; ");
-                }
-                else
-                {
-                    builder.AddAttribute(rendSeq++, "style", "margin-bottom: 1em; ");
-                }
-                builder.AddAttribute(rendSeq++, "TargetCheckedValue", rb.SelectedValue);
-                builder.AddAttribute(rendSeq++, "TrailingLabelPLUS", rb.TrailingLabel);
-                builder.AddAttribute(rendSeq++, "Value", ComponentValue);
-                builder.AddAttribute(rendSeq++, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
-                builder.AddAttribute(rendSeq++, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
-                builder.SetKey(KeyGenerator(rb.SelectedValue));
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
-            builder.CloseComponent();
-        }
 
+            foreach (var sse in Items)
+            {
+                builder.OpenComponent(rendSeq++, typeof(MBRadioButton<TItem>));
+                {
+                    builder.AddAttribute(rendSeq++, "Density", Density);
+                    builder.AddAttribute(rendSeq++, "Disabled", sse.Disabled);
+                    builder.AddAttribute(rendSeq++, "LeadingLabelPLUS", sse.LeadingLabel);
+                    builder.AddAttribute(rendSeq++, "RadioGroupName", RadioGroupName);
+                    if (IsHorizontal)
+                    {
+                        builder.AddAttribute(rendSeq++, "style", "margin-right: 1em; ");
+                    }
+                    else
+                    {
+                        builder.AddAttribute(rendSeq++, "style", "margin-bottom: 1em; ");
+                    }
+                    builder.AddAttribute(rendSeq++, "TargetCheckedValue", sse.SelectedValue);
+                    builder.AddAttribute(rendSeq++, "TrailingLabelPLUS", sse.TrailingLabel);
+                    builder.AddAttribute(rendSeq++, "Value", ComponentValue);
+                    builder.AddAttribute(rendSeq++, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
+                    builder.AddAttribute(rendSeq++, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
+                    builder.SetKey(KeyGenerator(sse.SelectedValue));
+                }
+                builder.CloseComponent();
+            }
+        }
         builder.CloseElement();
 
     }

@@ -12,7 +12,7 @@ namespace Material.Blazor.Internal;
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public abstract class SingleSelectComponent<T, TListElement> :
-    InputComponent<T> where TListElement : Material.Blazor.MBSelectElement<T>
+    InputComponent<T> where TListElement : MBSingleSelectElement<T>
 {
     /// <summary>
     /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
@@ -77,7 +77,7 @@ public abstract class SingleSelectComponent<T, TListElement> :
     /// <returns>The an indicator of whether an item was found and the item in the list matching <see cref="InputComponent{T}._cachedValue"/> or default if not found.</returns>
     /// <exception cref="ArgumentException"/>
     public (bool hasValue, T value) ValidateItemList(
-        IEnumerable<MBSelectElement<T>> items,
+        IEnumerable<MBSingleSelectElement<T>> items,
         Material.Blazor.MBItemValidation appliedItemValidation)
     {
         var componentName = Utilities.GetTypeName(GetType());

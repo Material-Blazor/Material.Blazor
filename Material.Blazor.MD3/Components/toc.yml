@@ -13,14 +13,8 @@
 - name: MBCheckbox
   topicUid: C.MBCheckbox
 
-- name: MBCircularProgress
-  topicUid: C.MBCircularProgress
-
 - name: MBIconButton
   topicUid: C.MBIconButton
-
-- name: MBLinearProgress
-  topicUid: C.MBLinearProgress
 
 - name: MBProgress
   topicUid: C.MBProgress
@@ -30,6 +24,9 @@
 
 - name: MBRadioButtonGroup
   topicUid: C.MBRadioButtonGroup
+
+- name: MBSelect
+  topicUid: C.MBSelect
 
 - name: MBSwitch
   topicUid: C.MBSwitch

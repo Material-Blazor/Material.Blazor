@@ -15,6 +15,8 @@ import '@material/web/iconbutton/outlined-icon-button.js';
 import '@material/web/progress/circular-progress.js';
 import '@material/web/progress/linear-progress.js';
 import '@material/web/radio/radio.js';
+import '@material/web/select/filled-select.js';
+import '@material/web/select/outlined-select.js';
 import '@material/web/textfield/filled-text-field.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/switch/switch.js';
@@ -29,8 +31,6 @@ import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
 import * as MBDialog from '../Components.MD2/Dialog/MBDialog';
 import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
 import * as MBMenu from '../Components.MD2/Menu/MBMenu';
-import * as MBSelect from '../Components.MD2/Select/MBSelect';
-import * as MBSlider from '../Components.MD2/Slider/MBSlider';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
@@ -41,7 +41,5 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
     MBDialog,
     MBDrawer,
     MBMenu,
-    MBSelect,
-    MBSlider,
     MBTopAppBar
 };

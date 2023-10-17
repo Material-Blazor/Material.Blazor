@@ -107,12 +107,12 @@
 </DemonstrationPage>
 
 @code {
-    private MBSelectElement<double>[] ProgressLevels = new MBSelectElement<double>[]
+    private MBSingleSelectElement<double>[] ProgressLevels = new MBSingleSelectElement<double>[]
     {
-        new MBSelectElement<double> { SelectedValue = 0.25, TrailingLabel = "25% Progress" },
-        new MBSelectElement<double> { SelectedValue = 0.50, TrailingLabel = "50% Progress" },
-        new MBSelectElement<double> { SelectedValue = 0.75, TrailingLabel = "75% Progress" },
-        new MBSelectElement<double> { SelectedValue = 1.00, TrailingLabel = "100% Progress" }
+        new MBSingleSelectElement<double> { SelectedValue = 0.25, TrailingLabel = "25% Progress" },
+        new MBSingleSelectElement<double> { SelectedValue = 0.50, TrailingLabel = "50% Progress" },
+        new MBSingleSelectElement<double> { SelectedValue = 0.75, TrailingLabel = "75% Progress" },
+        new MBSingleSelectElement<double> { SelectedValue = 1.00, TrailingLabel = "100% Progress" }
     };
 
     private double progressLevel { get; set; }

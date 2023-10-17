@@ -27,7 +27,7 @@ namespace Material.Blazor.Website.Shared
 
 
 
-        private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
+        private IEnumerable<MBSingleSelectElement<MBDensity>> Densities { get; set; }
 
         private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
         {
@@ -161,7 +161,7 @@ namespace Material.Blazor.Website.Shared
                 }
             }
 
-            Densities = new MBSelectElement<Material.Blazor.MBDensity>[]
+            Densities = new MBSingleSelectElement<Material.Blazor.MBDensity>[]
             {
             new() {SelectedValue = MBDensity.Default, TrailingLabel = "Default", Disabled = false },
             new() {SelectedValue = MBDensity.Minus1, TrailingLabel = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
