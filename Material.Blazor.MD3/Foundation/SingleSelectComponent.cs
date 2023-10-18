@@ -14,6 +14,8 @@ namespace Material.Blazor.Internal;
 public abstract class SingleSelectComponent<T, TListElement> :
     InputComponent<T> where TListElement : MBSingleSelectElement<T>
 {
+    #region members
+
     /// <summary>
     /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
     /// "fake" keys set to GUIDs will be used.
@@ -37,11 +39,15 @@ public abstract class SingleSelectComponent<T, TListElement> :
     [Parameter] public Material.Blazor.MBItemValidation? ItemValidation { get; set; }
 
 
+
     /// <summary>
     /// Generates keys for repeated elements in the single select list.
     /// </summary>
     private protected Func<T, object> KeyGenerator { get; set; }
 
+    #endregion
+
+    #region OnParametersSetAsync
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnParametersSetAsync()
@@ -67,6 +73,9 @@ public abstract class SingleSelectComponent<T, TListElement> :
         }
     }
 
+    #endregion
+
+    #region ValidateItemList
 
     // This method was added in the interest of DRY and is used by MBSelect & MBRadioButtonGroup
     /// <summary>
@@ -109,4 +118,7 @@ public abstract class SingleSelectComponent<T, TListElement> :
 
         return (true, Value);
     }
+
+    #endregion
+
 }

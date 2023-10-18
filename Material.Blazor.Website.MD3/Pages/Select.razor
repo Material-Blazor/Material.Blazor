@@ -54,8 +54,8 @@
 
 
 
-        <div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
+@*         <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Icons &amp; Full Width Menu Surface
@@ -67,26 +67,28 @@
 
                     <p>
                         <MBSelect @bind-Value="@Icon1"
+                                  IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)"
                                   Items="KittenBreeds"
                                   ItemValidation="@MBItemValidation.NoSelection"
                                   Label="Filled With Icon"
                                   LeadingIcon="print"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.FullWidth"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth"
                                   SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@Icon2"
+                                  IconFoundry="@MBIconHelper.FAFoundry()"
                                   Items="KittenBreeds"
                                   ItemValidation="@MBItemValidation.NoSelection"
                                   Label="Outlined With Icon"
-                                  LeadingIcon="home"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.FullWidth"
+                                  LeadingIcon="fa-car-crash"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth"
                                   SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                 </Primary>
-            </Material.Blazor.MD2.MBCard>
+            </MBCard>
         </div>
-
+ *@
 
 
         <div class="mdc-layout-grid__cell--span-4">
@@ -118,7 +120,7 @@
 
 
 
-        <div class="mdc-layout-grid__cell--span-4">
+@*         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -149,7 +151,7 @@
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
-
+ *@
 
 
         <div class="mdc-layout-grid__cell--span-4">

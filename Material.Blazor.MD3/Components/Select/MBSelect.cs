@@ -28,6 +28,7 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
     /// </summary>
     [Parameter] public string Label { get; set; }
 
+
     /// <summary>
     /// The select has a required value.
     /// </summary>
@@ -80,20 +81,35 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
                 builder.AddAttribute(rendSeq++, "required");
             }
 
+            builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChangedInternal.InvokeAsync, Value));
 
             foreach (var sse in Items)
             {
-                builder.OpenElement(rendSeq++, "md-select-option");
+                if (sse is not null)
                 {
-                    builder.AddAttribute(rendSeq++, "value", sse.SelectedValue);
-                    builder.OpenElement(rendSeq++, "div");
+                    builder.OpenElement(rendSeq++, "md-select-option");
                     {
-                        builder.AddAttribute(rendSeq++, "slot", "headline");
-                        builder.AddContent(rendSeq++, sse.TrailingLabel);
+                        if (sse.SelectedValue is not null)
+                        {
+                            builder.AddAttribute(rendSeq++, "value", sse.SelectedValue);
+                            if (sse.SelectedValue.Equals(Value))
+                            {
+                                builder.AddAttribute(rendSeq++, "selected");
+                            }
+                        }
+
+                        if (sse.TrailingLabel is not null)
+                        {
+                            builder.OpenElement(rendSeq++, "div");
+                            {
+                                builder.AddAttribute(rendSeq++, "slot", "headline");
+                                builder.AddContent(rendSeq++, sse.TrailingLabel);
+                            }
+                            builder.CloseElement();
+                        }
                     }
                     builder.CloseElement();
                 }
-                builder.CloseElement();
             }
 
         }
@@ -105,9 +121,9 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
     #region OnClickInternal
 
-    private async Task OnClickInternal()
+    private async Task ValueChangedInternal(TItem newValue)
     {
-        //       Value = !Value;
+        Value = newValue;
         await ValueChanged.InvokeAsync(Value);
     }
 

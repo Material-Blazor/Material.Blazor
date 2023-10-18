@@ -87,7 +87,7 @@ public sealed class MBCheckbox : InputComponent<bool>
                         builder.AddAttribute(rendSeq++, "indeterminate");
                     }
 
-                    builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+                    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
                 }
                 builder.CloseElement();
 
@@ -97,8 +97,8 @@ public sealed class MBCheckbox : InputComponent<bool>
                         "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
                         + TrailingLabelPLUS
                         + "</Span>";
-                    builder.AddMarkupContent(13, "\r\n");
-                    builder.AddMarkupContent(14, labelSpan);
+                    builder.AddMarkupContent(rendSeq++, "\r\n");
+                    builder.AddMarkupContent(rendSeq++, labelSpan);
                 }
             }
             builder.CloseElement();

@@ -12,7 +12,7 @@ Released 2023-11-??
 **Updates**
 - MD2/MD3: Dependabot and NuGet updates
 - MD2/MD3: Migrate all projects to .Net 8 release
-- MD3: Migrate @material/web to 1.0.0
+- MD3: Migrate @material/web to 1.0.0 [[PLACEHOLDER ]]
 
 **New components**
 - MD3: Added preview components:
@@ -37,7 +37,6 @@ Released 2023-10-10
 - MD2/MD3: Automated retrieval of Google font SCSS source files
 - MD2: Added new IconFoundry (Material Symbols) and corresponding support and demonstration files
 - MD2: Removed English business day demo from the DatePicker example due to license issues with the Nager.Date package. For reference the code is available in commented form in DatePicker.razor file in Material.Blazor.Website.
-- MD3: Migrate @material/web to 1.0.0 [[PLACEHOLDER ]]
 
 **New components**
 - MD3: Added preview components:
