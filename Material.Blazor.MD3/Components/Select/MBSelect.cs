@@ -40,6 +40,10 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
     /// </summary>
     [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
 
+
+
+    private EventCallback<TItem> InternalValueChanged { get; set; }
+
     #endregion
 
     #region BuildRenderTree
@@ -57,23 +61,23 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
         builder.OpenElement(rendSeq++, componentName);
         {
+            if (attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+            }
+
             builder.AddAttribute(rendSeq++, "class", @class);
             builder.AddAttribute(rendSeq++, "style", style);
             builder.AddAttribute(rendSeq++, "id", id);
-
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                builder.AddAttribute(rendSeq++, "label", Label);
-            }
 
             if (AppliedDisabled)
             {
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
-            if (attributesToSplat.Any())
+            if (!string.IsNullOrWhiteSpace(Label))
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddAttribute(rendSeq++, "label", Label);
             }
 
             if (Required)
@@ -81,7 +85,9 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
                 builder.AddAttribute(rendSeq++, "required");
             }
 
-            builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChangedInternal.InvokeAsync, Value));
+            builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
+            //builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, InternalValueChanged.InvokeAsync, Value));
+            //builder.SetUpdatesAttributeName("value");
 
             foreach (var sse in Items)
             {
@@ -119,9 +125,9 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
     #endregion
 
-    #region OnClickInternal
+    #region IntermediateValueChanged
 
-    private async Task ValueChangedInternal(TItem newValue)
+    private async Task IntermediateValueChanged(TItem newValue)
     {
         Value = newValue;
         await ValueChanged.InvokeAsync(Value);
