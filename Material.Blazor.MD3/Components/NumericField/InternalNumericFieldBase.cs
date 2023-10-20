@@ -213,7 +213,7 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
 
     #endregion
 
-    #region abstract ConvertToFormattedTextValue
+    #region ConvertToFormattedTextValue (abstract)
 
     /// <summary>
     /// Converts a string value from the text field to a formatted numeric value.
@@ -223,7 +223,7 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
 
     #endregion
 
-    #region abstract ConvertToNumericValue
+    #region ConvertToNumericValue (abstract)
 
     /// <summary>
     /// Converts a string value from the text field to a numeric value.
@@ -233,7 +233,7 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
 
     #endregion
 
-    #region abstract ConvertToUnformattedTextValue
+    #region ConvertToUnformattedTextValue (abstract)
     /// <summary>
     /// Converts a string value from the text field to an unformatted numeric value, subject to the correct number of decimal places.
     /// </summary>

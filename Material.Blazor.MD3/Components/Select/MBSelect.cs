@@ -3,10 +3,13 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -42,95 +45,149 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
 
 
-    private EventCallback<TItem> InternalValueChanged { get; set; }
+    //Instantiate a Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
+    private readonly SemaphoreSlim LifecycleGate = new(1, 1);
+
+    private string StringValue { get; set; }
 
     #endregion
 
     #region BuildRenderTree
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        var attributesToSplat = AttributesToSplat().ToArray();
-        var rendSeq = 0;
-
-        var componentName = CascadingDefaults.AppliedStyle(SelectInputStyle) switch
+        //LifecycleGate.Wait();
+        try
         {
-            MBSelectInputStyle.Filled => "md-filled-select",
-            MBSelectInputStyle.Outlined => "md-outlined-select",
-            _ => throw new System.Exception("Unknown SelectInputStyle")
-        };
+            ConsoleLog("BuildRenderTree");
+            ConsoleLog("   BRT - Label: " + Label);
+            ConsoleLog("   BRT - StringValue: " + StringValue);
 
-        builder.OpenElement(rendSeq++, componentName);
-        {
-            if (attributesToSplat.Any())
+            var attributesToSplat = AttributesToSplat().ToArray();
+            var rendSeq = 0;
+
+            var componentName = CascadingDefaults.AppliedStyle(SelectInputStyle) switch
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-            }
+                MBSelectInputStyle.Filled => "md-filled-select",
+                MBSelectInputStyle.Outlined => "md-outlined-select",
+                _ => throw new System.Exception("Unknown SelectInputStyle")
+            };
 
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
-
-            if (AppliedDisabled)
+            builder.OpenElement(rendSeq++, componentName);
             {
-                builder.AddAttribute(rendSeq++, "disabled");
-            }
-
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                builder.AddAttribute(rendSeq++, "label", Label);
-            }
-
-            if (Required)
-            {
-                builder.AddAttribute(rendSeq++, "required");
-            }
-
-            builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
-            //builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, InternalValueChanged.InvokeAsync, Value));
-            //builder.SetUpdatesAttributeName("value");
-
-            foreach (var sse in Items)
-            {
-                if (sse is not null)
+                if (attributesToSplat.Any())
                 {
-                    builder.OpenElement(rendSeq++, "md-select-option");
-                    {
-                        if (sse.SelectedValue is not null)
-                        {
-                            builder.AddAttribute(rendSeq++, "value", sse.SelectedValue);
-                            if (sse.SelectedValue.Equals(Value))
-                            {
-                                builder.AddAttribute(rendSeq++, "selected");
-                            }
-                        }
-
-                        if (sse.TrailingLabel is not null)
-                        {
-                            builder.OpenElement(rendSeq++, "div");
-                            {
-                                builder.AddAttribute(rendSeq++, "slot", "headline");
-                                builder.AddContent(rendSeq++, sse.TrailingLabel);
-                            }
-                            builder.CloseElement();
-                        }
-                    }
-                    builder.CloseElement();
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
+
+                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "style", style);
+                builder.AddAttribute(rendSeq++, "id", id);
+
+                if (AppliedDisabled)
+                {
+                    builder.AddAttribute(rendSeq++, "disabled");
+                }
+
+                if (!string.IsNullOrWhiteSpace(Label))
+                {
+                    builder.AddAttribute(rendSeq++, "label", Label);
+                }
+
+                if (Required)
+                {
+                    builder.AddAttribute(rendSeq++, "required");
+                }
+
+                builder.AddAttribute(rendSeq++, "value", StringValue);
+                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
+                builder.SetUpdatesAttributeName("StringValue");
+
+                foreach (var sse in Items)
+                {
+                    if (sse is not null)
+                    {
+                        builder.OpenElement(rendSeq++, "md-select-option");
+                        {
+                            if (sse.SelectedValue is not null)
+                            {
+                                builder.AddAttribute(rendSeq++, "value", sse.SelectedValue.ToString());
+                                //TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
+                                //var itemValue = (TItem)typeConverter.ConvertFromString(StringValue);
+                                if (sse.SelectedValue.ToString().ToLower().Equals(StringValue.ToLower()))
+                                {
+                                    builder.AddAttribute(rendSeq++, "selected");
+                                }
+                            }
+
+                            if (sse.TrailingLabel is not null)
+                            {
+                                builder.OpenElement(rendSeq++, "div");
+                                {
+                                    builder.AddAttribute(rendSeq++, "slot", "headline");
+                                    builder.AddContent(rendSeq++, sse.TrailingLabel);
+                                }
+                                builder.CloseElement();
+                            }
+                        }
+                        builder.CloseElement();
+                    }
+                }
+
             }
-
+            builder.CloseElement();
         }
-        builder.CloseElement();
-
+        finally
+        {
+            //LifecycleGate.Release();
+        }
     }
 
     #endregion
 
-    #region IntermediateValueChanged
+    #region HandleChange
 
-    private async Task IntermediateValueChanged(TItem newValue)
+    private async Task HandleChange(ChangeEventArgs args)
     {
-        Value = newValue;
-        await ValueChanged.InvokeAsync(Value);
+        //await LifecycleGate.WaitAsync();
+
+        try
+        {
+            ConsoleLog("HandleChange");
+            ConsoleLog("   HC - Label: " + Label);
+            ConsoleLog("   HC - Args.Value: " + (string)args.Value);
+            StringValue = (string)args.Value;
+        }
+        finally
+        {
+            //LifecycleGate.Release();
+        }
+        TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
+        ComponentValue = (TItem)typeConverter.ConvertFromString(StringValue);
+    }
+
+    #endregion
+
+    #region OnParametersSetAsync
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        StringValue = Value is null ? "" : Value.ToString();
+
+        ConsoleLog("OnParametersSetAsync");
+    }
+
+    #endregion
+
+    #region ZZZ - debug logging
+
+    [Inject] public IJSRuntime JSRuntime { get; set; }
+
+    public void ConsoleLog(string message)
+    {
+        JSRuntime.InvokeVoidAsync("console.log", message);
     }
 
     #endregion

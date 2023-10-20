@@ -112,8 +112,8 @@ public sealed class MBCheckbox : InputComponent<bool>
 
     private async Task OnClickInternal()
     {
-        Value = !Value;
-        await ValueChanged.InvokeAsync(Value);
+        await Task.CompletedTask;
+        ComponentValue = !Value;
     }
 
     #endregion

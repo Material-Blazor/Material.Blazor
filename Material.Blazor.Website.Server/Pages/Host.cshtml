@@ -9,7 +9,7 @@
 @using Microsoft.AspNetCore.Components.Web
 
 @{
-    Microsoft.AspNetCore.Mvc.Rendering.RenderMode renderMode = PlatformDetermination.IsBlazorServer ? Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered : Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered;
+    Microsoft.AspNetCore.Mvc.Rendering.RenderMode renderMode = PlatformDetermination.IsBlazorServer ? Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server : Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly;
 }
 
 <!DOCTYPE html>

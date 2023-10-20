@@ -54,16 +54,16 @@
 
                         </div>
 
-                        <div class="mdc-layout-grid__cell--span-4">
-                            <MBSelect @bind-Value="@iconGradient"
+                         <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@mbIconGradient"
                                       Items="@iconGradients"
                                       ItemValidation="@MBItemValidation.DefaultToFirst"
                                       Label="Icon gradient"
                                       SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
-
+                        
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBSelect @bind-Value="@iconSize"
+                            <MBSelect @bind-Value="@mbIconSize"
                                       Items="@iconSizes"
                                       ItemValidation="@MBItemValidation.DefaultToFirst"
                                       Label="Icon size"
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBSelect @bind-Value="@iconStyle"
+                            <MBSelect @bind-Value="@mbIconStyle"
                                       Items="@iconStyles"
                                       ItemValidation="@MBItemValidation.DefaultToFirst"
                                       Label="Icon style"
@@ -79,11 +79,44 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBSelect @bind-Value="@iconWeight"
+                            <MBSelect @bind-Value="@mbIconWeight"
                                       Items="@iconWeights"
                                       ItemValidation="@MBItemValidation.DefaultToFirst"
                                       Label="Icon weight"
                                       SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+
+                         <div class="mdc-layout-grid__cell--span-4">
+                            <table border="1">
+                                <tr>
+                                    <th align="left">Property</th>
+                                    <th align="left">Value</th>
+                                </tr>
+                                <tr>
+                                    <td>mbIconColor</td>
+                                    <td>@mbIconColor</td>
+                                </tr>
+                                <tr>
+                                    <td>mbIconFill</td>
+                                    <td>@mbIconFill.ToString()</td>
+                                </tr>
+                                <tr>
+                                    <td>mbIconGradient</td>
+                                    <td>@mbIconGradient.ToString()</td>
+                                </tr>
+                                <tr>
+                                    <td>mbIconSize</td>
+                                    <td>@mbIconSize.ToString()</td>
+                                </tr>
+                                <tr>
+                                    <td>mbIconStyle</td>
+                                    <td>@mbIconStyle.ToString()</td>
+                                </tr>
+                                <tr>
+                                    <td>mbIconWeight</td>
+                                    <td>@mbIconWeight.ToString()</td>
+                                </tr>
+                            </table>
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: column;">
@@ -224,18 +257,17 @@
             ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{mbIconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
-    // private decimal mbIconFill = 1.0m;
 
 
-    MBSingleSelectElement<string>[] iconGradients = new MBSingleSelectElement<string>[]
+    MBSingleSelectElement<MBIconGradient>[] iconGradients = new MBSingleSelectElement<MBIconGradient>[]
     {
-        new MBSingleSelectElement<string> { SelectedValue = "LowEmphasis", TrailingLabel = "Low emphasis" },
-        new MBSingleSelectElement<string> { SelectedValue = "NormalEmphasis", TrailingLabel = "Normal emphasis" },
-        new MBSingleSelectElement<string> { SelectedValue = "HighEmphasis", TrailingLabel = "High emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.LowEmphasis, TrailingLabel = "Low emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.NormalEmphasis, TrailingLabel = "Normal emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.HighEmphasis, TrailingLabel = "High emphasis" },
             };
 
     private MBIconGradient mbIconGradient = MBIconGradient.NormalEmphasis;
-    private string _iconGradient = "NormalEmphasis";
+    private string _iconGradient = MBIconGradient.NormalEmphasis.ToString();
     private string iconGradient
     {
         get => _iconGradient;
@@ -243,12 +275,9 @@
         {
             _iconGradient = value;
 
-            mbIconGradient = _iconGradient switch
+            if (!Enum.TryParse<MBIconGradient>(_iconGradient, out mbIconGradient))
             {
-                "LowEmphasis" => MBIconGradient.LowEmphasis,
-                "NormalEmphasis" => MBIconGradient.NormalEmphasis,
-                "HighEmphasis" => MBIconGradient.HighEmphasis,
-                _ => throw new Exception("Unknown icon gradient"),
+                throw new Exception("Unknown icon gradient");
             };
 
             ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{mbIconGradient.ToString()}'", level: MBToastLevel.Success, showIcon: false);
@@ -257,16 +286,16 @@
 
 
 
-    MBSingleSelectElement<string>[] iconSizes = new MBSingleSelectElement<string>[]
+    MBSingleSelectElement<MBIconSize>[] iconSizes = new MBSingleSelectElement<MBIconSize>[]
     {
-        new MBSingleSelectElement<string> { SelectedValue = "20", TrailingLabel = "20px" },
-        new MBSingleSelectElement<string> { SelectedValue = "24", TrailingLabel = "24px" },
-        new MBSingleSelectElement<string> { SelectedValue = "40", TrailingLabel = "40px" },
-        new MBSingleSelectElement<string> { SelectedValue = "48", TrailingLabel = "48px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size20, TrailingLabel = "20px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size24, TrailingLabel = "24px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size40, TrailingLabel = "40px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size48, TrailingLabel = "48px" },
             };
 
     private MBIconSize mbIconSize = MBIconSize.Size24;
-    private string _iconSize = "24";
+    private string _iconSize = MBIconSize.Size24.ToString();
     private string iconSize
     {
         get => _iconSize;
@@ -274,13 +303,9 @@
         {
             _iconSize = value;
 
-            mbIconSize = _iconSize switch
+            if (!Enum.TryParse<MBIconSize>(_iconSize, out mbIconSize))
             {
-                "20" => MBIconSize.Size20,
-                "24" => MBIconSize.Size24,
-                "40" => MBIconSize.Size40,
-                "48" => MBIconSize.Size48,
-                _ => throw new Exception("Unknown icon Size"),
+                throw new Exception("Unknown icon size");
             };
 
             ToastService.ShowToast(heading: "Icon Size", message: $"Value: '{_iconSize}'", level: MBToastLevel.Success, showIcon: false);
@@ -289,15 +314,15 @@
 
 
 
-    MBSingleSelectElement<string>[] iconStyles = new MBSingleSelectElement<string>[]
+    MBSingleSelectElement<MBIconStyle>[] iconStyles = new MBSingleSelectElement<MBIconStyle>[]
     {
-        new MBSingleSelectElement<string> { SelectedValue = "outlined", TrailingLabel = "Outlined" },
-        new MBSingleSelectElement<string> { SelectedValue = "rounded", TrailingLabel = "Rounded" },
-        new MBSingleSelectElement<string> { SelectedValue = "sharp", TrailingLabel = "Sharp" }
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Outlined, TrailingLabel = "Outlined" },
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Rounded, TrailingLabel = "Rounded" },
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Sharp, TrailingLabel = "Sharp" }
             };
 
     private MBIconStyle mbIconStyle = MBIconStyle.Outlined;
-    private string _iconStyle = "outlined";
+    private string _iconStyle = MBIconStyle.Outlined.ToString();
     private string iconStyle
     {
         get => _iconStyle;
@@ -305,12 +330,9 @@
         {
             _iconStyle = value;
 
-            mbIconStyle = _iconStyle switch
+            if (!Enum.TryParse<MBIconStyle>(_iconStyle, out mbIconStyle))
             {
-                "outlined" => MBIconStyle.Outlined,
-                "rounded" => MBIconStyle.Rounded,
-                "sharp" => MBIconStyle.Sharp,
-                _ => throw new Exception("Unknown icon style"),
+                throw new Exception("Unknown icon style");
             };
 
             ToastService.ShowToast(heading: "Icon style", message: $"Value: '{_iconStyle}'", level: MBToastLevel.Success, showIcon: false);
@@ -319,19 +341,19 @@
 
 
 
-    MBSingleSelectElement<string>[] iconWeights = new MBSingleSelectElement<string>[]
+    MBSingleSelectElement<MBIconWeight>[] iconWeights = new MBSingleSelectElement<MBIconWeight>[]
     {
-        new MBSingleSelectElement<string> { SelectedValue = "100", TrailingLabel = "100" },
-        new MBSingleSelectElement<string> { SelectedValue = "200", TrailingLabel = "200" },
-        new MBSingleSelectElement<string> { SelectedValue = "300", TrailingLabel = "300" },
-        new MBSingleSelectElement<string> { SelectedValue = "400", TrailingLabel = "400" },
-        new MBSingleSelectElement<string> { SelectedValue = "500", TrailingLabel = "500" },
-        new MBSingleSelectElement<string> { SelectedValue = "600", TrailingLabel = "600" },
-        new MBSingleSelectElement<string> { SelectedValue = "700", TrailingLabel = "700" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W100, TrailingLabel = "100" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W200, TrailingLabel = "200" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W300, TrailingLabel = "300" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W400, TrailingLabel = "400" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W500, TrailingLabel = "500" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W600, TrailingLabel = "600" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W700, TrailingLabel = "700" },
             };
 
     private MBIconWeight mbIconWeight = MBIconWeight.W400;
-    private string _iconWeight = "400";
+    private string _iconWeight = MBIconWeight.W400.ToString();
     private string iconWeight
     {
         get => _iconWeight;
@@ -339,16 +361,9 @@
         {
             _iconWeight = value;
 
-            mbIconWeight = _iconWeight switch
+            if (!Enum.TryParse<MBIconWeight>(_iconWeight, out mbIconWeight))
             {
-                "100" => MBIconWeight.W100,
-                "200" => MBIconWeight.W200,
-                "300" => MBIconWeight.W300,
-                "400" => MBIconWeight.W400,
-                "500" => MBIconWeight.W500,
-                "600" => MBIconWeight.W600,
-                "700" => MBIconWeight.W700,
-                _ => throw new Exception("Unknown icon weight"),
+                throw new Exception("Unknown icon weight");
             };
 
             ToastService.ShowToast(heading: "Icon Weight", message: $"Value: '{_iconWeight}'", level: MBToastLevel.Success, showIcon: false);
