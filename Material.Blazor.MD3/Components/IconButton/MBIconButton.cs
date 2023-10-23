@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -54,12 +55,52 @@ public sealed class MBIconButton : ComponentFoundation
     #endregion
 
     #region BuildRenderTree
+
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        var componentName = CascadingDefaults.AppliedIconButtonStyle(IconButtonStyle) switch
+        BuildRenderTreeWorker(
+            builder,
+            ref rendSeq,
+            CascadingDefaults,
+            attributesToSplat,
+            @class,
+            style,
+            id,
+            AppliedDisabled,
+            IconButtonStyle,
+            IconDescriptor,
+            ToggleIconDescriptor,
+            IconLink,
+            IconLinkTarget,
+            ToggleIconSelected,
+            "");
+    }
+
+    #endregion
+
+    #region BuildRenderTreeWorker
+
+    public static void BuildRenderTreeWorker(
+        RenderTreeBuilder builder,
+        ref int rendSeq,
+        MBCascadingDefaults cascadingDefaults,
+        KeyValuePair<string, object>[] attributesToSplat,
+        string classString,
+        string styleString,
+        string idString,
+        bool appliedDisabled,
+        MBIconButtonStyle? iconButtonStyle,
+        MBIconDescriptor iconDescriptor,
+        MBIconDescriptor toggleIconDescriptor,
+        string iconLink,
+        string iconLinkTarget,
+        bool toggleIconSelected,
+        string slot)
+    {
+        var componentName = cascadingDefaults.AppliedIconButtonStyle(iconButtonStyle) switch
         {
             MBIconButtonStyle.Filled => "md-filled-icon-button",
             MBIconButtonStyle.FilledTonal => "md-filled-tonal-icon-button",
@@ -70,55 +111,68 @@ public sealed class MBIconButton : ComponentFoundation
 
         builder.OpenElement(rendSeq++, componentName);
         {
-            if (AppliedDisabled)
+            if (appliedDisabled)
             {
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
-            if ((componentName.StartsWith("md-icon-button")) && (!string.IsNullOrEmpty(IconLink)))
+            if ((componentName.StartsWith("md-icon-button")) && (!string.IsNullOrEmpty(iconLink)))
             {
-                builder.AddAttribute(rendSeq++, "href", IconLink);
+                builder.AddAttribute(rendSeq++, "href", iconLink);
 
-                if (!string.IsNullOrEmpty(IconLinkTarget))
+                if (!string.IsNullOrEmpty(iconLinkTarget))
                 {
-                    builder.AddAttribute(rendSeq++, "target", IconLinkTarget);
+                    builder.AddAttribute(rendSeq++, "target", iconLinkTarget);
                 }
             }
 
-            if (ToggleIconDescriptor is not null)
+            if (toggleIconDescriptor is not null)
             {
                 builder.AddAttribute(rendSeq++, "toggle");
-                if (ToggleIconSelected)
+                if (toggleIconSelected)
                 {
                     builder.AddAttribute(rendSeq++, "selected");
                 }
             }
 
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
-            if (attributesToSplat.Any())
+            builder.AddAttribute(rendSeq++, "class", classString);
+            builder.AddAttribute(rendSeq++, "style", styleString);
+            builder.AddAttribute(rendSeq++, "id", idString);
+            if ((attributesToSplat is not null) && attributesToSplat.Any())
             {
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-            if (IconDescriptor is not null)
+            if (!string.IsNullOrEmpty(slot))
+            {
+                builder.AddAttribute(rendSeq++, "slot", slot);
+            }
+
+            if (iconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
-                    CascadingDefaults,
-                    IconDescriptor,
+                    cascadingDefaults,
+                    null,
+                    "",
+                    "",
+                    "",
+                    iconDescriptor,
                     "");
             }
 
-            if (ToggleIconDescriptor is not null)
+            if (toggleIconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
-                    CascadingDefaults,
-                    ToggleIconDescriptor,
+                    cascadingDefaults,
+                    null,
+                    "",
+                    "",
+                    "",
+                    toggleIconDescriptor,
                     "selected");
             }
         }

@@ -30,7 +30,17 @@ public sealed class MBButton : ComponentFoundation
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "div");
+        var componentName = CascadingDefaults.AppliedButtonStyle(ButtonStyle) switch
+        {
+            MBButtonStyle.Elevated => "md-elevated-button",
+            MBButtonStyle.Filled => "md-filled-button",
+            MBButtonStyle.FilledTonal => "md-filled-tonal-button",
+            MBButtonStyle.Outlined => "md-outlined-button",
+            MBButtonStyle.Text => "md-text-button",
+            _ => throw new System.Exception("Unknown ButtonStyle")
+        };
+
+        builder.OpenElement(rendSeq++, componentName);
         {
             builder.AddAttribute(rendSeq++, "class", @class);
             builder.AddAttribute(rendSeq++, "style", style);
@@ -40,50 +50,40 @@ public sealed class MBButton : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-            var componentName = CascadingDefaults.AppliedButtonStyle(ButtonStyle) switch
+            if (AppliedDisabled)
             {
-                MBButtonStyle.Elevated => "md-elevated-button",
-                MBButtonStyle.Filled => "md-filled-button",
-                MBButtonStyle.FilledTonal => "md-filled-tonal-button",
-                MBButtonStyle.Outlined => "md-outlined-button",
-                MBButtonStyle.Text => "md-text-button",
-                _ => throw new System.Exception("Unknown ButtonStyle")
-            };
-
-            builder.OpenElement(rendSeq++, componentName);
-            {
-                if (AppliedDisabled)
-                {
-                    builder.AddAttribute(rendSeq++, "disabled");
-                }
-
-                if (IconIsTrailing)
-                {
-                    builder.AddAttribute(rendSeq++, "trailing-icon");
-                }
-
-                if (!string.IsNullOrWhiteSpace(Label))
-                {
-                    builder.AddContent(rendSeq++, Label);
-                }
-
-                if (IconDescriptor is not null)
-                {
-                    MBIcon.BuildRenderTreeWorker(
-                        builder,
-                        ref rendSeq,
-                        CascadingDefaults,
-                        IconDescriptor,
-                        "icon");
-                }
+                builder.AddAttribute(rendSeq++, "disabled");
             }
-            builder.CloseElement();
 
-            // Consider throttle
+            if (IconIsTrailing)
+            {
+                builder.AddAttribute(rendSeq++, "trailing-icon");
+            }
 
-            //    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+            if (!string.IsNullOrWhiteSpace(Label))
+            {
+                builder.AddContent(rendSeq++, Label);
+            }
+
+            if (IconDescriptor is not null)
+            {
+                MBIcon.BuildRenderTreeWorker(
+                    builder,
+                    ref rendSeq,
+                    CascadingDefaults,
+                    null,
+                    "",
+                    "",
+                    "",
+                    IconDescriptor,
+                    "icon");
+            }
         }
         builder.CloseElement();
+
+        // Consider throttle
+
+        //    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
     }
 
     #endregion

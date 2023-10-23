@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -49,32 +50,26 @@ public class MBIcon : ComponentFoundation
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "div");
-        {
-            if (attributesToSplat.Any())
-            {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-            }
-
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
-
-
-            BuildRenderTreeWorker(
-                builder,
-                ref rendSeq,
-                CascadingDefaults,
-                Descriptor,
-                null);
-        }
-        builder.CloseElement();
+        BuildRenderTreeWorker(
+            builder,
+            ref rendSeq,
+            CascadingDefaults,
+            attributesToSplat,
+            @class,
+            style,
+            id,
+            Descriptor,
+            null);
     }
 
     public static void BuildRenderTreeWorker(
         RenderTreeBuilder builder,
         ref int rendSeq,
         MBCascadingDefaults cascadingDefaults,
+        KeyValuePair<string, object>[] attributesToSplat,
+        string classString,
+        string styleString,
+        string idString,
         MBIconDescriptor descriptor,
         string slot)
     {
@@ -193,6 +188,15 @@ public class MBIcon : ComponentFoundation
 
         builder.OpenElement(rendSeq++, "md-icon");
         {
+            if ((attributesToSplat is not null) && attributesToSplat.Any())
+            {
+                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+            }
+
+            builder.AddAttribute(rendSeq++, "class", classString);
+            builder.AddAttribute(rendSeq++, "style", styleString);
+            builder.AddAttribute(rendSeq++, "id", idString);
+
             if (!string.IsNullOrWhiteSpace(iconSlot))
             {
                 builder.AddAttribute(rendSeq++, "slot", iconSlot);
