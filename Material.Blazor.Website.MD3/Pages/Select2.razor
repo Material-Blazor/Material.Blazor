@@ -1,0 +1,310 @@
+@page "/select2"
+
+@using Material.Blazor
+
+@inject IMBToastService ToastService
+
+<DemonstrationPage ComponentAndPageName="Select"
+                   MaterialWebPage="select"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Select2 Demonstration">
+    <Description>
+        <p>
+            Filled and outlined select fields with class and style application and finally density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <h1>MD select</h1>
+            <div class="mdc-layout-grid__cell--span-4">
+                <md-outlined-select label="1st select" value="o10">
+                    <md-select-option value="o1">
+                        <div slot="headline">Option 1</div>
+                    </md-select-option>
+                    <md-select-option value="o2">
+                        <div slot="headline">Option 2</div>
+                    </md-select-option>
+                    <md-select-option value="o3">
+                        <div slot="headline">Option 3</div>
+                    </md-select-option>
+                    <md-select-option value="o4">
+                        <div slot="headline">Option 4</div>
+                    </md-select-option>
+                    <md-select-option value="o5">
+                        <div slot="headline">Option 5</div>
+                    </md-select-option>
+                    <md-select-option value="o6">
+                        <div slot="headline">Option 6</div>
+                    </md-select-option>
+                    <md-select-option value="o7">
+                        <div slot="headline">Option 7</div>
+                    </md-select-option>
+                    <md-select-option value="o8">
+                        <div slot="headline">Option 8</div>
+                    </md-select-option>
+                    <md-select-option value="o9">
+                        <div slot="headline">Option 9</div>
+                    </md-select-option>
+                    <md-select-option value="o10">
+                        <div slot="headline">Option 10</div>
+                    </md-select-option>
+                </md-outlined-select>
+            </div>
+            <br />
+            <br />
+            <div class="mdc-layout-grid__cell--span-4">
+                <md-outlined-select label="2nd select" value="op5">
+                    <md-select-option value="op1">
+                        <div slot="headline">Option 1</div>
+                    </md-select-option>
+                    <md-select-option value="op2">
+                        <div slot="headline">Option 2</div>
+                    </md-select-option>
+                    <md-select-option value="op3">
+                        <div slot="headline">Option 3</div>
+                    </md-select-option>
+                    <md-select-option value="op4">
+                        <div slot="headline">Option 4</div>
+                    </md-select-option>
+                    <md-select-option value="op5">
+                        <div slot="headline">Option 5</div>
+                    </md-select-option>
+                    <md-select-option value="op6">
+                        <div slot="headline">Option 6</div>
+                    </md-select-option>
+                    <md-select-option value="op7">
+                        <div slot="headline">Option 7</div>
+                    </md-select-option>
+                    <md-select-option value="op8">
+                        <div slot="headline">Option 8</div>
+                    </md-select-option>
+                    <md-select-option value="op9">
+                        <div slot="headline">Option 9</div>
+                    </md-select-option>
+                    <md-select-option value="op10">
+                        <div slot="headline">Option 10</div>
+                    </md-select-option>
+                </md-outlined-select>
+            </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <h1>MB select</h1>
+            <div class="mdc-layout-grid__cell--span-4">
+                @*
+                <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">Icon fill</h3>
+                <Material.Blazor.MD2.MBSlider @bind-Value="@mbIconFill"
+                ContinuousInputDelay="300"
+                DecimalPlaces="1"
+                NumSteps="10"
+                EventType="@MBInputEventTypeMD2.OnInputThrottled"
+                SliderType="@MBSliderTypeMD2.DiscreteWithTickmarks"
+                ValueMax="1"
+                ValueMin="0" />
+                *@
+
+                <MBSelect @bind-Value="@mbIconFill"
+                          Items="@iconFills"
+                          ItemValidation="@MBItemValidation.DefaultToFirst"
+                          Label="Icon fill"
+                          SelectInputStyle="@MBSelectInputStyle.Outlined" />
+
+            </div>
+            <br />
+            <br />
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBSelect @bind-Value="@mbIconGradient"
+                          Items="@iconGradients"
+                          ItemValidation="@MBItemValidation.DefaultToFirst"
+                          Label="Icon gradient"
+                          SelectInputStyle="@MBSelectInputStyle.Outlined" />
+            </div>
+            <br />
+            <br />
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBSelect @bind-Value="@mbIconSize"
+                          Items="@iconSizes"
+                          ItemValidation="@MBItemValidation.DefaultToFirst"
+                          Label="Icon size"
+                          SelectInputStyle="@MBSelectInputStyle.Outlined" />
+            </div>
+            <br />
+            <br />
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBSelect @bind-Value="@mbIconStyle"
+                          Items="@iconStyles"
+                          ItemValidation="@MBItemValidation.DefaultToFirst"
+                          Label="Icon style"
+                          SelectInputStyle="@MBSelectInputStyle.Outlined" />
+            </div>
+            <br />
+            <br />
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBSelect @bind-Value="@mbIconWeight"
+                          Items="@iconWeights"
+                          ItemValidation="@MBItemValidation.DefaultToFirst"
+                          Label="Icon weight"
+                          SelectInputStyle="@MBSelectInputStyle.Outlined" />
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="mdc-layout-grid__cell--span-4">
+            <Select2Table color=mbIconColor
+                          fill="@mbIconFill"
+                          gradient="@mbIconGradient"
+                          size="@mbIconSize"
+                          styleZ="@mbIconStyle"
+                          weight="@mbIconWeight" />
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+@code
+{
+    private string mbIconColor { get; set; } = "black";
+
+
+
+    MBSingleSelectElement<decimal>[] iconFills = new MBSingleSelectElement<decimal>[]
+    {
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.0m, TrailingLabel = "0.0" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.1m, TrailingLabel = "0.1" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.2m, TrailingLabel = "0.2" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.3m, TrailingLabel = "0.3" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.4m, TrailingLabel = "0.4" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.5m, TrailingLabel = "0.5" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.6m, TrailingLabel = "0.6" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.7m, TrailingLabel = "0.7" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.8m, TrailingLabel = "0.8" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.9m, TrailingLabel = "0.9" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 1.0m, TrailingLabel = "1.0" },
+            };
+
+    private decimal _iconFill = 1.0m;
+    private decimal mbIconFill
+    {
+        get => _iconFill;
+        set
+        {
+            _iconFill = value;
+
+            ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{mbIconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    MBSingleSelectElement<MBIconGradient>[] iconGradients = new MBSingleSelectElement<MBIconGradient>[]
+    {
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.LowEmphasis, TrailingLabel = "Low emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.NormalEmphasis, TrailingLabel = "Normal emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.HighEmphasis, TrailingLabel = "High emphasis" },
+            };
+
+    private MBIconGradient mbIconGradient = MBIconGradient.NormalEmphasis;
+    private string _iconGradient = MBIconGradient.NormalEmphasis.ToString();
+    private string iconGradient
+    {
+        get => _iconGradient;
+        set
+        {
+            _iconGradient = value;
+
+            if (!Enum.TryParse<MBIconGradient>(_iconGradient, out mbIconGradient))
+            {
+                throw new Exception("Unknown icon gradient");
+            };
+
+            ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{mbIconGradient.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSingleSelectElement<MBIconSize>[] iconSizes = new MBSingleSelectElement<MBIconSize>[]
+    {
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size20, TrailingLabel = "20px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size24, TrailingLabel = "24px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size40, TrailingLabel = "40px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size48, TrailingLabel = "48px" },
+            };
+
+    private MBIconSize mbIconSize = MBIconSize.Size24;
+    private string _iconSize = MBIconSize.Size24.ToString();
+    private string iconSize
+    {
+        get => _iconSize;
+        set
+        {
+            _iconSize = value;
+
+            if (!Enum.TryParse<MBIconSize>(_iconSize, out mbIconSize))
+            {
+                throw new Exception("Unknown icon size");
+            };
+
+            ToastService.ShowToast(heading: "Icon Size", message: $"Value: '{_iconSize}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSingleSelectElement<MBIconStyle>[] iconStyles = new MBSingleSelectElement<MBIconStyle>[]
+    {
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Outlined, TrailingLabel = "Outlined" },
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Rounded, TrailingLabel = "Rounded" },
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Sharp, TrailingLabel = "Sharp" }
+            };
+
+    private MBIconStyle mbIconStyle = MBIconStyle.Outlined;
+    private string _iconStyle = MBIconStyle.Outlined.ToString();
+    private string iconStyle
+    {
+        get => _iconStyle;
+        set
+        {
+            _iconStyle = value;
+
+            if (!Enum.TryParse<MBIconStyle>(_iconStyle, out mbIconStyle))
+            {
+                throw new Exception("Unknown icon style");
+            };
+
+            ToastService.ShowToast(heading: "Icon style", message: $"Value: '{_iconStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    MBSingleSelectElement<MBIconWeight>[] iconWeights = new MBSingleSelectElement<MBIconWeight>[]
+    {
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W100, TrailingLabel = "100" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W200, TrailingLabel = "200" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W300, TrailingLabel = "300" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W400, TrailingLabel = "400" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W500, TrailingLabel = "500" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W600, TrailingLabel = "600" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W700, TrailingLabel = "700" },
+            };
+
+    private MBIconWeight mbIconWeight = MBIconWeight.W400;
+    private string _iconWeight = MBIconWeight.W400.ToString();
+    private string iconWeight
+    {
+        get => _iconWeight;
+        set
+        {
+            _iconWeight = value;
+
+            if (!Enum.TryParse<MBIconWeight>(_iconWeight, out mbIconWeight))
+            {
+                throw new Exception("Unknown icon weight");
+            };
+
+            ToastService.ShowToast(heading: "Icon Weight", message: $"Value: '{_iconWeight}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+}

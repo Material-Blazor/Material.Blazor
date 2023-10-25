@@ -4,9 +4,8 @@
 
 @inject IMBToastService ToastService
 
-
 <DemonstrationPage ComponentAndPageName="Select"
-                   MaterialWebPage="switch"
+                   MaterialWebPage="select"
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
                    Title="Select Demonstration">
@@ -394,7 +393,6 @@
         @onclick="OnClick" />*@
     </PageContent>
 </DemonstrationPage>
-
 
 @code {
     MBSingleSelectElement<string>[] KittenBreeds = new MBSingleSelectElement<string>[]

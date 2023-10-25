@@ -38,15 +38,14 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
     [Parameter] public bool Required { get; set; }
 
     /// <summary>
-    /// The select's <see cref="MBSelectInputStyleMD2"/>.
+    /// The select's <see cref="MBSelectInputStyle"/>.
     /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
     /// </summary>
     [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
 
 
 
-    //Instantiate a Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
-    private readonly SemaphoreSlim LifecycleGate = new(1, 1);
+    private static Object LifecycleGate = new object();
 
     private string StringValue { get; set; }
 
@@ -55,8 +54,7 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
     #region BuildRenderTree
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        //LifecycleGate.Wait();
-        try
+        lock (LifecycleGate)
         {
             ConsoleLog("BuildRenderTree");
             ConsoleLog("   BRT - Label: " + Label);
@@ -111,8 +109,6 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
                             if (sse.SelectedValue is not null)
                             {
                                 builder.AddAttribute(rendSeq++, "value", sse.SelectedValue.ToString());
-                                //TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
-                                //var itemValue = (TItem)typeConverter.ConvertFromString(StringValue);
                                 if (sse.SelectedValue.ToString().ToLower().Equals(StringValue.ToLower()))
                                 {
                                     builder.AddAttribute(rendSeq++, "selected");
@@ -136,10 +132,6 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
             }
             builder.CloseElement();
         }
-        finally
-        {
-            //LifecycleGate.Release();
-        }
     }
 
     #endregion
@@ -148,21 +140,17 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
     private async Task HandleChange(ChangeEventArgs args)
     {
-        //await LifecycleGate.WaitAsync();
-
-        try
+        await Task.CompletedTask;
+        lock (LifecycleGate)
         {
             ConsoleLog("HandleChange");
             ConsoleLog("   HC - Label: " + Label);
             ConsoleLog("   HC - Args.Value: " + (string)args.Value);
             StringValue = (string)args.Value;
+            ConsoleLog("   HC - Setting ComponentValue");
+            TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
+            ComponentValue = (TItem)typeConverter.ConvertFromString(StringValue);
         }
-        finally
-        {
-            //LifecycleGate.Release();
-        }
-        TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
-        ComponentValue = (TItem)typeConverter.ConvertFromString(StringValue);
     }
 
     #endregion
