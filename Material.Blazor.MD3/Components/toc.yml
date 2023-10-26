@@ -28,5 +28,8 @@
 - name: MBSelect
   topicUid: C.MBSelect
 
+- name: MBSlider
+  topicUid: C.MBSlider
+
 - name: MBSwitch
   topicUid: C.MBSwitch

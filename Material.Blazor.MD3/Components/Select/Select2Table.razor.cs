@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.Internal;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 
 namespace Material.Blazor;
 
-public partial class Select2Table: ComponentBase
+public partial class Select2Table: ComponentFoundation
 {
     [Parameter] public string color { get; set; }
     [Parameter] public decimal fill { get; set; }

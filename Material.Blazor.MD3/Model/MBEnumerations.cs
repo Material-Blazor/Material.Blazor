@@ -431,31 +431,6 @@ public enum MBSelectInputStyle
 
 #endregion
 
-#region MBSliderTypeMD2
-
-/// <summary>
-/// Determines the type of an <see cref="MBSlider"/>.
-/// </summary>
-public enum MBSliderTypeMD2
-{
-    /// <summary>
-    /// Continuous value.
-    /// </summary>
-    Continuous,
-
-    /// <summary>
-    /// Discrete values.
-    /// </summary>
-    Discrete,
-
-    /// <summary>
-    /// Discrete values with tickmarks.
-    /// </summary>
-    DiscreteWithTickmarks
-}
-
-#endregion
-
 #region MBText
 
 /// <summary>

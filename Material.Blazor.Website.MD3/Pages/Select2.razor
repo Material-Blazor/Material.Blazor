@@ -8,10 +8,11 @@
                    MaterialWebPage="select"
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
-                   Title="Select2 Demonstration">
+                   Title="Select debug aid">
     <Description>
         <p>
-            Filled and outlined select fields with class and style application and finally density.
+            Temporary page built for aiding understanding of the select issues
+            of not always sending a change event and not always showing the selected headline
         </p>
     </Description>
 
@@ -152,13 +153,67 @@
         <br />
         <br />
         <div class="mdc-layout-grid__cell--span-4">
-            <Select2Table color=mbIconColor
+            <Select2Table color="@mbIconColor"
                           fill="@mbIconFill"
                           gradient="@mbIconGradient"
                           size="@mbIconSize"
                           styleZ="@mbIconStyle"
                           weight="@mbIconWeight" />
         </div>
+
+        <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: column;">
+            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                MBIcon with Descriptor using &lt;md-icon&gt;
+            </h2>
+            <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: row;">
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "close",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                &nbsp;
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "home",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                &nbsp;
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "menu",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                &nbsp;
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "search",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                &nbsp;
+                <MBIcon Descriptor="@MBIcon.IconDescriptorConstructor(
+                                                  color: @mbIconColor,
+                                                  fill: @mbIconFill,
+                                                  gradient: @mbIconGradient,
+                                                  name: "settings",
+                                                  size: @mbIconSize,
+                                                  style: @mbIconStyle,
+                                                  weight: @mbIconWeight)" />
+                &nbsp;
+            </div>
+        </div>
+
     </PageContent>
 </DemonstrationPage>
 

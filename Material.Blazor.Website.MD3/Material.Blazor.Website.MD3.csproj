@@ -30,13 +30,11 @@
 	<ItemGroup>
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
-		<Content Remove="Pages\Slider.razor" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="package-lock.json" />
 		<None Include="package.json" />
-		<None Include="Pages\Slider.razor" />
 	</ItemGroup>
 
 	<ItemGroup>

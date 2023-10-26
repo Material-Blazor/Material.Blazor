@@ -87,36 +87,12 @@
                         </div>
 
                          <div class="mdc-layout-grid__cell--span-4">
-                            <table border="1">
-                                <tr>
-                                    <th align="left">Property</th>
-                                    <th align="left">Value</th>
-                                </tr>
-                                <tr>
-                                    <td>mbIconColor</td>
-                                    <td>@mbIconColor</td>
-                                </tr>
-                                <tr>
-                                    <td>mbIconFill</td>
-                                    <td>@mbIconFill.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td>mbIconGradient</td>
-                                    <td>@mbIconGradient.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td>mbIconSize</td>
-                                    <td>@mbIconSize.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td>mbIconStyle</td>
-                                    <td>@mbIconStyle.ToString()</td>
-                                </tr>
-                                <tr>
-                                    <td>mbIconWeight</td>
-                                    <td>@mbIconWeight.ToString()</td>
-                                </tr>
-                            </table>
+                            <Select2Table color="@mbIconColor"
+                                          fill="@mbIconFill"
+                                          gradient="@mbIconGradient"
+                                          size="@mbIconSize"
+                                          styleZ="@mbIconStyle"
+                                          weight="@mbIconWeight" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: column;">
