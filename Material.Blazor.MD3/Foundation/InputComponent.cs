@@ -65,6 +65,18 @@ public abstract class InputComponent<T> : ComponentFoundation
 
 
     /// <summary>
+    /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
+    /// </summary>
+    private protected bool ForceShouldRenderToTrue { get; set; } = false;
+
+
+    /// <summary>
+    /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
+    /// </summary>
+    private bool AllowNextRender = false;
+
+
+    /// <summary>
     /// Performs validation only if true. Used by <see cref="MBDebouncedTextField"/> to disable
     /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
     /// should not be in a form.
@@ -77,6 +89,15 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
     /// </summary>
     //protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
+
+    #endregion
+
+    #region AllowNextShouldRender
+
+    private protected void AllowNextShouldRender()
+    {
+        AllowNextRender = true;
+    }
 
     #endregion
 
@@ -310,6 +331,24 @@ public abstract class InputComponent<T> : ComponentFoundation
 
         // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
         await base.SetParametersAsync(ParameterView.Empty);
+    }
+
+    #endregion
+
+    #region ShouldRender
+
+    /// <summary>
+    /// Material.Blazor components descending from InputComponent _*must not*_ override ShouldRender().
+    /// </summary>
+    protected sealed override bool ShouldRender()
+    {
+        if (ForceShouldRenderToTrue || AllowNextRender)
+        {
+            AllowNextRender = false;
+            return true;
+        }
+
+        return false;
     }
 
     #endregion

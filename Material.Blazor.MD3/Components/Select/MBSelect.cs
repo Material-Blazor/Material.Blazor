@@ -43,7 +43,6 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
 
     private static Object LifecycleGate = new object();
-
     private string StringValue { get; set; }
 
     #endregion
@@ -143,8 +142,8 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
             ConsoleLog("HandleChange");
             ConsoleLog("   HC - Label: " + Label);
             ConsoleLog("   HC - Args.Value: " + (string)args.Value);
-            StringValue = (string)args.Value;
             ConsoleLog("   HC - Setting ComponentValue");
+            StringValue = (string)args.Value;
             TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
             ComponentValue = (TItem)typeConverter.ConvertFromString(StringValue);
         }
