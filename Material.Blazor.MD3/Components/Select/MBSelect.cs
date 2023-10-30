@@ -47,6 +47,20 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
     #endregion
 
+    #region OnInitializedAsync
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        ComponentValue = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+        StringValue = Value is null ? "" : Value.ToString();
+    }
+
+    #endregion
+
     #region BuildRenderTree
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -158,10 +172,6 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
-
-        ComponentValue = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
-
-        StringValue = Value is null ? "" : Value.ToString();
 
         ConsoleLog("OnParametersSetAsync");
     }

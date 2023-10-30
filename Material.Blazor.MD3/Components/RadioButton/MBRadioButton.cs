@@ -139,8 +139,10 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
 
     private async Task OnClickInternal()
     {
-        await Task.CompletedTask;
-        ComponentValue = TargetCheckedValue;
+        //await Task.CompletedTask;
+        //ComponentValue = TargetCheckedValue;
+        Value = TargetCheckedValue;
+        await ValueChanged.InvokeAsync(Value);
     }
 
     #endregion

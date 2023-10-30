@@ -17,6 +17,7 @@ Released 2023-11-??
 **New components**
 - MD3: Added preview components:
     - MBIconButton
+	- MBSelect
 
 **Breaking Changes**
 
