@@ -80,7 +80,7 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
 
         if (items.GroupBy(i => i.SelectedValue).Any(g => g.Count() > 1))
         {
-            throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
+            throw new ArgumentException(componentName + " has multiple entries in the List with the same SelectedValue");
         }
 
         if (!items.Any(i => Equals(i.SelectedValue, Value)))

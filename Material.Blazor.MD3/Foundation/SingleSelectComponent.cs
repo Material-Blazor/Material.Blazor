@@ -60,7 +60,7 @@ public abstract class SingleSelectComponent<T, TListElement> :
 
             if (HasInstantiated)
             {
-                var validatedValue = ValidateItemList(Items, Material.Blazor.MBItemValidation.DefaultToFirst).value;
+                var validatedValue = ValidateItemList(Items, Material.Blazor.MBItemValidation.DefaultToFirst);
 
                 if (!validatedValue.Equals(Value))
                 {
@@ -68,7 +68,6 @@ public abstract class SingleSelectComponent<T, TListElement> :
                 }
             }
 
-            //AllowNextShouldRender();
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
     }
@@ -85,9 +84,9 @@ public abstract class SingleSelectComponent<T, TListElement> :
     /// <param name="appliedItemValidation">Specification of the required validation <see cref="MBItemValidation"/></param>
     /// <returns>The an indicator of whether an item was found and the item in the list matching <see cref="InputComponent{T}._cachedValue"/> or default if not found.</returns>
     /// <exception cref="ArgumentException"/>
-    public (bool hasValue, T value) ValidateItemList(
+    public T ValidateItemList(
         IEnumerable<MBSingleSelectElement<T>> items,
-        Material.Blazor.MBItemValidation appliedItemValidation)
+        MBItemValidation appliedItemValidation)
     {
         var componentName = Utilities.GetTypeName(GetType());
 
@@ -102,21 +101,18 @@ public abstract class SingleSelectComponent<T, TListElement> :
             {
                 case MBItemValidation.DefaultToFirst:
                     var defaultValue = items.FirstOrDefault().SelectedValue;
-                    //AllowNextShouldRender();
-                    return (true, defaultValue);
-                    //return (false, default);
+                    return defaultValue;
 
                 case MBItemValidation.Exception:
                     var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";
                     throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
                 case MBItemValidation.NoSelection:
-                    //AllowNextShouldRender();
-                    return (false, default);
+                    return default;
             }
         }
 
-        return (true, Value);
+        return Value;
     }
 
     #endregion

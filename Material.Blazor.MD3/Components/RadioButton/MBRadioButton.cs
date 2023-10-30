@@ -57,6 +57,18 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
 
     #endregion
 
+    #region OnInitializedAsync
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        AllowAllRenders();
+    }
+
+    #endregion
+
     #region BuildRenderTree
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)

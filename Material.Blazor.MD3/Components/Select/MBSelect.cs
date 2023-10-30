@@ -142,7 +142,8 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
             ConsoleLog("HandleChange");
             ConsoleLog("   HC - Label: " + Label);
             ConsoleLog("   HC - Args.Value: " + (string)args.Value);
-            ConsoleLog("   HC - Setting ComponentValue");
+            ConsoleLog("   HC - Current ComponentValue: " + ComponentValue.ToString());
+            ConsoleLog("   HC - Setting ComponentValue to Args.Value");
             StringValue = (string)args.Value;
             TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
             ComponentValue = (TItem)typeConverter.ConvertFromString(StringValue);
@@ -157,6 +158,8 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        ComponentValue = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
         StringValue = Value is null ? "" : Value.ToString();
 

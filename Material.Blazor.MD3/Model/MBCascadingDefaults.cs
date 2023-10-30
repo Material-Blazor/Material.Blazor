@@ -51,18 +51,18 @@ public class MBCascadingDefaults
 
 
 
-    //private MBItemValidation _itemValidation = MBItemValidation.Exception;
-    ///// <summary>
-    ///// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
-    ///// </summary>
-    //public MBItemValidation ItemValidation { get => _itemValidation; set => SetParameter(ref _itemValidation, value); }
+    private MBItemValidation _itemValidation = MBItemValidation.Exception;
+    /// <summary>
+    /// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
+    /// </summary>
+    public MBItemValidation ItemValidation { get => _itemValidation; set => SetParameter(ref _itemValidation, value); }
 
-    ///// <summary>
-    ///// The applied item validation for selects and radio button groups.
-    ///// </summary>
-    ///// <param name="criteria"></param>
-    ///// <returns></returns>
-    //internal MBItemValidation AppliedItemValidation(MBItemValidation? criteria = null) => criteria ?? ItemValidation;
+    /// <summary>
+    /// The applied item validation for selects and radio button groups.
+    /// </summary>
+    /// <param name="criteria"></param>
+    /// <returns></returns>
+    internal MBItemValidation AppliedItemValidation(MBItemValidation? criteria = null) => criteria ?? ItemValidation;
 
     #endregion
 

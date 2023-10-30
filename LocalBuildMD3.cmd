@@ -1,3 +1,15 @@
-@echo on
-dotnet pack Material.Blazor.MD3/Material.Blazor.MD3.csproj -p:Version="5.0.1" --configuration Server --output "c:\solutions\Local NuGet Packages" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-dir "c:\solutions\Local NuGet Packages"
+@echo off
+set argVersion=%1
+if "%1" == "" set argVersion=5.0.0-rc3
+set argDestination=%2
+if "%2" == "" set argDestination="c:\solutions\local nuget packages"
+
+echo Version is %argVersion%
+echo Destination is %argDestination%
+echo Beginning build
+echo ...
+dotnet pack Material.Blazor.MD3/Material.Blazor.MD3.csproj -p:Version=%argVersion% --configuration Server --output %argDestination% -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+echo ...
+echo Build results
+echo ...
+dir %argDestination%

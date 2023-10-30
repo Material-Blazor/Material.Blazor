@@ -67,13 +67,13 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// <summary>
     /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
     /// </summary>
-    private protected bool ForceShouldRenderToTrue { get; set; } = false;
+    private bool AllowNextRenderAlways { get; set; } = false;
 
 
     /// <summary>
     /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
     /// </summary>
-    private bool AllowNextRender = false;
+    private bool AllowNextRenderOnce = false;
 
 
     /// <summary>
@@ -92,11 +92,20 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
-    #region AllowNextShouldRender
+    #region AllowAllRenders
 
-    private protected void AllowNextShouldRender()
+    private protected void AllowAllRenders()
     {
-        AllowNextRender = true;
+        AllowNextRenderAlways = true;
+    }
+
+    #endregion
+
+    #region AllowNextRender
+
+    private protected void AllowNextRender()
+    {
+        AllowNextRenderOnce = true;
     }
 
     #endregion
@@ -342,9 +351,9 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// </summary>
     protected sealed override bool ShouldRender()
     {
-        if (ForceShouldRenderToTrue || AllowNextRender)
+        if (AllowNextRenderAlways || AllowNextRenderOnce)
         {
-            AllowNextRender = false;
+            AllowNextRenderOnce = false;
             return true;
         }
 
