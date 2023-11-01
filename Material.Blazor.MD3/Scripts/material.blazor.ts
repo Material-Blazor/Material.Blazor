@@ -12,6 +12,9 @@ import '@material/web/iconbutton/filled-icon-button.js';
 import '@material/web/iconbutton/filled-tonal-icon-button.js';
 import '@material/web/iconbutton/icon-button.js';
 import '@material/web/iconbutton/outlined-icon-button.js';
+import '@material/web/menu/menu.js';
+import '@material/web/menu/menu-item.js';
+import '@material/web/menu/sub-menu.js';
 import '@material/web/progress/circular-progress.js';
 import '@material/web/progress/linear-progress.js';
 import '@material/web/radio/radio.js';
@@ -23,6 +26,7 @@ import '@material/web/textfield/filled-text-field.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/switch/switch.js';
 
+import * as MBMenu from '../Components/Menu/MBMenu';
 import * as MBTextField from '../Components/TextField/MBTextField';
 
 /*
@@ -32,16 +36,17 @@ import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
 import * as MBDialog from '../Components.MD2/Dialog/MBDialog';
 import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
-import * as MBMenu from '../Components.MD2/Menu/MBMenu';
+import * as MBMenuMD2 from '../Components.MD2/Menu/MBMenu';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
+    MBMenu,
     MBTextField,
 
     MBCard,
     MBDataTable,
     MBDialog,
     MBDrawer,
-    MBMenu,
+    MBMenuMD2,
     MBTopAppBar
 };

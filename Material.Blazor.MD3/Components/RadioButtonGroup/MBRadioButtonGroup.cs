@@ -55,10 +55,10 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
             {
                 builder.OpenComponent(rendSeq++, typeof(MBRadioButton<TItem>));
                 {
-                    builder.AddAttribute(rendSeq++, "Density", Density);
-                    builder.AddAttribute(rendSeq++, "Disabled", sse.Disabled);
-                    builder.AddAttribute(rendSeq++, "LeadingLabelPLUS", sse.LeadingLabel);
-                    builder.AddAttribute(rendSeq++, "RadioGroupName", RadioGroupName);
+                    builder.AddComponentParameter(rendSeq++, "Density", Density);
+                    builder.AddComponentParameter(rendSeq++, "Disabled", sse.Disabled);
+                    builder.AddComponentParameter(rendSeq++, "LeadingLabelPLUS", sse.LeadingLabel);
+                    builder.AddComponentParameter(rendSeq++, "RadioGroupName", RadioGroupName);
                     if (IsHorizontal)
                     {
                         builder.AddAttribute(rendSeq++, "style", "margin-right: 1em; ");
@@ -67,11 +67,11 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
                     {
                         builder.AddAttribute(rendSeq++, "style", "margin-bottom: 1em; ");
                     }
-                    builder.AddAttribute(rendSeq++, "TargetCheckedValue", sse.SelectedValue);
-                    builder.AddAttribute(rendSeq++, "TrailingLabelPLUS", sse.TrailingLabel);
-                    builder.AddAttribute(rendSeq++, "Value", ComponentValue);
-                    builder.AddAttribute(rendSeq++, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
-                    builder.AddAttribute(rendSeq++, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
+                    builder.AddComponentParameter(rendSeq++, "TargetCheckedValue", sse.SelectedValue);
+                    builder.AddComponentParameter(rendSeq++, "TrailingLabelPLUS", sse.TrailingLabel);
+                    builder.AddComponentParameter(rendSeq++, "Value", ComponentValue);
+                    builder.AddComponentParameter(rendSeq++, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
+                    builder.AddComponentParameter(rendSeq++, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
                     builder.SetKey(KeyGenerator(sse.SelectedValue));
                 }
                 builder.CloseComponent();

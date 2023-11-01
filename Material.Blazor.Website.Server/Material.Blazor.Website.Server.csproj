@@ -28,4 +28,11 @@
 		<ProjectReference Include="..\Material.Blazor.Website\Material.Blazor.Website.csproj" />
 	</ItemGroup>
 
+	<!--Compression directives (Note that the patterns are relative to wwwroot)-->
+	<PropertyGroup>
+		<CompressionIncludePatterns>$(CompressionIncludePatterns);**/*.css;**/*.js</CompressionIncludePatterns>
+		<BuildCompressionFormats>gzip;brotli</BuildCompressionFormats>
+		<PublishCompressionFormats>gzip;brotli</PublishCompressionFormats>
+	</PropertyGroup>
+
 </Project>

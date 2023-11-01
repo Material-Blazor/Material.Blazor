@@ -38,36 +38,6 @@ public enum MBButtonStyle
 
 #endregion
 
-#region MBButtonStyleMD2
-/// <summary>
-/// Style for an <see cref="MBButton"/> per Material Theme styling.
-/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
-/// </summary>
-public enum MBButtonStyleMD2
-{
-    /// <summary>
-    /// Contained style, raised.
-    /// </summary> 
-    ContainedRaised,
-
-    /// <summary>
-    /// Contained style, unelevated.
-    /// </summary> 
-    ContainedUnelevated,
-
-    /// <summary>
-    /// Outlined style.
-    /// </summary> 
-    Outlined,
-
-    /// <summary>
-    /// Regular or default style. This is the <see cref="MBCascadingDefaults"/> default.
-    /// </summary>  
-    Text
-}
-
-#endregion
-
 #region MBCardStyleMD2
 
 /// <summary>
@@ -286,6 +256,36 @@ public enum MBLoggingLevel
     Error = 4,
     Critical = 5,
     None = 0,
+}
+
+#endregion
+
+#region MBMenuItemType
+
+/// <summary>
+/// Determines the positioning and width of a menu surface.
+/// </summary>
+public enum MBMenuItemType
+{
+    /// <summary>
+    /// Signals the beginning of a submenu.
+    /// </summary>
+    BeginSubMenu,
+
+    /// <summary>
+    /// Divider menu item
+    /// </summary>
+    Divider,
+
+    /// <summary>
+    /// Signals end of a submenu.
+    /// </summary>
+    EndSubMenu,
+
+    /// <summary>
+    /// Regular menu item.
+    /// </summary>
+    Regular,
 }
 
 #endregion

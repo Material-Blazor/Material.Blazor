@@ -10,7 +10,7 @@ namespace Material.Blazor;
 /// </summary>
 /// <remarks>
 /// For example the default style for
-/// a material button is <see cref="MBButtonStyleMD2.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
+/// a material button is <see cref="MBButtonStyle.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
 /// to another value and your whole application within the cascading value will change appearance. You can of course
 /// nest cascading values in the normal manner. Exposes a property <see cref="Version"/> that is incremented each time another
 /// property is updated; <see cref="Version"/> can be used with an `@key(CascadingDefaults.Version)` attribute to force components

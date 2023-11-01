@@ -2,7 +2,7 @@
 uid: C.MBMenuSelectionGroup
 title: MBMenuSelectionGroup
 ---
-# MBMenu
+# MBMenuSelectionGroup
 
 ## Summary
 

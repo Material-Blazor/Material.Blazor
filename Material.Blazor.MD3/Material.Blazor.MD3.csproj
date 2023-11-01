@@ -87,6 +87,7 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<InputStaticAssetsScripts Remove="Components\Menu\MBMenu.ts" />
 		<InputStaticAssetsScripts Remove="Scripts\lodashparts.ts" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
