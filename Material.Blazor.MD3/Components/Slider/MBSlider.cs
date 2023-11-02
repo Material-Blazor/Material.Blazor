@@ -112,6 +112,7 @@ public class MBSlider<TItem> : InputComponent<TItem>
                 {
                     builder.AddAttribute(rendSeq++, "labeled");
                 }
+                ///todo -- figure out how to notify of changed value
                 builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
                 //builder.SetUpdatesAttributeName("StringValue");
 

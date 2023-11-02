@@ -242,19 +242,13 @@
         new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.HighEmphasis, TrailingLabel = "High emphasis" },
             };
 
-    private MBIconGradient mbIconGradient = MBIconGradient.NormalEmphasis;
-    private string _iconGradient = MBIconGradient.NormalEmphasis.ToString();
-    private string iconGradient
+    private MBIconGradient _iconGradient = MBIconGradient.NormalEmphasis;
+    private MBIconGradient mbIconGradient
     {
         get => _iconGradient;
         set
         {
             _iconGradient = value;
-
-            if (!Enum.TryParse<MBIconGradient>(_iconGradient, out mbIconGradient))
-            {
-                throw new Exception("Unknown icon gradient");
-            };
 
             ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{mbIconGradient.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
@@ -270,19 +264,13 @@
         new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size48, TrailingLabel = "48px" },
             };
 
-    private MBIconSize mbIconSize = MBIconSize.Size24;
-    private string _iconSize = MBIconSize.Size24.ToString();
-    private string iconSize
+    private MBIconSize _iconSize = MBIconSize.Size24;
+    private MBIconSize mbIconSize
     {
         get => _iconSize;
         set
         {
             _iconSize = value;
-
-            if (!Enum.TryParse<MBIconSize>(_iconSize, out mbIconSize))
-            {
-                throw new Exception("Unknown icon size");
-            };
 
             ToastService.ShowToast(heading: "Icon Size", message: $"Value: '{_iconSize}'", level: MBToastLevel.Success, showIcon: false);
         }
@@ -297,19 +285,13 @@
         new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Sharp, TrailingLabel = "Sharp" }
             };
 
-    private MBIconStyle mbIconStyle = MBIconStyle.Outlined;
-    private string _iconStyle = MBIconStyle.Outlined.ToString();
-    private string iconStyle
+    private MBIconStyle _iconStyle = MBIconStyle.Outlined;
+    private MBIconStyle mbIconStyle
     {
         get => _iconStyle;
         set
         {
             _iconStyle = value;
-
-            if (!Enum.TryParse<MBIconStyle>(_iconStyle, out mbIconStyle))
-            {
-                throw new Exception("Unknown icon style");
-            };
 
             ToastService.ShowToast(heading: "Icon style", message: $"Value: '{_iconStyle}'", level: MBToastLevel.Success, showIcon: false);
         }
@@ -328,19 +310,13 @@
         new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W700, TrailingLabel = "700" },
             };
 
-    private MBIconWeight mbIconWeight = MBIconWeight.W400;
-    private string _iconWeight = MBIconWeight.W400.ToString();
-    private string iconWeight
+    private MBIconWeight _iconWeight = MBIconWeight.W400;
+    private MBIconWeight mbIconWeight
     {
         get => _iconWeight;
         set
         {
             _iconWeight = value;
-
-            if (!Enum.TryParse<MBIconWeight>(_iconWeight, out mbIconWeight))
-            {
-                throw new Exception("Unknown icon weight");
-            };
 
             ToastService.ShowToast(heading: "Icon Weight", message: $"Value: '{_iconWeight}'", level: MBToastLevel.Success, showIcon: false);
         }

@@ -1,6 +1,6 @@
 ﻿namespace Material.Blazor
 {
-    public record MBMenuItem
+    public record MBChipsetItem
     {
         #region members
 
@@ -10,7 +10,6 @@
         public bool IsDisabled { get; set; } = false;
         public MBMenuItemType ItemType { get; set; } = MBMenuItemType.Regular;
         public MBIconDescriptor LeadingIcon { get; set; } = null;
-        public bool SuppressLeadingIcon { get; set; } = false;
         public MBIconDescriptor TrailingIcon { get; set; } = null;
 
         #endregion

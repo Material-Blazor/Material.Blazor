@@ -13,8 +13,8 @@ public static class Utilities
 
     public static MBToastServiceConfiguration GetDefaultToastServiceConfiguration() => new()
     {
-        Position = (MBToastPosition)MBToastPosition.TopRight,
         CloseMethod = (MBNotifierCloseMethod)MBNotifierCloseMethod.Timeout,
+        Position = (MBToastPosition)MBToastPosition.TopRight,
     };
 
 }

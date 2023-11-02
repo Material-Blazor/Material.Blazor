@@ -190,31 +190,6 @@ public enum MBIconButtonStyle
 
 #endregion
 
-#region MBInputEventTypeMD2
-
-/// <summary>
-/// Determines how an <see cref="MBSlider"/> responds to user events.
-/// </summary>
-public enum MBInputEventTypeMD2
-{
-    /// <summary>
-    /// Emits events only when the thumb is released via an change event.
-    /// </summary>
-    OnChange,
-
-    /// <summary>
-    /// Emits debounced events during slider movement via input events. Debouncing requires the slider to be still for a period before emitting an event.
-    /// </summary>
-    OnInputDebounced,
-
-    /// <summary>
-    /// Emits throttled events during slider movement via input events. Throttling emits events even while the slider is moving.
-    /// </summary>
-    OnInputThrottled
-}
-
-#endregion
-
 #region MBItemValidation
 
 /// <summary>
