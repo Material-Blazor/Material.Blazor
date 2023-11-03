@@ -121,6 +121,17 @@ public class MBCascadingDefaults
 
     #endregion
 
+    #region MBChipType
+
+    private MBChipType _chipType = MBChipType.Filter;
+    /// <summary>
+    /// The default Type for an <see cref="MBChipSet"/>, initialized to <see cref="MBChipType.Filter"/> if not explicitly set.
+    /// </summary>
+    public MBChipType ChipType { get => _chipType; set => SetParameter(ref _chipType, value); }
+    internal MBChipType AppliedChipType(MBChipType? chipType = null) => chipType ?? ChipType;
+
+    #endregion
+
     #region MBIcon
 
     private string _iconColor = "black";

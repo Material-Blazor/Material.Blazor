@@ -1,5 +1,12 @@
 @echo off
 cd material.blazor
-npm update -S
+echo ...
+echo ... Updating Material.Blazor
+echo ...
+call npm update -S
 cd ..\material.blazor.md3
-npm update -S
+echo ...
+echo ... Updating Material.Blazor.MD3
+echo ...
+call npm update -S
+cd ..

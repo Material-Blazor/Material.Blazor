@@ -1,8 +1,8 @@
 ﻿---
-uid: C.MBChips
-title: MBChips
+uid: C.MBChipSet
+title: MBChipSet
 ---
-# MBChips
+# MBChipSet
 
 ## Summary
 
@@ -17,4 +17,4 @@ The following attributes are reserved by Material Components Web and will be ign
 - type
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBChip&color=brightgreen)](xref:Material.Blazor.MBChip)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBChipSet&color=brightgreen)](xref:Material.Blazor.MBChipSet)

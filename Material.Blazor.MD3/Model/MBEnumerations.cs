@@ -59,6 +59,37 @@ public enum MBCardStyleMD2
 
 #endregion
 
+#region MBChipType
+
+/// <summary>
+/// Material Theme chip type applied to <see cref="MBChipSet"/>.
+/// </summary>
+public enum MBChipType
+{
+    /// <summary>
+    /// The assist style.
+    /// </summary>
+    Assist,
+
+    /// <summary>
+    /// The filter style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>
+    Filter,
+
+    /// <summary>
+    /// The input style.
+    /// </summary>
+    Input,
+
+    /// <summary>
+    /// The suggestion style.
+    /// </summary>
+    Suggestion,
+
+}
+
+#endregion
+
 #region MBDensity
 
 /// <summary>
