@@ -4,8 +4,7 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [5.0.0]
-(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc2)
+#### [5.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0)
 
 Released 2023-11-??
 
@@ -16,8 +15,12 @@ Released 2023-11-??
 
 **New components**
 - MD3: Added preview components:
-    - MBIconButton
+    - MBChipset
+	- MBIconButton
+	- MBList
+	- MBMenu
 	- MBSelect
+	- MBSlider
 
 **Breaking Changes**
 
@@ -27,8 +30,7 @@ Released 2023-11-??
 
 <br />
 
-#### [5.0.0-rc2]
-(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc2)
+#### [5.0.0-rc.2](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc.2)
 
 Released 2023-10-10
 
@@ -52,8 +54,7 @@ Released 2023-10-10
 
 <br />
 
-#### [5.0.0-rc1]
-(https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc.1)
+#### [5.0.0-rc1](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0-rc.1)
 
 Released 2023-09-16
 
@@ -82,8 +83,7 @@ remains unchanged.
 
 <br />
 
-#### [4.0.0]
-(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0)
+#### [4.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0)
 
 Released 2023-08-10
 
@@ -108,8 +108,7 @@ DN8 branch (MD3 projects only).
 
 <br />
 
-#### [4.0.0-preview.20]
-(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.20)
+#### [4.0.0-preview.20](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.20)
 
 Released 2023-07-11
 
@@ -131,8 +130,7 @@ DN8 branch (MD3 projects only).
 
 <br />
 
-#### [4.0.0-preview.19]
-(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.19)
+#### [4.0.0-preview.19](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.19)
 
 Released 2023-06-14
 
@@ -159,8 +157,7 @@ DN8 branch (MD3 projects only).
 
 <br />
 
-#### [4.0.0-preview.18]
-(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.18)
+#### [4.0.0-preview.18](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.18)
 
 Released 2023-05-18
 
@@ -183,8 +180,7 @@ DN8 branch (MD3 projects only).
 
 <br />
 
-#### [4.0.0-preview.17]
-(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.17)
+#### [4.0.0-preview.17](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.17)
 
 Released 2023-04-12
 
@@ -206,8 +202,7 @@ DN8 branch (MD3 projects only).
 
 <br />
 
-#### [4.0.0-preview.16]
-(https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16)
+#### [4.0.0-preview.16](https://github.com/Material-Blazor/Material.Blazor/tree/4.0.0-preview.16)
 
 Released 2023-03-15
 

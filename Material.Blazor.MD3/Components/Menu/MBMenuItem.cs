@@ -8,7 +8,7 @@
         public string HeadlineColor { get; set; } = "black";
         public string Identifier { get; set; } = "";
         public bool IsDisabled { get; set; } = false;
-        public MBMenuItemType ItemType { get; set; } = MBMenuItemType.Regular;
+        public MBMenuItemType MenuItemType { get; set; } = MBMenuItemType.Regular;
         public MBIconDescriptor LeadingIcon { get; set; } = null;
         public bool SuppressLeadingIcon { get; set; } = false;
         public MBIconDescriptor TrailingIcon { get; set; } = null;

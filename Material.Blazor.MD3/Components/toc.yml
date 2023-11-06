@@ -25,6 +25,9 @@
 - name: MBIconButton
   topicUid: C.MBIconButton
 
+- name: MBList
+  topicUid: C.MBList
+
 - name: MBMenu
   topicUid: C.MBMenu
 

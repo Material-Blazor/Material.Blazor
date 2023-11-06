@@ -92,12 +92,14 @@ namespace Material.Blazor
                     {
                         foreach (var menuItem in MenuItems)
                         {
-                            switch (menuItem.ItemType)
+                            switch (menuItem.MenuItemType)
                             {
                                 case MBMenuItemType.BeginSubMenu:
                                     break;
 
                                 case MBMenuItemType.Divider:
+                                    builder.OpenElement(rendSeq++, "md-divider");
+                                    builder.CloseElement();
                                     break;
 
                                 case MBMenuItemType.EndSubMenu:

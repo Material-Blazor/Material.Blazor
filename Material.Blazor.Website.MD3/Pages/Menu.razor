@@ -96,43 +96,51 @@
             new MBMenuItem {
                 Headline="One",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular },
+                MenuItemType=MBMenuItemType.Regular },
             new MBMenuItem {
                 Headline="Two",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular },
+                MenuItemType=MBMenuItemType.Regular },
             new MBMenuItem {
                 Headline="Three",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular },
+                MenuItemType=MBMenuItemType.Regular },
+            new MBMenuItem
+            {
+                MenuItemType=MBMenuItemType.Divider
+            },
             new MBMenuItem {
                 Headline="Four",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular,
+                MenuItemType=MBMenuItemType.Regular,
                 LeadingIcon=MBIcon.IconDescriptorConstructor(
                                     name: "home",
                                     color: "darkblue")},
             new MBMenuItem {
                 Headline="Five",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular,
+                MenuItemType=MBMenuItemType.Regular,
                 TrailingIcon=MBIcon.IconDescriptorConstructor(
                                     name: "alarm",
                                     color: "darkblue")},
             new MBMenuItem {
                 Headline="Six",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular,
+                MenuItemType=MBMenuItemType.Regular,
                 LeadingIcon=MBIcon.IconDescriptorConstructor(
                                     name: "home",
                                     color: "darkblue"),
                 TrailingIcon=MBIcon.IconDescriptorConstructor(
                                     name: "alarm",
                                     color: "darkblue")},
+            new MBMenuItem
+            {
+                MenuItemType=MBMenuItemType.Divider
+            },
             new MBMenuItem {
                 Headline="Seven",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular,
+                MenuItemType=MBMenuItemType.Regular,
                 LeadingIcon=MBIcon.IconDescriptorConstructor(
                                     name: "done",
                                     color: "darkgreen"),
@@ -140,16 +148,20 @@
             new MBMenuItem {
                 Headline="Eight",
                 HeadlineColor="darkblue",
-                ItemType=MBMenuItemType.Regular,
+                MenuItemType=MBMenuItemType.Regular,
                 LeadingIcon=MBIcon.IconDescriptorConstructor(
                                     name: "done",
                                     color: "darkgreen"),
                 SuppressLeadingIcon=true },
+            new MBMenuItem
+            {
+                MenuItemType=MBMenuItemType.Divider
+            },
             new MBMenuItem {
                 Headline="Nine (disabled)",
                 HeadlineColor="darkblue",
                 IsDisabled=true,
-                ItemType=MBMenuItemType.Regular },
+                MenuItemType=MBMenuItemType.Regular },
     };
 
     private async Task OpenMenuAsync()

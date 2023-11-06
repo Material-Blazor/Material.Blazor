@@ -266,6 +266,26 @@ public enum MBLoggingLevel
 
 #endregion
 
+#region MBListItemType
+
+/// <summary>
+/// Determines the display properties of a ListItem.
+/// </summary>
+public enum MBListItemType
+{
+    /// <summary>
+    /// Divider menu item
+    /// </summary>
+    Divider,
+
+    /// <summary>
+    /// Regular menu item.
+    /// </summary>
+    Regular,
+}
+
+#endregion
+
 #region MBMenuItemType
 
 /// <summary>
