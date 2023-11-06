@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Principles </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Principles ">
+    <meta name="generator" content="docfx 2.58.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="A.Principles">
+<h1 id="principles-behind-materialblazor">Principles behind Material.Blazor</h1>
+
+<p>We built Material.Blazor with the following principles in mind:</p>
+<ul>
+<li>Permissive <a class="xref" href="../LICENSE.html">MIT license</a> and a clear <a class="xref" href="../CODE_OF_CONDUCT.html">contributor code of conduct</a>;</li>
+<li>Lightweight components that require the minimal possible setup or boilerplate Blazor coding and without intensive startup processing,</li>
+<li>An entirely native Blazor experience for Material.Blazor's consumer, using JavaScript Interop within Material.Blazor only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application,</li>
+<li>A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable,</li>
+<li>A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS. Material.Blazor keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. This requires you to manage your layout because Material.Blazor does not attempt to give you layout shortcuts. This is so you can decide what layout system to use? Material Theme, Bootstrap or as you wish. Other libraries take a different approach, and if you have a different requirement you may want to consider other options,</li>
+<li>Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation, and</li>
+<li>We aim for Material.Blazor to employ best practice for Blazor development. As a starting point this should be considered as being defined per <a href="https://www.youtube.com/watch?v=QnBYmTpugz0">this video from NDC London, January 2020</a>.</li>
+</ul>
+<h2 id="managing-interaction-between-blazor-and-material-theme-js">Managing interaction between Blazor and Material Theme JS</h2>
+<p>Blazor does not have access to the DOM and updates components by re-rendering them. Material Theme on the other hand, as a comprehensive JavaScript library, updates components by directly changing
+DOM elements once components have been registered with Material Theme. These differing approaches cause conflicts if not properly managed, severely degrading the user experience. Imagine for example
+the following situation:</p>
+<ul>
+<li>A Blazor component library creates a Material Theme Select component and initializes it making a JSInterop call <code>mdc.select.MDCSelect.attachTo(selectElem)</code>;</li>
+<li>The user then makes selection changes, which updates the DOM;</li>
+<li>The Blazor component then decides to change the selected value, re-rendering the select's markup;</li>
+<li>The markup displayed on the app page now differs from the Material Theme framework's record of what markup should be displayed - the select is broken.</li>
+</ul>
+<p>We have overcome this by ensuring that Material.Blazor steps out of the way of Material Theme once components have been intialized, so that Blazor no longer re-renders. In practice this means that
+once initialized, the component's <code>ShouldRender()</code> lifecycle method is set to return false, disabling Blazor's ability to re-render. This then means that two-way binding of Value and Disabled
+parameters needs to make appropriate JSInterop calls to update values using the Material Theme javascript framework. This pattern is handled in the Material.Blazor's internal <code>InputComponent</code>
+abstract class.</p>
+<p>This is an unusual approach for a Blazor component library, but it is the key methodology that makes Material Theme components behave precisely as they should. Material.Blazor then does the hard work
+of encapsulating this and transforming it into a native blazor experience for the libary's consumer.</p>
+<h2 id="component-intialization">Component Intialization</h2>
+<p>All Material Theme components need to make intiialization calls to the Material Theme JavaScript libraries. There is a special case where this needs to be delayed: dialogs (see <a href="https://material.io/develop/web/components/dialogs">MB documentation</a>).
+Some components need either to be initialized after a dialog has opened (with its transition), or to be re laid out. Material.Blazor takes an approach where every component can detect whether it is in a dialog.
+If so, it does one of two things:</p>
+<ol>
+<li>If the dialog has not been opened, rather than initializing after the component's first render, it registers a callback with the dialog, so the dialog can initialize it after opening; or</li>
+<li>If the dialog is already open, the component intializes immediately after it has first rendered.</li>
+</ol>
+<p>This mechanism is also handled in the Material.Blazor's internal <code>InputComponent</code> abstract class.</p>
+<h2 id="dispose">Dispose</h2>
+<p>All components that receive notification from Material Components Web javascript via JSInterop pass a <code>DotNetObjectReference</code> to JSInterop. This reference needs
+to be disposed, e.g. <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/AutocompleteTextField/MBAutocompleteTextField.razor.cs#L166">MBAutocompleteTextField</a>.</p>
+<h2 id="namespaces">Namespaces</h2>
+<p>Material.Blazor has two namespaces:</p>
+<ul>
+<li><code>Material.Blazor</code> is the only namespace that you should use. You can add <code>@using Material.Blazor</code> to your project's _Imports.razor file.</li>
+<li>There is also a <code>Material.Blazor.Internal</code> namespace that you should not use. We use this namespace for some components that are intended only for internal use in Material.Blazor, however Blazor has no mechanism to restrict components to internal usage (mirroring the C# &quot;internal&quot; directive).</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/articles/Principles.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

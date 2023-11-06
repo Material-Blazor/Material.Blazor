@@ -29,13 +29,30 @@
 </head>
 
 <body class="mdc-typography mb-custom-scrollbars">
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
+    <app>
+        <video class="splash-background-video" playsinline autoplay muted loop></video>
+
+        <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate splash-linear-progress" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+            <div class="mdc-linear-progress__buffer">
+                <div class="mdc-linear-progress__buffer-bar"></div>
+                <div class="mdc-linear-progress__buffer-dots"></div>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+        </div>
+
+        <div class="splash-screen">
+            <div class="splash-content">
+                <h1 class="mdc-typography-headline1">
+                    Material.Blazor
+                </h1>
+            </div>
+        </div>
+    </app>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
