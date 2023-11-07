@@ -141,6 +141,68 @@ public enum MBDensity
 
 #endregion
 
+#region MBFloatingActionButtonSize
+
+/// <summary>
+/// Style for an <see cref="MBFloatingActionButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Medium"/></para>
+/// </summary>
+public enum MBFloatingActionButtonSize
+{
+    /// <summary>
+    /// Medium size -- This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary> 
+    Medium,
+
+    /// <summary>
+    /// Small size
+    /// </summary>  
+    Small,
+
+    /// <summary>
+    /// Large size
+    /// </summary> 
+    Large,
+}
+
+#endregion
+
+#region MBFloatingActionButtonStyle
+
+/// <summary>
+/// Style for an <see cref="MBFloatingActionButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Surface"/></para>
+/// </summary>
+public enum MBFloatingActionButtonStyle
+{
+    /// <summary>
+    /// Surface style This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary> 
+    Surface,
+
+    /// <summary>
+    /// Primary style.
+    /// </summary>  
+    Primary,
+
+    /// <summary>
+    /// Secondary style
+    /// </summary> 
+    Secondary,
+
+    /// <summary>
+    /// Tertiary style
+    /// </summary> 
+    Tertiary,
+
+    /// <summary>
+    /// Branded style
+    /// </summary> 
+    Branded,
+}
+
+#endregion
+
 #region MBIcon
 
 /// <summary>

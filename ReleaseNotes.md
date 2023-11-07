@@ -16,6 +16,7 @@ Released 2023-11-??
 **New components**
 - MD3: Added preview components:
     - MBChipset
+	- MBFloatingActionButton
 	- MBIconButton
 	- MBList
 	- MBMenu

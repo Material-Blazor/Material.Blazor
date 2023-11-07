@@ -13,6 +13,8 @@ import '@material/web/chips/input-chip.js';
 import '@material/web/chips/suggestion-chip.js';
 import '@material/web/chips/chip-set.js'
 import '@material/web/divider/divider.js'
+import '@material/web/fab/branded-fab.js'
+import '@material/web/fab/fab.js'
 import '@material/web/icon/icon.js';
 import '@material/web/iconbutton/filled-icon-button.js';
 import '@material/web/iconbutton/filled-tonal-icon-button.js';

@@ -19,6 +19,9 @@
 - name: MBChipSet
   topicUid: C.MBChipSet
 
+- name: MBFloatingActionButton
+  topicUid: C.MBFloatingActionButton
+
 - name: MBIcon
   topicUid: C.MBIcon
 

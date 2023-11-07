@@ -132,6 +132,24 @@ public class MBCascadingDefaults
 
     #endregion
 
+    #region MBFloatingActionButton
+
+    private MBFloatingActionButtonSize _floatingActionButtonSize = MBFloatingActionButtonSize.Medium;
+    /// <summary>
+    /// The default style for an <see cref="MBFloatingActionButton"/>, initialized to <see cref="MBFloatingActionButtonSize.Medium"/> if not explicitly set.
+    /// </summary>
+    public MBFloatingActionButtonSize FloatingActionButtonSize { get => _floatingActionButtonSize; set => SetParameter(ref _floatingActionButtonSize, value); }
+    internal MBFloatingActionButtonSize AppliedFloatingActionButtonSize(MBFloatingActionButtonSize? floatingActionButtonSize = null) => floatingActionButtonSize ?? FloatingActionButtonSize;
+
+    private MBFloatingActionButtonStyle _floatingActionButtonStyle = MBFloatingActionButtonStyle.Surface;
+    /// <summary>
+    /// The default style for an <see cref="MBFloatingActionButton"/>, initialized to <see cref="MBFloatingActionButtonStyle.Surface"/> if not explicitly set.
+    /// </summary>
+    public MBFloatingActionButtonStyle FloatingActionButtonStyle { get => _floatingActionButtonStyle; set => SetParameter(ref _floatingActionButtonStyle, value); }
+    internal MBFloatingActionButtonStyle AppliedFloatingActionButtonStyle(MBFloatingActionButtonStyle? floatingActionButtonStyle = null) => floatingActionButtonStyle ?? FloatingActionButtonStyle;
+
+    #endregion
+
     #region MBIcon
 
     private string _iconColor = "black";

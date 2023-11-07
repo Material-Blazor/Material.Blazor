@@ -1,8 +1,8 @@
 ﻿---
-uid: C.MBButton
-title: MBButton
+uid: C.MBIconButton
+title: MBIconButton
 ---
-# MBButton
+# MBIconButton
 
 ## Summary
 
