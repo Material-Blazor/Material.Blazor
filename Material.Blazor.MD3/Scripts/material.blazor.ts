@@ -12,6 +12,7 @@ import '@material/web/chips/filter-chip.js';
 import '@material/web/chips/input-chip.js';
 import '@material/web/chips/suggestion-chip.js';
 import '@material/web/chips/chip-set.js'
+import '@material/web/dialog/dialog.js'
 import '@material/web/divider/divider.js'
 import '@material/web/fab/branded-fab.js'
 import '@material/web/fab/fab.js'
@@ -36,6 +37,7 @@ import '@material/web/textfield/filled-text-field.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/switch/switch.js';
 
+import * as MBDialog from '../Components/Dialog/MBDialog';
 import * as MBMenu from '../Components/Menu/MBMenu';
 import * as MBTextField from '../Components/TextField/MBTextField';
 
@@ -44,18 +46,17 @@ MD2 JS
 */
 import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
-import * as MBDialog from '../Components.MD2/Dialog/MBDialog';
 import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
 import * as MBMenuMD2 from '../Components.MD2/Menu/MBMenu';
 import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
+    MBDialog,
     MBMenu,
     MBTextField,
 
     MBCard,
     MBDataTable,
-    MBDialog,
     MBDrawer,
     MBMenuMD2,
     MBTopAppBar

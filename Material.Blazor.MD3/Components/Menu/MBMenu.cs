@@ -175,7 +175,7 @@ namespace Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuOpen", MenuButtonId, MenuId).ConfigureAwait(false);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.toggleMenuOpen", MenuButtonId, MenuId).ConfigureAwait(false);
         }
 
         #endregion

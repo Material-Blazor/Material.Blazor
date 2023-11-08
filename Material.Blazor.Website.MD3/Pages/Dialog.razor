@@ -22,33 +22,33 @@
                 <PrimaryAction>
                     <div class="mb-card__autostyled">
                         <h1 class="mb-card__title mdc-typography mdc-typography--headline6">
-                            TBD
+                            A selection of dialog options
                         </h1>
                     </div>
                 </PrimaryAction>
             </Material.Blazor.MD2.MBCard>
         </div>
 
-            @*         <div class="mdc-layout-grid__cell--span-4">
-        <MBCard AutoStyled="true"
-        @onclick="@ShowDialog1Async">
-        <PrimaryAction>
-        <div class="mb-card__autostyled">
-        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-        General Dialog
-        </h2>
-        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-        Launches a general dialog. Look at the result shown in a toast when you click a button, hit escape of click the scrim. Shows
-        a checkbox and radio buttons to demonstrate that these are correctly initiated with Material Theme javascript when rendered inside a dialog.
-        </h3>
-        </div>
-        </PrimaryAction>
-        </MBCard>
-        </div>
-
-
         <div class="mdc-layout-grid__cell--span-4">
-        <MBCard AutoStyled="true"
+            <Material.Blazor.MD2.MBCard AutoStyled="true"
+                                        @onclick="@ShowDialog1Async">
+                <PrimaryAction>
+                    <div class="mb-card__autostyled">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            General Dialog
+                        </h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Launches a general dialog. Look at the result shown in a toast when you click a button, hit escape of click the scrim. Shows
+                            a checkbox and radio buttons to demonstrate that these are correctly initiated with Material Theme javascript when rendered inside a dialog.
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+        @*         <div class="mdc-layout-grid__cell--span-4">
+        <Material.Blazor.MD2.MBCard AutoStyled="true"
         @onclick="@ShowDialog2Async">
         <PrimaryAction>
         <div class="mb-card__autostyled">
@@ -60,7 +60,7 @@
         </h3>
         </div>
         </PrimaryAction>
-        </MBCard>
+        </Material.Blazor.MD2.MBCard>
         </div>
 
 
@@ -82,7 +82,7 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-        <MBCard AutoStyled="true"
+        <Material.Blazor.MD2.MBCard AutoStyled="true"
         @onclick="@ShowDialog4Async">
         <PrimaryAction>
         <div class="mb-card__autostyled">
@@ -94,7 +94,7 @@
         </h3>
         </div>
         </PrimaryAction>
-        </MBCard>
+        </Material.Blazor.MD2.MBCard>
         </div>
 
 
@@ -116,7 +116,7 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-        <MBCard AutoStyled="true"
+        <Material.Blazor.MD2.MBCard AutoStyled="true"
         @onclick="@ShowDialog6Async">
         <PrimaryAction>
         <div class="mb-card__autostyled">
@@ -128,12 +128,12 @@
         </h3>
         </div>
         </PrimaryAction>
-        </MBCard>
+        </Material.Blazor.MD2.MBCard>
         </div>
 
 
         <div class="mdc-layout-grid__cell--span-4">
-        <MBCard AutoStyled="true"
+        <Material.Blazor.MD2.MBCard AutoStyled="true"
         @onclick="@ShowDialog7Async">
         <PrimaryAction>
         <div class="mb-card__autostyled">
@@ -145,34 +145,30 @@
         </h3>
         </div>
         </PrimaryAction>
-        </MBCard>
+        </Material.Blazor.MD2.MBCard>
         </div>
 
+        *@
+        <MBDialog ButtonItems="@buttonsFruit"
+                  DialogId="dialog1"
+                  @ref="@Dialog1">
+            <Header>
+                General dialog
+            </Header>
 
-        <MBDialog @ref="@Dialog1"
-        Title="General dialog">
-        <Body>
-        <p>Please choose a fruit.</p>
-        <MBCheckbox @bind-Value="@Check"
-        Label="Check me" />
-        <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
-        Items="@StringItems"
-        ItemValidation="@MBItemValidation.DefaultToFirst"
-        Vertical="true" />
-        </Body>
-        <Buttons>
-        <MBButton DialogAction="orange button clicked"
-        Label="Orange"
-        data-mdc-dialog-action="orange" />
-        <MBButton ButtonStyle="@MBButtonStyle.Text"
-        DialogAction="apple button clicked"
-        Label="Apple"
-        data-mdc-dialog-action="apple" />
-        </Buttons>
+            <Body>
+                <p>Please choose a fruit.</p>
+                <MBCheckbox @bind-Value="@Check"
+                            Label="Check me" />
+                <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
+                                    Items="@StringItems"
+                                    ItemValidation="@MBItemValidation.DefaultToFirst"
+                                    IsHorizontal="false" />
+            </Body>
         </MBDialog>
 
 
-        <MBDialog EscapeKeyAction=""
+        @*         <MBDialog EscapeKeyAction=""
         @ref="@Dialog2"
         ScrimClickAction=""
         Title="General Dialog with Scrim and Escape Disabled (using HideAsync)">
@@ -330,142 +326,156 @@
         </EditForm>
         </Body>
         </MBDialog>
-
         *@
+
     </PageContent>
 
 </DemonstrationPage>
 
 
 
-            @code {
-                // private bool DisableInput { get; set; } = false;
-                // private MBDialog Dialog1 { get; set; }
-                // private MBDialog Dialog2 { get; set; }
-                // private MBDialog Dialog3 { get; set; }
-                // private MBDialog Dialog4 { get; set; }
-                // private MBDialog Dialog5 { get; set; }
-                // private MBDialog Dialog6 { get; set; }
-                // private MBDialog Dialog7 { get; set; }
+@code {
+    private bool DisableInput { get; set; } = false;
+    private MBDialog Dialog1 { get; set; }
+    private MBDialog Dialog2 { get; set; }
+    private MBDialog Dialog3 { get; set; }
+    private MBDialog Dialog4 { get; set; }
+    private MBDialog Dialog5 { get; set; }
+    private MBDialog Dialog6 { get; set; }
+    private MBDialog Dialog7 { get; set; }
 
-                // private bool Check { get; set; }
+    private MBDialogButton[] buttonsFruit = new MBDialogButton[]
+    {
+        new MBDialogButton
+        {
+          ButtonLabel = "apple",
+          ButtonValue = "apple"
+        },
+        new MBDialogButton
+        {
+          ButtonLabel = "orange",
+          ButtonValue = "orange"
+        },
+    };
 
-                // private string _radioButtonResult1 = "brit-short";
-                // private string RadioButtonResult1
-                // {
-                //     get => _radioButtonResult1;
-                //     set
-                //     {
-                //         _radioButtonResult1 = value;
+    private bool Check { get; set; }
 
-                //         ToastService.ShowToast(heading: "Dialog 1 Radio Click", message: $"Value: '{_radioButtonResult1}'", level: MBToastLevel.Success, showIcon: false);
-                //     }
-                // }
+    private string _radioButtonResult1 = "brit-short";
+    private string RadioButtonResult1
+    {
+        get => _radioButtonResult1;
+        set
+        {
+            _radioButtonResult1 = value;
 
-                // private MBSelectElement<string>[] StringItems = new MBSelectElement<string>[]
-                // {
-                //     new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-                //     new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-                //     new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-                // };
+            ToastService.ShowToast(heading: "Dialog 1 Radio Click", message: $"Value: '{_radioButtonResult1}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
 
-                // private async Task ShowDialog1Async()
-                // {
-                //     var result = await Dialog1.ShowAsync();
-                //     ToastService.ShowToast(heading: "General Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private MBSingleSelectElement<string>[] StringItems = new MBSingleSelectElement<string>[]
+    {
+        new MBSingleSelectElement<string> { SelectedValue = "brit-short", LeadingLabel = "British Shorthair" },
+        new MBSingleSelectElement<string> { SelectedValue = "russ-blue", LeadingLabel = "Russian Blue" },
+        new MBSingleSelectElement<string> { SelectedValue = "ice-invis", LeadingLabel = "Icelandic Invisible" }
+    };
 
-                // private async Task ShowDialog2Async()
-                // {
-                //     var result = await Dialog2.ShowAsync();
-                //     ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private async Task ShowDialog1Async()
+    {
+        var result = await Dialog1.ShowAsync();
+        ToastService.ShowToast(heading: "General Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task OnButtonClick(string button)
-                // {
-                //     await Dialog2.HideAsync();
-                //     ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc by @onclick", message: $"Value: '{button}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private async Task ShowDialog2Async()
+    {
+        var result = await Dialog2.ShowAsync();
+        ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private DateTime MinDate { get; set; } = new DateTime(2015, 1, 1);
-                // private DateTime MaxDate { get; set; } = new DateTime(2025, 12, 31);
-                // private DateTime Date5 { get; set; } = DateTime.Today;
+    private async Task OnButtonClick(string button)
+    {
+        await Dialog2.HideAsync();
+        ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc by @onclick", message: $"Value: '{button}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task ShowDialog3Async()
-                // {
-                //     var result = await Dialog3.ShowAsync();
-                //     ToastService.ShowToast(heading: "Datepicker Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private DateTime MinDate { get; set; } = new DateTime(2015, 1, 1);
+    private DateTime MaxDate { get; set; } = new DateTime(2025, 12, 31);
+    private DateTime Date5 { get; set; } = DateTime.Today;
 
-                // private UserLogonDefinition UserLogon { get; set; }
-                // private async Task ShowDialog4Async()
-                // {
-                //     UserLogon = new UserLogonDefinition();
-                //     _ = Dialog4.ShowAsync();
-                //     await Task.CompletedTask;
-                // }
+    private async Task ShowDialog3Async()
+    {
+        var result = await Dialog3.ShowAsync();
+        ToastService.ShowToast(heading: "Datepicker Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task Dialog4Submitted()
-                // {
-                //     await Dialog4.HideAsync();
-                //     ToastService.ShowToast(heading: "Logon Dialog Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private UserLogonDefinition UserLogon { get; set; }
+    private async Task ShowDialog4Async()
+    {
+        UserLogon = new UserLogonDefinition();
+        _ = Dialog4.ShowAsync();
+        await Task.CompletedTask;
+    }
 
-                // private void Dialog4Invalid()
-                // {
-                //     ToastService.ShowToast(heading: "Logon Dialog Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
-                // }
+    private async Task Dialog4Submitted()
+    {
+        await Dialog4.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task Dialog4Canceled()
-                // {
-                //     await Dialog4.HideAsync();
-                //     ToastService.ShowToast(heading: "Logon Dialog Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private void Dialog4Invalid()
+    {
+        ToastService.ShowToast(heading: "Logon Dialog Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+    }
 
-                // private async Task ShowDialog5Async()
-                // {
-                //     var result = await Dialog5.ShowAsync();
-                //     ToastService.ShowToast(heading: "No Body Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private async Task Dialog4Canceled()
+    {
+        await Dialog4.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task ShowDialog6Async()
-                // {
-                //     var result = await Dialog6.ShowAsync();
-                //     ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private async Task ShowDialog5Async()
+    {
+        var result = await Dialog5.ShowAsync();
+        ToastService.ShowToast(heading: "No Body Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task ShowDialog7Async()
-                // {
-                //     UserLogon = new UserLogonDefinition();
-                //     _ = Dialog7.ShowAsync();
-                //     await Task.CompletedTask;
-                // }
+    private async Task ShowDialog6Async()
+    {
+        var result = await Dialog6.ShowAsync();
+        ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task Dialog7Submitted()
-                // {
-                //     await Dialog7.HideAsync();
-                //     ToastService.ShowToast(heading: "Logon Dialog #2 Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private async Task ShowDialog7Async()
+    {
+        UserLogon = new UserLogonDefinition();
+        _ = Dialog7.ShowAsync();
+        await Task.CompletedTask;
+    }
 
-                // private void Dialog7Invalid()
-                // {
-                //     ToastService.ShowToast(heading: "Logon Dialog #2 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
-                // }
+    private async Task Dialog7Submitted()
+    {
+        await Dialog7.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog #2 Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+    }
 
-                // private async Task Dialog7Canceled()
-                // {
-                //     await Dialog7.HideAsync();
-                //     ToastService.ShowToast(heading: "Logon Dialog #2 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
-                // }
+    private void Dialog7Invalid()
+    {
+        ToastService.ShowToast(heading: "Logon Dialog #2 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+    }
 
-                // private class UserLogonDefinition
-                // {
-                //     [Required(ErrorMessage = "UserID is required")]
-                //     public string UserID { get; set; }
+    private async Task Dialog7Canceled()
+    {
+        await Dialog7.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog #2 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private class UserLogonDefinition
+    {
+        [Required(ErrorMessage = "UserID is required")]
+        public string UserID { get; set; }
 
 
-                //     [Required(ErrorMessage = "Password is required")]
-                //     [MinLength(8, ErrorMessage = "Password at least 8 characters.")]
-                //     public string Password { get; set; }
-                // }
-            }
+        [Required(ErrorMessage = "Password is required")]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
+        public string Password { get; set; }
+    }
+}

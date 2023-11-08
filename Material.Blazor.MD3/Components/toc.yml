@@ -19,6 +19,9 @@
 - name: MBChipSet
   topicUid: C.MBChipSet
 
+- name: MBDialog
+  topicUid: C.MBDialog
+
 - name: MBFloatingActionButton
   topicUid: C.MBFloatingActionButton
 

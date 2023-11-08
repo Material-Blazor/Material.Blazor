@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,7 +31,36 @@ public sealed class MBButton : ComponentFoundation
         var attributesToSplat = AttributesToSplat().ToArray();
         var rendSeq = 0;
 
-        var componentName = CascadingDefaults.AppliedButtonStyle(ButtonStyle) switch
+        BuildRenderTreeWorker(
+            builder,
+            ref rendSeq,
+            CascadingDefaults,
+            attributesToSplat,
+            @class,
+            style,
+            id,
+            AppliedDisabled,
+            ButtonStyle,
+            Label);
+    }
+
+    #endregion
+
+    #region BuildRenderTreeWorker
+
+    private static void BuildRenderTreeWorker(
+        RenderTreeBuilder builder,
+        ref int rendSeq,
+        MBCascadingDefaults cascadingDefaults,
+        KeyValuePair<string, object>[] attributesToSplat,
+        string classString,
+        string styleString,
+        string idString,
+        bool appliedDisabled,
+        MBButtonStyle? buttonStyle,
+        string label)
+    {
+        var componentName = cascadingDefaults.AppliedButtonStyle(buttonStyle) switch
         {
             MBButtonStyle.Elevated => "md-elevated-button",
             MBButtonStyle.Filled => "md-filled-button",
@@ -42,41 +72,22 @@ public sealed class MBButton : ComponentFoundation
 
         builder.OpenElement(rendSeq++, componentName);
         {
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(rendSeq++, "class", classString);
+            builder.AddAttribute(rendSeq++, "style", styleString);
+            builder.AddAttribute(rendSeq++, "id", idString);
             if (attributesToSplat.Any())
             {
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-            if (AppliedDisabled)
+            if (appliedDisabled)
             {
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
-            if (IconIsTrailing)
+            if (!string.IsNullOrWhiteSpace(label))
             {
-                builder.AddAttribute(rendSeq++, "trailing-icon");
-            }
-
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                builder.AddContent(rendSeq++, Label);
-            }
-
-            if (IconDescriptor is not null)
-            {
-                MBIcon.BuildRenderTreeWorker(
-                    builder,
-                    ref rendSeq,
-                    CascadingDefaults,
-                    null,
-                    "",
-                    "",
-                    "",
-                    IconDescriptor,
-                    "icon");
+                builder.AddContent(rendSeq++, label);
             }
         }
         builder.CloseElement();
@@ -84,6 +95,7 @@ public sealed class MBButton : ComponentFoundation
         // Consider throttle
 
         //    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+        return;
     }
 
     #endregion

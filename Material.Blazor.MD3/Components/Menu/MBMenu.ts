@@ -1,4 +1,4 @@
-﻿export function setMenuOpen(menuButtonID: string, menuID: string) {
+﻿export function toggleMenuOpen(menuButtonID: string, menuID: string) {
     const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
     const menuElement: any | null = document.getElementById(menuID);
     if ((buttonElement != null) && (menuElement != null)) {
