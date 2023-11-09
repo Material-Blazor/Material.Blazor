@@ -1,0 +1,14 @@
+﻿.mb-dialog-overflow-visible.mdc-dialog__surface, .mb-dialog-overflow-visible.mdc-dialog__surface .mdc-dialog__content {
+    overflow: visible !important;
+}
+
+.mb-dialog__header {
+    padding-bottom: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 0px;
+
+    .mdc-dialog__title {
+        padding-left: 0px;
+    }
+}

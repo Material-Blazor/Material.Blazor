@@ -1,0 +1,32 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+<div class="@ActiveConditionalClasses @(@class)"
+     style="@style"
+     @attributes="@AttributesToSplat()">
+
+    <md-dialog id="@DialogId">
+        @if (HasHeader)
+        {
+            <div id="@IdHeader" slot="headline">
+                @Header
+            </div>
+        }
+
+        @if (HasBody)
+        {
+            <div id="@IdBody" slot="content">
+                @Body
+            </div>
+        }
+
+        @if (HasButtons)
+        {
+            <div slot="actions">
+                Buttons go here
+            </div>
+        }
+    </md-dialog>
+</div>
+
+@*     <div class="mdc-dialog__scrim"></div> *@

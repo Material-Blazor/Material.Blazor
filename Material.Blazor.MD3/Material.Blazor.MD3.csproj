@@ -87,9 +87,6 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsScripts Remove="Components\Dialog\MBDialog.ts" />
-		<InputStaticAssetsScripts Remove="Components\Menu\MBMenu.ts" />
-		<InputStaticAssetsScripts Remove="Scripts\lodashparts.ts" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
@@ -192,17 +189,11 @@
 		<Message Importance="high" Text="***** npm install (M.B.MD3 Scripts)" />
 		<Exec Command="npm install" />
 
-		<Message Importance="high" Text="***** npm run build-scripts (M.B.MD3 Scripts)" />
-		<Exec Command="npm run build-scripts" />
-
 		<Message Importance="high" Text="***** npm run build-js (M.B.MD3 Scripts)" />
 		<Exec Command="npm run build-js" />
 
-		<Message Importance="high" Text="***** npm run build-min-js (M.B.MD3 Scripts)" />
-		<Exec Command="npm run build-min-js" />
-
-		<Message Importance="high" Text="***** delete intermediate.js (M.B.MD3 Scripts)" />
-		<Delete Files="wwwroot\intermediate.js" />
+		<Message Importance="high" Text="***** npm run build-js-minify (M.B.MD3 Scripts)" />
+		<Exec Command="npm run build-js-minify" />
 
 
 		<DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
@@ -240,7 +231,7 @@
 		<Exec Command="npm run build-css" />
 
 		<Message Importance="high" Text="***** npm run build-min-css (M.B.MD3 Styles)" />
-		<Exec Command="npm run build-min-css" />
+		<Exec Command="npm run build-css-minify" />
 
 	</Target>
 

@@ -1,8 +1,8 @@
 ﻿---
-uid: C.MBSwitch
-title: MBSwitch
+uid: C.MBSelect
+title: MBSelect
 ---
-# MBSwitch
+# MBSelect
 
 ## Summary
 
@@ -16,4 +16,4 @@ The following attributes are reserved by Material Components Web and will be ign
 - type
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSelect&color=brightgreen)](xref:Material.Blazor.MBSelect)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSelect&color=brightgreen)](xref:Material.Blazor.MBSelect`1)

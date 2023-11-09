@@ -285,6 +285,39 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
+    #region OnParametersSetAsync
+
+    /// <inheritdoc/>
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
+        LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+
+        if (!valuesEqual)
+        {
+            LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+            _cachedValue = Value;
+
+            valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
+            LoggingService.LogTrace($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+
+            if (!valuesEqual)
+            {
+                LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+
+                _componentValue = Value;
+                if (HasInstantiated)
+                {
+                    EnqueueJSInteropAction(SetComponentValueAsync);
+                }
+            }
+        }
+    }
+
+    #endregion
+
     #region SetComponentValueAsync
 
     /// <summary>

@@ -189,6 +189,7 @@ public sealed class MBIconButton : ComponentFoundation
 
     private async Task OnClickInternal()
     {
+        await Task.CompletedTask;
         //Value = !Value;
         //await ValueChanged.InvokeAsync(Value);
     }

@@ -104,6 +104,7 @@ public sealed class MBButton : ComponentFoundation
 
     private async Task OnClickInternal(MouseEventArgs args)
     {
+        await Task.CompletedTask;
         //Value = !Value;
         //await ValueChanged.InvokeAsync(Value);
     }

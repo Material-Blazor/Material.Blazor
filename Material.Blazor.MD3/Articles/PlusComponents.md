@@ -11,7 +11,8 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 
 | Component | Notes |
 | :-------- | :---- |
-| [MBIcon](xref:C.MBIcon) | A Material Symbol |
+| [MBNumericField](xref:C.MBNumericField) | A numeric typed text field |
+| [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | A collection of radio buttons with a single selection |
 
 ## Experimental Component List
 
