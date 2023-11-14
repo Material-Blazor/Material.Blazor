@@ -1,5 +1,4 @@
 {
-  "homepages": [],
   "source_base_path": "D:/a/Material.Blazor/Material.Blazor",
   "xrefmap": "xrefmap.yml",
   "files": [
@@ -8,11 +7,9 @@
       "source_relative_path": "CODE_OF_CONDUCT.md",
       "output": {
         ".html": {
-          "relative_path": "CODE_OF_CONDUCT.html",
-          "hash": "GoOhVXQ4niCWKFf2XVwbAmVjtkYxkyCqFZkYejefz30="
+          "relative_path": "CODE_OF_CONDUCT.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -20,869 +17,892 @@
       "source_relative_path": "LICENSE.md",
       "output": {
         ".html": {
-          "relative_path": "LICENSE.html",
-          "hash": "ZC/plMEFeOKuAFe+XDTvSPt17fT3KZ8B311RGGnS4Sk="
+          "relative_path": "LICENSE.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/CascadingDefaults.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/CascadingDefaults.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/CoreComponents.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/CoreComponents.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Demonstration.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Demonstration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Density.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Density.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/DevelopmentEnvironment.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/DevelopmentEnvironment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/FormValidation.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/FormValidation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Icon.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Icon.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Installation.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Installation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/MenuOverflow.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/MenuOverflow.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/PlusComponents.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/PlusComponents.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Principles.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Principles.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Services.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Snackbar.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Snackbar.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/ThemingAndCSS.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/ThemingAndCSS.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Toast.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Toast.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Tooltip.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Tooltip.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/TwoWayBinding.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/TwoWayBinding.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Utilities.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Utilities.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Articles/Workflows.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/Workflows.html"
+        }
+      },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/architecture-book-shelves-books-commercial-eatablishment-244134.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/gh-account-settings-1.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/architecture-book-shelves-books-commercial-eatablishment-244134.jpg"
+          "relative_path": "Material.Blazor/Articles/images/gh-account-settings-1.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/book-shelves.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/gh-account-settings-2.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/book-shelves.jpg"
+          "relative_path": "Material.Blazor/Articles/images/gh-account-settings-2.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/mac.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/gh-account-settings-3.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/mac.jpg"
+          "relative_path": "Material.Blazor/Articles/images/gh-account-settings-3.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/notebook-and-pen-beside-red-mug-on-gray-surface-3774057.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/gh-account-settings-4.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/notebook-and-pen-beside-red-mug-on-gray-surface-3774057.jpg"
+          "relative_path": "Material.Blazor/Articles/images/gh-account-settings-4.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/person-using-macbook-pro-3804775.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/gh-account-settings-5.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/person-using-macbook-pro-3804775.jpg"
+          "relative_path": "Material.Blazor/Articles/images/gh-account-settings-5.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/person-using-tablet-computer-3740722.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/text-field-focus.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/person-using-tablet-computer-3740722.jpg"
+          "relative_path": "Material.Blazor/Articles/images/text-field-focus.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "Material.Blazor.Website/wwwroot/images/tablet.jpg",
+      "source_relative_path": "Material.Blazor/Articles/images/two-way-bind-flow.png",
       "output": {
         "resource": {
-          "relative_path": "Material.Blazor.Website/wwwroot/images/tablet.jpg"
+          "relative_path": "Material.Blazor/Articles/images/two-way-bind-flow.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/Articles/images/vs-config.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/Articles/images/vs-config.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/Articles/images/vs-extensions.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/Articles/images/vs-extensions.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Material.Blazor/Articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "Material.Blazor/Articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Anchor/MBAnchor.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Anchor/MBAnchor.html",
-          "hash": "6AnjI3XNwVCzS4Yj8eL7GMkbp54XrbgMFH3TRU1dUBg="
+          "relative_path": "Material.Blazor/Components/Anchor/MBAnchor.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/AutocompletePagedField/MBAutocompletePagedField.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/AutocompletePagedField/MBAutocompletePagedField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/AutocompleteSelectField/MBAutocompleteSelectField.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/AutocompleteSelectField/MBAutocompleteSelectField.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html",
-          "hash": "sys0atGxXb9IRr+PopwW4jPUaPzxgQ9Z9GzTbEJZcvM="
+          "relative_path": "Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Badge/MBBadge.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Badge/MBBadge.html",
-          "hash": "LnoXZsqMrGeqEo35IO9DdaZkplwyr/RaJKMe4DlLXiU="
+          "relative_path": "Material.Blazor/Components/Badge/MBBadge.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/BladeSet/MBBladeSet.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/BladeSet/MBBladeSet.html",
-          "hash": "DF2suzhp+wy4W4eZCP8Eltuzu0aKlNnqqbrApWRrpY8="
+          "relative_path": "Material.Blazor/Components/BladeSet/MBBladeSet.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Button/MBButton.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Button/MBButton.html",
-          "hash": "BCprJ3G0ik6N7AjjYB1SA7ItrsVFv78kSIlAJOe3Wgs="
+          "relative_path": "Material.Blazor/Components/Button/MBButton.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Card/MBCard.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Card/MBCard.html",
-          "hash": "NGgqARCntGWLyRMsPF9h7NUJdTJ+e+ki4B0k0jisOpk="
+          "relative_path": "Material.Blazor/Components/Card/MBCard.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Carousel/MBCarousel.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Carousel/MBCarousel.html",
-          "hash": "W8y4Glx95ZNt3lv4Y3RCbrUC8BkzZ/gZgcr132i0yoo="
+          "relative_path": "Material.Blazor/Components/Carousel/MBCarousel.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Checkbox/MBCheckbox.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Checkbox/MBCheckbox.html",
-          "hash": "6Vl1M1hkfEVGLPG73ymTjlXSP9PwPzBUFBrIm5mxfqA="
+          "relative_path": "Material.Blazor/Components/Checkbox/MBCheckbox.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ChipsSelectMulti/MBChipsSelectMulti.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/ChipsSelectMulti/MBChipsSelectMulti.html",
-          "hash": "KeLxy/tFOUCdcisEMpEr3GoZ5HuRSKBjKlwOkPjsbMo="
+          "relative_path": "Material.Blazor/Components/ChipsSelectMulti/MBChipsSelectMulti.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ChipsSelectSingle/MBChipsSelectSingle.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/ChipsSelectSingle/MBChipsSelectSingle.html",
-          "hash": "Td/IExdvx/kR4qo58IRKiczchIzv2kL0JwN2a5yUExM="
+          "relative_path": "Material.Blazor/Components/ChipsSelectSingle/MBChipsSelectSingle.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/CircularProgress/MBCircularProgress.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/CircularProgress/MBCircularProgress.html",
-          "hash": "FTG21bKXqYqBjghrjBl6XfWWxL/xfeNXV1GlgeYsEK0="
+          "relative_path": "Material.Blazor/Components/CircularProgress/MBCircularProgress.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ConfirmationDialog/MBConfirmationDialog.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/ConfirmationDialog/MBConfirmationDialog.html",
-          "hash": "hXh0yubD9Bo3sw3vgSH5g0HXQPBeNMKlDYNK4oHtfos="
+          "relative_path": "Material.Blazor/Components/ConfirmationDialog/MBConfirmationDialog.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DataTable/MBDataTable.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/DataTable/MBDataTable.html",
-          "hash": "krl9YhoHyXuLBv1XanMsbMd4c3kC8KgKZ7OxnMzZ6NU="
+          "relative_path": "Material.Blazor/Components/DataTable/MBDataTable.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.html",
-          "hash": "3k6f/oDiOGJDynkJYExbT9gqdTUVvWpVAoYVdT+HwkA="
+          "relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DateTimeField/MBDateTimeField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/DateTimeField/MBDateTimeField.html",
-          "hash": "R+pDwRobCCyF2FvJMiiEGF3vadAQdY5KN9EXxqXg63Q="
+          "relative_path": "Material.Blazor/Components/DateTimeField/MBDateTimeField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html",
-          "hash": "DI3Xb8/D922laDNNXKNaoZ4+ZoCmNaK69dCnQ69XCYs="
+          "relative_path": "Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Dialog/MBDialog.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Dialog/MBDialog.html",
-          "hash": "AyJrE7c01jmMaUcEtpsoO1Gn1iCWlka8jFUfZre6F3E="
+          "relative_path": "Material.Blazor/Components/Dialog/MBDialog.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Divider/MBDivider.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Divider/MBDivider.html",
-          "hash": "KGKqv4G9vrsEukEWbuD8FIs939XM50/Zi/6KLiD48NM="
+          "relative_path": "Material.Blazor/Components/Divider/MBDivider.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/DragAndDropList/MBDragAndDropList.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/DragAndDropList/MBDragAndDropList.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Drawer/MBDrawer.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Drawer/MBDrawer.html",
-          "hash": "nNJjBmaohqdWS4PFhKXYUK9whE4ZMEZUGS4sG1sEZ8o="
+          "relative_path": "Material.Blazor/Components/Drawer/MBDrawer.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/FileUpload/MBFileUploadButton.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/FileUpload/MBFileUploadButton.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/FileUpload/MBFileUploadDragAndDrop.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/FileUpload/MBFileUploadDragAndDrop.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.html",
-          "hash": "Y5VX9tjKT4LRFR1a6WSC7NNY6OD+vksYtj4SAuVlXlc="
+          "relative_path": "Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids",
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Grid/MBGrid.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Grid/MBGrid.html",
-          "hash": "5q1I2GktIm6kQCypFx+8eFM6bcl9s8lek/vIvdJFbC0="
+          "relative_path": "Material.Blazor/Components/Grid/MBGrid.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Icon/MBIcon.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Icon/MBIcon.html",
-          "hash": "SCEwJau5fD2+iCQBohW6OaHir9XS++tnfBctKyplVdY="
+          "relative_path": "Material.Blazor/Components/Icon/MBIcon.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/IconButton/MBIconButton.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/IconButton/MBIconButton.html",
-          "hash": "HtQe1w8ARfBd8EiHFYRXfrHXd+P8UnHQI13Z5vxC224="
+          "relative_path": "Material.Blazor/Components/IconButton/MBIconButton.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.html",
-          "hash": "fWkFrFVHtieKpk3+EzLikMHXOCR8tNCCatYJl3tSpF0="
+          "relative_path": "Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
+      "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/IntSlider/MBIntSlider.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/IntSlider/MBIntSlider.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/LinearProgress/MBLinearProgress.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/LinearProgress/MBLinearProgress.html",
-          "hash": "bqKket+P+ww/nTx++p5Y6W9Ghi1OYrCGJP2YM2xamIk="
+          "relative_path": "Material.Blazor/Components/LinearProgress/MBLinearProgress.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/List/MBList.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/List/MBList.html",
-          "hash": "jpbn8ZdAHQJVdRYE7l15c+tUNC6EnRrvkGrh00vxU4U="
+          "relative_path": "Material.Blazor/Components/List/MBList.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ListDivider/MBListDivider.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/ListDivider/MBListDivider.html",
-          "hash": "JKJZDjuP44wXxXUOQ+qU5ZFP3p5PYozyyrGXTiEJVIE="
+          "relative_path": "Material.Blazor/Components/ListDivider/MBListDivider.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ListItem/MBListItem.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/ListItem/MBListItem.html",
-          "hash": "9w0lGdhEYmP/RgLqfxwja1y27vNGRs1NDA2N0BNuGNU="
+          "relative_path": "Material.Blazor/Components/ListItem/MBListItem.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Menu/MBMenu.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Menu/MBMenu.html",
-          "hash": "riMHgKZn1ggidD/zkt4bewmq7ip1dx9WjokQy7yloqs="
+          "relative_path": "Material.Blazor/Components/Menu/MBMenu.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/MenuSelectionGroup/MBMenuSelectionGroup.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/MenuSelectionGroup/MBMenuSelectionGroup.html",
-          "hash": "P5HOT1BF4JMqzc/wFkNTxA4ortrt590NKnSl1waVKZg="
+          "relative_path": "Material.Blazor/Components/MenuSelectionGroup/MBMenuSelectionGroup.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/MenuSurface/MBMenuSurface.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/MenuSurface/MBMenuSurface.html",
-          "hash": "4s3f/h/CyCW7iNnKEwv2ri3kjSYJ8aWVaaxFETv6kfY="
+          "relative_path": "Material.Blazor/Components/MenuSurface/MBMenuSurface.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/NumericDecimalField/MBNumericDecimalField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/NumericDecimalField/MBNumericDecimalField.html",
-          "hash": "HVRwVEzbKR8BU+PcrRNppCHOoPRH/x85NMDE/BrL+sg="
+          "relative_path": "Material.Blazor/Components/NumericDecimalField/MBNumericDecimalField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html",
-          "hash": "cZmQSxKO4yfacWfiwe6T1FTfIIeQDEfIvSg6L0sCsIU="
+          "relative_path": "Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/NumericIntField/MBNumericIntField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/NumericIntField/MBNumericIntField.html",
-          "hash": "8So1werUn2uP0xEBRMCvB2HufvRBhwf2hmP1KDBHyJM="
+          "relative_path": "Material.Blazor/Components/NumericIntField/MBNumericIntField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/PagedDataList/MBPagedDataList.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/PagedDataList/MBPagedDataList.html",
-          "hash": "TBGCAL0uqkbTpNQIcY9p9AM2yIE7EetZmm/tknZcZss="
+          "relative_path": "Material.Blazor/Components/PagedDataList/MBPagedDataList.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Paginator/MBPaginator.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Paginator/MBPaginator.html",
-          "hash": "T6rijQOjRUACnyOcsIu0qh4QaWqPyqX/inhcBwO52Mg="
+          "relative_path": "Material.Blazor/Components/Paginator/MBPaginator.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/RadioButton/MBRadioButton.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/RadioButton/MBRadioButton.html",
-          "hash": "OVNHJNa7hc2o30p5oaIrT2XNGCB+bitc4g0u+GJnnbo="
+          "relative_path": "Material.Blazor/Components/RadioButton/MBRadioButton.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html",
-          "hash": "9wni9KAcPGiurEYDG1QXsWAbbFeWxOow8SF19Hrrsao="
+          "relative_path": "Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Scheduler/MBScheduler.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Scheduler/MBScheduler.html",
-          "hash": "OXP+K9QRiL6AtBrwUgtVqm9Ru6DZvHPDeIhqMjJ4yho="
+          "relative_path": "Material.Blazor/Components/Scheduler/MBScheduler.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/SegmentedButtonMulti/MBSegmentedButtonMulti.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/SegmentedButtonMulti/MBSegmentedButtonMulti.html",
-          "hash": "SjAZ9MDuBnEJ1F03muNiHBFOyqCA7jE2LIhhIB8pE1U="
+          "relative_path": "Material.Blazor/Components/SegmentedButtonMulti/MBSegmentedButtonMulti.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/SegmentedButtonSingle/MBSegmentedButtonSingle.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/SegmentedButtonSingle/MBSegmentedButtonSingle.html",
-          "hash": "Z3FHAlQicueI+R/t/YMe5MjBm8bC216lIXCwrFDHRt0="
+          "relative_path": "Material.Blazor/Components/SegmentedButtonSingle/MBSegmentedButtonSingle.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Select/MBSelect.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Select/MBSelect.html",
-          "hash": "J5xIS3U7EdyRa1R4Q8U+/qVTq9/sg+qwTpLhIqRsomw="
+          "relative_path": "Material.Blazor/Components/Select/MBSelect.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Shield/MBShield.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Shield/MBShield.html",
-          "hash": "ZWM3hC+9Xh1ENG/Ulvyg8YsSoMWI8KAazwshVDzr0uU="
+          "relative_path": "Material.Blazor/Components/Shield/MBShield.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Slider/MBSlider.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Slider/MBSlider.html",
-          "hash": "CGeBmxub0za193mEeuEUw58SrZbK44nZd9PwueA6OfQ="
+          "relative_path": "Material.Blazor/Components/Slider/MBSlider.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/SlidingContent/MBSlidingContent.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/SlidingContent/MBSlidingContent.html",
-          "hash": "R+Vo/SnVEEUB8s2m8C37yKc4RfSHzivuQywZUKkIvz8="
+          "relative_path": "Material.Blazor/Components/SlidingContent/MBSlidingContent.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/SlidingTabBar/MBSlidingTabBar.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/SlidingTabBar/MBSlidingTabBar.html",
-          "hash": "QslmvGqUxb6TtVtcCVobIonVe6QP8e95/w7bYeN2nO0="
+          "relative_path": "Material.Blazor/Components/SlidingTabBar/MBSlidingTabBar.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Switch/MBSwitch.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Switch/MBSwitch.html",
-          "hash": "S/lnc5GHrU5/NBbIpYDKcUUdK7mD+nO6axW09KdGBsA="
+          "relative_path": "Material.Blazor/Components/Switch/MBSwitch.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TabBar/MBTabBar.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/TabBar/MBTabBar.html",
-          "hash": "ZxDlrRH8fYyiWW/pDhfDNXNAPnjZoT4Z2bIONAAhG50="
+          "relative_path": "Material.Blazor/Components/TabBar/MBTabBar.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TextArea/MBTextArea.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/TextArea/MBTextArea.html",
-          "hash": "OYboIbpH2bkrtxrS4gTKNAFJg1rFi4x+WIQyE3Hvva8="
+          "relative_path": "Material.Blazor/Components/TextArea/MBTextArea.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TextField/MBTextField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/TextField/MBTextField.html",
-          "hash": "Q3pmYIpusIrqawm+FlOiwt/xk9SUnukr3CHLLpqTh+M="
+          "relative_path": "Material.Blazor/Components/TextField/MBTextField.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Tooltip/MBTooltip.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/Tooltip/MBTooltip.html",
-          "hash": "009BhJLrvBGpC8uHBsRcborZzj88qOaMKfmncc0BDBo="
+          "relative_path": "Material.Blazor/Components/Tooltip/MBTooltip.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TopAppBar/MBTopAppBar.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/TopAppBar/MBTopAppBar.html",
-          "hash": "zq5Y85rd7yFi9p51EHqMiMGZeStstSoNe/+tZO2YLlg="
+          "relative_path": "Material.Blazor/Components/TopAppBar/MBTopAppBar.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -890,101 +910,452 @@
       "source_relative_path": "Material.Blazor/Components/intro.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/intro.html",
-          "hash": "zBOeAExmho7IEW/hOF9DHyp7JYqk33vMExcqrb4au3s="
+          "relative_path": "Material.Blazor/Components/intro.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Toc",
       "source_relative_path": "Material.Blazor/Components/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/toc.html",
-          "hash": "nZj6eybqm9v8+dRH63H6KZJsMcwsLC6cSyf/rN/GOuc="
+          "relative_path": "Material.Blazor/Components/toc.html"
+        },
+        ".json": {
+          "relative_path": "Material.Blazor/Components/toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Icon/MBIconHelper.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Model/Icon/MBIconHelper.html",
-          "hash": "J5whFkbu905yhjLNhOnhbDGDeD3jKFYYLYzq4CJ9VjM="
+          "relative_path": "Material.Blazor/Model/Icon/MBIconHelper.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/MBCascadingDefaults.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Model/MBCascadingDefaults.html",
-          "hash": "7MBc2Q8WQYM5HQ9nNJ+2GbcFFj+dFs64Euq7EUpO4Jo="
+          "relative_path": "Material.Blazor/Model/MBCascadingDefaults.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Snackbar/IMBSnackbarService.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Model/Snackbar/IMBSnackbarService.html",
-          "hash": "DL+lDjPrEbrKanUX5DjLaorU5aLxsPEgHgJCdYijV4k="
+          "relative_path": "Material.Blazor/Model/Snackbar/IMBSnackbarService.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Toast/IMBToastService.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Model/Toast/IMBToastService.html",
-          "hash": "tWbuO07d8w40uCv2mTpcZl5AgA8m1R0JXBqUUjf5f3k="
+          "relative_path": "Material.Blazor/Model/Toast/IMBToastService.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Tooltip/IMBTooltipService.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Model/Tooltip/IMBTooltipService.html",
-          "hash": "9/Jfq4h/CuAjimWz9xiRREl0Og3kCpY3xUucMZ6VbIw="
+          "relative_path": "Material.Blazor/Model/Tooltip/IMBTooltipService.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/banner/images/banner.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/banner/images/banner.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/button-theming.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/button-theming.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/buttons_types.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/buttons_types.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/contained-button.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/contained-button.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/contained-icon-button.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/contained-icon-button.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/outlined-button.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/outlined-button.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/outlined-icon-button.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/outlined-icon-button.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/text-button.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/text-button.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/text-icon-button.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/text-icon-button.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/button/images/toggle-bar.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/button/images/toggle-bar.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/card/images/card-elevated.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/card/images/card-elevated.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/card/images/card-outlined.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/card/images/card-outlined.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/checkbox/images/checkbox-hero.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/checkbox/images/checkbox-hero.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/checkbox/images/checkbox-states.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/checkbox/images/checkbox-states.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/data-table/images/data-table-hero.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/data-table/images/data-table-hero.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/dialog/images/alert-dialog.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/dialog/images/alert-dialog.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/dialog/images/confirmation-dialog.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/dialog/images/confirmation-dialog.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/dialog/images/full-screen-dialog.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/dialog/images/full-screen-dialog.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/dialog/images/simple-dialog.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/dialog/images/simple-dialog.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/drawer/images/drawer-composite.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/drawer/images/drawer-composite.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/drawer/images/drawer-hero.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/drawer/images/drawer-hero.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/fab/images/FAB_types.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/fab/images/FAB_types.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/list/images/lists-types.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/list/images/lists-types.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/radio/images/radio-button-hero.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/radio/images/radio-button-hero.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/radio/images/radio-button-states.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/radio/images/radio-button-states.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/slider/images/continuous-range-slider.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/slider/images/continuous-range-slider.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/slider/images/continuous-slider.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/slider/images/continuous-slider.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/slider/images/discrete-slider-tick-marks.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/slider/images/discrete-slider-tick-marks.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/slider/images/discrete-slider.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/slider/images/discrete-slider.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/switch/images/switch-hero.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/switch/images/switch-hero.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/switch/images/switch-states.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/switch/images/switch-states.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/textfield/images/text-field-generic.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/textfield/images/text-field-generic.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/tooltip/images/plain_tooltip_alignment.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/tooltip/images/plain_tooltip_alignment.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/tooltip/images/rich_tooltip.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/tooltip/images/rich_tooltip.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/tooltip/images/rich_tooltip_alignment.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/tooltip/images/rich_tooltip_alignment.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/tooltip/images/tooltip.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/tooltip/images/tooltip.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/top-app-bar/images/contextual-app-bar.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/top-app-bar/images/contextual-app-bar.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "Material.Blazor/node_modules/@material/top-app-bar/images/regular-app-bar.png",
+      "output": {
+        "resource": {
+          "relative_path": "Material.Blazor/node_modules/@material/top-app-bar/images/regular-app-bar.png"
+        }
+      },
       "version": ""
     },
     {
@@ -992,453 +1363,1512 @@
       "source_relative_path": "README.md",
       "output": {
         ".html": {
-          "relative_path": "README.html",
-          "hash": "FRejP4iLzMVSaIzrg4dch/zU5r0uQlEIbOkcQTaEV1U="
+          "relative_path": "README.html"
         }
       },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/CascadingDefaults.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/CascadingDefaults.html",
-          "hash": "C3EHakS4MHZWE/kf06wfOXdYbpmSzDXSM1iABUpw+60="
-        }
-      },
-      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/CoreComponents.md",
+      "source_relative_path": "ReleaseNotes.md",
       "output": {
         ".html": {
-          "relative_path": "articles/CoreComponents.html",
-          "hash": "w4/ZSKi92J5YCVQcNaCraNkFTPXFXRmSl1kN6akdpPk="
+          "relative_path": "ReleaseNotes.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Demonstration.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Direction.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Demonstration.html",
-          "hash": "aKzx/mCKWsJTKaAs83W3VBynHnPFXifAOojYv429i0c="
+          "relative_path": "api/Material.Blazor.Direction.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/Density.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.HashCode.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Density.html",
-          "hash": "3XaJRmBpcS5yeoNVaN3Lox5j7T1IEgdBfEGUaRN2Phg="
+          "relative_path": "api/Material.Blazor.HashCode.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/DevelopmentEnvironment.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBIcon.IconFragment.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/DevelopmentEnvironment.html",
-          "hash": "WaVf2ZHUgOYiL5gqHqfSbZWHgtNpntRMBP37oUYrgJc="
+          "relative_path": "api/Material.Blazor.IMBIcon.IconFragment.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/FormValidation.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBIcon.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/FormValidation.html",
-          "hash": "skcUQzN2Tg+S6ujInXO0RYxhaHkQJgcwUqp68f4dxzI="
+          "relative_path": "api/Material.Blazor.IMBIcon.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/Icon.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBIconFoundry.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Icon.html",
-          "hash": "3W64kY2Sm25ZPMGuYAAqv2W8i1YWYBPTkpSUABAvVIM="
+          "relative_path": "api/Material.Blazor.IMBIconFoundry.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/Installation.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBLoggingService.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Installation.html",
-          "hash": "K4CuUCxFuLhclX8/M/GjE9Z/NQWN6ZTQj1h3Cd2lnXw="
+          "relative_path": "api/Material.Blazor.IMBLoggingService.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Introduction.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBSnackbarService.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Introduction.html",
-          "hash": "5jiSGRLhzaIuzjgPzRqZ+dbB+HQyhCNC9tGsbV2qkT0="
+          "relative_path": "api/Material.Blazor.IMBSnackbarService.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/MenuOverflow.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBToastService.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/MenuOverflow.html",
-          "hash": "Zr6vhWiP8UqvdYNCgIrNn3nYkyAllfpdinoMZ2cXIsU="
+          "relative_path": "api/Material.Blazor.IMBToastService.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/PlusComponents.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBTooltipService.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/PlusComponents.html",
-          "hash": "Csa7VUTlDlOCJgVKYTVD26GBGduzJdvTZnx6zcEROdU="
+          "relative_path": "api/Material.Blazor.IMBTooltipService.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Principles.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ComponentFoundation.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Principles.html",
-          "hash": "wqWcOMbbrlWDhgjBpRkmhzMnSLIw8Oq12+S+XwhNRTc="
+          "relative_path": "api/Material.Blazor.Internal.ComponentFoundation.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/ReleaseNotes.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ConditionalCssClasses.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/ReleaseNotes.html",
-          "hash": "HdisvSBVTFZ+jX9S+5wsMvW4pLnZM/008yi4tvvV7SY="
+          "relative_path": "api/Material.Blazor.Internal.ConditionalCssClasses.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Services.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InputComponent-1.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Services.html",
-          "hash": "3blUbWRbphDNizzSf0RNEx1HLZLyCoWwMDZPwgWwL2M="
+          "relative_path": "api/Material.Blazor.Internal.InputComponent-1.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/Snackbar.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalCarouselPanel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Snackbar.html",
-          "hash": "Z239eDeNpWckgCclQ/SMuEIr0vbZBu3kGik7ZDi8Bfw="
+          "relative_path": "api/Material.Blazor.Internal.InternalCarouselPanel-1.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/ThemingAndCSS.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDatePickerDayButton.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/ThemingAndCSS.html",
-          "hash": "r4xPPakO5fVXGUall8ayLzzxcmQkL+lkqhGEEazcMp0="
+          "relative_path": "api/Material.Blazor.Internal.InternalDatePickerDayButton.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "articles/Toast.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDatePickerPanel.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Toast.html",
-          "hash": "yIQdFIcP7lcoEZYsZXk1lwogUH1vpRiG1ztEIDXkmNA="
+          "relative_path": "api/Material.Blazor.Internal.InternalDatePickerPanel.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Tooltip.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDatePickerYearButton.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Tooltip.html",
-          "hash": "Qx2EJsj9esLl0VLCK5RXSXN0KV8r9tGE+8LOZ0AC/TY="
+          "relative_path": "api/Material.Blazor.Internal.InternalDatePickerYearButton.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/TwoWayBinding.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDragAndDropItem.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/TwoWayBinding.html",
-          "hash": "/NLmWhfmrlWQW9nE2L4rE1FwrTXfDhAw9pas7t9nlwI="
+          "relative_path": "api/Material.Blazor.Internal.InternalDragAndDropItem.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Utilities.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDragAndDropSpacer.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Utilities.html",
-          "hash": "QmsDfRIVKbSe6Vma1S/7wNn9rcYUDXQAA6TjMTW4pvs="
+          "relative_path": "api/Material.Blazor.Internal.InternalDragAndDropSpacer.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "articles/Workflows.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalSnackbar.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/Workflows.html",
-          "hash": "+7fo8SXsAom3CBSXsilUNW44dKiZOm+i60GkP1FKiW4="
+          "relative_path": "api/Material.Blazor.Internal.InternalSnackbar.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/gh-account-settings-1.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalSnackbarAnchor.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/gh-account-settings-1.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalSnackbarAnchor.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/gh-account-settings-2.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalToastAnchor.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/gh-account-settings-2.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalToastAnchor.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/gh-account-settings-3.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalTooltipAnchor.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/gh-account-settings-3.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalTooltipAnchor.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/gh-account-settings-4.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.MultiSelectComponent-2.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/gh-account-settings-4.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.MultiSelectComponent-2.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/gh-account-settings-5.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.SingleSelectComponent-2.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/gh-account-settings-5.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.SingleSelectComponent-2.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/text-field-focus.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.SnackbarInstance.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/text-field-focus.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.SnackbarInstance.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/two-way-bind-flow.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/two-way-bind-flow.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/vs-config.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAnchor.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/vs-config.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAnchor.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "articles/images/vs-extensions.png",
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAutocompletePagedField-1.yml",
       "output": {
-        "resource": {
-          "relative_path": "articles/images/vs-extensions.png"
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAutocompletePagedField-1.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAutocompleteSelectField-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAutocompleteSelectField-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAutocompleteTextField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAutocompleteTextField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBBadge.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBBadge.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBBadgeStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBBadgeStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBBladeComponent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBBladeComponent-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBBladeComponentParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBBladeComponentParameters.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBBladeSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBBladeSet.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBButton.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBButtonStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBButtonStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCard.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCardStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCardStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCarousel-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCarousel-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCascadingDefaults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCascadingDefaults.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCheckbox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCheckbox.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBChipsSelectMulti-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBChipsSelectMulti-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBChipsSelectSingle-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBChipsSelectSingle-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCircularProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCircularProgress.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCircularProgressSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCircularProgressSize.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCircularProgressType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCircularProgressType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBConfirmationDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBConfirmationDialog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDataTable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDataTable-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDatePicker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDatePicker.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDateSelectionCriteria.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDateSelectionCriteria.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDateTimeField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDateTimeField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDebouncedTextField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDebouncedTextField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDensity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDensity.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDialog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDivider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDivider.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDragAndDropList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDragAndDropList-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDrawer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDrawer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBFileUploadButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBFileUploadButton.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBFileUploadDragAndDrop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBFileUploadDragAndDrop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBFloatingActionButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBFloatingActionButton.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBFloatingActionButtonType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBFloatingActionButtonType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBGrid-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBGrid-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBGridColumnConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBGridColumnConfiguration-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBGridIconSpecification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBGridIconSpecification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBGridMT-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBGridMT-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBGridTextColorSpecification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBGridTextColorSpecification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBGrid_DataHelper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBGrid_DataHelper-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIcon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIcon.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconBearingSelectElement-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconBearingSelectElement-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconButton.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconButtonToggle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconButtonToggle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconFARelativeSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconFARelativeSize.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconFAStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconFAStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconFoundryName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconFoundryName.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconMITheme.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconMITheme.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconMSGradient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconMSGradient.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconMSSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconMSSize.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconMSStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconMSStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconMSWeight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconMSWeight.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBInputEventType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBInputEventType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIntSlider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIntSlider.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBItemValidation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBItemValidation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBLinearProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBLinearProgress.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBLinearProgressType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBLinearProgressType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBList-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListDivider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListDivider.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListItem.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBLoggingLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBLoggingLevel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBLoggingServiceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBLoggingServiceConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBMenu.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBMenuSelectionGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBMenuSelectionGroup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBMenuSurface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBMenuSurface.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBMenuSurfacePositioning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBMenuSurfacePositioning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNotifierCloseMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNotifierCloseMethod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericDecimalField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericDecimalField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericDoubleField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericDoubleField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericInputMagnitude.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericInputMagnitude.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericIntField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericIntField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBPagedDataList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBPagedDataList-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBPagedSearchResult-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBPagedSearchResult-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBPaginator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBPaginator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBRadioButton-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBRadioButton-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBRadioButtonGroup-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBRadioButtonGroup-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBScheduler.ClientBoundingRect.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBScheduler.ClientBoundingRect.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBScheduler.DragEndInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBScheduler.DragEndInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBScheduler.HashCode2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBScheduler.HashCode2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBScheduler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBScheduler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSchedulerAppointment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSchedulerAppointment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSearchResult-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSearchResult-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSearchResultTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSearchResultTypes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSegmentedButtonMulti-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSegmentedButtonMulti-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSegmentedButtonSingle-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSegmentedButtonSingle-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSelect-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSelect-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSelectElement-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSelectElement-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSelectInputStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSelectInputStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBServicesOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBServicesOptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBShield.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBShield.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBShieldType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBShieldType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSlider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSlider.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSliderType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSliderType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSlidingContent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSlidingContent-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSlidingTabBar-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSlidingTabBar-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSnackbarServiceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSnackbarServiceConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSnackbarSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSnackbarSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSwitch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSwitch.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTabBar-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTabBar-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextAlignStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextAlignStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextArea.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextArea.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextField.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextInputStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextInputStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastLevel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastPosition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastPosition.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastServiceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastServiceConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTooltip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTooltip.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTopAppBar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTopAppBar.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTopAppBarType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTopAppBarType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTouchTargetWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTouchTargetWrapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBVersion.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MB_Grid_ColumnType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MB_Grid_ColumnType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MB_Grid_Measurement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MB_Grid_Measurement.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.ServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor._Imports.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor._Imports.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.html"
+        }
+      },
       "version": ""
     },
     {
       "type": "Toc",
-      "source_relative_path": "articles/toc.yml",
+      "source_relative_path": "api/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/toc.html",
-          "hash": "aPRI9TUikljvXagjctdPb6g5s4f/f2r02uxHO6QKqas="
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "guidelines/images/screenshot-branch-protection.png",
-      "output": {
-        "resource": {
-          "relative_path": "guidelines/images/screenshot-branch-protection.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "guidelines/images/screenshot-chart-complex.png",
-      "output": {
-        "resource": {
-          "relative_path": "guidelines/images/screenshot-chart-complex.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "guidelines/images/screenshot-chart-simple.png",
-      "output": {
-        "resource": {
-          "relative_path": "guidelines/images/screenshot-chart-simple.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "guidelines/images/screenshot-merge-button.png",
-      "output": {
-        "resource": {
-          "relative_path": "guidelines/images/screenshot-merge-button.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "guidelines/images/screenshot-update-branch.png",
-      "output": {
-        "resource": {
-          "relative_path": "guidelines/images/screenshot-update-branch.png"
-        }
-      },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -1446,11 +2876,9 @@
       "source_relative_path": "index.md",
       "output": {
         ".html": {
-          "relative_path": "index.html",
-          "hash": "JFpaE1zJDzVBcLRZxm+fH89Hia49CLKNlYhuNLSISFk="
+          "relative_path": "index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -1458,59 +2886,15 @@
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
-          "relative_path": "toc.html",
-          "hash": "xOtDOivWASiJnPgiszvxfJfEg5RDlTafTSDpHsj6eMs="
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     }
   ],
-  "incremental_info": [
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
-        "incrementalPhase": "build",
-        "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
-      },
-      "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 83,
-          "skipped_file_count": 0
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        }
-      }
-    },
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
-        "incrementalPhase": "postProcessing",
-        "total_file_count": 0,
-        "skipped_file_count": 0
-      },
-      "processors": {}
-    }
-  ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"
