@@ -7,17 +7,38 @@
 - name: Material.Blazor.Internal namespace
   topicUid: Material.Blazor.Internal
 
+- name: MBAnchor
+  topicUid: C.MBAnchor
+
 - name: MBButton
   topicUid: C.MBButton
 
 - name: MBCheckbox
   topicUid: C.MBCheckbox
 
-- name: MBCircularProgress
-  topicUid: C.MBCircularProgress
+- name: MBChipSet
+  topicUid: C.MBChipSet
 
-- name: MBLinearProgress
-  topicUid: C.MBLinearProgress
+- name: MBDialog
+  topicUid: C.MBDialog
+
+- name: MBFloatingActionButton
+  topicUid: C.MBFloatingActionButton
+
+- name: MBIcon
+  topicUid: C.MBIcon
+
+- name: MBIconButton
+  topicUid: C.MBIconButton
+
+- name: MBList
+  topicUid: C.MBList
+
+- name: MBMenu
+  topicUid: C.MBMenu
+
+- name: MBNumericField
+  topicUid: C.MBNumericField
 
 - name: MBProgress
   topicUid: C.MBProgress
@@ -28,5 +49,14 @@
 - name: MBRadioButtonGroup
   topicUid: C.MBRadioButtonGroup
 
+- name: MBSelect
+  topicUid: C.MBSelect
+
+- name: MBSlider
+  topicUid: C.MBSlider
+
 - name: MBSwitch
   topicUid: C.MBSwitch
+
+- name: MBTextField
+  topicUid: C.MBTextField

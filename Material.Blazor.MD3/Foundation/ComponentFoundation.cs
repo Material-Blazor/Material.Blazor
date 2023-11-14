@@ -22,7 +22,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     #region Cascading parameters
 
     [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
-    [CascadingParameter] private IMBDialog ParentDialog { get; set; }
 
     #endregion
 
@@ -395,14 +394,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
         {
             try
             {
-                if (ParentDialog != null && !ParentDialog.HasInstantiated)
-                {
-                    ParentDialog.RegisterLayoutAction(this);
-                }
-                else
-                {
-                    EnqueueJSInteropAction(InstantiateMcwComponent);
-                }
+                EnqueueJSInteropAction(InstantiateMcwComponent);
 
                 HasInstantiated = true;
                 AddTooltip();

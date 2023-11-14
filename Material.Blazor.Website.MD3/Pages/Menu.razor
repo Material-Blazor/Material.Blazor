@@ -2,6 +2,7 @@
 
 @inject IMBToastService ToastService
 
+@using Material.Blazor
 
 <DemonstrationPage ComponentAndPageName="Menu"
                    Title="Menu Demonstration">
@@ -24,10 +25,11 @@
                     </h3>
 
                     <p>
-                        <MBButton 
-                            ButtonStyle="@MBButtonStyle.Outlined"
-                            Label="Open Menu" 
-                            @onclick="@OpenMenuAsync" />
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Open MD2 Menu"
+                                  IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                        name: "menu")"
+                                  @onclick="@OpenMenuAsync" />
                     </p>
 
                     <div class="mdc-menu-surface--anchor">
@@ -49,22 +51,33 @@
                                                             LeadingIcon="shield"
                                                             @onclick="@(() => OnClickHandler("Six"))" />
                             <Material.Blazor.MD2.MBListDivider />
-                            <Material.Blazor.MD2.MBMenuSelectionGroup>
-                                <Material.Blazor.MD2.MBListItem IsSelectedMenuItem="@SevenSelected"
-                                                                Label="Seven"
-                                                                LeadingIcon="done"
-                                                                @onclick="@(() => OnClickHandler("Seven"))" />
-                                <Material.Blazor.MD2.MBListItem IsSelectedMenuItem="@EightSelected"
-                                                                Label="Eight"
-                                                                LeadingIcon="done"
-                                                                @onclick="@(() => OnClickHandler("Eight"))" />
-                            </Material.Blazor.MD2.MBMenuSelectionGroup>
-                            <Material.Blazor.MD2.MBListDivider />
+                            @*                             <Material.Blazor.MD2.MBMenuSelectionGroup>
+                            *@                                <Material.Blazor.MD2.MBListItem IsSelectedMenuItem="@SevenSelected"
+                                                                                              Label="Seven"
+                                                                                              LeadingIcon="done"
+                                                                                              @onclick="@(() => OnClickHandler("Seven"))" />
+                            <Material.Blazor.MD2.MBListItem IsSelectedMenuItem="@EightSelected"
+                                                            Label="Eight"
+                                                            LeadingIcon="done"
+                                                            @onclick="@(() => OnClickHandler("Eight"))" />
+                            @*                             </Material.Blazor.MD2.MBMenuSelectionGroup>
+                            *@                            <Material.Blazor.MD2.MBListDivider />
                             <Material.Blazor.MD2.MBListItem Disabled="true"
                                                             Label="Nine (disabled)"
                                                             @onclick="@(() => OnClickHandler("Nine"))" />
                         </Material.Blazor.MD2.MBMenu>
                     </div>
+
+                    <p>
+                        <MBMenu ButtonIconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                    name: "menu",
+                                    color: "darkblue")"
+                                ButtonIconIsTrailing="false"
+                                ButtonLabel="Open MD3 Menu"
+                                ButtonLabelColor="darkblue"
+                                ButtonStyle="@MBButtonStyle.Outlined"
+                                MenuItems="@menuItems" />
+                    </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -78,6 +91,79 @@
     private bool SevenSelected { get; set; }
     private bool EightSelected { get; set; }
 
+    private MBMenuItem[] menuItems = new MBMenuItem[]
+    {
+            new MBMenuItem {
+                Headline="One",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular },
+            new MBMenuItem {
+                Headline="Two",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular },
+            new MBMenuItem {
+                Headline="Three",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular },
+            new MBMenuItem
+            {
+                MenuItemType=MBMenuItemType.Divider
+            },
+            new MBMenuItem {
+                Headline="Four",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular,
+                LeadingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "home",
+                                    color: "darkblue")},
+            new MBMenuItem {
+                Headline="Five",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular,
+                TrailingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "alarm",
+                                    color: "darkblue")},
+            new MBMenuItem {
+                Headline="Six",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular,
+                LeadingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "home",
+                                    color: "darkblue"),
+                TrailingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "alarm",
+                                    color: "darkblue")},
+            new MBMenuItem
+            {
+                MenuItemType=MBMenuItemType.Divider
+            },
+            new MBMenuItem {
+                Headline="Seven",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular,
+                LeadingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "done",
+                                    color: "darkgreen"),
+                SuppressLeadingIcon=true },
+            new MBMenuItem {
+                Headline="Eight",
+                HeadlineColor="darkblue",
+                MenuItemType=MBMenuItemType.Regular,
+                LeadingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "done",
+                                    color: "darkgreen"),
+                SuppressLeadingIcon=true },
+            new MBMenuItem
+            {
+                MenuItemType=MBMenuItemType.Divider
+            },
+            new MBMenuItem {
+                Headline="Nine (disabled)",
+                HeadlineColor="darkblue",
+                IsDisabled=true,
+                MenuItemType=MBMenuItemType.Regular },
+    };
+
     private async Task OpenMenuAsync()
     {
         await MenuElement.ToggleAsync();
@@ -89,6 +175,8 @@
         ToastService.ShowToast(heading: "Menu result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
 
         SevenSelected = (result == "Seven") ? !SevenSelected : SevenSelected;
+        menuItems[6].SuppressLeadingIcon = !SevenSelected;
         EightSelected = (result == "Eight") ? !EightSelected : EightSelected;
+        menuItems[7].SuppressLeadingIcon = !EightSelected;
     }
 }

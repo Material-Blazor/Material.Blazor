@@ -47,10 +47,10 @@
 	</ItemGroup>-->
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.2.23479.6" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.2.23479.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
 	</ItemGroup>
 	
 	<PropertyGroup>
@@ -115,6 +115,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Articles\images\source\" />
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
@@ -216,22 +217,11 @@
 		<Message Importance="high" Text="***** npm install (M.B Scripts)" />
 		<Exec Command="npm install" />
 
-		<!-- The files that were deleted were incorrectly shipped with an earlier version of material-components-web (12.0.0?). Deletion no longer required -->
-		<!--<Delete Files="node_modules\@material\segmented-button\segment\adapter.ts;node_modules\@material\segmented-button\segment\component.ts;node_modules\@material\segmented-button\segment\constants.ts;node_modules\@material\segmented-button\segment\foundation.ts;node_modules\@material\segmented-button\segment\index.ts" />
-		<Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
-		<Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />-->
-
-		<Message Importance="high" Text="***** npm run build-scripts (M.B Scripts)" />
-		<Exec Command="npm run build-scripts" />
-
 		<Message Importance="high" Text="***** npm run build-js (M.B Scripts)" />
 		<Exec Command="npm run build-js" />
 
-		<Message Importance="high" Text="***** npm run build-min-js (M.B Scripts)" />
-		<Exec Command="npm run build-min-js" />
-
-		<Message Importance="high" Text="***** delete intermediate.js (M.B Scripts)" />
-		<Delete Files="wwwroot\intermediate.js" />
+		<Message Importance="high" Text="***** npm run build-js-minify (M.B Scripts)" />
+		<Exec Command="npm run build-js-minify" />
 
 
 		<DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
@@ -275,8 +265,8 @@
 		<Message Importance="high" Text="***** npm run build-css (M.B Styles)" />
 		<Exec Command="npm run build-css" />
 
-		<Message Importance="high" Text="***** npm run build-min-css (M.B Styles)" />
-		<Exec Command="npm run build-min-css" />
+		<Message Importance="high" Text="***** npm run build-css-minify (M.B Styles)" />
+		<Exec Command="npm run build-css-minify" />
 
 		<Message Importance="high" Text="***** npm run build-material-css (M.B Styles)" />
 		<Exec Command="npm run build-material-css" />

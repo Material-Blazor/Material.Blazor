@@ -38,36 +38,6 @@ public enum MBButtonStyle
 
 #endregion
 
-#region MBButtonStyleMD2
-/// <summary>
-/// Style for an <see cref="MBButton"/> per Material Theme styling.
-/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
-/// </summary>
-public enum MBButtonStyleMD2
-{
-    /// <summary>
-    /// Contained style, raised.
-    /// </summary> 
-    ContainedRaised,
-
-    /// <summary>
-    /// Contained style, unelevated.
-    /// </summary> 
-    ContainedUnelevated,
-
-    /// <summary>
-    /// Outlined style.
-    /// </summary> 
-    Outlined,
-
-    /// <summary>
-    /// Regular or default style. This is the <see cref="MBCascadingDefaults"/> default.
-    /// </summary>  
-    Text
-}
-
-#endregion
-
 #region MBCardStyleMD2
 
 /// <summary>
@@ -85,6 +55,37 @@ public enum MBCardStyleMD2
     /// Outlined style.
     /// </summary>
     Outlined
+}
+
+#endregion
+
+#region MBChipType
+
+/// <summary>
+/// Material Theme chip type applied to <see cref="MBChipSet"/>.
+/// </summary>
+public enum MBChipType
+{
+    /// <summary>
+    /// The assist style.
+    /// </summary>
+    Assist,
+
+    /// <summary>
+    /// The filter style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>
+    Filter,
+
+    /// <summary>
+    /// The input style.
+    /// </summary>
+    Input,
+
+    /// <summary>
+    /// The suggestion style.
+    /// </summary>
+    Suggestion,
+
 }
 
 #endregion
@@ -140,6 +141,68 @@ public enum MBDensity
 
 #endregion
 
+#region MBFloatingActionButtonSize
+
+/// <summary>
+/// Style for an <see cref="MBFloatingActionButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Medium"/></para>
+/// </summary>
+public enum MBFloatingActionButtonSize
+{
+    /// <summary>
+    /// Medium size -- This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary> 
+    Medium,
+
+    /// <summary>
+    /// Small size
+    /// </summary>  
+    Small,
+
+    /// <summary>
+    /// Large size
+    /// </summary> 
+    Large,
+}
+
+#endregion
+
+#region MBFloatingActionButtonStyle
+
+/// <summary>
+/// Style for an <see cref="MBFloatingActionButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Surface"/></para>
+/// </summary>
+public enum MBFloatingActionButtonStyle
+{
+    /// <summary>
+    /// Surface style This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary> 
+    Surface,
+
+    /// <summary>
+    /// Primary style.
+    /// </summary>  
+    Primary,
+
+    /// <summary>
+    /// Secondary style
+    /// </summary> 
+    Secondary,
+
+    /// <summary>
+    /// Tertiary style
+    /// </summary> 
+    Tertiary,
+
+    /// <summary>
+    /// Branded style
+    /// </summary> 
+    Branded,
+}
+
+#endregion
+
 #region MBIcon
 
 /// <summary>
@@ -189,27 +252,33 @@ public enum MBIconWeight
 
 #endregion
 
-#region MBInputEventTypeMD2
+#region MBIconButtonStyle
 
 /// <summary>
-/// Determines how an <see cref="MBSlider"/> responds to user events.
+/// Style for an <see cref="MBIconButton"/> per Material Theme styling.
+/// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
 /// </summary>
-public enum MBInputEventTypeMD2
+public enum MBIconButtonStyle
 {
     /// <summary>
-    /// Emits events only when the thumb is released via an change event.
-    /// </summary>
-    OnChange,
+    /// Filled style
+    /// </summary> 
+    Filled,
 
     /// <summary>
-    /// Emits debounced events during slider movement via input events. Debouncing requires the slider to be still for a period before emitting an event.
-    /// </summary>
-    OnInputDebounced,
+    /// Icon style. This is the <see cref="MBCascadingDefaults"/> default.
+    /// </summary>  
+    Icon,
 
     /// <summary>
-    /// Emits throttled events during slider movement via input events. Throttling emits events even while the slider is moving.
-    /// </summary>
-    OnInputThrottled
+    /// FilledTonal style
+    /// </summary> 
+    FilledTonal,
+
+    /// <summary>
+    /// Outlined style
+    /// </summary> 
+    Outlined,
 }
 
 #endregion
@@ -255,6 +324,56 @@ public enum MBLoggingLevel
     Error = 4,
     Critical = 5,
     None = 0,
+}
+
+#endregion
+
+#region MBListItemType
+
+/// <summary>
+/// Determines the display properties of a ListItem.
+/// </summary>
+public enum MBListItemType
+{
+    /// <summary>
+    /// Divider menu item
+    /// </summary>
+    Divider,
+
+    /// <summary>
+    /// Regular menu item.
+    /// </summary>
+    Regular,
+}
+
+#endregion
+
+#region MBMenuItemType
+
+/// <summary>
+/// Determines the positioning and width of a menu surface.
+/// </summary>
+public enum MBMenuItemType
+{
+    /// <summary>
+    /// Signals the beginning of a submenu.
+    /// </summary>
+    BeginSubMenu,
+
+    /// <summary>
+    /// Divider menu item
+    /// </summary>
+    Divider,
+
+    /// <summary>
+    /// Signals end of a submenu.
+    /// </summary>
+    EndSubMenu,
+
+    /// <summary>
+    /// Regular menu item.
+    /// </summary>
+    Regular,
 }
 
 #endregion
@@ -378,14 +497,14 @@ public enum MBProgressType
 
 #endregion
 
-#region MBSelectInputStyleMD2
+#region MBSelectInputStyle
 
 /// <summary>
 /// Material Theme select input style applied to <see cref="MBSelect{TItem}"/>.
 /// <para>Applied also to <seealso cref="MBDatePicker"/></para>
 /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
 /// </summary>
-public enum MBSelectInputStyleMD2
+public enum MBSelectInputStyle
 {
     /// <summary>
     /// The filled style. This is the <see cref="MBCascadingDefaults"/> default.
@@ -396,31 +515,6 @@ public enum MBSelectInputStyleMD2
     /// The outlined style.
     /// </summary>
     Outlined
-}
-
-#endregion
-
-#region MBSliderTypeMD2
-
-/// <summary>
-/// Determines the type of an <see cref="MBSlider"/>.
-/// </summary>
-public enum MBSliderTypeMD2
-{
-    /// <summary>
-    /// Continuous value.
-    /// </summary>
-    Continuous,
-
-    /// <summary>
-    /// Discrete values.
-    /// </summary>
-    Discrete,
-
-    /// <summary>
-    /// Discrete values with tickmarks.
-    /// </summary>
-    DiscreteWithTickmarks
 }
 
 #endregion

@@ -19,6 +19,13 @@ The content of a c# file is broken into sections most of which use regions to ai
 - class
   - The class declaration and its supporting open/close braces do not reside in a region.
 - members
+  - members have a strict order
+	- CascadingParameters
+	- Parameters
+	- Injected
+	- other
+  - If the number of members is modest, they may be enclosed in a single 'members' region (See MBProgress.cs for an example)
+  - If the number of members is extensive, then each group will be enclosed in a nested region (See InternalTextFieldBase for an example)
 - ctor
 - individual methods and internal classes
 

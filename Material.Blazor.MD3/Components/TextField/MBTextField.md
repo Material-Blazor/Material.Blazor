@@ -6,8 +6,7 @@ title: MBTextField
 
 ## Summary
 
-A simple text field
-[Material Text Field](https://material-web.dev/components/text-field/)
+A simple text field as defined in [Material Text Field](https://material-web.dev/components/text-field/)
 
 - Applies [density subsystem](xref:A.Density).
 

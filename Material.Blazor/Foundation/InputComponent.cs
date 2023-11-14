@@ -19,6 +19,36 @@ public abstract class InputComponent<T> : ComponentFoundation
 {
     #region members
 
+    #region parameters
+
+    [CascadingParameter] private EditContext CascadedEditContext { get; set; }
+
+
+    /// <summary>
+    /// Gets or sets the value of the input. This should be used with two-way binding.
+    /// </summary>
+    /// <example>
+    /// @bind-Value="@model.PropertyName"
+    /// </example>
+    [Parameter] public T Value { get; set; }
+    private T _cachedValue;
+
+
+    /// <summary>
+    /// Gets or sets a callback that updates the bound value.
+    /// </summary>
+    [Parameter] public EventCallback<T> ValueChanged { get; set; }
+
+
+    /// <summary>
+    /// Gets or sets an expression that identifies the bound value.
+    /// </summary>
+    [Parameter] public Expression<Func<T>> ValueExpression { get; set; }
+
+    #endregion
+
+    #region other members
+
     private bool _previousParsingAttemptFailed;
     private ValidationMessageStore _parsingValidationMessages;
     private Type _nullableUnderlyingType;
@@ -63,32 +93,6 @@ public abstract class InputComponent<T> : ComponentFoundation
     protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
     #endregion
-
-    #region parameters
-
-    [CascadingParameter] private EditContext CascadedEditContext { get; set; }
-
-
-    /// <summary>
-    /// Gets or sets the value of the input. This should be used with two-way binding.
-    /// </summary>
-    /// <example>
-    /// @bind-Value="@model.PropertyName"
-    /// </example>
-    [Parameter] public T Value { get; set; }
-    private T _cachedValue;
-
-
-    /// <summary>
-    /// Gets or sets a callback that updates the bound value.
-    /// </summary>
-    [Parameter] public EventCallback<T> ValueChanged { get; set; }
-
-
-    /// <summary>
-    /// Gets or sets an expression that identifies the bound value.
-    /// </summary>
-    [Parameter] public Expression<Func<T>> ValueExpression { get; set; }
 
     #endregion
 

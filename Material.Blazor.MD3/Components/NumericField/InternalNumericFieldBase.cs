@@ -19,6 +19,8 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
     where T : struct, INumber<T>
     where U : InternalTextFieldBase
 {
+    #region members (Needs to be alphabetized)
+
 #nullable enable annotations
     /// <summary>
     /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
@@ -107,7 +109,6 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
     //private const string IntegerPattern = @"^(\+|-)?\d+$";
     //private const string PositiveIntegerPattern = @"^\d+$";
 
-
     private bool SelectInputContentOnAfterRender { get; set; } = false;
     private U TextField { get; set; }
 
@@ -123,21 +124,9 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
     /// </summary>
     private protected bool HasFocus { get; set; } = false;
 
+    #endregion
 
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        var allowSign = Min is not (not null and >= 0);
-
-        Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
-
-        //Regex = GetDecimalPlaces() == 0
-        //    ? new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern)
-        //    : new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
-    }
-
+    #region BuildRenderTree
 
     /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -169,7 +158,7 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
             }
 
             builder.AddAttribute(8, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)), ConvertToUnformattedTextValue(Value)))));
-            var stringValue = HasFocus? ConvertToUnformattedTextValue(Value) : ConvertToFormattedTextValue(Value);
+            var stringValue = HasFocus ? ConvertToUnformattedTextValue(Value) : ConvertToFormattedTextValue(Value);
             builder.AddAttribute(9, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<string>>>(() => stringValue));
 
             builder.AddAttribute(10, "onfocusin", EventCallback.Factory.Create<FocusEventArgs>(this, OnFocusInAsync));
@@ -209,6 +198,90 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
         builder.CloseComponent();
     }
 
+    #endregion
+
+    #region BuildStep
+
+    /// <summary>
+    /// Returns the step value.
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual string BuildStep()
+    {
+        return "1";
+    }
+
+    #endregion
+
+    #region ConvertToFormattedTextValue (abstract)
+
+    /// <summary>
+    /// Converts a string value from the text field to a formatted numeric value.
+    /// </summary>
+    /// <returns></returns>
+    private protected abstract string ConvertToFormattedTextValue(T value);
+
+    #endregion
+
+    #region ConvertToNumericValue (abstract)
+
+    /// <summary>
+    /// Converts a string value from the text field to a numeric value.
+    /// </summary>
+    /// <returns></returns>
+    private protected abstract T ConvertToNumericValue(string value);
+
+    #endregion
+
+    #region ConvertToUnformattedTextValue (abstract)
+    /// <summary>
+    /// Converts a string value from the text field to an unformatted numeric value, subject to the correct number of decimal places.
+    /// </summary>
+    /// <returns></returns>
+    private protected abstract string ConvertToUnformattedTextValue(T displayText);
+
+    #endregion
+
+    #region GetDecimalPlaces
+
+    /// <summary>
+    /// Returns the required number of decimal places.
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual int GetDecimalPlaces()
+    {
+        return 0;
+    }
+
+    #endregion
+
+    #region GetFocusedMagnitude
+
+    /// <summary>
+    /// Returns the focused magnitude.
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual MBNumericInputMagnitude GetFocusedMagnitude()
+    {
+        return MBNumericInputMagnitude.Normal;
+    }
+
+    #endregion
+
+    #region GetUnfocusedMagnitude
+
+    /// <summary>
+    /// Returns the unfocused magnitude.
+    /// </summary>
+    /// <returns></returns>
+    private protected virtual MBNumericInputMagnitude GetUnfocusedMagnitude()
+    {
+        return MBNumericInputMagnitude.Normal;
+    }
+
+    #endregion
+
+    #region OnAfterRenderAsync
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -222,67 +295,9 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
         }
     }
 
+    #endregion
 
-    /// <summary>
-    /// Converts a string value from the text field to a numeric value.
-    /// </summary>
-    /// <returns></returns>
-    private protected abstract T ConvertToNumericValue(string value);
-
-
-    /// <summary>
-    /// Converts a string value from the text field to a formatted numeric value.
-    /// </summary>
-    /// <returns></returns>
-    private protected abstract string ConvertToFormattedTextValue(T value);
-
-
-    /// <summary>
-    /// Converts a string value from the text field to an unformatted numeric value, subject to the correct number of decimal places.
-    /// </summary>
-    /// <returns></returns>
-    private protected abstract string ConvertToUnformattedTextValue(T displayText);
-
-
-    /// <summary>
-    /// Returns the step value.
-    /// </summary>
-    /// <returns></returns>
-    private protected virtual string BuildStep()
-    {
-        return "1";
-    }
-
-
-    /// <summary>
-    /// Returns the focused magnitude.
-    /// </summary>
-    /// <returns></returns>
-    private protected virtual MBNumericInputMagnitude GetFocusedMagnitude()
-    {
-        return MBNumericInputMagnitude.Normal;
-    }
-
-
-    /// <summary>
-    /// Returns the unfocused magnitude.
-    /// </summary>
-    /// <returns></returns>
-    private protected virtual MBNumericInputMagnitude GetUnfocusedMagnitude()
-    {
-        return MBNumericInputMagnitude.Normal;
-    }
-
-
-    /// <summary>
-    /// Returns the required number of decimal places.
-    /// </summary>
-    /// <returns></returns>
-    private protected virtual int GetDecimalPlaces()
-    {
-        return 0;
-    }
-
+    #region OnFocusInAsync
 
     private async Task OnFocusInAsync()
     {
@@ -290,10 +305,34 @@ public abstract class InternalNumericFieldBase<T, U> : InputComponent<T>
         await InvokeAsync(StateHasChanged);
     }
 
+    #endregion
+
+    #region OnFocusOutAsync
 
     private async Task OnFocusOutAsync()
     {
         HasFocus = false;
         await InvokeAsync(StateHasChanged);
     }
+
+    #endregion
+
+    #region OnParametersSetAsync
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        var allowSign = Min is not (not null and >= 0);
+
+        Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+
+        //Regex = GetDecimalPlaces() == 0
+        //    ? new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern)
+        //    : new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+    }
+
+    #endregion
+
 }

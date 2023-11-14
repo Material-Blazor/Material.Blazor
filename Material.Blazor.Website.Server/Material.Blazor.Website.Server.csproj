@@ -13,12 +13,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0-rc.2.23479.6" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.2.23479.6" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-rc.2.23479.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
 		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
 		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
 	</ItemGroup>
@@ -27,5 +27,12 @@
 		<ProjectReference Include="..\Material.Blazor.Website.WebAssembly\Material.Blazor.Website.WebAssembly.csproj" />
 		<ProjectReference Include="..\Material.Blazor.Website\Material.Blazor.Website.csproj" />
 	</ItemGroup>
+
+	<!--Compression directives (Note that the patterns are relative to wwwroot)-->
+	<PropertyGroup>
+		<CompressionIncludePatterns>$(CompressionIncludePatterns);**/*.css;**/*.js</CompressionIncludePatterns>
+		<BuildCompressionFormats>gzip;brotli</BuildCompressionFormats>
+		<PublishCompressionFormats>gzip;brotli</PublishCompressionFormats>
+	</PropertyGroup>
 
 </Project>

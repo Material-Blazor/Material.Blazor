@@ -17,7 +17,7 @@ module.exports = {
     output: {
         clean: true,
         compareBeforeEmit: false,
-        filename: "intermediate.js",
+        filename: "material.blazor.js",
         path: path.resolve(__dirname, 'wwwroot'),
     },
 

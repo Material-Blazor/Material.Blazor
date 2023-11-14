@@ -1,0 +1,178 @@
+﻿@page "/chipset"
+
+@inject IMBToastService ToastService
+
+@using Material.Blazor
+
+<DemonstrationPage ComponentAndPageName="Chips"
+                   MaterialWebPage="chip"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true"
+                   Title="ChipSet Demonstration">
+    <Description>
+        <p>
+            ChipSets from basic to advanced.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Basic Chip Types, note that input chips do not elevate
+                    </h2>
+
+                    <p>
+                        <MBChipSet ChipsetItems="@basicChips" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Assist Chips
+                    </h2>
+
+                    <p>
+                        <MBChipSet ChipsetItems="@assistChips" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Filter Chips
+                    </h2>
+
+                    <p>
+                        <MBChipSet ChipsetItems="@filterChips" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Input Chips
+                    </h2>
+
+                    <p>
+                        <MBChipSet ChipsetItems="@inputChips" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Suggestion Chips
+                    </h2>
+
+                    <p>
+                        <MBChipSet ChipsetItems="@suggestionChips" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private MBChip[] basicChips = new MBChip[]
+        {
+            new MBChip{Label="Assist", ChipType=MBChipType.Assist},
+            new MBChip{Label="Filter", ChipType=MBChipType.Filter},
+            new MBChip{Label="Input", ChipType=MBChipType.Input },
+            new MBChip{Label="Suggestion", ChipType=MBChipType.Suggestion },
+            new MBChip{Label="Assist", ChipType=MBChipType.Assist, IsElevated=true },
+            new MBChip{Label="Filter", ChipType=MBChipType.Filter, IsElevated=true },
+            new MBChip{Label="Input", ChipType=MBChipType.Input, IsElevated=true },
+            new MBChip{Label="Suggestion", ChipType=MBChipType.Suggestion, IsElevated=true },
+        };
+
+    private MBChip[] assistChips = new MBChip[]
+        {
+            new MBChip{Label="Assist chip", ChipType=MBChipType.Assist},
+            new MBChip{
+                Label="Assist chip with icon",
+                ChipType=MBChipType.Assist,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop") },
+            new MBChip{
+                Label="Assist chip with icon and link",
+                ChipType=MBChipType.Assist,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop"),
+                Link="https://material-blazor.github.io/Material.Blazor.MD3/" },
+        };
+
+    private MBChip[] filterChips = new MBChip[]
+        {
+            new MBChip{Label="Filter chip", ChipType=MBChipType.Filter},
+            new MBChip{
+                Label="Filter chip with icon",
+                ChipType=MBChipType.Filter,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop") },
+            new MBChip{
+                Label="Filter chip with icon and link",
+                ChipType=MBChipType.Filter,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop"),
+                Link="https://www.google.com" },
+            new MBChip{
+                Label="Filter chip with icon and link (removable)",
+                ChipType=MBChipType.Filter,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop"),
+                IsRemovable=true,
+                Link="https://material-blazor.github.io/Material.Blazor.MD3/" },
+        };
+
+    private MBChip[] inputChips = new MBChip[]
+        {
+            new MBChip{Label="Input chip", ChipType=MBChipType.Input},
+            new MBChip{
+                Label="Input chip with icon",
+                ChipType=MBChipType.Input,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop") },
+            new MBChip{
+                Label="Input chip with icon and link",
+                ChipType=MBChipType.Input,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop"),
+                Link="https://www.google.com" },
+            new MBChip{
+                Label="Input chip with icon (remove only)",
+                ChipType=MBChipType.Input,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop"),
+                IsRemovable=true },
+        };
+
+    private MBChip[] suggestionChips = new MBChip[]
+        {
+            new MBChip{Label="Suggestion chip", ChipType=MBChipType.Suggestion},
+            new MBChip{
+                Label="Suggestion chip with icon",
+                ChipType=MBChipType.Suggestion,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop") },
+            new MBChip{
+                Label="Suggestion chip with icon and link",
+                ChipType=MBChipType.Suggestion,
+                Icon=MBIcon.IconDescriptorConstructor(fill: 0, name: "stop"),
+                Link="https://material-blazor.github.io/Material.Blazor.MD3/" },
+        };
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Chip Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}

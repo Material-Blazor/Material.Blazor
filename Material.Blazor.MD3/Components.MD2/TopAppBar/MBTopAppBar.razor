@@ -13,8 +13,9 @@
             @if (NavIcon != null)
             {
                 <MBIconButton @attributes="@EventAttributesToSplat()"
-                              class="mdc-top-app-bar__action-item--unbounded"
-                              IconName="@NavIcon" />
+                              IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                color: NavIconColor,
+                                name: @NavIcon)" />
             }
 
             <span class="mdc-top-app-bar__title">@Title</span>

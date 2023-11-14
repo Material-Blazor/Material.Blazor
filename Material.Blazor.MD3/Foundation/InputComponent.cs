@@ -65,6 +65,18 @@ public abstract class InputComponent<T> : ComponentFoundation
 
 
     /// <summary>
+    /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
+    /// </summary>
+    private bool AllowNextRenderAlways { get; set; } = false;
+
+
+    /// <summary>
+    /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
+    /// </summary>
+    private bool AllowNextRenderOnce = false;
+
+
+    /// <summary>
     /// Performs validation only if true. Used by <see cref="MBDebouncedTextField"/> to disable
     /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
     /// should not be in a form.
@@ -77,6 +89,24 @@ public abstract class InputComponent<T> : ComponentFoundation
     /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
     /// </summary>
     //protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
+
+    #endregion
+
+    #region AllowAllRenders
+
+    private protected void AllowAllRenders()
+    {
+        AllowNextRenderAlways = true;
+    }
+
+    #endregion
+
+    #region AllowNextRender
+
+    private protected void AllowNextRender()
+    {
+        AllowNextRenderOnce = true;
+    }
 
     #endregion
 
@@ -255,6 +285,39 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #endregion
 
+    #region OnParametersSetAsync
+
+    /// <inheritdoc/>
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        var valuesEqual = EqualityComparer<T>.Default.Equals(_cachedValue, Value);
+        LoggingService.LogTrace($"OnParametersSetAsync setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+
+        if (!valuesEqual)
+        {
+            LoggingService.LogTrace($"OnParametersSetAsync changed _cachedValue from '{_cachedValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+            _cachedValue = Value;
+
+            valuesEqual = EqualityComparer<T>.Default.Equals(_componentValue, Value);
+            LoggingService.LogTrace($"OnParametersSetAsync setter: _componentValue is '{_componentValue?.ToString() ?? "null"}' and Value is '{Value?.ToString() ?? "null"}' with equality '{valuesEqual}'");
+
+            if (!valuesEqual)
+            {
+                LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
+
+                _componentValue = Value;
+                if (HasInstantiated)
+                {
+                    EnqueueJSInteropAction(SetComponentValueAsync);
+                }
+            }
+        }
+    }
+
+    #endregion
+
     #region SetComponentValueAsync
 
     /// <summary>
@@ -310,6 +373,24 @@ public abstract class InputComponent<T> : ComponentFoundation
 
         // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
         await base.SetParametersAsync(ParameterView.Empty);
+    }
+
+    #endregion
+
+    #region ShouldRender
+
+    /// <summary>
+    /// Material.Blazor components descending from InputComponent _*must not*_ override ShouldRender().
+    /// </summary>
+    protected sealed override bool ShouldRender()
+    {
+        if (AllowNextRenderAlways || AllowNextRenderOnce)
+        {
+            AllowNextRenderOnce = false;
+            return true;
+        }
+
+        return false;
     }
 
     #endregion

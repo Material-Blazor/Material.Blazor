@@ -6,7 +6,6 @@
 <DemonstrationPage ComponentAndPageName="Progress"
                    ComponentDirectory="ProgressIndicator"
                    MaterialWebPage="progress"
-                   MaterialDesignPage="progress-indicators/overview"
                    RequiresDisableSelection="false"
                    Title="Progress Demonstration">
     <Description>
@@ -88,6 +87,18 @@
                                 ProgressType="MBProgressType.Determinate"
                                 ProgressLevel=@progressLevel
                                 style="margin: 6px;" />
+                    <br />
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Determinate with buffer
+                    </h2>
+                    @{
+                        var bufferLevel = progressLevel + (1 - progressLevel) / 5;
+                    }
+                    <MBProgress ProgressBufferLevel="@bufferLevel"
+                                ProgressStyle="MBProgressStyle.Linear"
+                                ProgressType="MBProgressType.Determinate"
+                                ProgressLevel=@progressLevel
+                                style="margin: 6px;" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -96,12 +107,12 @@
 </DemonstrationPage>
 
 @code {
-    private MBSelectElement<double>[] ProgressLevels = new MBSelectElement<double>[]
+    private MBSingleSelectElement<double>[] ProgressLevels = new MBSingleSelectElement<double>[]
     {
-        new MBSelectElement<double> { SelectedValue = 0.25, TrailingLabel = "25% Progress" },
-        new MBSelectElement<double> { SelectedValue = 0.50, TrailingLabel = "50% Progress" },
-        new MBSelectElement<double> { SelectedValue = 0.75, TrailingLabel = "75% Progress" },
-        new MBSelectElement<double> { SelectedValue = 1.00, TrailingLabel = "100% Progress" }
+        new MBSingleSelectElement<double> { SelectedValue = 0.25, TrailingLabel = "25% Progress" },
+        new MBSingleSelectElement<double> { SelectedValue = 0.50, TrailingLabel = "50% Progress" },
+        new MBSingleSelectElement<double> { SelectedValue = 0.75, TrailingLabel = "75% Progress" },
+        new MBSingleSelectElement<double> { SelectedValue = 1.00, TrailingLabel = "100% Progress" }
     };
 
     private double progressLevel { get; set; }

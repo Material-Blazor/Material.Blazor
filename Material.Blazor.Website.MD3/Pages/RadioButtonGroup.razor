@@ -62,11 +62,11 @@
 
 
 @code {
-    MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
+    MBSingleSelectElement<string>[] KittenBreeds = new MBSingleSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "brit-short", TrailingLabel = "British Shorthair" },
-        new MBSelectElement<string> { SelectedValue = "russ-blue", TrailingLabel = "Russian Blue" },
-        new MBSelectElement<string> { SelectedValue = "ice-invis", TrailingLabel = "Icelandic Invisible" }
+        new MBSingleSelectElement<string> { SelectedValue = "brit-short", TrailingLabel = "British Shorthair" },
+        new MBSingleSelectElement<string> { SelectedValue = "russ-blue", TrailingLabel = "Russian Blue" },
+        new MBSingleSelectElement<string> { SelectedValue = "ice-invis", TrailingLabel = "Icelandic Invisible" }
             };
 
 
@@ -84,8 +84,8 @@
 
 
     enum ColorEnum { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<MBSelectElement<ColorEnum>> ColorItems => from c in (ColorEnum[])Enum.GetValues(typeof(ColorEnum))
-                                                           select new MBSelectElement<ColorEnum>
+    IEnumerable<MBSingleSelectElement<ColorEnum>> ColorItems => from c in (ColorEnum[])Enum.GetValues(typeof(ColorEnum))
+                                                           select new MBSingleSelectElement<ColorEnum>
                                                            {
                                                                SelectedValue = c,
                                                                TrailingLabel = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),

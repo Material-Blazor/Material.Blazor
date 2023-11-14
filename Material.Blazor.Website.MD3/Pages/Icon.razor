@@ -46,49 +46,58 @@
                             ValueMin="0" />
                             *@
 
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@mbIconFill"
-                                                          Items="@iconFills"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon fill"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@mbIconFill"
+                                      Items="@iconFills"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon fill"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
 
                         </div>
 
+                         <div class="mdc-layout-grid__cell--span-4">
+                            <MBSelect @bind-Value="@mbIconGradient"
+                                      Items="@iconGradients"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon gradient"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                        </div>
+                        
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconGradient"
-                                                          Items="@iconGradients"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon gradient"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@mbIconSize"
+                                      Items="@iconSizes"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon size"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconSize"
-                                                          Items="@iconSizes"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon size"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@mbIconStyle"
+                                      Items="@iconStyles"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon style"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconStyle"
-                                                          Items="@iconStyles"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon style"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                            <MBSelect @bind-Value="@mbIconWeight"
+                                      Items="@iconWeights"
+                                      ItemValidation="@MBItemValidation.DefaultToFirst"
+                                      Label="Icon weight"
+                                      SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
 
-                        <div class="mdc-layout-grid__cell--span-4">
-                            <Material.Blazor.MD2.MBSelect @bind-Value="@iconWeight"
-                                                          Items="@iconWeights"
-                                                          ItemValidation="@MBItemValidation.DefaultToFirst"
-                                                          Label="Icon weight"
-                                                          SelectInputStyle="@MBSelectInputStyleMD2.Outlined" />
+                         <div class="mdc-layout-grid__cell--span-4">
+                            <Select2Table color="@mbIconColor"
+                                          fill="@mbIconFill"
+                                          gradient="@mbIconGradient"
+                                          size="@mbIconSize"
+                                          styleZ="@mbIconStyle"
+                                          weight="@mbIconWeight" />
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: column;">
                             <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                                MBIcon with Parameters using Typography
+                                MBIcon with Parameters using Typography ((DEPRECATED -- Used only for comparison purposes))
                             </h2>
                             <div class="mdc-layout-grid__cell--span-12" style="display: flex; flex-direction: row;">
                                 <MBIconWithParameters IconColor="@mbIconColor"
@@ -198,19 +207,19 @@
 
 
 
-    MBSelectElement<decimal>[] iconFills = new MBSelectElement<decimal>[]
+    MBSingleSelectElement<decimal>[] iconFills = new MBSingleSelectElement<decimal>[]
     {
-        new MBSelectElement<decimal> { SelectedValue = 0.0m, LeadingLabel = "0.0" },
-        new MBSelectElement<decimal> { SelectedValue = 0.1m, LeadingLabel = "0.1" },
-        new MBSelectElement<decimal> { SelectedValue = 0.2m, LeadingLabel = "0.2" },
-        new MBSelectElement<decimal> { SelectedValue = 0.3m, LeadingLabel = "0.3" },
-        new MBSelectElement<decimal> { SelectedValue = 0.4m, LeadingLabel = "0.4" },
-        new MBSelectElement<decimal> { SelectedValue = 0.5m, LeadingLabel = "0.5" },
-        new MBSelectElement<decimal> { SelectedValue = 0.6m, LeadingLabel = "0.6" },
-        new MBSelectElement<decimal> { SelectedValue = 0.7m, LeadingLabel = "0.7" },
-        new MBSelectElement<decimal> { SelectedValue = 0.8m, LeadingLabel = "0.8" },
-        new MBSelectElement<decimal> { SelectedValue = 0.9m, LeadingLabel = "0.9" },
-        new MBSelectElement<decimal> { SelectedValue = 1.0m, LeadingLabel = "1.0" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.0m, TrailingLabel = "0.0" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.1m, TrailingLabel = "0.1" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.2m, TrailingLabel = "0.2" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.3m, TrailingLabel = "0.3" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.4m, TrailingLabel = "0.4" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.5m, TrailingLabel = "0.5" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.6m, TrailingLabel = "0.6" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.7m, TrailingLabel = "0.7" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.8m, TrailingLabel = "0.8" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 0.9m, TrailingLabel = "0.9" },
+        new MBSingleSelectElement<decimal> { SelectedValue = 1.0m, TrailingLabel = "1.0" },
             };
 
     private decimal _iconFill = 1.0m;
@@ -224,32 +233,22 @@
             ToastService.ShowToast(heading: "Icon Fill", message: $"Value: '{mbIconFill.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
-    // private decimal mbIconFill = 1.0m;
 
 
-    MBSelectElement<string>[] iconGradients = new MBSelectElement<string>[]
+    MBSingleSelectElement<MBIconGradient>[] iconGradients = new MBSingleSelectElement<MBIconGradient>[]
     {
-        new MBSelectElement<string> { SelectedValue = "LowEmphasis", LeadingLabel = "Low emphasis" },
-        new MBSelectElement<string> { SelectedValue = "NormalEmphasis", LeadingLabel = "Normal emphasis" },
-        new MBSelectElement<string> { SelectedValue = "HighEmphasis", LeadingLabel = "High emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.LowEmphasis, TrailingLabel = "Low emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.NormalEmphasis, TrailingLabel = "Normal emphasis" },
+        new MBSingleSelectElement<MBIconGradient> { SelectedValue = MBIconGradient.HighEmphasis, TrailingLabel = "High emphasis" },
             };
 
-    private MBIconGradient mbIconGradient = MBIconGradient.NormalEmphasis;
-    private string _iconGradient = "NormalEmphasis";
-    private string iconGradient
+    private MBIconGradient _iconGradient = MBIconGradient.NormalEmphasis;
+    private MBIconGradient mbIconGradient
     {
         get => _iconGradient;
         set
         {
             _iconGradient = value;
-
-            mbIconGradient = _iconGradient switch
-            {
-                "LowEmphasis" => MBIconGradient.LowEmphasis,
-                "NormalEmphasis" => MBIconGradient.NormalEmphasis,
-                "HighEmphasis" => MBIconGradient.HighEmphasis,
-                _ => throw new Exception("Unknown icon gradient"),
-            };
 
             ToastService.ShowToast(heading: "Icon Gradient", message: $"Value: '{mbIconGradient.ToString()}'", level: MBToastLevel.Success, showIcon: false);
         }
@@ -257,31 +256,21 @@
 
 
 
-    MBSelectElement<string>[] iconSizes = new MBSelectElement<string>[]
+    MBSingleSelectElement<MBIconSize>[] iconSizes = new MBSingleSelectElement<MBIconSize>[]
     {
-        new MBSelectElement<string> { SelectedValue = "20", LeadingLabel = "20px" },
-        new MBSelectElement<string> { SelectedValue = "24", LeadingLabel = "24px" },
-        new MBSelectElement<string> { SelectedValue = "40", LeadingLabel = "40px" },
-        new MBSelectElement<string> { SelectedValue = "48", LeadingLabel = "48px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size20, TrailingLabel = "20px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size24, TrailingLabel = "24px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size40, TrailingLabel = "40px" },
+        new MBSingleSelectElement<MBIconSize> { SelectedValue = MBIconSize.Size48, TrailingLabel = "48px" },
             };
 
-    private MBIconSize mbIconSize = MBIconSize.Size24;
-    private string _iconSize = "24";
-    private string iconSize
+    private MBIconSize _iconSize = MBIconSize.Size24;
+    private MBIconSize mbIconSize
     {
         get => _iconSize;
         set
         {
             _iconSize = value;
-
-            mbIconSize = _iconSize switch
-            {
-                "20" => MBIconSize.Size20,
-                "24" => MBIconSize.Size24,
-                "40" => MBIconSize.Size40,
-                "48" => MBIconSize.Size48,
-                _ => throw new Exception("Unknown icon Size"),
-            };
 
             ToastService.ShowToast(heading: "Icon Size", message: $"Value: '{_iconSize}'", level: MBToastLevel.Success, showIcon: false);
         }
@@ -289,29 +278,20 @@
 
 
 
-    MBSelectElement<string>[] iconStyles = new MBSelectElement<string>[]
+    MBSingleSelectElement<MBIconStyle>[] iconStyles = new MBSingleSelectElement<MBIconStyle>[]
     {
-        new MBSelectElement<string> { SelectedValue = "outlined", LeadingLabel = "Outlined" },
-        new MBSelectElement<string> { SelectedValue = "rounded", LeadingLabel = "Rounded" },
-        new MBSelectElement<string> { SelectedValue = "sharp", LeadingLabel = "Sharp" }
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Outlined, TrailingLabel = "Outlined" },
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Rounded, TrailingLabel = "Rounded" },
+        new MBSingleSelectElement<MBIconStyle> { SelectedValue = MBIconStyle.Sharp, TrailingLabel = "Sharp" }
             };
 
-    private MBIconStyle mbIconStyle = MBIconStyle.Outlined;
-    private string _iconStyle = "outlined";
-    private string iconStyle
+    private MBIconStyle _iconStyle = MBIconStyle.Outlined;
+    private MBIconStyle mbIconStyle
     {
         get => _iconStyle;
         set
         {
             _iconStyle = value;
-
-            mbIconStyle = _iconStyle switch
-            {
-                "outlined" => MBIconStyle.Outlined,
-                "rounded" => MBIconStyle.Rounded,
-                "sharp" => MBIconStyle.Sharp,
-                _ => throw new Exception("Unknown icon style"),
-            };
 
             ToastService.ShowToast(heading: "Icon style", message: $"Value: '{_iconStyle}'", level: MBToastLevel.Success, showIcon: false);
         }
@@ -319,37 +299,24 @@
 
 
 
-    MBSelectElement<string>[] iconWeights = new MBSelectElement<string>[]
+    MBSingleSelectElement<MBIconWeight>[] iconWeights = new MBSingleSelectElement<MBIconWeight>[]
     {
-        new MBSelectElement<string> { SelectedValue = "100", LeadingLabel = "100" },
-        new MBSelectElement<string> { SelectedValue = "200", LeadingLabel = "200" },
-        new MBSelectElement<string> { SelectedValue = "300", LeadingLabel = "300" },
-        new MBSelectElement<string> { SelectedValue = "400", LeadingLabel = "400" },
-        new MBSelectElement<string> { SelectedValue = "500", LeadingLabel = "500" },
-        new MBSelectElement<string> { SelectedValue = "600", LeadingLabel = "600" },
-        new MBSelectElement<string> { SelectedValue = "700", LeadingLabel = "700" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W100, TrailingLabel = "100" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W200, TrailingLabel = "200" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W300, TrailingLabel = "300" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W400, TrailingLabel = "400" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W500, TrailingLabel = "500" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W600, TrailingLabel = "600" },
+        new MBSingleSelectElement<MBIconWeight> { SelectedValue = MBIconWeight.W700, TrailingLabel = "700" },
             };
 
-    private MBIconWeight mbIconWeight = MBIconWeight.W400;
-    private string _iconWeight = "400";
-    private string iconWeight
+    private MBIconWeight _iconWeight = MBIconWeight.W400;
+    private MBIconWeight mbIconWeight
     {
         get => _iconWeight;
         set
         {
             _iconWeight = value;
-
-            mbIconWeight = _iconWeight switch
-            {
-                "100" => MBIconWeight.W100,
-                "200" => MBIconWeight.W200,
-                "300" => MBIconWeight.W300,
-                "400" => MBIconWeight.W400,
-                "500" => MBIconWeight.W500,
-                "600" => MBIconWeight.W600,
-                "700" => MBIconWeight.W700,
-                _ => throw new Exception("Unknown icon weight"),
-            };
 
             ToastService.ShowToast(heading: "Icon Weight", message: $"Value: '{_iconWeight}'", level: MBToastLevel.Success, showIcon: false);
         }

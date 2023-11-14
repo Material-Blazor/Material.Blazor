@@ -28,11 +28,15 @@
                     LeadingIcon="check_box"
                     Label="Checkbox"
                     @onclick="@(() => ListItemClickHandler("checkbox"))" />
+        <MBListItem ListItemColor="darkgreen"
+                    LeadingIcon="toggle_off"
+                    Label="ChipSet"
+                    @onclick="@(() => ListItemClickHandler("chipset"))" />
         <MBListItem ListItemColor="darkred"
                     LeadingIcon="table_chart"
                     Label="Data Table"
                     @onclick="@(() => ListItemClickHandler("datatable"))" />
-        <MBListItem ListItemColor="darkred"
+        <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="picture_in_picture"
                     Label="Dialog"
                     @onclick="@(() => ListItemClickHandler("dialog"))" />
@@ -40,15 +44,23 @@
                     LeadingIcon="view_headline"
                     Label="Drawer"
                     @onclick="@(() => ListItemClickHandler("drawer"))" />
-        <MBListItem ListItemColor="darkblue"
+        <MBListItem ListItemColor="darkgreen"
+                    LeadingIcon="offline_bolt"
+                    Label="Floating Action Button"
+                    @onclick="@(() => ListItemClickHandler("floatingactionbutton"))" />
+        <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="touch_app"
                     Label="Icon"
                     @onclick="@(() => ListItemClickHandler("icon"))" />
-        <MBListItem ListItemColor="darkred"
+        <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="touch_app"
                     Label="Icon Button"
                     @onclick="@(() => ListItemClickHandler("iconbutton"))" />
-        <MBListItem ListItemColor="darkred"
+        <MBListItem ListItemColor="darkgreen"
+                    LeadingIcon="list"
+                    Label="List"
+                    @onclick="@(() => ListItemClickHandler("list"))" />
+        <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="menu"
                     Label="Menu"
                     @onclick="@(() => ListItemClickHandler("menu"))" />
@@ -68,11 +80,11 @@
                     LeadingIcon="radio_button_checked"
                     Label="Radio Button Group"
                     @onclick="@(() => ListItemClickHandler("radiobuttongroup"))" />
-        <MBListItem ListItemColor="darkred"
+        <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="arrow_drop_down"
                     Label="Select"
                     @onclick="@(() => ListItemClickHandler("select"))" />
-        <MBListItem ListItemColor="darkred"
+        <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="straighten"
                     Label="Slider"
                     @onclick="@(() => ListItemClickHandler("slider"))" />
@@ -103,6 +115,7 @@
     <MBTopAppBar Title="Material.Blazor"
                  @onclick="@SideBarToggle"
                  NavIcon="menu"
+                 NavIconColor="white"
                  ScrollTarget="#main-content"
                  TopAppBarType="@MBTopAppBarTypeMD2.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">

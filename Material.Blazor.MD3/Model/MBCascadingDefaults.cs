@@ -10,7 +10,7 @@ namespace Material.Blazor;
 /// </summary>
 /// <remarks>
 /// For example the default style for
-/// a material button is <see cref="MBButtonStyleMD2.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
+/// a material button is <see cref="MBButtonStyle.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
 /// to another value and your whole application within the cascading value will change appearance. You can of course
 /// nest cascading values in the normal manner. Exposes a property <see cref="Version"/> that is incremented each time another
 /// property is updated; <see cref="Version"/> can be used with an `@key(CascadingDefaults.Version)` attribute to force components
@@ -51,18 +51,18 @@ public class MBCascadingDefaults
 
 
 
-    //private MBItemValidation _itemValidation = MBItemValidation.Exception;
-    ///// <summary>
-    ///// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
-    ///// </summary>
-    //public MBItemValidation ItemValidation { get => _itemValidation; set => SetParameter(ref _itemValidation, value); }
+    private MBItemValidation _itemValidation = MBItemValidation.Exception;
+    /// <summary>
+    /// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
+    /// </summary>
+    public MBItemValidation ItemValidation { get => _itemValidation; set => SetParameter(ref _itemValidation, value); }
 
-    ///// <summary>
-    ///// The applied item validation for selects and radio button groups.
-    ///// </summary>
-    ///// <param name="criteria"></param>
-    ///// <returns></returns>
-    //internal MBItemValidation AppliedItemValidation(MBItemValidation? criteria = null) => criteria ?? ItemValidation;
+    /// <summary>
+    /// The applied item validation for selects and radio button groups.
+    /// </summary>
+    /// <param name="criteria"></param>
+    /// <returns></returns>
+    internal MBItemValidation AppliedItemValidation(MBItemValidation? criteria = null) => criteria ?? ItemValidation;
 
     #endregion
 
@@ -121,6 +121,35 @@ public class MBCascadingDefaults
 
     #endregion
 
+    #region MBChipType
+
+    private MBChipType _chipType = MBChipType.Filter;
+    /// <summary>
+    /// The default Type for an <see cref="MBChipSet"/>, initialized to <see cref="MBChipType.Filter"/> if not explicitly set.
+    /// </summary>
+    public MBChipType ChipType { get => _chipType; set => SetParameter(ref _chipType, value); }
+    internal MBChipType AppliedChipType(MBChipType? chipType = null) => chipType ?? ChipType;
+
+    #endregion
+
+    #region MBFloatingActionButton
+
+    private MBFloatingActionButtonSize _floatingActionButtonSize = MBFloatingActionButtonSize.Medium;
+    /// <summary>
+    /// The default style for an <see cref="MBFloatingActionButton"/>, initialized to <see cref="MBFloatingActionButtonSize.Medium"/> if not explicitly set.
+    /// </summary>
+    public MBFloatingActionButtonSize FloatingActionButtonSize { get => _floatingActionButtonSize; set => SetParameter(ref _floatingActionButtonSize, value); }
+    internal MBFloatingActionButtonSize AppliedFloatingActionButtonSize(MBFloatingActionButtonSize? floatingActionButtonSize = null) => floatingActionButtonSize ?? FloatingActionButtonSize;
+
+    private MBFloatingActionButtonStyle _floatingActionButtonStyle = MBFloatingActionButtonStyle.Surface;
+    /// <summary>
+    /// The default style for an <see cref="MBFloatingActionButton"/>, initialized to <see cref="MBFloatingActionButtonStyle.Surface"/> if not explicitly set.
+    /// </summary>
+    public MBFloatingActionButtonStyle FloatingActionButtonStyle { get => _floatingActionButtonStyle; set => SetParameter(ref _floatingActionButtonStyle, value); }
+    internal MBFloatingActionButtonStyle AppliedFloatingActionButtonStyle(MBFloatingActionButtonStyle? floatingActionButtonStyle = null) => floatingActionButtonStyle ?? FloatingActionButtonStyle;
+
+    #endregion
+
     #region MBIcon
 
     private string _iconColor = "black";
@@ -150,6 +179,37 @@ public class MBCascadingDefaults
     private MBIconWeight _iconWeight = MBIconWeight.W400;
     public MBIconWeight IconWeight { get => _iconWeight; set => SetParameter(ref _iconWeight, value); }
     internal MBIconWeight AppliedIconWeight(MBIconWeight? iconWeight = null) => iconWeight ?? IconWeight;
+
+    #endregion
+
+    #region MBIconButton
+
+    private MBIconButtonStyle _iconButtonStyle = MBIconButtonStyle.Icon;
+    /// <summary>
+    /// The default style for an <see cref="MBIconButton"/>, initialized to <see cref="MBIconButtonStyle.Icon"/> if not explicitly set.
+    /// </summary>
+    public MBIconButtonStyle IconButtonStyle { get => _iconButtonStyle; set => SetParameter(ref _iconButtonStyle, value); }
+    internal MBIconButtonStyle AppliedIconButtonStyle(MBIconButtonStyle? iconButtonStyle = null) => iconButtonStyle ?? IconButtonStyle;
+
+    #endregion
+
+    #region MBSelect
+
+    private MBSelectInputStyle _selectInputStyle = MBSelectInputStyle.Outlined;
+    /// <summary>
+    /// The default text input style for an <see cref="MBSelect"/>.
+    /// </summary>
+    /// <remarks>
+    /// Also applied to <seealso cref="MBAutocompletePagedField{TItem}"/>,  <seealso cref="MBAutocompleteSelectField{TItem}"/>,  <seealso cref="MBAutocompleteSelectField"/>, <seealso cref="MBDebouncedSelectField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/>.
+    /// </remarks>
+    public MBSelectInputStyle SelectInputStyle { get => _selectInputStyle; set => SetParameter(ref _selectInputStyle, value); }
+
+    /// <summary>
+    /// The text input style to apply to an <see cref="MBSelectField"/>, an <see cref="MBSelectArea"/> or <see cref="MBSelect{TItem}"/>.
+    /// </summary>
+    /// <param name="style">The text Input style parameter passed to the <see cref="MBSelectField"/>, <see cref="MBSelectArea"/> or <see cref="MBSelect{TItem}"/></param>
+    /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
+    internal MBSelectInputStyle AppliedStyle(MBSelectInputStyle? style = null) => style ?? SelectInputStyle;
 
     #endregion
 
@@ -454,60 +514,6 @@ public class MBCascadingDefaults
     //    /// <param name="style">The style parameter passed to the <see cref="MBList{TItem}"/></param>
     //    /// <returns>The <see cref="MBListStyle"/> to apply.</returns>
     //    internal MBListType AppliedType(MBListType? type = null) => type ?? ListType;
-
-
-
-    //    private MBSelectInputStyle _selectInputStyle = MBSelectInputStyle.Outlined;
-    //    /// <summary>
-    //    /// The default style for an <see cref="MBSelect{TItem}"/>, initialized to <see cref="MBSelectInputStyle.Outlined"/> if not explicitly set.
-    //    /// </summary>
-    //    /// <remarks>
-    //    /// Also applied to <seealso cref="MBDatePicker"/>.
-    //    /// </remarks>
-    //    public MBSelectInputStyle SelectInputStyle { get => _selectInputStyle; set => SetParameter(ref _selectInputStyle, value); }
-
-    //    /// <summary>
-    //    /// The style to apply to an <see cref="MBSelect{TItem}"/>.
-    //    /// </summary>
-    //    /// <param name="style">The style parameter passed to the <see cref="MBSelect{TItem}"/></param>
-    //    /// <returns>The <see cref="MBSelectInputStyle"/> to apply.</returns>
-    //    internal MBSelectInputStyle AppliedStyle(MBSelectInputStyle? style = null) => style ?? SelectInputStyle;
-
-
-
-    //    private MBTextAlignStyle _textAlignStyle = MBTextAlignStyle.Default;
-    //    /// <summary>
-    //    /// The default text alignment style for an <see cref="MBTextField"/>, an <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/>, initialized to <see cref="MBTextAlignStyle.Default"/> if not explicitly set.
-    //    /// </summary>
-    //    /// <remarks>
-    //    /// Also applied to <seealso cref="MBAutocompletePagedField{TItem}"/>,  <seealso cref="MBAutocompleteSelectField{TItem}"/>,  <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/>.
-    //    /// </remarks>
-    //    public MBTextAlignStyle TextAlignStyle { get => _textAlignStyle; set => SetParameter(ref _textAlignStyle, value); }
-
-    //    /// <summary>
-    //    /// The text alignment style to apply to an <see cref="MBTextField"/>, an <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/>.
-    //    /// </summary>
-    //    /// <param name="style">The text align style parameter passed to the <see cref="MBTextField"/>, <see cref="MBTextArea"/> or <see cref="MBSelect{TItem}"/></param>
-    //    /// <returns>The <see cref="MBTextAlignStyle"/> to apply.</returns>
-    //    internal MBTextAlignStyle AppliedStyle(MBTextAlignStyle? style = null) => style ?? TextAlignStyle;
-
-
-
-    //    private MBTextInputStyle _textInputStyle = MBTextInputStyle.Outlined;
-    //    /// <summary>
-    //    /// The default style for an <see cref="MBTextField"/> or an <see cref="MBTextArea"/>, initialized to <see cref="MBTextInputStyle.Outlined"/> if not explicitly set.
-    //    /// </summary>
-    //    /// <remarks>
-    //    /// Also applied to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/>.
-    //    /// </remarks>
-    //    public MBTextInputStyle TextInputStyle { get => _textInputStyle; set => SetParameter(ref _textInputStyle, value); }
-
-    //    /// <summary>
-    //    /// The text input style to apply to an <see cref="MBTextField"/> or an <see cref="MBTextArea"/>.
-    //    /// </summary>
-    //    /// <param name="style">The text input style parameter passed to the <see cref="MBTextField"/> or <see cref="MBTextArea"/></param>
-    //    /// <returns>The <see cref="MBTextInputStyle"/> to apply.</returns>
-    //    internal MBTextInputStyle AppliedStyle(MBTextInputStyle? style = null) => style ?? TextInputStyle;
 
 
 

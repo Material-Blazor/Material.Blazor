@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.JSInterop;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -44,7 +45,23 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// <summary>
     /// The leading icon's descriptor. No leading icon is shown if not set.
     /// </summary>
-    [Parameter] public MBIconDescriptor? LeadingIconPLUS { get; set; }
+    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
+    /// <summary>
+    /// Adding a toggleicon turns the leading icon into a toggleiconbutton.
+    /// </summary>
+    [Parameter] public MBIconDescriptor? LeadingToggleIcon { get; set; }
+    /// <summary>
+    /// The link for the iconbutton
+    /// </summary>
+    string LeadingToggleIconButtonLink { get; set; }
+    /// <summary>
+    /// The link target for the iconbutton
+    /// </summary>
+    string LeadingToggleIconButtonLinkTarget { get; set; }
+    /// <summary>
+    /// The toggle state of the icon button
+    /// </summary>
+    [Parameter] public bool LeadingToggleIconSelected { get; set; }
 
     /// <summary>
     /// Prefix text.
@@ -81,7 +98,23 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// <summary>
     /// The trailing icon's descriptor. No trailing icon is shown if not set.
     /// </summary>
-    [Parameter] public MBIconDescriptor? TrailingIconPLUS { get; set; }
+    [Parameter] public MBIconDescriptor? TrailingIcon { get; set; }
+    /// <summary>
+    /// Adding a toggleicon turns the trailing icon into a toggleiconbutton.
+    /// </summary>
+    [Parameter] public MBIconDescriptor? TrailingToggleIcon { get; set; }
+    /// <summary>
+    /// The link for the iconbutton
+    /// </summary>
+    string TrailingToggleIconButtonLink { get; set; }
+    /// <summary>
+    /// The link target for the iconbutton
+    /// </summary>
+    string TrailingToggleIconButtonLinkTarget { get; set; }
+    /// <summary>
+    /// The toggle state of the icon button
+    /// </summary>
+    [Parameter] public bool TrailingToggleIconSelected { get; set; }
 
     /// <summary>
     /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
@@ -155,7 +188,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         var rendSeq = 0;
-        var componentName = TextInputStyle switch
+        var componentName = CascadingDefaults.AppliedStyle(TextInputStyle) switch
         {
             MBTextInputStyle.Outlined => "md-outlined-text-field",
             MBTextInputStyle.Filled => "md-filled-text-field",
@@ -200,27 +233,81 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
             }
 
-            if (LeadingIconPLUS is not null)
+            if (LeadingIcon is not null)
             {
-                MBIcon.BuildRenderTreeWorker(
-                    builder,
-                    ref rendSeq,
-                    CascadingDefaults,
-                    LeadingIconPLUS,
-                    "leading-icon");
+                if (LeadingToggleIcon is null)
+                {
+                    MBIcon.BuildRenderTreeWorker(
+                        builder,
+                        ref rendSeq,
+                        CascadingDefaults,
+                        null,
+                        "",
+                        "",
+                        "",
+                        LeadingIcon,
+                        "leading-icon");
+                }
+                else
+                {
+                    MBIconButton.BuildRenderTreeWorker(
+                        builder,
+                        ref rendSeq,
+                        CascadingDefaults,
+                        null,
+                        "",
+                        "",
+                        "",
+                        AppliedDisabled,
+                        MBIconButtonStyle.Icon,
+                        LeadingIcon,
+                        LeadingToggleIcon,
+                        LeadingToggleIconButtonLink,
+                        LeadingToggleIconButtonLinkTarget,
+                        LeadingToggleIconSelected,
+                        "leading-icon");
+                }
             }
 
-            if (TrailingIconPLUS is not null)
+            if (TrailingIcon is not null)
             {
-                MBIcon.BuildRenderTreeWorker(
-                    builder,
-                    ref rendSeq,
-                    CascadingDefaults,
-                    TrailingIconPLUS,
-                    "trailing-icon");
+                if (TrailingToggleIcon is null)
+                {
+                    MBIcon.BuildRenderTreeWorker(
+                        builder,
+                        ref rendSeq,
+                        CascadingDefaults,
+                        null,
+                        "",
+                        "",
+                        "",
+                        TrailingIcon,
+                        "trailing-icon");
+                }
+                else
+                {
+                    MBIconButton.BuildRenderTreeWorker(
+                        builder,
+                        ref rendSeq,
+                        CascadingDefaults,
+                        null,
+                        "",
+                        "",
+                        "",
+                        AppliedDisabled,
+                        MBIconButtonStyle.Icon,
+                        TrailingIcon,
+                        TrailingToggleIcon,
+                        TrailingToggleIconButtonLink,
+                        TrailingToggleIconButtonLinkTarget,
+                        TrailingToggleIconSelected,
+                        "trailing-icon");
+                }
             }
 
-            builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
+//TODO -- Figure out the render issue with Blazor
+
+            //builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
         }
         builder.CloseElement();
     }

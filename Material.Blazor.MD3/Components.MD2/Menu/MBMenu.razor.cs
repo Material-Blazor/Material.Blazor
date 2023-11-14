@@ -89,12 +89,12 @@ public partial class MBMenu : ComponentFoundation
     {
         if (IsOpen)
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.hide", ElementReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenuMD2.hide", ElementReference);
             IsOpen = false;
         }
         else
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.show", ElementReference);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenuMD2.show", ElementReference);
             IsOpen = true;
         }
     }
@@ -105,7 +105,7 @@ public partial class MBMenu : ComponentFoundation
     {
         if (!_disposed)
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference).ConfigureAwait(false);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenuMD2.init", ElementReference, ObjectReference).ConfigureAwait(false);
         }
     }
 

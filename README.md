@@ -36,11 +36,12 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 
 Material.Blazor has two release trains available via NuGet. The trains are MD2 and MD3 based.
 The MD2 NuGet packages are available in V3, V4, and V5. The MD3 NuGet packages are available in V5.
-- V3.x is a DotNet 6 LTS stable version using Material Design 2 and is the version used in most production settings
-- V4.x is a DotNet 7 STS stable version using Material Design 2 and is the version used in some production settings
-- V5.x is a DotNet 8 LTS RC version.
-- V5.x also has introductory work using Material Design 3.
-- To see the MD3 work in progress you need to browse to https://material-blazor.github.io/Material.Blazor.MD3.Current/)
-- As of .Net 8 RC1 two NuGet packages are released that correspond to the release trains:
-    - Material.Blazor (.Net 8 RC1 & Material Design 2)
-    - Material.Blazor.MD3 (.Net 8 RC1 & Material Design 3)
+- V3.x is a DotNet 6 LTS stable version using Material Design 2 and is the version used in most production settings. This version will be deprecated on November 12, 2024 (Corresponding to the DN6 EOL). No updates to Material.Blazor in this version are expected. This version will be deprecated on November 12, 2024.
+- V4.x is a DotNet 7 STS stable version using Material Design 2 and is the version used in some production settings. This version will be deprecated on May 14, 2024 (Corresponding to the DN7 EOL). No updates to Material.Blazor in this version are expected. This version will be deprecated on May 14, 2024.
+- V5.x is a DotNet 8 LTS stable version. We encourage adoption of this version for existing and new production settings.
+  - V5.x also has introductory work using Material Design 3.
+  - To see the MD3 work in progress you need to browse to https://material-blazor.github.io/Material.Blazor.MD3.Current/)
+  - V5.x releases have two NuGet packages that correspond to the release trains:
+    - Material.Blazor (Material Design 2)
+    - Material.Blazor.MD3 (Material Design 3)
+  - This version will be deprecated on November 10, 2026.

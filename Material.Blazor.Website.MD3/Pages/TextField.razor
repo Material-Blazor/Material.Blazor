@@ -56,7 +56,7 @@
                     </h3>
 
                     <MBTextField Label="Leading Icon"
-                                 LeadingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                 LeadingIcon="@MBIcon.IconDescriptorConstructor(
                                               name: "home",
                                               style: @MBIconStyle.Outlined)"
                                  style="margin: 6px;"
@@ -64,13 +64,13 @@
 
                     <MBTextField Label="Trailing Icon"
                                  style="margin: 6px;"
-                                 TrailingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                 TrailingIcon="@MBIcon.IconDescriptorConstructor(
                                                name: "home",
                                                style: @MBIconStyle.Outlined)"
                                  TextInputStyle="MBTextInputStyle.Filled" />
 
                     <MBTextField Label="Leading Icon"
-                                 LeadingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                 LeadingIcon="@MBIcon.IconDescriptorConstructor(
                                               name: "favorite",
                                               style: @MBIconStyle.Outlined)"
                                  style="margin: 6px; "
@@ -78,10 +78,74 @@
 
                     <MBTextField Label="Trailing Icon"
                                  style="margin: 6px; "
-                                 TrailingIconPLUS="@MBIcon.IconDescriptorConstructor(
+                                 TrailingIcon="@MBIcon.IconDescriptorConstructor(
                                                name: "favorite",
                                                style: @MBIconStyle.Outlined)"
                                  TextInputStyle="MBTextInputStyle.Outlined" />
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon Buttons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Leading and trailing icon buttons.
+                    </h3>
+
+                    <p>
+                        <MBSwitch @bind-Value="@toggle"
+                                  @bind-Value:after="@(() => ComponentValueChanged(toggle, "Toggle"))"
+                                  TrailingLabelPLUS="Selected" />
+
+
+                    </p>
+
+                    <MBTextField Label="Leading IB"
+                                 LeadingIcon="@MBIcon.IconDescriptorConstructor(
+                                              name: "close",
+                                              style: @MBIconStyle.Outlined)"
+                                 LeadingToggleIcon="@MBIcon.IconDescriptorConstructor(
+                                              name: "check",
+                                              style: @MBIconStyle.Outlined)"
+                                 LeadingToggleIconSelected="@toggle"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined" />
+
+                    <MBTextField Label="Trailing IB"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined"
+                                 TrailingIcon="@MBIcon.IconDescriptorConstructor(
+                                               name: "close",
+                                               style: @MBIconStyle.Outlined)"
+                                 TrailingToggleIcon="@MBIcon.IconDescriptorConstructor(
+                                              name: "check",
+                                              style: @MBIconStyle.Outlined)"
+                                 TrailingToggleIconSelected="@toggle" />
+
+                    <MBTextField Label="Leading & Trailing IB"
+                                 LeadingIcon="@MBIcon.IconDescriptorConstructor(
+                                              name: "close",
+                                              style: @MBIconStyle.Outlined)"
+                                 LeadingToggleIcon="@MBIcon.IconDescriptorConstructor(
+                                              name: "check",
+                                              style: @MBIconStyle.Outlined)"
+                                 LeadingToggleIconSelected="@toggle"
+                                 style="margin: 6px;"
+                                 TextInputStyle="MBTextInputStyle.Outlined"
+                                 TrailingIcon="@MBIcon.IconDescriptorConstructor(
+                                               name: "close",
+                                               style: @MBIconStyle.Outlined)"
+                                 TrailingToggleIcon="@MBIcon.IconDescriptorConstructor(
+                                              name: "check",
+                                              style: @MBIconStyle.Outlined)"
+                                 TrailingToggleIconSelected="@toggle" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
@@ -345,13 +409,20 @@
 
     private string Password { get; set; }
 
-    private string TwoWayBinding { get; set; }
-
     private string SupportingText { get; set; }
+
+    private bool toggle { get; set; }
+
+    private string TwoWayBinding { get; set; }
 
     private Tuple<int, string>[] apiTuple =
     {
         new Tuple<int, string>(0, "MBTextField"),
         new Tuple<int, string>(10, "InternalTextFieldBase")
     };
+
+    private void ComponentValueChanged(bool value, string componentName)
+    {
+        ToastService.ShowToast(heading: $"{componentName} Clicked", message: $"Two way binding Value: {value}", level: MBToastLevel.Success, showIcon: false);
+    }
 }

@@ -77,7 +77,7 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
     private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
 
-    private TaskCompletionSource OpenedTaskCompletionSource = new();
+    private TaskCompletionSource OpenedTaskCompletionSource { get; set; } = new();
 
     internal Task Opened => OpenedTaskCompletionSource.Task;
     private bool AfterDialogInitialization { get; set; } = false;
@@ -126,9 +126,9 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
     /// <summary>
     /// Shows the dialog. This first renders the Blazor markup and then allows
-    /// Material Theme to open the dialog, subsequently intiating all embedded Blazor components.
+    /// Material Theme to open the dialog, subsequently initiating all embedded Blazor components.
     /// </summary>
-    /// <returns>The action string resulting form dialog closure</returns>
+    /// <returns>The action string resulting from dialog closure</returns>
     public async Task<string> ShowAsync()
     {
         if (IsOpen)
