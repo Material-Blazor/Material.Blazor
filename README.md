@@ -44,4 +44,4 @@ The MD2 NuGet packages are available in V3, V4, and V5. The MD3 NuGet packages a
   - V5.x releases have two NuGet packages that correspond to the release trains:
     - Material.Blazor (Material Design 2)
     - Material.Blazor.MD3 (Material Design 3)
-  - This version will be deprecated on November ??, 2027.
+  - This version will be deprecated on November 10, 2026.

@@ -18,12 +18,12 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-rc.2.23480.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-rc.2.23480.2" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
 		<PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
 		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
 		<PackageReference Include="Serilog.Sinks.BrowserConsole" Version="2.0.0" />
-		<PackageReference Include="System.Net.Http.Json" Version="8.0.0-rc.2.23479.6" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 	</ItemGroup>
 
 

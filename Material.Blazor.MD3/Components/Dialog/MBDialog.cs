@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
-    public partial class MBDialog : ComponentFoundation
+    public class MBDialog : ComponentFoundation
     {
         #region members
 
@@ -57,8 +57,8 @@ namespace Material.Blazor
 
 
         private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
-        private bool HasBody => Body != null;
-        private bool HasButtons => ButtonItems != null;
+        private bool HasBody => Body != null || false;
+        private bool HasButtons => ButtonItems != null || false;
         private bool HasHeader => Header != null;
         private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
         private string IdBody { get; } = Utilities.GenerateUniqueElementName();
@@ -67,6 +67,53 @@ namespace Material.Blazor
         private bool IsOpen { get; set; }
         private TaskCompletionSource OpenedTaskCompletionSource { get; set; } = new();
         internal Task Opened => OpenedTaskCompletionSource.Task;
+
+        #endregion
+
+        #region BuildRenderTree
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            var attributesToSplat = AttributesToSplat().ToArray();
+            var rendSeq = 0;
+
+            builder.OpenElement(rendSeq++, "md-dialog");
+            {
+                builder.AddAttribute(rendSeq++, "class", @class);
+                builder.AddAttribute(rendSeq++, "style", style);
+                builder.AddAttribute(rendSeq++, "id", DialogId);
+                if (attributesToSplat.Any())
+                {
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                }
+
+                if (HasHeader || HasTitle)
+                {
+                    builder.OpenElement(rendSeq++, "div");
+                    {
+                        builder.AddAttribute(rendSeq++, "slot", "header");
+
+                        if (HasHeader)
+                        {
+                            builder.OpenElement(rendSeq++, "div");
+                            {
+                                builder.AddContent(rendSeq++, Header);
+                            }
+                            builder.CloseElement();
+                        }
+                        else
+                        {
+                            builder.OpenElement(rendSeq++, "div");
+                            {
+                                builder.AddContent(rendSeq++, Title);
+                            }
+                            builder.CloseElement();
+                        }
+                    }
+                    builder.CloseElement();
+                }
+            }
+            builder.CloseElement();
+        }
 
         #endregion
 

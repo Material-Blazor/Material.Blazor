@@ -151,15 +151,13 @@
         *@
         <MBDialog ButtonItems="@buttonsFruit"
                   DialogId="dialog1"
-                  @ref="@Dialog1">
-            <Header>
-                General dialog
-            </Header>
+                  @ref="@Dialog1"
+                  Title="General dialog">
 
             <Body>
                 <p>Please choose a fruit.</p>
                 <MBCheckbox @bind-Value="@Check"
-                            Label="Check me" />
+                            Label="Tangerine" />
                 <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
                                     Items="@StringItems"
                                     ItemValidation="@MBItemValidation.DefaultToFirst"
