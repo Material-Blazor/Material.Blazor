@@ -8,5 +8,6 @@ cd ..\material.blazor.md3
 echo ...
 echo ... Updating Material.Blazor.MD3
 echo ...
+call npm install @material/web@nightly
 call npm update -S
 cd ..

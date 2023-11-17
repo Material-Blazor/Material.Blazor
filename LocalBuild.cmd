@@ -1,6 +1,6 @@
 @echo off
 set argVersion=%1
-if "%1" == "" set argVersion=5.0.0-rc3
+if "%1" == "" set argVersion=5.0.1
 set argDestination=%2
 if "%2" == "" set argDestination="c:\solutions\local nuget packages"
 

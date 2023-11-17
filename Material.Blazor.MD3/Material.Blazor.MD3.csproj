@@ -32,6 +32,7 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="Components\Menu\MBMenuEvents.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -47,7 +48,6 @@
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
 		<Content Remove="tsconfig.json" />
-		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -55,7 +55,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-rc.1.23421.29" />-->
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
@@ -69,17 +68,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="Scripts\material.blazor.custom.events.ts">
+		  <SubType>Code</SubType>
+		</None>
 		<None Update="Scripts\material.blazor.ts">
 			<SubType>Code</SubType>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
+		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\material.blazor.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsEventScripts Include="scripts\material.blazor.custom.events.ts" />
+		<OutputStaticAssetsEventScripts Include="wwwroot\material.blazor.md3.lib.module.js" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsEventScripts)" />
+		<Content Include="@(OutputStaticAssetsEventScripts)" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -189,6 +199,9 @@
 		<Message Importance="high" Text="***** npm install (M.B.MD3 Scripts)" />
 		<Exec Command="npm install" />
 
+		<Message Importance="high" Text="***** npm install @material/web@nightly (M.B.MD3 Scripts)" />
+		<Exec Command="npm install @material/web@nightly" />
+
 		<Message Importance="high" Text="***** npm run build-js (M.B.MD3 Scripts)" />
 		<Exec Command="npm run build-js" />
 
@@ -197,6 +210,18 @@
 
 
 		<DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
+
+	</Target>
+
+	<Target Name="BuildEventScripts" Inputs="@(InputStaticAssetsEventScripts)" Outputs="@(OutputStaticAssetsEventScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.MD3 Event Scripts)" />
+		<MakeDir Directories="wwwroot" />
+
+		<Message Importance="high" Text="***** npm install (M.B.MD3 Event Scripts)" />
+		<Exec Command="npm install" />
+
+		<Message Importance="high" Text="***** npm run build-js-custom-events (M.B.MD3 Scripts)" />
+		<Exec Command="npm run build-js-custom-events" />
 
 	</Target>
 
