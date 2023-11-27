@@ -15,7 +15,7 @@ module.exports = {
     },
 
     output: {
-        filename: "material.blazor.md3.lib.module.js",
+        filename: "Material.Blazor.MD3.lib.module.js",
         path: path.resolve(__dirname, 'wwwroot'),
     },
 

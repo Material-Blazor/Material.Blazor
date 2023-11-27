@@ -188,6 +188,8 @@
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
+		<UpToDateCheckInput Include="@(InputStaticAssetsEventScripts)" Set="EventScripts" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsEventScripts)" Set="EventScripts" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>

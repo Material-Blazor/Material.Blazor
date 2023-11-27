@@ -24,4 +24,5 @@ Material Web implements web components which implement the components defined in
 | [MBSelect](xref:C.MBSelect) | [select](https://material-web.dev/components/select/) |
 | [MBSlider](xref:C.MBSlider) | [slider](https://material-web.dev/components/slider/) |
 | [MBSwitch](xref:C.MBSwitch) | [switch](https://material-web.dev/components/switch/) |
+| [MBTabs](xref:C.MBTabs) | [tabs](https://material-web.dev/components/tabs/) |
 | [MBTextField](xref:C.MBTextField) | [text-field](https://material-web.dev/components/text-field/) |

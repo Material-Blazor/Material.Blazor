@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
 ** MW3 menu-close event arguments
 **
 ** This must match the C# definition found in MBMenuEvents.cs
@@ -15,7 +14,8 @@ export function eventArgsCreatorMenuClose(event) {
 ** Register all custom events
 */
 export function afterStarted(blazor) {
-    blazor.registerCustomEventType('menu-close', {
+    blazor.registerCustomEventType('menuclose', {
+        browserEventName: "menu-closex",
         createEventArgs: eventArgsCreatorMenuClose
     });
 }

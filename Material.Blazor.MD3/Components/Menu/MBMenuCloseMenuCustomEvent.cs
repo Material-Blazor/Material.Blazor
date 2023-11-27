@@ -2,8 +2,9 @@
 
 namespace Material.Blazor.MenuClose;
 
-[EventHandler("onmenu-close",
-    typeof(MenuCloseEventArgs),
+[EventHandler(
+    attributeName: "onmenuclose",
+    eventArgsType: typeof(MenuCloseEventArgs),
     enableStopPropagation: true,
     enablePreventDefault: true)]
 public static class EventHandlers

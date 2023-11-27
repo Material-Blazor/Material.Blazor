@@ -46,6 +46,11 @@ public class MBMenu : ComponentFoundation
     /// </summary>
     [Parameter] public MBMenuItem[] MenuItems { get; set; }
 
+    /// <summary>
+    /// Sets the menu positioning attribute
+    /// </summary>
+    [Parameter] public MBMenuPositioning MenuPositioning { get; set; } = MBMenuPositioning.Relative;
+
 
 
     private string MenuButtonId { get; set; }
@@ -89,7 +94,8 @@ public class MBMenu : ComponentFoundation
             {
                 builder.AddAttribute(rendSeq++, "anchor", MenuButtonId);
                 builder.AddAttribute(rendSeq++, "id", MenuId);
-                builder.AddAttribute(rendSeq++, "onmenu-close", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
+                //builder.AddAttribute(rendSeq++, "onmenu-close", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
+                builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
 
                 if (MenuItems is not null)
                 {
@@ -178,7 +184,11 @@ public class MBMenu : ComponentFoundation
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        await InvokeJsVoidAsync("MaterialBlazor.MBMenu.toggleMenuOpen", MenuButtonId, MenuId).ConfigureAwait(false);
+        if (firstRender)
+        {
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.toggleMenuOpen", MenuButtonId, MenuId).ConfigureAwait(false);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuCloseEvent", MenuId).ConfigureAwait(false);
+        }
     }
 
     #endregion
