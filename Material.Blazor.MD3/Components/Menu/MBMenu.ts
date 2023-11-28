@@ -1,8 +1,12 @@
 ﻿import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
 
-function reportMenuCloseEvent(cme: CloseMenuEvent) {
+function reportMenuCloseEvent() {
     console.log("Menu close event");
 }
+
+//function reportMenuCloseEvent(cme: CloseMenuEvent) {
+//    console.log("Menu close event");
+//}
 
 export function setMenuCloseEvent(menuID: string) {
     const menuElement: any | null = document.getElementById(menuID);

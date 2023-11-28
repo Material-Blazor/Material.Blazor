@@ -29,7 +29,7 @@ namespace Material.Blazor
 
             var rendSeq = 0;
 
-            builder.OpenElement(rendSeq++, "md-list");
+            builder.OpenElement(rendSeq++, "md-tabs");
             {
                 builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
                 builder.AddAttribute(rendSeq++, "style", @style + " position: relative; ");
@@ -41,119 +41,149 @@ namespace Material.Blazor
 
                 if (TabItems is not null)
                 {
-                    builder.OpenElement(rendSeq++, "md-list-item");
+                    foreach (var tabItem in TabItems)
                     {
-                        foreach (var listItem in TabItems)
+                        var componentName = tabItem.IsPrimary switch
                         {
-                            switch (listItem.ListItemType)
+                            true => "md-primary-tab",
+                            _ => "md-secondary-tab"
+                        };
+
+                        builder.OpenElement(rendSeq++, componentName);
+                        {
+                            if (tabItem.IsActive) 
                             {
-                                case MBListItemType.Divider:
-                                    builder.OpenElement(rendSeq++, "md-divider");
-                                    builder.CloseElement();
-                                    break;
+                                builder.AddAttribute(rendSeq++, "active");
+                            }
 
-                                case MBListItemType.Regular:
-                                default:
-                                    builder.OpenElement(rendSeq++, "md-list-item");
-                                    {
-                                        if (listItem.IsDisabled)
-                                        {
-                                            builder.AddAttribute(rendSeq++, "disabled");
-                                        }
+                            if (tabItem.IconIsInline)
+                            {
+                                builder.AddAttribute(rendSeq++, "inline-icon");
+                            }
 
-                                        if (!string.IsNullOrWhiteSpace(listItem.Link))
-                                        {
-                                            builder.AddAttribute(rendSeq++, "interactive");
+                            if (!string.IsNullOrEmpty(tabItem.TabAriaControls))
+                            {
+                                builder.AddAttribute(rendSeq++, "aria-controls", tabItem.TabAriaControls);
+                            }
 
-                                            builder.AddAttribute(rendSeq++, "href", listItem.Link);
+                            if (!string.IsNullOrEmpty(tabItem.TabId))
+                            {
+                                builder.AddAttribute(rendSeq++, "id", tabItem.TabId);
+                            }
 
-                                            if (!string.IsNullOrWhiteSpace(listItem.LinkTarget))
-                                            {
-                                                builder.AddAttribute(rendSeq++, "target", listItem.LinkTarget);
-                                            }
-                                        }
+                            if (tabItem.Headline.Length > 0)
+                            {
+                                builder.AddContent(rendSeq++, tabItem.Headline);
+                            }
 
-                                        if (!string.IsNullOrWhiteSpace(listItem.Headline))
-                                        {
-                                            builder.OpenElement(rendSeq++, "div");
-                                            {
-                                                if (!string.IsNullOrWhiteSpace(listItem.HeadlineColor))
-                                                {
-                                                    builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineColor + "; ");
-                                                }
-                                                builder.AddAttribute(rendSeq++, "slot", "headline");
-                                                builder.AddContent(rendSeq++, listItem.Headline);
-                                            }
-                                            builder.CloseElement();
-                                        }
-
-                                        if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupport))
-                                        {
-                                            builder.OpenElement(rendSeq++, "div");
-                                            {
-                                                if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupportColor))
-                                                {
-                                                    builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineSupportColor + "; ");
-                                                }
-                                                builder.AddAttribute(rendSeq++, "slot", "supporting-text");
-                                                builder.AddContent(rendSeq++, listItem.HeadlineSupport);
-                                            }
-                                            builder.CloseElement();
-                                        }
-
-                                        // Two users of the "start" slot; image wins
-                                        if (!string.IsNullOrWhiteSpace(listItem.ImageSource))
-                                        {
-                                            builder.OpenElement(rendSeq++, "img");
-                                            {
-                                                builder.AddAttribute(rendSeq++, "slot", "start");
-                                                builder.AddAttribute(rendSeq++, "src", listItem.ImageSource);
-                                                if (!string.IsNullOrWhiteSpace(listItem.ImageStyle))
-                                                {
-                                                    builder.AddAttribute(rendSeq++, "style", listItem.ImageStyle);
-                                                }
-
-                                            }
-                                            builder.CloseElement();
-                                        }
-                                        else
-                                        {
-                                            if (listItem.LeadingIcon is not null)
-                                            {
-                                                MBIcon.BuildRenderTreeWorker(
-                                                    builder,
-                                                    ref rendSeq,
-                                                    CascadingDefaults,
-                                                    null,
-                                                    null,
-                                                    null,
-                                                    null,
-                                                    listItem.LeadingIcon,
-                                                    "start");
-                                            }
-                                        }
-
-                                        if (listItem.TrailingIcon is not null)
-                                        {
-                                            MBIcon.BuildRenderTreeWorker(
-                                                builder,
-                                                ref rendSeq,
-                                                CascadingDefaults,
-                                                null,
-                                                null,
-                                                null,
-                                                null,
-                                                listItem.TrailingIcon,
-                                                "end");
-                                        }
-
-                                    }
-                                    builder.CloseElement();
-                                    break;
+                            if (tabItem.Icon is not null)
+                            {
+                                MBIcon.BuildRenderTreeWorker(
+                                    builder,
+                                    ref rendSeq,
+                                    CascadingDefaults,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    tabItem.Icon,
+                                    "icon");
                             }
                         }
+                        builder.CloseElement();
+                        //switch (tabItem.ListItemType)
+                        //{
+                        //    case MBListItemType.Divider:
+                        //        builder.OpenElement(rendSeq++, "md-divider");
+                        //        builder.CloseElement();
+                        //        break;
+
+                        //    case MBListItemType.Regular:
+                        //    default:
+                        //        builder.OpenElement(rendSeq++, "md-list-item");
+                        //        {
+                        //            if (tabItem.IsDisabled)
+                        //            {
+                        //                builder.AddAttribute(rendSeq++, "disabled");
+                        //            }
+
+                        //            if (!string.IsNullOrWhiteSpace(tabItem.Link))
+                        //            {
+                        //                builder.AddAttribute(rendSeq++, "interactive");
+
+                        //                builder.AddAttribute(rendSeq++, "href", tabItem.Link);
+
+                        //                if (!string.IsNullOrWhiteSpace(tabItem.LinkTarget))
+                        //                {
+                        //                    builder.AddAttribute(rendSeq++, "target", tabItem.LinkTarget);
+                        //                }
+                        //            }
+
+                        //            if (!string.IsNullOrWhiteSpace(tabItem.Headline))
+                        //            {
+                        //                builder.OpenElement(rendSeq++, "div");
+                        //                {
+                        //                    if (!string.IsNullOrWhiteSpace(tabItem.HeadlineColor))
+                        //                    {
+                        //                        builder.AddAttribute(rendSeq++, "style", "color: " + tabItem.HeadlineColor + "; ");
+                        //                    }
+                        //                    builder.AddAttribute(rendSeq++, "slot", "headline");
+                        //                    builder.AddContent(rendSeq++, tabItem.Headline);
+                        //                }
+                        //                builder.CloseElement();
+                        //            }
+
+                        //            if (!string.IsNullOrWhiteSpace(tabItem.HeadlineSupport))
+                        //            {
+                        //                builder.OpenElement(rendSeq++, "div");
+                        //                {
+                        //                    if (!string.IsNullOrWhiteSpace(tabItem.HeadlineSupportColor))
+                        //                    {
+                        //                        builder.AddAttribute(rendSeq++, "style", "color: " + tabItem.HeadlineSupportColor + "; ");
+                        //                    }
+                        //                    builder.AddAttribute(rendSeq++, "slot", "supporting-text");
+                        //                    builder.AddContent(rendSeq++, tabItem.HeadlineSupport);
+                        //                }
+                        //                builder.CloseElement();
+                        //            }
+
+                        //            // Two users of the "start" slot; image wins
+                        //            if (!string.IsNullOrWhiteSpace(tabItem.ImageSource))
+                        //            {
+                        //                builder.OpenElement(rendSeq++, "img");
+                        //                {
+                        //                    builder.AddAttribute(rendSeq++, "slot", "start");
+                        //                    builder.AddAttribute(rendSeq++, "src", tabItem.ImageSource);
+                        //                    if (!string.IsNullOrWhiteSpace(tabItem.ImageStyle))
+                        //                    {
+                        //                        builder.AddAttribute(rendSeq++, "style", tabItem.ImageStyle);
+                        //                    }
+
+                        //                }
+                        //                builder.CloseElement();
+                        //            }
+                        //            else
+                        //            {
+                        //                if (tabItem.LeadingIcon is not null)
+                        //                {
+                        //                    MBIcon.BuildRenderTreeWorker(
+                        //                        builder,
+                        //                        ref rendSeq,
+                        //                        CascadingDefaults,
+                        //                        null,
+                        //                        null,
+                        //                        null,
+                        //                        null,
+                        //                        tabItem.LeadingIcon,
+                        //                        "start");
+                        //                }
+                        //            }
+
+                        //        }
+                        //        builder.CloseElement();
+                        //        break;
+                        //}
                     }
-                    builder.CloseElement();
                 }
             }
             builder.CloseElement();
