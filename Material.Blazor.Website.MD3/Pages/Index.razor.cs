@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Material.Blazor.Website.Pages;
+namespace Material.Blazor.Website.MD3.Pages;
 
 public partial class Index
 {

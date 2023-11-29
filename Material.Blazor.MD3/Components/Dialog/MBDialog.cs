@@ -26,22 +26,20 @@ namespace Material.Blazor
         [Parameter] public MBDialogButton[] ButtonItems { get; set; }
 
         /// <summary>
-        /// A unique ID for the dialog
-        /// Can be accomplished with careful naming or something like 
-        ///     "dialog-id-" + Guid.NewGuid().ToString().ToLower();
-        /// </summary>
-        [Parameter, EditorRequired] public string DialogId { get; set; }
-
-        /// <summary>
         /// The action returned by the dialog when the escape key is pressed. Defaults to "close". Setting
         /// this to "" will disable the escape key action.
         /// </summary>
         [Parameter] public string EscapeKeyAction { get; set; } = "close";
 
         /// <summary>
-        /// Render fragment for the dialog header.
+        /// The dialog title.
         /// </summary>
-        [Parameter] public RenderFragment Header { get; set; }
+        [Parameter] public string Headline { get; set; }
+
+        /// <summary>
+        /// The icon attributes.
+        /// </summary>
+        [Parameter] public MBIconDescriptor IconDescriptor { get; set; }
 
         /// <summary>
         /// The action returned by the dialog when the scrim is clicked. Defaults to "close". Setting
@@ -49,21 +47,11 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public string ScrimClickAction { get; set; } = "close";
 
-        /// <summary>
-        /// The dialog title.
-        /// </summary>
-        [Parameter] public string Title { get; set; }
-
 
 
         private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
-        private bool HasBody => Body != null || false;
-        private bool HasButtons => ButtonItems != null || false;
-        private bool HasHeader => Header != null;
-        private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
-        private string IdBody { get; } = Utilities.GenerateUniqueElementName();
-        private string IdHeader { get; } = Utilities.GenerateUniqueElementName();
-        private string IdTitle { get; } = Utilities.GenerateUniqueElementName();
+        private string DialogId { get; set; } = "dialog-id-" + Guid.NewGuid().ToString().ToLower();
+        private string FormId { get; set; } = "form-id-" + Guid.NewGuid().ToString().ToLower();
         private bool IsOpen { get; set; }
         private TaskCompletionSource OpenedTaskCompletionSource { get; set; } = new();
         internal Task Opened => OpenedTaskCompletionSource.Task;
@@ -86,52 +74,44 @@ namespace Material.Blazor
                     builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
 
-                if (HasHeader || HasTitle)
+                if (IconDescriptor is not null)
+                {
+                    MBIcon.BuildRenderTreeWorker(
+                        builder,
+                        ref rendSeq,
+                        CascadingDefaults,
+                        attributesToSplat,
+                        "",
+                        "",
+                        "",
+                        IconDescriptor,
+                        "icon");
+                }
+
+                if (!string.IsNullOrWhiteSpace(Headline))
                 {
                     builder.OpenElement(rendSeq++, "div");
                     {
-                        builder.AddAttribute(rendSeq++, "slot", "header");
+                        builder.AddAttribute(rendSeq++, "slot", "headline");
+                        builder.AddContent(rendSeq++, Headline);
+                    }
+                    builder.CloseElement();
+                }
 
-                        if (HasHeader)
-                        {
-                            builder.OpenElement(rendSeq++, "div");
-                            {
-                                builder.AddContent(rendSeq++, Header);
-                            }
-                            builder.CloseElement();
-                        }
-                        else
-                        {
-                            builder.OpenElement(rendSeq++, "div");
-                            {
-                                builder.AddContent(rendSeq++, Title);
-                            }
-                            builder.CloseElement();
-                        }
+                if (Body is not null)
+                {
+                    builder.OpenElement(rendSeq++, "form");
+                    {
+                        builder.AddAttribute(rendSeq++, "id", FormId);
+                        builder.AddAttribute(rendSeq++, "slot", "content");
+                        builder.AddAttribute(rendSeq++, "method", "dialog");
+
+                        builder.AddContent(rendSeq++, Body);
                     }
                     builder.CloseElement();
                 }
             }
             builder.CloseElement();
-        }
-
-        #endregion
-
-        #region HideAsync
-
-        /// <summary>
-        /// Hides the dialog by allowing Material Theme to close it gracefully.
-        /// </summary>
-        public async Task HideAsync()
-        {
-            if (IsOpen)
-            {
-                await InvokeJsVoidAsync("MaterialBlazor.MBDialog.dialogHide", DialogId);
-            }
-            else
-            {
-                throw new InvalidOperationException("Cannot hide MBDialog that is not already open");
-            }
         }
 
         #endregion

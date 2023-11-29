@@ -1,13 +1,5 @@
-﻿export function dialogShow(dialogID: string) {
-    const dialogElement: any | null = document.getElementById(dialogID);
-    if (dialogElement != null) {
-        dialogElement.open();
-    }
-}
+﻿import { MdDialog } from '@material/web/dialog/dialog';
 
-export function dialogHide(dialogID: string) {
-    const dialogElement: any | null = document.getElementById(dialogID);
-    if (dialogElement != null) {
-        dialogElement.close();
-    }
+export function dialogShow(dialogID: string) {
+    (document.getElementById(dialogID) as MdDialog)?.show();
 }

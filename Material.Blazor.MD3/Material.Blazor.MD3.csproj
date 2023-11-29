@@ -93,7 +93,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
+		<InputStaticAssetsStyles Include="components\**\*.scss;styles\*.scss;" />
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
