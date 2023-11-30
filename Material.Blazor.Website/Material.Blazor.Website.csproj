@@ -46,13 +46,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scrips" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scrips" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<InputStaticAssetsScripts Include="scripts\*.ts" />
+		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.website.js;wwwroot\material.blazor.website.min.js" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsScripts)" />
+		<Content Include="@(OutputStaticAssetsScripts)" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<InputStaticAssetsStyles Include="styles\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+		<OutputStaticAssetsStyles Include="wwwroot\asymmetric-theme.min.css;wwwroot\dark-square-theme.min.css;wwwroot\light-square-theme.min.css;wwwroot\material-default-theme.min.css;wwwroot\rounded-theme.min.css;" />
+		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
@@ -61,31 +72,46 @@
 		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
 	</ItemGroup>
 
-	<Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
+	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
 		<Message Importance="high" Text="***** npm install" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
 	</Target>
 
+	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.W Scripts)" />
+		<MakeDir Directories="wwwroot" />
+
+		<Message Importance="high" Text="***** npm install (M.B.W Scripts)" />
+		<Exec Command="npm install" />
+
+		<Message Importance="high" Text="***** npm run build-js (M.B.W Scripts)" />
+		<Exec Command="npm run build-js" />
+
+		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W Scripts)" />
+		<Exec Command="npm run build-js-minify" />
+
+	</Target>
+
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
-		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
+		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
 
 		<!-- Build minified themes -->
-		<Message Importance="high" Text="***** build material default theme" />
+		<Message Importance="high" Text="***** build material default theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-material-default" />
 
-		<Message Importance="high" Text="***** build light square theme" />
+		<Message Importance="high" Text="***** build light square theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-light-square" />
 
-		<Message Importance="high" Text="***** build dark square theme" />
+		<Message Importance="high" Text="***** build dark square theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-dark-square" />
 
-		<Message Importance="high" Text="***** build rounded theme" />
+		<Message Importance="high" Text="***** build rounded theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-rounded" />
 
-		<Message Importance="high" Text="***** build asymmetric theme" />
+		<Message Importance="high" Text="***** build asymmetric theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-asymmetric" />
 
 	</Target>
