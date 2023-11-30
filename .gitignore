@@ -1,10 +1,14 @@
 ## Ignore temporary files and build results specific to M.B
 
 #Generated CSS and JS files
-**/Material.Blazor/wwwroot/*.*
-**/Material.Blazor.Website/wwwroot/*.*
-**/Material.Blazor.MD3/wwwroot/*.*
-**/Material.Blazor.Website.MD3/wwwroot/css/*.*
+**/Material.Blazor/wwwroot/*.css
+**/Material.Blazor/wwwroot/*.js
+**/Material.Blazor.Website/wwwroot/*.css
+**/Material.Blazor.Website/wwwroot/*.js
+**/Material.Blazor.MD3/wwwroot/*.css
+**/Material.Blazor.MD3/wwwroot/*.js
+**/Material.Blazor.Website.MD3/wwwroot/css/*.css
+**/Material.Blazor.Website.MD3/wwwroot/css/*.js
 
 # DocFx tool
 !**/DocFx/*.*
