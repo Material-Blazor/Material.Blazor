@@ -1,0 +1,131 @@
+﻿name: GithubActionsWIP2
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+env:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'WebAssembly'
+  outputDocFx: ${{github.workspace}}\siteDocFx
+  outputMB: ${{github.workspace}}/siteMB
+  outputWeb: ${{github.workspace}}/siteWeb
+  projectMB: 'Material.Blazor/Material.Blazor.csproj'
+  projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
+  projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
+
+  outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
+  outputMBMD3: ${{github.workspace}}/siteMBMD3
+  outputWebMD3: ${{github.workspace}}/siteWebMD3
+  projectMBMD3: 'Material.Blazor.MD3/Material.Blazor.MD3.csproj'
+  projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.MD3.csproj'
+
+jobs:
+
+############################################################################################################
+# These jobs are used to gate actions. By creating these jobs we don't need to proliferate the repo checks
+############################################################################################################
+
+  build-allowed:
+    name: Build allowed
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+    - name: Nothing to see here
+      run: echo ""
+
+  build-allowed-fork:
+    name: Allow build only on M-B/M.B
+    needs: [build-allowed]
+    runs-on: ubuntu-latest
+    if: (github.repository != 'Material-Blazor/Material.Blazor')
+    steps:
+    - name: Nothing to see here
+      run: echo ""
+
+  deployment-allowed-mb:
+    name: Allow deployment on M-B/M.B
+    needs: [build-allowed]
+    runs-on: ubuntu-latest
+    if: (github.repository == 'Material-Blazor/Material.Blazor')
+    steps:
+    - name: Nothing to see here
+      run: echo ""
+
+############################################################################################################
+# Set unified version
+############################################################################################################
+  set-unified-version:
+    name: Create the date based version
+    needs: [deployment-allowed-mb]
+    runs-on: ubuntu-latest
+    outputs:
+      unifiedVersion: ${{ steps.setVersion.outputs.version }}
+
+    steps:
+    - id: setVersion
+      run: echo "version=5.0.0-wip.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      shell: bash
+
+############################################################################################################
+# Build website
+############################################################################################################
+  build-website:
+    name: Build website
+    needs: [set-unified-version]
+    runs-on: windows-latest
+
+    steps:
+    - name: Set ciVersion as env variable
+      run: echo "ciVersion=${{needs.set-unified-version.outputs.unifiedVersion}}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v4
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+
+    - name: Build & Publish Website 🔧
+      run: >
+        dotnet publish ${{env.projectWeb}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputWeb}}
+        -p:Version=${{env.ciVersion}}
+        -p:BlazorEnableCompression=false
+        --framework net8.0
+
+    # All of the trace was added to show that .js & .min.js files were getting created but not
+    # being included in the published content. This was a result of VS 'helpfully' adding some
+    # 'content none' and 'content remove' directives after a deletion of the .js files to test
+    # the build of derived files. It is being left in place to help in the future.
+
+    # - name: Display workspace Ꙫ
+    #   run: dir ${{github.workspace}}
+
+    - name: Display wwwroot Ꙫ
+      run: dir ${{github.workspace}}/Material.Blazor/wwwroot
+
+    # - name: Display MaterialBlazor package output Ꙫ
+    #   run: dir ${{env.outputWeb}}
+
+    # - name: Display MaterialBlazor package output wwwroot Ꙫ
+    #   run: dir ${{env.outputWeb}}/wwwroot
+
+    # - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
+    #   run: dir ${{env.outputWeb}}/wwwroot/_content
+
+    - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
+      run: dir ${{env.outputWeb}}/wwwroot/_content/Material.Blazor
+
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+      uses: actions/upload-artifact@v3
+      with:
+        name: siteWeb
+        path: siteWeb
+
