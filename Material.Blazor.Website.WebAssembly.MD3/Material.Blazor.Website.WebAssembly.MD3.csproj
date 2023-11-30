@@ -29,8 +29,4 @@
 		<ProjectReference Include="..\Material.Blazor.Website.MD3\Material.Blazor.Website.MD3.csproj" />
 	</ItemGroup>
 
-	<!--<ItemGroup>
-		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-	</ItemGroup>-->
-
 </Project>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
-		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+		<!--<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>-->
 	</PropertyGroup>
 
 	<PropertyGroup>
