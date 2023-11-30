@@ -1,4 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+	<PropertyGroup>
+		<!--<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>-->
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
