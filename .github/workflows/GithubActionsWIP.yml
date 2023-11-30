@@ -229,7 +229,7 @@ jobs:
 # The current version of Material.Blazor is viewable on GH-pages in addition to material-blazor.com
 ############################################################################################################
   deployghpages-mbcurrent:
-    name: Deploy to GitHub pages (MD.Current)
+    name: Deploy to GH pages (MB.Current)
     needs: [test, build-documentation, build-website, deployment-allowed-mb]
     runs-on: ubuntu-latest
 
@@ -540,7 +540,7 @@ jobs:
 # The current version of Material.Blazor is viewable on GH-pages in addition to material-blazor.com
 ############################################################################################################
   deployghpages-mbcurrent-MD3:
-    name: Deploy to GitHub pages (MB.MD3.Current)
+    name: Deploy to GH pages (MB.MD3.Current)
     needs: [test, build-website-MD3, build-documentation-MD3, deployment-allowed-mb]
     runs-on: ubuntu-latest
 
