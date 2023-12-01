@@ -10194,7 +10194,6 @@ function MBChipsSelectMulti_init(elem, isMultiSelect, dotNetObject) {
       //}
     }
   };
-
   elem._chipSet.listen('MDCChipSet:selection', clickedCallback);
 }
 function MBChipsSelectMulti_setDisabled(elem, value) {
@@ -22203,7 +22202,6 @@ function sanitizeHTMLWithBreaks(str) {
   //    return sanitized.replaceAll("&lt;br /&gt;", "<br />");
   // https://stackoverflow.com/questions/43504533/typescript-javascript-replace-all-string-occurrences-with-random-number
 }
-
 function escapeRegExp(str) {
   return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
