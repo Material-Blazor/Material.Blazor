@@ -3,8 +3,10 @@
 #Generated CSS and JS files
 **/Material.Blazor/wwwroot/*.*
 **/Material.Blazor.Website/wwwroot/css/*.*
+**/Material.Blazor.Website/wwwroot/js/*.*
 **/Material.Blazor.MD3/wwwroot/*.*
 **/Material.Blazor.Website.MD3/wwwroot/css/*.*
+**/Material.Blazor.Website.MD3/wwwroot/js/*.*
 
 # DocFx tool
 !**/DocFx/*.*

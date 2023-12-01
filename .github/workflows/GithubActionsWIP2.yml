@@ -2,10 +2,10 @@
 
 on:
   push:
-    branches: [ main ]
+    branches: [ mainX ]
 
   pull_request:
-    branches: [ main ]
+    branches: [ mainX ]
 
 env:
   buildPlatform: 'Any CPU'
