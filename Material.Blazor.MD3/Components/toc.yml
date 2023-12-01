@@ -58,5 +58,8 @@
 - name: MBSwitch
   topicUid: C.MBSwitch
 
+- name: MBTabs
+  topicUid: C.MBTabs
+
 - name: MBTextField
   topicUid: C.MBTextField

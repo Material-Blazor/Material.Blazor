@@ -19,4 +19,6 @@ The following attributes are reserved by Material Components Web and will be ign
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDecimalField&color=brightgreen)](xref:Material.Blazor.MBDecimalField)
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDoubleField&color=brightgreen)](xref:Material.Blazor.MBDoubleField)
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIntField&color=brightgreen)](xref:Material.Blazor.MBIntField)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=InternalNumericFieldBase&color=brightgreen)](xref:Material.Blazor.InternalNumericFieldBase)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=InternalFloatingPointFieldBase&color=brightgreen)](xref:Material.Blazor.Internal.InternalFloatingPointFieldBase)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=InternalIntFieldBase&color=brightgreen)](xref:Material.Blazor.Internal.InternalIntFieldBase)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=InternalNumericFieldBase&color=brightgreen)](xref:Material.Blazor.Internal.InternalNumericFieldBase)

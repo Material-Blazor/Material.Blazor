@@ -41,99 +41,82 @@ namespace Material.Blazor
 
                 if (ListItems is not null)
                 {
-                    builder.OpenElement(rendSeq++, "md-list-item");
+                    foreach (var listItem in ListItems)
                     {
-                        foreach (var listItem in ListItems)
+                        switch (listItem.ListItemType)
                         {
-                            switch (listItem.ListItemType)
-                            {
-                                case MBListItemType.Divider:
-                                    builder.OpenElement(rendSeq++, "md-divider");
-                                    builder.CloseElement();
-                                    break;
+                            case MBListItemType.Divider:
+                                builder.OpenElement(rendSeq++, "md-divider");
+                                builder.CloseElement();
+                                break;
 
-                                case MBListItemType.Regular:
-                                default:
-                                    builder.OpenElement(rendSeq++, "md-list-item");
+                            case MBListItemType.Regular:
+                            default:
+                                builder.OpenElement(rendSeq++, "md-list-item");
+                                {
+                                    if (listItem.IsDisabled)
                                     {
-                                        if (listItem.IsDisabled)
+                                        builder.AddAttribute(rendSeq++, "disabled");
+                                    }
+
+                                    if (!string.IsNullOrWhiteSpace(listItem.Link))
+                                    {
+                                        builder.AddAttribute(rendSeq++, "interactive");
+
+                                        builder.AddAttribute(rendSeq++, "href", listItem.Link);
+
+                                        if (!string.IsNullOrWhiteSpace(listItem.LinkTarget))
                                         {
-                                            builder.AddAttribute(rendSeq++, "disabled");
+                                            builder.AddAttribute(rendSeq++, "target", listItem.LinkTarget);
                                         }
+                                    }
 
-                                        if (!string.IsNullOrWhiteSpace(listItem.Link))
+                                    if (!string.IsNullOrWhiteSpace(listItem.Headline))
+                                    {
+                                        builder.OpenElement(rendSeq++, "div");
                                         {
-                                            builder.AddAttribute(rendSeq++, "interactive");
-
-                                            builder.AddAttribute(rendSeq++, "href", listItem.Link);
-
-                                            if (!string.IsNullOrWhiteSpace(listItem.LinkTarget))
+                                            if (!string.IsNullOrWhiteSpace(listItem.HeadlineColor))
                                             {
-                                                builder.AddAttribute(rendSeq++, "target", listItem.LinkTarget);
+                                                builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineColor + "; ");
                                             }
+                                            builder.AddAttribute(rendSeq++, "slot", "headline");
+                                            builder.AddContent(rendSeq++, listItem.Headline);
                                         }
+                                        builder.CloseElement();
+                                    }
 
-                                        if (!string.IsNullOrWhiteSpace(listItem.Headline))
+                                    if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupport))
+                                    {
+                                        builder.OpenElement(rendSeq++, "div");
                                         {
-                                            builder.OpenElement(rendSeq++, "div");
+                                            if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupportColor))
                                             {
-                                                if (!string.IsNullOrWhiteSpace(listItem.HeadlineColor))
-                                                {
-                                                    builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineColor + "; ");
-                                                }
-                                                builder.AddAttribute(rendSeq++, "slot", "headline");
-                                                builder.AddContent(rendSeq++, listItem.Headline);
+                                                builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineSupportColor + "; ");
                                             }
-                                            builder.CloseElement();
+                                            builder.AddAttribute(rendSeq++, "slot", "supporting-text");
+                                            builder.AddContent(rendSeq++, listItem.HeadlineSupport);
                                         }
+                                        builder.CloseElement();
+                                    }
 
-                                        if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupport))
+                                    // Two users of the "start" slot; image wins
+                                    if (!string.IsNullOrWhiteSpace(listItem.ImageSource))
+                                    {
+                                        builder.OpenElement(rendSeq++, "img");
                                         {
-                                            builder.OpenElement(rendSeq++, "div");
+                                            builder.AddAttribute(rendSeq++, "slot", "start");
+                                            builder.AddAttribute(rendSeq++, "src", listItem.ImageSource);
+                                            if (!string.IsNullOrWhiteSpace(listItem.ImageStyle))
                                             {
-                                                if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupportColor))
-                                                {
-                                                    builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineSupportColor + "; ");
-                                                }
-                                                builder.AddAttribute(rendSeq++, "slot", "supporting-text");
-                                                builder.AddContent(rendSeq++, listItem.HeadlineSupport);
+                                                builder.AddAttribute(rendSeq++, "style", listItem.ImageStyle);
                                             }
-                                            builder.CloseElement();
-                                        }
 
-                                        // Two users of the "start" slot; image wins
-                                        if (!string.IsNullOrWhiteSpace(listItem.ImageSource))
-                                        {
-                                            builder.OpenElement(rendSeq++, "img");
-                                            {
-                                                builder.AddAttribute(rendSeq++, "slot", "start");
-                                                builder.AddAttribute(rendSeq++, "src", listItem.ImageSource);
-                                                if (!string.IsNullOrWhiteSpace(listItem.ImageStyle))
-                                                {
-                                                    builder.AddAttribute(rendSeq++, "style", listItem.ImageStyle);
-                                                }
-
-                                            }
-                                            builder.CloseElement();
                                         }
-                                        else
-                                        {
-                                            if (listItem.LeadingIcon is not null)
-                                            {
-                                                MBIcon.BuildRenderTreeWorker(
-                                                    builder,
-                                                    ref rendSeq,
-                                                    CascadingDefaults,
-                                                    null,
-                                                    null,
-                                                    null,
-                                                    null,
-                                                    listItem.LeadingIcon,
-                                                    "start");
-                                            }
-                                        }
-
-                                        if (listItem.TrailingIcon is not null)
+                                        builder.CloseElement();
+                                    }
+                                    else
+                                    {
+                                        if (listItem.LeadingIcon is not null)
                                         {
                                             MBIcon.BuildRenderTreeWorker(
                                                 builder,
@@ -143,17 +126,30 @@ namespace Material.Blazor
                                                 null,
                                                 null,
                                                 null,
-                                                listItem.TrailingIcon,
-                                                "end");
+                                                listItem.LeadingIcon,
+                                                "start");
                                         }
-
                                     }
-                                    builder.CloseElement();
-                                    break;
-                            }
+
+                                    if (listItem.TrailingIcon is not null)
+                                    {
+                                        MBIcon.BuildRenderTreeWorker(
+                                            builder,
+                                            ref rendSeq,
+                                            CascadingDefaults,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            listItem.TrailingIcon,
+                                            "end");
+                                    }
+
+                                }
+                                builder.CloseElement();
+                                break;
                         }
                     }
-                    builder.CloseElement();
                 }
             }
             builder.CloseElement();

@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.0.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.1)
+
+Released 2023-12-01
+
+**Updates**
+- MD2/MD3: Dependabot and NuGet updates
+- Repaired MD2 theme selection
+
+**New components**
+- MD3: Added preview components:
+    - MBDialog
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.0)
 
 Released 2023-11-14

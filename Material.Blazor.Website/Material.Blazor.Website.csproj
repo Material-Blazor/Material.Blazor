@@ -46,8 +46,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsScripts Include="scripts\*.ts" />
+		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsScripts)" />
+		<Content Include="@(OutputStaticAssetsScripts)" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,10 +72,25 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
-		<Message Importance="high" Text="***** npm install" />
+		<Message Importance="high" Text="***** npm install (Environment check)" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
+	</Target>
+
+	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W Scripts)" />
+		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
+
+		<Message Importance="high" Text="***** npm install (M.B.W Scripts)" />
+		<Exec Command="npm install" />
+
+		<Message Importance="high" Text="***** npm run build-js (M.B.W Scripts)" />
+		<Exec Command="npm run build-js" />
+
+		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W Scripts)" />
+		<Exec Command="npm run build-js-minify" />
+
 	</Target>
 
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
@@ -73,19 +98,19 @@
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
 		<!-- Build minified themes -->
-		<Message Importance="high" Text="***** build material default theme" />
+		<Message Importance="high" Text="***** build material default theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-material-default" />
 
-		<Message Importance="high" Text="***** build light square theme" />
+		<Message Importance="high" Text="***** build light square theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-light-square" />
 
-		<Message Importance="high" Text="***** build dark square theme" />
+		<Message Importance="high" Text="***** build dark square theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-dark-square" />
 
-		<Message Importance="high" Text="***** build rounded theme" />
+		<Message Importance="high" Text="***** build rounded theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-rounded" />
 
-		<Message Importance="high" Text="***** build asymmetric theme" />
+		<Message Importance="high" Text="***** build asymmetric theme (M.B.W Styles)" />
 		<Exec Command="npm run build-min-asymmetric" />
 
 	</Target>

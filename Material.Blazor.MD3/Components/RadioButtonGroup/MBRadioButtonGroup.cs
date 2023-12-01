@@ -44,7 +44,12 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
         builder.OpenElement(rendSeq++, "div");
         {
             builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
-            builder.AddAttribute(rendSeq++, "style", @style);
+            var additionalStyle = IsHorizontal switch
+            {
+                true => "display: flex; flex-direction: row; flex-grow: 0; align-items: flex-start; ",
+                false => "display: flex; flex-direction: column; flex-grow: 0; align-items: flex-start;"
+            };
+            builder.AddAttribute(rendSeq++, "style", additionalStyle + @style);
             builder.AddAttribute(rendSeq++, "id", id);
             if (attributesToSplat.Any())
             {

@@ -378,6 +378,42 @@ public enum MBMenuItemType
 
 #endregion
 
+#region MBMenuPositioning
+
+/// <summary>
+/// Determines the positioning of a menu.
+/// </summary>
+public enum MBMenuPositioning
+{
+    /// <summary>
+    /// Positioned at absolute location relative to the menu button.
+    /// This is the default.
+    /// </summary>
+    Absolute,
+
+    /// <summary>
+    /// Position is relative to the document
+    /// </summary>
+    Document,
+
+    /// <summary>
+    /// Fixed position is relative to he document and will not scroll with underlying content
+    /// </summary>
+    Fixed,
+
+    /// <summary>
+    /// Popover position is on tpo of all other content
+    /// </summary>
+    Popover,
+
+    /// <summary>
+    /// 
+    /// </summary>
+    Relative
+}
+
+#endregion
+
 #region MBMenuSurfacePositioningMD2
 
 /// <summary>
