@@ -99,7 +99,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
+		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsScripts)" />

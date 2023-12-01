@@ -110,22 +110,3 @@ jobs:
 
     - name: Display wwwroot Ꙫ
       run: dir ${{github.workspace}}/Material.Blazor/wwwroot
-
-    # - name: Display MaterialBlazor package output Ꙫ
-    #   run: dir ${{env.outputWeb}}
-
-    # - name: Display MaterialBlazor package output wwwroot Ꙫ
-    #   run: dir ${{env.outputWeb}}/wwwroot
-
-    # - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
-    #   run: dir ${{env.outputWeb}}/wwwroot/_content
-
-    - name: Display MaterialBlazor package output wwwroot/_content Ꙫ
-      run: dir ${{env.outputWeb}}/wwwroot/_content/Material.Blazor
-
-    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v3
-      with:
-        name: siteWeb
-        path: siteWeb
-

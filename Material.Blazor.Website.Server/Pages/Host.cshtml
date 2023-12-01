@@ -80,7 +80,7 @@
     </div>
 
     <script src="_content/Material.Blazor/material.blazor.js"></script>
- 
+    <script src="_content/Material.Blazor.Website/js/material.blazor.website.js"></script>
     <script src="_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js"></script>
 
     @if (PlatformDetermination.IsBlazorServer)
@@ -90,8 +90,6 @@
     else
     {
         <script src="_framework/blazor.webassembly.js"></script>
-
-        <script>navigator.serviceWorker.register('service-worker.js');</script>
     }
 
 </body>

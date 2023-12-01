@@ -28,16 +28,11 @@ public partial class Index
         Runtime = RuntimeInformation.FrameworkDescription.ToString();
         Version = MBVersion.MaterialBlazorVersion();
     }
-
-
     private async Task NavigateToDocs()
     {
         var baseURI = NavigationManager.BaseUri;
         await JSRuntime.InvokeVoidAsync("open", $"{baseURI}docs", "_blank");
     }
-
-
-
     private void NavigateToButton()
     {
         NavigationManager.NavigateTo("anchor");

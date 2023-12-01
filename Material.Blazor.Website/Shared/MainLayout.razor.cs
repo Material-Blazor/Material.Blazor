@@ -17,7 +17,7 @@ namespace Material.Blazor.Website.Shared
 
         protected async Task ThemeSetterAsync(string theme)
         {
-            await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme, true);
+            await JsRuntime.InvokeAsync<object>("MaterialBlazorWebsite.MBTheme.setTheme", theme, true);
             Theme = theme;
             StateHasChanged();
         }
