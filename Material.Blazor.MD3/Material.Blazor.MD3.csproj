@@ -222,7 +222,7 @@
 		<Message Importance="high" Text="***** npm install (M.B.MD3 Event Scripts)" />
 		<Exec Command="npm install" />
 
-		<Message Importance="high" Text="***** npm run build-js-custom-events (M.B.MD3 Scripts)" />
+		<Message Importance="high" Text="***** npm run build-js-custom-events (M.B.MD3 Event Scripts)" />
 		<Exec Command="npm run build-js-custom-events" />
 
 	</Target>
