@@ -41,14 +41,18 @@ public sealed class MBButton : ComponentFoundation
             id,
             AppliedDisabled,
             ButtonStyle,
-            Label);
+            IconDescriptor,
+            IconIsTrailing,
+            Label,
+            null,
+            null);
     }
 
     #endregion
 
     #region BuildRenderTreeWorker
 
-    private static void BuildRenderTreeWorker(
+    public static void BuildRenderTreeWorker(
         RenderTreeBuilder builder,
         ref int rendSeq,
         MBCascadingDefaults cascadingDefaults,
@@ -58,7 +62,11 @@ public sealed class MBButton : ComponentFoundation
         string idString,
         bool appliedDisabled,
         MBButtonStyle? buttonStyle,
-        string label)
+        MBIconDescriptor iconDescriptor,
+        bool iconIsTrailing,
+        string label,
+        string formId,
+        string buttonValue)
     {
         var componentName = cascadingDefaults.AppliedButtonStyle(buttonStyle) switch
         {
@@ -83,6 +91,35 @@ public sealed class MBButton : ComponentFoundation
             if (appliedDisabled)
             {
                 builder.AddAttribute(rendSeq++, "disabled");
+            }
+
+            if (iconIsTrailing)
+            {
+                builder.AddAttribute(rendSeq++, "trailing-icon");
+            }
+
+            if (iconDescriptor is not null)
+            {
+                MBIcon.BuildRenderTreeWorker(
+                    builder,
+                    ref rendSeq,
+                    cascadingDefaults,
+                    null,
+                    "",
+                    "",
+                    "",
+                    iconDescriptor,
+                    "icon");
+            }
+
+            if (!string.IsNullOrWhiteSpace(formId))
+            {
+                builder.AddAttribute(rendSeq++, "form", formId);
+            }
+
+            if (!string.IsNullOrWhiteSpace(buttonValue))
+            {
+                builder.AddAttribute(rendSeq++, "value", buttonValue);
             }
 
             if (!string.IsNullOrWhiteSpace(label))

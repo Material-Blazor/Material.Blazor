@@ -29,23 +29,27 @@
 
                     <MBSwitch @bind-Value="@SwitchState1"
                               @bind-Value:after="@(() => ComponentValueChanged(SwitchState1, "Switch 1"))"
+                              style="margin-bottom: 4px; "
                               TrailingLabelPLUS="no icons" />
 
                     <MBSwitch @bind-Value="@SwitchState2"
                               @bind-Value:after="@(() => ComponentValueChanged(SwitchState2, "Switch 2"))"
                               Icons="true"
+                              style="margin-bottom: 4px; "
                               TrailingLabelPLUS="icons" />
 
                     <MBSwitch @bind-Value="@SwitchState3"
                               @bind-Value:after="@(() => ComponentValueChanged(SwitchState3, "Switch 3"))"
                               Icons="true"
                               ShowOnlySelectedIcon="true"
+                              style="margin-bottom: 4px; "
                               TrailingLabelPLUS="selected icon only" />
 
                     <MBSwitch @bind-Value="@SwitchState4"
                               @bind-Value:after="@(() => ComponentValueChanged(SwitchState4, "Switch 4"))"
                               Icons="true"
                               LeadingLabelPLUS="Leading label"
+                              style="margin-bottom: 4px; "
                               TrailingLabelPLUS="Trailing label" />
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -64,7 +68,8 @@
 
                     <p>
                         <MBSwitch @bind-Value="@TwoWayBindingState"
-                                  @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))" />
+                                  @bind-Value:after="@(() => ComponentValueChanged(TwoWayBindingState, "Two Way Binding Switch"))"
+                                  style="margin-bottom: 4px; "/>
                     </p>
                     <p>
                         <MBCheckbox @bind-Value="@TwoWayBindingState"

@@ -110,8 +110,50 @@ namespace Material.Blazor
                     }
                     builder.CloseElement();
                 }
+
+                if (ButtonItems is not null) 
+                {
+                    builder.OpenElement(rendSeq++, "div");
+                    {
+                        builder.AddAttribute(rendSeq++, "slot", "actions");
+
+                        foreach(var button in ButtonItems)
+                        {
+                            MBButton.BuildRenderTreeWorker(
+                                builder,
+                                ref rendSeq,
+                                CascadingDefaults,
+                                attributesToSplat,
+                                "",
+                                "",
+                                "",
+                                AppliedDisabled,
+                                button.ButtonStyle,
+                                null,
+                                false,
+                                button.ButtonLabel,
+                                FormId,
+                                button.ButtonValue);
+                                
+                        }
+                    }
+                    builder.CloseElement();
+                }
             }
             builder.CloseElement();
+        }
+
+        #endregion
+
+        #region OnAfterRenderAsync
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            if (firstRender)
+            {
+                await InvokeJsVoidAsync("MaterialBlazor.MBDialog.setDialogCloseEvent", DialogId).ConfigureAwait(false);
+            }
         }
 
         #endregion

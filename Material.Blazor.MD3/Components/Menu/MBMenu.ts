@@ -1,4 +1,5 @@
 ﻿import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
+//import { MdButton } from '@material/web/button/button';
 import { MdMenu } from '@material/web/menu/menu';
 
 function reportMenuCloseEvent() {
@@ -10,7 +11,7 @@ function reportMenuCloseEvent() {
 //}
 
 export function setMenuCloseEvent(menuID: string) {
-    const menuElement: any | null = document.getElementById(menuID);
+    const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
     if (menuElement != null) {
         console.log("Adding listener for menu-close events");
         menuElement.addEventListener('menu-close', () => { reportMenuCloseEvent(); });
@@ -23,9 +24,9 @@ function toggleMenu(menuElement: any) {
         menuElement.open = !menuElement.open;
     }
 }
-export function toggleMenuOpen(menuButtonID: string, menuID: string) {
+export function setToggleMenuOpen(menuButtonID: string, menuID: string) {
     const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
-    const menuElement: any | null = document.getElementById(menuID);
+    const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
     if ((buttonElement != null) && (menuElement != null)) {
         console.log("Adding listener for click events");
         buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });

@@ -307,7 +307,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
 //TODO -- Figure out the render issue with Blazor
 
-            //builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
+            builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
         }
         builder.CloseElement();
     }

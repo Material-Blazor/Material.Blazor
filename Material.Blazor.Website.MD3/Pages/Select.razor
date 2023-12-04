@@ -16,6 +16,7 @@
     </Description>
 
     <PageContent>
+
         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
@@ -53,43 +54,6 @@
 
 
 
-@*         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Icons &amp; Full Width Menu Surface
-                    </h2>
-
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries. Note how the menu surface is the same width as the select anchor.
-                    </h3>
-
-                    <p>
-                        <MBSelect @bind-Value="@Icon1"
-                                  IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)"
-                                  Items="KittenBreeds"
-                                  ItemValidation="@MBItemValidation.NoSelection"
-                                  Label="Filled With Icon"
-                                  LeadingIcon="print"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth"
-                                  SelectInputStyle="MBSelectInputStyle.Filled" />
-                    </p>
-                    <p>
-                        <MBSelect @bind-Value="@Icon2"
-                                  IconFoundry="@MBIconHelper.FAFoundry()"
-                                  Items="KittenBreeds"
-                                  ItemValidation="@MBItemValidation.NoSelection"
-                                  Label="Outlined With Icon"
-                                  LeadingIcon="fa-car-crash"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth"
-                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
-                    </p>
-                </Primary>
-            </MBCard>
-        </div>
- *@
-
-
         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
@@ -105,52 +69,18 @@
                         <MBSelect @bind-Value="@TwoWayBinding"
                                   Items="KittenBreeds"
                                   ItemValidation="@MBItemValidation.NoSelection"
-                                  Label="Two Way Binding" />
+                                  Label="Two Way Binding #1" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@TwoWayBinding"
                                   Items="KittenBreeds"
                                   ItemValidation="@MBItemValidation.NoSelection"
-                                  Label="Two Way Binding" />
+                                  Label="Two Way Binding #2" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
 
-
-
-@*         <div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Contents Alignment &amp; Fixed Menu Surface
-                    </h2>
-
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Left, center and right aligned text (not the same as right-to-left script). Note how the menu remains fixed as you scroll the page. Using the fixed menu surface position is
-                        particularly useful when a select menu might need to overflow its container, such as in a dialog: using a regular or full width menu surface variants in a dialog causes unwanted overflow results.
-                    </h3>
-
-                    <p>
-                        <MBSelect @bind-Value="@LeftAligned"
-                                  Items="KittenBreeds"
-                                  ItemValidation="@MBItemValidation.NoSelection"
-                                  Label="Left Aligned"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.Fixed"
-                                  TextAlignStyle="@MBTextAlignStyle.Left" />
-                    </p>
-                    <p>
-                        <MBSelect @bind-Value="@RightAligned"
-                                  Items="KittenBreeds"
-                                  ItemValidation="@MBItemValidation.NoSelection"
-                                  Label="Right Aligned"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioningMD2.Fixed"
-                                  TextAlignStyle="@MBTextAlignStyle.Right" />
-                    </p>
-                </Primary>
-            </Material.Blazor.MD2.MBCard>
-        </div>
- *@
 
 
         <div class="mdc-layout-grid__cell--span-4">
@@ -297,33 +227,6 @@
 
 
 
-        @*         <div class="mdc-layout-grid__cell--span-4">
-        <MBCard AutoStyled="true">
-        <Primary>
-        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-        Dynamically update Items
-        </h2>
-
-        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-        <code>Items</code> can by dynamically updated with the toggle button. Note that if you remove items from the list,
-        you must change <code>Value</code> accordingly to avoid exceptions if you have <code>ItemValidation="@MBItemValidation.Exception"</code>.
-        </h3>
-
-        <p>
-        <MBIconButtonToggle @bind-Value="@ExtendDynamicItems"
-        IconOn="remove"
-        IconOff="add" />
-        </p>
-        <p>
-        <MBSelect @bind-Value="@ExtendedValue"
-        Items="@DynamicItems"
-        ItemValidation="@MBItemValidation.DefaultToFirst"
-        Label="Items disabled" />
-        </p>
-        </Primary>
-        </MBCard>
-        </div>
-        *@
         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>

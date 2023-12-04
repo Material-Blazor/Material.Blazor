@@ -20,11 +20,13 @@ namespace Material.Blazor.Website.MD3.Pages
         new MBDialogButton
         {
           ButtonLabel = "apple",
+          ButtonStyle = MBButtonStyle.Outlined,
           ButtonValue = "apple"
         },
         new MBDialogButton
         {
           ButtonLabel = "orange",
+          ButtonStyle = MBButtonStyle.Outlined,
           ButtonValue = "orange"
         },
         };
