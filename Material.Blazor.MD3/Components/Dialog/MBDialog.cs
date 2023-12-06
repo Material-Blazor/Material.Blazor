@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.JSInterop;
 
 using System;
 using System.Collections.Generic;
@@ -53,8 +54,7 @@ namespace Material.Blazor
         private string DialogId { get; set; } = "dialog-id-" + Guid.NewGuid().ToString().ToLower();
         private string FormId { get; set; } = "form-id-" + Guid.NewGuid().ToString().ToLower();
         private bool IsOpen { get; set; }
-        private TaskCompletionSource OpenedTaskCompletionSource { get; set; } = new();
-        internal Task Opened => OpenedTaskCompletionSource.Task;
+        private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
 
         #endregion
 
@@ -111,13 +111,13 @@ namespace Material.Blazor
                     builder.CloseElement();
                 }
 
-                if (ButtonItems is not null) 
+                if (ButtonItems is not null)
                 {
                     builder.OpenElement(rendSeq++, "div");
                     {
                         builder.AddAttribute(rendSeq++, "slot", "actions");
 
-                        foreach(var button in ButtonItems)
+                        foreach (var button in ButtonItems)
                         {
                             MBButton.BuildRenderTreeWorker(
                                 builder,
@@ -134,7 +134,7 @@ namespace Material.Blazor
                                 button.ButtonLabel,
                                 FormId,
                                 button.ButtonValue);
-                                
+
                         }
                     }
                     builder.CloseElement();
@@ -145,15 +145,52 @@ namespace Material.Blazor
 
         #endregion
 
-        #region OnAfterRenderAsync
+        #region Dispose
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
         {
-            await base.OnAfterRenderAsync(firstRender);
-            if (firstRender)
+            if (_disposed)
             {
-                await InvokeJsVoidAsync("MaterialBlazor.MBDialog.setDialogCloseEvent", DialogId).ConfigureAwait(false);
+                return;
             }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
+        }
+
+        #endregion
+
+        #region NotifyClosed
+
+        /// <summary>
+        /// Do not use. This method is used internally for receiving the "dialog closed" event from javascript.
+        /// </summary>
+        [JSInvokable]
+        public async Task NotifyClosed(string reason)
+        {
+            _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
+            // Allow enough time for the dialog closing animation before re-rendering
+            //await Task.Delay(150);
+            IsOpen = false;
+            await InvokeAsync(StateHasChanged);
+        }
+
+        #endregion
+
+        #region OnInitializedAsync
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            ObjectReference = DotNetObjectReference.Create(this);
         }
 
         #endregion
@@ -172,10 +209,23 @@ namespace Material.Blazor
             }
             else
             {
-                await InvokeJsVoidAsync("MaterialBlazor.MBDialog.dialogShow", DialogId).ConfigureAwait(false);
                 CloseReasonTaskCompletionSource = new();
-                OpenedTaskCompletionSource = new();
-                IsOpen = true;
+
+                try
+                {
+                    await InvokeJsVoidAsync(
+                        "MaterialBlazor.MBDialog.dialogShow",
+                        DialogId,
+                        ObjectReference,
+                        EscapeKeyAction,
+                        ScrimClickAction).ConfigureAwait(false);
+                    IsOpen = true;
+                }
+                catch
+                {
+                    _ = CloseReasonTaskCompletionSource?.TrySetCanceled();
+
+                }
                 return await CloseReasonTaskCompletionSource.Task;
             }
         }

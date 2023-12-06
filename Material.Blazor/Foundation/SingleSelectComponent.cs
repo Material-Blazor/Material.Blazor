@@ -60,7 +60,7 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
                 }
             }
 
-            AllowNextShouldRender();
+            AllowNextRender();
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
     }
@@ -89,7 +89,7 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
             {
                 case MBItemValidation.DefaultToFirst:
                     var defaultValue = items.FirstOrDefault().SelectedValue;
-                    AllowNextShouldRender();
+                    AllowNextRender();
                     return (true, defaultValue);
 
                 case MBItemValidation.Exception:
@@ -97,7 +97,7 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
                     throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
                 case MBItemValidation.NoSelection:
-                    AllowNextShouldRender();
+                    AllowNextRender();
                     return (false, default);
             }
         }

@@ -123,6 +123,20 @@
                  ScrollTarget="#main-content"
                  TopAppBarType="@MBTopAppBarTypeMD2.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <MBIconButton @onclick="@OpenMenuAsync"
+                          IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                color: "white",
+                                name: "more_vert")"
+                          IconButtonStyle="@MBIconButtonStyle.Icon" />
+
+            <div class="mdc-menu-surface--anchor">
+                <Material.Blazor.MD2.MBMenu @ref="Menu" @key="@Theme">
+                    <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "material-default-theme")" @onclick="@(() => ThemeSetterAsync("material-default-theme"))" />
+                    <MBListItem Label="Material Alternate Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "material-alternate-theme")" @onclick="@(() => ThemeSetterAsync("material-alternate-theme"))" />
+                </Material.Blazor.MD2.MBMenu>
+            </div>
+        </section>
     </MBTopAppBar>
 
     <main class="main-content" id="main-content">

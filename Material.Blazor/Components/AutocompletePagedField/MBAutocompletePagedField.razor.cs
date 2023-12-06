@@ -144,7 +144,7 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

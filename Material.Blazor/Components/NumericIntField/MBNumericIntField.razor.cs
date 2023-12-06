@@ -139,6 +139,6 @@ public partial class MBNumericIntField : InputComponent<int>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 }

@@ -136,7 +136,7 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

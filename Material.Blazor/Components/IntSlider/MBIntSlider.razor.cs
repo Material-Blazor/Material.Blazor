@@ -63,6 +63,6 @@ public partial class MBIntSlider : InputComponent<int>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 }

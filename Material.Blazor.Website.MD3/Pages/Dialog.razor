@@ -145,7 +145,8 @@
             <Body>
                 <p>Please choose a fruit.</p>
                 <MBCheckbox @bind-Value="@Check"
-                            Label="Tangerine" />
+                            TrailingLabelPLUS="Random checkbox"
+                            style="margin-bottom: 16px; "/>
                 <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
                                     Items="@CatBreedItems"
                                     ItemValidation="@MBItemValidation.DefaultToFirst"

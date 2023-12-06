@@ -195,6 +195,6 @@ public partial class MBNumericDoubleField : InputComponent<double>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 }

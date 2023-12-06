@@ -1,0 +1,26 @@
+﻿// stylelint-disable scss/dollar-variable-pattern
+
+@use "sass:color";
+
+@use "@material/theme" with ( 
+    $primary: #90caf9,
+    $secondary: #ffcc80,
+    $error: #ef9a9a, 
+    $background: #263238, 
+    $surface: #37474f, );
+
+@use "./_material-components-web";
+@use "./_app";
+
+:root {
+    --md-sys-color-primary: #006A6A;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #6FF7F6;
+    --md-sys-color-on-primary-container: #002020;
+    --md-ref-typeface-brand: 'Open Sans';
+    --md-ref-typeface-plain: 'Montserrat';
+    --md-sys-typescale-headline-font: 'Montserrat';
+    --md-sys-typescale-title-font: 'system-ui';
+}
+
+@include app.app-classes();

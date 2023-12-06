@@ -145,7 +145,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
             DaysOfWeek = DaysOfWeek.Skip(rotate_by).Concat(DaysOfWeek.Take(rotate_by)).ToArray();
         }
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

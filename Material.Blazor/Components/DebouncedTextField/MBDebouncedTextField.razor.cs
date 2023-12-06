@@ -101,7 +101,7 @@ public partial class MBDebouncedTextField : InputComponent<string>
     {
         await base.OnInitializedAsync();
         CurrentValue = Value;
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

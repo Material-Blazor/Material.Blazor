@@ -217,7 +217,7 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
         }
 
         // Required for MBNumericIntField to work
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

@@ -62,6 +62,6 @@ public partial class MBSlidingTabBar<TItem> : InputComponent<int>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 }
