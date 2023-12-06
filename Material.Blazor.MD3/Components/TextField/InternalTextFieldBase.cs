@@ -141,12 +141,6 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     private string DisplayLabel => Label + LabelSuffix;
 
-    /// <summary>
-    /// The <code>@ref</code> reference for the top level <code>&lt;label&gt;</code> code block with
-    /// class <code>mdc-text-field</code>
-    /// </summary>
-    internal ElementReference ElementReference { get; set; }
-
     private string LabelSuffix { get; set; } = "";
 
     private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
@@ -159,6 +153,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
+    private string TextFieldId { get; set; }
 
 
 
@@ -184,6 +179,8 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
+        TextFieldId = "textfield-id-" + Guid.NewGuid().ToString().ToLower();
+
         var attributesToSplat = AttributesToSplat().ToArray();
         var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
@@ -195,119 +192,121 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             _ => throw new System.Exception("Unknown TextInputStyle")
         };
 
-        builder.OpenElement(rendSeq++, componentName);
+        builder.OpenElement(rendSeq++, "span");
         {
-            if (attributesToSplat.Any())
-            {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
-            }
-
-            if (AppliedDisabled)
-            {
-                builder.AddAttribute(rendSeq++, "disabled");
-            }
-
             builder.AddAttribute(rendSeq++, "class", cssClass);
             builder.AddAttribute(rendSeq++, "style", style);
             builder.AddAttribute(rendSeq++, "id", id);
 
-            builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
-            builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
-            builder.SetUpdatesAttributeName("value");
-
-
-            builder.AddAttribute(rendSeq++, "label", DisplayLabel);
-
-            if (!string.IsNullOrWhiteSpace(Prefix))
+            builder.OpenElement(rendSeq++, componentName);
             {
-                builder.AddAttribute(rendSeq++, "prefixText", Prefix);
-            }
-
-            if (!string.IsNullOrWhiteSpace(Suffix))
-            {
-                builder.AddAttribute(rendSeq++, "suffixText", Suffix);
-            }
-
-            if (!string.IsNullOrWhiteSpace(SupportingText))
-            {
-                builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
-            }
-
-            if (LeadingIcon is not null)
-            {
-                if (LeadingToggleIcon is null)
+                if (attributesToSplat.Any())
                 {
-                    MBIcon.BuildRenderTreeWorker(
-                        builder,
-                        ref rendSeq,
-                        CascadingDefaults,
-                        null,
-                        "",
-                        "",
-                        "",
-                        LeadingIcon,
-                        "leading-icon");
+                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
-                else
+
+                if (AppliedDisabled)
                 {
-                    MBIconButton.BuildRenderTreeWorker(
-                        builder,
-                        ref rendSeq,
-                        CascadingDefaults,
-                        null,
-                        "",
-                        "",
-                        "",
-                        AppliedDisabled,
-                        MBIconButtonStyle.Icon,
-                        LeadingIcon,
-                        LeadingToggleIcon,
-                        LeadingToggleIconButtonLink,
-                        LeadingToggleIconButtonLinkTarget,
-                        LeadingToggleIconSelected,
-                        "leading-icon");
+                    builder.AddAttribute(rendSeq++, "disabled");
+                }
+
+                builder.AddAttribute(rendSeq++, "id", TextFieldId);
+
+                builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
+                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+                builder.SetUpdatesAttributeName("value");
+
+
+                builder.AddAttribute(rendSeq++, "label", DisplayLabel);
+
+                if (!string.IsNullOrWhiteSpace(Prefix))
+                {
+                    builder.AddAttribute(rendSeq++, "prefixText", Prefix);
+                }
+
+                if (!string.IsNullOrWhiteSpace(Suffix))
+                {
+                    builder.AddAttribute(rendSeq++, "suffixText", Suffix);
+                }
+
+                if (!string.IsNullOrWhiteSpace(SupportingText))
+                {
+                    builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
+                }
+
+                if (LeadingIcon is not null)
+                {
+                    if (LeadingToggleIcon is null)
+                    {
+                        MBIcon.BuildRenderTreeWorker(
+                            builder,
+                            ref rendSeq,
+                            CascadingDefaults,
+                            null,
+                            "",
+                            "",
+                            "",
+                            LeadingIcon,
+                            "leading-icon");
+                    }
+                    else
+                    {
+                        MBIconButton.BuildRenderTreeWorker(
+                            builder,
+                            ref rendSeq,
+                            CascadingDefaults,
+                            null,
+                            "",
+                            "",
+                            "",
+                            AppliedDisabled,
+                            MBIconButtonStyle.Icon,
+                            LeadingIcon,
+                            LeadingToggleIcon,
+                            LeadingToggleIconButtonLink,
+                            LeadingToggleIconButtonLinkTarget,
+                            LeadingToggleIconSelected,
+                            "leading-icon");
+                    }
+                }
+
+                if (TrailingIcon is not null)
+                {
+                    if (TrailingToggleIcon is null)
+                    {
+                        MBIcon.BuildRenderTreeWorker(
+                            builder,
+                            ref rendSeq,
+                            CascadingDefaults,
+                            null,
+                            "",
+                            "",
+                            "",
+                            TrailingIcon,
+                            "trailing-icon");
+                    }
+                    else
+                    {
+                        MBIconButton.BuildRenderTreeWorker(
+                            builder,
+                            ref rendSeq,
+                            CascadingDefaults,
+                            null,
+                            "",
+                            "",
+                            "",
+                            AppliedDisabled,
+                            MBIconButtonStyle.Icon,
+                            TrailingIcon,
+                            TrailingToggleIcon,
+                            TrailingToggleIconButtonLink,
+                            TrailingToggleIconButtonLinkTarget,
+                            TrailingToggleIconSelected,
+                            "trailing-icon");
+                    }
                 }
             }
-
-            if (TrailingIcon is not null)
-            {
-                if (TrailingToggleIcon is null)
-                {
-                    MBIcon.BuildRenderTreeWorker(
-                        builder,
-                        ref rendSeq,
-                        CascadingDefaults,
-                        null,
-                        "",
-                        "",
-                        "",
-                        TrailingIcon,
-                        "trailing-icon");
-                }
-                else
-                {
-                    MBIconButton.BuildRenderTreeWorker(
-                        builder,
-                        ref rendSeq,
-                        CascadingDefaults,
-                        null,
-                        "",
-                        "",
-                        "",
-                        AppliedDisabled,
-                        MBIconButtonStyle.Icon,
-                        TrailingIcon,
-                        TrailingToggleIcon,
-                        TrailingToggleIconButtonLink,
-                        TrailingToggleIconButtonLinkTarget,
-                        TrailingToggleIconSelected,
-                        "trailing-icon");
-                }
-            }
-
-//TODO -- Figure out the render issue with Blazor
-
-            builder.AddElementReferenceCapture(rendSeq++, __value => ElementReference = __value);
+            builder.CloseElement();
         }
         builder.CloseElement();
     }
@@ -380,7 +379,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     /// <returns></returns>
     internal async Task SelectFieldContent()
     {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", ElementReference).ConfigureAwait(false);
+        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", TextFieldId).ConfigureAwait(false);
     }
 
     #endregion
