@@ -15,7 +15,7 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 #nullable enable annotations
 
     /// <summary>
-    /// The datetime can optionally supress the time portion and just
+    /// The datetime can optionally suppress the time portion and just
     /// return dates (at midnight)
     /// </summary>
     [Parameter] public bool DateOnly { get; set; } = false;
@@ -133,7 +133,7 @@ public partial class MBDateTimeField : InputComponent<DateTime>
         //      DateOnly
         //      MaxDate
         //      MinDate
-        //      SupressDefaultDate
+        //      SuppressDefaultDate
 
         await base.OnInitializedAsync();
 
