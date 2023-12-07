@@ -184,7 +184,7 @@ namespace Material.Blazor
         /// <summary>
         /// Hides the dialog by having Material Web close the dialog.
         /// </summary>
-        public async Task HideAsync()
+        public async Task HideAsync(string dialogValue)
         {
             if (!IsOpen)
             {
@@ -194,7 +194,8 @@ namespace Material.Blazor
             {
                 await InvokeJsVoidAsync(
                     "MaterialBlazor.MBDialog.dialogClose",
-                    DialogId).ConfigureAwait(false);
+                    DialogId,
+                    dialogValue).ConfigureAwait(false);
             }
         }
 

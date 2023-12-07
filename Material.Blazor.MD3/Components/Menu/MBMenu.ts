@@ -2,19 +2,18 @@
 //import { MdButton } from '@material/web/button/button';
 import { MdMenu } from '@material/web/menu/menu';
 
-function reportMenuCloseEvent() {
-    console.log("Menu close event");
-}
-
-//function reportMenuCloseEvent(cme: CloseMenuEvent) {
-//    console.log("Menu close event");
-//}
-
 export function setMenuCloseEvent(menuID: string) {
     const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
     if (menuElement != null) {
         console.log("Adding listener for menu-close events");
-        menuElement.addEventListener('menu-close', () => { reportMenuCloseEvent(); });
+        menuElement.addEventListener('menu-close', event => {
+            console.log("Menu close event");
+            console.log("Event: " + event.currentTarget);
+        //    event.preventDefault(); // Stop cancellation gestures from closing dialog
+        //    if (dialogElement._gestureCancellation) {
+        //        dialogElement.close('cancel'); // Update `returnValue` to handle cancellation logic
+        //    }
+        });
     }
 }
 

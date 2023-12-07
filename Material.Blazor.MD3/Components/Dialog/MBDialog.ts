@@ -27,6 +27,6 @@ export function dialogShow(dialogID: string, dotNetObject: any, gestureCancellat
     }
 }
 
-export function dialogClose(dialogID: string) {
-    (document.getElementById(dialogID) as MdDialog)?.close("cancel");
+export function dialogClose(dialogID: string, dialogValue: string) {
+    (document.getElementById(dialogID) as MdDialog)?.close(dialogValue);
 }

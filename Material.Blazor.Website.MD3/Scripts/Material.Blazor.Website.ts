@@ -1,4 +1,4 @@
-﻿import * as MBTheme from '../Scripts/MBTheme';
+﻿import * as MBTheme from '../Scripts/_MBTheme';
 
 (<any>window).MaterialBlazorWebsite = {
     MBTheme

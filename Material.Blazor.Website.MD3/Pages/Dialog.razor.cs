@@ -103,8 +103,8 @@ namespace Material.Blazor.Website.MD3.Pages
         private async Task DialogLogonFormSubmitted()
         {
             await Task.CompletedTask;
-            await DialogLogon.HideAsync();
-            ToastService.ShowToast(heading: "Logon Dialog Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+            await DialogLogon.HideAsync("submit");
+            // notification will come from the Show completion
         }
 
         private void DialogLogonFormInvalid()
@@ -114,7 +114,7 @@ namespace Material.Blazor.Website.MD3.Pages
 
         private async Task DialogLogonFormCanceled()
         {
-            await DialogLogon.HideAsync();
+            await DialogLogon.HideAsync("cancel");
             // notification will come from the Show completion
         }
 

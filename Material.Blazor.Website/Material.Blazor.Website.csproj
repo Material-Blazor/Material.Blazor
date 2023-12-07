@@ -65,7 +65,6 @@
 		<OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsStyles Remove="Styles\_app.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
