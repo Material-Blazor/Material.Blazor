@@ -480,8 +480,8 @@ jobs:
     # - name: Display workspace Ꙫ
     #   run: dir ${{github.workspace}}
 
-    - name: Display wwwroot Ꙫ
-      run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
+    # - name: Display wwwroot Ꙫ
+    #   run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
 
     # - name: Display MaterialBlazorMD3 package output Ꙫ
     #   run: dir ${{env.outputWebMD3}}
