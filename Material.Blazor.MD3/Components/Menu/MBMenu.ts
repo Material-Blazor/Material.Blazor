@@ -9,6 +9,7 @@ export function setMenuCloseEvent(menuID: string) {
         menuElement.addEventListener('menu-close', event => {
             console.log("Menu close event");
             console.log("Event: " + event.currentTarget);
+            console.log("Event: " + event.currentTarget);
         //    event.preventDefault(); // Stop cancellation gestures from closing dialog
         //    if (dialogElement._gestureCancellation) {
         //        dialogElement.close('cancel'); // Update `returnValue` to handle cancellation logic

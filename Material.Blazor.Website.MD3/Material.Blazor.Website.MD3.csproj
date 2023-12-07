@@ -49,31 +49,6 @@
 		<ProjectReference Include="..\Material.Blazor.MD3\Material.Blazor.MD3.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
-		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
-		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
-		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsScripts Include="scripts\*.ts" />
-		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
-		<!--Keep this Remove/Include pair-->
-		<Content Remove="@(OutputStaticAssetsScripts)" />
-		<Content Include="@(OutputStaticAssetsScripts)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsStyles Include="styles\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;wwwroot\css\material-alternate-theme.min.css;" />
-		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<InputStaticAssetsScripts Remove="Scripts\_MBTheme.ts" />
-		<InputStaticAssetsStyles Remove="Styles\_app.scss" />
-		<InputStaticAssetsStyles Remove="Styles\_material-components-web.scss" />
-		<Content Include="@(OutputStaticAssetsStyles)" />
-	</ItemGroup>
-
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
@@ -94,6 +69,29 @@
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
 	</Target>
+
+	<ItemGroup>
+		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
+		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsScripts Include="scripts\*.ts" />
+		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsScripts)" />
+		<Content Include="@(OutputStaticAssetsScripts)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsStyles Include="styles\*.scss;" />
+		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;wwwroot\css\material-alternate-theme.min.css;" />
+		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<InputStaticAssetsScripts Remove="Scripts\_MBTheme.ts" />
+		<Content Include="@(OutputStaticAssetsStyles)" />
+	</ItemGroup>
 
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W.MD3 Scripts)" />

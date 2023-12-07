@@ -463,6 +463,12 @@ jobs:
       with:
         dotnet-version: '8.x'
 
+    - name: Display wwwroot M.B.MD3
+      run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
+
+    - name: Display wwwroot M.B.W.MD3
+      run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot
+
     - name: Build  & Publish Website 🔧
       run: >
         dotnet publish ${{env.projectWebMD3}}
@@ -480,8 +486,11 @@ jobs:
     # - name: Display workspace Ꙫ
     #   run: dir ${{github.workspace}}
 
-    - name: Display wwwroot Ꙫ
+    - name: Display wwwroot M.B.MD3
       run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
+
+    - name: Display wwwroot M.B.W.MD3
+      run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot
 
     # - name: Display MaterialBlazorMD3 package output Ꙫ
     #   run: dir ${{env.outputWebMD3}}

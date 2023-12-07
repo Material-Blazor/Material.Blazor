@@ -32,7 +32,6 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<None Include="Components\Menu\MBMenuEvents.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -74,30 +73,6 @@
 		<None Update="Scripts\material.blazor.ts">
 			<SubType>Code</SubType>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\material.blazor.ts" />
-		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
-		<!--Keep this Remove/Include pair-->
-		<Content Remove="@(OutputStaticAssetsScripts)" />
-		<Content Include="@(OutputStaticAssetsScripts)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsEventScripts Include="scripts\material.blazor.custom.events.ts" />
-		<OutputStaticAssetsEventScripts Include="wwwroot\material.blazor.md3.lib.module.js" />
-		<!--Keep this Remove/Include pair-->
-		<Content Remove="@(OutputStaticAssetsEventScripts)" />
-		<Content Include="@(OutputStaticAssetsEventScripts)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsStyles Include="components\**\*.scss;styles\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
-		<!--Keep this Remove/Include pair-->
-		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -184,6 +159,30 @@
 			</Code>
 		</Task>
 	</UsingTask>
+
+	<ItemGroup>
+		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\material.blazor.ts" />
+		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsScripts)" />
+		<Content Include="@(OutputStaticAssetsScripts)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsEventScripts Include="scripts\material.blazor.custom.events.ts" />
+		<OutputStaticAssetsEventScripts Include="wwwroot\material.blazor.md3.lib.module.js" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsEventScripts)" />
+		<Content Include="@(OutputStaticAssetsEventScripts)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsStyles Include="components\**\*.scss;styles\*.scss;" />
+		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<Content Include="@(OutputStaticAssetsStyles)" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
