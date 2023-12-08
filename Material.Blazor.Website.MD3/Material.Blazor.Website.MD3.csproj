@@ -121,8 +121,8 @@
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
 		<!--Build minified themes-->
-		<!--<Message Importance="high" Text="***** build material alternate theme (M.B.W.MD3 Styles)" />
-		<Exec Command="npm run build-min-material-alternate" />-->
+		<Message Importance="high" Text="***** build material alternate theme (M.B.W.MD3 Styles)" />
+		<Exec Command="npm run build-min-material-alternate" />
 
 		<Message Importance="high" Text="***** build material default theme (M.B.W.MD3 Styles)" />
 		<Exec Command="npm run build-min-material-default" />
