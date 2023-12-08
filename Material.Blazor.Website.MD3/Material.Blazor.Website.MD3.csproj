@@ -98,11 +98,11 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W.MD3 Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
 
-		<!--<Message Importance="high" Text="***** npm run build-js (M.B.W.MD3 Scripts)" />
+		<Message Importance="high" Text="***** npm run build-js (M.B.W.MD3 Scripts)" />
 		<Exec Command="npm run build-js" />
 
 		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W.MD3 Scripts)" />
-		<Exec Command="npm run build-js-minify" />-->
+		<Exec Command="npm run build-js-minify" />
 
 	</Target>
 
