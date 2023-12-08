@@ -80,7 +80,8 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+		<Message Importance="high" Text="***** npm install (M.B.MD3)" />
+		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
 	</Target>
@@ -137,9 +138,6 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.MD3 Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install (M.B.MD3 Scripts)" />
-		<Exec Command="npm install" />
-
 		<Message Importance="high" Text="***** npm install @material/web@nightly (M.B.MD3 Scripts)" />
 		<Exec Command="npm install @material/web@nightly" />
 
@@ -155,9 +153,6 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.MD3 Event Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install (M.B.MD3 Event Scripts)" />
-		<Exec Command="npm install" />
-
 		<Message Importance="high" Text="***** npm run build-js-custom-events (M.B.MD3 Event Scripts)" />
 		<Exec Command="npm run build-js-custom-events" />
 
@@ -166,9 +161,6 @@
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot (M.B.MD3 Styles)" />
 		<MakeDir Directories="wwwroot" />
-
-		<Message Importance="high" Text="***** npm install (M.B.MD3 Styles)" />
-		<Exec Command="npm install" />
 
 		<!--<Message Importance="high" Text="***** downloadfiles" />
 		

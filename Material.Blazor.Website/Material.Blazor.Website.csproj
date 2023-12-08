@@ -73,6 +73,7 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+		<Message Importance="high" Text="***** npm install (M.B.W)" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
@@ -96,9 +97,6 @@
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
-
-		<Message Importance="high" Text="***** npm install (M.B.W Scripts)" />
-		<Exec Command="npm install" />
 
 		<Message Importance="high" Text="***** npm run build-js (M.B.W Scripts)" />
 		<Exec Command="npm run build-js" />

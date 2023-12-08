@@ -120,7 +120,8 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+		<Message Importance="high" Text="***** npm install (M.B)" />
+		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
 	</Target>
@@ -214,9 +215,6 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install (M.B Scripts)" />
-		<Exec Command="npm install" />
-
 		<Message Importance="high" Text="***** npm run build-js (M.B Scripts)" />
 		<Exec Command="npm run build-js" />
 
@@ -231,9 +229,6 @@
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
 		<MakeDir Directories="wwwroot" />
-
-		<Message Importance="high" Text="***** npm install (M.B Styles)" />
-		<Exec Command="npm install" />
 
 		<!--
 		<Message Importance="high" Text="***** downloadfiles" />

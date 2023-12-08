@@ -50,6 +50,7 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+		<Message Importance="high" Text="***** npm install (M.B.W.MD3)" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
@@ -97,10 +98,7 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W.MD3 Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
 
-		<!--<Message Importance="high" Text="***** npm install (M.B.W.MD3 Scripts)" />
-		<Exec Command="npm install" />
-
-		<Message Importance="high" Text="***** npm run build-js (M.B.W.MD3 Scripts)" />
+		<!--<Message Importance="high" Text="***** npm run build-js (M.B.W.MD3 Scripts)" />
 		<Exec Command="npm run build-js" />
 
 		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W.MD3 Scripts)" />
