@@ -492,11 +492,11 @@ jobs:
     # - name: Display workspace Ꙫ
     #   run: dir ${{github.workspace}}
 
-    - name: Display wwwroot M.B.MD3
-      run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
+    # - name: Display wwwroot M.B.MD3
+    #   run: dir ${{github.workspace}}/Material.Blazor.MD3/wwwroot
 
-    - name: Display wwwroot M.B.W.MD3
-      run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot
+    # - name: Display wwwroot M.B.W.MD3
+    #   run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot
 
     # - name: Display MaterialBlazorMD3 package output Ꙫ
     #   run: dir ${{env.outputWebMD3}}
@@ -507,8 +507,8 @@ jobs:
     # - name: Display MaterialBlazorMD3 package output wwwroot _content Ꙫ
     #   run: dir ${{env.outputWebMD3}}/wwwroot/_content
 
-    - name: Display MaterialBlazorMD3 package output wwwroot _content Material.Blazor.MD3 Ꙫ
-      run: dir ${{env.outputWebMD3}}/wwwroot/_content/Material.Blazor.MD3
+    # - name: Display MaterialBlazorMD3 package output wwwroot _content Material.Blazor.MD3 Ꙫ
+    #   run: dir ${{env.outputWebMD3}}/wwwroot/_content/Material.Blazor.MD3
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v3
