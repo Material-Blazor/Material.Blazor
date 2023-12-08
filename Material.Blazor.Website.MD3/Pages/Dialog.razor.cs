@@ -29,6 +29,12 @@ namespace Material.Blazor.Website.MD3.Pages
           ButtonStyle = MBButtonStyle.Outlined,
           ButtonValue = "orange"
         },
+        new MBDialogButton
+        {
+          ButtonLabel = "tangerine",
+          ButtonStyle = MBButtonStyle.Outlined,
+          ButtonValue = "tangerine"
+        },
         };
 
         private bool Check { get; set; }
