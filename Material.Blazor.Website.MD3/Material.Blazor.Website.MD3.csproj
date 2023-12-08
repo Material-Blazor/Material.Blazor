@@ -77,44 +77,36 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
-	<!--<ItemGroup>
+	<ItemGroup>
 		<InputStaticAssetsScripts Include="scripts\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
-		--><!--Keep this Remove/Include pair--><!--
+		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
-	</ItemGroup>-->
-
-	<!--<ItemGroup>
-		<InputStaticAssetsStyles Include="styles\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;wwwroot\css\material-alternate-theme.min.css;" />
-		--><!--Keep this Remove/Include pair--><!--
-		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<Content Include="@(OutputStaticAssetsStyles)" />
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="styles\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;" />
+		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;wwwroot\css\material-alternate-theme.min.css;" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
-	<!--<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W.MD3 Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
 
-		<Message Importance="high" Text="***** npm install (M.B.W.MD3 Scripts)" />
+		<!--<Message Importance="high" Text="***** npm install (M.B.W.MD3 Scripts)" />
 		<Exec Command="npm install" />
 
 		<Message Importance="high" Text="***** npm run build-js (M.B.W.MD3 Scripts)" />
 		<Exec Command="npm run build-js" />
 
 		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W.MD3 Scripts)" />
-		<Exec Command="npm run build-js-minify" />
+		<Exec Command="npm run build-js-minify" />-->
 
-	</Target>-->
+	</Target>
 
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W.MD3 Styles)" />
