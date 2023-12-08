@@ -50,7 +50,7 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Message Importance="high" Text="***** npm install (M.B.W.MD3)" />
+		<Message Importance="high" Text="***** Building M.B.W.MD3" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
@@ -74,24 +74,17 @@
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
-		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
-		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
+<!--	
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="scripts\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
-		<!--Keep this Remove/Include pair-->
+		-->
+	    <!-- Keep this Remove/Include pair -->
+	<!--
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsStyles Include="styles\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;wwwroot\css\material-alternate-theme.min.css;" />
-		<!--Keep this Remove/Include pair-->
-		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
@@ -105,6 +98,20 @@
 		<Exec Command="npm run build-js-minify" />
 
 	</Target>
+-->
+
+	<ItemGroup>
+		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InputStaticAssetsStyles Include="styles\*.scss;" />
+		<OutputStaticAssetsStyles Include="wwwroot\css\material-default-theme.min.css;wwwroot\css\material-alternate-theme.min.css;" />
+		<!--Keep this Remove/Include pair-->
+		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<Content Include="@(OutputStaticAssetsStyles)" />
+	</ItemGroup>
 
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W.MD3 Styles)" />
