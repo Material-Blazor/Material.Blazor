@@ -76,10 +76,13 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
 	</ItemGroup>
 
+<!--	
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="scripts\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
+-->
 	    <!-- Keep this Remove/Include pair -->
+<!--
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
 	</ItemGroup>
@@ -95,6 +98,7 @@
 		<Exec Command="npm run build-js-minify" />
 
 	</Target>
+-->
 
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
