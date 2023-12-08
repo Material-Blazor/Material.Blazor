@@ -93,7 +93,7 @@
 		<Message Importance="high" Text="**********************************************************************************" />
 	</Target>
 
-	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+	<!--<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W.MD3 Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
 
@@ -106,7 +106,7 @@
 		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W.MD3 Scripts)" />
 		<Exec Command="npm run build-js-minify" />
 
-	</Target>
+	</Target>-->
 
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W.MD3 Styles)" />
