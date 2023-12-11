@@ -24,7 +24,7 @@
     "@babel/plugin-transform-class-properties": "^7.23.3",
     "@babel/plugin-transform-object-rest-spread": "^7.23.4",
     "@babel/plugin-transform-runtime": "^7.23.4",
-    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-env": "^7.23.6",
     "@babel/preset-typescript": "^7.23.3",
     "@material/web": "^1.0.2-nightly.77fd177.0",
     "babel-loader": "^9.1.3",
