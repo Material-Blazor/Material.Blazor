@@ -463,14 +463,14 @@ jobs:
       with:
         dotnet-version: '8.x'
 
-    - name: Display wwwroot M.B.W.MD3
-      run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot
+    # - name: Display wwwroot M.B.W.MD3
+    #   run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot
 
-    - name: Display wwwroot/icons M.B.W.MD3
-      run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot/icons
+    # - name: Display wwwroot/icons M.B.W.MD3
+    #   run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot/icons
 
-    - name: Display wwwroot/images M.B.W.MD3
-      run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot/images
+    # - name: Display wwwroot/images M.B.W.MD3
+    #   run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot/images
 
     - name: Build  & Publish Website 🔧
       run: >

@@ -16,4 +16,8 @@
 		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+	</PropertyGroup>
+
 </Project>

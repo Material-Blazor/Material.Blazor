@@ -120,7 +120,7 @@
 	</ItemGroup>
 
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Message Importance="high" Text="***** npm install (M.B)" />
+		<Message Importance="high" Text="***** Building M.B" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>

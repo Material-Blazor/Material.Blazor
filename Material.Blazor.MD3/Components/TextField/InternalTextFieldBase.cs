@@ -26,7 +26,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
     #region cascading parameters
 
-    //[CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
+    [CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
 
     #endregion
 
@@ -182,10 +182,72 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         TextFieldId = "textfield-id-" + Guid.NewGuid().ToString().ToLower();
 
         var attributesToSplat = AttributesToSplat().ToArray();
-        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
 
         var rendSeq = 0;
-        var componentName = CascadingDefaults.AppliedStyle(TextInputStyle) switch
+
+        BuildRenderTreeWorker(
+            builder,
+            ref rendSeq,
+            CascadingDefaults,
+            TextInputStyle,
+            TextAlignStyle,
+            attributesToSplat,
+            Density,
+            @class,
+            style,
+            TextFieldId,
+            AppliedDisabled,
+            Value,
+            ValueChanged,
+            DisplayLabel,
+            Prefix,
+            Suffix,
+            SupportingText,
+            LeadingIcon,
+            LeadingToggleIcon,
+            LeadingToggleIconButtonLink,
+            LeadingToggleIconButtonLinkTarget,
+            LeadingToggleIconSelected,
+            LeadingIcon,
+            TrailingToggleIcon,
+            TrailingToggleIconButtonLink,
+            TrailingToggleIconButtonLinkTarget,
+            TrailingToggleIconSelected
+            );
+    }
+
+
+    public static void BuildRenderTreeWorker(
+        RenderTreeBuilder builder,
+        ref int rendSeq,
+        MBCascadingDefaults cascadingDefaults,
+        MBTextInputStyle? textInputStyle,
+        MBTextAlignStyle? textAlignStyle,
+        KeyValuePair<string, object>[] attributesToSplat,
+        MBDensity? density,
+        string classString,
+        string styleString,
+        string idString, 
+        bool appliedDisabled,
+        string value,
+        EventCallback<string> valueChangedCallback,
+        string displayLabel,
+        string prefix,
+        string suffix,
+        string supportingText,
+        MBIconDescriptor leadingIcon,
+        MBIconDescriptor leadingToggleIcon,
+        string leadingToggleIconButtonLink,
+        string leadingToggleIconButtonLinkTarget,
+        bool leadingToggleIconSelected,
+        MBIconDescriptor trailingIcon,
+        MBIconDescriptor trailingToggleIcon,
+        string trailingToggleIconButtonLink,
+        string trailingToggleIconButtonLinkTarget,
+        bool trailingToggleIconSelected
+        )
+    {
+        var componentName = cascadingDefaults.AppliedStyle(textInputStyle) switch
         {
             MBTextInputStyle.Outlined => "md-outlined-text-field",
             MBTextInputStyle.Filled => "md-filled-text-field",
@@ -194,9 +256,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
         builder.OpenElement(rendSeq++, "span");
         {
-            builder.AddAttribute(rendSeq++, "class", cssClass);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(rendSeq++, "class", classString);
+            builder.AddAttribute(rendSeq++, "style", styleString + Utilities.GetTextAlignStyle(cascadingDefaults.AppliedStyle(textAlignStyle)));
+            builder.AddAttribute(rendSeq++, "id", idString);
 
             builder.OpenElement(rendSeq++, componentName);
             {
@@ -205,48 +267,48 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                     builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
 
-                if (AppliedDisabled)
+                if (appliedDisabled)
                 {
                     builder.AddAttribute(rendSeq++, "disabled");
                 }
 
-                builder.AddAttribute(rendSeq++, "id", TextFieldId);
+                builder.AddAttribute(rendSeq++, "id", idString);
 
-                builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
-                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
+                builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(value));
+                builder.AddAttribute(rendSeq++, "onchange", valueChangedCallback);
                 builder.SetUpdatesAttributeName("value");
 
 
-                builder.AddAttribute(rendSeq++, "label", DisplayLabel);
+                builder.AddAttribute(rendSeq++, "label", displayLabel);
 
-                if (!string.IsNullOrWhiteSpace(Prefix))
+                if (!string.IsNullOrWhiteSpace(prefix))
                 {
-                    builder.AddAttribute(rendSeq++, "prefixText", Prefix);
+                    builder.AddAttribute(rendSeq++, "prefixText", prefix);
                 }
 
-                if (!string.IsNullOrWhiteSpace(Suffix))
+                if (!string.IsNullOrWhiteSpace(suffix))
                 {
-                    builder.AddAttribute(rendSeq++, "suffixText", Suffix);
+                    builder.AddAttribute(rendSeq++, "suffixText", suffix);
                 }
 
-                if (!string.IsNullOrWhiteSpace(SupportingText))
+                if (!string.IsNullOrWhiteSpace(supportingText))
                 {
-                    builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
+                    builder.AddAttribute(rendSeq++, "supportingText", supportingText);
                 }
 
-                if (LeadingIcon is not null)
+                if (leadingIcon is not null)
                 {
-                    if (LeadingToggleIcon is null)
+                    if (leadingToggleIcon is null)
                     {
                         MBIcon.BuildRenderTreeWorker(
                             builder,
                             ref rendSeq,
-                            CascadingDefaults,
+                            cascadingDefaults,
                             null,
                             "",
                             "",
                             "",
-                            LeadingIcon,
+                            leadingIcon,
                             "leading-icon");
                     }
                     else
@@ -254,35 +316,35 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                         MBIconButton.BuildRenderTreeWorker(
                             builder,
                             ref rendSeq,
-                            CascadingDefaults,
+                            cascadingDefaults,
                             null,
                             "",
                             "",
                             "",
-                            AppliedDisabled,
+                            appliedDisabled,
                             MBIconButtonStyle.Icon,
-                            LeadingIcon,
-                            LeadingToggleIcon,
-                            LeadingToggleIconButtonLink,
-                            LeadingToggleIconButtonLinkTarget,
-                            LeadingToggleIconSelected,
+                            leadingIcon,
+                            leadingToggleIcon,
+                            leadingToggleIconButtonLink,
+                            leadingToggleIconButtonLinkTarget,
+                            leadingToggleIconSelected,
                             "leading-icon");
                     }
                 }
 
-                if (TrailingIcon is not null)
+                if (trailingIcon is not null)
                 {
-                    if (TrailingToggleIcon is null)
+                    if (trailingToggleIcon is null)
                     {
                         MBIcon.BuildRenderTreeWorker(
                             builder,
                             ref rendSeq,
-                            CascadingDefaults,
+                            cascadingDefaults,
                             null,
                             "",
                             "",
                             "",
-                            TrailingIcon,
+                            trailingIcon,
                             "trailing-icon");
                     }
                     else
@@ -290,18 +352,18 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                         MBIconButton.BuildRenderTreeWorker(
                             builder,
                             ref rendSeq,
-                            CascadingDefaults,
+                            cascadingDefaults,
                             null,
                             "",
                             "",
                             "",
-                            AppliedDisabled,
+                            appliedDisabled,
                             MBIconButtonStyle.Icon,
-                            TrailingIcon,
-                            TrailingToggleIcon,
-                            TrailingToggleIconButtonLink,
-                            TrailingToggleIconButtonLinkTarget,
-                            TrailingToggleIconSelected,
+                            trailingIcon,
+                            trailingToggleIcon,
+                            trailingToggleIconButtonLink,
+                            trailingToggleIconButtonLinkTarget,
+                            trailingToggleIconSelected,
                             "trailing-icon");
                     }
                 }
@@ -389,10 +451,10 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     protected void SetDateErrorMessage()
     {
         DateFieldErrorMessage = "";
-        //if (DateTimeField != null)
-        //{
-        //    DateFieldErrorMessage = MBDateTimeField.ErrorText;
-        //}
+        if (DateTimeField != null)
+        {
+            DateFieldErrorMessage = MBDateTimeField.ErrorText;
+        }
     }
 
     #endregion
