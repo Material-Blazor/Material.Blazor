@@ -1,12 +1,17 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+
+using RuntimeHelpers = Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers;
 
 namespace Material.Blazor;
 
@@ -21,22 +26,22 @@ namespace Material.Blazor;
                  >>>id="@id"
                  >>>@attributes="@AttributesToSplat()"
                  >>>@bind-Value="@FormattedValue"
-                 Density="@Density"
+                 >>>Density="@Density"
                  >>>Disabled="@AppliedDisabled"
                  >>>HelperText="@HelperText"
                  >>>HelperTextPersistent="@HelperTextPersistent"
                  ---IconFoundry="@IconFoundry"
                  >>>Label="@Label"
                  >>>LeadingIcon="@LeadingIcon"
-                 min="@MinDateString"
-                 max="@MaxDateString"
-                 @onfocusout="@OnFocusOutAsync"
+                 >>>min="@MinDateString"
+                 >>>max="@MaxDateString"
+                 >>>@onfocusout="@OnFocusOutAsync"
                  >>>Prefix="@Prefix"
                  @ref="@TextField"
                  >>>Suffix="@Suffix"
                  >>>TextInputStyle="@TextInputStyle"
                  >>>TrailingIcon="@TrailingIcon"
-                 type="@ItemType"
+                 >>>type="@ItemType"
                  ValidationMessageFor="@ValidationMessageFor" />
  */
 public partial class MBDateTimeField : InputComponent<DateTime>
@@ -156,6 +161,7 @@ public partial class MBDateTimeField : InputComponent<DateTime>
         attributesToSplat.Append(new KeyValuePair<string, object>("max", MaxDateAsString));
         attributesToSplat.Append(new KeyValuePair<string, object>("min", MinDateAsString));
         attributesToSplat.Append(new KeyValuePair<string, object>("type", ItemType));
+        attributesToSplat.Append(new KeyValuePair<string, object>("onfocusout", OnFocusOut));
 
         var rendSeq = 0;
 
@@ -171,44 +177,53 @@ public partial class MBDateTimeField : InputComponent<DateTime>
             trailingIcon = MBIcon.IconDescriptorConstructor(name: TrailingIconName);
         }
 
-        RenderTreeBuilder builder2 = new RenderTreeBuilder();
+        EventCallback<FocusEventArgs> focusOut =
+            EventCallback.Factory.Create(this, (FocusEventArgs fea) => OnFocusOut(fea));
 
-        InternalTextFieldBase.BuildRenderTreeWorker(
-            builder2,
-            ref rendSeq,
-            CascadingDefaults,
-            TextInputStyle,
-            null,
-            attributesToSplat,
-            Density,
-            @class,
-            style,
-            id,
-            AppliedDisabled,
-            FormattedValue,
-            EventCallback.Factory.Create<string>(this, FormattedValueChanged),
-            Label,
-            Prefix,
-            Suffix,
-            HelperText,
-            leadingIcon,
-            null,
-            null,
-            null,
-            false,
-            trailingIcon,
-            null,
-            null,
-            null,
-            false
-            );
+        EventCallback<ChangeEventArgs> valueChanged =
+            EventCallback.Factory.Create(this, (ChangeEventArgs cea) => FormattedValueChanged(cea));
+
+        RenderFragment renderFragment() => builder2 =>
+        {
+            InternalTextFieldBase.BuildRenderTreeWorker(
+                builder2,
+                ref rendSeq,
+                CascadingDefaults,
+                TextInputStyle,
+                null,
+                attributesToSplat,
+                Density,
+                @class,
+                style,
+                id,
+                AppliedDisabled,
+                FormattedValue,
+                valueChanged,
+                () => FormattedValue,
+                focusOut,
+                Label,
+                Prefix,
+                Suffix,
+                HelperText,
+                leadingIcon,
+                null,
+                null,
+                null,
+                false,
+                trailingIcon,
+                null,
+                null,
+                null,
+                false
+                );
+        };
 
         // We now create a cascading value out of the the content in builder2
 
-        builder.OpenComponent<global::Microsoft.AspNetCore.Components.CascadingValue<string>>(0);
+        builder.OpenComponent<CascadingValue<MBDateTimeField>>(0);
         {
             builder.AddComponentParameter(1, "Value", this);
-            builder.AddComponentParameter(2, "ChildContent", builder2);
+            builder.AddComponentParameter(2, "ChildContent", renderFragment());
         }
         builder.CloseComponent();
     }
@@ -217,10 +232,9 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
     #region FormattedValueChanged
 
-    private void FormattedValueChanged(string value)
+    private void FormattedValueChanged(ChangeEventArgs newValue)
     {
-//        await Task.CompletedTask;
-        FormattedValue = value;
+        FormattedValue = (string)(newValue.Value);
     }
 
     #endregion
@@ -290,11 +304,10 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
     #region OnFocusOutAsync
 
-    private async Task OnFocusOutAsync()
+    private void OnFocusOut(FocusEventArgs fea)
     {
         try
         {
-            await Task.CompletedTask;
             var potentialComponentValue = Convert.ToDateTime(FormattedValue);
             if (potentialComponentValue >= MinDate && potentialComponentValue <= MaxDate)
             {

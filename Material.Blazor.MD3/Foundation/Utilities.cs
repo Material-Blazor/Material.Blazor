@@ -54,9 +54,9 @@ internal static class Utilities
     {
         return textAlign switch
         {
-            MBTextAlignStyle.Left => " left; ",
-            MBTextAlignStyle.Center => " center; ",
-            MBTextAlignStyle.Right => " right; ",
+            MBTextAlignStyle.Left => " text-align: left; ",
+            MBTextAlignStyle.Center => " text-align: center; ",
+            MBTextAlignStyle.Right => " text-align: right; ",
             _ => "",
         };
     }

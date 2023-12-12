@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 using System;
@@ -184,6 +185,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         var attributesToSplat = AttributesToSplat().ToArray();
 
         var rendSeq = 0;
+        var valueChanged = EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value);
 
         BuildRenderTreeWorker(
             builder,
@@ -198,7 +200,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             TextFieldId,
             AppliedDisabled,
             Value,
-            ValueChanged,
+            valueChanged,
+            ValueExpression,
+            null,
             DisplayLabel,
             Prefix,
             Suffix,
@@ -208,7 +212,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             LeadingToggleIconButtonLink,
             LeadingToggleIconButtonLinkTarget,
             LeadingToggleIconSelected,
-            LeadingIcon,
+            TrailingIcon,
             TrailingToggleIcon,
             TrailingToggleIconButtonLink,
             TrailingToggleIconButtonLinkTarget,
@@ -230,7 +234,9 @@ public abstract class InternalTextFieldBase : InputComponent<string>
         string idString, 
         bool appliedDisabled,
         string value,
-        EventCallback<string> valueChangedCallback,
+        EventCallback<ChangeEventArgs> valueChanged,
+        Expression<Func<string>> valueExpression,
+        EventCallback<FocusEventArgs>? focusOut,
         string displayLabel,
         string prefix,
         string suffix,
@@ -254,7 +260,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
             _ => throw new System.Exception("Unknown TextInputStyle")
         };
 
-        builder.OpenElement(rendSeq++, "span");
+        builder.OpenElement(rendSeq++, "div");
         {
             builder.AddAttribute(rendSeq++, "class", classString);
             builder.AddAttribute(rendSeq++, "style", styleString + Utilities.GetTextAlignStyle(cascadingDefaults.AppliedStyle(textAlignStyle)));
@@ -275,7 +281,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 builder.AddAttribute(rendSeq++, "id", idString);
 
                 builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(value));
-                builder.AddAttribute(rendSeq++, "onchange", valueChangedCallback);
+                builder.AddAttribute(rendSeq++, "onchange", valueChanged);
                 builder.SetUpdatesAttributeName("value");
 
 
@@ -294,6 +300,11 @@ public abstract class InternalTextFieldBase : InputComponent<string>
                 if (!string.IsNullOrWhiteSpace(supportingText))
                 {
                     builder.AddAttribute(rendSeq++, "supportingText", supportingText);
+                }
+
+                if (focusOut is not null)
+                {
+                    builder.AddAttribute(rendSeq++, "onfocusout", focusOut);
                 }
 
                 if (leadingIcon is not null)
