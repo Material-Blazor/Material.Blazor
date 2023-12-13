@@ -1,6 +1,6 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,10 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-
-using RuntimeHelpers = Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers;
 
 namespace Material.Blazor;
 
@@ -20,30 +17,6 @@ namespace Material.Blazor;
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
 
-/*
-    <MBTextField >>>class="@(@class)"
-                 >>>style="@style"
-                 >>>id="@id"
-                 >>>@attributes="@AttributesToSplat()"
-                 >>>@bind-Value="@FormattedValue"
-                 >>>Density="@Density"
-                 >>>Disabled="@AppliedDisabled"
-                 >>>HelperText="@HelperText"
-                 >>>HelperTextPersistent="@HelperTextPersistent"
-                 ---IconFoundry="@IconFoundry"
-                 >>>Label="@Label"
-                 >>>LeadingIcon="@LeadingIcon"
-                 >>>min="@MinDateString"
-                 >>>max="@MaxDateString"
-                 >>>@onfocusout="@OnFocusOutAsync"
-                 >>>Prefix="@Prefix"
-                 @ref="@TextField"
-                 >>>Suffix="@Suffix"
-                 >>>TextInputStyle="@TextInputStyle"
-                 >>>TrailingIcon="@TrailingIcon"
-                 >>>type="@ItemType"
-                 ValidationMessageFor="@ValidationMessageFor" />
- */
 public partial class MBDateTimeField : InputComponent<DateTime>
 {
     #region members
@@ -161,7 +134,6 @@ public partial class MBDateTimeField : InputComponent<DateTime>
         attributesToSplat.Append(new KeyValuePair<string, object>("max", MaxDateAsString));
         attributesToSplat.Append(new KeyValuePair<string, object>("min", MinDateAsString));
         attributesToSplat.Append(new KeyValuePair<string, object>("type", ItemType));
-        attributesToSplat.Append(new KeyValuePair<string, object>("onfocusout", OnFocusOut));
 
         var rendSeq = 0;
 
