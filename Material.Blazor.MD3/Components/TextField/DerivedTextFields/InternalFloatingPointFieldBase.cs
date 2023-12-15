@@ -9,9 +9,8 @@ namespace Material.Blazor.Internal;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public abstract class InternalFloatingPointFieldBase<T, U> : InternalNumericFieldBase<T, U>
+public abstract class InternalFloatingPointFieldBase<T> : InternalNumericFieldBase<T>
     where T : struct, IFloatingPoint<T>
-    where U : InternalTextFieldBase
 {
     /// <summary>
     /// Adjusts the value's magnitude as a number when the field is focused. Used for
