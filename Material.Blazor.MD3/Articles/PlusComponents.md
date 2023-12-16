@@ -12,7 +12,9 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | Component | Notes |
 | :-------- | :---- |
 | [MBDateTimeField](xref:C.MBDateTimeField) | A date or date/time typed text field |
-| [MBNumericField](xref:C.MBNumericField) | A numeric typed text field. Can be decimal, double, or int. |
+| [MBDecimalField](xref:C.MBDecimalField) | A numeric decimal text field. |
+| [MBDoubleField](xref:C.MBDoubleField) | A numeric double text field. |
+| [MBIntField](xref:C.MBIntField) | A numeric int text field. |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | A collection of radio buttons with a single selection |
 
 ## Experimental Component List

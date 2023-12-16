@@ -50,6 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Components\TextField\DerivedNumericFields\" />
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 

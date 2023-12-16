@@ -40,6 +40,14 @@
                     LeadingIcon="date_range"
                     Label="DateTime Field"
                     @onclick="@(() => ListItemClickHandler("datetimefield"))" />
+        <MBListItem ListItemColor="darkred"
+                    LeadingIcon="money"
+                    Label="Decimal Field"
+                    @onclick="@(() => ListItemClickHandler("decimalfield"))" />
+        <MBListItem ListItemColor="darkred"
+                    LeadingIcon="money"
+                    Label="Double Field"
+                    @onclick="@(() => ListItemClickHandler("doublefield"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="picture_in_picture"
                     Label="Dialog"
@@ -60,6 +68,10 @@
                     LeadingIcon="touch_app"
                     Label="Icon Button"
                     @onclick="@(() => ListItemClickHandler("iconbutton"))" />
+        <MBListItem ListItemColor="darkred"
+                    LeadingIcon="exposure_zero"
+                    Label="Int Field"
+                    @onclick="@(() => ListItemClickHandler("intfield"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="list"
                     Label="List"
