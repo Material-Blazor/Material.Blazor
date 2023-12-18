@@ -1,9 +1,10 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;

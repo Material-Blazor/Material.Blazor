@@ -30,7 +30,7 @@ public sealed class InternalTextFieldRenderer
         RenderTreeBuilder builder,
         ref int rendSeq,
         MBCascadingDefaults cascadingDefaults,
-        Type componentName,
+        Type componentType,
         string classString,
         string styleString,
         bool appliedDisabled,
@@ -39,13 +39,14 @@ public sealed class InternalTextFieldRenderer
         string value,
         EventCallback<string> valueChanged,
         Expression<Func<string>> valueExpression,
-        EventCallback<FocusEventArgs>? focusIn,
-        EventCallback<FocusEventArgs>? focusOut,
+        EventCallback? focusIn,
+        EventCallback? focusOut,
         string displayLabel,
         string prefix,
         string suffix,
         string supportingText,
         MBTextAlignStyle? textAlignStyle,
+        string textFieldId,
         string type,
         MBIconDescriptor leadingIcon,
         MBIconDescriptor leadingToggleIcon,
@@ -57,10 +58,9 @@ public sealed class InternalTextFieldRenderer
         string trailingToggleIconButtonLink,
         string trailingToggleIconButtonLinkTarget,
         bool trailingToggleIconSelected,
-        Expression<Func<object>> ValidationMessageFor
-        )
+        Expression<Func<object>> ValidationMessageFor)
     {
-        builder.OpenComponent(rendSeq++, componentName);
+        builder.OpenComponent(rendSeq++, componentType);
         {
             builder.AddAttribute(rendSeq++, "class", classString);
             builder.AddAttribute(rendSeq++, "style", styleString + Utilities.GetTextAlignStyle(cascadingDefaults.AppliedStyle(textAlignStyle)));
@@ -110,6 +110,8 @@ public sealed class InternalTextFieldRenderer
 
             builder.AddAttribute(rendSeq++, "TextAlignStyle", textAlignStyle);
 
+            builder.AddAttribute(rendSeq++, "TextFieldId", textFieldId);
+
 
             if (leadingIcon is not null)
             {
@@ -157,24 +159,6 @@ public sealed class InternalTextFieldRenderer
             builder.AddAttribute(rendSeq++, "TrailingToggleIconSelected", trailingToggleIconSelected);
 
             builder.AddAttribute(rendSeq++, "ValidationMessageFor", ValidationMessageFor);
-
-
-            //if (Min is not null)
-            //{
-            //    builder.AddAttribute(21, "min", Min);
-            //}
-
-            //if (Max is not null)
-            //{
-            //    builder.AddAttribute(22, "max", Max);
-            //}
-
-            //var step = BuildStep();
-
-            //if (!string.IsNullOrWhiteSpace(step))
-            //{
-            //    builder.AddAttribute(23, "step", BuildStep());
-            //}
 
         }
         builder.CloseComponent();

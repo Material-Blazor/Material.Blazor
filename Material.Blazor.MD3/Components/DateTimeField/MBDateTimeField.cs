@@ -18,7 +18,7 @@ namespace Material.Blazor;
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
 
-public partial class MBDateTimeField : InputComponent<DateTime>
+public sealed partial class MBDateTimeField : InputComponent<DateTime>
 {
     #region members
 
@@ -86,6 +86,14 @@ public partial class MBDateTimeField : InputComponent<DateTime>
     /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
     /// </summary>
     [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
+
+    /// <summary>
+    /// The unique id for the text field; Used to locate the text field
+    /// from JS interop methods.
+    /// 
+    /// In normal use there is no need to set this parameter in the calling component
+    /// </summary>
+    [Parameter] public string TextFieldId { get; set; } = "textfield-id-" + Guid.NewGuid().ToString().ToLower();
 
     /// <summary>
     /// The text input style.
@@ -163,8 +171,7 @@ public partial class MBDateTimeField : InputComponent<DateTime>
     private string MaxDateAsString { get; set; }
     internal static DateTime MinAllowableDate { get; set; } = DateTime.MinValue;
     private string MinDateAsString { get; set; }
-    private MBTextField TextField { get; set; }
-
+ 
     #endregion
 
     #endregion
@@ -180,12 +187,11 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
         var rendSeq = 0;
 
-        EventCallback<FocusEventArgs> focusOut =
-            EventCallback.Factory.Create(this, (FocusEventArgs fea) => OnFocusOut(fea));
+        EventCallback focusOut =
+            EventCallback.Factory.Create(this, () => OnFocusOut());
 
         EventCallback<string> valueChanged =
-            EventCallback.Factory.Create(this, (string cea) => FormattedValueChanged(cea));
-
+            EventCallback.Factory.Create(this, (string newValue) => FormattedValueChanged(newValue));
 
         RenderFragment renderFragment() => builder2 =>
         {
@@ -209,6 +215,7 @@ public partial class MBDateTimeField : InputComponent<DateTime>
                 Suffix,
                 SupportingText,
                 TextAlignStyle,
+                TextFieldId,
                 ItemType,
                 LeadingIcon,
                 LeadingToggleIcon,
@@ -239,7 +246,7 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
     private void FormattedValueChanged(string newValue)
     {
-        FormattedValue = newValue; // (string)(newValue.Value);
+        FormattedValue = newValue;
     }
 
     #endregion
@@ -307,9 +314,9 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
     #endregion
 
-    #region OnFocusOutAsync
+    #region OnFocusOut
 
-    private void OnFocusOut(FocusEventArgs fea)
+    private void OnFocusOut()
     {
         try
         {
