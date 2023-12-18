@@ -32,6 +32,9 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="Components\DecimalField\MBDecimalField.cs" />
+		<None Include="Components\DoubleField\MBDoubleField.cs" />
+		<None Include="Components\IntField\MBIntField.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -50,7 +53,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Components\TextField\DerivedNumericFields\" />
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
@@ -120,6 +122,9 @@
 
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="components\**\*.scss;styles\*.scss;" />
+		<Compile Remove="Components\DecimalField\MBDecimalField.cs" />
+		<Compile Remove="Components\DoubleField\MBDoubleField.cs" />
+		<Compile Remove="Components\IntField\MBIntField.cs" />
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />

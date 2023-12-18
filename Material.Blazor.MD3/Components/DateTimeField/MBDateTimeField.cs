@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -23,85 +24,99 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
 #nullable enable annotations
 
-    /// <summary>
-    /// The datetime can optionally suppress the time portion and just
-    /// return dates (at midnight)
-    /// </summary>
-    [Parameter] public bool DateOnly { get; set; } = false;
-
+    #region non-cascading parameters (MBTextField)
 
     /// <summary>
-    /// The numeric field's density.
+    /// The text field's density.
     /// </summary>
     [Parameter] public MBDensity? Density { get; set; }
-
-
-    /// <summary>
-    /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
-    /// </summary>
-    [Parameter] public string HelperText { get; set; } = "";
-
-
-    /// <summary>
-    /// Makes the <see cref="HelperText"/> persistent if true.
-    /// </summary>
-    [Parameter] public bool HelperTextPersistent { get; set; }
-
 
     /// <summary>
     /// Field label.
     /// </summary>
     [Parameter] public string? Label { get; set; }
 
+    /// <summary>
+    /// The leading icon's descriptor. No leading icon is shown if not set.
+    /// </summary>
+    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
 
     /// <summary>
-    /// The leading icon name. No leading icon shown if not set.
+    /// Adding a toggleicon turns the leading icon into a toggleiconbutton.
     /// </summary>
-    [Parameter] public string LeadingIconName { get; set; }
-
+    [Parameter] public MBIconDescriptor? LeadingToggleIcon { get; set; }
 
     /// <summary>
-    /// The maximum allowable value.
+    /// The link for the iconbutton
     /// </summary>
-    [Parameter] public DateTime MaxDate { get; set; } = MaxAllowableDate;
-
+    [Parameter] public string LeadingToggleIconButtonLink { get; set; }
 
     /// <summary>
-    /// The minimum allowable value.
+    /// The link target for the iconbutton
     /// </summary>
-    [Parameter] public DateTime MinDate { get; set; } = MinAllowableDate;
+    [Parameter] public string LeadingToggleIconButtonLinkTarget { get; set; }
 
+    /// <summary>
+    /// The toggle state of the icon button
+    /// </summary>
+    [Parameter] public bool LeadingToggleIconSelected { get; set; }
 
     /// <summary>
     /// Prefix text.
     /// </summary>
     [Parameter] public string? Prefix { get; set; }
 
-
     /// <summary>
     /// Suffix text.
     /// </summary>
     [Parameter] public string? Suffix { get; set; }
 
+    /// <summary>
+    /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
+    /// </summary>
+    [Parameter] public string SupportingText { get; set; } = "";
 
     /// <summary>
-    /// Set to indicate that if the value is default(DateTime) then no date is initially shown
+    /// Makes the <see cref="SupportingText"/> persistent if true.
     /// </summary>
-    [Parameter] public bool SuppressDefaultDate { get; set; } = true;
+    [Parameter] public bool SupportingTextPersistent { get; set; } = false;
 
+    /// <summary>
+    /// The text alignment style.
+    /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
+    /// </summary>
+    [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
 
     /// <summary>
     /// The text input style.
     /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
     /// </summary>
-    [Parameter] public MBTextInputStyle? TextInputStyle { get; set; }
-
+    [Parameter] public MBTextInputStyle TextInputStyle { get; set; } = MBTextInputStyle.Outlined;
 
     /// <summary>
-    /// The trailing iconname. No trailing icon shown if not set.
+    /// The trailing icon's descriptor. No trailing icon is shown if not set.
     /// </summary>
-    [Parameter] public string TrailingIconName { get; set; }
+    [Parameter] public MBIconDescriptor? TrailingIcon { get; set; }
 
+    /// <summary>
+    /// Adding a toggleicon turns the trailing icon into a toggleiconbutton.
+    /// </summary>
+    [Parameter] public MBIconDescriptor? TrailingToggleIcon { get; set; }
+
+    /// <summary>
+    /// The link for the iconbutton
+    /// </summary>
+    [Parameter] public string TrailingToggleIconButtonLink { get; set; }
+
+    /// <summary>
+    /// The link target for the iconbutton
+    /// </summary>
+    [Parameter] public string TrailingToggleIconButtonLinkTarget { get; set; }
+
+    /// <summary>
+    /// The toggle state of the icon button
+    /// </summary>
+    [Parameter] public bool TrailingToggleIconSelected { get; set; }
 
     /// <summary>
     /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
@@ -110,9 +125,36 @@ public partial class MBDateTimeField : InputComponent<DateTime>
     /// </summary>
     [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
+    #endregion (MBText
+
+    #region non-cascading parameters (MBDateTimeField)
+
+    /// <summary>
+    /// The datetime can optionally suppress the time portion and just
+    /// return dates (at midnight)
+    /// </summary>
+    [Parameter] public bool DateOnly { get; set; } = false;
+
+    /// <summary>
+    /// The maximum allowable value.
+    /// </summary>
+    [Parameter] public DateTime MaxDate { get; set; } = MaxAllowableDate;
+
+    /// <summary>
+    /// The minimum allowable value.
+    /// </summary>
+    [Parameter] public DateTime MinDate { get; set; } = MinAllowableDate;
+
+    /// <summary>
+    /// Set to indicate that if the value is default(DateTime) then no date is initially shown
+    /// </summary>
+    [Parameter] public bool SuppressDefaultDate { get; set; } = true;
+
+    #endregion
+
 #nullable restore annotations
 
-
+    #region local members
 
     internal static string ErrorText { get; set; }
     private string FormattedValue { get; set; }
@@ -123,10 +165,11 @@ public partial class MBDateTimeField : InputComponent<DateTime>
     private string MinDateAsString { get; set; }
     private MBTextField TextField { get; set; }
 
+    #endregion
 
     #endregion
 
-    #region BuildRenderTreeAsync
+    #region BuildRenderTree
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -137,57 +180,47 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
         var rendSeq = 0;
 
-        MBIconDescriptor leadingIcon = null;
-        if (!string.IsNullOrWhiteSpace(LeadingIconName))
-        {
-            leadingIcon = MBIcon.IconDescriptorConstructor(name: LeadingIconName);
-        }
-
-        MBIconDescriptor trailingIcon = null;
-        if (!string.IsNullOrWhiteSpace(TrailingIconName))
-        {
-            trailingIcon = MBIcon.IconDescriptorConstructor(name: TrailingIconName);
-        }
-
         EventCallback<FocusEventArgs> focusOut =
             EventCallback.Factory.Create(this, (FocusEventArgs fea) => OnFocusOut(fea));
 
-        EventCallback<ChangeEventArgs> valueChanged =
-            EventCallback.Factory.Create(this, (ChangeEventArgs cea) => FormattedValueChanged(cea));
+        EventCallback<string> valueChanged =
+            EventCallback.Factory.Create(this, (string cea) => FormattedValueChanged(cea));
+
 
         RenderFragment renderFragment() => builder2 =>
         {
-            //InternalTextFieldBase.BuildRenderTreeWorker(
-            //    builder2,
-            //    ref rendSeq,
-            //    CascadingDefaults,
-            //    TextInputStyle,
-            //    null,
-            //    attributesToSplat,
-            //    Density,
-            //    @class,
-            //    style,
-            //    id,
-            //    AppliedDisabled,
-            //    FormattedValue,
-            //    valueChanged,
-            //    () => FormattedValue,
-            //    focusOut,
-            //    Label,
-            //    Prefix,
-            //    Suffix,
-            //    HelperText,
-            //    leadingIcon,
-            //    null,
-            //    null,
-            //    null,
-            //    false,
-            //    trailingIcon,
-            //    null,
-            //    null,
-            //    null,
-            //    false
-            //    );
+            InternalTextFieldRenderer.BuildTextFieldRenderTree(
+                builder2,
+                ref rendSeq,
+                CascadingDefaults,
+                typeof(MBTextField),
+                @class,
+                @style,
+                AppliedDisabled,
+                Density,
+                attributesToSplat,
+                FormattedValue,
+                valueChanged,
+                () => FormattedValue,
+                null,
+                focusOut,
+                Label,
+                Prefix,
+                Suffix,
+                SupportingText,
+                TextAlignStyle,
+                ItemType,
+                LeadingIcon,
+                LeadingToggleIcon,
+                LeadingToggleIconButtonLink,
+                LeadingToggleIconButtonLinkTarget,
+                LeadingToggleIconSelected,
+                TrailingIcon,
+                TrailingToggleIcon,
+                TrailingToggleIconButtonLink,
+                TrailingToggleIconButtonLinkTarget,
+                TrailingToggleIconSelected,
+                ValidationMessageFor);
         };
 
         // We now create a cascading value out of the the content in builder2
@@ -204,9 +237,9 @@ public partial class MBDateTimeField : InputComponent<DateTime>
 
     #region FormattedValueChanged
 
-    private void FormattedValueChanged(ChangeEventArgs newValue)
+    private void FormattedValueChanged(string newValue)
     {
-        FormattedValue = (string)(newValue.Value);
+        FormattedValue = newValue; // (string)(newValue.Value);
     }
 
     #endregion

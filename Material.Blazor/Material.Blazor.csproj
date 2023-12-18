@@ -58,7 +58,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
 	<PropertyGroup>

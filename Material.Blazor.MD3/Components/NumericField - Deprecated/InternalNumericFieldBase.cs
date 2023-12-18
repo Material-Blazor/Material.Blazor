@@ -15,54 +15,24 @@ namespace Material.Blazor.Internal;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public abstract class InternalNumericFieldBase<T> : InputComponent<T> 
+public abstract class InternalNumericFieldBase2<T, U> : InputComponent<T> 
     where T : struct, INumber<T>
+    where U : InternalTextFieldBase2
 {
-    #region members
+    #region members (Needs to be alphabetized)
 
 #nullable enable annotations
-
-    #region MBTextField Parameters (subset)
-
-    /// <summary>
-    /// The text field's density.
-    /// </summary>
-    [Parameter] public MBDensity? Density { get; set; }
-
-    /// <summary>
-    /// Field label.
-    /// </summary>
-    [Parameter] public string? Label { get; set; }
-
-    /// <summary>
-    /// The leading icon's descriptor. No leading icon is shown if not set.
-    /// </summary>
-    [Parameter] public MBIconDescriptor? LeadingIcon { get; set; }
-
-    /// <summary>
-    /// Prefix text.
-    /// </summary>
-    [Parameter] public string? Prefix { get; set; }
-
-    /// <summary>
-    /// Suffix text.
-    /// </summary>
-    [Parameter] public string? Suffix { get; set; }
-
     /// <summary>
     /// Supporting text that is displayed either with focus or persistently with <see cref="SupportingTextPersistent"/>.
     /// </summary>
     [Parameter] public string SupportingText { get; set; } = "";
+
 
     /// <summary>
     /// Makes the <see cref="SupportingText"/> persistent if true.
     /// </summary>
     [Parameter] public bool SupportingTextPersistent { get; set; } = false;
 
-    /// <summary>
-    /// The trailing icon's descriptor. No trailing icon is shown if not set.
-    /// </summary>
-    [Parameter] public MBIconDescriptor? TrailingIcon { get; set; }
 
     /// <summary>
     /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
@@ -71,24 +41,48 @@ public abstract class InternalNumericFieldBase<T> : InputComponent<T>
     /// </summary>
     [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
-    #endregion
-
-    #region NumericField Parameters
 
     /// <summary>
-    /// The maximum allowable value.
+    /// Field label.
     /// </summary>
-    [Parameter] public T? Max { get; set; }
+    [Parameter] public string? Label { get; set; }
+
 
     /// <summary>
-    /// The minimum allowable value.
+    /// Prefix text.
     /// </summary>
-    [Parameter] public T? Min { get; set; }
+    [Parameter] public string? Prefix { get; set; }
+
+
+    /// <summary>
+    /// Suffix text.
+    /// </summary>
+    [Parameter] public string? Suffix { get; set; }
+
+
+    /// <summary>
+    /// The leading icon's name. No leading icon shown if not set.
+    /// </summary>
+    [Parameter] public string? LeadingIcon { get; set; }
+
+
+    /// <summary>
+    /// The trailing icon's name. No leading icon shown if not set.
+    /// </summary>
+    [Parameter] public string? TrailingIcon { get; set; }
+
+
+    /// <summary>
+    /// The numeric field's density.
+    /// </summary>
+    [Parameter] public MBDensity? Density { get; set; }
+
 
     /// <summary>
     /// Format to apply to the numeric value when the field is not selected.
     /// </summary>
     [Parameter] public string NumericFormat { get; set; }
+
 
     /// <summary>
     /// Alternative format for a singular number if required. An example is "1 month"
@@ -96,11 +90,19 @@ public abstract class InternalNumericFieldBase<T> : InputComponent<T>
     /// </summary>
     [Parameter] public string? NumericSingularFormat { get; set; }
 
-    #endregion
 
+    /// <summary>
+    /// The minimum allowable value.
+    /// </summary>
+    [Parameter] public T? Min { get; set; }
+
+
+    /// <summary>
+    /// The maximum allowable value.
+    /// </summary>
+    [Parameter] public T? Max { get; set; }
 #nullable restore annotations
 
-    #region local members
 
     private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
     private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
@@ -108,7 +110,7 @@ public abstract class InternalNumericFieldBase<T> : InputComponent<T>
     //private const string PositiveIntegerPattern = @"^\d+$";
 
     private bool SelectInputContentOnAfterRender { get; set; } = false;
-    private MBTextField TextField { get; set; }
+    private U TextField { get; set; }
 
 
     /// <summary>
@@ -124,8 +126,6 @@ public abstract class InternalNumericFieldBase<T> : InputComponent<T>
 
     #endregion
 
-    #endregion
-
     #region BuildRenderTree
 
     /// <inheritdoc/>
@@ -133,7 +133,7 @@ public abstract class InternalNumericFieldBase<T> : InputComponent<T>
     {
         var attributesToSplat = AttributesToSplat().ToArray();
 
-        builder.OpenComponent<MBTextField>(0);
+        builder.OpenComponent<U>(0);
         {
             if (attributesToSplat.Any())
             {
@@ -193,7 +193,7 @@ public abstract class InternalNumericFieldBase<T> : InputComponent<T>
             builder.AddAttribute(24, "TextAlignStyle", MBTextAlignStyle.Right);
             builder.AddAttribute(25, "ValidationMessageFor", ValidationMessageFor);
 
-            builder.AddComponentReferenceCapture(18, __value => TextField = (MBTextField)__value);
+            builder.AddComponentReferenceCapture(18, __value => TextField = (U)__value);
         }
         builder.CloseComponent();
     }
