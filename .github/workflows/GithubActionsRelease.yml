@@ -92,7 +92,7 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: main   
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteDocFx
         path: siteDocFx       
@@ -127,7 +127,7 @@ jobs:
         --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteWeb
         path: siteWeb      
@@ -274,7 +274,7 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: main   
 
     - name: Upload Documentation Artifacts 🔺
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteDocFxMD3
         path: siteDocFxMD3       
@@ -310,7 +310,7 @@ jobs:
         --framework net8.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteWebMD3
         path: siteWebMD3

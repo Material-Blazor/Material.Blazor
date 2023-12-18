@@ -1,4 +1,4 @@
-﻿name: GithubActionsWIP
+name: GithubActionsWIP
 
 on:
   push:
@@ -126,7 +126,7 @@ jobs:
       run: dir siteDocFx
 
     - name: Upload Documentation Artifacts 🔺 # The documentation site is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteDocFx
         path: siteDocFx
@@ -185,7 +185,7 @@ jobs:
       run: dir ${{env.outputWeb}}/wwwroot/_content/Material.Blazor
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteWeb
         path: siteWeb
@@ -347,7 +347,7 @@ jobs:
     #         cat trimmed_meta_report.md tail.md > meta_report.md
     #     fi
     # - name: Upload comparison & report artifact
-    #   uses: actions/upload-artifact@v3
+    #   uses: actions/upload-artifact@v4
     #   with:
     #     name: comparison_report
     #     path: |
@@ -437,7 +437,7 @@ jobs:
       run: dir siteDocFxMD3
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteDocFxMD3
         path: siteDocFxMD3
@@ -496,7 +496,7 @@ jobs:
       run: dir ${{env.outputWebMD3}}/wwwroot/_content/Material.Blazor.MD3
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: siteWebMD3
         path: siteWebMD3
