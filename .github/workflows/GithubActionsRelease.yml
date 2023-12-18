@@ -151,13 +151,13 @@ jobs:
         dotnet-version: '8.x'
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteDocFx
         path: siteDocFx
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteWeb
         path: siteWeb
@@ -334,13 +334,13 @@ jobs:
         dotnet-version: '8.x'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteDocFxMD3
         path: siteDocFxMD3
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteWebMD3
         path: siteWebMD3

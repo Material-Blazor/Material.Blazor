@@ -1,4 +1,4 @@
-﻿name: GithubActionsWIP
+name: GithubActionsWIP
 
 on:
   push:
@@ -240,13 +240,13 @@ jobs:
         persist-credentials: false
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteDocFx
         path: siteDocFx
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteWeb
         path: siteWeb
@@ -551,13 +551,13 @@ jobs:
         persist-credentials: false
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteDocFxMD3
         path: siteDocFxMD3
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: siteWebMD3
         path: siteWebMD3
