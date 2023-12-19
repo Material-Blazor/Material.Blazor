@@ -7,7 +7,7 @@ namespace Material.Blazor;
 /// <summary>
 /// A Material.Blazor formatted integer field.
 /// </summary>
-public sealed class MBIntField : InternalNumericFieldBase<int>
+public sealed class MBIntField2 : InternalNumericFieldBase<int>
 {
     #region ConvertToFormattedTextValue
 

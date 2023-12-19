@@ -180,10 +180,10 @@ public sealed partial class MBDateTimeField : InputComponent<DateTime>
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        var attributesToSplat = AttributesToSplat().ToArray();
-        attributesToSplat.Append(new KeyValuePair<string, object>("max", MaxDateAsString));
-        attributesToSplat.Append(new KeyValuePair<string, object>("min", MinDateAsString));
-        attributesToSplat.Append(new KeyValuePair<string, object>("type", ItemType));
+        var attributesToSplat = AttributesToSplat().ToDictionary();
+        attributesToSplat.Add("max", MaxDateAsString);
+        attributesToSplat.Add("min", MinDateAsString);
+        attributesToSplat.Add("type", ItemType);
 
         var rendSeq = 0;
 
@@ -216,6 +216,7 @@ public sealed partial class MBDateTimeField : InputComponent<DateTime>
                 SupportingText,
                 TextAlignStyle,
                 TextFieldId,
+                TextInputStyle,
                 ItemType,
                 LeadingIcon,
                 LeadingToggleIcon,

@@ -235,17 +235,17 @@ public sealed class MBTextField : InputComponent<string>
 
             if (!string.IsNullOrWhiteSpace(Prefix))
             {
-                builder.AddAttribute(rendSeq++, "prefixText", Prefix);
+                builder.AddAttribute(rendSeq++, "prefix-text", Prefix);
             }
 
             if (!string.IsNullOrWhiteSpace(Suffix))
             {
-                builder.AddAttribute(rendSeq++, "suffixText", Suffix);
+                builder.AddAttribute(rendSeq++, "suffix-text", Suffix);
             }
 
             if (!string.IsNullOrWhiteSpace(SupportingText))
             {
-                builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
+                builder.AddAttribute(rendSeq++, "supporting-text", SupportingText);
             }
 
             if (LeadingIcon is not null)

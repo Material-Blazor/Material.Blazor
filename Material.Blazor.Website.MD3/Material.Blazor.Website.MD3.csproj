@@ -30,15 +30,11 @@
 	<ItemGroup>
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
-		<Content Remove="Pages\DoubleField.razor" />
-		<Content Remove="Pages\IntField.razor" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="package-lock.json" />
 		<None Include="package.json" />
-		<None Include="Pages\DoubleField.razor" />
-		<None Include="Pages\IntField.razor" />
 	</ItemGroup>
 
 	<ItemGroup>

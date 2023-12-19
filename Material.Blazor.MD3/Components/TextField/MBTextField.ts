@@ -18,7 +18,7 @@
     }
 }
 
-export function setFieldType(textfieldID, textFieldValue, textFieldType, formNoValidate) {
+export function setFieldType(textfieldID, textFieldType, formNoValidate) {
     const textfieldElement: any | null = document.getElementById(textfieldID);
 
     if (!textfieldElement) {
@@ -27,5 +27,4 @@ export function setFieldType(textfieldID, textFieldValue, textFieldType, formNoV
 
     textfieldElement.setAttribute("type", textFieldType);
     textfieldElement.setAttribute("formnovalidate", formNoValidate);
-    textfieldElement.setAttribute("value", textFieldValue);
 }

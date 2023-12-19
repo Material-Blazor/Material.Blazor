@@ -1,13 +1,9 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -18,7 +14,7 @@ namespace Material.Blazor;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public sealed class MBDecimalField : InputComponent<decimal>
+public partial class MBDecimalField : InputComponent<decimal>
 {
     #region members
 
@@ -133,7 +129,7 @@ public sealed class MBDecimalField : InputComponent<decimal>
     /// </summary>
     [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
-    #endregion (MBText
+    #endregion (MBText)
 
     #region non-cascading parameters (MBDecimalField)
 
@@ -143,9 +139,11 @@ public sealed class MBDecimalField : InputComponent<decimal>
     [Parameter] public uint DecimalPlaces { get; set; } = 2;
 
     /// <summary>
-    /// The minimum allowable value.
+    /// Adjusts the value's magnitude as a number when the field is focused. Used for
+    /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
+    /// this issue may not get solved).
     /// </summary>
-    [Parameter] public decimal? Min { get; set; }
+    [Parameter] public MBNumericInputMagnitude FocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
 
     /// <summary>
     /// The maximum allowable value.
@@ -153,16 +151,14 @@ public sealed class MBDecimalField : InputComponent<decimal>
     [Parameter] public decimal? Max { get; set; }
 
     /// <summary>
+    /// The minimum allowable value.
+    /// </summary>
+    [Parameter] public decimal? Min { get; set; }
+
+    /// <summary>
     /// Format to apply to the numeric value when the field is not selected.
     /// </summary>
     [Parameter] public string NumericFormat { get; set; }
-
-    /// <summary>
-    /// Adjusts the value's magnitude as a number when the field is focused. Used for
-    /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
-    /// this issue may not get solved.
-    /// </summary>
-    [Parameter] public MBNumericInputMagnitude FocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
 
     /// <summary>
     /// Alternative format for a singular number if required. An example is "1 month"
@@ -173,9 +169,11 @@ public sealed class MBDecimalField : InputComponent<decimal>
     /// <summary>
     /// Adjusts the value's magnitude as a number when the field is unfocused. Used for
     /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
-    /// this issue may not get solved.
+    /// this issue may not get solved).
     /// </summary>
     [Parameter] public MBNumericInputMagnitude UnfocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
+
+#nullable restore annotations
 
     #endregion
 
@@ -189,16 +187,16 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
     #region local members
 
-    private string DoublePattern { get; } = @"^[-+]?[0-9]*\.?[0-9]+$";
-    private string PositiveDoublePattern { get; } = @"[0-9]*\.?[0-9]+$";
-    private string IntegerPattern { get; } = @"^(\+|-)?\d+$";
-    private string PositiveIntegerPattern { get; } = @"^\d+$";
+    private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
+    private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
+    private const string IntegerPattern = @"^(\+|-)?\d+$";
+    private const string PositiveIntegerPattern = @"^\d+$";
 
 
     private decimal AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
     private decimal FocusedMultiplier { get; set; } = 1;
     private bool HasFocus { get; set; } = false;
-    internal string ItemType { get; set; } = "text";
+    private string ItemType { get; set; } = "text";
     private int MyDecimalPlaces { get; set; } = 0;
     private Regex Regex { get; set; }
     private decimal UnfocusedMultiplier { get; set; } = 1;
@@ -229,123 +227,23 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
     #endregion
 
-    #region BuildRenderTree
-
-    protected override void BuildRenderTree(RenderTreeBuilder builder)
-    {
-        var attributesToSplat = AttributesToSplat().ToArray();
-        attributesToSplat.Append(new KeyValuePair<string, object>("max", Max.ToString()));
-        attributesToSplat.Append(new KeyValuePair<string, object>("min", Min.ToString()));
-        attributesToSplat.Append(new KeyValuePair<string, object>("step", Math.Pow(10, -MyDecimalPlaces).ToString()));
-        attributesToSplat.Append(new KeyValuePair<string, object>("type", ItemType));
-        var rendSeq = 0;
-
-        EventCallback focusIn =
-            EventCallback.Factory.Create(this, () => OnFocusIn());
-
-        EventCallback focusOut =
-            EventCallback.Factory.Create(this, () => OnFocusOut());
-
-        EventCallback<string> valueChanged =
-            EventCallback.Factory.Create(this, (string newValue) => FormattedValueChanged(newValue));
-
-        InternalTextFieldRenderer.BuildTextFieldRenderTree(
-            builder,
-            ref rendSeq,
-            CascadingDefaults,
-            typeof(MBTextField),
-            @class,
-            @style,
-            AppliedDisabled,
-            Density,
-            attributesToSplat,
-            FormattedValue,
-            valueChanged,
-            () => FormattedValue,
-            focusIn,
-            focusOut,
-            Label,
-            Prefix,
-            Suffix,
-            SupportingText,
-            TextAlignStyle,
-            TextFieldId,
-            ItemType,
-            LeadingIcon,
-            LeadingToggleIcon,
-            LeadingToggleIconButtonLink,
-            LeadingToggleIconButtonLinkTarget,
-            LeadingToggleIconSelected,
-            TrailingIcon,
-            TrailingToggleIcon,
-            TrailingToggleIconButtonLink,
-            TrailingToggleIconButtonLinkTarget,
-            TrailingToggleIconSelected,
-            ValidationMessageFor);
-    }
-
-    #endregion
-
     #region FormattedValue
 
     // There may be a case for simplifying this code. Does FormattedValue need to be bound like this or can we instead bind to a string representation of the
     // properly scaled number without formatting intended only for human legibility?
+    private string fv;
     private string FormattedValue
     {
         get
         {
-            var fv =  HasFocus ? Math.Round(Convert.ToDecimal(ComponentValue) * AppliedMultiplier, MyDecimalPlaces).ToString() : StringValue(ComponentValue);
             return fv;
         }
 
         set
         {
-            var enteredVal = HasFocus ? Convert.ToDecimal(Convert.ToDecimal(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocusedMultiplier) : NumericValue(value) / AppliedMultiplier;
+            fv = value;
+            var enteredVal = HasFocus ? Convert.ToDecimal(Convert.ToDecimal(string.IsNullOrWhiteSpace(fv) ? "0" : fv.Trim()) / FocusedMultiplier) : NumericValue(fv) / AppliedMultiplier;
             ComponentValue = Convert.ToDecimal(Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude));
-        }
-    }
-
-    #endregion
-
-    #region FormattedValueChanged
-
-    private void FormattedValueChanged(string newValue)
-    {
-        FormattedValue = newValue;
-    }
-
-    #endregion
-
-    #region OnInitializedAsync
-
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnInitializedAsync()
-    {
-        //
-        //  Note the use of multiple parameters that presume invariance during the
-        //  life of this component.
-        //      DecimalPlaces
-        //      FocusedMultiplier
-        //      Max
-        //      Min
-        //      UnfocusedMultiplier
-        //
-        await base.OnInitializedAsync();
-
-        var allowSign = Min is not (not null and >= 0);
-
-        FocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)FocusedMagnitude));
-        UnfocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)UnfocusedMagnitude));
-
-        if (DecimalPlaces <= 0)
-        {
-            MyDecimalPlaces = 0;
-            Regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
-        }
-        else
-        {
-            MyDecimalPlaces = (int)DecimalPlaces;
-            Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
         }
     }
 
@@ -382,34 +280,79 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
     #endregion
 
-    #region OnFocusIn
+    #region OnInitializedAsync
 
-    private async Task OnFocusIn()
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnInitializedAsync()
     {
-        HasFocus = true;
-        ItemType = "number";
-        await JsRuntime.InvokeVoidAsync(
-            "MaterialBlazor.MBTextField.setType",
-            TextFieldId,
-            FormattedValue,
-            ItemType,
-            true).ConfigureAwait(false);
+        //
+        //  Note the use of multiple parameters that presume invariance during the
+        //  life of this component.
+        //      DecimalPlaces
+        //      FocusedMagnitude
+        //      Max
+        //      Min
+        //      UnfocusedMagnitude
+        //
+        await base.OnInitializedAsync();
+
+        var allowSign = Min is not (not null and >= 0);
+
+        FocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)FocusedMagnitude));
+        UnfocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)UnfocusedMagnitude));
+
+        if (DecimalPlaces <= 0)
+        {
+            MyDecimalPlaces = 0;
+            Regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
+        }
+        else
+        {
+            MyDecimalPlaces = (int)DecimalPlaces;
+            Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+        }
+
+        FormattedValue = StringValue(ComponentValue);
     }
 
     #endregion
 
-    #region OnFocusOut
+    #region OnFocusInAsync
 
-    private async Task OnFocusOut()
+    private async Task OnFocusInAsync()
+    {
+        HasFocus = true;
+        ItemType = "number";
+
+        await JsRuntime.InvokeVoidAsync(
+            "MaterialBlazor.MBTextField.setFieldType",
+            TextFieldId,
+            ItemType,
+            true).ConfigureAwait(false);
+
+        FormattedValue = Math.Round(Convert.ToDecimal(ComponentValue) * AppliedMultiplier, MyDecimalPlaces).ToString();
+
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+    }
+
+    #endregion
+
+    #region OnFocusOutAsync
+
+    private async Task OnFocusOutAsync()
     {
         HasFocus = false;
         ItemType = "text";
+        var fv = FormattedValue;
         await JsRuntime.InvokeVoidAsync(
-            "MaterialBlazor.MBTextField.setType",
+            "MaterialBlazor.MBTextField.setFieldType",
             TextFieldId,
-            FormattedValue,
             ItemType,
             false).ConfigureAwait(false);
+
+        FormattedValue = StringValue(ComponentValue);
+
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 
     #endregion

@@ -5,8 +5,7 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage APIReferences="@apiTuple"
-                   ComponentAndPageName="DoubleField"
+<DemonstrationPage ComponentAndPageName="DoubleField"
                    MaterialWebPage=""
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
@@ -231,14 +230,5 @@
             ToastService.ShowToast(heading: "Double Persistent Helper Text", message: $"Value: '{_doublePersistentHelperText}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
         }
     }
-
-
-
-    private Tuple<int, string>[] apiTuple =
-    {
-       new Tuple<int, string>(0, "MBDoubleField"),
-       new Tuple<int, string>(5, "InternalFloatingPointFieldBase"),
-       new Tuple<int, string>(10, "InternalNumericFieldBase"),
-    };
 
 }

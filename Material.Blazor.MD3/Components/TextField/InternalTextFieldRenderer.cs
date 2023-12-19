@@ -35,7 +35,7 @@ public sealed class InternalTextFieldRenderer
         string styleString,
         bool appliedDisabled,
         MBDensity? density,
-        KeyValuePair<string, object>[] attributesToSplat,
+        IEnumerable<KeyValuePair<string, object>> attributesToSplat,
         string value,
         EventCallback<string> valueChanged,
         Expression<Func<string>> valueExpression,
@@ -47,6 +47,7 @@ public sealed class InternalTextFieldRenderer
         string supportingText,
         MBTextAlignStyle? textAlignStyle,
         string textFieldId,
+        MBTextInputStyle? textInputStyle,
         string type,
         MBIconDescriptor leadingIcon,
         MBIconDescriptor leadingToggleIcon,
@@ -95,22 +96,24 @@ public sealed class InternalTextFieldRenderer
 
             if (!string.IsNullOrWhiteSpace(prefix))
             {
-                builder.AddAttribute(rendSeq++, "prefixText", prefix);
+                builder.AddAttribute(rendSeq++, "Prefix", prefix);
             }
 
             if (!string.IsNullOrWhiteSpace(suffix))
             {
-                builder.AddAttribute(rendSeq++, "suffixText", suffix);
+                builder.AddAttribute(rendSeq++, "Suffix", suffix);
             }
 
             if (!string.IsNullOrWhiteSpace(supportingText))
             {
-                builder.AddAttribute(rendSeq++, "supportingText", supportingText);
+                builder.AddAttribute(rendSeq++, "SupportingText", supportingText);
             }
 
             builder.AddAttribute(rendSeq++, "TextAlignStyle", textAlignStyle);
 
             builder.AddAttribute(rendSeq++, "TextFieldId", textFieldId);
+
+            builder.AddAttribute(rendSeq++, "TextInputStyle", textInputStyle);
 
 
             if (leadingIcon is not null)

@@ -5,8 +5,7 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage APIReferences="@apiTuple"
-                   ComponentAndPageName="IntField"
+<DemonstrationPage ComponentAndPageName="IntField"
                    MaterialWebPage=""
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
@@ -115,11 +114,5 @@
             ToastService.ShowToast(heading: "Int Persistent Helper Text", message: $"Value: '{_intPersistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
-
-    private Tuple<int, string>[] apiTuple =
-    {
-       new Tuple<int, string>(0, "MBIntField"),
-       new Tuple<int, string>(10, "InternalNumericFieldBase"),
-    };
 
 }

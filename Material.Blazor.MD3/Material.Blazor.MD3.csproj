@@ -32,8 +32,8 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<None Include="Components\DoubleField\MBDoubleField.cs" />
-		<None Include="Components\IntField\MBIntField.cs" />
+		<None Include="Components\DoubleField\MBDoubleField2.cs" />
+		<None Include="Components\IntField\MBIntField2.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -121,8 +121,8 @@
 
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="components\**\*.scss;styles\*.scss;" />
-		<Compile Remove="Components\DoubleField\MBDoubleField.cs" />
-		<Compile Remove="Components\IntField\MBIntField.cs" />
+		<Compile Remove="Components\DoubleField\MBDoubleField2.cs" />
+		<Compile Remove="Components\IntField\MBIntField2.cs" />
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />

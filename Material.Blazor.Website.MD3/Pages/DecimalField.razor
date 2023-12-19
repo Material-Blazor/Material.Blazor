@@ -5,8 +5,7 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage APIReferences="@apiTuple"
-                   ComponentAndPageName="DecimalField"
+<DemonstrationPage ComponentAndPageName="DecimalField"
                    MaterialWebPage=""
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
@@ -27,7 +26,9 @@
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Standard Formatted Decimals
                     </h2>
-
+                    <h2>
+                        Implemented as MBDecimal.razor and MBDecimal.razor.cs
+                    </h2>
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
                         A range of numeric decimal fields using formats for non focused input.
                     </h3>
@@ -40,7 +41,7 @@
                                         TextInputStyle="@MBTextInputStyle.Filled" />
                     </p>
 
-@*                     <p>
+                    <p>
                         <MBDecimalField @bind-Value="@DecimalMoneyByFormat"
                                         DecimalPlaces="2"
                                         Label="Money by format"
@@ -56,11 +57,93 @@
                                         Prefix="£"
                                         TextInputStyle="@MBTextInputStyle.Filled" />
                     </p>
- *@                </Primary>
+                </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
 
-@*         <div class="mdc-layout-grid__cell--span-4">
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted Decimals (2)
+                    </h2>
+                    <h2>
+                        Implemented as MBDecimal2.cs and a slew of inherited classes
+                    </h2>
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A range of numeric decimal fields using formats for non focused input.
+                    </h3>
+
+                    <p>
+                        <MBDecimalField2 @bind-Value="@DecimalValue"
+                                        DecimalPlaces="2"
+                                        Label="Decimal 2dp (2)"
+                                        NumericFormat="N2"
+                                        TextInputStyle="@MBTextInputStyle.Filled" />
+                    </p>
+
+                    <p>
+                        <MBDecimalField2 @bind-Value="@DecimalMoneyByFormat"
+                                        DecimalPlaces="2"
+                                        Label="Money by format (2)"
+                                        NumericFormat="C2"
+                                        TextInputStyle="@MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBDecimalField2 @bind-Value="@DecimalMoneyByPrefix"
+                                        DecimalPlaces="2"
+                                        Label="Money by prefix (2)"
+                                        NumericFormat="N2"
+                                        Prefix="£"
+                                        TextInputStyle="@MBTextInputStyle.Filled" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted Decimals (3)
+                    </h2>
+                    <h2>
+                        Implemented as MBDecimal3.cs using InternalTextFieldRenderer
+                    </h2>
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A range of numeric decimal fields using formats for non focused input.
+                    </h3>
+
+                    <p>
+                        <MBDecimalField3 @bind-Value="@DecimalValue"
+                                        DecimalPlaces="2"
+                                        Label="Decimal 2dp (3)"
+                                        NumericFormat="N2"
+                                        TextInputStyle="@MBTextInputStyle.Filled" />
+                    </p>
+
+                    <p>
+                        <MBDecimalField3 @bind-Value="@DecimalMoneyByFormat"
+                                        DecimalPlaces="2"
+                                        Label="Money by format (3)"
+                                        NumericFormat="C2"
+                                        TextInputStyle="@MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBDecimalField3 @bind-Value="@DecimalMoneyByPrefix"
+                                        DecimalPlaces="2"
+                                        Label="Money by prefix (3)"
+                                        NumericFormat="N2"
+                                        Prefix="£"
+                                        TextInputStyle="@MBTextInputStyle.Filled" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -131,7 +214,7 @@
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
- *@
+
     </PageContent>
 </DemonstrationPage>
 
@@ -235,12 +318,5 @@
             ToastService.ShowToast(heading: "Decimal Persistent Helper Text", message: $"Value: '{_decimalPersistentHelperText}'", level: Material.Blazor.MBToastLevel.Success, showIcon: false);
         }
     }
-
-    private Tuple<int, string>[] apiTuple =
-    {
-       new Tuple<int, string>(0, "MBDecimalField"),
-       new Tuple<int, string>(5, "InternalFloatingPointFieldBase"),
-       new Tuple<int, string>(10, "InternalNumericFieldBase"),
-    };
 
 }
