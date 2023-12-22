@@ -132,7 +132,7 @@ public partial class MBDoubleField : InputComponent<double>
     /// <summary>
     /// Number of decimal places for the value. If more dp are entered the value gets rounded properly.
     /// </summary>
-    [Parameter] public uint DecimalPlaces { get; set; } = 2;
+    [Parameter] public int DecimalPlaces { get; set; } = 2;
 
     /// <summary>
     /// Adjusts the value's magnitude as a number when the field is focused. Used for

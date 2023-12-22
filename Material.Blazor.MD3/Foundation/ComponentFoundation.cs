@@ -49,10 +49,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             {
                 disabled = value;
 
-                if (HasInstantiated)
-                {
-                    EnqueueJSInteropAction(OnDisabledSetAsync);
-                }
+                EnqueueJSInteropAction(OnDisabledSetAsync);
             }
         }
     }
@@ -97,7 +94,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     [Inject] private IJSRuntime JsRuntime { get; set; }
     [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
 
-//    [Inject] private protected IMBTooltipService TooltipService { get; set; }
+    //    [Inject] private protected IMBTooltipService TooltipService { get; set; }
     [Inject] private protected IMBLoggingService LoggingService { get; set; }
 
     #endregion
@@ -396,7 +393,6 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
             {
                 EnqueueJSInteropAction(InstantiateMcwComponent);
 
-                HasInstantiated = true;
                 AddTooltip();
             }
             catch (Exception e)

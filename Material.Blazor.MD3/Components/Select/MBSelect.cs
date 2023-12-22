@@ -156,7 +156,7 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
             ConsoleLog("HandleChange");
             ConsoleLog("   HC - Label: " + Label);
             ConsoleLog("   HC - Args.Value: " + (string)args.Value);
-            ConsoleLog("   HC - Current ComponentValue: " + ComponentValue?.ToString());
+            ConsoleLog("   HC - Current ComponentValue: " + ComponentValue?.ToString() ?? "null");
             ConsoleLog("   HC - Setting ComponentValue to Args.Value");
             StringValue = (string)args.Value;
             TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
@@ -175,8 +175,8 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
         ConsoleLog("OnParametersSetAsync");
         ConsoleLog("   OPSA - Label: " + Label);
-        ConsoleLog("   OPSA - Current ComponentValue: " + ComponentValue?.ToString());
-        ConsoleLog("   OPSA - Current Value: " + Value?.ToString());
+        ConsoleLog("   OPSA - Current ComponentValue: " + ComponentValue?.ToString() ?? "null");
+        ConsoleLog("   OPSA - Current Value: " + Value?.ToString() ?? "null");
 
         StringValue = Value is null ? "" : Value.ToString();
     }
@@ -189,7 +189,7 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
     public void ConsoleLog(string message)
     {
-        JSRuntime.InvokeVoidAsync("console.log", message);
+        LoggingService.LogInformation("SELECT: " + message);
     }
 
     #endregion

@@ -11,8 +11,8 @@ namespace Material.Blazor.Internal;
 /// A DRY inspired abstract class providing <see cref="MBSelect{TItem}"/> and <see cref="MBRadioButtonGroup{TItem}"/> with validation.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class SingleSelectComponent<T, TListElement> :
-    InputComponent<T> where TListElement : MBSingleSelectElement<T>
+public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
+    where TListElement : MBSingleSelectElement<T>
 {
     #region members
 
@@ -58,14 +58,11 @@ public abstract class SingleSelectComponent<T, TListElement> :
         {
             _cachedItems = Items;
 
-            if (HasInstantiated)
-            {
-                var validatedValue = ValidateItemList(Items, Material.Blazor.MBItemValidation.DefaultToFirst);
+            var validatedValue = ValidateItemList(Items, Material.Blazor.MBItemValidation.DefaultToFirst);
 
-                if (!validatedValue.Equals(Value))
-                {
-                    Value = validatedValue;
-                }
+            if (!validatedValue.Equals(Value))
+            {
+                Value = validatedValue;
             }
 
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);

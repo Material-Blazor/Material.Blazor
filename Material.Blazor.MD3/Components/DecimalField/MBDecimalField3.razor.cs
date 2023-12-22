@@ -14,7 +14,7 @@ namespace Material.Blazor;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public partial class MBDecimalField : InputComponent<decimal>
+public partial class MBDecimalField3 : InputComponent<decimal>
 {
     #region members
 

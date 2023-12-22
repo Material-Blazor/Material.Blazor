@@ -200,26 +200,4 @@
 		</VisualStudio>
 	</ProjectExtensions>
 
-	<!--
-	SolutionDir is only available to builds in the IDE
-	
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="$(SolutionDir)README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
-	</Target>
-	-->
-
-	<!--
-	These two don't work in the IDE
-
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="copy ..\README.md $(projectdir)README.md" />
-	</Target>
-
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
-	</Target>
-	-->
-
 </Project>

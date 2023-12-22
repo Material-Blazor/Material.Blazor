@@ -7,7 +7,7 @@ public static class Utilities
 {
     public static MBLoggingServiceConfiguration GetDefaultLoggingServiceConfiguration() => new()
     {
-        LoggingLevel = (MBLoggingLevel)MBLoggingLevel.Warning
+        LoggingLevel = (MBLoggingLevel)MBLoggingLevel.Information,
     };
 
 

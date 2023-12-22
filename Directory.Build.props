@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Server'">
-		<DefineConstants>BLAZOR_SERVER</DefineConstants>
+		<DefineConstants>BLAZOR_SERVER,LOGGING</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='WebAssembly'">

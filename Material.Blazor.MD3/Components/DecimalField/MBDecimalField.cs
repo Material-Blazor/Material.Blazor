@@ -18,7 +18,7 @@ namespace Material.Blazor;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public sealed class MBDecimalField3 : InputComponent<decimal>
+public sealed class MBDecimalField : InputComponent<decimal>
 {
     #region members
 
@@ -140,7 +140,14 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     /// <summary>
     /// Number of decimal places for the value. If more dp are entered the value gets rounded properly.
     /// </summary>
-    [Parameter] public uint DecimalPlaces { get; set; } = 2;
+    [Parameter] public int DecimalPlaces { get; set; } = 2;
+
+    /// <summary>
+    /// Adjusts the value's magnitude as a number when the field is focused. Used for
+    /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
+    /// this issue may not get solved.
+    /// </summary>
+    [Parameter] public MBNumericInputMagnitude FocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
 
     /// <summary>
     /// The minimum allowable value.
@@ -156,13 +163,6 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     /// Format to apply to the numeric value when the field is not selected.
     /// </summary>
     [Parameter] public string NumericFormat { get; set; }
-
-    /// <summary>
-    /// Adjusts the value's magnitude as a number when the field is focused. Used for
-    /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
-    /// this issue may not get solved.
-    /// </summary>
-    [Parameter] public MBNumericInputMagnitude FocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
 
     /// <summary>
     /// Alternative format for a singular number if required. An example is "1 month"
@@ -201,6 +201,7 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     internal string ItemType { get; set; } = "text";
     private int MyDecimalPlaces { get; set; } = 0;
     private Regex Regex { get; set; }
+    private bool SelectInputContentOnAfterRender { get; set; } = false;
     private decimal UnfocusedMultiplier { get; set; } = 1;
 
     #endregion
@@ -234,10 +235,24 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToDictionary();
-        attributesToSplat.Add("max", Max.ToString());
-        attributesToSplat.Add("min", Min.ToString());
-        attributesToSplat.Add("step", Math.Pow(10, -MyDecimalPlaces).ToString());
-        attributesToSplat.Add("type", ItemType);
+        string value;
+
+        if (HasFocus)
+        {
+            attributesToSplat.Add("type", "number");
+            attributesToSplat.Add("max", Max.ToString());
+            attributesToSplat.Add("min", Min.ToString());
+            attributesToSplat.Add("step", Math.Pow(10, -MyDecimalPlaces).ToString());
+            attributesToSplat.Add("formnovalidate", true);
+            value = ConvertToUnformattedTextValue(Value);
+            SelectInputContentOnAfterRender = true;
+        }
+        else
+        {
+            attributesToSplat.Add("type", "text");
+            value = ConvertToFormattedTextValue(Value);
+        }
+
         var rendSeq = 0;
 
         EventCallback focusIn =
@@ -247,7 +262,7 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
             EventCallback.Factory.Create(this, () => OnFocusOut());
 
         EventCallback<string> valueChanged =
-            EventCallback.Factory.Create(this, (string newValue) => FormattedValueChanged(newValue));
+            EventCallback.Factory.Create(this, (string newValue) => TextFieldStringValueChanged(newValue));
 
         InternalTextFieldRenderer.BuildTextFieldRenderTree(
             builder,
@@ -259,9 +274,9 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
             AppliedDisabled,
             Density,
             attributesToSplat,
-            FormattedValue,
+            value,
             valueChanged,
-            () => FormattedValue,
+            () => TextFieldStringValue,
             focusIn,
             focusOut,
             Label,
@@ -287,33 +302,50 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
 
     #endregion
 
-    #region FormattedValue
+    #region ConvertToFormattedTextValue
 
-    // There may be a case for simplifying this code. Does FormattedValue need to be bound like this or can we instead bind to a string representation of the
-    // properly scaled number without formatting intended only for human legibility?
-    private string fv;
-    private string FormattedValue
+    private string ConvertToFormattedTextValue(decimal value)
     {
-        get
-        {
-            return fv;
-        }
+        var format = NumericSingularFormat is not null && Utilities.DecimalEqual(Math.Abs(Value), 1)
+            ? NumericSingularFormat
+            : NumericFormat;
 
-        set
-        {
-            fv = value;
-            var enteredVal = HasFocus ? Convert.ToDecimal(Convert.ToDecimal(string.IsNullOrWhiteSpace(fv) ? "0" : fv.Trim()) / FocusedMultiplier) : NumericValue(fv) / AppliedMultiplier;
-            ComponentValue = Convert.ToDecimal(Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude));
-        }
+        return (value * GetMultiplier()).ToString(format);
     }
 
     #endregion
 
-    #region FormattedValueChanged
+    #region ConvertToUnformattedTextValue
 
-    private void FormattedValueChanged(string newValue)
+    private string ConvertToUnformattedTextValue(decimal value)
     {
-        FormattedValue = newValue;
+        return Math.Round(value * GetMultiplier(), DecimalPlaces).ToString();
+    }
+
+    #endregion
+
+    #region GetMultiplier
+
+    private decimal GetMultiplier()
+    {
+        var magnitude = HasFocus ? (int)FocusedMagnitude : (int)UnfocusedMagnitude;
+        return Convert.ToDecimal(Math.Pow(10, magnitude));
+    }
+
+    #endregion
+
+    #region OnAfterRenderAsync
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender).ConfigureAwait(false);
+
+        if (SelectInputContentOnAfterRender)
+        {
+            SelectInputContentOnAfterRender = false;
+
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", TextFieldId).ConfigureAwait(false);
+        }
     }
 
     #endregion
@@ -350,7 +382,7 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
             Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
         }
 
-        FormattedValue = StringValue(ComponentValue);
+        TextFieldStringValue = StringValue(ComponentValue);
     }
 
     #endregion
@@ -391,16 +423,7 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     private async Task OnFocusIn()
     {
         HasFocus = true;
-        ItemType = "number";
-        await JsRuntime.InvokeVoidAsync(
-            "MaterialBlazor.MBTextField.setFieldType",
-            TextFieldId,
-            ItemType,
-            true).ConfigureAwait(false);
-
-        FormattedValue = Math.Round(Convert.ToDecimal(ComponentValue) * AppliedMultiplier, MyDecimalPlaces).ToString();
-
-        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+        await InvokeAsync(StateHasChanged);
     }
 
     #endregion
@@ -410,17 +433,7 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     private async Task OnFocusOut()
     {
         HasFocus = false;
-        ItemType = "text";
-        var fv = FormattedValue;
-        await JsRuntime.InvokeVoidAsync(
-            "MaterialBlazor.MBTextField.setFieldType",
-            TextFieldId,
-            ItemType,
-            false).ConfigureAwait(false);
-
-        FormattedValue = StringValue(ComponentValue);
-
-        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
+        await InvokeAsync(StateHasChanged);
     }
 
     #endregion
@@ -428,6 +441,45 @@ public sealed class MBDecimalField3 : InputComponent<decimal>
     #region StringValue
 
     private string StringValue(decimal? value) => (Convert.ToDecimal(value) * AppliedMultiplier).ToString(AppliedFormat);
+
+    #endregion
+
+    #region TextFieldStringValue
+
+    // There may be a case for simplifying this code. Does TextFieldStringValue need to be bound like this or can we instead bind to a string representation of the
+    // properly scaled number without formatting intended only for human legibility?
+    private string fv;
+    private string TextFieldStringValue
+    {
+        get
+        {
+            return fv;
+        }
+
+        set
+        {
+            fv = value;
+            decimal enteredVal;
+            if (HasFocus)
+            {
+                enteredVal = Convert.ToDecimal(string.IsNullOrWhiteSpace(fv) ? "0" : fv.Trim()) / FocusedMultiplier;
+            }
+            else
+            {
+                enteredVal = NumericValue(fv) / AppliedMultiplier;
+            }
+            ComponentValue = Convert.ToDecimal(Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude));
+        }
+    }
+
+    #endregion
+
+    #region TextFieldStringValueChanged
+
+    private void TextFieldStringValueChanged(string newValue)
+    {
+        TextFieldStringValue = newValue;
+    }
 
     #endregion
 

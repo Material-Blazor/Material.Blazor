@@ -34,7 +34,7 @@
                                   ItemValidation="@MBItemValidation.NoSelection"
                                   Label="Default Style" />
                     </p>
-                    <p>
+@*                     <p>
                         <MBSelect @bind-Value="@FilledStyle"
                                   Items="KittenBreeds"
                                   ItemValidation="@MBItemValidation.NoSelection"
@@ -48,13 +48,13 @@
                                   Label="Outlined Style"
                                   SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
-                </Primary>
+ *@                </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
 
 
 
-        <div class="mdc-layout-grid__cell--span-4">
+@*         <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -289,7 +289,7 @@
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
-
+ *@
         @* Used occasionally for test purposes *@
         @*   <MBButton ButtonStyle="MBButtonStyle.Outlined"
         Label="Invoke OnClick()"

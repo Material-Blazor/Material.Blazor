@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-#if Logging
+#if LOGGING
 using Serilog;
 using Serilog.Events;
 
@@ -14,7 +14,8 @@ const string _customTemplate = "{Timestamp:HH:mm:ss.fff}\t[{Level:u3}]\t{Message
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .MinimumLevel.Override("GoogleAnalytics.Blazor", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
     .Enrich.FromLogContext()
     .WriteTo.Async(a => a.Console(outputTemplate: _customTemplate))
     .CreateLogger();
@@ -22,12 +23,12 @@ Log.Logger = new LoggerConfiguration()
 
 try
 {
-#if Logging
+#if LOGGING
     Log.Information("Starting Material.Blazor.Website.Server");
 #endif
     var builder = WebApplication.CreateBuilder(args);
 
-#if Logging
+#if LOGGING
     builder.Host.UseSerilog();
 #endif
 
@@ -82,7 +83,7 @@ try
         app.UseHsts();
     }
 
-#if Logging
+#if LOGGING
     app.UseSerilogRequestLogging();
 #endif
     app.UseHttpsRedirection();
@@ -102,11 +103,11 @@ try
 }
 catch (Exception ex)
 {
-#if Logging
+#if LOGGING
     Log.Fatal(ex, "Material.Blazor.Website.Server terminated unexpectedly");
 #endif
 }
-#if Logging
+#if LOGGING
 finally
 {
     Log.CloseAndFlush();

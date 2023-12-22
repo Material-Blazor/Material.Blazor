@@ -383,19 +383,6 @@ public sealed class MBTextField : InputComponent<string>
 
     #endregion
 
-    #region SelectFieldContent
-
-    /// <summary>
-    /// Selects the text field content. Used by numeric fields when type is changed to "number".
-    /// </summary>
-    /// <returns></returns>
-    internal async Task SelectFieldContent()
-    {
-        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.selectFieldContent", TextFieldId).ConfigureAwait(false);
-    }
-
-    #endregion
-
     #region SetDateErrorMessage
 
     internal void SetDateErrorMessage()

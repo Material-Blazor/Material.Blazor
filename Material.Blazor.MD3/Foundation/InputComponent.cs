@@ -308,10 +308,8 @@ public abstract class InputComponent<T> : ComponentFoundation
                 LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
 
                 _componentValue = Value;
-                if (HasInstantiated)
-                {
-                    EnqueueJSInteropAction(SetComponentValueAsync);
-                }
+
+                EnqueueJSInteropAction(SetComponentValueAsync);
             }
         }
     }

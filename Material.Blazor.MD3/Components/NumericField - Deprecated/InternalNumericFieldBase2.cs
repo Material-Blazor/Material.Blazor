@@ -200,8 +200,6 @@ public abstract class InternalNumericFieldBase2<T, U> : InputComponent<T>
     private decimal AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
     private decimal FocusedMultiplier { get; set; } = 1;
     public bool HasFocus { get; set; } = false;
-    internal string ItemType { get; set; } = "text";
-    private int MyDecimalPlaces { get; set; } = 0;
     public Regex Regex { get; set; }
     private bool SelectInputContentOnAfterRender { get; set; } = false;
     private U TextField { get; set; }
@@ -242,7 +240,11 @@ public abstract class InternalNumericFieldBase2<T, U> : InputComponent<T>
                 builder.AddAttribute(7, "Value", BindConverter.FormatValue(ConvertToFormattedTextValue(Value)));
             }
 
-            builder.AddAttribute(8, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)), ConvertToUnformattedTextValue(Value)))));
+            builder.AddAttribute(8, "ValueChanged", 
+                EventCallback.Factory.Create(this,
+                    RuntimeHelpers.CreateInferredEventCallback(this,
+                        __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)),
+                            ConvertToUnformattedTextValue(Value))));
             var stringValue = HasFocus ? ConvertToUnformattedTextValue(Value) : ConvertToFormattedTextValue(Value);
             builder.AddAttribute(9, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<string>>>(() => stringValue));
 
