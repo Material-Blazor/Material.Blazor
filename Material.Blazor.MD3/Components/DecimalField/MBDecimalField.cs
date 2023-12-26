@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -239,18 +240,24 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
         if (HasFocus)
         {
-            attributesToSplat.Add("type", "number");
             attributesToSplat.Add("max", Max.ToString());
             attributesToSplat.Add("min", Min.ToString());
             attributesToSplat.Add("step", Math.Pow(10, -MyDecimalPlaces).ToString());
             attributesToSplat.Add("formnovalidate", true);
+            ItemType = "number";
             value = ConvertToUnformattedTextValue(Value);
             SelectInputContentOnAfterRender = true;
+            ConsoleLog("BuildRenderTree");
+            ConsoleLog("   BRT - with focus");
+            ConsoleLog("   BRT - value: '" + value + "'");
         }
         else
         {
-            attributesToSplat.Add("type", "text");
+            ItemType = "text";
             value = ConvertToFormattedTextValue(Value);
+            ConsoleLog("BuildRenderTree");
+            ConsoleLog("   BRT - without focus");
+            ConsoleLog("   BRT - value: '" + value + "'");
         }
 
         var rendSeq = 0;
@@ -261,8 +268,14 @@ public sealed class MBDecimalField : InputComponent<decimal>
         EventCallback focusOut =
             EventCallback.Factory.Create(this, () => OnFocusOut());
 
+        //EventCallback<string> valueChanged =
+        //    EventCallback.Factory.Create(this, (string newValue) => TextFieldStringValueChanged(newValue));
+
         EventCallback<string> valueChanged =
-            EventCallback.Factory.Create(this, (string newValue) => TextFieldStringValueChanged(newValue));
+            EventCallback.Factory.Create(this,
+                RuntimeHelpers.CreateInferredEventCallback(this,
+                    __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)),
+                        ConvertToUnformattedTextValue(Value)));
 
         InternalTextFieldRenderer.BuildTextFieldRenderTree(
             builder,
@@ -315,6 +328,31 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
     #endregion
 
+    #region ConvertToNumericValue
+
+    /// <summary>
+    /// Converts a string value from the text field to a numeric value.
+    /// </summary>
+    /// <returns></returns>
+    private Decimal ConvertToNumericValue(string value)
+    {
+        if (!Regex.IsMatch(TextFieldStringValue))
+        {
+            return Value;
+        }
+
+        if (!decimal.TryParse(TextFieldStringValue, out var result))
+        {
+            return Value;
+        }
+
+        result = Math.Round(result / GetMultiplier(), GetRounding());
+
+        return (Min != null && result < Convert.ToDecimal(Min)) || (Max != null && result > Convert.ToDecimal(Max)) ? Value : result;
+    }
+
+    #endregion
+
     #region ConvertToUnformattedTextValue
 
     private string ConvertToUnformattedTextValue(decimal value)
@@ -330,6 +368,15 @@ public sealed class MBDecimalField : InputComponent<decimal>
     {
         var magnitude = HasFocus ? (int)FocusedMagnitude : (int)UnfocusedMagnitude;
         return Convert.ToDecimal(Math.Pow(10, magnitude));
+    }
+
+    #endregion
+
+    #region GetRounding
+
+    private int GetRounding()
+    {
+        return DecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(GetMultiplier())));
     }
 
     #endregion
@@ -382,7 +429,7 @@ public sealed class MBDecimalField : InputComponent<decimal>
             Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
         }
 
-        TextFieldStringValue = StringValue(ComponentValue);
+        TextFieldStringValue = ConvertToFormattedTextValue(Value);
     }
 
     #endregion
@@ -438,12 +485,6 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
     #endregion
 
-    #region StringValue
-
-    private string StringValue(decimal? value) => (Convert.ToDecimal(value) * AppliedMultiplier).ToString(AppliedFormat);
-
-    #endregion
-
     #region TextFieldStringValue
 
     // There may be a case for simplifying this code. Does TextFieldStringValue need to be bound like this or can we instead bind to a string representation of the
@@ -474,11 +515,13 @@ public sealed class MBDecimalField : InputComponent<decimal>
 
     #endregion
 
-    #region TextFieldStringValueChanged
+    #region ZZZ - debug logging
 
-    private void TextFieldStringValueChanged(string newValue)
+    public void ConsoleLog(string message)
     {
-        TextFieldStringValue = newValue;
+#if LOGGING
+        LoggingService.LogInformation("DECIMALFIELD: " + message);
+#endif
     }
 
     #endregion

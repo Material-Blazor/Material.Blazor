@@ -102,47 +102,6 @@
             </Material.Blazor.MD2.MBCard>
         </div>
 
-         <div class="mdc-layout-grid__cell--span-4">
-            <Material.Blazor.MD2.MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Standard Formatted Decimals (3)
-                    </h2>
-                    <h2>
-                        Implemented as MBDecimal3.razor and MBDecimal3.razor.cs
-                    </h2>
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A range of numeric decimal fields using formats for non focused input.
-                    </h3>
-
-@*                     <p>
-                        <MBDecimalField3 @bind-Value="@DecimalValue"
-                                        DecimalPlaces="2"
-                                        Label="Decimal 2dp (3)"
-                                        NumericFormat="N2"
-                                        TextInputStyle="@MBTextInputStyle.Filled" />
-                    </p>
- *@
-                    <p>
-                        <MBDecimalField3 @bind-Value="@DecimalMoneyByFormat"
-                                        DecimalPlaces="2"
-                                        Label="Money by format (3)"
-                                        NumericFormat="C2"
-                                        TextInputStyle="@MBTextInputStyle.Outlined" />
-                    </p>
-
-@*                     <p>
-                        <MBDecimalField3 @bind-Value="@DecimalMoneyByPrefix"
-                                        DecimalPlaces="2"
-                                        Label="Money by prefix (3)"
-                                        NumericFormat="N2"
-                                        Prefix="£"
-                                        TextInputStyle="@MBTextInputStyle.Filled" />
-                    </p>
- *@                </Primary>
-            </Material.Blazor.MD2.MBCard>
-        </div>
-
 @*        <div class="mdc-layout-grid__cell--span-4">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>

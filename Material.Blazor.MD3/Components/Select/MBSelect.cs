@@ -185,11 +185,11 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
     #region ZZZ - debug logging
 
-    [Inject] public IJSRuntime JSRuntime { get; set; }
-
     public void ConsoleLog(string message)
     {
+#if LOGGING
         LoggingService.LogInformation("SELECT: " + message);
+#endif
     }
 
     #endregion
