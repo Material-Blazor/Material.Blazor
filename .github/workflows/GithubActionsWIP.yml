@@ -472,7 +472,16 @@ jobs:
     # - name: Display wwwroot/images M.B.W.MD3
     #   run: dir ${{github.workspace}}/Material.Blazor.Website.MD3/wwwroot/images
 
-    - name: Build  & Publish Website 🔧
+    - name: Build Website 🔧
+      run: >
+        dotnet publish ${{env.projectWebMD3}}
+        --configuration ${{env.buildConfiguration}}
+        --output ${{env.outputWebMD3}}
+        -p:Version=${{env.ciVersion}}
+        -p:BlazorEnableCompression=false
+        --framework net8.0
+
+    - name: Publish Website 🔧
       run: >
         dotnet publish ${{env.projectWebMD3}}
         --configuration ${{env.buildConfiguration}}
