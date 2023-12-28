@@ -199,7 +199,6 @@ public sealed partial class MBDateTimeField : InputComponent<DateTime>
                 builder2,
                 ref rendSeq,
                 CascadingDefaults,
-                typeof(MBTextField),
                 @class,
                 @style,
                 AppliedDisabled,

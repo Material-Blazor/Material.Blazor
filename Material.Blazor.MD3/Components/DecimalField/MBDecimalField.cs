@@ -268,20 +268,19 @@ public sealed class MBDecimalField : InputComponent<decimal>
         EventCallback focusOut =
             EventCallback.Factory.Create(this, () => OnFocusOut());
 
-        //EventCallback<string> valueChanged =
-        //    EventCallback.Factory.Create(this, (string newValue) => TextFieldStringValueChanged(newValue));
-
         EventCallback<string> valueChanged =
-            EventCallback.Factory.Create(this,
-                RuntimeHelpers.CreateInferredEventCallback(this,
-                    __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)),
-                        ConvertToUnformattedTextValue(Value)));
+            EventCallback.Factory.Create(this, (string newValue) => TextFieldStringValueChanged(newValue));
+
+        //EventCallback<string> valueChanged =
+        //    EventCallback.Factory.Create(this,
+        //        RuntimeHelpers.CreateInferredEventCallback(this,
+        //            __value => ValueChanged.InvokeAsync(ConvertToNumericValue(__value)),
+        //                ConvertToUnformattedTextValue(Value)));
 
         InternalTextFieldRenderer.BuildTextFieldRenderTree(
             builder,
             ref rendSeq,
             CascadingDefaults,
-            typeof(MBTextField),
             @class,
             @style,
             AppliedDisabled,
@@ -511,6 +510,15 @@ public sealed class MBDecimalField : InputComponent<decimal>
             }
             ComponentValue = Convert.ToDecimal(Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude));
         }
+    }
+
+    #endregion
+
+    #region TextFieldStringValueChanged
+
+    private void TextFieldStringValueChanged(string newValue)
+    {
+        TextFieldStringValue = newValue;
     }
 
     #endregion

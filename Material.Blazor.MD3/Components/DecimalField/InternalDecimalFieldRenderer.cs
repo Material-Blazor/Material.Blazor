@@ -19,15 +19,14 @@ using System.Threading.Tasks;
 namespace Material.Blazor.Internal;
 
 /// <summary>
-/// A class that implements a single method that renders an MBTextField (for a component that 'has a'
-/// component MBTextField such as MBDateTimeField and MBDDecimalField).
-/// Also used by a component that 'has a' component MBDecimalField such as MBDoubleField and MBIntField.
+/// A class that implements a single method that renders an MBDecimalField for a component that 'has a'
+/// component MBDecimalField such as MBDoubleField and MBIntField.
 /// </summary>
-public sealed class InternalTextFieldRenderer
+public sealed class InternalDecimalFieldRenderer
 {
-    #region BuildTextFieldRenderTree
+    #region BuildDecimalFieldRenderTree
 
-    public static void BuildTextFieldRenderTree(
+    public static void BuildDecimalFieldRenderTree(
         RenderTreeBuilder builder,
         ref int rendSeq,
         MBCascadingDefaults cascadingDefaults,
@@ -36,12 +35,18 @@ public sealed class InternalTextFieldRenderer
         bool appliedDisabled,
         MBDensity? density,
         IEnumerable<KeyValuePair<string, object>> attributesToSplat,
-        string value,
-        EventCallback<string> valueChanged,
-        Expression<Func<string>> valueExpression,
+        decimal value,
+        EventCallback<decimal> valueChanged,
+        Expression<Func<decimal>> valueExpression,
         EventCallback? focusIn,
         EventCallback? focusOut,
-        string displayLabel,
+        int? decimalPlaces,
+        MBNumericInputMagnitude? focusedMagnitude,
+        string label,
+        decimal? min,
+        decimal? max,
+        string numericFormat,
+        string numericSingularFormat,
         string prefix,
         string suffix,
         string supportingText,
@@ -59,10 +64,10 @@ public sealed class InternalTextFieldRenderer
         string trailingToggleIconButtonLink,
         string trailingToggleIconButtonLinkTarget,
         bool trailingToggleIconSelected,
+        MBNumericInputMagnitude? unfocusedMagnitude,
         Expression<Func<object>> ValidationMessageFor)
-
     {
-        builder.OpenComponent(rendSeq++, typeof(MBTextField));
+        builder.OpenComponent(rendSeq++, typeof(MBDecimalField));
         {
             builder.AddAttribute(rendSeq++, "class", classString);
             builder.AddAttribute(rendSeq++, "style", styleString + Utilities.GetTextAlignStyle(cascadingDefaults.AppliedStyle(textAlignStyle)));
@@ -96,7 +101,38 @@ public sealed class InternalTextFieldRenderer
                 builder.AddAttribute(rendSeq++, "onfocusout", focusOut);
             }
 
-            builder.AddAttribute(rendSeq++, "label", displayLabel);
+
+            if (decimalPlaces is not null)
+            {
+                builder.AddAttribute(rendSeq++, "DecimalPlaces", decimalPlaces);
+            }
+
+            if (focusedMagnitude is not null)
+            {
+                builder.AddAttribute(rendSeq++, "FocusedMagnitude", focusedMagnitude);
+            }
+
+            builder.AddAttribute(rendSeq++, "label", label);
+
+            if (min is not null)
+            {
+                builder.AddAttribute(rendSeq++, "Min", min);
+            }
+
+            if (max is not null)
+            {
+                builder.AddAttribute(rendSeq++, "Max", max);
+            }
+
+            if (numericFormat is not null)
+            {
+                builder.AddAttribute(rendSeq++, "NumericFormat", numericFormat);
+            }
+
+            if (numericSingularFormat is not null)
+            {
+                builder.AddAttribute(rendSeq++, "NumericSingularFormat", numericSingularFormat);
+            }
 
             if (!string.IsNullOrWhiteSpace(prefix))
             {
@@ -164,6 +200,11 @@ public sealed class InternalTextFieldRenderer
             }
 
             builder.AddAttribute(rendSeq++, "TrailingToggleIconSelected", trailingToggleIconSelected);
+
+            if (unfocusedMagnitude is not null)
+            {
+                builder.AddAttribute(rendSeq++, "UnfocusedMagnitude", unfocusedMagnitude);
+            }
 
             builder.AddAttribute(rendSeq++, "ValidationMessageFor", ValidationMessageFor);
 

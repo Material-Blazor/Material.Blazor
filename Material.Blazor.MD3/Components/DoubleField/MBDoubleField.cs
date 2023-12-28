@@ -1,15 +1,18 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+
 using System;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Material.Blazor;
 
 /// <summary>
-/// An integer variant of <see cref="MBDecimalField"/>.
+/// A Material.Blazor formatted integer field.
 /// </summary>
-public partial class MBIntField : InputComponent<int>
+public sealed class MBDoubleField : InputComponent<double>
 {
 
     #region members
@@ -127,7 +130,12 @@ public partial class MBIntField : InputComponent<int>
 
     #endregion (MBText)
 
-    #region non-cascading parameters (MBIntField)
+    #region non-cascading parameters (MBDoubleField)
+
+    /// <summary>
+    /// Number of decimal places for the value. If more dp are entered the value gets rounded properly.
+    /// </summary>
+    [Parameter] public int DecimalPlaces { get; set; } = 2;
 
     /// <summary>
     /// Adjusts the value's magnitude as a number when the field is focused. Used for
@@ -168,15 +176,110 @@ public partial class MBIntField : InputComponent<int>
 
 #nullable restore annotations
 
-    #region local members
+    #endregion
 
-    private decimal DecimalValue
+    #region BuildRenderTree
+
+    protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        get => ComponentValue;
-        set => ComponentValue = Convert.ToInt32(Math.Round(value, 0));
+        var attributesToSplat = AttributesToSplat().ToDictionary();
+        var rendSeq = 0;
+
+        EventCallback<decimal> valueChanged =
+            EventCallback.Factory.Create(this, (decimal newValue) => DecimalValueChanged(newValue));
+
+        InternalDecimalFieldRenderer.BuildDecimalFieldRenderTree(
+            builder,
+            ref rendSeq,
+            CascadingDefaults,
+            @class,
+            @style,
+            AppliedDisabled,
+            Density,
+            attributesToSplat,
+            DecimalValue,
+            valueChanged,
+            () => DecimalValue,
+            null,
+            null,
+            DecimalPlaces,
+            FocusedMagnitude,
+            Label,
+            DecimalMin,
+            DecimalMax,
+            NumericFormat,
+            NumericSingularFormat,
+            Prefix,
+            Suffix,
+            SupportingText,
+            TextAlignStyle,
+            TextFieldId,
+            TextInputStyle,
+            null,
+            LeadingIcon,
+            LeadingToggleIcon,
+            LeadingToggleIconButtonLink,
+            LeadingToggleIconButtonLinkTarget,
+            LeadingToggleIconSelected,
+            TrailingIcon,
+            TrailingToggleIcon,
+            TrailingToggleIconButtonLink,
+            TrailingToggleIconButtonLinkTarget,
+            TrailingToggleIconSelected,
+            UnfocusedMagnitude,
+            ValidationMessageFor);
     }
 
     #endregion
+
+    #region DecimalMin
+    private decimal? DecimalMin
+    {
+        get
+        {
+            if (Min == null)
+            {
+                return null;
+            }
+
+            return (decimal)Min;
+        }
+    }
+
+    #endregion
+
+    #region DecimalMax
+
+    private decimal? DecimalMax
+    {
+        get
+        {
+            if (Max == null)
+            {
+                return null;
+            }
+            return (decimal)Max;
+        }
+    }
+
+    #endregion
+
+    #region DecimalValue
+
+    private decimal DecimalValue
+    {
+        get => Convert.ToDecimal(ComponentValue);
+        set => ComponentValue = Convert.ToDouble(value);
+    }
+
+    #endregion
+
+    #region DecimalValueChanged
+
+    private void DecimalValueChanged(decimal newValue)
+    {
+        DecimalValue = newValue;
+    }
 
     #endregion
 
