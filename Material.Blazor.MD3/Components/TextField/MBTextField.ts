@@ -17,14 +17,3 @@
         textfieldElement.select();
     }
 }
-
-export function setFieldType(textfieldID, textFieldType, formNoValidate) {
-    const textfieldElement: any | null = document.getElementById(textfieldID);
-
-    if (!textfieldElement) {
-        return;
-    }
-
-    textfieldElement.setAttribute("type", textFieldType);
-    textfieldElement.setAttribute("formnovalidate", formNoValidate);
-}
