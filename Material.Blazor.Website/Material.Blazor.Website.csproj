@@ -8,14 +8,6 @@
 		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<DefineConstants>Logging</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DefineConstants>NoLogging</DefineConstants>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
