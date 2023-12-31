@@ -1,6 +1,8 @@
 ## Ignore temporary files and build results specific to M.B
 
 #Generated CSS and JS files
+**/Material.Blazor/wwwroot/*.*
+**/Material.Blazor.MD3/wwwroot/*.*
 **/Material.Blazor.Website/wwwroot/css/*.*
 **/Material.Blazor.Website/wwwroot/js/*.*
 **/Material.Blazor.Website.MD3/wwwroot/css/*.*
