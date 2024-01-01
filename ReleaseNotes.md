@@ -13,6 +13,7 @@ Released 2024-01-??
 
 **New components**
 - MD3: Added preview components:
+	- MBGrid
     - MBTabs
 
 **Breaking Changes**
