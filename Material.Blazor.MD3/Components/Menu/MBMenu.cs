@@ -53,8 +53,9 @@ public class MBMenu : ComponentFoundation
 
 
 
-    private string MenuButtonId { get; set; }
-    private string MenuId { get; set; }
+    private string MenuButtonId { get; } = "menu-id-" + Guid.NewGuid().ToString().ToLower();
+    private string MenuId { get; set; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
+
 
     #endregion
 
@@ -62,9 +63,6 @@ public class MBMenu : ComponentFoundation
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        MenuId = "menu-id-" + Guid.NewGuid().ToString().ToLower();
-        MenuButtonId = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
-
         var attributesToSplat = AttributesToSplat().ToArray();
 
         var rendSeq = 0;
@@ -127,7 +125,7 @@ public class MBMenu : ComponentFoundation
                                     {
                                         builder.OpenElement(rendSeq++, "div");
                                         {
-                                            if (menuItem.HeadlineColor.Length > 0) 
+                                            if (menuItem.HeadlineColor.Length > 0)
                                             {
                                                 builder.AddAttribute(rendSeq++, "style", "color: " + menuItem.HeadlineColor + "; ");
                                             }
@@ -184,11 +182,8 @@ public class MBMenu : ComponentFoundation
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        if (firstRender)
-        {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setToggleMenuOpen", MenuButtonId, MenuId).ConfigureAwait(false);
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuCloseEvent", MenuId).ConfigureAwait(false);
-        }
+
+        await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId).ConfigureAwait(false);
     }
 
     #endregion

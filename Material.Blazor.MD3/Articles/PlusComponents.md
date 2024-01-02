@@ -14,7 +14,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBDateTimeField](xref:C.MBDateTimeField) | A date or date/time typed text field |
 | [MBDecimalField](xref:C.MBDecimalField) | A numeric decimal text field. |
 | [MBDoubleField](xref:C.MBDoubleField) | A numeric double text field. |
-| [MBIntField](xref:C.MBIntField) | A numeric int text field. |
+| [MBGrid](xref:C.MBGrideld) | A data driven table with grouping, sorting, and various data display options. |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | A collection of radio buttons with a single selection |
 
 ## Experimental Component List

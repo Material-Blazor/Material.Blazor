@@ -6,16 +6,26 @@ export function setMenuCloseEvent(menuID: string) {
     const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
     if (menuElement != null) {
         console.log("Adding listener for menu-close events");
-        menuElement.addEventListener('menu-close', () => displayCloseEvent);
+        menuElement.addEventListener('menu-close', () => displayMenuCloseEvent);
+        console.log("Adding listener for closed events");
+        menuElement.addEventListener('closed', () => displayClosedEvent);
     }
+}
+
+function displayClosedEvent() {
+    console.log("displayClosedEvent invoked");
+}
+
+function displayClosingEvent() {
+    console.log("displayClosingEvent invoked");
 }
 
 /**
  * Searches for an element with `class="output"` set on it, and updates the
  * text of that element with the menu-closed event's content.
  */
-function displayCloseEvent(event: CloseMenuEvent) {
-    console.log("displayCloseEvent invoked");
+function displayMenuCloseEvent(event: CloseMenuEvent) {
+    console.log("displayMenuCloseEvent invoked");
     // get the output element from the shadow root
     const root = (event.target as HTMLElement).getRootNode() as ShadowRoot;
     const outputEl = root.querySelector('.output') as HTMLElement;
@@ -42,17 +52,37 @@ function displayCloseEvent(event: CloseMenuEvent) {
 }`;
 }
 
+function displayOpenedEvent() {
+    console.log("displayOpenedEvent invoked");
+}
+
+function displayOpeningEvent() {
+    console.log("displayOpeningEvent invoked");
+}
+
+export function setMenuEventListeners(menuButtonID: string, menuID: string) {
+    const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
+    const menuElement: HTMLElement | null = document.getElementById(menuID);
+    if ((buttonElement != null) && (menuElement != null)) {
+        console.log("Adding listener for button click events");
+        buttonElement.removeEventListener('click');
+        buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
+        console.log("Adding listener for menu closed events");
+        menuElement.addEventListener('closed', () => displayClosedEvent);
+        console.log("Adding listener for menu closing events");
+        menuElement.addEventListener('closing', () => displayClosingEvent);
+        console.log("Adding listener for menu-close events");
+        menuElement.addEventListener('menu-close', () => displayMenuCloseEvent);
+        console.log("Adding listener for menu opened events");
+        menuElement.addEventListener('opened', () => displayOpenedEvent);
+        console.log("Adding listener for menu opening events");
+        menuElement.addEventListener('opening', () => displayOpeningEvent);
+    }
+}
+
 function toggleMenu(menuElement: any) {
     console.log("toggleMenu invoked");
     if (menuElement != null) {
         menuElement.open = !menuElement.open;
-    }
-}
-export function setToggleMenuOpen(menuButtonID: string, menuID: string) {
-    const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
-    const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
-    if ((buttonElement != null) && (menuElement != null)) {
-        console.log("Adding listener for click events");
-        buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
     }
 }
