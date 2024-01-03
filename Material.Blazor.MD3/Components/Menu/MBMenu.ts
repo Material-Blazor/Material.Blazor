@@ -1,5 +1,5 @@
 ﻿import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
-//import { MdButton } from '@material/web/button/button';
+//import { MdButton } from '@material/web/button/button.js';
 import { Corner, FocusState, MdMenu, MenuItem } from '@material/web/menu/menu.js';
 
 export function setMenuCloseEvent(menuID: string) {
@@ -62,20 +62,30 @@ function displayOpeningEvent() {
 
 export function setMenuEventListeners(menuButtonID: string, menuID: string) {
     const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
-    const menuElement: HTMLElement | null = document.getElementById(menuID);
+    const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
     if ((buttonElement != null) && (menuElement != null)) {
         console.log("Adding listener for button click events");
-        buttonElement.removeEventListener('click');
+        buttonElement.removeEventListener('click', toggleMenu);
         buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
+
         console.log("Adding listener for menu closed events");
+        menuElement.removeEventListener('closed', displayClosedEvent);
         menuElement.addEventListener('closed', () => displayClosedEvent);
+
         console.log("Adding listener for menu closing events");
+        menuElement.removeEventListener('closing', displayClosingEvent);
         menuElement.addEventListener('closing', () => displayClosingEvent);
+
         console.log("Adding listener for menu-close events");
+        //menuElement.removeEventListener('menu-close', displayMenuCloseEvent);
         menuElement.addEventListener('menu-close', () => displayMenuCloseEvent);
+
         console.log("Adding listener for menu opened events");
+        menuElement.removeEventListener('opened', displayOpenedEvent);
         menuElement.addEventListener('opened', () => displayOpenedEvent);
+
         console.log("Adding listener for menu opening events");
+        menuElement.removeEventListener('opening', displayOpeningEvent);
         menuElement.addEventListener('opening', () => displayOpeningEvent);
     }
 }
