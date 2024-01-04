@@ -53,8 +53,8 @@ public class MBMenu : ComponentFoundation
 
 
 
-    private string MenuButtonId { get; } = "menu-id-" + Guid.NewGuid().ToString().ToLower();
-    private string MenuId { get; set; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
+    private string MenuButtonId { get; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
+    private string MenuId { get; set; } = "menu-id-" + Guid.NewGuid().ToString().ToLower();
 
 
     #endregion
@@ -92,6 +92,7 @@ public class MBMenu : ComponentFoundation
             {
                 builder.AddAttribute(rendSeq++, "anchor", MenuButtonId);
                 builder.AddAttribute(rendSeq++, "id", MenuId);
+                //builder.AddAttribute(rendSeq++, "menu-close", "displayMenuCloseEvent()");
                 //builder.AddAttribute(rendSeq++, "onmenuclose", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
                 builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
 
@@ -123,6 +124,8 @@ public class MBMenu : ComponentFoundation
 
                                     if (menuItem.Headline.Length > 0)
                                     {
+                                        builder.AddAttribute(rendSeq++, "id", menuItem.Headline);
+
                                         builder.OpenElement(rendSeq++, "div");
                                         {
                                             if (menuItem.HeadlineColor.Length > 0)
@@ -133,34 +136,34 @@ public class MBMenu : ComponentFoundation
                                             builder.AddContent(rendSeq++, menuItem.Headline);
                                         }
                                         builder.CloseElement();
+                                    }
 
-                                        if (menuItem.LeadingIcon is not null && !menuItem.SuppressLeadingIcon)
-                                        {
-                                            MBIcon.BuildRenderTreeWorker(
-                                                builder,
-                                                ref rendSeq,
-                                                CascadingDefaults,
-                                                null,
-                                                null,
-                                                null,
-                                                null,
-                                                menuItem.LeadingIcon,
-                                                "start");
-                                        }
+                                    if (menuItem.LeadingIcon is not null && !menuItem.SuppressLeadingIcon)
+                                    {
+                                        MBIcon.BuildRenderTreeWorker(
+                                            builder,
+                                            ref rendSeq,
+                                            CascadingDefaults,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            menuItem.LeadingIcon,
+                                            "start");
+                                    }
 
-                                        if (menuItem.TrailingIcon is not null)
-                                        {
-                                            MBIcon.BuildRenderTreeWorker(
-                                                builder,
-                                                ref rendSeq,
-                                                CascadingDefaults,
-                                                null,
-                                                null,
-                                                null,
-                                                null,
-                                                menuItem.TrailingIcon,
-                                                "end");
-                                        }
+                                    if (menuItem.TrailingIcon is not null)
+                                    {
+                                        MBIcon.BuildRenderTreeWorker(
+                                            builder,
+                                            ref rendSeq,
+                                            CascadingDefaults,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            menuItem.TrailingIcon,
+                                            "end");
                                     }
                                 }
                                 builder.CloseComponent();
@@ -168,6 +171,11 @@ public class MBMenu : ComponentFoundation
                         }
                     }
                 }
+            }
+            builder.CloseElement();
+            builder.OpenElement(rendSeq++, "pre");
+            {
+                builder.AddAttribute(rendSeq++, "class", "output");
             }
             builder.CloseElement();
         }
@@ -181,9 +189,14 @@ public class MBMenu : ComponentFoundation
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        await InvokeJsVoidAsync("MaterialBlazor.MBMenu.logAfterRenderEvent").ConfigureAwait(false);
+
         await base.OnAfterRenderAsync(firstRender);
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId).ConfigureAwait(false);
+        if (firstRender)
+        {
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId, firstRender).ConfigureAwait(false);
+        }
     }
 
     #endregion

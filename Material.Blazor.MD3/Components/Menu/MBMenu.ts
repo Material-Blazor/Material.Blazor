@@ -2,14 +2,8 @@
 //import { MdButton } from '@material/web/button/button.js';
 import { Corner, FocusState, MdMenu, MenuItem } from '@material/web/menu/menu.js';
 
-export function setMenuCloseEvent(menuID: string) {
-    const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
-    if (menuElement != null) {
-        console.log("Adding listener for menu-close events");
-        menuElement.addEventListener('menu-close', () => displayMenuCloseEvent);
-        console.log("Adding listener for closed events");
-        menuElement.addEventListener('closed', () => displayClosedEvent);
-    }
+export function logAfterRenderEvent() {
+    console.log("Blazor OnAfterRenderAsync event...");
 }
 
 function displayClosedEvent() {
@@ -60,33 +54,42 @@ function displayOpeningEvent() {
     console.log("displayOpeningEvent invoked");
 }
 
-export function setMenuEventListeners(menuButtonID: string, menuID: string) {
+export function setMenuEventListeners(menuButtonID: string, menuID: string, isFirstRender: boolean) {
     const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
-    const menuElement: MdMenu | null = (document.getElementById(menuID) as MdMenu);
+    const menuElement: HTMLElement | null = document.getElementById(menuID);
     if ((buttonElement != null) && (menuElement != null)) {
         console.log("Adding listener for button click events");
-        buttonElement.removeEventListener('click', toggleMenu);
+        if (!isFirstRender) {
+            buttonElement.removeEventListener('click', toggleMenu);
+        }
         buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
 
-        console.log("Adding listener for menu closed events");
-        menuElement.removeEventListener('closed', displayClosedEvent);
-        menuElement.addEventListener('closed', () => displayClosedEvent);
+        //console.log("Adding listener for menu closed events");
+        //menuElement.removeEventListener('closed', displayClosedEvent);
+        //menuElement.addEventListener('closed', () => displayClosedEvent);
 
-        console.log("Adding listener for menu closing events");
-        menuElement.removeEventListener('closing', displayClosingEvent);
-        menuElement.addEventListener('closing', () => displayClosingEvent);
+        //console.log("Adding listener for menu closing events");
+        //menuElement.removeEventListener('closing', displayClosingEvent);
+        //menuElement.addEventListener('closing', () => displayClosingEvent);
 
         console.log("Adding listener for menu-close events");
-        //menuElement.removeEventListener('menu-close', displayMenuCloseEvent);
+
+        if (!isFirstRender) {
+            // TS2769
+            // @ts-expect-error
+            menuElement.removeEventListener('menu-close', displayMenuCloseEvent);
+        }
         menuElement.addEventListener('menu-close', () => displayMenuCloseEvent);
 
-        console.log("Adding listener for menu opened events");
-        menuElement.removeEventListener('opened', displayOpenedEvent);
-        menuElement.addEventListener('opened', () => displayOpenedEvent);
+        //console.log("Adding listener for menu opened events");
+        //menuElement.removeEventListener('opened', displayOpenedEvent);
+        //menuElement.addEventListener('opened', () => displayOpenedEvent);
 
-        console.log("Adding listener for menu opening events");
-        menuElement.removeEventListener('opening', displayOpeningEvent);
-        menuElement.addEventListener('opening', () => displayOpeningEvent);
+        //console.log("Adding listener for menu opening events");
+        //menuElement.removeEventListener('opening', displayOpeningEvent);
+        //menuElement.addEventListener('opening', () => displayOpeningEvent);
+        
+        console.log("...");
     }
 }
 
