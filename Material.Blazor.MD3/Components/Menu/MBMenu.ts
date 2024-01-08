@@ -79,7 +79,8 @@ export function setMenuEventListeners(menuButtonID: string, menuID: string, isFi
             // @ts-expect-error
             menuElement.removeEventListener('menu-close', displayMenuCloseEvent);
         }
-        menuElement.addEventListener('menu-close', () => displayMenuCloseEvent);
+        menuElement.addEventListener('menu-close', () => { displayMenuCloseEvent });
+        menuElement.addEventListener('click', () => { displayMenuCloseEvent }, true);
 
         //console.log("Adding listener for menu opened events");
         //menuElement.removeEventListener('opened', displayOpenedEvent);

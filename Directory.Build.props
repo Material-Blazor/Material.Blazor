@@ -17,7 +17,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+		<AccelerateBuildsInVisualStudio>false</AccelerateBuildsInVisualStudio>
 	</PropertyGroup>
 
 </Project>
