@@ -16,6 +16,10 @@ Released 2024-01-10
 	- MBGrid
     - MBTabs
 
+**New features**
+- MD3: Added preview features:
+	- Support for MD3 theming
+
 **Breaking Changes**
 
 **Deprecated Components**
@@ -30,7 +34,7 @@ Released 2023-12-01
 
 **Updates**
 - MD2/MD3: Dependabot and NuGet updates
-- Repaired MD3 theme selection
+- Repaired MD2 theme selection (Replaced hard coded JS with TS)
 
 **New components**
 - MD3: Added preview components:
