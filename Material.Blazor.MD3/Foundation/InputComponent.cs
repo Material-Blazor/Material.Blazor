@@ -64,16 +64,16 @@ public abstract class InputComponent<T> : ComponentFoundation
     protected FieldIdentifier FieldIdentifier { get; private set; }
 
 
-    /// <summary>
-    /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
-    /// </summary>
-    private bool AllowNextRenderAlways { get; set; } = false;
+    ///// <summary>
+    ///// Allows <see cref="ShouldRender()"/> to return "true" habitually.
+    ///// </summary>
+    //private bool AllowNextRenderAlways { get; set; } = false;
 
 
-    /// <summary>
-    /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
-    /// </summary>
-    private bool AllowNextRenderOnce = false;
+    ///// <summary>
+    ///// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
+    ///// </summary>
+    //private bool AllowNextRenderOnce = false;
 
 
     /// <summary>
@@ -94,19 +94,19 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #region AllowAllRenders
 
-    private protected void AllowAllRenders()
-    {
-        AllowNextRenderAlways = true;
-    }
+    //private protected void AllowAllRenders()
+    //{
+    //    AllowNextRenderAlways = true;
+    //}
 
     #endregion
 
     #region AllowNextRender
 
-    private protected void AllowNextRender()
-    {
-        AllowNextRenderOnce = true;
-    }
+    //private protected void AllowNextRender()
+    //{
+    //    AllowNextRenderOnce = true;
+    //}
 
     #endregion
 
@@ -308,10 +308,8 @@ public abstract class InputComponent<T> : ComponentFoundation
                 LoggingService.LogTrace($"OnParametersSetAsync changed _componentValue from '{_componentValue?.ToString() ?? "null"}' to '{Value?.ToString() ?? "null"}'");
 
                 _componentValue = Value;
-                if (HasInstantiated)
-                {
-                    EnqueueJSInteropAction(SetComponentValueAsync);
-                }
+
+                EnqueueJSInteropAction(SetComponentValueAsync);
             }
         }
     }
@@ -379,19 +377,19 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #region ShouldRender
 
-    /// <summary>
-    /// Material.Blazor components descending from InputComponent _*must not*_ override ShouldRender().
-    /// </summary>
-    protected sealed override bool ShouldRender()
-    {
-        if (AllowNextRenderAlways || AllowNextRenderOnce)
-        {
-            AllowNextRenderOnce = false;
-            return true;
-        }
+    ///// <summary>
+    ///// Material.Blazor components descending from InputComponent _*must not*_ override ShouldRender().
+    ///// </summary>
+    //protected sealed override bool ShouldRender()
+    //{
+    //    if (AllowNextRenderAlways || AllowNextRenderOnce)
+    //    {
+    //        AllowNextRenderOnce = false;
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     #endregion
 

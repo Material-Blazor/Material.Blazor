@@ -36,6 +36,18 @@
                     LeadingIcon="table_chart"
                     Label="Data Table"
                     @onclick="@(() => ListItemClickHandler("datatable"))" />
+        <MBListItem ListItemColor="darkblue"
+                    LeadingIcon="date_range"
+                    Label="DateTime Field"
+                    @onclick="@(() => ListItemClickHandler("datetimefield"))" />
+        <MBListItem ListItemColor="darkblue"
+                    LeadingIcon="money"
+                    Label="Decimal Field"
+                    @onclick="@(() => ListItemClickHandler("decimalfield"))" />
+        <MBListItem ListItemColor="darkblue"
+                    LeadingIcon="money"
+                    Label="Double Field"
+                    @onclick="@(() => ListItemClickHandler("doublefield"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="picture_in_picture"
                     Label="Dialog"
@@ -48,6 +60,10 @@
                     LeadingIcon="offline_bolt"
                     Label="Floating Action Button"
                     @onclick="@(() => ListItemClickHandler("floatingactionbutton"))" />
+        <MBListItem ListItemColor="darkblue"
+                    LeadingIcon="table_chart"
+                    Label="Grid"
+                    @onclick="@(() => ListItemClickHandler("grid"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="touch_app"
                     Label="Icon"
@@ -56,6 +72,10 @@
                     LeadingIcon="touch_app"
                     Label="Icon Button"
                     @onclick="@(() => ListItemClickHandler("iconbutton"))" />
+        <MBListItem ListItemColor="darkblue"
+                    LeadingIcon="exposure_zero"
+                    Label="Int Field"
+                    @onclick="@(() => ListItemClickHandler("intfield"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="list"
                     Label="List"
@@ -64,10 +84,6 @@
                     LeadingIcon="menu"
                     Label="Menu"
                     @onclick="@(() => ListItemClickHandler("menu"))" />
-        <MBListItem ListItemColor="darkblue"
-                    LeadingIcon="money"
-                    Label="Numeric Fields"
-                    @onclick="@(() => ListItemClickHandler("numericfield"))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="access_time"
                     Label="Progress Indicator"
@@ -123,6 +139,20 @@
                  ScrollTarget="#main-content"
                  TopAppBarType="@MBTopAppBarTypeMD2.Dense"
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <MBIconButton @onclick="@OpenMenuAsync"
+                          IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                color: "white",
+                                name: "more_vert")"
+                          IconButtonStyle="@MBIconButtonStyle.Icon" />
+
+            <div class="mdc-menu-surface--anchor">
+                <Material.Blazor.MD2.MBMenu @ref="Menu" @key="@Theme">
+                    <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "material-default-theme")" @onclick="@(() => ThemeSetterAsync("material-default-theme"))" />
+                    <MBListItem Label="Material Alternate Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "material-alternate-theme")" @onclick="@(() => ThemeSetterAsync("material-alternate-theme"))" />
+                </Material.Blazor.MD2.MBMenu>
+            </div>
+        </section>
     </MBTopAppBar>
 
     <main class="main-content" id="main-content">

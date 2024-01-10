@@ -97,8 +97,6 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
 
         MBItemValidation appliedItemValidation = MBItemValidation.DefaultToFirst;
 
-        AllowAllRenders();
-
         ComponentValue = ValidateItemList(Items, appliedItemValidation);
 
         ConditionalCssClasses.AddIf("mb-radiobuttongroup__horizontal", () => IsHorizontal);

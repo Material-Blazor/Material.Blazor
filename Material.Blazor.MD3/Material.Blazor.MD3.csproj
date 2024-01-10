@@ -32,7 +32,6 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<None Include="Components\Menu\MBMenuEvents.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -55,8 +54,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
 	</ItemGroup>
@@ -75,6 +74,32 @@
 			<SubType>Code</SubType>
 		</None>
 	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+
+	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+		<Message Importance="high" Text="***** Building M.B.MD3" />
+		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
+		</Exec>
+	</Target>
+
+	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
+		<Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
+		<Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+		<Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
+		<Message Importance="high" Text="If the return code is 9009, npm is not present" />
+		<Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+	</Target>
 
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\material.blazor.ts" />
@@ -101,91 +126,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="wwwroot\" />
-	</ItemGroup>
-
-	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
-		</Exec>
-	</Target>
-
-	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
-		<Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
-		<Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
-		<Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
-		<Message Importance="high" Text="If the return code is 9009, npm is not present" />
-		<Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-	</Target>
-
-	<UsingTask TaskName="DeduplicateLicenseHeaders" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-		<ParameterGroup>
-			<SourceFile ParameterType="System.String" Required="true" />
-		</ParameterGroup>
-		<Task>
-			<Using Namespace="System" />
-			<Using Namespace="System.Collections.Generic" />
-			<Using Namespace="System.IO" />
-			<Using Namespace="System.Linq" />
-			<Using Namespace="System.Text" />
-			<Using Namespace="System.Text.RegularExpressions" />
-			<Code Type="Fragment" Language="cs">
-				<![CDATA[
-          var input = File.ReadAllText(SourceFile);
-          HashSet<string> knownLicenseHeaders = new();
-          int startIndex = 0;
-          while (true)
-          {
-            // search for opening multi-line comment token
-            var nextIndex = input.IndexOf("/*", startIndex);
-            if (nextIndex < 0)
-            {
-              break;
-            }
-            if (nextIndex == 0 || input[nextIndex - 1] != '\\')
-            {
-              // search matching closing comment token
-              var closingIndex = input.IndexOf("*/", nextIndex);
-              if (closingIndex < 0)
-              {
-                 throw new Exception("A multi-line comment wasn't closed");
-              }
-              closingIndex += 2; // the closing token is two characters long
-              var license = input.Substring(nextIndex, closingIndex - nextIndex);
-              if (knownLicenseHeaders.Add(license))
-              {
-                // this is a new one! let's not replace, we just advance the cursor
-                startIndex = closingIndex;
-              }
-              else
-              {
-                // we've seen this one before, so we rip it out here.
-                input = input.Substring(0, nextIndex) + input.Substring(closingIndex);
-                // we don't advance the cursor, because we just ripped out some text.
-              }
-            }
-            else
-            {
-              // this is not an actual comment token, because the slash is escaped
-              startIndex = nextIndex + 1;
-            }
-					}
-          // remove empty lines
-          input = input.Replace("\n\n", "\n").Replace("\n\n", "\n").Replace("\n\n", "\n");
-          File.WriteAllText(SourceFile, input);
-                ]]>
-			</Code>
-		</Task>
-	</UsingTask>
-
-	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsEventScripts)" Set="EventScripts" />
@@ -198,9 +138,6 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.MD3 Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
-		<Message Importance="high" Text="***** npm install (M.B.MD3 Scripts)" />
-		<Exec Command="npm install" />
-
 		<Message Importance="high" Text="***** npm install @material/web@nightly (M.B.MD3 Scripts)" />
 		<Exec Command="npm install @material/web@nightly" />
 
@@ -210,17 +147,11 @@
 		<Message Importance="high" Text="***** npm run build-js-minify (M.B.MD3 Scripts)" />
 		<Exec Command="npm run build-js-minify" />
 
-
-		<DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
-
 	</Target>
 
 	<Target Name="BuildEventScripts" Inputs="@(InputStaticAssetsEventScripts)" Outputs="@(OutputStaticAssetsEventScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B.MD3 Event Scripts)" />
 		<MakeDir Directories="wwwroot" />
-
-		<Message Importance="high" Text="***** npm install (M.B.MD3 Event Scripts)" />
-		<Exec Command="npm install" />
 
 		<Message Importance="high" Text="***** npm run build-js-custom-events (M.B.MD3 Event Scripts)" />
 		<Exec Command="npm run build-js-custom-events" />
@@ -230,9 +161,6 @@
 	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot (M.B.MD3 Styles)" />
 		<MakeDir Directories="wwwroot" />
-
-		<Message Importance="high" Text="***** npm install (M.B.MD3 Styles)" />
-		<Exec Command="npm install" />
 
 		<!--<Message Importance="high" Text="***** downloadfiles" />
 		
@@ -267,27 +195,5 @@
 			<UserProperties />
 		</VisualStudio>
 	</ProjectExtensions>
-
-	<!--
-	SolutionDir is only available to builds in the IDE
-	
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="$(SolutionDir)README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
-	</Target>
-	-->
-
-	<!--
-	These two don't work in the IDE
-
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="copy ..\README.md $(projectdir)README.md" />
-	</Target>
-
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
-	</Target>
-	-->
 
 </Project>

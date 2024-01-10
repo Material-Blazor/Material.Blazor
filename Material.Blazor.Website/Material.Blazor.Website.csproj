@@ -8,14 +8,6 @@
 		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<DefineConstants>Logging</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DefineConstants>NoLogging</DefineConstants>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
@@ -39,8 +31,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.1" />
 		<PackageReference Include="Humanizer " Version="2.14.1" />
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
 	</ItemGroup>
@@ -63,6 +55,7 @@
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="styles\*.scss;" />
 		<OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
@@ -71,19 +64,31 @@
 		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
 	</ItemGroup>
 
-	<Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
-		<Message Importance="high" Text="***** npm install (Environment check)" />
+	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+		<Message Importance="high" Text="***** Building M.B.W" />
 		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
 	</Target>
 
+	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
+		<Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
+		<Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+		<Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
+		<Message Importance="high" Text="If the return code is 9009, npm is not present" />
+		<Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+		<Message Importance="high" Text="**********************************************************************************" />
+	</Target>
+
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
-
-		<Message Importance="high" Text="***** npm install (M.B.W Scripts)" />
-		<Exec Command="npm install" />
 
 		<Message Importance="high" Text="***** npm run build-js (M.B.W Scripts)" />
 		<Exec Command="npm run build-js" />

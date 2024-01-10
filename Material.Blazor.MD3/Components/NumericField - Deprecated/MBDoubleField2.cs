@@ -6,7 +6,7 @@ namespace Material.Blazor;
 /// <summary>
 /// A Material.Blazor formatted double field.
 /// </summary>
-public sealed class MBDoubleField : InternalFloatingPointFieldBase<double, MBTextField>
+public sealed class MBDoubleField2 : InternalFloatingPointFieldBase2<double, MBTextField2>
 {
     private protected override double ConvertFromDecimal(decimal decimalValue)
     {

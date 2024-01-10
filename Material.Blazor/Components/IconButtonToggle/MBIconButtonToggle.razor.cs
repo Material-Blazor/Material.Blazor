@@ -135,7 +135,7 @@ public partial class MBIconButtonToggle : InputComponent<bool>
     /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
-        AllowNextShouldRender();
+        AllowNextRender();
         return Task.CompletedTask;
     }
 

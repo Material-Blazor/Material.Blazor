@@ -5,24 +5,14 @@
 @use '_material-symbols-rounded.scss';
 @use '_material-symbols-sharp.scss';
 
+@use '../Components/Grid/MBGrid.scss';
+@use '../Components/Menu/MBMenu.scss';
 @use '../Components/Toast/MBToast.scss';
 
 @use '../Components.MD2/Card/MBCard.scss';
 @use '../Components.MD2/DataTable/MBDataTable.scss';
 @use '../Components.MD2/TopAppBar/MBTopAppBar.scss';
 
-
-.mb-align-left {
-    text-align: left;
-}
-
-.mb-align-center {
-    text-align: center;
-}
-
-.mb-align-right {
-    text-align: right;
-}
 
 .mb-full-width {
     width: 100%;

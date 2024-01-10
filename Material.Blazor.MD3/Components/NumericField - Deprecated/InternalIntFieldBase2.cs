@@ -7,8 +7,8 @@ namespace Material.Blazor.Internal;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public abstract class InternalIntFieldBase<U> : InternalNumericFieldBase<int, U>
-    where U : InternalTextFieldBase
+public abstract class InternalIntFieldBase2<U> : InternalNumericFieldBase2<int, U>
+    where U : InternalTextFieldBase2
 {
     private protected override int ConvertToNumericValue(string displayText)
     {

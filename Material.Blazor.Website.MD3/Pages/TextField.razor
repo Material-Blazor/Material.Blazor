@@ -1,11 +1,12 @@
 ﻿@page "/textfield"
 
 @namespace Material.Blazor.Website.Pages
+@using System.ComponentModel.DataAnnotations
 
 @inject IMBToastService ToastService
 
 
-<DemonstrationPage AdditionalAPIReferences="@apiTuple"
+<DemonstrationPage APIReferences="@apiTuple"
                    ComponentAndPageName="TextField"
                    MaterialWebPage="text-field"
                    RequiresDisableSelection="true"
@@ -398,6 +399,60 @@
                 </Primary>
             </Material.Blazor.MD2.MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Text fields in a form
+                    </h2>
+
+                    <EditForm Model="@UserLogon"
+                              OnInvalidSubmit="@LogonFormInvalid"
+                              OnValidSubmit="@LogonFormSubmitted">
+                        <DataAnnotationsValidator />
+
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <MBTextField @bind-Value="@UserLogon.UserID"
+                                             Label="User ID"
+                                             style="width: 100%; margin-top: 6px;"
+                                             TextInputStyle="@MBTextInputStyle.Outlined"
+                                             TrailingIcon="@MBIcon.IconDescriptorConstructor(
+                                                name: "person")"
+                                             ValidationMessageFor="@(() => UserLogon.UserID)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <MBTextField @bind-Value="@UserLogon.Password"
+                                             SupportingText="Min 8 Characters"
+                                             SupportingTextPersistent="true"
+                                             Label="Password"
+                                             style="width: 100%;"
+                                             TextInputStyle="@MBTextInputStyle.Outlined"
+                                             TrailingIcon="@MBIcon.IconDescriptorConstructor(
+                                                name: "lock_outline")"
+                                             type="password"
+                                             ValidationMessageFor="@(() => UserLogon.Password)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                                <MBButton Label="Logon"
+                                          style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                          type="submit" />
+                                <MBButton Label="Cancel"
+                                          style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                          @onclick="@LogonFormCanceled"
+                                          typeof="button" />
+                            </div>
+                        </div>
+                    </EditForm>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
     </PageContent>
 </DemonstrationPage>
 
@@ -425,4 +480,35 @@
     {
         ToastService.ShowToast(heading: $"{componentName} Clicked", message: $"Two way binding Value: {value}", level: MBToastLevel.Success, showIcon: false);
     }
+
+
+    private class UserLogonDefinition
+    {
+        [Required(ErrorMessage = "UserID is required")]
+        public string UserID { get; set; }
+
+
+        [Required(ErrorMessage = "Password is required")]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
+        public string Password { get; set; }
+    }
+
+    private UserLogonDefinition UserLogon { get; set; } = new();
+
+    private async Task LogonFormSubmitted()
+    {
+        await Task.CompletedTask;
+        ToastService.ShowToast(heading: "Logon Form Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private void LogonFormInvalid()
+    {
+        ToastService.ShowToast(heading: "Logon Form Invalid", message: $"Logon form was invalid", level: MBToastLevel.Warning, showIcon: false);
+    }
+
+    private void LogonFormCanceled()
+    {
+        ToastService.ShowToast(heading: "Logon Form Canceled", message: $"Logon form was canceled", level: MBToastLevel.Warning, showIcon: false);
+    }
+
 }

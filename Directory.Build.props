@@ -9,11 +9,15 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Server'">
-		<DefineConstants>BLAZOR_SERVER</DefineConstants>
+		<DefineConstants>BLAZOR_SERVER,LOGGING</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='WebAssembly'">
 		<DefineConstants>BLAZOR_WEBASSEMBLY</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AccelerateBuildsInVisualStudio>false</AccelerateBuildsInVisualStudio>
 	</PropertyGroup>
 
 </Project>

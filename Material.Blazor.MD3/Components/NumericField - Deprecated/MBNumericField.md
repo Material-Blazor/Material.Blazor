@@ -2,7 +2,7 @@
 uid: C.MBNumericField
 title: MBNumericField
 ---
-# MBNumericField
+# MBNumericField - Deprecated
 
 ## Summary
 

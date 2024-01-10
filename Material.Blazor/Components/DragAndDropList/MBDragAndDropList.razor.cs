@@ -48,7 +48,7 @@ public partial class MBDragAndDropList<TItem> : InputComponent<List<TItem>>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

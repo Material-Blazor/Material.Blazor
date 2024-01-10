@@ -44,7 +44,7 @@ public partial class InternalCarouselPanel<TItem> : InputComponent<int>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = false;
+        AllowAllRenders();
     }
 }
 

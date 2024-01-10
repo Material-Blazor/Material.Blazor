@@ -7,7 +7,9 @@ import '@material/web/all.js';
 M.B.MD3 JS
 */
 import * as MBDialog from '../Components/Dialog/MBDialog';
+import * as MBGrid from '../Components/Grid/MBGrid';
 import * as MBMenu from '../Components/Menu/MBMenu';
+import * as MBTabs from '../Components/Tabs/MBTabs';
 import * as MBTextField from '../Components/TextField/MBTextField';
 
 /*
@@ -21,7 +23,9 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
     MBDialog,
+    MBGrid,
     MBMenu,
+    MBTabs,
     MBTextField,
 
     MBCard,

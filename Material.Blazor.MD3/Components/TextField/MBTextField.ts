@@ -1,5 +1,7 @@
-﻿export function selectFieldContent(elem) {
-    if (!elem) {
+﻿export function selectFieldContent(textfieldID) {
+    const textfieldElement: any | null = document.getElementById(textfieldID);
+
+    if (!textfieldElement) {
         return;
     }
 
@@ -11,7 +13,7 @@
     // Seemed to happen in Blazor Server (presumably due to slower JS Invoke timing).
     // Also probably not needed.Time will tell.
 
-    if (elem.focused == true) {
-        elem.select();
+    if (textfieldElement.focused == true) {
+        textfieldElement.select();
     }
 }

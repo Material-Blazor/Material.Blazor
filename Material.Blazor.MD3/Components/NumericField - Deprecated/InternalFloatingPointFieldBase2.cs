@@ -9,37 +9,10 @@ namespace Material.Blazor.Internal;
 /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
 /// displays the numeric value as formatted text, but switches to a pure number on being selected.
 /// </summary>
-public abstract class InternalFloatingPointFieldBase<T, U> : InternalNumericFieldBase<T, U>
+public abstract class InternalFloatingPointFieldBase2<T, U> : InternalNumericFieldBase2<T, U>
     where T : struct, IFloatingPoint<T>
-    where U : InternalTextFieldBase
+    where U : InternalTextFieldBase2
 {
-    /// <summary>
-    /// Adjusts the value's magnitude as a number when the field is focused. Used for
-    /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
-    /// this issue may not get solved.
-    /// </summary>
-    [Parameter] public MBNumericInputMagnitude FocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
-
-
-    /// <summary>
-    /// Adjusts the value's magnitude as a number when the field is unfocused. Used for
-    /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
-    /// this issue may not get solved.
-    /// </summary>
-    [Parameter] public MBNumericInputMagnitude UnfocusedMagnitude { get; set; } = MBNumericInputMagnitude.Normal;
-
-
-    /// <summary>
-    /// Number of decimal places for the value. If more dp are entered the value gets rounded properly.
-    /// </summary>
-    [Parameter] public uint DecimalPlaces { get; set; } = 2;
-
-
-    /// <summary>
-    /// Converts a decimal value to type T.
-    /// </summary>
-    /// <param name="decimalValue"></param>
-    /// <returns></returns>
     private protected abstract T ConvertFromDecimal(decimal decimalValue);
 
 

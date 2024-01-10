@@ -46,7 +46,7 @@ public partial class MBLinearProgress : InputComponent<double>
 
         cachedLinearProgressType = LinearProgressType;
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
         InitialValue = Value;
 
         _ = ConditionalCssClasses

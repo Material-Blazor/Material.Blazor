@@ -155,7 +155,7 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
         ObjectReference = DotNetObjectReference.Create(this);
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

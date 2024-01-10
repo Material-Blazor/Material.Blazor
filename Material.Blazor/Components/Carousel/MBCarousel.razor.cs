@@ -57,7 +57,7 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

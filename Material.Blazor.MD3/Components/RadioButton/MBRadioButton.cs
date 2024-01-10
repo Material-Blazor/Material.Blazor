@@ -64,7 +64,7 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     {
         await base.OnInitializedAsync();
 
-        AllowAllRenders();
+        //AllowAllRenders();
     }
 
     #endregion

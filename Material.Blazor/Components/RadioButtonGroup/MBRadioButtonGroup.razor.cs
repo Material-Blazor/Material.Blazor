@@ -31,7 +31,7 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
 
         MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
 
         bool hasValue;
 

@@ -64,7 +64,7 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
         InputDisabled = AppliedDisabled;
         IsChecked = ComponentValue != null && ComponentValue.Equals(TargetCheckedValue);
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
     }
 
 

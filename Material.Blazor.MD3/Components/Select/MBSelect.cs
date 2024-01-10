@@ -108,7 +108,7 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
 
                 builder.AddAttribute(rendSeq++, "value", StringValue);
                 builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
-                builder.SetUpdatesAttributeName("StringValue");
+                //builder.SetUpdatesAttributeName("StringValue");
 
                 foreach (var sse in Items)
                 {
@@ -156,7 +156,7 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
             ConsoleLog("HandleChange");
             ConsoleLog("   HC - Label: " + Label);
             ConsoleLog("   HC - Args.Value: " + (string)args.Value);
-            ConsoleLog("   HC - Current ComponentValue: " + ComponentValue.ToString());
+            ConsoleLog("   HC - Current ComponentValue: " + ComponentValue?.ToString() ?? "null");
             ConsoleLog("   HC - Setting ComponentValue to Args.Value");
             StringValue = (string)args.Value;
             TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(TItem));
@@ -174,17 +174,22 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
         await base.OnParametersSetAsync();
 
         ConsoleLog("OnParametersSetAsync");
+        ConsoleLog("   OPSA - Label: " + Label);
+        ConsoleLog("   OPSA - Current ComponentValue: " + ComponentValue?.ToString() ?? "null");
+        ConsoleLog("   OPSA - Current Value: " + Value?.ToString() ?? "null");
+
+        StringValue = Value is null ? "" : Value.ToString();
     }
 
     #endregion
 
     #region ZZZ - debug logging
 
-    [Inject] public IJSRuntime JSRuntime { get; set; }
-
     public void ConsoleLog(string message)
     {
-        JSRuntime.InvokeVoidAsync("console.log", message);
+#if LOGGING
+        LoggingService.LogInformation("SELECT: " + message);
+#endif
     }
 
     #endregion

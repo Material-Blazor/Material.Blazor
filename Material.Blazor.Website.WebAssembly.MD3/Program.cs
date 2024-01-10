@@ -42,8 +42,8 @@ Log.Logger = new LoggerConfiguration()
 #else
     .MinimumLevel.Information()
 #endif
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-    .MinimumLevel.Override("GoogleAnalytics.Blazor", LogEventLevel.Debug)
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("GoogleAnalytics.Blazor", LogEventLevel.Warning)
     .Enrich.FromLogContext()
     .WriteTo.Async(a => a.BrowserConsole(outputTemplate: "{Timestamp:HH:mm:ss.fff}\t[{Level:u3}]\t{Message}{NewLine}{Exception}"))
     .CreateLogger();

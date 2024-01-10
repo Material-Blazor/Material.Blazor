@@ -18,7 +18,7 @@ namespace Material.Blazor.Internal;
 /// Required for NumericFields otherwise could have been implemented directly in
 /// MBTextField.cs
 /// </summary>
-public abstract class InternalTextFieldBase : InputComponent<string>
+public abstract class InternalTextFieldBase2 : InputComponent<string>
 {
     #region members
 
@@ -185,7 +185,7 @@ public abstract class InternalTextFieldBase : InputComponent<string>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var cssClass = (@class + " " + Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle))).Trim();
+        var cssClass = @class;
 
         var rendSeq = 0;
         var componentName = CascadingDefaults.AppliedStyle(TextInputStyle) switch
@@ -220,17 +220,17 @@ public abstract class InternalTextFieldBase : InputComponent<string>
 
             if (!string.IsNullOrWhiteSpace(Prefix))
             {
-                builder.AddAttribute(rendSeq++, "prefixText", Prefix);
+                builder.AddAttribute(rendSeq++, "prefix-text", Prefix);
             }
 
             if (!string.IsNullOrWhiteSpace(Suffix))
             {
-                builder.AddAttribute(rendSeq++, "suffixText", Suffix);
+                builder.AddAttribute(rendSeq++, "suffix-text", Suffix);
             }
 
             if (!string.IsNullOrWhiteSpace(SupportingText))
             {
-                builder.AddAttribute(rendSeq++, "supportingText", SupportingText);
+                builder.AddAttribute(rendSeq++, "supporting-text", SupportingText);
             }
 
             if (LeadingIcon is not null)

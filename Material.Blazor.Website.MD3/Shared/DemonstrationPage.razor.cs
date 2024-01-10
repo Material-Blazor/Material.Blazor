@@ -11,7 +11,7 @@ namespace Material.Blazor.Website.Shared
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
 
-        [Parameter] public Tuple<int, string>[] AdditionalAPIReferences { get; set; } = null;
+        [Parameter] public Tuple<int, string>[] APIReferences { get; set; } = null;
         [Parameter] public string ComponentDirectory { get; set; } = "";
         [Parameter] public string ComponentAndPageName { get; set; }
         [Parameter] public RenderFragment Controls { get; set; }
@@ -82,42 +82,44 @@ namespace Material.Blazor.Website.Shared
                     Content = $"<a href=\"{baseURI}docs/Material.Blazor.MD3/Components/{componentDirectory}/MB{ComponentAndPageName}.html\" target=\"_blank\">MB{ComponentAndPageName} Component Article</a>"
                 });
 
-                var apiSuffix = (!IsGeneric) ? "" : "-1";
-                var apiText = $"<a href=\"{baseURI}docs/api/Material.Blazor.MB{ComponentAndPageName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentAndPageName} API docs</a>";
-
-                Items.Add(new ReferenceItem
+                if (APIReferences is null)
                 {
-                    Title = "API Documentation",
-                    Content = apiText
-                });
-            }
-
-            if (AdditionalAPIReferences != null)
-            {
-                var apiSuffix = (!IsGeneric) ? "" : "-1";
-                foreach (var apiTuple in AdditionalAPIReferences)
-                {
-                    var api2Text = "";
-                    var api2Spacer = "";
-                    for (int i = 0; i < apiTuple.Item1; i++)
-                    {
-                        api2Spacer += "&nbsp;";
-                    }
-
-                    if (apiTuple.Item2.StartsWith("MB"))
-                    {
-                        api2Text = $"{api2Spacer}<a href=\"{baseURI}docs/api/Material.Blazor.{apiTuple.Item2}{apiSuffix}.html\" target=\"_blank\">{apiTuple.Item2} API docs</a>";
-                    }
-                    else
-                    {
-                        api2Text = $"{api2Spacer}<a href=\"{baseURI}docs/api/Material.Blazor.Internal.{apiTuple.Item2}{apiSuffix}.html\" target=\"_blank\">{apiTuple.Item2} API docs</a>";
-                    }
+                    var apiSuffix = (!IsGeneric) ? "" : "-1";
+                    var apiText = $"<a href=\"{baseURI}docs/api/Material.Blazor.MB{ComponentAndPageName}{apiSuffix}.html\" target=\"_blank\">MB{ComponentAndPageName} API docs</a>";
 
                     Items.Add(new ReferenceItem
                     {
                         Title = "API Documentation",
-                        Content = api2Text
+                        Content = apiText
                     });
+                }
+                else
+                {
+                    var apiSuffix = (!IsGeneric) ? "" : "-1";
+                    foreach (var apiTuple in APIReferences)
+                    {
+                        var api2Text = "";
+                        var api2Spacer = "";
+                        for (int i = 0; i < apiTuple.Item1; i++)
+                        {
+                            api2Spacer += "&nbsp;";
+                        }
+
+                        if (apiTuple.Item2.StartsWith("MB"))
+                        {
+                            api2Text = $"{api2Spacer}<a href=\"{baseURI}docs/api/Material.Blazor.{apiTuple.Item2}{apiSuffix}.html\" target=\"_blank\">{apiTuple.Item2} API docs</a>";
+                        }
+                        else
+                        {
+                            api2Text = $"{api2Spacer}<a href=\"{baseURI}docs/api/Material.Blazor.Internal.{apiTuple.Item2}{apiSuffix}.html\" target=\"_blank\">{apiTuple.Item2} API docs</a>";
+                        }
+
+                        Items.Add(new ReferenceItem
+                        {
+                            Title = "API Documentation",
+                            Content = api2Text
+                        });
+                    }
                 }
             }
 

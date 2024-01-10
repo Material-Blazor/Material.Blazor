@@ -7,6 +7,6 @@
 );
 
 @use "./material-components-web";
-@use "./app";
+@use "./_app";
 
 @include app.app-classes();

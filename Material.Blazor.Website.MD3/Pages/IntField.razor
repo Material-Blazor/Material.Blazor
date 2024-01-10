@@ -1,0 +1,118 @@
+﻿@page "/intfield"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentAndPageName="IntField"
+                   MaterialWebPage=""
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title=" IntField Demonstration">
+    <Description>
+        <p>
+            Shows IntField, a Plus component.
+            Each of these can display as Filled or Outlined. These are used across the page 
+            but it we don't attempt to show each variant everywhere - see the TextField demo for this.
+        </p>
+    </Description>
+
+    <PageContent>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted Int
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A range of numeric integer fields using formats for non focused input.
+                    </h3>
+
+                    <p>
+                        <MBIntField @bind-Value="@Integer"
+                                    Label="Integer"
+                                    NumericFormat="N0" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text on Int
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text.
+                    </h3>
+
+                    <p>
+                        <MBIntField @bind-Value="@IntPopupHelperText"
+                                    Label="Popup Helper Text"
+                                    SupportingText="Supporting text that pops up"
+                                    NumericFormat="N0" />
+                    </p>
+
+                    <p>
+                        <MBIntField @bind-Value="@IntPersistentHelperText"
+                                    Label="Persistent Helper Text"
+                                    SupportingText="Persistent supporting text"
+                                    SupportingTextPersistent="true"
+                                    NumericFormat="N0" />
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+
+    private int _integer;
+    private int Integer
+    {
+        get => _integer;
+        set
+        {
+            _integer = value;
+
+            ToastService.ShowToast(heading: "Integer numeric", message: $"Value: '{_integer.ToString("N0")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private int _intPopupHelperText;
+    private int IntPopupHelperText
+    {
+        get => _intPopupHelperText;
+        set
+        {
+            _intPopupHelperText = value;
+
+            ToastService.ShowToast(heading: "Int Popup Helper Text", message: $"Value: '{_intPopupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private int _intPersistentHelperText;
+    private int IntPersistentHelperText
+    {
+        get => _intPersistentHelperText;
+        set
+        {
+            _intPersistentHelperText = value;
+
+            ToastService.ShowToast(heading: "Int Persistent Helper Text", message: $"Value: '{_intPersistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+}

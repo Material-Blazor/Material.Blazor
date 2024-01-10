@@ -1,0 +1,72 @@
+﻿// stylelint-disable scss/dollar-variable-pattern
+
+@use "sass:color";
+
+@use "@material/theme" with ( 
+    $primary: #90caf9,
+    $secondary: #ffcc80,
+    $error: #ef9a9a, 
+    $background: #263238, 
+    $surface: #37474f, );
+
+@use "./_material-components-web";
+@use "./_app";
+
+:root {
+    --md-ref-typeface-brand: 'Open Sans';
+    --md-ref-typeface-plain: 'Montserrat';
+    --md-sys-typescale-headline-font: 'Montserrat';
+    --md-sys-typescale-title-font: 'system-ui';
+
+    --md-sys-color-primary: rgb(129 211 221);
+    --md-sys-color-surface-tint: rgb(129 211 221);
+    --md-sys-color-on-primary: rgb(0 54 59);
+    --md-sys-color-primary-container: rgb(0 79 86);
+    --md-sys-color-on-primary-container: rgb(157 240 250);
+    --md-sys-color-secondary: rgb(177 203 207);
+    --md-sys-color-on-secondary: rgb(28 52 55);
+    --md-sys-color-secondary-container: rgb(50 75 78);
+    --md-sys-color-on-secondary-container: rgb(205 231 235);
+    --md-sys-color-tertiary: rgb(184 198 234);
+    --md-sys-color-on-tertiary: rgb(34 48 76);
+    --md-sys-color-tertiary-container: rgb(57 71 100);
+    --md-sys-color-on-tertiary-container: rgb(216 226 255);
+    --md-sys-color-error: rgb(255 180 171);
+    --md-sys-color-on-error: rgb(105 0 5);
+    --md-sys-color-error-container: rgb(147 0 10);
+    --md-sys-color-on-error-container: rgb(255 218 214);
+    --md-sys-color-background: rgb(14 20 21);
+    --md-sys-color-on-background: rgb(222 228 228);
+    --md-sys-color-surface: rgb(14 20 21);
+    --md-sys-color-on-surface: rgb(222 228 228);
+    --md-sys-color-surface-variant: rgb(63 72 74);
+    --md-sys-color-on-surface-variant: rgb(190 200 201);
+    --md-sys-color-outline: rgb(137 146 148);
+    --md-sys-color-outline-variant: rgb(63 72 74);
+    --md-sys-color-shadow: rgb(0 0 0);
+    --md-sys-color-scrim: rgb(0 0 0);
+    --md-sys-color-inverse-surface: rgb(222 228 228);
+    --md-sys-color-inverse-on-surface: rgb(43 49 50);
+    --md-sys-color-inverse-primary: rgb(0 105 113);
+    --md-sys-color-primary-fixed: rgb(157 240 250);
+    --md-sys-color-on-primary-fixed: rgb(0 31 35);
+    --md-sys-color-primary-fixed-dim: rgb(129 211 221);
+    --md-sys-color-on-primary-fixed-variant: rgb(0 79 86);
+    --md-sys-color-secondary-fixed: rgb(205 231 235);
+    --md-sys-color-on-secondary-fixed: rgb(5 31 34);
+    --md-sys-color-secondary-fixed-dim: rgb(177 203 207);
+    --md-sys-color-on-secondary-fixed-variant: rgb(50 75 78);
+    --md-sys-color-tertiary-fixed: rgb(216 226 255);
+    --md-sys-color-on-tertiary-fixed: rgb(12 27 54);
+    --md-sys-color-tertiary-fixed-dim: rgb(184 198 234);
+    --md-sys-color-on-tertiary-fixed-variant: rgb(57 71 100);
+    --md-sys-color-surface-dim: rgb(14 20 21);
+    --md-sys-color-surface-bright: rgb(52 58 59);
+    --md-sys-color-surface-container-lowest: rgb(9 15 16);
+    --md-sys-color-surface-container-low: rgb(22 29 29);
+    --md-sys-color-surface-container: rgb(26 33 33);
+    --md-sys-color-surface-container-high: rgb(37 43 44);
+    --md-sys-color-surface-container-highest: rgb(48 54 55);
+}
+
+@include app.app-classes();

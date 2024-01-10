@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.JSInterop;
 
 using System;
 using System.Collections.Generic;
@@ -26,10 +27,16 @@ namespace Material.Blazor
         [Parameter] public MBDialogButton[] ButtonItems { get; set; }
 
         /// <summary>
-        /// The action returned by the dialog when the escape key is pressed. Defaults to "close". Setting
-        /// this to "" will disable the escape key action.
+        /// Render fragment for the dialog custom header.
         /// </summary>
-        [Parameter] public string EscapeKeyAction { get; set; } = "close";
+        [Parameter] public RenderFragment CustomHeader { get; set; }
+
+        /// <summary>
+        /// The action performed by the dialog when the escape key is pressed or a click occurs in the
+        /// scrim. Defaults to "close('cancel')". Setting this to false will disable the gesture 
+        /// cancellation action.
+        /// </summary>
+        [Parameter] public bool GestureCancellation { get; set; } = true;
 
         /// <summary>
         /// The dialog title.
@@ -41,20 +48,13 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MBIconDescriptor IconDescriptor { get; set; }
 
-        /// <summary>
-        /// The action returned by the dialog when the scrim is clicked. Defaults to "close". Setting
-        /// this to "" will disable scrim click action.
-        /// </summary>
-        [Parameter] public string ScrimClickAction { get; set; } = "close";
-
 
 
         private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
         private string DialogId { get; set; } = "dialog-id-" + Guid.NewGuid().ToString().ToLower();
         private string FormId { get; set; } = "form-id-" + Guid.NewGuid().ToString().ToLower();
         private bool IsOpen { get; set; }
-        private TaskCompletionSource OpenedTaskCompletionSource { get; set; } = new();
-        internal Task Opened => OpenedTaskCompletionSource.Task;
+        private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
 
         #endregion
 
@@ -88,12 +88,24 @@ namespace Material.Blazor
                         "icon");
                 }
 
-                if (!string.IsNullOrWhiteSpace(Headline))
+                if (!string.IsNullOrWhiteSpace(Headline) || CustomHeader is not null)
                 {
                     builder.OpenElement(rendSeq++, "div");
                     {
                         builder.AddAttribute(rendSeq++, "slot", "headline");
-                        builder.AddContent(rendSeq++, Headline);
+                        if (CustomHeader is not null)
+                        {
+                            builder.AddContent(rendSeq++, CustomHeader);
+
+                            if (!string.IsNullOrWhiteSpace(Headline))
+                            {
+                                throw new Exception("Can not specify both a headline and a custom header");
+                            }
+                        }
+                        else
+                        {
+                            builder.AddContent(rendSeq++, Headline);
+                        }
                     }
                     builder.CloseElement();
                 }
@@ -110,8 +122,109 @@ namespace Material.Blazor
                     }
                     builder.CloseElement();
                 }
+
+                if (ButtonItems is not null)
+                {
+                    builder.OpenElement(rendSeq++, "div");
+                    {
+                        builder.AddAttribute(rendSeq++, "slot", "actions");
+
+                        foreach (var button in ButtonItems)
+                        {
+                            MBButton.BuildRenderTreeWorker(
+                                builder,
+                                ref rendSeq,
+                                CascadingDefaults,
+                                attributesToSplat,
+                                "",
+                                "",
+                                "",
+                                AppliedDisabled,
+                                button.ButtonStyle,
+                                null,
+                                false,
+                                button.ButtonLabel,
+                                FormId,
+                                button.ButtonValue);
+
+                        }
+                    }
+                    builder.CloseElement();
+                }
             }
             builder.CloseElement();
+        }
+
+        #endregion
+
+        #region Dispose
+
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
+        }
+
+        #endregion
+
+        #region HideAsync
+
+        /// <summary>
+        /// Hides the dialog by having Material Web close the dialog.
+        /// </summary>
+        public async Task HideAsync(string dialogValue)
+        {
+            if (!IsOpen)
+            {
+                throw new InvalidOperationException("Cannot hide MBDialog that is not open");
+            }
+            else
+            {
+                await InvokeJsVoidAsync(
+                    "MaterialBlazor.MBDialog.dialogClose",
+                    DialogId,
+                    dialogValue).ConfigureAwait(false);
+            }
+        }
+
+        #endregion
+
+        #region NotifyClosed
+
+        /// <summary>
+        /// Do not use. This method is used internally for receiving the "dialog closed" event from javascript.
+        /// </summary>
+        [JSInvokable]
+        public async Task NotifyClosed(string reason)
+        {
+            _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
+            // Allow enough time for the dialog closing animation before re-rendering
+            //await Task.Delay(150);
+            IsOpen = false;
+            await InvokeAsync(StateHasChanged);
+        }
+
+        #endregion
+
+        #region OnInitializedAsync
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            ObjectReference = DotNetObjectReference.Create(this);
         }
 
         #endregion
@@ -130,10 +243,22 @@ namespace Material.Blazor
             }
             else
             {
-                await InvokeJsVoidAsync("MaterialBlazor.MBDialog.dialogShow", DialogId).ConfigureAwait(false);
                 CloseReasonTaskCompletionSource = new();
-                OpenedTaskCompletionSource = new();
-                IsOpen = true;
+
+                try
+                {
+                    await InvokeJsVoidAsync(
+                        "MaterialBlazor.MBDialog.dialogShow",
+                        DialogId,
+                        ObjectReference,
+                        GestureCancellation).ConfigureAwait(false);
+                    IsOpen = true;
+                }
+                catch
+                {
+                    _ = CloseReasonTaskCompletionSource?.TrySetCanceled();
+
+                }
                 return await CloseReasonTaskCompletionSource.Task;
             }
         }

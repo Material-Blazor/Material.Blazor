@@ -19,11 +19,20 @@
 - name: MBChipSet
   topicUid: C.MBChipSet
 
+- name: MBDecimalField
+  topicUid: C.MBDecimalField
+
 - name: MBDialog
   topicUid: C.MBDialog
 
+- name: MBDoubleField
+  topicUid: C.MBDoubleField
+
 - name: MBFloatingActionButton
   topicUid: C.MBFloatingActionButton
+
+- name: MBGrid
+  topicUid: C.MBGrid
 
 - name: MBIcon
   topicUid: C.MBIcon
@@ -31,14 +40,14 @@
 - name: MBIconButton
   topicUid: C.MBIconButton
 
+- name: MBIntField
+  topicUid: C.MBIntField
+
 - name: MBList
   topicUid: C.MBList
 
 - name: MBMenu
   topicUid: C.MBMenu
-
-- name: MBNumericField
-  topicUid: C.MBNumericField
 
 - name: MBProgress
   topicUid: C.MBProgress

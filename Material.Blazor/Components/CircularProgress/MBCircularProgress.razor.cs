@@ -71,7 +71,7 @@ public partial class MBCircularProgress : InputComponent<double>
     {
         await base.OnInitializedAsync();
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
         InitialValue = Value;
 
         // Changing the CircularProgressSize after instantiaion is not supported.

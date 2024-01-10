@@ -202,7 +202,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
             AdditionalStyle = invisibleText;
         }
 
-        ForceShouldRenderToTrue = true;
+        AllowAllRenders();
         
         ObjectReference = DotNetObjectReference.Create(this);
     }

@@ -15,16 +15,26 @@ namespace Material.Blazor
         #region members
 
         /// <summary>
+        /// Use JS method to control associated tab panels
+        /// </summary>
+        [Parameter] public bool IsControllingPanels { get; set; } = false;
+
+        /// <summary>
         /// The array of tab items.
         /// </summary>
         [Parameter] public MBTabItem[] TabItems { get; set; }
 
+
+
+        private string TabsId { get; set; }
         #endregion
 
         #region BuildRenderTree
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            TabsId = "tabs-id-" + Guid.NewGuid().ToString().ToLower();
+
             var attributesToSplat = AttributesToSplat().ToArray();
 
             var rendSeq = 0;
@@ -33,7 +43,7 @@ namespace Material.Blazor
             {
                 builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
                 builder.AddAttribute(rendSeq++, "style", @style + " position: relative; ");
-                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddAttribute(rendSeq++, "id", TabsId);
                 if (attributesToSplat.Any())
                 {
                     builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
@@ -95,6 +105,19 @@ namespace Material.Blazor
                 }
             }
             builder.CloseElement();
+        }
+
+        #endregion
+
+        #region OnAfterRenderAsync
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            if (firstRender && IsControllingPanels)
+            {
+                await InvokeJsVoidAsync("MaterialBlazor.MBTabs.setTabsChangeEvent", TabsId, TabItems[0].TabAriaControls).ConfigureAwait(false);
+            }
         }
 
         #endregion

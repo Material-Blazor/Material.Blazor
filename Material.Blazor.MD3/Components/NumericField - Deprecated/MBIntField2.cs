@@ -5,6 +5,6 @@ namespace Material.Blazor;
 /// <summary>
 /// A Material.Blazor formatted integer field.
 /// </summary>
-public sealed class MBIntField : InternalIntFieldBase<MBTextField>
+public sealed class MBIntField2 : InternalIntFieldBase2<MBTextField2>
 {
 }
