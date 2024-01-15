@@ -122,6 +122,7 @@
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<Content Remove="wwwroot\material.blazor.md3.lib.module.js" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
