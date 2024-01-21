@@ -122,9 +122,11 @@ public class MBMenu : ComponentFoundation
                                         builder.AddAttribute(rendSeq++, "disabled");
                                     }
 
+                                    //builder.AddAttribute(rendSeq++, "md-menu-item");
+
                                     if (menuItem.Headline.Length > 0)
                                     {
-                                        builder.AddAttribute(rendSeq++, "id", menuItem.Headline);
+                                        builder.AddAttribute(rendSeq++, "id", menuItem.Identifier);
 
                                         builder.OpenElement(rendSeq++, "div");
                                         {
