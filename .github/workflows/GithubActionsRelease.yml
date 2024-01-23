@@ -406,5 +406,5 @@ jobs:
         -s https://api.nuget.org/v3/index.json
 
     - name: Compute the SHA512 hash of material.blazor.md3.lib.module.js
-      run: certutil -hashfile ${{env.materialBlazorMD3LibModule}} SHA512
+      run: certutil -hashfile ${{env.materialBlazorMD3LibModule}} SHA256
 

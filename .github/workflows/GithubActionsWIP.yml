@@ -548,7 +548,7 @@ jobs:
       run: dir ${{env.outputMBMD3}}
 
     - name: Compute the SHA512 hash of material.blazor.md3.lib.module.js
-      run: certutil -hashfile ${{env.materialBlazorMD3LibModule}} SHA512
+      run: certutil -hashfile ${{env.materialBlazorMD3LibModule}} SHA256
 
 ############################################################################################################
 # deployghpages-mbcurrent
