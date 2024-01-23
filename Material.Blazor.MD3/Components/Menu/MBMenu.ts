@@ -64,13 +64,13 @@ export function setMenuEventListeners(menuButtonID: string, menuID: string, isFi
         }
         buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
 
-        //console.log("Adding listener for menu closed events");
-        //menuElement.removeEventListener('closed', displayClosedEvent);
-        //menuElement.addEventListener('closed', () => displayClosedEvent);
+        console.log("Adding listener for menu closed events");
+        menuElement.removeEventListener('closed', displayClosedEvent);
+        menuElement.addEventListener('closed', () => displayClosedEvent);
 
-        //console.log("Adding listener for menu closing events");
-        //menuElement.removeEventListener('closing', displayClosingEvent);
-        //menuElement.addEventListener('closing', () => displayClosingEvent);
+        console.log("Adding listener for menu closing events");
+        menuElement.removeEventListener('closing', displayClosingEvent);
+        menuElement.addEventListener('closing', () => displayClosingEvent);
 
         console.log("Adding listener for menu-close events");
 
