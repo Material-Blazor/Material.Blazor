@@ -23,6 +23,7 @@ env:
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
+  materialBlazorMD3LibModule: '"Material.Blazor.MD3/wwwroot/Material.Blazor.MD3.lib.module.js"'
   outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
   outputMBMD3: ${{github.workspace}}\siteMBMD3
   outputWebMD3: ${{github.workspace}}\siteWebMD3
@@ -403,4 +404,7 @@ jobs:
         dotnet nuget push ${{env.outputMBMD3}}\*.nupkg
         -k ${{secrets.NUGET_API_KEY}}
         -s https://api.nuget.org/v3/index.json
+
+    - name: Compute the SHA512 hash of material.blazor.md3.lib.module.js
+      run: certutil -hashfile ${{env.materialBlazorMD3LibModule}} SHA512
 
