@@ -21,4 +21,20 @@
 		<ProjectReference Include="..\Material.Blazor.Website.WebAssembly.MD3\Material.Blazor.Website.WebAssembly.MD3.csproj" />
 	</ItemGroup>
 
+	<!-- The following Target can be used to build a file at publish time containing SHA256 hashes of all JS and CSS static assets under wwwroot -->
+	<!--<Target Name="BuildHashes" AfterTargets="Publish">
+		<ItemGroup>
+			<FilesToHash Include="$(PublishDir)wwwroot\**\*.js;$(PublishDir)wwwroot\**\*.css" />
+			<HashFileOutput Include="$(PublishDir)asset-file-hashes.csv" />
+		</ItemGroup>
+
+		<GetFileHash Files="@(FilesToHash)" Algorithm="SHA256" HashEncoding="base64">
+			<Output TaskParameter="Items" ItemName="FilesWithHashes" />
+		</GetFileHash>
+
+		<Message Importance="High" Text="@(FilesWithHashes->'%(Identity): %(FileHash)')" />
+
+		<WriteLinesToFile File="@(HashFileOutput)" Lines="@(FilesWithHashes->'%22%(Identity)%22,%22%(FileHash)%22')" Overwrite="true" Encoding="Unicode" />
+	</Target>-->
+
 </Project>
