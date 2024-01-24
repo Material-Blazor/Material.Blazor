@@ -23,7 +23,7 @@ env:
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
-  materialBlazorMD3LibModule: '"Material.Blazor.MD3/wwwroot/Material.Blazor.MD3.lib.module.js"'
+  materialBlazorMD3LibModule: 'Material.Blazor.MD3/wwwroot/Material.Blazor.MD3.lib.module.js'
   outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
   outputMBMD3: ${{github.workspace}}\siteMBMD3
   outputWebMD3: ${{github.workspace}}\siteWebMD3
