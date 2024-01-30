@@ -92,8 +92,7 @@ public class MBMenu : ComponentFoundation
             {
                 builder.AddAttribute(rendSeq++, "anchor", MenuButtonId);
                 builder.AddAttribute(rendSeq++, "id", MenuId);
-                //builder.AddAttribute(rendSeq++, "menu-close", "displayMenuCloseEvent()");
-                //builder.AddAttribute(rendSeq++, "onmenuclose", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
+                builder.AddAttribute(rendSeq++, "onmenuclose", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
                 builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
 
                 if (MenuItems is not null)
