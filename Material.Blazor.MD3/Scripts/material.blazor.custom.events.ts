@@ -1,14 +1,17 @@
-﻿import { MenuItem } from '@material/web/menu/menu.js';
+﻿import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
+import { MenuItem } from '@material/web/menu/menu.js';
 
 /*
-** MW3 menu-close event arguments
+** MW3 close-menu event arguments
 **
 ** This must match the C# definition found in MBMenuEvents.cs
 */
-export function eventArgsCreatorMenuClose(event) {
+export function eventArgsCreatorMenuSelectionReport(event: CloseMenuEvent) {
+    var target: MenuItem = event.target as unknown as MenuItem;
     return {
-        customProperty1: 'any value for property 1',
-        customProperty2: event.srcElement.value
+        menuID: target.id,
+        menuHeadline: target.typeaheadText,
+        reason: JSON.stringify(event.detail.reason)
     };
 }
 
@@ -16,8 +19,9 @@ export function eventArgsCreatorMenuClose(event) {
 ** Register all custom events
 */
 export function afterStarted(blazor) {
-    blazor.registerCustomEventType('menuclose', {
+    console.log("Registering menuselectionreport event");
+    blazor.registerCustomEventType('menuselectionreport', {
         browserEventName: "close-menu",
-        createEventArgs: eventArgsCreatorMenuClose
+        createEventArgs: eventArgsCreatorMenuSelectionReport
     });
 }

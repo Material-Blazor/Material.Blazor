@@ -1,14 +1,9 @@
 ﻿import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
-//import { MdButton } from '@material/web/button/button.js';
-import { Corner, FocusState, MdMenu, MenuItem } from '@material/web/menu/menu.js';
-
-export function logAfterRenderEvent() {
-    console.log("Blazor OnAfterRenderAsync event...");
-}
+import { MenuItem } from '@material/web/menu/menu.js';
 
 /**
  * Searches for an element with `class="output"` set on it, and updates the
- * text of that element with the menu-closed event's content.
+ * text of that element with the menu-closed event content.
  */
 function displayCloseMenuEvent(event: CloseMenuEvent) {
     console.log("displayCloseMenuEvent invoked");
@@ -38,28 +33,12 @@ function displayCloseMenuEvent(event: CloseMenuEvent) {
 }`;
 }
 
-export function setMenuEventListeners(menuButtonID: string, menuID: string, isFirstRender: boolean) {
+export function setMenuEventListeners(menuButtonID: string, menuID: string) {
     const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
     const menuElement: HTMLElement | null = document.getElementById(menuID);
     if ((buttonElement != null) && (menuElement != null)) {
         console.log("Adding listener for button click events");
-        if (!isFirstRender) {
-            buttonElement.removeEventListener('click', toggleMenu);
-        }
         buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
-
-        if (!isFirstRender) {
-            // TS2769
-            // @ts-expect-error
-            menuElement.removeEventListener('close-menu', displayCloseMenuEvent);
-        }
-        menuElement.addEventListener('close-menu', (event: any) =>
-        {
-            console.log("***Close-Menu Event***");
-            displayCloseMenuEvent(event)
-        });
-
-        console.log("...");
     }
 }
 

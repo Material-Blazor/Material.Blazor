@@ -92,7 +92,7 @@ public class MBMenu : ComponentFoundation
             {
                 builder.AddAttribute(rendSeq++, "anchor", MenuButtonId);
                 builder.AddAttribute(rendSeq++, "id", MenuId);
-                builder.AddAttribute(rendSeq++, "onmenuclose", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
+                builder.AddAttribute(rendSeq++, "onmenuselectionreport", EventCallback.Factory.Create<MenuSelectionReportEventArgs>(this, OnMenuSelectionReportInternal));
                 builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
 
                 if (MenuItems is not null)
@@ -190,21 +190,19 @@ public class MBMenu : ComponentFoundation
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await InvokeJsVoidAsync("MaterialBlazor.MBMenu.logAfterRenderEvent").ConfigureAwait(false);
-
         await base.OnAfterRenderAsync(firstRender);
 
         if (firstRender)
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId, firstRender).ConfigureAwait(false);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId).ConfigureAwait(false);
         }
     }
 
     #endregion
 
-    #region OnMenuCloseInternal
+    #region OnMenuSelectionReportInternal
 
-    private async Task OnMenuCloseInternal(MenuCloseEventArgs args)
+    private async Task OnMenuSelectionReportInternal(MenuSelectionReportEventArgs args)
     {
         await Task.CompletedTask;
     }

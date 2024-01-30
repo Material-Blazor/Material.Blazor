@@ -111,7 +111,7 @@
 
 	<ItemGroup>
 		<InputStaticAssetsEventScripts Include="scripts\material.blazor.custom.events.ts" />
-		<OutputStaticAssetsEventScripts Include="wwwroot\material.blazor.md3.lib.module.js" />
+		<OutputStaticAssetsEventScripts Include="wwwroot\Material.Blazor.MD3.lib.module.js" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsEventScripts)" />
 		<Content Include="@(OutputStaticAssetsEventScripts)" />

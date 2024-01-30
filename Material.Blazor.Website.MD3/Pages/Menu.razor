@@ -78,8 +78,7 @@
                                 ButtonLabelColor="darkblue"
                                 ButtonStyle="@MBButtonStyle.Outlined"
                                 MenuItems="@menuItems"
-                                MenuPositioning="MBMenuPositioning.Popover"
-                                @onmenuclose="@OnMenuCloseClickHandler" />
+                                MenuPositioning="MBMenuPositioning.Popover" />
                     </p>
                 </Primary>
             </Material.Blazor.MD2.MBCard>
@@ -195,8 +194,8 @@
         menuItems[7].SuppressLeadingIcon = !EightSelected;
     }
 
-    protected void OnMenuCloseClickHandler(MenuCloseEventArgs args)
+    protected void OnMenuCloseClickHandler(MenuSelectionReportEventArgs args)
     {
-        ToastService.ShowToast(heading: "MW3 menu close", message: $"Value: '{args.CustomProperty2}'", level: MBToastLevel.Success, showIcon: false);
+        ToastService.ShowToast(heading: "MW3 menu close", message: $"ID: '{args.menuID}'", level: MBToastLevel.Success, showIcon: false);
     }
 }
