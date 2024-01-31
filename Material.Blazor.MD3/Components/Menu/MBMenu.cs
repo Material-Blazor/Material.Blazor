@@ -17,11 +17,6 @@ public class MBMenu : ComponentFoundation
     #region members
 
     /// <summary>
-    /// The icon on the button used to invoke the menu.
-    /// </summary>
-    [Parameter] public MBIconDescriptor ButtonIconDescriptor { get; set; }
-
-    /// <summary>
     /// The location of the icon on the button used to invoke the menu.
     /// </summary>
     [Parameter] public bool ButtonIconIsTrailing { get; set; }
@@ -42,6 +37,16 @@ public class MBMenu : ComponentFoundation
     [Parameter] public string ButtonLabelColor { get; set; }
 
     /// <summary>
+    /// Sets the menu anchor attribute
+    /// </summary>
+    [Parameter] public MBMenuAnchorType AnchorType { get; set; } = MBMenuAnchorType.Button;
+
+    /// <summary>
+    /// The icon on the button (or standalone) used to invoke the menu.
+    /// </summary>
+    [Parameter] public MBIconDescriptor IconDescriptor { get; set; }
+
+    /// <summary>
     /// The list of menu items.
     /// </summary>
     [Parameter] public MBMenuItem[] MenuItems { get; set; }
@@ -53,7 +58,7 @@ public class MBMenu : ComponentFoundation
 
 
 
-    private string MenuButtonId { get; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
+    private string AnchorId { get; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
     private string MenuId { get; set; } = "menu-id-" + Guid.NewGuid().ToString().ToLower();
 
 
@@ -77,22 +82,38 @@ public class MBMenu : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-            builder.OpenComponent(rendSeq++, typeof(MBButton));
+            if (AnchorType == MBMenuAnchorType.Button)
             {
-                builder.AddComponentParameter(rendSeq++, "Label", ButtonLabel);
-                builder.AddComponentParameter(rendSeq++, "ButtonStyle", ButtonStyle);
-                builder.AddComponentParameter(rendSeq++, "IconDescriptor", ButtonIconDescriptor);
-                builder.AddComponentParameter(rendSeq++, "IconIsTrailing", ButtonIconIsTrailing);
-                builder.AddAttribute(rendSeq++, "id", MenuButtonId);
-                builder.AddAttribute(rendSeq++, "style", "color: " + ButtonLabelColor + ";");
+                builder.OpenComponent(rendSeq++, typeof(MBButton));
+                {
+                    builder.AddComponentParameter(rendSeq++, "Label", ButtonLabel);
+                    builder.AddComponentParameter(rendSeq++, "ButtonStyle", ButtonStyle);
+                    builder.AddComponentParameter(rendSeq++, "IconDescriptor", IconDescriptor);
+                    builder.AddComponentParameter(rendSeq++, "IconIsTrailing", ButtonIconIsTrailing);
+                    builder.AddAttribute(rendSeq++, "id", AnchorId);
+                    builder.AddAttribute(rendSeq++, "style", "color: " + ButtonLabelColor + ";");
+                }
+                builder.CloseComponent();
             }
-            builder.CloseComponent();
+            else
+            {
+                //
+                // Type is "Icon", we fake it by doing an IconButton with a style of Icon
+                // because adding an "onclick" to a raw icon does not work
+                //
+                builder.OpenComponent(rendSeq++, typeof(MBIconButton));
+                {
+                    builder.AddComponentParameter(rendSeq++, "ButtonStyle", MBIconButtonStyle.Icon);
+                    builder.AddComponentParameter(rendSeq++, "IconDescriptor", IconDescriptor);
+                    builder.AddAttribute(rendSeq++, "id", AnchorId);
+                }
+                builder.CloseComponent();
+            }
 
             builder.OpenElement(rendSeq++, "md-menu");
             {
-                builder.AddAttribute(rendSeq++, "anchor", MenuButtonId);
+                builder.AddAttribute(rendSeq++, "anchor", AnchorId);
                 builder.AddAttribute(rendSeq++, "id", MenuId);
-                builder.AddAttribute(rendSeq++, "onmenuselectionreport", EventCallback.Factory.Create<MenuSelectionReportEventArgs>(this, OnMenuSelectionReportInternal));
                 builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
 
                 if (MenuItems is not null)
@@ -120,8 +141,6 @@ public class MBMenu : ComponentFoundation
                                     {
                                         builder.AddAttribute(rendSeq++, "disabled");
                                     }
-
-                                    //builder.AddAttribute(rendSeq++, "md-menu-item");
 
                                     if (menuItem.Headline.Length > 0)
                                     {
@@ -194,17 +213,8 @@ public class MBMenu : ComponentFoundation
 
         if (firstRender)
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId).ConfigureAwait(false);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", AnchorId, MenuId).ConfigureAwait(false);
         }
-    }
-
-    #endregion
-
-    #region OnMenuSelectionReportInternal
-
-    private async Task OnMenuSelectionReportInternal(MenuSelectionReportEventArgs args)
-    {
-        await Task.CompletedTask;
     }
 
     #endregion

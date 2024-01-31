@@ -33,12 +33,12 @@ function displayCloseMenuEvent(event: CloseMenuEvent) {
 }`;
 }
 
-export function setMenuEventListeners(menuButtonID: string, menuID: string) {
-    const buttonElement: HTMLElement | null = document.getElementById(menuButtonID);
+export function setMenuEventListeners(anchorID: string, menuID: string) {
+    const anchorElement: HTMLElement | null = document.getElementById(anchorID);
     const menuElement: HTMLElement | null = document.getElementById(menuID);
-    if ((buttonElement != null) && (menuElement != null)) {
-        console.log("Adding listener for button click events");
-        buttonElement.addEventListener('click', () => { toggleMenu(menuElement) });
+    if ((anchorElement != null) && (menuElement != null)) {
+        console.log("Adding listener for anchor click events");
+        anchorElement.addEventListener('click', () => { toggleMenu(menuElement) });
     }
 }
 

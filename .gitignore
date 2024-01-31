@@ -1,8 +1,10 @@
 ## Ignore temporary files and build results specific to M.B
 
 #Generated CSS and JS files
-**/Material.Blazor/wwwroot/*.*
-**/Material.Blazor.MD3/wwwroot/*.*
+**/Material.Blazor/wwwroot/*.css
+**/Material.Blazor/wwwroot/*.js
+**/Material.Blazor.MD3/wwwroot/*.css
+# TEMPORARY REMOVAL UNTIL A SUITABLE TSC COMMAND IS PRODUCED THAT CAN PRODUCE AN OUTPUT THAT IS NOT A MODULE **/Material.Blazor.MD3/wwwroot/*.js
 **/Material.Blazor.Website/wwwroot/css/*.*
 **/Material.Blazor.Website/wwwroot/js/*.*
 **/Material.Blazor.Website.MD3/wwwroot/css/*.*
