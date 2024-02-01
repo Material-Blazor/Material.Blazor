@@ -70,3 +70,16 @@
 }
 
 @include app.app-classes();
+
+.mw3-main-appbar {
+    flex: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: lavender;
+    position: relative;
+}
+

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Material.Blazor.MenuClose;
+namespace Material.Blazor;
 
 [EventHandler(
     attributeName: "onmenuselectionreport",

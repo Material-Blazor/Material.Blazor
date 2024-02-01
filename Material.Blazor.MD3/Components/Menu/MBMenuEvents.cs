@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Material.Blazor.MenuClose;
+namespace Material.Blazor;
 
 
 /*

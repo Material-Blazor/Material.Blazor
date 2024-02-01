@@ -1,9 +1,9 @@
 ﻿/*
 ** The source file "material.blazor.custom.events.ts" is processed by webpack to become
-** 'Material.Balzor.MD3.lib.module.ts'.
+** 'Material.Blazor.MD3.lib.module.NEEDS.EDIT.AND.COPY.js'.
 ** 
 ** After being created the module code must be removed and 'export' must be added to the
-** two function calls.
+** two function calls. The file is then copied to 'Material.Blazor.MD3.lib.module.js'.
 */
 
 import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';

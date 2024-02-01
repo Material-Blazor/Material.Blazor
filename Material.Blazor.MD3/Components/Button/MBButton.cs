@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ public sealed class MBButton : ComponentFoundation
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
+        var buttonID = "Button-" + Guid.NewGuid().ToString();
         var rendSeq = 0;
 
         BuildRenderTreeWorker(
@@ -38,7 +40,7 @@ public sealed class MBButton : ComponentFoundation
             attributesToSplat,
             @class,
             style,
-            id,
+            buttonID,
             AppliedDisabled,
             ButtonStyle,
             IconDescriptor,

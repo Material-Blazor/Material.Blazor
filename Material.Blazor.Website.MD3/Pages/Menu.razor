@@ -3,7 +3,6 @@
 @inject IMBToastService ToastService
 
 @using Material.Blazor
-@using Material.Blazor.MenuClose
 
 <DemonstrationPage ComponentAndPageName="Menu"
                    Title="Menu Demonstration">
@@ -22,9 +21,9 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Click the button or the icon to open the menu.
+                        Click the button or the icon to open the menu. Open the menu again after selecting either 'seven' or 'eight'.
                     </h3>
-
+                    <p>
                     <MBMenu ButtonIconIsTrailing="false"
                             ButtonLabel="Open MD3 Menu"
                             ButtonLabelColor="darkblue"
@@ -35,6 +34,7 @@
                             MenuItems="@menuItems"
                             MenuPositioning="MBMenuPositioning.Popover"
                             @onmenuselectionreport="OnMenuSelectionReportHandler" />
+                    </p>
                     <p>
                         <MBMenu AnchorType="@MBMenuAnchorType.Icon"
                                 IconDescriptor="@MBIcon.IconDescriptorConstructor(
