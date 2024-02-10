@@ -103,7 +103,7 @@ BladeSet | 🟢 | n/a | n/a | 💤 |
 ChipsSelectMulti | 🟢 | n/a | n/a | 💤 |
 ChipsSelectSingle | 🟢 | n/a | n/a | 💤 |
 ConfirmationDialog | 🟢 | n/a | n/a | 💤 |
-DateTimeField | 🟢 | n/a | n/a | 💤 |
+DateTimeField | 🟢 | n/a | n/a | 🟡 | Density and supporting text persistence |
 DebouncedTextField | 🟢 | n/a | n/a | 💤 |
 DecimalField | 🟢 | n/a | n/a | 🟡 | Density and supporting text persistence |
 DoubleField | 🟢 | n/a | n/a | 🟡 | Density and supporting text persistence |
