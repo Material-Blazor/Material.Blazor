@@ -6,7 +6,8 @@
 ** two function calls. The file is then copied to 'Material.Blazor.MD3.lib.module.js'.
 **
 ** 'Material.Blazor.MD3.lib.module.js' is checked into the repository in order to insure
-** inclusion as a static asset of M.B.MD3.
+** inclusion as a static asset of M.B.MD3 and to prevent the publish step of M.B.MD3.W.S from failure
+** due to a dotnet tooling ussue.
 */
 
 import { CloseMenuEvent } from '@material/web/menu/internal/controllers/shared.js';
@@ -17,6 +18,7 @@ import { MenuItem } from '@material/web/menu/menu.js';
 **
 ** This must match the C# definition found in MBMenuEvents.cs
 */
+
 export function eventArgsCreatorMenuSelectionReport(event: CloseMenuEvent) {
     var target: MenuItem = event.target as unknown as MenuItem;
     return {

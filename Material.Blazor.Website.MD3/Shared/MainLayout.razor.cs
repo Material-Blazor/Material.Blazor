@@ -31,6 +31,15 @@ namespace Material.Blazor.Website.Shared
                                     color: "black"),
                 MenuItemType=MBMenuItemType.Regular },
             new MBMenuItem {
+                Headline="Roadmap",
+                HeadlineColor="black",
+                LeadingIcon=MBIcon.IconDescriptorConstructor(
+                                    name: "map",
+                                    color: "black"),
+                MenuItemType=MBMenuItemType.Regular },
+            new MBMenuItem {
+                MenuItemType=MBMenuItemType.Divider },
+            new MBMenuItem {
                 Headline="Button",
                 HeadlineColor="darkgreen",
                 LeadingIcon=MBIcon.IconDescriptorConstructor(
@@ -250,6 +259,7 @@ namespace Material.Blazor.Website.Shared
                 "progress indicator" => "progress",
                 "radio button" => "radiobutton",
                 "radio button group" => "radiobuttongroup",
+                "roadmap" => "roadmap",
                 "select" => "select",
                 "slider" => "slider",
                 "switch" => "switch",
