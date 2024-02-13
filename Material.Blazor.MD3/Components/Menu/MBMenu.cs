@@ -1,12 +1,9 @@
 ﻿using Material.Blazor.Internal;
-using Material.Blazor.MenuClose;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,11 +12,6 @@ namespace Material.Blazor;
 public class MBMenu : ComponentFoundation
 {
     #region members
-
-    /// <summary>
-    /// The icon on the button used to invoke the menu.
-    /// </summary>
-    [Parameter] public MBIconDescriptor ButtonIconDescriptor { get; set; }
 
     /// <summary>
     /// The location of the icon on the button used to invoke the menu.
@@ -42,6 +34,16 @@ public class MBMenu : ComponentFoundation
     [Parameter] public string ButtonLabelColor { get; set; }
 
     /// <summary>
+    /// Sets the menu anchor attribute
+    /// </summary>
+    [Parameter] public MBMenuAnchorType AnchorType { get; set; } = MBMenuAnchorType.Button;
+
+    /// <summary>
+    /// The icon on the button (or standalone) used to invoke the menu.
+    /// </summary>
+    [Parameter] public MBIconDescriptor IconDescriptor { get; set; }
+
+    /// <summary>
     /// The list of menu items.
     /// </summary>
     [Parameter] public MBMenuItem[] MenuItems { get; set; }
@@ -53,7 +55,7 @@ public class MBMenu : ComponentFoundation
 
 
 
-    private string MenuButtonId { get; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
+    private string AnchorId { get; } = "menu-button-id-" + Guid.NewGuid().ToString().ToLower();
     private string MenuId { get; set; } = "menu-id-" + Guid.NewGuid().ToString().ToLower();
 
 
@@ -77,23 +79,38 @@ public class MBMenu : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
-            builder.OpenComponent(rendSeq++, typeof(MBButton));
+            if (AnchorType == MBMenuAnchorType.Button)
             {
-                builder.AddComponentParameter(rendSeq++, "Label", ButtonLabel);
-                builder.AddComponentParameter(rendSeq++, "ButtonStyle", ButtonStyle);
-                builder.AddComponentParameter(rendSeq++, "IconDescriptor", ButtonIconDescriptor);
-                builder.AddComponentParameter(rendSeq++, "IconIsTrailing", ButtonIconIsTrailing);
-                builder.AddAttribute(rendSeq++, "id", MenuButtonId);
-                builder.AddAttribute(rendSeq++, "style", "color: " + ButtonLabelColor + ";");
+                builder.OpenComponent(rendSeq++, typeof(MBButton));
+                {
+                    builder.AddComponentParameter(rendSeq++, "Label", ButtonLabel);
+                    builder.AddComponentParameter(rendSeq++, "ButtonStyle", ButtonStyle);
+                    builder.AddComponentParameter(rendSeq++, "IconDescriptor", IconDescriptor);
+                    builder.AddComponentParameter(rendSeq++, "IconIsTrailing", ButtonIconIsTrailing);
+                    builder.AddAttribute(rendSeq++, "id", AnchorId);
+                    builder.AddAttribute(rendSeq++, "style", "color: " + ButtonLabelColor + ";");
+                }
+                builder.CloseComponent();
             }
-            builder.CloseComponent();
+            else
+            {
+                //
+                // Type is "Icon", we fake it by doing an IconButton with a style of Icon
+                // because adding an "onclick" to a raw icon does not work
+                //
+                builder.OpenComponent(rendSeq++, typeof(MBIconButton));
+                {
+                    builder.AddComponentParameter(rendSeq++, "ButtonStyle", MBIconButtonStyle.Icon);
+                    builder.AddComponentParameter(rendSeq++, "IconDescriptor", IconDescriptor);
+                    builder.AddAttribute(rendSeq++, "id", AnchorId);
+                }
+                builder.CloseComponent();
+            }
 
             builder.OpenElement(rendSeq++, "md-menu");
             {
-                builder.AddAttribute(rendSeq++, "anchor", MenuButtonId);
+                builder.AddAttribute(rendSeq++, "anchor", AnchorId);
                 builder.AddAttribute(rendSeq++, "id", MenuId);
-                //builder.AddAttribute(rendSeq++, "menu-close", "displayMenuCloseEvent()");
-                //builder.AddAttribute(rendSeq++, "onmenuclose", EventCallback.Factory.Create<MenuCloseEventArgs>(this, OnMenuCloseInternal));
                 builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
 
                 if (MenuItems is not null)
@@ -124,7 +141,7 @@ public class MBMenu : ComponentFoundation
 
                                     if (menuItem.Headline.Length > 0)
                                     {
-                                        builder.AddAttribute(rendSeq++, "id", menuItem.Headline);
+                                        builder.AddAttribute(rendSeq++, "id", menuItem.Identifier);
 
                                         builder.OpenElement(rendSeq++, "div");
                                         {
@@ -189,23 +206,12 @@ public class MBMenu : ComponentFoundation
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await InvokeJsVoidAsync("MaterialBlazor.MBMenu.logAfterRenderEvent").ConfigureAwait(false);
-
         await base.OnAfterRenderAsync(firstRender);
 
         if (firstRender)
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", MenuButtonId, MenuId, firstRender).ConfigureAwait(false);
+            await InvokeJsVoidAsync("MaterialBlazor.MBMenu.setMenuEventListeners", AnchorId, MenuId).ConfigureAwait(false);
         }
-    }
-
-    #endregion
-
-    #region OnMenuCloseInternal
-
-    private async Task OnMenuCloseInternal(MenuCloseEventArgs args)
-    {
-        await Task.CompletedTask;
     }
 
     #endregion

@@ -54,8 +54,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
 	</ItemGroup>
@@ -111,7 +111,7 @@
 
 	<ItemGroup>
 		<InputStaticAssetsEventScripts Include="scripts\material.blazor.custom.events.ts" />
-		<OutputStaticAssetsEventScripts Include="wwwroot\material.blazor.md3.lib.module.js" />
+		<OutputStaticAssetsEventScripts Include="wwwroot\Material.Blazor.MD3.lib.module.js" />
 		<!--Keep this Remove/Include pair-->
 		<Content Remove="@(OutputStaticAssetsEventScripts)" />
 		<Content Include="@(OutputStaticAssetsEventScripts)" />

@@ -4,7 +4,7 @@
 
 @inject NavigationManager NavigationService
 @inject IJSRuntime JsRuntime
-
+@* 
 @using Material.Blazor.MD2
 
 <MBDrawer @ref="@Drawer"
@@ -15,6 +15,10 @@
         <MBListItem ListItemColor="black"
                     LeadingIcon="home"
                     Label="Home"
+                    @onclick="@(() => ListItemClickHandler(""))" />
+        <MBListItem ListItemColor="black"
+                    LeadingIcon="home"
+                    Label="Roadmap"
                     @onclick="@(() => ListItemClickHandler(""))" />
         <MBListItem ListItemColor="darkgreen"
                     LeadingIcon="touch_app"
@@ -167,3 +171,27 @@
         </div>
     </main>
 </div>
+ *@
+<div class="mw3-main-appbar">
+    <MBMenu AnchorType="MBMenuAnchorType.Icon"
+            IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                    name: "menu",
+                                    color: "darkblue")"
+            MenuItems="@mainMenuItems"
+            MenuPositioning="MBMenuPositioning.Popover"
+            @onmenuselectionreport="MainMenuSelectionReportHandler" />
+    <h3>Material.Blazor.MD3</h3>
+    <MBMenu AnchorType="MBMenuAnchorType.Icon"
+            IconDescriptor="@MBIcon.IconDescriptorConstructor(
+                                    name: "more_vert",
+                                    color: "darkblue")"
+            MenuItems="@themeMenuItems"
+            MenuPositioning="MBMenuPositioning.Popover"
+            @onmenuselectionreport="ThemeMenuSelectionReportHandler" />
+</div>
+
+<CascadingValue Value="@this" IsFixed="true">
+    <div class="mw3-main-body" style="margin:50px;">
+        @Body
+    </div>
+</CascadingValue>

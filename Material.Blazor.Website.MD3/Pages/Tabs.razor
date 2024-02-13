@@ -100,6 +100,39 @@
             </Material.Blazor.MD2.MBCard>
         </div>
 
+        <div class="mdc-layout-grid__cell--span-4">
+            <Material.Blazor.MD2.MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Primary, text only, controlling tabpanels
+                    </h2>
+
+                    <p>
+                        <MBTabs IsControllingPanels="@true"
+                                TabItems="@tabItemsTextPrimaryControllingDivs" />
+                        
+                        <p></p>
+                        
+                        <div role="tabpanel" id="panel-capybara" aria-labelledby="tab-capybara">
+                            <image src="_content/Material.Blazor.Website.MD3/images/capybara.jpg" />
+                        </div>
+
+                        <div role="tabpanel" id="panel-cat" aria-labelledby="tab-cat" hidden>
+                            <image src="_content/Material.Blazor.Website.MD3/images/cat.jpg" />
+                        </div>
+
+                        <div role="tabpanel" id="panel-dog" aria-labelledby="tab-dog" hidden>
+                            <image src="_content/Material.Blazor.Website.MD3/images/dog.jpg" />
+                        </div>
+
+                        <div role="tabpanel" id="panel-llama" aria-labelledby="tab-llama" hidden>
+                            <image src="_content/Material.Blazor.Website.MD3/images/llama.jpg" />
+                        </div>
+                    </p>
+                </Primary>
+            </Material.Blazor.MD2.MBCard>
+        </div>
+
         <div class="mdc-layout-grid__cell--span-6">
             <Material.Blazor.MD2.MBCard AutoStyled="true">
                 <Primary>
@@ -111,6 +144,8 @@
                         <MBTabs IsControllingPanels="@true"
                                 TabItems="@tabItemsTextAndIconsPrimaryControllingDivs" />
 
+                        <p></p>
+                        
                         <div role="tabpanel" id="panel-keyboard" aria-labelledby="tab-keyboard">Keyboard</div>
                         <div role="tabpanel" id="panel-guitar" aria-labelledby="tab-guitar" hidden>Guitar</div>
                         <div role="tabpanel" id="panel-drums" aria-labelledby="tab-drums" hidden>Drums</div>
@@ -455,6 +490,34 @@
               Icon=MBIcon.IconDescriptorConstructor(
                                     name: "tune"),
               IsPrimary=false,
+            },
+        };
+
+    private MBTabItem[] tabItemsTextPrimaryControllingDivs = new MBTabItem[]
+        {
+            new MBTabItem
+            {
+              Headline="capybara",
+              TabAriaControls="panel-capybara",
+              TabId="tab-capybara",
+            },
+            new MBTabItem
+            {
+              Headline="cat",
+              TabAriaControls="panel-cat",
+              TabId="tab-cat",
+            },
+            new MBTabItem
+            {
+              Headline="dog",
+              TabAriaControls="panel-dog",
+              TabId="tab-dog",
+            },
+            new MBTabItem
+            {
+              Headline="llama",
+              TabAriaControls="panel-llama",
+              TabId="tab-llama",
             },
         };
 
