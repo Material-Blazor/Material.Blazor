@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.0.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.4)
+
+Released 2024-0?-??
+
+**Updates**
+- MD2/MD3: .Net 8.0.4 updates
+- MD2/MD3: Dependabot updates
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.0.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.3)
 
 Released 2024-02-13
