@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 using System;
 using System.Threading.Tasks;
@@ -13,13 +14,21 @@ namespace Material.Blazor;
 /// null, in which case the "OK" button gives the dialog an action result of <see cref="ConfirmActionResult"/>, or <see cref="CancelActionResult"/>
 /// for the "Cancel" button.
 /// <para>Alternatively the consumer can supply render fragments with buttons to <see cref="UnconfirmedButtons"/> and <see cref="ConfirmedButtons"/>. The former
-/// is rendered until the correct confirmaton text is entered into the text box at which point it is replaced with the latter. Typically
+/// is rendered until the correct confirmation text is entered into the text box at which point it is replaced with the latter. Typically
 /// these are identical save that one or more of the repeated buttons in <see cref="UnconfirmedButtons"/> is disabled, but not in <see cref="ConfirmedButtons"/>.
 /// This components throws an <see cref="ArgumentException"/> if one of these render fragments is set while the other is not.</para>
 /// </summary>
 public partial class MBConfirmationDialog : ComponentFoundation
 {
+    /// <summary>
+    /// Action result value for when the user confirms the dialog.
+    /// </summary>
     public const string ConfirmActionResult = "confirm";
+
+
+    /// <summary>
+    /// Action result value for when the user cancels the dialog.
+    /// </summary>
     public const string CancelActionResult = "cancel";
 
 
@@ -81,6 +90,7 @@ public partial class MBConfirmationDialog : ComponentFoundation
 
 
     private MBDialog Dialog { get; set; }
+    private MBTextField TextField { get; set; }
     private string EnteredText { get; set; } = "";
     private bool Confirmed { get; set; } = false;
     private string MyConfirmationPhrase => string.IsNullOrWhiteSpace(ConfirmationPhrase) ? digitText : ConfirmationPhrase;
@@ -105,6 +115,15 @@ public partial class MBConfirmationDialog : ComponentFoundation
     private void OnInput(ChangeEventArgs args)
     {
         Confirmed = args.Value.ToString() == MyConfirmationPhrase;
+    }
+
+
+    private async Task OnKeyPress(KeyboardEventArgs args)
+    {
+        if (Confirmed && args.Key == "Enter")
+        {
+            await Dialog.HideAsync(ConfirmActionResult);
+        }
     }
 
 

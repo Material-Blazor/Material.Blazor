@@ -6,10 +6,12 @@
         @Body
         <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
         <p>
-            <MBTextField @bind-Value="@EnteredText"
+            <MBTextField @ref="@TextField"
+                         @bind-Value="@EnteredText"
                          class="mb-full-width"
                          Disabled="ConfirmationDisabled"
-                         @oninput="@OnInput" />
+                         @oninput="@OnInput"
+                         @onkeypress="@OnKeyPress" />
         </p>
     </Body>
     <Buttons>
