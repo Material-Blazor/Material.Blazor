@@ -127,6 +127,9 @@ public partial class MBNumericIntField : InputComponent<int>
 #nullable restore annotations
 
 
+    private MBNumericDecimalField DecimalField { get; set; }
+
+
     private decimal DecimalValue
     {
         get => ComponentValue;
@@ -140,5 +143,15 @@ public partial class MBNumericIntField : InputComponent<int>
         await base.OnInitializedAsync();
 
         AllowAllRenders();
+    }
+
+
+    /// <summary>
+    /// Returns an <see cref="ElementReference"/> for the control's input element.
+    /// </summary>
+    /// <returns></returns>
+    public ElementReference GetInputReference()
+    {
+        return DecimalField.GetInputReference();
     }
 }

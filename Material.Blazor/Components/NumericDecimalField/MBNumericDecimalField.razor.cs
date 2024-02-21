@@ -222,6 +222,16 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
     }
 
 
+    /// <summary>
+    /// Returns an <see cref="ElementReference"/> for the control's input element.
+    /// </summary>
+    /// <returns></returns>
+    public ElementReference GetInputReference()
+    {
+        return TextField.GetInputReference();
+    }
+
+
     private async Task OnFocusInAsync()
     {
         HasFocus = true;

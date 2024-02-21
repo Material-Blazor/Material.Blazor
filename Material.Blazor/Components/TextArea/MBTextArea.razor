@@ -3,7 +3,7 @@
 @inherits InputComponent<string>
 
 
-<label @ref="ElementReference"
+<label @ref="LabelReference"
        class="mdc-text-field mdc-text-field--textarea @ActiveConditionalClasses @(@class)"
        style="@style"
        id="@id">
@@ -34,7 +34,8 @@
     }
 
     <span class="mdc-text-field__resizer">
-        <textarea @attributes="@AttributesToSplat()"
+        <textarea @ref="TextAreaReference"
+                  @attributes="@AttributesToSplat()"
                   id="@CrossReferenceId"
                   class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                   @bind="@ComponentValue"
