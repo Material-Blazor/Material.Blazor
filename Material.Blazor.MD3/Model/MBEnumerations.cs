@@ -348,6 +348,26 @@ public enum MBListItemType
 
 #endregion
 
+#region MBMenuAnchorType
+
+/// <summary>
+/// Determines the anchor of a menu.
+/// </summary>
+public enum MBMenuAnchorType
+{
+    /// <summary>
+    /// Use button.
+    /// </summary>
+    Button,
+
+    /// <summary>
+    /// Use icon
+    /// </summary>
+    Icon,
+}
+
+#endregion
+
 #region MBMenuItemType
 
 /// <summary>

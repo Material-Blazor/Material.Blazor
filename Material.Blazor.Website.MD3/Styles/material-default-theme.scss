@@ -8,5 +8,6 @@
 
 @use "./_material-components-web";
 @use "./_app";
+@use "./_markdown";
 
 @include app.app-classes();

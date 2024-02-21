@@ -11,6 +11,7 @@
 
 @use "./_material-components-web";
 @use "./_app";
+@use "./_markdown";
 
 :root {
     --md-ref-typeface-brand: 'Open Sans';
@@ -70,3 +71,16 @@
 }
 
 @include app.app-classes();
+
+.mw3-main-appbar {
+    flex: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: lavender;
+    position: relative;
+}
+

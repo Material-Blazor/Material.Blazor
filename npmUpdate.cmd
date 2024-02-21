@@ -1,17 +1,32 @@
 @echo off
-cd material.blazor
 echo ...
 echo ... Updating Material.Blazor
 echo ...
+cd material.blazor
 call npm update -S
-cd ..\material.blazor.md3
+rem ***
+cd ..\material.blazor.website
+echo ...
+echo ... Updating Material.Blazor.Website
+echo ...
+call npm update -S
+rem ***
 echo ...
 echo ... Updating Material.Blazor.MD3
 echo ...
+cd ..\material.blazor.md3
 call npm install @material/web@nightly
 call npm update -S
+rem ***
+echo ...
+echo ... Updating Material.Blazor.Website.MD3
+echo ...
+cd ..\material.blazor.website.MD3
+call npm update -S
+rem ***
 cd ..
 echo ...
 echo ... Updating docfx
 echo ...
 dotnet tool update -g docfx
+rem ***

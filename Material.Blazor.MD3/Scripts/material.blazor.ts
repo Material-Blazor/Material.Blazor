@@ -17,9 +17,6 @@ MWC2 JS
 */
 import * as MBCard from '../Components.MD2/Card/MBCard';
 import * as MBDataTable from '../Components.MD2/DataTable/MBDataTable';
-import * as MBDrawer from '../Components.MD2/Drawer/MBDrawer';
-import * as MBMenuMD2 from '../Components.MD2/Menu/MBMenu';
-import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
     MBDialog,
@@ -29,8 +26,5 @@ import * as MBTopAppBar from '../Components.MD2/TopAppBar/MBTopAppBar';
     MBTextField,
 
     MBCard,
-    MBDataTable,
-    MBDrawer,
-    MBMenuMD2,
-    MBTopAppBar
+    MBDataTable
 };

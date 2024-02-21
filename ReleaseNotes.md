@@ -4,15 +4,37 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.0.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.3)
+
+Released 2024-02-13
+
+**Updates**
+- MD2/MD3: .Net 8.0.3 updates
+- MD2/MD3: Dependabot updates
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.0.2](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.2)
 
 Released 2024-01-10
 
 **Updates**
-- MD2/MD3: Dependabot and NuGet updates
+- MD2/MD3: .Net 8.0.2 updates
+- MD2/MD3: Dependabot updates
 
 **New components**
 - MD3: Added preview components:
+	- MBDateTimeField
 	- MBGrid
     - MBTabs
 
@@ -33,7 +55,8 @@ Released 2024-01-10
 Released 2023-12-01
 
 **Updates**
-- MD2/MD3: Dependabot and NuGet updates
+- MD2/MD3: .Net 8.0.1 updates
+- MD2/MD3: Dependabot updates
 - Repaired MD2 theme selection (Replaced hard coded JS with TS)
 
 **New components**
@@ -54,7 +77,7 @@ Released 2023-11-14
 
 **Updates**
 - MD2/MD3: Dependabot and NuGet updates
-- MD2/MD3: Migrate all projects to .Net 8 release
+- MD2/MD3: Migrate all projects to .Net 8.0.0 release
 
 **New components**
 - MD3: Added preview components:

@@ -10,6 +10,51 @@ $scroll-thumb-hover-color: theme.$primary;
 $scroll-track-color: rgba(theme.$on-surface, 0);
 $scroll-track-hover-color: rgba(theme.$on-surface, 0.05);
 
+html, body, app {
+    margin: 0;
+    padding: 0;
+}
+
+/* The 100vh in the next style is critical to constraining the display to the available window */
+
+.mw3-main {
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 100vh;
+}
+
+.mw3-main-appbar {
+    flex: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: azure;
+    position: relative;
+}
+
+.mw3-main-appbar2 {
+    flex: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: lavender;
+}
+
+.mw3-main-body {
+    flex: 1;
+    max-height: 100%;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
 @mixin app-classes() {
     /*
      * App layout styling
