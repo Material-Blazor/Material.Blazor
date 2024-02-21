@@ -173,7 +173,7 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
 
     /// <summary>
-    /// Invokes the javacript code to open the dialog.
+    /// Invokes the javascript code to open the dialog.
     /// </summary>
     private async Task InvokeShowAsync()
     {

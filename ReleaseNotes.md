@@ -4,6 +4,29 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.1.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.3)
+
+Released 2024-02-21
+
+**Updates**
+- MD2/MD3: Dependabot updates
+
+**New components**
+
+**New features**
+
+	- MD2: `MBTextField`, `MBTextArea`, `MBNumericDecimalField`, `MBNumericDoubleField` and `MBNumericIntField` add a new `GetInputElement()` method to return an `ElementReference` to the `<input />` element.
+	- MD2:`MBButton` adds a new `GetButtonElement()` method to return an `ElementReference` to the `<button />` element.
+	- MD2: Styling is improved for `MBAutocompleteTextField` , `MBAutocompleteSelectField` and `MBAutoCompletePagedField` to ensure that if the menu surface is rendered upwards, the text field is still visible.
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.0.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.3)
 
 Released 2024-02-13

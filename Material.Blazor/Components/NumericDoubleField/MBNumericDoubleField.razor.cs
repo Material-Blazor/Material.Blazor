@@ -134,6 +134,8 @@ public partial class MBNumericDoubleField : InputComponent<double>
 
 
     private int Rounding => (int)DecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(Math.Pow(10, (int)FocusedMagnitude))));
+    private MBNumericDecimalField DecimalField { get; set; }
+
 
     private decimal DecimalValue
     {
@@ -196,5 +198,15 @@ public partial class MBNumericDoubleField : InputComponent<double>
         await base.OnInitializedAsync();
 
         AllowAllRenders();
+    }
+
+
+    /// <summary>
+    /// Returns an <see cref="ElementReference"/> for the control's input element.
+    /// </summary>
+    /// <returns></returns>
+    public ElementReference GetInputReference()
+    {
+        return DecimalField.GetInputReference();
     }
 }

@@ -385,6 +385,6 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     {
         ObjectReference ??= DotNetObjectReference.Create(this);
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompletePagedField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
+        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompletePagedField.init", TextField.LabelReference, MenuReference, ObjectReference).ConfigureAwait(false);
     }
 }

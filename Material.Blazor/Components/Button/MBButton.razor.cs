@@ -98,7 +98,7 @@ public partial class MBButton : ComponentFoundation
 
     private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
     private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedButtonDensity(Density));
-    private ElementReference ElementReference { get; set; }
+    private ElementReference ButtonReference { get; set; }
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -118,9 +118,19 @@ public partial class MBButton : ComponentFoundation
     }
 
 
+    /// <summary>
+    /// Returns an <see cref="ElementReference"/> for the control's button reference element.
+    /// </summary>
+    /// <returns></returns>
+    public ElementReference GetButtonReference()
+    {
+        return ButtonReference;
+    }
+
+
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBButton.init", ElementReference);
+        return InvokeJsVoidAsync("MaterialBlazor.MBButton.init", ButtonReference);
     }
 }
