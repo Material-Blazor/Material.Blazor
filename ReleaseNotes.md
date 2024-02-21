@@ -4,7 +4,7 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [5.0.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.0.4)
+#### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
 
 Released 2024-0?-??
 
@@ -15,6 +15,9 @@ Released 2024-0?-??
 **New components**
 
 **New features**
+	- `MBTextField`, `MBTextArea`, `MBNumericDecimalField`, `MBNumericDoubleField` and `MBNumericIntField` add a new `GetInputElement()` method to return an `ElementReference` to the `<input />` element.
+	- `MBButton` adds a new `GetButtonElement()` method to return an `ElementReference` to the `<button />` element.
+	- Styling is improved for `MBAutocompleteTextField` , `MBAutocompleteSelectField` and `MBAutoCompletePagedField` to ensure that if the menu surface is rendered upwards, the text field is still visible.
 
 **Breaking Changes**
 
