@@ -4264,6 +4264,18 @@ references:
   commentId: Overload:Material.Blazor.MBButton.DialogAction
   fullName: Material.Blazor.MBButton.DialogAction
   nameWithType: MBButton.DialogAction
+- uid: Material.Blazor.MBButton.GetButtonReference
+  name: GetButtonReference()
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_GetButtonReference
+  commentId: M:Material.Blazor.MBButton.GetButtonReference
+  fullName: Material.Blazor.MBButton.GetButtonReference()
+  nameWithType: MBButton.GetButtonReference()
+- uid: Material.Blazor.MBButton.GetButtonReference*
+  name: GetButtonReference
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_GetButtonReference_
+  commentId: Overload:Material.Blazor.MBButton.GetButtonReference
+  fullName: Material.Blazor.MBButton.GetButtonReference
+  nameWithType: MBButton.GetButtonReference
 - uid: Material.Blazor.MBButton.HasBadge
   name: HasBadge
   href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_HasBadge
@@ -11245,6 +11257,18 @@ references:
   commentId: Overload:Material.Blazor.MBNumericDecimalField.FocusedMagnitude
   fullName: Material.Blazor.MBNumericDecimalField.FocusedMagnitude
   nameWithType: MBNumericDecimalField.FocusedMagnitude
+- uid: Material.Blazor.MBNumericDecimalField.GetInputReference
+  name: GetInputReference()
+  href: api/Material.Blazor.MBNumericDecimalField.html#Material_Blazor_MBNumericDecimalField_GetInputReference
+  commentId: M:Material.Blazor.MBNumericDecimalField.GetInputReference
+  fullName: Material.Blazor.MBNumericDecimalField.GetInputReference()
+  nameWithType: MBNumericDecimalField.GetInputReference()
+- uid: Material.Blazor.MBNumericDecimalField.GetInputReference*
+  name: GetInputReference
+  href: api/Material.Blazor.MBNumericDecimalField.html#Material_Blazor_MBNumericDecimalField_GetInputReference_
+  commentId: Overload:Material.Blazor.MBNumericDecimalField.GetInputReference
+  fullName: Material.Blazor.MBNumericDecimalField.GetInputReference
+  nameWithType: MBNumericDecimalField.GetInputReference
 - uid: Material.Blazor.MBNumericDecimalField.HelperText
   name: HelperText
   href: api/Material.Blazor.MBNumericDecimalField.html#Material_Blazor_MBNumericDecimalField_HelperText
@@ -11509,6 +11533,18 @@ references:
   commentId: Overload:Material.Blazor.MBNumericDoubleField.FocusedMagnitude
   fullName: Material.Blazor.MBNumericDoubleField.FocusedMagnitude
   nameWithType: MBNumericDoubleField.FocusedMagnitude
+- uid: Material.Blazor.MBNumericDoubleField.GetInputReference
+  name: GetInputReference()
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_GetInputReference
+  commentId: M:Material.Blazor.MBNumericDoubleField.GetInputReference
+  fullName: Material.Blazor.MBNumericDoubleField.GetInputReference()
+  nameWithType: MBNumericDoubleField.GetInputReference()
+- uid: Material.Blazor.MBNumericDoubleField.GetInputReference*
+  name: GetInputReference
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_GetInputReference_
+  commentId: Overload:Material.Blazor.MBNumericDoubleField.GetInputReference
+  fullName: Material.Blazor.MBNumericDoubleField.GetInputReference
+  nameWithType: MBNumericDoubleField.GetInputReference
 - uid: Material.Blazor.MBNumericDoubleField.HelperText
   name: HelperText
   href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_HelperText
@@ -11785,6 +11821,18 @@ references:
   commentId: Overload:Material.Blazor.MBNumericIntField.FocusedMagnitude
   fullName: Material.Blazor.MBNumericIntField.FocusedMagnitude
   nameWithType: MBNumericIntField.FocusedMagnitude
+- uid: Material.Blazor.MBNumericIntField.GetInputReference
+  name: GetInputReference()
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_GetInputReference
+  commentId: M:Material.Blazor.MBNumericIntField.GetInputReference
+  fullName: Material.Blazor.MBNumericIntField.GetInputReference()
+  nameWithType: MBNumericIntField.GetInputReference()
+- uid: Material.Blazor.MBNumericIntField.GetInputReference*
+  name: GetInputReference
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_GetInputReference_
+  commentId: Overload:Material.Blazor.MBNumericIntField.GetInputReference
+  fullName: Material.Blazor.MBNumericIntField.GetInputReference
+  nameWithType: MBNumericIntField.GetInputReference
 - uid: Material.Blazor.MBNumericIntField.HelperText
   name: HelperText
   href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_HelperText
@@ -15848,6 +15896,18 @@ references:
   commentId: Overload:Material.Blazor.MBTextArea.Density
   fullName: Material.Blazor.MBTextArea.Density
   nameWithType: MBTextArea.Density
+- uid: Material.Blazor.MBTextArea.GetTextAreaReference
+  name: GetTextAreaReference()
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_GetTextAreaReference
+  commentId: M:Material.Blazor.MBTextArea.GetTextAreaReference
+  fullName: Material.Blazor.MBTextArea.GetTextAreaReference()
+  nameWithType: MBTextArea.GetTextAreaReference()
+- uid: Material.Blazor.MBTextArea.GetTextAreaReference*
+  name: GetTextAreaReference
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_GetTextAreaReference_
+  commentId: Overload:Material.Blazor.MBTextArea.GetTextAreaReference
+  fullName: Material.Blazor.MBTextArea.GetTextAreaReference
+  nameWithType: MBTextArea.GetTextAreaReference
 - uid: Material.Blazor.MBTextArea.HelperText
   name: HelperText
   href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_HelperText
@@ -16043,6 +16103,18 @@ references:
   commentId: Overload:Material.Blazor.MBTextField.Dispose
   fullName: Material.Blazor.MBTextField.Dispose
   nameWithType: MBTextField.Dispose
+- uid: Material.Blazor.MBTextField.GetInputReference
+  name: GetInputReference()
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_GetInputReference
+  commentId: M:Material.Blazor.MBTextField.GetInputReference
+  fullName: Material.Blazor.MBTextField.GetInputReference()
+  nameWithType: MBTextField.GetInputReference()
+- uid: Material.Blazor.MBTextField.GetInputReference*
+  name: GetInputReference
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_GetInputReference_
+  commentId: Overload:Material.Blazor.MBTextField.GetInputReference
+  fullName: Material.Blazor.MBTextField.GetInputReference
+  nameWithType: MBTextField.GetInputReference
 - uid: Material.Blazor.MBTextField.HasBadge
   name: HasBadge
   href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HasBadge
