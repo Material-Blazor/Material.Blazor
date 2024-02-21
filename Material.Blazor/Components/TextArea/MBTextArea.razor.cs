@@ -74,7 +74,8 @@ public partial class MBTextArea : InputComponent<string>
     private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string DisplayLabel => Label + LabelSuffix;
-    private ElementReference ElementReference { get; set; }
+    private ElementReference LabelReference { get; set; }
+    private ElementReference TextAreaReference { get; set; }
     private string FloatingLabelClass { get; set; }
     private ElementReference HelperTextReference { get; set; }
     private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
@@ -128,24 +129,34 @@ public partial class MBTextArea : InputComponent<string>
     }
 
 
+    /// <summary>
+    /// Returns an <see cref="ElementReference"/> for the control's text area reference element.
+    /// </summary>
+    /// <returns></returns>
+    public ElementReference GetTextAreaReference()
+    {
+        return TextAreaReference;
+    }
+
+
     /// <inheritdoc/>
     private protected override Task SetComponentValueAsync()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value);
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setValue", LabelReference, Value);
     }
 
 
     /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled);
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", LabelReference, AppliedDisabled);
     }
 
 
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        return InvokeJsVoidAsync("MaterialBlazor.MBTextField.init", LabelReference, Value ?? "", HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
     }
 
     private void OnValidationStateChangedCallback(object sender, EventArgs e)
@@ -155,7 +166,7 @@ public partial class MBTextArea : InputComponent<string>
             var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
             var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", LabelReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
         }
     }
 }

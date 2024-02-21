@@ -334,6 +334,6 @@ public partial class MBAutocompleteSelectField<TItem> : SingleSelectComponent<TI
     {
         ObjectReference ??= DotNetObjectReference.Create(this);
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference).ConfigureAwait(false);
+        await InvokeJsVoidAsync("MaterialBlazor.MBAutocompleteTextField.init", TextField.LabelReference, MenuReference, ObjectReference).ConfigureAwait(false);
     }
 }
