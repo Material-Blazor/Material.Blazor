@@ -90,7 +90,6 @@ public partial class MBConfirmationDialog : ComponentFoundation
 
 
     private MBDialog Dialog { get; set; }
-    private MBTextField TextField { get; set; }
     private string EnteredText { get; set; } = "";
     private bool Confirmed { get; set; } = false;
     private string MyConfirmationPhrase => string.IsNullOrWhiteSpace(ConfirmationPhrase) ? digitText : ConfirmationPhrase;
@@ -107,7 +106,7 @@ public partial class MBConfirmationDialog : ComponentFoundation
         if ((UnconfirmedButtons == null && ConfirmedButtons != null) ||
             (UnconfirmedButtons != null && ConfirmedButtons == null))
         {
-            throw new ArgumentException($"Material.Blazor: UnconfirmedButtons and ConfirmedButton in {Utilities.GetTypeName(this.GetType())} must both be either null or not null");
+            throw new ArgumentException($"Material.Blazor: UnconfirmedButtons and ConfirmedButton in {Utilities.GetTypeName(GetType())} must both be either null or not null");
         }
     }
 
@@ -115,15 +114,6 @@ public partial class MBConfirmationDialog : ComponentFoundation
     private void OnInput(ChangeEventArgs args)
     {
         Confirmed = args.Value.ToString() == MyConfirmationPhrase;
-    }
-
-
-    private async Task OnKeyPress(KeyboardEventArgs args)
-    {
-        if (Confirmed && args.Key == "Enter")
-        {
-            await Dialog.HideAsync(ConfirmActionResult);
-        }
     }
 
 

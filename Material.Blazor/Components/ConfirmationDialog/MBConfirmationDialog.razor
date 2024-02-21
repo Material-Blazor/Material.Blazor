@@ -6,12 +6,10 @@
         @Body
         <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
         <p>
-            <MBTextField @ref="@TextField"
-                         @bind-Value="@EnteredText"
+            <MBTextField @bind-Value="@EnteredText"
                          class="mb-full-width"
                          Disabled="ConfirmationDisabled"
-                         @oninput="@OnInput"
-                         @onkeypress="@OnKeyPress" />
+                         @oninput="@OnInput" />
         </p>
     </Body>
     <Buttons>
@@ -21,7 +19,7 @@
                       DialogAction="@ConfirmActionResult"
                       Disabled="@(!Confirmed)"
                       Label="OK"
-                      LeadingIcon="check" />
+                      LeadingIcon="check"/>
 
             <MBButton ButtonStyle="@MBButtonStyle.Text"
                       DialogAction="@CancelActionResult"

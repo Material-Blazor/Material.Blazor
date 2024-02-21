@@ -83,7 +83,6 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
     private bool AfterDialogInitialization { get; set; } = false;
     private bool IsOpen { get; set; }
     private bool IsOpening { get; set; }
-    private string OverrideReason { get; set; } = null;
 
 
     private bool _hasInstantiated = false;
@@ -207,16 +206,6 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
 
     /// <summary>
-    /// Hides the dialog and sets the reason.
-    /// </summary>
-    internal async Task HideAsync(string reason)
-    {
-        OverrideReason = reason;
-        await HideAsync();
-    }
-
-
-    /// <summary>
     /// Do not use. This method is used internally for receiving the "dialog opened" event from javascript.
     /// </summary>
     [JSInvokable]
@@ -234,7 +223,6 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
     [JSInvokable]
     public async Task NotifyClosed(string reason)
     {
-        reason = OverrideReason ?? reason;
         _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
         // Allow enough time for the dialog closing animation before re-rendering
         await Task.Delay(150);
