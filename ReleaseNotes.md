@@ -4,6 +4,25 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
+
+Released 2024-02-29
+
+**Updates**
+- Fixed bug in single select components where updates to the item list would not allow items added to the list to be selected.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.1.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.3)
 
 Released 2024-02-21
