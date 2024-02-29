@@ -211,7 +211,7 @@ public class MBGridNG<TRowData> : ComponentFoundation
 
         base.BuildRenderTree(builder);
         var rendSeq = 0;
-        string classStr = $"mdc-data-table dense--4 mdc-data-table--sticky-header mb-grid__table mb-grid__colors {@class}";
+        string classStr = $"mdc-data-table mdc-data-table--sticky-header mb-grid__table mb-grid__colors {(DensityInfo.ApplyCssClass ? $"{DensityInfo.CssClassName}" : "")} {@class}";
         var columnCount = ColumnConfigurations.Count().ToString();
         string styleStr;
 

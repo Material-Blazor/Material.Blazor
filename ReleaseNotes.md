@@ -6,30 +6,12 @@ title: ReleaseNotes
 
 #### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
 
-Released 2024-02-29
-
-**Updates**
-- Fixed bug in single select components where updates to the item list would not allow items added to the list to be selected.
-
-**New components**
-
-**New features**
-
-**Breaking Changes**
-
-**Deprecated Components**
-
-**Known issues**
-
-<br />
-
-#### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
-
 Released 2024-03-??
 
 **Updates**
 - MD2/MD3: .Net 8.0.4 updates
 - MD2/MD3: Dependabot updates
+- MD2: Fixed bug in single select components where updates to the item list would not allow items added to the list to be selected.
 
 **New components**
 

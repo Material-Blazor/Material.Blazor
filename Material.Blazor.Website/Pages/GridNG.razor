@@ -4,6 +4,7 @@
 
 <DemonstrationPage ComponentAndPageName="Grid"
                    DetailedArticle="Grid"
+                   MinDensity="MBDensity.Minus4"
                    Title="Grid NG Demonstration (WiP)">
     <Description>
         <p>
@@ -12,7 +13,7 @@
     </Description>
 
     <PageContent>
-@*         <div class="mdc-layout-grid__cell--span-12">
+        <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -69,7 +70,7 @@
                 </Primary>
             </MBCard>
         </div>
- *@
+
         <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
@@ -77,7 +78,8 @@
                         Sorted, Grouped grid hiding the grouping column with group list
                     </h2>
 
-                    <MBGridNG ColumnConfigurations="@ColumnConfigurations3"
+                    <MBGridNG style="max-height: 600px; "
+                              ColumnConfigurations="@ColumnConfigurations3"
                               GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
                               Group="true"
                               HighlightSelectedRow="@true"
