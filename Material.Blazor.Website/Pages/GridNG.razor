@@ -1,10 +1,10 @@
-﻿@page "/grid"
+﻿@page "/gridng"
 
 @inject IMBToastService ToastService
 
 <DemonstrationPage ComponentAndPageName="Grid"
                    DetailedArticle="Grid"
-                   Title="Grid Demonstration">
+                   Title="Grid NG Demonstration (WiP)">
     <Description>
         <p>
             Shows multiple grids using many of the grid features.
@@ -12,21 +12,22 @@
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-12">
+@*         <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Grid showing the raw data
                     </h2>
 
-                    <MBGrid ColumnConfigurations="@ColumnConfigurations2"
-                            GroupedOrderedData=@PeopleAsRawData
-                            Group="false"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridNG ColumnConfigurations="@ColumnConfigurations2"
+                              GroupedOrderedData=@PeopleAsRawData
+                              Group="false"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              style="max-width: 100%; max-height: 100%; "
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -38,14 +39,14 @@
                         Grid showing the data sorted by family name then given name
                     </h2>
 
-                    <MBGrid ColumnConfigurations="@ColumnConfigurations2"
-                            GroupedOrderedData=@PeopleAsOrderedData
-                            Group="false"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridNG ColumnConfigurations="@ColumnConfigurations2"
+                              GroupedOrderedData=@PeopleAsOrderedData
+                              Group="false"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -57,18 +58,18 @@
                         Sorted, Grouped grid hiding the grouping column without group list
                     </h2>
 
-                    <MBGrid ColumnConfigurations="@ColumnConfigurations"
-                            GroupedOrderedData=@PeopleAsGroupedData
-                            Group="true"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridNG ColumnConfigurations="@ColumnConfigurations"
+                              GroupedOrderedData=@PeopleAsGroupedData
+                              Group="true"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
-
+ *@
         <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
@@ -76,14 +77,14 @@
                         Sorted, Grouped grid hiding the grouping column with group list
                     </h2>
 
-                    <MBGrid ColumnConfigurations="@ColumnConfigurations"
-                            GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
-                            Group="true"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridNG ColumnConfigurations="@ColumnConfigurations3"
+                              GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
+                              Group="true"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -106,7 +107,7 @@
     }
 
     private Person[] People =
-{
+                                {
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },
@@ -138,8 +139,9 @@
     private List<string> GroupOrderedList = new();
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations2 { get; set; } = null;
+    private List<MBGridColumnConfiguration<Person>> ColumnConfigurations3 { get; set; } = null;
 
-    public Grid()
+    public GridNG()
     {
         GroupOrderedList.Add("Dr");
         GroupOrderedList.Add("Mr");
@@ -189,8 +191,8 @@
             dataExpression: c => c.FamilyName,
             title: "Family name",
             width: 15));
-        ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            width: 75));
+        // ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
+        //     width: 75));
 
 
         ColumnConfigurations2 = new List<MBGridColumnConfiguration<Person>>();
@@ -207,8 +209,19 @@
             dataExpression: c => c.FamilyName,
             title: "Family name",
             width: 15));
-        ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
-            width: 65));
+        // ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
+        //     width: 65));
+
+        ColumnConfigurations3 = new List<MBGridColumnConfiguration<Person>>();
+
+        ColumnConfigurations3.Add(new MBGridColumnConfiguration<Person>(
+            dataExpression: c => c.GivenName,
+            title: "Given name",
+            width: 55));
+        ColumnConfigurations3.Add(new MBGridColumnConfiguration<Person>(
+            dataExpression: c => c.FamilyName,
+            title: "Family name",
+            width: 55));
     }
 
     protected async Task MBGridRowClicked(string guid)

@@ -1,4 +1,9 @@
-﻿@charset "UTF-8";
+﻿/* 
+ *  MBGridMT
+ */
+
+
+@charset "UTF-8";
 
 @use '@material/theme';
 @use '@material/theme/custom-properties';
@@ -33,8 +38,11 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
     --mb-grid-selected-row-color-hover: #{$selected-row-color-hover};
 }
 
-.mb-mgrid {
+.mb-grid__table {
     border-radius: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
 
     .mdc-data-table__header-cell:first-child {
         border-top-left-radius: 0px;
@@ -45,7 +53,7 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
     }
 }
 
-.mb-mgrid__colored {
+.mb-grid__colors {
     border-color: var(--mb-grid-border-color);
 
     .mdc-data-table__header-cell {
@@ -59,15 +67,16 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
         border-bottom-color: var(--mb-grid-border-color);
     }
 
-    .mb-mgrid__group-row {
+    .mb-grid__group-row {
         background-color: var(--mb-grid-group-row-color);
+        border-color: var(--mb-grid-border-color);
 
         &:hover {
             background-color: var(--mb-grid-group-row-color-hover);
         }
     }
 
-    .mb-mgrid__row:nth-child(odd):not(.mb-mgrid__row-selected) {
+    .mb-grid__row:nth-child(odd):not(.mb-grid__row-selected) {
         background-color: var(--mb-grid-odd-row-color);
 
         &:hover {
@@ -75,7 +84,7 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
         }
     }
 
-    .mb-mgrid__row:nth-child(even):not(.mb-mgrid__row-selected) {
+    .mb-grid__row:nth-child(even):not(.mb-grid__row-selected) {
         background-color: var(--mb-grid-even-row-color);
 
         &:hover {
@@ -83,7 +92,7 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
         }
     }
 
-    .mb-mgrid__row-selected {
+    .mb-grid__row-selected {
         background-color: var(--mb-grid-selected-row-color);
 
         &:hover {
@@ -93,8 +102,8 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
 }
 
 
-.mb-mgrid__vertical-dividers {
-    .mdc-data-table__header-cell:not(:first-child), .mb-mgrid__group-row td:not(:first-child), .mb-mgrid__row td:not(:first-child) {
+.mb-grid__vertical-dividers {
+    .mdc-data-table__header-cell:not(:first-child), .mb-grid__group-row td:not(:first-child), .mb-grid__row td:not(:first-child) {
         padding-left: 15px;
         border-left-width: 1px;
         border-left-style: solid;
@@ -102,7 +111,93 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
 }
 
 
-/* Original grid */
+/* 
+ *  MBGridNG
+ */
+
+.mb-grid__colgroup {
+    display: table-column-group;
+}
+
+.mb-grid__td {
+    cursor: default;
+    display: table-cell;
+    flex: 0 0 auto;
+    padding: 4px;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: nowrap;
+    letter-spacing: initial;
+}
+
+// Not in use
+.mb-grid_table {
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    flex-grow: 1;
+    overflow: auto;
+    font-size: 1.0rem;
+    table-layout: fixed;
+    text-align: left;
+    text-indent: unset;
+    text-overflow: ellipsis;
+    text-wrap: none;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.mb-grid_thead {
+}
+
+.mb-grid_tbody {
+}
+
+.mb-grid_tr {
+}
+
+.mb-grid_td-group {
+    display: table-cell;
+    color: black;
+    border-bottom: 0px;
+    border-left: 1px solid darkblue;
+    border-right: 1px solid darkblue;
+    border-top: 2px solid darkblue;
+    font-size: x-large;
+    font-weight: bolder;
+    flex: 0 0 auto;
+}
+
+.mb-grid_backgroundcolor-header-background {
+    background: lightgray;
+    background-color: lightgray;
+}
+
+.mb-grid_backgroundcolor-row-even {
+    background-color: khaki;
+}
+
+.mb-grid_backgroundcolor-row-odd {
+    background-color: lemonchiffon;
+}
+
+.mb-grid_backgroundcolor-row-group {
+    background-color: lightblue;
+}
+
+.mb-grid_backgroundcolor-row-selected {
+    background-color: lightgreen;
+}
+
+
+
+/* 
+ *  MBGrid
+ */
 
 .mb-grid-div-outer {
     width: 100% !important;

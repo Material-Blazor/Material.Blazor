@@ -154,7 +154,7 @@ public class MBGridMT<TRowData> : ComponentFoundation
         var colIndex = 0;
         foreach (var col in ColumnConfigurations)
         {
-            var styleStr = CreateMeasurementStyle(col, ColumnWidthArray[colIndex]);
+            var styleStr = CreateMeasurementStyle(col);
             builder.OpenElement(rendSeq++, "col");
             builder.AddAttribute(rendSeq++, "style", styleStr);
             builder.CloseElement(); // col
@@ -250,8 +250,8 @@ public class MBGridMT<TRowData> : ComponentFoundation
             //
 
             base.BuildRenderTree(builder);
-            var rendSeq = 2;
-            string classStr = $"mdc-data-table{(DensityInfo.ApplyCssClass ? $" {DensityInfo.CssClassName}" : "")} mdc-data-table--sticky-header mb-mgrid{(ApplyColors ? " mb-mgrid__colored" : "")}{(ApplyVerticalDividers ? " mb-mgrid__vertical-dividers" : "")} {@class}";
+            var rendSeq = 0;
+            string classStr = $"mdc-data-table{(DensityInfo.ApplyCssClass ? $" {DensityInfo.CssClassName}" : "")} mdc-data-table--sticky-header mb-grid__table {(ApplyColors ? " mb-grid__colors" : "")}{(ApplyVerticalDividers ? " mb-grid__vertical-dividers" : "")} {@class}";
             var columnCount = ColumnConfigurations.Count().ToString();
 
             builder.OpenElement(rendSeq++, "div");
@@ -325,7 +325,7 @@ public class MBGridMT<TRowData> : ComponentFoundation
                             // We output a row with the group name
                             // Do a div for this row
                             builder.OpenElement(rendSeq++, "tr");
-                            builder.AddAttribute(rendSeq++, "class", "mdc-data-table__row mb-mgrid__group-row");
+                            builder.AddAttribute(rendSeq++, "class", "mdc-data-table__row mb-grid__group-row");
                             builder.OpenElement(rendSeq++, "td");
                             builder.AddAttribute(rendSeq++, "colspan", columnCount);
                             builder.AddAttribute(rendSeq++, "class", "mdc-data-table__cell");
@@ -350,7 +350,7 @@ public class MBGridMT<TRowData> : ComponentFoundation
                             //if ((rowKey == SelectedKey) && HighlightSelectedRow)
                             //{
                             //    // It's the selected row so set the selection color as the background
-                            //    rowBackgroundColorClass = "mb-mgrid__row-selected";
+                            //    rowBackgroundColorClass = "mb-grid__row-selected";
                             //}
                             //else
                             //{
@@ -371,7 +371,7 @@ public class MBGridMT<TRowData> : ComponentFoundation
                             // Do a tr
                             builder.OpenElement(rendSeq++, "tr");
                             //builder.AddAttribute(rendSeq++, "class", "mb-grid-tr " + rowBackgroundColorClass);
-                            builder.AddAttribute(rendSeq++, "class", $"mdc-data-table__row mb-mgrid__row{(selected ? " mb-mgrid__row-selected" : "")}");
+                            builder.AddAttribute(rendSeq++, "class", $"mdc-data-table__row mb-grid__row{(selected ? " mb-grid__row-selected" : "")}");
 
                             builder.AddAttribute
                             (
@@ -545,7 +545,7 @@ public class MBGridMT<TRowData> : ComponentFoundation
     #endregion
 
     #region CreateMeasurementStyle
-    private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col, float columnWidth)
+    private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col)
     {
         string subStyle = Measurement switch
         {
@@ -565,10 +565,7 @@ public class MBGridMT<TRowData> : ComponentFoundation
         }
         else
         {
-            return
-                "width: " + columnWidth.ToString() + "px !important; " +
-                "max-width: " + columnWidth.ToString() + "px !important; " +
-                "min-width: " + columnWidth.ToString() + "px !important; ";
+            return "";
         }
     }
     #endregion
@@ -672,227 +669,6 @@ public class MBGridMT<TRowData> : ComponentFoundation
     }
     #endregion
 
-    #region SetParametersAsync
-    private int oldParameterHash { get; set; } = -1;
-    public override Task SetParametersAsync(ParameterView parameters)
-    {
-        base.SetParametersAsync(parameters);
-#if Logging
-        GridLogDebug("SetParametersAsync entry");
-#endif
-        semaphoreSlim.WaitAsync();
-        try
-        {
-            foreach (var parameter in parameters)
-            {
-                switch (parameter.Name)
-                {
-                    case nameof(@class):
-                        @class = (string)parameter.Value;
-                        break;
-                    case nameof(ColumnConfigurations):
-                        ColumnConfigurations = (IEnumerable<MBGridColumnConfiguration<TRowData>>)parameter.Value;
-                        //
-                        // We are going to measure the actual sizes using JS if the Measurement is FitToData
-                        // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
-                        // values to BuildColGroup->CreateMeasurementStyle
-                        //
-                        ColumnWidthArray = new float[ColumnConfigurations.Count()];
-                        break;
-                    case nameof(Group):
-                        Group = (bool)parameter.Value;
-                        break;
-                    case nameof(GroupedOrderedData):
-                        GroupedOrderedData = (IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>>)parameter.Value;
-                        break;
-                    case nameof(HighlightSelectedRow):
-                        HighlightSelectedRow = (bool)parameter.Value;
-                        break;
-                    case nameof(KeyExpression):
-                        KeyExpression = (Func<TRowData, object>)parameter.Value;
-                        break;
-                    case nameof(LogIdentification):
-                        LogIdentification = (string)parameter.Value;
-                        break;
-                    case nameof(Measurement):
-                        Measurement = (MB_Grid_Measurement)parameter.Value;
-                        break;
-                    case nameof(ObscurePMI):
-                        ObscurePMI = (bool)parameter.Value;
-                        break;
-                    case nameof(OnMouseClick):
-                        OnMouseClick = (EventCallback<string>)parameter.Value;
-                        break;
-                    case nameof(style):
-                        style = (string)parameter.Value;
-                        break;
-                    case nameof(SuppressHeader):
-                        SuppressHeader = (bool)parameter.Value;
-                        break;
-                    default:
-#if Logging
-                        GridLogTrace("MBGrid encountered an unknown parameter:" + parameter.Name);
-#endif
-                        break;
-                }
-            }
-
-#if Logging
-            GridLogDebug("                   about to compute parameter hash");
-#endif
-            HashCode newParameterHash;
-
-            if (HighlightSelectedRow)
-            {
-                newParameterHash = HashCode
-                    .OfEach(ColumnConfigurations)
-                    .And(@class)
-                    .And(Group)
-                    .And(HighlightSelectedRow)
-                    .And(KeyExpression)
-                    .And(Measurement)
-                    .And(ObscurePMI)
-                    .And(OnMouseClick)
-                    .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
-                    .And(style)
-                    .And(SuppressHeader);
-            }
-            else
-            {
-                newParameterHash = HashCode
-                    .OfEach(ColumnConfigurations)
-                    .And(@class)
-                    .And(Group)
-                    .And(HighlightSelectedRow)
-                    .And(KeyExpression)
-                    .And(Measurement)
-                    .And(ObscurePMI)
-                    .And(OnMouseClick)
-                    .And(style)
-                    .And(SuppressHeader);
-            }
-
-            //
-            // We have to implement the double loop for grouped ordered data as the OfEach/AndEach
-            // do not recurse into the second enumerable and certainly don't look at the rowValues
-            //
-            if ((GroupedOrderedData != null) && (ColumnConfigurations != null))
-            {
-                foreach (var kvp in GroupedOrderedData)
-                {
-#if Logging
-                    GridLogDebug("                   key == " + kvp.Key + " with " + kvp.Value.Count().ToString() + " rows");
-#endif
-                    foreach (var rowValues in kvp.Value)
-                    {
-                        var rowKey = KeyExpression(rowValues.Value).ToString();
-
-                        newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                            newParameterHash.value,
-                            HashCode.Of(rowKey)));
-
-                        foreach (var columnDefinition in ColumnConfigurations)
-                        {
-                            switch (columnDefinition.ColumnType)
-                            {
-                                case MB_Grid_ColumnType.Icon:
-                                    if (columnDefinition.DataExpression != null)
-                                    {
-                                        try
-                                        {
-                                            var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
-
-                                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                                                newParameterHash.value,
-                                                HashCode.Of(value)));
-                                        }
-                                        catch
-                                        {
-                                            throw new Exception("Backing value incorrect for MBGrid.Icon column.");
-                                        }
-                                    }
-                                    break;
-
-                                case MB_Grid_ColumnType.Text:
-                                    if (columnDefinition.DataExpression != null)
-                                    {
-                                        var value = columnDefinition.DataExpression(rowValues.Value);
-                                        var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
-
-                                        newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                                            newParameterHash.value,
-                                            HashCode.Of(value)));
-                                    }
-                                    break;
-
-                                case MB_Grid_ColumnType.TextColor:
-                                    if (columnDefinition.DataExpression != null)
-                                    {
-                                        try
-                                        {
-                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
-
-                                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
-                                                newParameterHash.value,
-                                                HashCode.Of(value)));
-                                        }
-                                        catch
-                                        {
-                                            throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
-                                        }
-                                    }
-                                    break;
-
-                                default:
-                                    throw new Exception("MBGrid -- Unknown column type");
-                            }
-                        }
-                    }
-                }
-            }
-
-#if Logging
-            GridLogDebug("                   hash == " + ((int)newParameterHash).ToString());
-#endif
-            if (newParameterHash == oldParameterHash)
-            {
-                // This is a call to ParametersSetAsync with what in all likelyhood is the same
-                // parameters. Hashing isn't perfect so there is some tiny possibility that new parameters
-                // are present and the same hash value was computed.
-                if (HasCompletedFullRender)
-                {
-                    ShouldRenderValue = false;
-                }
-                else
-                {
-                    ShouldRenderValue = true;
-                }
-#if Logging
-                GridLogDebug("                   EQUAL hash");
-#endif
-            }
-            else
-            {
-                ShouldRenderValue = true;
-                IsSimpleRender = true;
-                oldParameterHash = newParameterHash;
-#if Logging
-                GridLogDebug("                   DIFFERING hash");
-#endif
-            }
-        }
-        finally
-        {
-#if Logging
-            GridLogDebug("                   about to release semaphore (SetParametersAsync)");
-#endif
-            semaphoreSlim.Release();
-        }
-
-        return base.SetParametersAsync(ParameterView.Empty);
-    }
-    #endregion
-
     #region ShouldRender
     protected override bool ShouldRender()
     {
@@ -901,147 +677,3 @@ public class MBGridMT<TRowData> : ComponentFoundation
     #endregion
 
 }
-
-//#region HashCode 
-
-///// <summary>
-///// A hash code used to help with implementing <see cref="object.GetHashCode()"/>.
-///// 
-///// This code is from the blog post at https://rehansaeed.com/gethashcode-made-easy/
-///// </summary>
-//public struct HashCode : IEquatable<HashCode>
-//{
-//    private const int EmptyCollectionPrimeNumber = 19;
-//    public readonly int value;
-
-//    /// <summary>
-//    /// Initializes a new instance of the <see cref="HashCode"/> struct.
-//    /// </summary>
-//    /// <param name="value">The value.</param>
-//    public HashCode(int value) => this.value = value;
-
-//    /// <summary>
-//    /// Performs an implicit conversion from <see cref="HashCode"/> to <see cref="int"/>.
-//    /// </summary>
-//    /// <param name="hashCode">The hash code.</param>
-//    /// <returns>The result of the conversion.</returns>
-//    public static implicit operator int(HashCode hashCode) => hashCode.value;
-
-//    /// <summary>
-//    /// Implements the operator ==.
-//    /// </summary>
-//    /// <param name="left">The left.</param>
-//    /// <param name="right">The right.</param>
-//    /// <returns>The result of the operator.</returns>
-//    public static bool operator ==(HashCode left, HashCode right) => left.Equals(right);
-
-//    /// <summary>
-//    /// Implements the operator !=.
-//    /// </summary>
-//    /// <param name="left">The left.</param>
-//    /// <param name="right">The right.</param>
-//    /// <returns>The result of the operator.</returns>
-//    public static bool operator !=(HashCode left, HashCode right) => !(left == right);
-
-//    /// <summary>
-//    /// Takes the hash code of the specified item.
-//    /// </summary>
-//    /// <typeparam name="T">The type of the item.</typeparam>
-//    /// <param name="item">The item.</param>
-//    /// <returns>The new hash code.</returns>
-//    public static HashCode Of<T>(T item) => new HashCode(GetHashCode(item));
-
-//    /// <summary>
-//    /// Takes the hash code of the specified items.
-//    /// </summary>
-//    /// <typeparam name="T">The type of the items.</typeparam>
-//    /// <param name="items">The collection.</param>
-//    /// <returns>The new hash code.</returns>
-//    public static HashCode OfEach<T>(IEnumerable<T> items) =>
-//        items == null ? new HashCode(0) : new HashCode(GetHashCode(items, 0));
-
-//    /// <summary>
-//    /// Adds the hash code of the specified item.
-//    /// </summary>
-//    /// <typeparam name="T">The type of the item.</typeparam>
-//    /// <param name="item">The item.</param>
-//    /// <returns>The new hash code.</returns>
-//    public HashCode And<T>(T item) =>
-//        new HashCode(CombineHashCodes(this.value, GetHashCode(item)));
-
-//    /// <summary>
-//    /// Adds the hash code of the specified items in the collection.
-//    /// </summary>
-//    /// <typeparam name="T">The type of the items.</typeparam>
-//    /// <param name="items">The collection.</param>
-//    /// <returns>The new hash code.</returns>
-//    public HashCode AndEach<T>(IEnumerable<T> items)
-//    {
-//        if (items == null)
-//        {
-//            return new HashCode(this.value);
-//        }
-
-//        return new HashCode(GetHashCode(items, this.value));
-//    }
-
-//    /// <inheritdoc />
-//    public bool Equals(HashCode other) => this.value.Equals(other.value);
-
-//    /// <inheritdoc />
-//    public override bool Equals(object obj)
-//    {
-//        if (obj is HashCode)
-//        {
-//            return this.Equals((HashCode)obj);
-//        }
-
-//        return false;
-//    }
-
-//    /// <summary>
-//    /// Throws <see cref="NotSupportedException" />.
-//    /// </summary>
-//    /// <returns>Does not return.</returns>
-//    /// <exception cref="NotSupportedException">Implicitly convert this struct to an <see cref="int" /> to get the hash code.</exception>
-//    [EditorBrowsable(EditorBrowsableState.Never)]
-//    public override int GetHashCode() =>
-//        throw new NotSupportedException(
-//            "Implicitly convert this struct to an int to get the hash code.");
-
-//    public static int CombineHashCodes(int h1, int h2)
-//    {
-//        unchecked
-//        {
-//            // Code copied from System.Tuple so it must be the best way to combine hash codes or at least a good one.
-//            return ((h1 << 5) + h1) ^ h2;
-//        }
-//    }
-
-//    private static int GetHashCode<T>(T item) => item?.GetHashCode() ?? 0;
-
-//    private static int GetHashCode<T>(IEnumerable<T> items, int startHashCode)
-//    {
-//        var temp = startHashCode;
-
-//        var enumerator = items.GetEnumerator();
-//        if (enumerator.MoveNext())
-//        {
-//            temp = CombineHashCodes(temp, GetHashCode(enumerator.Current));
-
-//            while (enumerator.MoveNext())
-//            {
-//                temp = CombineHashCodes(temp, GetHashCode(enumerator.Current));
-//            }
-//        }
-//        else
-//        {
-//            temp = CombineHashCodes(temp, EmptyCollectionPrimeNumber);
-//        }
-
-//        return temp;
-//    }
-//}
-
-//#endregion
-

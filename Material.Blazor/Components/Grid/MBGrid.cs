@@ -39,7 +39,7 @@ namespace Material.Blazor;
 /// </summary>
 public class MBGrid<TRowData> : ComponentFoundation
 {
-    #region Members
+    #region Parameters
 
     // Remember that adding/removing/renaming parameters requires an update
     // to SetParametersAsync
@@ -103,7 +103,7 @@ public class MBGrid<TRowData> : ComponentFoundation
     /// <summary>
     /// Callback for a mouse click
     /// </summary>
-    [Parameter] public EventCallback<string> OnMouseClickCallback { get; set; }
+    [Parameter] public EventCallback<string> OnMouseClick { get; set; }
 
 
     /// <summary>
@@ -111,7 +111,9 @@ public class MBGrid<TRowData> : ComponentFoundation
     /// </summary>
     [Parameter] public bool SuppressHeader { get; set; } = false;
 
+    #endregion
 
+    #region Members
     [Inject] IJSRuntime JsRuntime { get; set; }
 
 
@@ -768,7 +770,7 @@ public class MBGrid<TRowData> : ComponentFoundation
         {
             SelectedKey = newRowKey;
         }
-        return OnMouseClickCallback.InvokeAsync(newRowKey);
+        return OnMouseClick.InvokeAsync(newRowKey);
     }
     #endregion
 
@@ -829,8 +831,8 @@ public class MBGrid<TRowData> : ComponentFoundation
                     case nameof(ObscurePMI):
                         ObscurePMI = (bool)parameter.Value;
                         break;
-                    case nameof(OnMouseClickCallback):
-                        OnMouseClickCallback = (EventCallback<string>)parameter.Value;
+                    case nameof(OnMouseClick):
+                        OnMouseClick = (EventCallback<string>)parameter.Value;
                         break;
                     case nameof(style):
                         style = (string)parameter.Value;
@@ -858,7 +860,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                     .And(KeyExpression)
                     .And(Measurement)
                     .And(ObscurePMI)
-                    .And(OnMouseClickCallback)
+                    .And(OnMouseClick)
                     .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
                     .And(style)
                     .And(SuppressHeader);
@@ -873,7 +875,7 @@ public class MBGrid<TRowData> : ComponentFoundation
                     .And(KeyExpression)
                     .And(Measurement)
                     .And(ObscurePMI)
-                    .And(OnMouseClickCallback)
+                    .And(OnMouseClick)
                     .And(style)
                     .And(SuppressHeader);
             }
