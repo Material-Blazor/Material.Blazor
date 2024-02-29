@@ -60,7 +60,7 @@ public abstract class SingleSelectComponent<T, TListElement> : InputComponent<T>
                 }
             }
 
-            AllowNextRender();
+            AllowNextRender(true);
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
     }
