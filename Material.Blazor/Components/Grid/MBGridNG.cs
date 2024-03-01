@@ -528,4 +528,11 @@ public class MBGridNG<TRowData> : ComponentFoundation
     }
     #endregion
 
+    #region ScrollToIndicatedRowAsync
+    public async Task ScrollToIndicatedRowAsync(string rowIdentifier)
+    {
+        await InvokeJsVoidAsync("MaterialBlazor.MBGrid.scrollToIndicatedRow", rowIdentifier);
+    }
+    #endregion
+
 }

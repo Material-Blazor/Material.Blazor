@@ -38,12 +38,17 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
     --mb-grid-selected-row-color-hover: #{$selected-row-color-hover};
 }
 
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
 .mb-grid__table {
     border-radius: 0px;
-/*    width: 100%;
+    width: 100%;
     height: 100%;
     overflow-x: auto;
-*/
+
     .mdc-data-table__header-cell:first-child {
         border-top-left-radius: 0px;
     }
