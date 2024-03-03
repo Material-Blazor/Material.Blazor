@@ -216,27 +216,6 @@ public enum MBFloatingActionButtonType
     ExtendedTrailingIcon,
 }
 
-/// <summary>
-/// Column measurement method
-/// </summary>
-public enum MB_Grid_Measurement
-{
-    EM,
-    FitToData,
-    Percent,
-    PX,
-}
-
-/// <summary>
-/// Column type
-/// </summary>
-public enum MB_Grid_ColumnType
-{
-    Icon,
-    Text,
-    TextColor,
-};
-
 
 /// <summary>
 /// Specifies whether to use
