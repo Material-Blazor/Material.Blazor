@@ -67,6 +67,12 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
 
     /// <summary>
+    /// Allows <see cref="OnAfterRenderAsync(bool)"/> to run for the next render only.
+    /// </summary>
+    private protected bool AllowNextOnAfterRenderAsync { get; set; } = false;
+
+
+    /// <summary>
     /// The concurrent queue for javascript interop actions.
     /// </summary>
     private readonly ConcurrentQueue<Func<Task>> _jsActionQueue = new();
@@ -328,10 +334,12 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// </summary>
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender || AllowNextOnAfterRenderAsync)
         {
             try
             {
+                AllowNextOnAfterRenderAsync = false;
+
                 if (ParentDialog != null && !ParentDialog.HasInstantiated)
                 {
                     ParentDialog.RegisterLayoutAction(this);

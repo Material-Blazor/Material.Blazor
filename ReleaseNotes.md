@@ -4,6 +4,27 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
+
+Released 2024-03-??
+
+**Updates**
+- MD2/MD3: Dependabot updates
+- MD2: Fixed bug in single select components where updates to the item list would not allow items added to the list to be selected.
+- MD2: Removed EXPERIMENTAL components (MBGrid, MBGridMT, MBChipsSelectSingle, MBChipsSelectMulti, MBScheduler)
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.1.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.3)
 
 Released 2024-02-21

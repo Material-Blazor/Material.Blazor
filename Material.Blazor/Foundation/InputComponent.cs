@@ -85,6 +85,7 @@ public abstract class InputComponent<T> : ComponentFoundation
     ///// </summary>
     private bool AllowNextRenderOnce { get; set; } = false;
 
+
     /// <summary>
     /// Gets a string that indicates the status of the field being edited. This will include
     /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
@@ -106,9 +107,10 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #region AllowNextRender
 
-    private protected void AllowNextRender()
+    private protected void AllowNextRender(bool allowNextOnAfterRenderAsync = false)
     {
         AllowNextRenderOnce = true;
+        AllowNextOnAfterRenderAsync = allowNextOnAfterRenderAsync;
     }
 
     #endregion

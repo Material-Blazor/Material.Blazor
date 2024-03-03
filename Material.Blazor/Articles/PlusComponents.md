@@ -26,7 +26,6 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBDragAndDropList](xref:C.MBDragAndDropList) | A list of user provided render fragments that can be re-ordered with drag and drop. |
 | [MBFileUploadButton](xref:C.MBFileUploadButton) | A material button styled wrapper for the `InputFile` component. |
 | [MBFileUploadDragAndDrop](xref:C.MBFileUploadDragAndDrop) | A material card styled wrapper for the `InputFile` component that can load files either by drag and drop or clicking the card area. |
-| [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBIcon](xref:C.MBIcon) | Displays an icon from the specified icon foundry or the default foundry from [MBCascadingDefaults](xref:U.MBCascadingDefaults). See also [MBIconHelper](xref:U.MBIconHelper). |
 | [MBMenuSelectionGroup](xref:C.MBMenuSelectionGroup) | Allows grouping of menu items to enable multiple 'selected' checks |
 | [MBNumericDecimalField](xref:C.MBNumericDecimalField) | Wraps [MBTextField](xref:C.MBTextField) to format numeric entry of a `decimal`. |
@@ -38,13 +37,3 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBSlidingContent](xref:C.MBSlidingContent) | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | [MBSlidingTabBar](xref:C.MBSlidingTabBar) | An `MBTabBar` augmented with content displayed in a `MBSlidingContent` |
 | MBToast   | An `MBToast` component used to show toast notifications` |
-
-## Experimental Component List
-
-| Component | Notes |
-| :-------- | :---- |
-| [MBChipsSelectMulti](xref:C.MBChipsSelectMulti) | A [Material Filter Chipset](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips). Implements a multi-select chipset ("filter chips"). |
-| [MBChipsSelectSingle](xref:C.MBChipsSelectSingle) | A [Material Choice Chipset](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-chips#chips). Implements a single-select chipset ("choice chips"). |
-| [MBGridMT](xref:C.MBGrid) | Displays a grid themed as MWC composed from the elements specified as parameters. |
-| [MBScheduler](xref:C.MBScheduler) | Displays a schedule composed from the elements specified as parameters. |
-

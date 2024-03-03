@@ -31,9 +31,6 @@
 - name: MBFloatingActionButton
   topicUid: C.MBFloatingActionButton
 
-- name: MBGrid
-  topicUid: C.MBGrid
-
 - name: MBIcon
   topicUid: C.MBIcon
 

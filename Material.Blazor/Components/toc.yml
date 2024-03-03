@@ -46,12 +46,6 @@
 - name: MBCheckbox
   topicUid: C.MBCheckbox
 
-- name: MBChipsSelectMulti
-  topicUid: C.MBChipsSelectMulti
-
-- name: MBChipsSelectSingle
-  topicUid: C.MBChipsSelectSingle
-
 - name: MBCircularProgress
   topicUid: C.MBCircularProgress
 
@@ -78,9 +72,6 @@
 
 - name: MBFloatingActionButton
   topicUid: C.MBFloatingActionButton
-
-- name: MBGrid
-  topicUid: C.MBGrid
 
 - name: MBIcon
   topicUid: C.MBIcon
@@ -135,9 +126,6 @@
 
 - name: MBRadioButtonGroup
   topicUid: C.MBRadioButtonGroup
-
-- name: MBScheduler
-  topicUid: C.MBScheduler
 
 - name: MBSegmentedButtonMulti
   topicUid: C.MBSegmentedButtonMulti
