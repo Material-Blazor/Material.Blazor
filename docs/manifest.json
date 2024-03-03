@@ -427,26 +427,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/Components/ChipsSelectMulti/MBChipsSelectMulti.md",
-      "output": {
-        ".html": {
-          "relative_path": "Material.Blazor/Components/ChipsSelectMulti/MBChipsSelectMulti.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/Components/ChipsSelectSingle/MBChipsSelectSingle.md",
-      "output": {
-        ".html": {
-          "relative_path": "Material.Blazor/Components/ChipsSelectSingle/MBChipsSelectSingle.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/CircularProgress/MBCircularProgress.md",
       "output": {
         ".html": {
@@ -571,16 +551,6 @@
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/Components/Grid/MBGrid.md",
-      "output": {
-        ".html": {
-          "relative_path": "Material.Blazor/Components/Grid/MBGrid.html"
         }
       },
       "version": ""
@@ -761,16 +731,6 @@
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/Components/Scheduler/MBScheduler.md",
-      "output": {
-        ".html": {
-          "relative_path": "Material.Blazor/Components/Scheduler/MBScheduler.html"
         }
       },
       "version": ""
@@ -1380,26 +1340,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.Direction.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.Direction.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.HashCode.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.HashCode.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Material.Blazor.IMBIcon.IconFragment.yml",
       "output": {
         ".html": {
@@ -1800,26 +1740,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBChipsSelectMulti-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBChipsSelectMulti-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBChipsSelectSingle-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBChipsSelectSingle-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Material.Blazor.MBCircularProgress.yml",
       "output": {
         ".html": {
@@ -1994,66 +1914,6 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBFloatingActionButtonType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBGrid-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBGrid-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBGridColumnConfiguration-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBGridColumnConfiguration-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBGridIconSpecification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBGridIconSpecification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBGridMT-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBGridMT-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBGridTextColorSpecification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBGridTextColorSpecification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBGrid_DataHelper-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBGrid_DataHelper-1.html"
         }
       },
       "version": ""
@@ -2450,56 +2310,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBScheduler.ClientBoundingRect.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBScheduler.ClientBoundingRect.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBScheduler.DragEndInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBScheduler.DragEndInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBScheduler.HashCode2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBScheduler.HashCode2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBScheduler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBScheduler.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBSchedulerAppointment.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBSchedulerAppointment.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Material.Blazor.MBSearchResult-1.yml",
       "output": {
         ".html": {
@@ -2804,26 +2614,6 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBVersion.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MB_Grid_ColumnType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MB_Grid_ColumnType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MB_Grid_Measurement.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MB_Grid_Measurement.html"
         }
       },
       "version": ""

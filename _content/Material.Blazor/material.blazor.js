@@ -478,15 +478,6 @@ __webpack_require__.d(MBCard_namespaceObject, {
   init: () => (MBCard_init)
 });
 
-// NAMESPACE OBJECT: ./Components/ChipsSelectMulti/MBChipsSelectMulti.ts
-var MBChipsSelectMulti_namespaceObject = {};
-__webpack_require__.r(MBChipsSelectMulti_namespaceObject);
-__webpack_require__.d(MBChipsSelectMulti_namespaceObject, {
-  init: () => (MBChipsSelectMulti_init),
-  setDisabled: () => (MBChipsSelectMulti_setDisabled),
-  setSelected: () => (setSelected)
-});
-
 // NAMESPACE OBJECT: ./Components/Checkbox/MBCheckbox.ts
 var MBCheckbox_namespaceObject = {};
 __webpack_require__.r(MBCheckbox_namespaceObject);
@@ -561,17 +552,6 @@ __webpack_require__.d(MBFloatingActionButton_namespaceObject, {
   setExited: () => (setExited)
 });
 
-// NAMESPACE OBJECT: ./Components/Grid/MBGrid.ts
-var MBGrid_namespaceObject = {};
-__webpack_require__.r(MBGrid_namespaceObject);
-__webpack_require__.d(MBGrid_namespaceObject, {
-  getScrollBarWidth: () => (getScrollBarWidth),
-  getTextWidths: () => (getTextWidths),
-  scrollToIndicatedRow: () => (scrollToIndicatedRow),
-  syncScrollByID: () => (syncScrollByID),
-  syncScrollByRef: () => (syncScrollByRef)
-});
-
 // NAMESPACE OBJECT: ./Components/IconButton/MBIconButton.ts
 var MBIconButton_namespaceObject = {};
 __webpack_require__.r(MBIconButton_namespaceObject);
@@ -631,21 +611,13 @@ __webpack_require__.d(MBRadioButton_namespaceObject, {
   setDisabled: () => (MBRadioButton_setDisabled)
 });
 
-// NAMESPACE OBJECT: ./Components/Scheduler/MBScheduler.ts
-var MBScheduler_namespaceObject = {};
-__webpack_require__.r(MBScheduler_namespaceObject);
-__webpack_require__.d(MBScheduler_namespaceObject, {
-  getElementBoundingClientRect: () => (getElementBoundingClientRect),
-  getElementDimensions: () => (getElementDimensions)
-});
-
 // NAMESPACE OBJECT: ./Components/SegmentedButtonMulti/MBSegmentedButtonMulti.ts
 var MBSegmentedButtonMulti_namespaceObject = {};
 __webpack_require__.r(MBSegmentedButtonMulti_namespaceObject);
 __webpack_require__.d(MBSegmentedButtonMulti_namespaceObject, {
   init: () => (MBSegmentedButtonMulti_init),
   setDisabled: () => (MBSegmentedButtonMulti_setDisabled),
-  setSelected: () => (MBSegmentedButtonMulti_setSelected)
+  setSelected: () => (setSelected)
 });
 
 // NAMESPACE OBJECT: ./Components/Select/MBSelect.ts
@@ -8193,2028 +8165,6 @@ function MBCard_init(elem) {
   }
   elem._ripple = MDCRipple.attachTo(elem);
 }
-;// CONCATENATED MODULE: ./node_modules/@material/dom/announce.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * Priorities for the announce function.
- */
-var AnnouncerPriority;
-(function (AnnouncerPriority) {
-    AnnouncerPriority["POLITE"] = "polite";
-    AnnouncerPriority["ASSERTIVE"] = "assertive";
-})(AnnouncerPriority || (AnnouncerPriority = {}));
-/**
- * Data attribute added to live region element.
- */
-var DATA_MDC_DOM_ANNOUNCE = 'data-mdc-dom-announce';
-/**
- * Announces the given message with optional priority, defaulting to "polite"
- */
-function announce(message, options) {
-    Announcer.getInstance().say(message, options);
-}
-var Announcer = /** @class */ (function () {
-    // Constructor made private to ensure only the singleton is used
-    function Announcer() {
-        this.liveRegions = new Map();
-    }
-    Announcer.getInstance = function () {
-        if (!Announcer.instance) {
-            Announcer.instance = new Announcer();
-        }
-        return Announcer.instance;
-    };
-    Announcer.prototype.say = function (message, options) {
-        var _a, _b;
-        var priority = (_a = options === null || options === void 0 ? void 0 : options.priority) !== null && _a !== void 0 ? _a : AnnouncerPriority.POLITE;
-        var ownerDocument = (_b = options === null || options === void 0 ? void 0 : options.ownerDocument) !== null && _b !== void 0 ? _b : document;
-        var liveRegion = this.getLiveRegion(priority, ownerDocument);
-        // Reset the region to pick up the message, even if the message is the
-        // exact same as before.
-        liveRegion.textContent = '';
-        // Timeout is necessary for screen readers like NVDA and VoiceOver.
-        setTimeout(function () {
-            liveRegion.textContent = message;
-            ownerDocument.addEventListener('click', clearLiveRegion);
-        }, 1);
-        function clearLiveRegion() {
-            liveRegion.textContent = '';
-            ownerDocument.removeEventListener('click', clearLiveRegion);
-        }
-    };
-    Announcer.prototype.getLiveRegion = function (priority, ownerDocument) {
-        var documentLiveRegions = this.liveRegions.get(ownerDocument);
-        if (!documentLiveRegions) {
-            documentLiveRegions = new Map();
-            this.liveRegions.set(ownerDocument, documentLiveRegions);
-        }
-        var existingLiveRegion = documentLiveRegions.get(priority);
-        if (existingLiveRegion &&
-            ownerDocument.body.contains(existingLiveRegion)) {
-            return existingLiveRegion;
-        }
-        var liveRegion = this.createLiveRegion(priority, ownerDocument);
-        documentLiveRegions.set(priority, liveRegion);
-        return liveRegion;
-    };
-    Announcer.prototype.createLiveRegion = function (priority, ownerDocument) {
-        var el = ownerDocument.createElement('div');
-        el.style.position = 'absolute';
-        el.style.top = '-9999px';
-        el.style.left = '-9999px';
-        el.style.height = '1px';
-        el.style.overflow = 'hidden';
-        el.setAttribute('aria-atomic', 'true');
-        el.setAttribute('aria-live', priority);
-        el.setAttribute(DATA_MDC_DOM_ANNOUNCE, 'true');
-        ownerDocument.body.appendChild(el);
-        return el;
-    };
-    return Announcer;
-}());
-//# sourceMappingURL=announce.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/action/component-ripple.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * Computes the ripple client rect for the primary action given the raw client
- * rect and the selected width graphic style property.
- */
-function computePrimaryActionRippleClientRect(clientRect, graphicSelectedWidthStyleValue) {
-    // parseInt is banned so we need to manually format and parse the string.
-    var graphicWidth = Number(graphicSelectedWidthStyleValue.replace('px', ''));
-    if (Number.isNaN(graphicWidth)) {
-        return clientRect;
-    }
-    // Can't use the spread operator because it has internal problems
-    return {
-        width: clientRect.width + graphicWidth,
-        height: clientRect.height,
-        top: clientRect.top,
-        right: clientRect.right,
-        bottom: clientRect.bottom,
-        left: clientRect.left
-    };
-}
-/**
- * Provides the CSS custom property whose value is read by
- * computePrimaryRippleClientRect. The CSS custom property provides the width
- * of the chip graphic when selected. It is only set for the unselected chip
- * variant without a leadinc icon. In all other cases, it will have no value.
- */
-var GRAPHIC_SELECTED_WIDTH_STYLE_PROP = '--mdc-chip-graphic-selected-width';
-//# sourceMappingURL=component-ripple.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/action/constants.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * MDCChipActionCssClasses provides the classes to be queried and manipulated on
- * the root.
- */
-var MDCChipActionCssClasses;
-(function (MDCChipActionCssClasses) {
-    MDCChipActionCssClasses["PRIMARY_ACTION"] = "mdc-evolution-chip__action--primary";
-    MDCChipActionCssClasses["TRAILING_ACTION"] = "mdc-evolution-chip__action--trailing";
-    MDCChipActionCssClasses["CHIP_ROOT"] = "mdc-evolution-chip";
-})(MDCChipActionCssClasses || (MDCChipActionCssClasses = {}));
-/**
- * MDCChipActionInteractionTrigger provides detail of the different triggers for
- * action interactions.
- */
-var MDCChipActionInteractionTrigger;
-(function (MDCChipActionInteractionTrigger) {
-    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["CLICK"] = 1] = "CLICK";
-    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["BACKSPACE_KEY"] = 2] = "BACKSPACE_KEY";
-    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["DELETE_KEY"] = 3] = "DELETE_KEY";
-    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["SPACEBAR_KEY"] = 4] = "SPACEBAR_KEY";
-    MDCChipActionInteractionTrigger[MDCChipActionInteractionTrigger["ENTER_KEY"] = 5] = "ENTER_KEY";
-})(MDCChipActionInteractionTrigger || (MDCChipActionInteractionTrigger = {}));
-/**
- * MDCChipActionType provides the different types of available actions.
- */
-var MDCChipActionType;
-(function (MDCChipActionType) {
-    MDCChipActionType[MDCChipActionType["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-    MDCChipActionType[MDCChipActionType["PRIMARY"] = 1] = "PRIMARY";
-    MDCChipActionType[MDCChipActionType["TRAILING"] = 2] = "TRAILING";
-})(MDCChipActionType || (MDCChipActionType = {}));
-/**
- * MDCChipActionEvents provides the different events emitted by the action.
- */
-var MDCChipActionEvents;
-(function (MDCChipActionEvents) {
-    MDCChipActionEvents["INTERACTION"] = "MDCChipAction:interaction";
-    MDCChipActionEvents["NAVIGATION"] = "MDCChipAction:navigation";
-})(MDCChipActionEvents || (MDCChipActionEvents = {}));
-/**
- * MDCChipActionFocusBehavior provides configurations for focusing or unfocusing
- * an action.
- */
-var MDCChipActionFocusBehavior;
-(function (MDCChipActionFocusBehavior) {
-    MDCChipActionFocusBehavior[MDCChipActionFocusBehavior["FOCUSABLE"] = 0] = "FOCUSABLE";
-    MDCChipActionFocusBehavior[MDCChipActionFocusBehavior["FOCUSABLE_AND_FOCUSED"] = 1] = "FOCUSABLE_AND_FOCUSED";
-    MDCChipActionFocusBehavior[MDCChipActionFocusBehavior["NOT_FOCUSABLE"] = 2] = "NOT_FOCUSABLE";
-})(MDCChipActionFocusBehavior || (MDCChipActionFocusBehavior = {}));
-/**
- * MDCChipActionAttributes provides the HTML attributes used by the foundation.
- */
-var MDCChipActionAttributes;
-(function (MDCChipActionAttributes) {
-    MDCChipActionAttributes["ARIA_DISABLED"] = "aria-disabled";
-    MDCChipActionAttributes["ARIA_HIDDEN"] = "aria-hidden";
-    MDCChipActionAttributes["ARIA_SELECTED"] = "aria-selected";
-    MDCChipActionAttributes["DATA_DELETABLE"] = "data-mdc-deletable";
-    MDCChipActionAttributes["DISABLED"] = "disabled";
-    MDCChipActionAttributes["ROLE"] = "role";
-    MDCChipActionAttributes["TAB_INDEX"] = "tabindex";
-})(MDCChipActionAttributes || (MDCChipActionAttributes = {}));
-//# sourceMappingURL=constants.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/action/foundation.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-
-var triggerMap = new Map();
-triggerMap.set(KEY.SPACEBAR, MDCChipActionInteractionTrigger.SPACEBAR_KEY);
-triggerMap.set(KEY.ENTER, MDCChipActionInteractionTrigger.ENTER_KEY);
-triggerMap.set(KEY.DELETE, MDCChipActionInteractionTrigger.DELETE_KEY);
-triggerMap.set(KEY.BACKSPACE, MDCChipActionInteractionTrigger.BACKSPACE_KEY);
-/**
- * MDCChipActionFoundation provides a base abstract foundation for all chip
- * actions.
- */
-var MDCChipActionFoundation = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipActionFoundation, _super);
-    function MDCChipActionFoundation(adapter) {
-        return _super.call(this, __assign(__assign({}, MDCChipActionFoundation.defaultAdapter), adapter)) || this;
-    }
-    Object.defineProperty(MDCChipActionFoundation, "defaultAdapter", {
-        get: function () {
-            return {
-                emitEvent: function () { return undefined; },
-                focus: function () { return undefined; },
-                getAttribute: function () { return null; },
-                getElementID: function () { return ''; },
-                removeAttribute: function () { return undefined; },
-                setAttribute: function () { return undefined; },
-            };
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCChipActionFoundation.prototype.handleClick = function () {
-        // Early exit for cases where the click comes from a source other than the
-        // user's pointer (i.e. programmatic click from AT).
-        if (this.isDisabled())
-            return;
-        this.emitInteraction(MDCChipActionInteractionTrigger.CLICK);
-    };
-    MDCChipActionFoundation.prototype.handleKeydown = function (event) {
-        var key = normalizeKey(event);
-        if (this.shouldNotifyInteractionFromKey(key)) {
-            event.preventDefault();
-            this.emitInteraction(this.getTriggerFromKey(key));
-            return;
-        }
-        if (isNavigationEvent(event)) {
-            event.preventDefault();
-            this.emitNavigation(key);
-            return;
-        }
-    };
-    MDCChipActionFoundation.prototype.setDisabled = function (isDisabled) {
-        // Use `aria-disabled` for the selectable (listbox) disabled state
-        if (this.isSelectable()) {
-            this.adapter.setAttribute(MDCChipActionAttributes.ARIA_DISABLED, "" + isDisabled);
-            return;
-        }
-        if (isDisabled) {
-            this.adapter.setAttribute(MDCChipActionAttributes.DISABLED, 'true');
-        }
-        else {
-            this.adapter.removeAttribute(MDCChipActionAttributes.DISABLED);
-        }
-    };
-    MDCChipActionFoundation.prototype.isDisabled = function () {
-        if (this.adapter.getAttribute(MDCChipActionAttributes.ARIA_DISABLED) ===
-            'true') {
-            return true;
-        }
-        if (this.adapter.getAttribute(MDCChipActionAttributes.DISABLED) !== null) {
-            return true;
-        }
-        return false;
-    };
-    MDCChipActionFoundation.prototype.setFocus = function (behavior) {
-        // Early exit if not focusable
-        if (!this.isFocusable()) {
-            return;
-        }
-        // Add it to the tab order and give focus
-        if (behavior === MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED) {
-            this.adapter.setAttribute(MDCChipActionAttributes.TAB_INDEX, '0');
-            this.adapter.focus();
-            return;
-        }
-        // Add to the tab order
-        if (behavior === MDCChipActionFocusBehavior.FOCUSABLE) {
-            this.adapter.setAttribute(MDCChipActionAttributes.TAB_INDEX, '0');
-            return;
-        }
-        // Remove it from the tab order
-        if (behavior === MDCChipActionFocusBehavior.NOT_FOCUSABLE) {
-            this.adapter.setAttribute(MDCChipActionAttributes.TAB_INDEX, '-1');
-            return;
-        }
-    };
-    MDCChipActionFoundation.prototype.isFocusable = function () {
-        if (this.isDisabled()) {
-            return false;
-        }
-        if (this.adapter.getAttribute(MDCChipActionAttributes.ARIA_HIDDEN) ===
-            'true') {
-            return false;
-        }
-        return true;
-    };
-    MDCChipActionFoundation.prototype.setSelected = function (isSelected) {
-        // Early exit if not selectable
-        if (!this.isSelectable()) {
-            return;
-        }
-        this.adapter.setAttribute(MDCChipActionAttributes.ARIA_SELECTED, "" + isSelected);
-    };
-    MDCChipActionFoundation.prototype.isSelected = function () {
-        return this.adapter.getAttribute(MDCChipActionAttributes.ARIA_SELECTED) ===
-            'true';
-    };
-    MDCChipActionFoundation.prototype.emitInteraction = function (trigger) {
-        this.adapter.emitEvent(MDCChipActionEvents.INTERACTION, {
-            actionID: this.adapter.getElementID(),
-            source: this.actionType(),
-            trigger: trigger,
-        });
-    };
-    MDCChipActionFoundation.prototype.emitNavigation = function (key) {
-        this.adapter.emitEvent(MDCChipActionEvents.NAVIGATION, {
-            source: this.actionType(),
-            key: key,
-        });
-    };
-    MDCChipActionFoundation.prototype.shouldNotifyInteractionFromKey = function (key) {
-        var isFromActionKey = key === KEY.ENTER || key === KEY.SPACEBAR;
-        var isFromRemoveKey = key === KEY.BACKSPACE || key === KEY.DELETE;
-        if (isFromActionKey) {
-            return true;
-        }
-        if (isFromRemoveKey && this.shouldEmitInteractionOnRemoveKey()) {
-            return true;
-        }
-        return false;
-    };
-    MDCChipActionFoundation.prototype.getTriggerFromKey = function (key) {
-        var trigger = triggerMap.get(key);
-        if (trigger) {
-            return trigger;
-        }
-        // Default case, should ideally never be returned
-        return MDCChipActionInteractionTrigger.UNSPECIFIED;
-    };
-    return MDCChipActionFoundation;
-}(MDCFoundation));
-
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-/* harmony default export */ const action_foundation = ((/* unused pure expression or super */ null && (MDCChipActionFoundation)));
-//# sourceMappingURL=foundation.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/action/primary-foundation.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-/**
- * MDCChipPrimaryActionFoundation provides the business logic for the primary
- * chip action.
- */
-var MDCChipPrimaryActionFoundation = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipPrimaryActionFoundation, _super);
-    function MDCChipPrimaryActionFoundation() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    MDCChipPrimaryActionFoundation.prototype.isSelectable = function () {
-        return this.adapter.getAttribute(MDCChipActionAttributes.ROLE) === 'option';
-    };
-    MDCChipPrimaryActionFoundation.prototype.actionType = function () {
-        return MDCChipActionType.PRIMARY;
-    };
-    MDCChipPrimaryActionFoundation.prototype.shouldEmitInteractionOnRemoveKey = function () {
-        return this.adapter.getAttribute(MDCChipActionAttributes.DATA_DELETABLE) ===
-            'true';
-    };
-    return MDCChipPrimaryActionFoundation;
-}(MDCChipActionFoundation));
-
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-/* harmony default export */ const primary_foundation = ((/* unused pure expression or super */ null && (MDCChipPrimaryActionFoundation)));
-//# sourceMappingURL=primary-foundation.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/action/trailing-foundation.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-/**
- * MDCChipTrailingActionFoundation provides the business logic for the trailing
- * chip action.
- */
-var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipTrailingActionFoundation, _super);
-    function MDCChipTrailingActionFoundation() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    MDCChipTrailingActionFoundation.prototype.isSelectable = function () {
-        return false;
-    };
-    MDCChipTrailingActionFoundation.prototype.actionType = function () {
-        return MDCChipActionType.TRAILING;
-    };
-    MDCChipTrailingActionFoundation.prototype.shouldEmitInteractionOnRemoveKey = function () {
-        return true;
-    };
-    return MDCChipTrailingActionFoundation;
-}(MDCChipActionFoundation));
-
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-/* harmony default export */ const trailing_foundation = ((/* unused pure expression or super */ null && (MDCChipTrailingActionFoundation)));
-//# sourceMappingURL=trailing-foundation.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/action/component.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-
-
-
-
-
-
-/**
- * MDCChipAction provides component encapsulation of the different foundation
- * implementations.
- */
-var MDCChipAction = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipAction, _super);
-    function MDCChipAction() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.rootHTML = _this.root;
-        return _this;
-    }
-    MDCChipAction.attachTo = function (root) {
-        return new MDCChipAction(root);
-    };
-    Object.defineProperty(MDCChipAction.prototype, "ripple", {
-        get: function () {
-            return this.rippleInstance;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCChipAction.prototype.initialize = function (rippleFactory) {
-        var _this = this;
-        if (rippleFactory === void 0) { rippleFactory = function (el, foundation) {
-            return new MDCRipple(el, foundation);
-        }; }
-        var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function () { return _this.computeRippleClientRect(); } });
-        this.rippleInstance =
-            rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
-    };
-    MDCChipAction.prototype.initialSyncWithDOM = function () {
-        var _this = this;
-        this.handleClick = function () {
-            _this.foundation.handleClick();
-        };
-        this.handleKeydown = function (event) {
-            _this.foundation.handleKeydown(event);
-        };
-        this.listen('click', this.handleClick);
-        this.listen('keydown', this.handleKeydown);
-    };
-    MDCChipAction.prototype.destroy = function () {
-        this.ripple.destroy();
-        this.unlisten('click', this.handleClick);
-        this.unlisten('keydown', this.handleKeydown);
-        _super.prototype.destroy.call(this);
-    };
-    MDCChipAction.prototype.getDefaultFoundation = function () {
-        var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
-        var adapter = {
-            emitEvent: function (eventName, eventDetail) {
-                _this.emit(eventName, eventDetail, true /* shouldBubble */);
-            },
-            focus: function () {
-                _this.rootHTML.focus();
-            },
-            getAttribute: function (attrName) { return _this.root.getAttribute(attrName); },
-            getElementID: function () { return _this.root.id; },
-            removeAttribute: function (name) {
-                _this.root.removeAttribute(name);
-            },
-            setAttribute: function (name, value) {
-                _this.root.setAttribute(name, value);
-            },
-        };
-        if (this.root.classList.contains(MDCChipActionCssClasses.TRAILING_ACTION)) {
-            return new MDCChipTrailingActionFoundation(adapter);
-        }
-        // Default to the primary foundation
-        return new MDCChipPrimaryActionFoundation(adapter);
-    };
-    MDCChipAction.prototype.setDisabled = function (isDisabled) {
-        this.foundation.setDisabled(isDisabled);
-    };
-    MDCChipAction.prototype.isDisabled = function () {
-        return this.foundation.isDisabled();
-    };
-    MDCChipAction.prototype.setFocus = function (behavior) {
-        this.foundation.setFocus(behavior);
-    };
-    MDCChipAction.prototype.isFocusable = function () {
-        return this.foundation.isFocusable();
-    };
-    MDCChipAction.prototype.setSelected = function (isSelected) {
-        this.foundation.setSelected(isSelected);
-    };
-    MDCChipAction.prototype.isSelected = function () {
-        return this.foundation.isSelected();
-    };
-    MDCChipAction.prototype.isSelectable = function () {
-        return this.foundation.isSelectable();
-    };
-    MDCChipAction.prototype.actionType = function () {
-        return this.foundation.actionType();
-    };
-    MDCChipAction.prototype.computeRippleClientRect = function () {
-        if (this.root.classList.contains(MDCChipActionCssClasses.PRIMARY_ACTION)) {
-            var chipRoot = closest(this.root, "." + MDCChipActionCssClasses.CHIP_ROOT);
-            // Return the root client rect since it's better than nothing
-            if (!chipRoot)
-                return this.root.getBoundingClientRect();
-            var graphicWidth = window.getComputedStyle(chipRoot).getPropertyValue(GRAPHIC_SELECTED_WIDTH_STYLE_PROP);
-            return computePrimaryActionRippleClientRect(chipRoot.getBoundingClientRect(), graphicWidth);
-        }
-        return this.root.getBoundingClientRect();
-    };
-    return MDCChipAction;
-}(MDCComponent));
-
-//# sourceMappingURL=component.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/animation/animationframe.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * AnimationFrame provides a user-friendly abstraction around requesting
- * and canceling animation frames.
- */
-var AnimationFrame = /** @class */ (function () {
-    function AnimationFrame() {
-        this.rafIDs = new Map();
-    }
-    /**
-     * Requests an animation frame. Cancels any existing frame with the same key.
-     * @param {string} key The key for this callback.
-     * @param {FrameRequestCallback} callback The callback to be executed.
-     */
-    AnimationFrame.prototype.request = function (key, callback) {
-        var _this = this;
-        this.cancel(key);
-        var frameID = requestAnimationFrame(function (frame) {
-            _this.rafIDs.delete(key);
-            // Callback must come *after* the key is deleted so that nested calls to
-            // request with the same key are not deleted.
-            callback(frame);
-        });
-        this.rafIDs.set(key, frameID);
-    };
-    /**
-     * Cancels a queued callback with the given key.
-     * @param {string} key The key for this callback.
-     */
-    AnimationFrame.prototype.cancel = function (key) {
-        var rafID = this.rafIDs.get(key);
-        if (rafID) {
-            cancelAnimationFrame(rafID);
-            this.rafIDs.delete(key);
-        }
-    };
-    /**
-     * Cancels all queued callback.
-     */
-    AnimationFrame.prototype.cancelAll = function () {
-        var _this = this;
-        // Need to use forEach because it's the only iteration method supported
-        // by IE11. Suppress the underscore because we don't need it.
-        // tslint:disable-next-line:enforce-name-casing
-        this.rafIDs.forEach(function (_, key) {
-            _this.cancel(key);
-        });
-    };
-    /**
-     * Returns the queue of unexecuted callback keys.
-     */
-    AnimationFrame.prototype.getQueue = function () {
-        var queue = [];
-        // Need to use forEach because it's the only iteration method supported
-        // by IE11. Suppress the underscore because we don't need it.
-        // tslint:disable-next-line:enforce-name-casing
-        this.rafIDs.forEach(function (_, key) {
-            queue.push(key);
-        });
-        return queue;
-    };
-    return AnimationFrame;
-}());
-
-//# sourceMappingURL=animationframe.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/chip/constants.js
-/**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * MDCChipCssClasses provides the named constants for class names.
- */
-var MDCChipCssClasses;
-(function (MDCChipCssClasses) {
-    MDCChipCssClasses["SELECTING"] = "mdc-evolution-chip--selecting";
-    MDCChipCssClasses["DESELECTING"] = "mdc-evolution-chip--deselecting";
-    MDCChipCssClasses["SELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--selecting-with-primary-icon";
-    MDCChipCssClasses["DESELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--deselecting-with-primary-icon";
-    MDCChipCssClasses["DISABLED"] = "mdc-evolution-chip--disabled";
-    MDCChipCssClasses["ENTER"] = "mdc-evolution-chip--enter";
-    MDCChipCssClasses["EXIT"] = "mdc-evolution-chip--exit";
-    MDCChipCssClasses["SELECTED"] = "mdc-evolution-chip--selected";
-    MDCChipCssClasses["HIDDEN"] = "mdc-evolution-chip--hidden";
-    MDCChipCssClasses["WITH_PRIMARY_ICON"] = "mdc-evolution-chip--with-primary-icon";
-})(MDCChipCssClasses || (MDCChipCssClasses = {}));
-/**
- * MDCChipEvents provides the named constants for emitted events.
- */
-var MDCChipEvents;
-(function (MDCChipEvents) {
-    MDCChipEvents["INTERACTION"] = "MDCChip:interaction";
-    MDCChipEvents["NAVIGATION"] = "MDCChip:navigation";
-    MDCChipEvents["ANIMATION"] = "MDCChip:animation";
-})(MDCChipEvents || (MDCChipEvents = {}));
-/**
- * MDCChipAttributes provides the named constants for strings used by the
- * foundation.
- */
-var MDCChipAttributes;
-(function (MDCChipAttributes) {
-    MDCChipAttributes["DATA_REMOVED_ANNOUNCEMENT"] = "data-mdc-removed-announcement";
-    MDCChipAttributes["DATA_ADDED_ANNOUNCEMENT"] = "data-mdc-added-announcement";
-})(MDCChipAttributes || (MDCChipAttributes = {}));
-/**
- * MDCChipAnimation provides the names of runnable animations.
- */
-var MDCChipAnimation;
-(function (MDCChipAnimation) {
-    MDCChipAnimation["ENTER"] = "mdc-evolution-chip-enter";
-    MDCChipAnimation["EXIT"] = "mdc-evolution-chip-exit";
-})(MDCChipAnimation || (MDCChipAnimation = {}));
-//# sourceMappingURL=constants.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/chip/foundation.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-
-
-
-var Direction;
-(function (Direction) {
-    Direction[Direction["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-    Direction[Direction["LEFT"] = 1] = "LEFT";
-    Direction[Direction["RIGHT"] = 2] = "RIGHT";
-})(Direction || (Direction = {}));
-var AnimationKeys;
-(function (AnimationKeys) {
-    AnimationKeys["SELECTION"] = "selection";
-    AnimationKeys["EXIT"] = "exit";
-})(AnimationKeys || (AnimationKeys = {}));
-/**
- * MDCChipFoundation provides a foundation for all chips.
- */
-var MDCChipFoundation = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipFoundation, _super);
-    function MDCChipFoundation(adapter) {
-        var _this = _super.call(this, __assign(__assign({}, MDCChipFoundation.defaultAdapter), adapter)) || this;
-        _this.animFrame = new AnimationFrame();
-        return _this;
-    }
-    Object.defineProperty(MDCChipFoundation, "defaultAdapter", {
-        get: function () {
-            return {
-                addClass: function () { return undefined; },
-                emitEvent: function () { return undefined; },
-                getActions: function () { return []; },
-                getAttribute: function () { return null; },
-                getElementID: function () { return ''; },
-                getOffsetWidth: function () { return 0; },
-                hasClass: function () { return false; },
-                isActionDisabled: function () { return false; },
-                isActionFocusable: function () { return false; },
-                isActionSelectable: function () { return false; },
-                isActionSelected: function () { return false; },
-                isRTL: function () { return false; },
-                removeClass: function () { return undefined; },
-                setActionDisabled: function () { return undefined; },
-                setActionFocus: function () { return undefined; },
-                setActionSelected: function () { return undefined; },
-                setStyleProperty: function () { return undefined; },
-            };
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCChipFoundation.prototype.destroy = function () {
-        this.animFrame.cancelAll();
-    };
-    MDCChipFoundation.prototype.getElementID = function () {
-        return this.adapter.getElementID();
-    };
-    MDCChipFoundation.prototype.setDisabled = function (isDisabled) {
-        var e_1, _a;
-        var actions = this.getActions();
-        try {
-            for (var actions_1 = tslib_es6_values(actions), actions_1_1 = actions_1.next(); !actions_1_1.done; actions_1_1 = actions_1.next()) {
-                var action = actions_1_1.value;
-                this.adapter.setActionDisabled(action, isDisabled);
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (actions_1_1 && !actions_1_1.done && (_a = actions_1.return)) _a.call(actions_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        if (isDisabled) {
-            this.adapter.addClass(MDCChipCssClasses.DISABLED);
-        }
-        else {
-            this.adapter.removeClass(MDCChipCssClasses.DISABLED);
-        }
-    };
-    MDCChipFoundation.prototype.isDisabled = function () {
-        var e_2, _a;
-        var actions = this.getActions();
-        try {
-            for (var actions_2 = tslib_es6_values(actions), actions_2_1 = actions_2.next(); !actions_2_1.done; actions_2_1 = actions_2.next()) {
-                var action = actions_2_1.value;
-                if (this.adapter.isActionDisabled(action)) {
-                    return true;
-                }
-            }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (actions_2_1 && !actions_2_1.done && (_a = actions_2.return)) _a.call(actions_2);
-            }
-            finally { if (e_2) throw e_2.error; }
-        }
-        return false;
-    };
-    MDCChipFoundation.prototype.getActions = function () {
-        return this.adapter.getActions();
-    };
-    MDCChipFoundation.prototype.isActionFocusable = function (action) {
-        return this.adapter.isActionFocusable(action);
-    };
-    MDCChipFoundation.prototype.isActionSelectable = function (action) {
-        return this.adapter.isActionSelectable(action);
-    };
-    MDCChipFoundation.prototype.isActionSelected = function (action) {
-        return this.adapter.isActionSelected(action);
-    };
-    MDCChipFoundation.prototype.setActionFocus = function (action, focus) {
-        this.adapter.setActionFocus(action, focus);
-    };
-    MDCChipFoundation.prototype.setActionSelected = function (action, isSelected) {
-        this.adapter.setActionSelected(action, isSelected);
-        this.animateSelection(isSelected);
-    };
-    MDCChipFoundation.prototype.startAnimation = function (animation) {
-        if (animation === MDCChipAnimation.ENTER) {
-            this.adapter.addClass(MDCChipCssClasses.ENTER);
-            return;
-        }
-        if (animation === MDCChipAnimation.EXIT) {
-            this.adapter.addClass(MDCChipCssClasses.EXIT);
-            return;
-        }
-    };
-    MDCChipFoundation.prototype.handleAnimationEnd = function (event) {
-        var _this = this;
-        var animationName = event.animationName;
-        if (animationName === MDCChipAnimation.ENTER) {
-            this.adapter.removeClass(MDCChipCssClasses.ENTER);
-            this.adapter.emitEvent(MDCChipEvents.ANIMATION, {
-                chipID: this.getElementID(),
-                animation: MDCChipAnimation.ENTER,
-                addedAnnouncement: this.getAddedAnnouncement(),
-                isComplete: true,
-            });
-            return;
-        }
-        if (animationName === MDCChipAnimation.EXIT) {
-            this.adapter.removeClass(MDCChipCssClasses.EXIT);
-            this.adapter.addClass(MDCChipCssClasses.HIDDEN);
-            var width = this.adapter.getOffsetWidth();
-            this.adapter.setStyleProperty('width', width + "px");
-            // Wait two frames so the width gets applied correctly.
-            this.animFrame.request(AnimationKeys.EXIT, function () {
-                _this.animFrame.request(AnimationKeys.EXIT, function () {
-                    _this.adapter.setStyleProperty('width', '0');
-                });
-            });
-        }
-    };
-    MDCChipFoundation.prototype.handleTransitionEnd = function () {
-        if (!this.adapter.hasClass(MDCChipCssClasses.HIDDEN))
-            return;
-        this.adapter.emitEvent(MDCChipEvents.ANIMATION, {
-            chipID: this.getElementID(),
-            animation: MDCChipAnimation.EXIT,
-            removedAnnouncement: this.getRemovedAnnouncement(),
-            isComplete: true,
-        });
-    };
-    MDCChipFoundation.prototype.handleActionInteraction = function (_a) {
-        var detail = _a.detail;
-        var source = detail.source, actionID = detail.actionID;
-        var isSelectable = this.adapter.isActionSelectable(source);
-        var isSelected = this.adapter.isActionSelected(source);
-        this.adapter.emitEvent(MDCChipEvents.INTERACTION, {
-            chipID: this.getElementID(),
-            shouldRemove: this.shouldRemove(detail),
-            actionID: actionID,
-            isSelectable: isSelectable,
-            isSelected: isSelected,
-            source: source,
-        });
-    };
-    MDCChipFoundation.prototype.handleActionNavigation = function (_a) {
-        var detail = _a.detail;
-        var source = detail.source, key = detail.key;
-        var isRTL = this.adapter.isRTL();
-        var isTrailingActionFocusable = this.adapter.isActionFocusable(MDCChipActionType.TRAILING);
-        var isPrimaryActionFocusable = this.adapter.isActionFocusable(MDCChipActionType.PRIMARY);
-        var dir = this.directionFromKey(key, isRTL);
-        var shouldNavigateToTrailing = source === MDCChipActionType.PRIMARY &&
-            dir === Direction.RIGHT && isTrailingActionFocusable;
-        var shouldNavigateToPrimary = source === MDCChipActionType.TRAILING &&
-            dir === Direction.LEFT && isPrimaryActionFocusable;
-        if (shouldNavigateToTrailing) {
-            this.navigateActions({ from: source, to: MDCChipActionType.TRAILING });
-            return;
-        }
-        if (shouldNavigateToPrimary) {
-            this.navigateActions({ from: source, to: MDCChipActionType.PRIMARY });
-            return;
-        }
-        this.adapter.emitEvent(MDCChipEvents.NAVIGATION, {
-            chipID: this.getElementID(),
-            isRTL: isRTL,
-            source: source,
-            key: key,
-        });
-    };
-    MDCChipFoundation.prototype.directionFromKey = function (key, isRTL) {
-        var isLeftKey = key === KEY.ARROW_LEFT;
-        var isRightKey = key === KEY.ARROW_RIGHT;
-        if (!isRTL && isLeftKey || isRTL && isRightKey) {
-            return Direction.LEFT;
-        }
-        if (!isRTL && isRightKey || isRTL && isLeftKey) {
-            return Direction.RIGHT;
-        }
-        return Direction.UNSPECIFIED;
-    };
-    MDCChipFoundation.prototype.navigateActions = function (nav) {
-        this.adapter.setActionFocus(nav.from, MDCChipActionFocusBehavior.NOT_FOCUSABLE);
-        this.adapter.setActionFocus(nav.to, MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED);
-    };
-    MDCChipFoundation.prototype.shouldRemove = function (_a) {
-        var source = _a.source, trigger = _a.trigger;
-        if (trigger === MDCChipActionInteractionTrigger.BACKSPACE_KEY ||
-            trigger === MDCChipActionInteractionTrigger.DELETE_KEY) {
-            return true;
-        }
-        return source === MDCChipActionType.TRAILING;
-    };
-    MDCChipFoundation.prototype.getRemovedAnnouncement = function () {
-        var msg = this.adapter.getAttribute(MDCChipAttributes.DATA_REMOVED_ANNOUNCEMENT);
-        return msg || undefined;
-    };
-    MDCChipFoundation.prototype.getAddedAnnouncement = function () {
-        var msg = this.adapter.getAttribute(MDCChipAttributes.DATA_ADDED_ANNOUNCEMENT);
-        return msg || undefined;
-    };
-    MDCChipFoundation.prototype.animateSelection = function (isSelected) {
-        var _this = this;
-        this.resetAnimationStyles();
-        // Wait two frames to ensure the animation classes are unset
-        this.animFrame.request(AnimationKeys.SELECTION, function () {
-            _this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.updateSelectionStyles(isSelected);
-            });
-        });
-    };
-    MDCChipFoundation.prototype.resetAnimationStyles = function () {
-        this.adapter.removeClass(MDCChipCssClasses.SELECTING);
-        this.adapter.removeClass(MDCChipCssClasses.DESELECTING);
-        this.adapter.removeClass(MDCChipCssClasses.SELECTING_WITH_PRIMARY_ICON);
-        this.adapter.removeClass(MDCChipCssClasses.DESELECTING_WITH_PRIMARY_ICON);
-    };
-    MDCChipFoundation.prototype.updateSelectionStyles = function (isSelected) {
-        var _this = this;
-        var hasIcon = this.adapter.hasClass(MDCChipCssClasses.WITH_PRIMARY_ICON);
-        if (hasIcon && isSelected) {
-            this.adapter.addClass(MDCChipCssClasses.SELECTING_WITH_PRIMARY_ICON);
-            this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.addClass(MDCChipCssClasses.SELECTED);
-            });
-            return;
-        }
-        if (hasIcon && !isSelected) {
-            this.adapter.addClass(MDCChipCssClasses.DESELECTING_WITH_PRIMARY_ICON);
-            this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.removeClass(MDCChipCssClasses.SELECTED);
-            });
-            return;
-        }
-        if (isSelected) {
-            this.adapter.addClass(MDCChipCssClasses.SELECTING);
-            this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.addClass(MDCChipCssClasses.SELECTED);
-            });
-            return;
-        }
-        if (!isSelected) {
-            this.adapter.addClass(MDCChipCssClasses.DESELECTING);
-            this.animFrame.request(AnimationKeys.SELECTION, function () {
-                _this.adapter.removeClass(MDCChipCssClasses.SELECTED);
-            });
-            return;
-        }
-    };
-    return MDCChipFoundation;
-}(MDCFoundation));
-
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-/* harmony default export */ const chip_foundation = ((/* unused pure expression or super */ null && (MDCChipFoundation)));
-//# sourceMappingURL=foundation.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/chip/component.js
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-
-
-/**
- * MDCChip provides component encapsulation of the foundation implementation.
- */
-var MDCChip = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChip, _super);
-    function MDCChip() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.rootHTML = _this.root;
-        return _this;
-    }
-    MDCChip.attachTo = function (root) {
-        return new MDCChip(root);
-    };
-    MDCChip.prototype.initialize = function (actionFactory) {
-        if (actionFactory === void 0) { actionFactory = function (el) { return new MDCChipAction(el); }; }
-        this.actions = new Map();
-        var actionEls = this.root.querySelectorAll('.mdc-evolution-chip__action');
-        for (var i = 0; i < actionEls.length; i++) {
-            var action = actionFactory(actionEls[i]);
-            this.actions.set(action.actionType(), action);
-        }
-    };
-    MDCChip.prototype.initialSyncWithDOM = function () {
-        var _this = this;
-        this.handleActionInteraction = function (event) {
-            _this.foundation.handleActionInteraction(event);
-        };
-        this.handleActionNavigation = function (event) {
-            _this.foundation.handleActionNavigation(event);
-        };
-        this.listen(MDCChipActionEvents.INTERACTION, this.handleActionInteraction);
-        this.listen(MDCChipActionEvents.NAVIGATION, this.handleActionNavigation);
-    };
-    MDCChip.prototype.destroy = function () {
-        this.unlisten(MDCChipActionEvents.INTERACTION, this.handleActionInteraction);
-        this.unlisten(MDCChipActionEvents.NAVIGATION, this.handleActionNavigation);
-        _super.prototype.destroy.call(this);
-    };
-    MDCChip.prototype.getDefaultFoundation = function () {
-        var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
-        var adapter = {
-            addClass: function (className) {
-                _this.root.classList.add(className);
-            },
-            emitEvent: function (eventName, eventDetail) {
-                _this.emit(eventName, eventDetail, true /* shouldBubble */);
-            },
-            getActions: function () {
-                var e_1, _a;
-                var actions = [];
-                try {
-                    for (var _b = tslib_es6_values(_this.actions), _c = _b.next(); !_c.done; _c = _b.next()) {
-                        var _d = tslib_es6_read(_c.value, 1), key = _d[0];
-                        actions.push(key);
-                    }
-                }
-                catch (e_1_1) { e_1 = { error: e_1_1 }; }
-                finally {
-                    try {
-                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                    }
-                    finally { if (e_1) throw e_1.error; }
-                }
-                return actions;
-            },
-            getAttribute: function (attrName) { return _this.root.getAttribute(attrName); },
-            getElementID: function () { return _this.rootHTML.id; },
-            getOffsetWidth: function () {
-                return _this.rootHTML.offsetWidth;
-            },
-            hasClass: function (className) { return _this.root.classList.contains(className); },
-            isActionSelectable: function (actionType) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    return action.isSelectable();
-                }
-                return false;
-            },
-            isActionSelected: function (actionType) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    return action.isSelected();
-                }
-                return false;
-            },
-            isActionFocusable: function (actionType) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    return action.isFocusable();
-                }
-                return false;
-            },
-            isActionDisabled: function (actionType) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    return action.isDisabled();
-                }
-                return false;
-            },
-            isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
-            removeClass: function (className) {
-                _this.root.classList.remove(className);
-            },
-            setActionDisabled: function (actionType, isDisabled) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    action.setDisabled(isDisabled);
-                }
-            },
-            setActionFocus: function (actionType, behavior) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    action.setFocus(behavior);
-                }
-            },
-            setActionSelected: function (actionType, isSelected) {
-                var action = _this.actions.get(actionType);
-                if (action) {
-                    action.setSelected(isSelected);
-                }
-            },
-            setStyleProperty: function (prop, value) {
-                _this.rootHTML.style.setProperty(prop, value);
-            },
-        };
-        // Default to the primary foundation
-        return new MDCChipFoundation(adapter);
-    };
-    /** Exposed to be called by the parent chip set. */
-    MDCChip.prototype.remove = function () {
-        var parent = this.root.parentNode;
-        if (parent !== null) {
-            parent.removeChild(this.root);
-        }
-    };
-    /** Returns the MDCChipActionTypes for the encapsulated actions. */
-    MDCChip.prototype.getActions = function () {
-        return this.foundation.getActions();
-    };
-    /** Returns the ID of the root element. */
-    MDCChip.prototype.getElementID = function () {
-        return this.foundation.getElementID();
-    };
-    MDCChip.prototype.isDisabled = function () {
-        return this.foundation.isDisabled();
-    };
-    MDCChip.prototype.setDisabled = function (isDisabled) {
-        this.foundation.setDisabled(isDisabled);
-    };
-    /** Returns the focusability of the action. */
-    MDCChip.prototype.isActionFocusable = function (action) {
-        return this.foundation.isActionFocusable(action);
-    };
-    /** Returns the selectability of the action. */
-    MDCChip.prototype.isActionSelectable = function (action) {
-        return this.foundation.isActionSelectable(action);
-    };
-    /** Returns the selected state of the action. */
-    MDCChip.prototype.isActionSelected = function (action) {
-        return this.foundation.isActionSelected(action);
-    };
-    /** Sets the focus behavior of the action. */
-    MDCChip.prototype.setActionFocus = function (action, focus) {
-        this.foundation.setActionFocus(action, focus);
-    };
-    /** Sets the selected state of the action. */
-    MDCChip.prototype.setActionSelected = function (action, isSelected) {
-        this.foundation.setActionSelected(action, isSelected);
-    };
-    /** Starts the animation on the chip. */
-    MDCChip.prototype.startAnimation = function (animation) {
-        this.foundation.startAnimation(animation);
-    };
-    return MDCChip;
-}(MDCComponent));
-
-//# sourceMappingURL=component.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/chip-set/constants.js
-/**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- * MDCChipSetAttributes provides the named constants for attributes used by the
- * foundation.
- */
-var MDCChipSetAttributes;
-(function (MDCChipSetAttributes) {
-    MDCChipSetAttributes["ARIA_MULTISELECTABLE"] = "aria-multiselectable";
-})(MDCChipSetAttributes || (MDCChipSetAttributes = {}));
-/**
- * MDCChipSetCssClasses provides the named constants for class names.
- */
-var MDCChipSetCssClasses;
-(function (MDCChipSetCssClasses) {
-    MDCChipSetCssClasses["CHIP"] = "mdc-evolution-chip";
-})(MDCChipSetCssClasses || (MDCChipSetCssClasses = {}));
-/**
- * MDCChipSetEvents provides the constants for emitted events.
- */
-var MDCChipSetEvents;
-(function (MDCChipSetEvents) {
-    MDCChipSetEvents["INTERACTION"] = "MDCChipSet:interaction";
-    MDCChipSetEvents["REMOVAL"] = "MDCChipSet:removal";
-    MDCChipSetEvents["SELECTION"] = "MDCChipSet:selection";
-})(MDCChipSetEvents || (MDCChipSetEvents = {}));
-//# sourceMappingURL=constants.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/chip-set/foundation.js
-/**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-
-
-
-var Operator;
-(function (Operator) {
-    Operator[Operator["INCREMENT"] = 0] = "INCREMENT";
-    Operator[Operator["DECREMENT"] = 1] = "DECREMENT";
-})(Operator || (Operator = {}));
-/**
- * MDCChipSetFoundation provides a foundation for all chips.
- */
-var MDCChipSetFoundation = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipSetFoundation, _super);
-    function MDCChipSetFoundation(adapter) {
-        return _super.call(this, __assign(__assign({}, MDCChipSetFoundation.defaultAdapter), adapter)) || this;
-    }
-    Object.defineProperty(MDCChipSetFoundation, "defaultAdapter", {
-        get: function () {
-            return {
-                announceMessage: function () { return undefined; },
-                emitEvent: function () { return undefined; },
-                getAttribute: function () { return null; },
-                getChipActionsAtIndex: function () { return []; },
-                getChipCount: function () { return 0; },
-                getChipIdAtIndex: function () { return ''; },
-                getChipIndexById: function () { return 0; },
-                isChipFocusableAtIndex: function () { return false; },
-                isChipSelectableAtIndex: function () { return false; },
-                isChipSelectedAtIndex: function () { return false; },
-                removeChipAtIndex: function () { },
-                setChipFocusAtIndex: function () { return undefined; },
-                setChipSelectedAtIndex: function () { return undefined; },
-                startChipAnimationAtIndex: function () { return undefined; },
-            };
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MDCChipSetFoundation.prototype.handleChipAnimation = function (_a) {
-        var detail = _a.detail;
-        var chipID = detail.chipID, animation = detail.animation, isComplete = detail.isComplete, addedAnnouncement = detail.addedAnnouncement, removedAnnouncement = detail.removedAnnouncement;
-        var index = this.adapter.getChipIndexById(chipID);
-        if (animation === MDCChipAnimation.EXIT && isComplete) {
-            if (removedAnnouncement) {
-                this.adapter.announceMessage(removedAnnouncement);
-            }
-            this.removeAfterAnimation(index, chipID);
-            return;
-        }
-        if (animation === MDCChipAnimation.ENTER && isComplete && addedAnnouncement) {
-            this.adapter.announceMessage(addedAnnouncement);
-            return;
-        }
-    };
-    MDCChipSetFoundation.prototype.handleChipInteraction = function (_a) {
-        var detail = _a.detail;
-        var source = detail.source, chipID = detail.chipID, isSelectable = detail.isSelectable, isSelected = detail.isSelected, shouldRemove = detail.shouldRemove;
-        var index = this.adapter.getChipIndexById(chipID);
-        if (shouldRemove) {
-            this.removeChip(index);
-            return;
-        }
-        this.focusChip(index, source, MDCChipActionFocusBehavior.FOCUSABLE);
-        this.adapter.emitEvent(MDCChipSetEvents.INTERACTION, {
-            chipIndex: index,
-            chipID: chipID,
-        });
-        if (isSelectable) {
-            this.setSelection(index, source, !isSelected);
-        }
-    };
-    MDCChipSetFoundation.prototype.handleChipNavigation = function (_a) {
-        var detail = _a.detail;
-        var chipID = detail.chipID, key = detail.key, isRTL = detail.isRTL, source = detail.source;
-        var index = this.adapter.getChipIndexById(chipID);
-        var toNextChip = (key === KEY.ARROW_RIGHT && !isRTL) ||
-            (key === KEY.ARROW_LEFT && isRTL);
-        if (toNextChip) {
-            // Start from the next chip so we increment the index
-            this.focusNextChipFrom(index + 1);
-            return;
-        }
-        var toPreviousChip = (key === KEY.ARROW_LEFT && !isRTL) ||
-            (key === KEY.ARROW_RIGHT && isRTL);
-        if (toPreviousChip) {
-            // Start from the previous chip so we decrement the index
-            this.focusPrevChipFrom(index - 1);
-            return;
-        }
-        if (key === KEY.ARROW_DOWN) {
-            // Start from the next chip so we increment the index
-            this.focusNextChipFrom(index + 1, source);
-            return;
-        }
-        if (key === KEY.ARROW_UP) {
-            // Start from the previous chip so we decrement the index
-            this.focusPrevChipFrom(index - 1, source);
-            return;
-        }
-        if (key === KEY.HOME) {
-            this.focusNextChipFrom(0, source);
-            return;
-        }
-        if (key === KEY.END) {
-            this.focusPrevChipFrom(this.adapter.getChipCount() - 1, source);
-            return;
-        }
-    };
-    /** Returns the unique selected indexes of the chips. */
-    MDCChipSetFoundation.prototype.getSelectedChipIndexes = function () {
-        var e_1, _a;
-        var selectedIndexes = new Set();
-        var chipCount = this.adapter.getChipCount();
-        for (var i = 0; i < chipCount; i++) {
-            var actions = this.adapter.getChipActionsAtIndex(i);
-            try {
-                for (var actions_1 = (e_1 = void 0, tslib_es6_values(actions)), actions_1_1 = actions_1.next(); !actions_1_1.done; actions_1_1 = actions_1.next()) {
-                    var action = actions_1_1.value;
-                    if (this.adapter.isChipSelectedAtIndex(i, action)) {
-                        selectedIndexes.add(i);
-                    }
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (actions_1_1 && !actions_1_1.done && (_a = actions_1.return)) _a.call(actions_1);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        }
-        return selectedIndexes;
-    };
-    /** Sets the selected state of the chip at the given index and action. */
-    MDCChipSetFoundation.prototype.setChipSelected = function (index, action, isSelected) {
-        if (this.adapter.isChipSelectableAtIndex(index, action)) {
-            this.setSelection(index, action, isSelected);
-        }
-    };
-    /** Returns the selected state of the chip at the given index and action. */
-    MDCChipSetFoundation.prototype.isChipSelected = function (index, action) {
-        return this.adapter.isChipSelectedAtIndex(index, action);
-    };
-    /** Removes the chip at the given index. */
-    MDCChipSetFoundation.prototype.removeChip = function (index) {
-        // Early exit if the index is out of bounds
-        if (index >= this.adapter.getChipCount() || index < 0)
-            return;
-        this.adapter.startChipAnimationAtIndex(index, MDCChipAnimation.EXIT);
-        this.adapter.emitEvent(MDCChipSetEvents.REMOVAL, {
-            chipID: this.adapter.getChipIdAtIndex(index),
-            chipIndex: index,
-            isComplete: false,
-        });
-    };
-    MDCChipSetFoundation.prototype.addChip = function (index) {
-        // Early exit if the index is out of bounds
-        if (index >= this.adapter.getChipCount() || index < 0)
-            return;
-        this.adapter.startChipAnimationAtIndex(index, MDCChipAnimation.ENTER);
-    };
-    /**
-     * Increments to find the first focusable chip.
-     */
-    MDCChipSetFoundation.prototype.focusNextChipFrom = function (startIndex, targetAction) {
-        var chipCount = this.adapter.getChipCount();
-        for (var i = startIndex; i < chipCount; i++) {
-            var focusableAction = this.getFocusableAction(i, Operator.INCREMENT, targetAction);
-            if (focusableAction) {
-                this.focusChip(i, focusableAction, MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED);
-                return;
-            }
-        }
-    };
-    /**
-     * Decrements to find the first focusable chip. Takes an optional target
-     * action that can be used to focus the first matching focusable action.
-     */
-    MDCChipSetFoundation.prototype.focusPrevChipFrom = function (startIndex, targetAction) {
-        for (var i = startIndex; i > -1; i--) {
-            var focusableAction = this.getFocusableAction(i, Operator.DECREMENT, targetAction);
-            if (focusableAction) {
-                this.focusChip(i, focusableAction, MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED);
-                return;
-            }
-        }
-    };
-    /** Returns the appropriate focusable action, or null if none exist. */
-    MDCChipSetFoundation.prototype.getFocusableAction = function (index, op, targetAction) {
-        var actions = this.adapter.getChipActionsAtIndex(index);
-        // Reverse the actions if decrementing
-        if (op === Operator.DECREMENT)
-            actions.reverse();
-        if (targetAction) {
-            return this.getMatchingFocusableAction(index, actions, targetAction);
-        }
-        return this.getFirstFocusableAction(index, actions);
-    };
-    /**
-     * Returs the first focusable action, regardless of type, or null if no
-     * focusable actions exist.
-     */
-    MDCChipSetFoundation.prototype.getFirstFocusableAction = function (index, actions) {
-        var e_2, _a;
-        try {
-            for (var actions_2 = tslib_es6_values(actions), actions_2_1 = actions_2.next(); !actions_2_1.done; actions_2_1 = actions_2.next()) {
-                var action = actions_2_1.value;
-                if (this.adapter.isChipFocusableAtIndex(index, action)) {
-                    return action;
-                }
-            }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (actions_2_1 && !actions_2_1.done && (_a = actions_2.return)) _a.call(actions_2);
-            }
-            finally { if (e_2) throw e_2.error; }
-        }
-        return null;
-    };
-    /**
-     * If the actions contain a focusable action that matches the target action,
-     * return that. Otherwise, return the first focusable action, or null if no
-     * focusable action exists.
-     */
-    MDCChipSetFoundation.prototype.getMatchingFocusableAction = function (index, actions, targetAction) {
-        var e_3, _a;
-        var focusableAction = null;
-        try {
-            for (var actions_3 = tslib_es6_values(actions), actions_3_1 = actions_3.next(); !actions_3_1.done; actions_3_1 = actions_3.next()) {
-                var action = actions_3_1.value;
-                if (this.adapter.isChipFocusableAtIndex(index, action)) {
-                    focusableAction = action;
-                }
-                // Exit and return the focusable action if it matches the target
-                if (focusableAction === targetAction) {
-                    return focusableAction;
-                }
-            }
-        }
-        catch (e_3_1) { e_3 = { error: e_3_1 }; }
-        finally {
-            try {
-                if (actions_3_1 && !actions_3_1.done && (_a = actions_3.return)) _a.call(actions_3);
-            }
-            finally { if (e_3) throw e_3.error; }
-        }
-        return focusableAction;
-    };
-    MDCChipSetFoundation.prototype.focusChip = function (index, action, focus) {
-        var e_4, _a;
-        this.adapter.setChipFocusAtIndex(index, action, focus);
-        var chipCount = this.adapter.getChipCount();
-        for (var i = 0; i < chipCount; i++) {
-            var actions = this.adapter.getChipActionsAtIndex(i);
-            try {
-                for (var actions_4 = (e_4 = void 0, tslib_es6_values(actions)), actions_4_1 = actions_4.next(); !actions_4_1.done; actions_4_1 = actions_4.next()) {
-                    var chipAction = actions_4_1.value;
-                    // Skip the action and index provided since we set it above
-                    if (chipAction === action && i === index)
-                        continue;
-                    this.adapter.setChipFocusAtIndex(i, chipAction, MDCChipActionFocusBehavior.NOT_FOCUSABLE);
-                }
-            }
-            catch (e_4_1) { e_4 = { error: e_4_1 }; }
-            finally {
-                try {
-                    if (actions_4_1 && !actions_4_1.done && (_a = actions_4.return)) _a.call(actions_4);
-                }
-                finally { if (e_4) throw e_4.error; }
-            }
-        }
-    };
-    MDCChipSetFoundation.prototype.supportsMultiSelect = function () {
-        return this.adapter.getAttribute(MDCChipSetAttributes.ARIA_MULTISELECTABLE) === 'true';
-    };
-    MDCChipSetFoundation.prototype.setSelection = function (index, action, isSelected) {
-        var e_5, _a;
-        this.adapter.setChipSelectedAtIndex(index, action, isSelected);
-        this.adapter.emitEvent(MDCChipSetEvents.SELECTION, {
-            chipID: this.adapter.getChipIdAtIndex(index),
-            chipIndex: index,
-            isSelected: isSelected,
-        });
-        // Early exit if we support multi-selection
-        if (this.supportsMultiSelect()) {
-            return;
-        }
-        // If we get here, we ony support single selection. This means we need to
-        // unselect all chips
-        var chipCount = this.adapter.getChipCount();
-        for (var i = 0; i < chipCount; i++) {
-            var actions = this.adapter.getChipActionsAtIndex(i);
-            try {
-                for (var actions_5 = (e_5 = void 0, tslib_es6_values(actions)), actions_5_1 = actions_5.next(); !actions_5_1.done; actions_5_1 = actions_5.next()) {
-                    var chipAction = actions_5_1.value;
-                    // Skip the action and index provided since we set it above
-                    if (chipAction === action && i === index)
-                        continue;
-                    this.adapter.setChipSelectedAtIndex(i, chipAction, false);
-                }
-            }
-            catch (e_5_1) { e_5 = { error: e_5_1 }; }
-            finally {
-                try {
-                    if (actions_5_1 && !actions_5_1.done && (_a = actions_5.return)) _a.call(actions_5);
-                }
-                finally { if (e_5) throw e_5.error; }
-            }
-        }
-    };
-    MDCChipSetFoundation.prototype.removeAfterAnimation = function (index, chipID) {
-        this.adapter.removeChipAtIndex(index);
-        this.adapter.emitEvent(MDCChipSetEvents.REMOVAL, {
-            chipIndex: index,
-            isComplete: true,
-            chipID: chipID,
-        });
-        var chipCount = this.adapter.getChipCount();
-        // Early exit if we have an empty chip set
-        if (chipCount <= 0)
-            return;
-        this.focusNearestFocusableAction(index);
-    };
-    /**
-     * Find the first focusable action by moving bidirectionally horizontally
-     * from the start index.
-     *
-     * Given chip set [A, B, C, D, E, F, G]...
-     * Let's say we remove chip "F". We don't know where the nearest focusable
-     * action is since any of them could be disabled. The nearest focusable
-     * action could be E, it could be G, it could even be A. To find it, we
-     * start from the source index (5 for "F" in this case) and move out
-     * horizontally, checking each chip at each index.
-     *
-     */
-    MDCChipSetFoundation.prototype.focusNearestFocusableAction = function (index) {
-        var chipCount = this.adapter.getChipCount();
-        var decrIndex = index;
-        var incrIndex = index;
-        while (decrIndex > -1 || incrIndex < chipCount) {
-            var focusAction = this.getNearestFocusableAction(decrIndex, incrIndex, MDCChipActionType.TRAILING);
-            if (focusAction) {
-                this.focusChip(focusAction.index, focusAction.action, MDCChipActionFocusBehavior.FOCUSABLE_AND_FOCUSED);
-                return;
-            }
-            decrIndex--;
-            incrIndex++;
-        }
-    };
-    MDCChipSetFoundation.prototype.getNearestFocusableAction = function (decrIndex, incrIndex, actionType) {
-        var decrAction = this.getFocusableAction(decrIndex, Operator.DECREMENT, actionType);
-        if (decrAction) {
-            return {
-                index: decrIndex,
-                action: decrAction,
-            };
-        }
-        // Early exit if the incremented and decremented indices are identical
-        if (incrIndex === decrIndex)
-            return null;
-        var incrAction = this.getFocusableAction(incrIndex, Operator.INCREMENT, actionType);
-        if (incrAction) {
-            return {
-                index: incrIndex,
-                action: incrAction,
-            };
-        }
-        return null;
-    };
-    return MDCChipSetFoundation;
-}(MDCFoundation));
-
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
-/* harmony default export */ const chip_set_foundation = ((/* unused pure expression or super */ null && (MDCChipSetFoundation)));
-//# sourceMappingURL=foundation.js.map
-;// CONCATENATED MODULE: ./node_modules/@material/chips/chip-set/component.js
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-
-
-
-
-
-
-/**
- * MDCChip provides component encapsulation of the foundation implementation.
- */
-var MDCChipSet = /** @class */ (function (_super) {
-    tslib_es6_extends(MDCChipSet, _super);
-    function MDCChipSet() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    MDCChipSet.attachTo = function (root) {
-        return new MDCChipSet(root);
-    };
-    MDCChipSet.prototype.initialize = function (chipFactory) {
-        if (chipFactory === void 0) { chipFactory = function (el) { return new MDCChip(el); }; }
-        this.chips = [];
-        var chipEls = this.root.querySelectorAll("." + MDCChipSetCssClasses.CHIP);
-        for (var i = 0; i < chipEls.length; i++) {
-            var chip = chipFactory(chipEls[i]);
-            this.chips.push(chip);
-        }
-    };
-    MDCChipSet.prototype.initialSyncWithDOM = function () {
-        var _this = this;
-        this.handleChipAnimation = function (event) {
-            _this.foundation.handleChipAnimation(event);
-        };
-        this.handleChipInteraction = function (event) {
-            _this.foundation.handleChipInteraction(event);
-        };
-        this.handleChipNavigation = function (event) {
-            _this.foundation.handleChipNavigation(event);
-        };
-        this.listen(MDCChipEvents.ANIMATION, this.handleChipAnimation);
-        this.listen(MDCChipEvents.INTERACTION, this.handleChipInteraction);
-        this.listen(MDCChipEvents.NAVIGATION, this.handleChipNavigation);
-    };
-    MDCChipSet.prototype.destroy = function () {
-        this.unlisten(MDCChipEvents.ANIMATION, this.handleChipAnimation);
-        this.unlisten(MDCChipEvents.INTERACTION, this.handleChipInteraction);
-        this.unlisten(MDCChipEvents.NAVIGATION, this.handleChipNavigation);
-        _super.prototype.destroy.call(this);
-    };
-    MDCChipSet.prototype.getDefaultFoundation = function () {
-        var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
-        var adapter = {
-            announceMessage: function (message) {
-                announce(message);
-            },
-            emitEvent: function (eventName, eventDetail) {
-                _this.emit(eventName, eventDetail, true /* shouldBubble */);
-            },
-            getAttribute: function (attrName) { return _this.root.getAttribute(attrName); },
-            getChipActionsAtIndex: function (index) {
-                if (!_this.isIndexValid(index))
-                    return [];
-                return _this.chips[index].getActions();
-            },
-            getChipCount: function () { return _this.chips.length; },
-            getChipIdAtIndex: function (index) {
-                if (!_this.isIndexValid(index))
-                    return '';
-                return _this.chips[index].getElementID();
-            },
-            getChipIndexById: function (id) {
-                return _this.chips.findIndex(function (chip) { return chip.getElementID() === id; });
-            },
-            isChipFocusableAtIndex: function (index, action) {
-                if (!_this.isIndexValid(index))
-                    return false;
-                return _this.chips[index].isActionFocusable(action);
-            },
-            isChipSelectableAtIndex: function (index, action) {
-                if (!_this.isIndexValid(index))
-                    return false;
-                return _this.chips[index].isActionSelectable(action);
-            },
-            isChipSelectedAtIndex: function (index, action) {
-                if (!_this.isIndexValid(index))
-                    return false;
-                return _this.chips[index].isActionSelected(action);
-            },
-            removeChipAtIndex: function (index) {
-                if (!_this.isIndexValid(index))
-                    return;
-                _this.chips[index].destroy();
-                _this.chips[index].remove();
-                _this.chips.splice(index, 1);
-            },
-            setChipFocusAtIndex: function (index, action, focus) {
-                if (!_this.isIndexValid(index))
-                    return;
-                _this.chips[index].setActionFocus(action, focus);
-            },
-            setChipSelectedAtIndex: function (index, action, selected) {
-                if (!_this.isIndexValid(index))
-                    return;
-                _this.chips[index].setActionSelected(action, selected);
-            },
-            startChipAnimationAtIndex: function (index, animation) {
-                if (!_this.isIndexValid(index))
-                    return;
-                _this.chips[index].startAnimation(animation);
-            },
-        };
-        // Default to the primary foundation
-        return new MDCChipSetFoundation(adapter);
-    };
-    /** Returns the index of the chip with the given ID or -1 if none exists. */
-    MDCChipSet.prototype.getChipIndexByID = function (chipID) {
-        return this.chips.findIndex(function (chip) { return chip.getElementID() === chipID; });
-    };
-    /**
-     * Returns the ID of the chip at the given index or an empty string if the
-     * index is out of bounds.
-     */
-    MDCChipSet.prototype.getChipIdAtIndex = function (index) {
-        if (!this.isIndexValid(index))
-            return '';
-        return this.chips[index].getElementID();
-    };
-    /** Returns the unique indexes of the selected chips. */
-    MDCChipSet.prototype.getSelectedChipIndexes = function () {
-        return this.foundation.getSelectedChipIndexes();
-    };
-    /** Sets the selection state of the chip. */
-    MDCChipSet.prototype.setChipSelected = function (index, action, isSelected) {
-        this.foundation.setChipSelected(index, action, isSelected);
-    };
-    /** Returns the selection state of the chip. */
-    MDCChipSet.prototype.isChipSelected = function (index, action) {
-        return this.foundation.isChipSelected(index, action);
-    };
-    /** Animates the chip addition at the given index. */
-    MDCChipSet.prototype.addChip = function (index) {
-        this.foundation.addChip(index);
-    };
-    /** Removes the chip at the given index. */
-    MDCChipSet.prototype.removeChip = function (index) {
-        this.foundation.removeChip(index);
-    };
-    MDCChipSet.prototype.isIndexValid = function (index) {
-        return index > -1 && index < this.chips.length;
-    };
-    return MDCChipSet;
-}(MDCComponent));
-
-//# sourceMappingURL=component.js.map
-;// CONCATENATED MODULE: ./Components/ChipsSelectMulti/MBChipsSelectMulti.ts
-
-
-function MBChipsSelectMulti_init(elem, isMultiSelect, dotNetObject) {
-  if (!elem) {
-    return;
-  }
-  elem._chipSet = MDCChipSet.attachTo(elem);
-  elem._isMultiSelect = isMultiSelect;
-  var clickedCallback = function clickedCallback() {
-    if (elem._isMultiSelect) {
-      dotNetObject.invokeMethodAsync('NotifyMultiSelected', Array.from(elem._chipSet.getSelectedChipIndexes()));
-      //dotNetObject.invokeMethodAsync('NotifyMultiSelected', elem._chipSet.chips.map(x => x.isActionSelected(0)));
-    } else {
-      var result = -1;
-      for (var i = 0; i < elem._chipSet.chips.length; i++) {
-        if (elem._chipSet.chips[i].foundation.isActionSelected(MDCChipActionType.PRIMARY)) {
-          result = i;
-        }
-      }
-      dotNetObject.invokeMethodAsync('NotifySingleSelected', result);
-
-      //var selectedChips = elem._chipSet.chips.filter(x => x.isActionSelected(0));
-
-      //if (selectedChips.length == 0) {
-      //    dotNetObject.invokeMethodAsync('NotifySingleSelected', -1);
-      //}
-      //else {
-      //    dotNetObject.invokeMethodAsync('NotifySingleSelected', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
-      //}
-    }
-  };
-  elem._chipSet.listen('MDCChipSet:selection', clickedCallback);
-}
-function MBChipsSelectMulti_setDisabled(elem, value) {
-  if (!elem) {
-    return;
-  }
-  elem._chipSet.disabled = value;
-}
-
-// This function doesn't appear to work properly - see https://github.com/Material-Blazor/Material.Blazor/issues/366
-function setSelected(elem, selectedFlags) {
-  if (!elem) {
-    return;
-  }
-  for (var i = 0; i < selectedFlags.length; i++) {
-    //elem._chipSet.chips[i].selected = selectedFlags[i];
-    elem._chipSet.foundation.adapter.selectChipAtIndex(i, selectedFlags[i], false);
-    //elem._chipSet.chips[i].foundation.setSelectedFromChipSet(selectedFlags[i], false);
-    //elem._chipSet.chips[i].foundation.notifySelection(selectedFlags[i], false);
-  }
-}
 ;// CONCATENATED MODULE: ./node_modules/@material/checkbox/constants.js
 /**
  * @license
@@ -14046,6 +11996,93 @@ var FocusTrap = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=focus-trap.js.map
+;// CONCATENATED MODULE: ./node_modules/@material/animation/animationframe.js
+/**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+/**
+ * AnimationFrame provides a user-friendly abstraction around requesting
+ * and canceling animation frames.
+ */
+var AnimationFrame = /** @class */ (function () {
+    function AnimationFrame() {
+        this.rafIDs = new Map();
+    }
+    /**
+     * Requests an animation frame. Cancels any existing frame with the same key.
+     * @param {string} key The key for this callback.
+     * @param {FrameRequestCallback} callback The callback to be executed.
+     */
+    AnimationFrame.prototype.request = function (key, callback) {
+        var _this = this;
+        this.cancel(key);
+        var frameID = requestAnimationFrame(function (frame) {
+            _this.rafIDs.delete(key);
+            // Callback must come *after* the key is deleted so that nested calls to
+            // request with the same key are not deleted.
+            callback(frame);
+        });
+        this.rafIDs.set(key, frameID);
+    };
+    /**
+     * Cancels a queued callback with the given key.
+     * @param {string} key The key for this callback.
+     */
+    AnimationFrame.prototype.cancel = function (key) {
+        var rafID = this.rafIDs.get(key);
+        if (rafID) {
+            cancelAnimationFrame(rafID);
+            this.rafIDs.delete(key);
+        }
+    };
+    /**
+     * Cancels all queued callback.
+     */
+    AnimationFrame.prototype.cancelAll = function () {
+        var _this = this;
+        // Need to use forEach because it's the only iteration method supported
+        // by IE11. Suppress the underscore because we don't need it.
+        // tslint:disable-next-line:enforce-name-casing
+        this.rafIDs.forEach(function (_, key) {
+            _this.cancel(key);
+        });
+    };
+    /**
+     * Returns the queue of unexecuted callback keys.
+     */
+    AnimationFrame.prototype.getQueue = function () {
+        var queue = [];
+        // Need to use forEach because it's the only iteration method supported
+        // by IE11. Suppress the underscore because we don't need it.
+        // tslint:disable-next-line:enforce-name-casing
+        this.rafIDs.forEach(function (_, key) {
+            queue.push(key);
+        });
+        return queue;
+    };
+    return AnimationFrame;
+}());
+
+//# sourceMappingURL=animationframe.js.map
 ;// CONCATENATED MODULE: ./node_modules/@material/dialog/constants.js
 /**
  * @license
@@ -14156,11 +12193,11 @@ var dialog_constants_numbers = {
 
 
 
-var foundation_AnimationKeys;
+var AnimationKeys;
 (function (AnimationKeys) {
     AnimationKeys["POLL_SCROLL_POS"] = "poll_scroll_position";
     AnimationKeys["POLL_LAYOUT_CHANGE"] = "poll_layout_change";
-})(foundation_AnimationKeys || (foundation_AnimationKeys = {}));
+})(AnimationKeys || (AnimationKeys = {}));
 var MDCDialogFoundation = /** @class */ (function (_super) {
     tslib_es6_extends(MDCDialogFoundation, _super);
     function MDCDialogFoundation(adapter) {
@@ -14369,7 +12406,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     };
     MDCDialogFoundation.prototype.layout = function () {
         var _this = this;
-        this.animFrame.request(foundation_AnimationKeys.POLL_LAYOUT_CHANGE, function () {
+        this.animFrame.request(AnimationKeys.POLL_LAYOUT_CHANGE, function () {
             _this.layoutInternal();
         });
     };
@@ -14436,7 +12473,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         var _this = this;
         // Since scroll events can fire at a high rate, we throttle these events by
         // using requestAnimationFrame.
-        this.animFrame.request(foundation_AnimationKeys.POLL_SCROLL_POS, function () {
+        this.animFrame.request(AnimationKeys.POLL_SCROLL_POS, function () {
             _this.toggleScrollDividerHeader();
             _this.toggleScrollDividerFooter();
         });
@@ -15367,98 +13404,6 @@ function setExited(elem, exited) {
     }
   }
 }
-;// CONCATENATED MODULE: ./Components/Grid/MBGrid.ts
-function syncScrollByID(gridHeaderID, gridBodyID) {
-  var headerDiv = document.getElementById(gridHeaderID);
-  var bodyDiv = document.getElementById(gridBodyID);
-  if (headerDiv != null && bodyDiv != null) {
-    headerDiv.scrollLeft = bodyDiv.scrollLeft;
-  }
-}
-function syncScrollByRef(gridHeaderRef, gridBodyRef) {
-  gridHeaderRef.scrollLeft = gridBodyRef.scrollLeft;
-}
-function getScrollBarWidth(className) {
-  var firstDiv = document.createElement("div");
-
-  // Set styles
-  firstDiv.style.position = 'absolute';
-  firstDiv.style.visibility = 'hidden';
-  firstDiv.style.whiteSpace = 'nowrap';
-  firstDiv.style.left = '-9999px';
-
-  // Set the class
-  firstDiv.className = className;
-
-  // Append to the body
-  document.body.appendChild(firstDiv);
-
-  // Create a second div
-  var secondDiv = document.createElement("div");
-
-  // Append it as a child of the first div
-  firstDiv.appendChild(secondDiv);
-
-  // Calculate width
-  var width = firstDiv.offsetWidth - secondDiv.offsetWidth;
-
-  // Remove the divs
-  document.body.removeChild(firstDiv);
-  return width;
-}
-function getTextWidths(className, currentWidths, textToMeasure) {
-  // Create an element
-  var ele = document.createElement('div');
-
-  // Set styles
-  ele.style.position = 'absolute';
-  ele.style.visibility = 'hidden';
-  ele.style.whiteSpace = 'nowrap';
-  ele.style.left = '-9999px';
-
-  // Set the class
-  ele.className = className;
-
-  // Append to the body
-  document.body.appendChild(ele);
-
-  // Log time
-  //    console.log("Prior to for loop in getTextWidths " + new Date().toString());
-
-  for (var i = 0; i < textToMeasure.length; i++) {
-    // Set the text
-    ele.innerText = textToMeasure[i];
-
-    // Get the width
-    var width = window.getComputedStyle(ele).width;
-    var unadornedWidth = width.slice(0, width.indexOf("px"));
-    var numericWidth = parseFloat(unadornedWidth);
-    var indexMod = i % currentWidths.length;
-    if (numericWidth > currentWidths[indexMod]) {
-      currentWidths[indexMod] = numericWidth;
-    }
-  }
-
-  // Log time
-  //    console.log("Completed for loop in getTextWidths " + new Date().toString());
-
-  // Remove the element
-  document.body.removeChild(ele);
-  return currentWidths;
-}
-function scrollToIndicatedRow(rowIdentifier) {
-  console.log("scrollToIndicatedRow: " + rowIdentifier);
-  var row = document.getElementById(rowIdentifier);
-  console.log("scrollToIndicatedRow element: " + row);
-  if (row != null) {
-    console.log("scrollToIndicatedRow scrollIntoView");
-    row.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest"
-    });
-  }
-}
 ;// CONCATENATED MODULE: ./Components/IconButton/MBIconButton.ts
 
 function MBIconButton_init(elem) {
@@ -16074,35 +14019,6 @@ function MBRadioButton_setChecked(elem, isChecked) {
     return;
   }
   elem._radio.checked = isChecked;
-}
-;// CONCATENATED MODULE: ./Components/Scheduler/MBScheduler.ts
-function getElementDimensions(elementId) {
-  // Create an element
-  var element = document.getElementById(elementId);
-  var retval = new Array(2);
-  if (element != null) {
-    // Get the height
-    var height = window.getComputedStyle(element).height;
-    var unadornedHeight = height.slice(0, height.indexOf("px"));
-    var numericHeight = parseFloat(unadornedHeight);
-    retval[0] = numericHeight;
-
-    // Get the width
-    var width = window.getComputedStyle(element).width;
-    var unadornedWidth = width.slice(0, width.indexOf("px"));
-    var numericWidth = parseFloat(unadornedWidth);
-    retval[1] = numericWidth;
-  }
-  return retval;
-}
-function getElementBoundingClientRect(elementId) {
-  // Create an element
-  var element = document.getElementById(elementId);
-  if (element != null) {
-    // Get the bounding rectangle
-    return element.getBoundingClientRect();
-  }
-  return null;
 }
 ;// CONCATENATED MODULE: ./node_modules/@material/segmented-button/segmented-button/constants.js
 /**
@@ -16891,7 +14807,7 @@ function MBSegmentedButtonMulti_setDisabled(elem, value) {
   }
   elem._segmentedButton.disabled = value;
 }
-function MBSegmentedButtonMulti_setSelected(elem, selectedFlags) {
+function setSelected(elem, selectedFlags) {
   if (!elem) {
     return;
   }
@@ -17080,10 +14996,10 @@ var Thumb;
 
 
 
-var slider_foundation_AnimationKeys;
+var foundation_AnimationKeys;
 (function (AnimationKeys) {
     AnimationKeys["SLIDER_UPDATE"] = "slider_update";
-})(slider_foundation_AnimationKeys || (slider_foundation_AnimationKeys = {}));
+})(foundation_AnimationKeys || (foundation_AnimationKeys = {}));
 // Accessing `window` without a `typeof` check will throw on Node environments.
 var HAS_WINDOW = typeof window !== 'undefined';
 /**
@@ -17770,7 +15686,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 (max - this.value) / (max - min) * this.rect.width :
                 (this.valueStart - min) / (max - min) * this.rect.width;
             var thumbRightPos_1 = thumbLeftPos_1 + rangePx;
-            this.animFrame.request(slider_foundation_AnimationKeys.SLIDER_UPDATE, function () {
+            this.animFrame.request(foundation_AnimationKeys.SLIDER_UPDATE, function () {
                 // Set active track styles, accounting for animation direction by
                 // setting `transform-origin`.
                 var trackAnimatesFromRight = (!isRtl && thumb === Thumb.START) ||
@@ -17802,7 +15718,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             });
         }
         else {
-            this.animFrame.request(slider_foundation_AnimationKeys.SLIDER_UPDATE, function () {
+            this.animFrame.request(foundation_AnimationKeys.SLIDER_UPDATE, function () {
                 var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
                 _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
                 _this.alignValueIndicator(Thumb.END, thumbStartPos);
@@ -19096,7 +17012,7 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
 
 var ARIA_LIVE_DELAY_MS = snackbar_constants_numbers.ARIA_LIVE_DELAY_MS;
 var ARIA_LIVE_LABEL_TEXT_ATTR = snackbar_constants_strings.ARIA_LIVE_LABEL_TEXT_ATTR;
-function util_announce(ariaEl, labelEl) {
+function announce(ariaEl, labelEl) {
     if (labelEl === void 0) { labelEl = ariaEl; }
     var priority = ariaEl.getAttribute('aria-live');
     // Trim text to ignore `&nbsp;` (see below).
@@ -19196,7 +17112,7 @@ var MDCSnackbar = /** @class */ (function (_super) {
         return new MDCSnackbar(root);
     };
     MDCSnackbar.prototype.initialize = function (announcerFactory) {
-        if (announcerFactory === void 0) { announcerFactory = function () { return util_announce; }; }
+        if (announcerFactory === void 0) { announcerFactory = function () { return announce; }; }
         this.announce = announcerFactory();
     };
     MDCSnackbar.prototype.initialSyncWithDOM = function () {
@@ -24651,16 +22567,12 @@ function MBTopAppBar_init(elem, scrollTarget) {
 
 
 
-
-
-
 window.MaterialBlazor = {
   MBAutocompletePagedField: MBAutocompletePagedField_namespaceObject,
   MBAutocompleteTextField: MBAutocompleteTextField_namespaceObject,
   MBBladeSet: MBBladeSet_namespaceObject,
   MBButton: MBButton_namespaceObject,
   MBCard: MBCard_namespaceObject,
-  MBChipsSelectMulti: MBChipsSelectMulti_namespaceObject,
   MBCheckbox: MBCheckbox_namespaceObject,
   MBCircularProgress: MBCircularProgress_namespaceObject,
   MBDataTable: MBDataTable_namespaceObject,
@@ -24670,7 +22582,6 @@ window.MaterialBlazor = {
   MBDragAndDropList: MBDragAndDropList_namespaceObject,
   MBFileUpload: MBFileUpload_namespaceObject,
   MBFloatingActionButton: MBFloatingActionButton_namespaceObject,
-  MBGrid: MBGrid_namespaceObject,
   MBIconButton: MBIconButton_namespaceObject,
   MBIconButtonToggle: MBIconButtonToggle_namespaceObject,
   MBLinearProgress: MBLinearProgress_namespaceObject,
@@ -24678,7 +22589,6 @@ window.MaterialBlazor = {
   MBMenu: MBMenu_namespaceObject,
   MBMenuSurface: MBMenuSurface_namespaceObject,
   MBRadioButton: MBRadioButton_namespaceObject,
-  MBScheduler: MBScheduler_namespaceObject,
   MBSegmentedButtonMulti: MBSegmentedButtonMulti_namespaceObject,
   MBSelect: MBSelect_namespaceObject,
   MBSlider: MBSlider_namespaceObject,
