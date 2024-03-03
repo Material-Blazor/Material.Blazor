@@ -11,7 +11,7 @@ Released 2024-03-??
 **Updates**
 - MD2/MD3: Dependabot updates
 - MD2: Fixed bug in single select components where updates to the item list would not allow items added to the list to be selected.
-- MD2: Removed EXPERIMENTAL components (MBGridMT, MBChipsSelectSingle, MBChipsSelectMulti, MBScheduler)
+- MD2: Removed EXPERIMENTAL components (MBGrid, MBGridMT, MBChipsSelectSingle, MBChipsSelectMulti, MBScheduler)
 
 **New components**
 
@@ -20,7 +20,6 @@ Released 2024-03-??
 **Breaking Changes**
 
 **Deprecated Components**
--MD2: MBGrid & MBGridNG; These will be removed in MaterialBlazor 6.0; They are unlikely to have additional features or bug fixes in 5.x releases.
 
 **Known issues**
 
