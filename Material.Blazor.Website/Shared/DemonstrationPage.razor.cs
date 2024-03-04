@@ -73,7 +73,7 @@ namespace Material.Blazor.Website.Shared
 
             var baseURI = NavigationManager.BaseUri;
 
-            if ((ComponentAndPageName != null) && SuppressComponentDocumentation)
+            if ((ComponentAndPageName != null) && !SuppressComponentDocumentation)
             {
                 Items.Add(new ReferenceItem
                 {
@@ -90,12 +90,6 @@ namespace Material.Blazor.Website.Shared
                     Content = apiText
                 });
             }
-
-            Items.Add(new ReferenceItem
-            {
-                Title = "Source for This Page",
-                Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/tree/main/Material.Blazor.Website/Pages/{ComponentAndPageName}.razor\" target=\"_blank\">GitHub source page link</a>"
-            });
 
             if (DetailedArticle != null)
             {

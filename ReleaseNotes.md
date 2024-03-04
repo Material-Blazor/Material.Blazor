@@ -4,9 +4,29 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
+#### [5.1.5](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.5)
 
 Released 2024-03-??
+
+**Updates**
+- MD2/MD3: Dependabot updates
+- MD2: Repaired demonstrationpage.razor.cs; adding missing '!'; removing extraneous duplicate source page
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
+#### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
+
+Released 2024-03-03
 
 **Updates**
 - MD2/MD3: Dependabot updates
@@ -53,7 +73,7 @@ Released 2024-02-21
 Released 2024-02-13
 
 **Updates**
-- MD2/MD3: .Net 8.0.3 updates
+- MD2/MD3: .Net 8.0.2 updates
 - MD2/MD3: Dependabot updates
 
 **New components**
@@ -73,7 +93,7 @@ Released 2024-02-13
 Released 2024-01-10
 
 **Updates**
-- MD2/MD3: .Net 8.0.2 updates
+- MD2/MD3: .Net 8.0.1 updates
 - MD2/MD3: Dependabot updates
 
 **New components**
@@ -99,7 +119,6 @@ Released 2024-01-10
 Released 2023-12-01
 
 **Updates**
-- MD2/MD3: .Net 8.0.1 updates
 - MD2/MD3: Dependabot updates
 - Repaired MD2 theme selection (Replaced hard coded JS with TS)
 
