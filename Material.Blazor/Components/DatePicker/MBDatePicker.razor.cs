@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -19,6 +20,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
     private string AdditionalStyle { get; set; } = "";
     private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
     private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
+    private CultureInfo AppliedCultureInfo => CascadingDefaults.AppliedCultureInfo(null);
     private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
     private ElementReference ElementReference { get; set; }
     private ElementReference MenuSurfaceElementReference { get; set; }
@@ -266,7 +268,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false);
+        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat, AppliedCultureInfo)).ConfigureAwait(false);
     }
 
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Material.Blazor;
@@ -667,6 +668,31 @@ public class MBCascadingDefaults
     /// with the <c>@key</c> attribute.
     /// </summary>
     public int Version { get; private set; } = 0;
+
+    #endregion
+
+    #region CULTURE
+
+    /*************************************************************************************************************
+     * 
+     * 
+     *      CULTURE
+     * 
+     * 
+     ************************************************************************************************************/
+
+    private CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
+    /// <summary>
+    /// The <see cref="CultureInfo"/> to be used by components when formatting values such as numerics or dates. Defaults to <see cref="CultureInfo.CurrentCulture"/>.
+    /// </summary>
+    public CultureInfo CultureInfo { get => _cultureInfo; set => SetParameter(ref _cultureInfo, value); }
+
+    /// <summary>
+    /// The culture info to apply to components requiring culture for formatting, such as <see cref="MBDatePicker"/>, <see cref="MBNumericDecimalField"/> and other numeric fields.
+    /// </summary>
+    /// <param name="style">The style parameter passed to the <see cref="MBCard"/></param>
+    /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
+    internal CultureInfo AppliedCultureInfo(CultureInfo cultureInfo = null) => cultureInfo ?? CultureInfo;
 
     #endregion
 
