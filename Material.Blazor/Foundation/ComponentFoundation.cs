@@ -334,7 +334,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     /// <returns></returns>
     private protected async Task<bool> ElementIsRTL(ElementReference elementReference)
     {
-        return await InvokeJsAsync<bool> ("MaterialBlazor.RTL.isRTL", elementReference);
+        return elementReference.Context is not null && await InvokeJsAsync<bool> ("MaterialBlazor.RTL.isRTL", elementReference);
     }    
     #endregion
 

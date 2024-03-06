@@ -1,4 +1,8 @@
 ﻿export function isRTL(elem): boolean {
+    if (!elem) {
+        return false;
+    }
+
     let dirElem = elem;
     let dir = null;
 

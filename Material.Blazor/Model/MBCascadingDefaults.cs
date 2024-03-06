@@ -414,6 +414,36 @@ public class MBCascadingDefaults
 
 
 
+    private Func<int, CultureInfo, string> _paginatorItemsPerPageFormatter = MBPaginator.DefaultItemsPerPageFormatter;
+    /// <summary>
+    /// The delegate used to format paginator items per page text.
+    /// </summary>
+    public Func<int, CultureInfo, string> PaginatorItemsPerPageFormatter { get => _paginatorItemsPerPageFormatter; set => SetParameter(ref _paginatorItemsPerPageFormatter, value); }
+
+    /// <summary>
+    /// The delegate to apply to format paginator items per page text.
+    /// </summary>
+    /// <param name="paginatorItemsPerPageFormatter"></param>
+    /// <returns>The formatted text.</returns>
+    internal Func<int, CultureInfo, string> AppliedPaginatorItemsPerPageFormatter(Func<int, CultureInfo, string> paginatorItemsPerPageFormatter) => paginatorItemsPerPageFormatter ?? PaginatorItemsPerPageFormatter;
+
+
+
+    private Func<int, int, int, CultureInfo, string> _paginatorPositionFormatter = MBPaginator.DefaultPositionFormatter;
+    /// <summary>
+    /// The delegate used to format paginator position text.
+    /// </summary>
+    public Func<int, int, int, CultureInfo, string> PaginatorPositionFormatter { get => _paginatorPositionFormatter; set => SetParameter(ref _paginatorPositionFormatter, value); }
+
+    /// <summary>
+    /// The delegate to apply to format paginator position text.
+    /// </summary>
+    /// <param name="paginatorPositionFormatter"></param>
+    /// <returns>The formatted text.</returns>
+    internal Func<int, int, int, CultureInfo, string> AppliedPaginatorPositionFormatter(Func<int, int, int, CultureInfo, string> paginatorPositionFormatter) => paginatorPositionFormatter ?? PaginatorPositionFormatter;
+
+
+
     private int _debounceInterval = 300;
     /// <summary>
     /// The default debounce interval in milliseconds for a <see cref="MBDebouncedTextField"/>, initialized to 300 milliseconds if not explicitly set.

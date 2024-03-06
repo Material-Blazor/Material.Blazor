@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -95,19 +96,58 @@ public partial class MBPaginator : ComponentFoundation
     [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
 
 
+    /// <summary>
+    /// A function delegate that formats the items per page text in the language of your choice. The two parameters are number of items per page and the applicable culture respectively.
+    /// When neither set nor overrided by cascading defaults, <see cref="DefaultItemsPerPageFormatter(int, CultureInfo)"/> is used.
+    /// </summary>
+    [Parameter] public Func<int, CultureInfo, string> ItemsPerPageFormatter { get; set; } = null;
+
+
+    /// <summary>
+    /// A function delegate that formats the position text in the language of your choice. The four parameters are the first item number, the last item number, the total item count and the applicable culture respectively.
+    /// When neither set nor overrided by cascading defaults, <see cref="DefaultPositionFormatter(int, int, int, CultureInfo)"/> is used.
+    /// </summary>
+    [Parameter] public Func<int, int, int, CultureInfo, string> PositionFormatter { get; set; } = null;
+
+
+    /// <summary>
+    /// The <see cref="CultureInfo"/> that determines the culture-specific format for dates according to the <see cref="DateFormat"/>.
+    /// </summary>
+    [Parameter] public CultureInfo CultureInfo { get; set; } = null;
+
+
     private bool HasRendered { get; set; } = false;
+    private Func<int, CultureInfo, string> AppliedItemsPerPageFormatter => CascadingDefaults.AppliedPaginatorItemsPerPageFormatter(ItemsPerPageFormatter);
+    private Func<int, int, int, CultureInfo, string> AppliedPositionFormatter => CascadingDefaults.AppliedPaginatorPositionFormatter(PositionFormatter);
+    private CultureInfo AppliedCultureInfo => CascadingDefaults.AppliedCultureInfo(CultureInfo);
+    private ElementReference ContainerReference { get; set; }
     private MBIconButtonToggle IconButtonToggle { get; set; }
     private MBSelectElement<int>[] ItemsPerPageItems { get; set; }
-    private string ItemsText => $"{ItemsPerPage:G0} items per page";
     private int MaxPageNumber => ItemsPerPage == 0 ? 0 : Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
     private string MaxPositionText => PositionTextString(MaxPageNumber);
     private MBMenu Menu { get; set; }
     private bool NextDisabled => PageNumber >= MaxPageNumber;
     private string PositionText => PositionTextString(PageNumber);
     private bool PreviousDisabled => PageNumber <= 0;
-    private string PositionTextString(int pageNumber) => $"{pageNumber * ItemsPerPage + 1:G0}-{Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage):G0} of {ItemCount:G0}";
-    
-    
+    private string ItemsText => DefaultItemsPerPageFormatter(ItemsPerPage, AppliedCultureInfo);
+    private string PositionTextString(int pageNumber) => AppliedPositionFormatter(pageNumber * ItemsPerPage + 1, Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage), ItemCount, AppliedCultureInfo);
+
+
+
+    public static string AAA(int pageNumber, int itemsPerPage, int itemCount)
+    {
+        return $"{pageNumber * itemsPerPage + 1:G0}-{Math.Min(itemCount, (pageNumber + 1) * itemsPerPage):G0} of {itemCount:G0}";
+    }
+
+
+    private bool IsRTL { get; set; }
+    private string FirstItemIcon => IsRTL ? "last_page" : "first_page";
+    private string BackIcon => IsRTL ? "chevron_right" : "chevron_left";
+    private string ForwardIcon => IsRTL ? "chevron_left" : "chevron_right";
+    private string LastItemIcon => IsRTL ? "first_page" : "last_page";
+
+
+
     private bool toggleOn;
     private bool ToggleOn 
     {
@@ -158,6 +198,8 @@ public partial class MBPaginator : ComponentFoundation
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        IsRTL = await ElementIsRTL(ContainerReference);
 
         if (_cachedItemCount != ItemCount)
         {
@@ -212,5 +254,17 @@ public partial class MBPaginator : ComponentFoundation
     private void OnLastClick()
     {
         BackingPageNumber = MaxPageNumber;
+    }
+
+
+    public static string DefaultItemsPerPageFormatter(int itemsPerPage, CultureInfo cultureInfo)
+    {
+        return $"{itemsPerPage.ToString("G0", cultureInfo)} items per page";
+    }
+
+
+    public static string DefaultPositionFormatter(int firstItemNumber, int lastItemNumber, int itemCount, CultureInfo cultureInfo)
+    {
+        return $"{firstItemNumber.ToString("G0", cultureInfo)}-{lastItemNumber.ToString("G0", cultureInfo)} of {itemCount.ToString("G0", cultureInfo)}";
     }
 }
