@@ -83,6 +83,10 @@ $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-si
     width: $dp-panel-width;
     min-width: $dp-panel-width;
     overflow: visible !important;
+
+    .mdc-touch-target-wrapper {
+        display: inline-flex;
+    }
 }
 
 [dir="rtl"] .mb-dp-menu {
@@ -114,13 +118,16 @@ $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-si
 
 
 .mb-dp-menu__icon-button.spaced {
-    margin-left: $dp-menu-icon-button-margin;
+    margin: 0 0 0 $dp-menu-icon-button-margin;
 }
 
+[dir="rtl"] .mb-dp-menu__icon-button.spaced {
+    margin: 0 $dp-menu-icon-button-margin 0 0;
+}
 
 /*
     Day pad
-*/
+ */
 
 $dp-day-pad-weekdays-margin-bottom: 8px;
 $dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
@@ -179,10 +186,10 @@ $dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
 .mb-dp-day-pad__button_earlier_month {
     visibility: hidden;
 }
+
 .mb-dp-day-pad__button_later_month {
     visibility: hidden;
 }
-
 
 /*
     Year pad
@@ -219,12 +226,9 @@ $dp-year-pad-rows: 7;
         border-radius: $dp-button-border-radius;
     }
 }
-
-
 /************************************************
     Applied to MBDatePicker.razor
 ************************************************/
-
 /*$dp-menu-day-menu-height: $dp-menu-height + 7 * ($dp-button-size + 2 * $dp-button-margin) + $dp-button-margin + $dp-day-pad-bottom-margin;
 $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-size + 2 * $dp-button-margin) + $dp-year-pad-padding-top + $dp-year-pad-padding-bottom;*/
 

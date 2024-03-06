@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
+using Microsoft.JSInterop;
+
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Website.Shared
@@ -10,6 +11,8 @@ namespace Material.Blazor.Website.Shared
     public partial class DemonstrationPage
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
+        [Inject] private IJSRuntime JSRuntime { get; set; }
+
 
         [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
 
@@ -36,11 +39,7 @@ namespace Material.Blazor.Website.Shared
         [Parameter] public string Title { get; set; }
 
 
-        private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
-        {
-            ThemeDensity = MBDensity.Default,
-            Disabled = false
-        };
+        private MBCascadingDefaults CascadingDefaults { get; set; }
 
 
         private class ReferenceItem
@@ -60,6 +59,10 @@ namespace Material.Blazor.Website.Shared
             ((ComponentAndPageName != null) ||
              (DetailedArticle != null) ||
              (MaterialIOPage != null));
+
+
+        private bool IsRTL { get; set; } = false;
+        private CultureInfo CultureInfo => IsRTL ? new("ar-SA") : new("en-US");
 
 
         protected override void OnInitialized()
@@ -126,15 +129,30 @@ namespace Material.Blazor.Website.Shared
                 });
             }
 
-            Densities = new MBSelectElement<MBDensity>[]
-                {
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
-                 }.Where(d => d.Disabled != true);
+            Densities =
+            [
+                new() {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
+                new() {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
+                new() {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
+                new() {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
+                new() {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
+                new() {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
+            ];
+
+            Densities = Densities.Where(d => d.Disabled != true);
+
+            CascadingDefaults = new MBCascadingDefaults()
+            {
+                ThemeDensity = MBDensity.Default,
+                Disabled = false,
+                CultureInfo = CultureInfo
+            };
+        }
+
+
+        private ValueTask OnRTLToggle()
+        {
+            return JSRuntime.InvokeVoidAsync("MaterialBlazorWebsite.MBTheme.setHtmlBlockTextDirection", IsRTL ? "rtl" : "ltr");
         }
     }
 }

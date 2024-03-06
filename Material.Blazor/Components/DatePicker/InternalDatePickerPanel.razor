@@ -20,38 +20,35 @@
             <div class="mb-dp-menu__left">
                 <span>@MonthText</span>
                 <MBIconButtonToggle @bind-Value="@ShowYearPad"
-                                class="mb-dp-menu__icon-button"
-                                IconOn="arrow_drop_up"
-                                IconOff="arrow_drop_down"
-                                IconFoundry="@foundry"
-                                type="button" />
+                                    class="mb-dp-menu__icon-button spaced"
+                                    IconOn="arrow_drop_up"
+                                    IconOff="arrow_drop_down"
+                                    IconFoundry="@foundry"
+                                    type="button" />
             </div>
 
             @if (!ShowYearPad)
             {
-                var backIcon = CultureInfo.TextInfo.IsRightToLeft ? "chevron_right" : "chevron_left";
-                var forwardIcon = CultureInfo.TextInfo.IsRightToLeft ? "chevron_left" : "chevron_right";
-
                 <div class="mb-dp-menu__right">
                     <MBIconButton class="mb-dp-menu__icon-button"
-                          Disabled="@PreviousMonthDisabled"
-                          Icon="@backIcon"
-                          IconFoundry="@foundry"
-                          @onclick="@OnPreviousMonthClick"
-                          type="button" />
+                                  Disabled="@PreviousMonthDisabled"
+                                  Icon="@BackIcon"
+                                  IconFoundry="@foundry"
+                                  @onclick="@OnPreviousMonthClick"
+                                  type="button" />
 
                     <MBIconButton class="mb-dp-menu__icon-button spaced"
-                          Icon="undo"
-                          IconFoundry="@foundry"
-                          @onclick="@OnShowCurrentDateClick"
-                          type="button" />
+                                  Icon="@UndoIcon"
+                                  IconFoundry="@foundry"
+                                  @onclick="@OnShowCurrentDateClick"
+                                  type="button" />
 
                     <MBIconButton class="mb-dp-menu__icon-button spaced"
-                          Disabled="@NextMonthDisabled"
-                          Icon="@forwardIcon"
-                          IconFoundry="@foundry"
-                          @onclick="@OnNextMonthClick"
-                          type="button" />
+                                  Disabled="@NextMonthDisabled"
+                                  Icon="@ForwardIcon"
+                                  IconFoundry="@foundry"
+                                  @onclick="@OnNextMonthClick"
+                                  type="button" />
                 </div>
             }
         </div>

@@ -22,7 +22,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
     private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
     private CultureInfo AppliedCultureInfo => CascadingDefaults.AppliedCultureInfo(CultureInfo);
     private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-    private ElementReference ElementReference { get; set; }
+    internal ElementReference ElementReference { get; set; }
     private ElementReference MenuSurfaceElementReference { get; set; }
     private DotNetObjectReference<MBDatePicker> ObjectReference { get; set; }
     private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");

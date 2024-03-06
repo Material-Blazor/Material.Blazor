@@ -49,3 +49,14 @@ export function scrollToYear(id) {
     // we allow up to 10 attempts every 16ms, because Virtualize may have not yet rendered the year we want to scroll to.
     tryScrollToYear(id, 0);
 }
+
+export function isRTL(elem): boolean {
+    let dirElem = elem;
+    let dir = null;
+
+    for (; dirElem && dirElem !== document && !dir; dirElem = dirElem.parentNode) {
+        dir = dirElem.getAttribute('dir');
+    }
+
+    return dir === 'rtl';
+}

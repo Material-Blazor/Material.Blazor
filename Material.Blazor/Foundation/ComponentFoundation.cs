@@ -312,6 +312,19 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
         await JsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
     }
+
+
+    /// <summary>
+    /// Wraps calls to <see cref="BatchingJSRuntime.InvokeAsync{Task}"/> adding reference to the batching wrapper (if found). Only
+    /// use for components.
+    /// </summary>
+    /// <param name="identifier"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    private protected async Task<T> InvokeJsAsync<T>(string identifier, params object[] args)
+    {
+        return await JsRuntime.InvokeAsync<T>(identifier, args).ConfigureAwait(false);
+    }
     #endregion
 
     #region OnAfterRender
