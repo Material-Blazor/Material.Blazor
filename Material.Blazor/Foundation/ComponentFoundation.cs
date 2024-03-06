@@ -325,6 +325,17 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
         return await JsRuntime.InvokeAsync<T>(identifier, args).ConfigureAwait(false);
     }
+
+
+    /// <summary>
+    /// Returns true if the supplied element reference or any of its parents (up to and including the document) is in RTL mode.
+    /// </summary>
+    /// <param name="elementReference"></param>
+    /// <returns></returns>
+    private protected async Task<bool> ElementIsRTL(ElementReference elementReference)
+    {
+        return await InvokeJsAsync<bool> ("MaterialBlazor.RTL.isRTL", elementReference);
+    }    
     #endregion
 
     #region OnAfterRender

@@ -28,6 +28,7 @@ import * as MBTabBar from '../Components/TabBar/MBTabBar';
 import * as MBTextField from '../Components/TextField/MBTextField';
 import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
+import * as RTL from './rtl';
 
 (<any>window).MaterialBlazor = {
     MBAutocompletePagedField,
@@ -59,5 +60,6 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBTabBar,
     MBTextField,
     MBTooltip,
-    MBTopAppBar
+    MBTopAppBar,
+    RTL
 };

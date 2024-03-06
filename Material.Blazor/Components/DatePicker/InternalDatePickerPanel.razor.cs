@@ -155,7 +155,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     {
         await base.OnParametersSetAsync();
 
-        IsRTL = await InvokeJsAsync<bool>("MaterialBlazor.MBDatePicker.isRTL", Parent.ElementReference);
+        IsRTL = await ElementIsRTL(Parent.ElementReference);
 
         SetParameters();
     }
