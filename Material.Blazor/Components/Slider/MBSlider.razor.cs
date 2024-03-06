@@ -59,14 +59,17 @@ public partial class MBSlider : InputComponent<decimal>
     [Parameter] public string AriaLabel { get; set; } = "Slider";
 
 
-    private ElementReference ElementReference { get; set; }
+    private ElementReference MainReference { get; set; }
+    private ElementReference ThumbReference { get; set; }
     private string Format { get; set; }
     private MarkupString InputMarkup { get; set; }
     private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
     private decimal RangePercentDecimal { get; set; }
     private int TabIndex { get; set; }
+    private string ThumbPostionStyle => $"calc({ThumbEndPercent}% - 24px);";
     private decimal ThumbEndPercent => 100 * RangePercentDecimal;
     private decimal ValueStepIncrement { get; set; }
+    private bool IsRTL { get; set; }
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -115,6 +118,14 @@ public partial class MBSlider : InputComponent<decimal>
     }
 
 
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        IsRTL = await ElementIsRTL(MainReference);
+    }
+
+
     private bool _disposed = false;
     protected override void Dispose(bool disposing)
     {
@@ -147,20 +158,20 @@ public partial class MBSlider : InputComponent<decimal>
     /// <inheritdoc/>
     private protected override Task SetComponentValueAsync()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", MainReference, Value);
     }
 
 
     /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", MainReference, AppliedDisabled);
     }
 
 
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", MainReference, ThumbReference, ThumbPostionStyle, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
     }
 }

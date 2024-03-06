@@ -1,33 +1,41 @@
 ﻿import { MDCSlider } from '@material/slider';
 import { debounce, throttle } from '../../Scripts/lodashparts';
+import { isRTL } from '../../Scripts/rtl';
 
-export function init(elem, dotNetObject, eventType, delay, disabled) {
-    if (!elem) {
+export function init(mainElem, thumbElem, thumbStyle, dotNetObject, eventType, delay, disabled) {
+    if (!mainElem || thumbElem) {
         return;
     }
-    elem._slider = MDCSlider.attachTo(elem);
-    elem._eventType = eventType;
+
+    const direction = isRTL(mainElem) ? "right: " : "left: ";
+    thumbElem.style = direction + thumbStyle;
+
+    mainElem._slider = MDCSlider.attachTo(mainElem);
+    mainElem._eventType = eventType;
 
     if (eventType == 0) {
         const thumbUpCallback = () => {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+            dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
         };
-        elem._slider.listen('MDCSlider:change', thumbUpCallback);
+
+        mainElem._slider.listen('MDCSlider:change', thumbUpCallback);
     }
     else if (eventType == 1) {
         const debounceNotify = debounce(function () {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+            dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
         }, delay, {});
-        elem._slider.listen('MDCSlider:input', debounceNotify);
+
+        mainElem._slider.listen('MDCSlider:input', debounceNotify);
     }
     else {
         const throttleNotify = throttle(function () {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+            dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
         }, delay, {});
-        elem._slider.listen('MDCSlider:input', throttleNotify);
+
+        mainElem._slider.listen('MDCSlider:input', throttleNotify);
     }
 
-    elem._slider.setDisabled(disabled);
+    mainElem._slider.setDisabled(disabled);
 }
 
 export function setValue(elem, value) {
