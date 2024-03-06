@@ -9,7 +9,7 @@ public partial class Roadmap
     public Roadmap()
     {
         var rawMarkDown = @"
-# Version 2024-02-10
+# Version 2024-03-06
 
 # About Material 3
 
@@ -110,13 +110,11 @@ DoubleField | 🟢 | n/a | n/a | 🟡 | Density and supporting text persistence 
 DragAndDropList | 🟢 | n/a | n/a | 💤 |
 Drawer | 🟢 | n/a | n/a | 💤 |
 FileUpload | 🟢 | n/a | n/a | 💤 | 
-Grid | 🟢 | n/a | n/a | 🟢 |
 IconButtonToggle | 🟢 | n/a | n/a | 💤 |
 IntField | 🟢 | n/a | n/a | 🟡 | Density and supporting text persistence |
 PagedDataList | 🟢 | n/a | n/a | 💤 |
 Paginator | 🟢 | n/a | n/a | 💤 |
 RadioButtonGroup | 🟢 | n/a | n/a | 🟡 | Density |
-Scheduler | 🟢 | n/a | n/a | 💤 |
 SegmentedButtonMulti | 🟢 | n/a | n/a | 💤 |
 Shield | 🟢 | n/a | n/a | 💤 |
 Slider | 🟢 | n/a | n/a | 💤 |
