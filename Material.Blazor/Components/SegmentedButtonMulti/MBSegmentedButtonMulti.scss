@@ -1,7 +1,29 @@
-﻿.mb-segmented-button__container {
+﻿@use '@material/segmented-button/segment/_segment-theme';
+
+.mb-segmented-button__container {
     display: inline-block;
     position: relative;
     width: fit-content;
     height: fit-content;
     overflow: visible;
+}
+
+/*
+    * The following is a workaround for the fact that the MDC SegmentedButton does not support RTL.
+    * It is a copy of the MDC SegmentedButton styles with the addition of the [dir="rtl"] selector.
+*/
+[dir="rtl"] .mdc-segmented-button .mdc-touch-target-wrapper {
+    .mdc-segmented-button__segment {
+        border-left-width: 0;
+        border-right-width: segment-theme.$border-width;
+    }
+
+    &:first-child .mdc-segmented-button__segment {
+        border-radius: 0 segment-theme.$border-radius segment-theme.$border-radius 0;
+    }
+
+    &:last-child .mdc-segmented-button__segment {
+        border-radius: segment-theme.$border-radius 0 0 segment-theme.$border-radius;
+        border-left-width: segment-theme.$border-width;
+    }
 }
