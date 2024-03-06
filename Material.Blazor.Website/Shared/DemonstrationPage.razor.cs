@@ -11,7 +11,6 @@ namespace Material.Blazor.Website.Shared
     public partial class DemonstrationPage
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
-        [Inject] private IJSRuntime JSRuntime { get; set; }
 
 
         [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
@@ -62,7 +61,6 @@ namespace Material.Blazor.Website.Shared
 
 
         private bool IsRTL { get; set; } = false;
-        private CultureInfo CultureInfo => IsRTL ? new("ar-SA") : new("en-US");
 
 
         protected override void OnInitialized()
@@ -145,14 +143,7 @@ namespace Material.Blazor.Website.Shared
             {
                 ThemeDensity = MBDensity.Default,
                 Disabled = false,
-                CultureInfo = CultureInfo
             };
-        }
-
-
-        private ValueTask OnRTLToggle()
-        {
-            return JSRuntime.InvokeVoidAsync("MaterialBlazorWebsite.MBTheme.setHtmlBlockTextDirection", IsRTL ? "rtl" : "ltr");
         }
     }
 }

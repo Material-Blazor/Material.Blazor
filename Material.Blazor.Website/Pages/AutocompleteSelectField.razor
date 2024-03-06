@@ -191,7 +191,9 @@
         // A delay to mimic waiting for a database to respond
         await Task.Delay(200);
 
-        var fullMatchRegex = new Regex($"^{searchString}$", RegexOptions);
+        var escapedSearchString = Regex.Escape(searchString);
+
+        var fullMatchRegex = new Regex($"^{escapedSearchString}$", RegexOptions);
         var fullMatchCity = CitiesDict.Where(x => fullMatchRegex.Matches(x.Value.SearchTarget).Any()).FirstOrDefault().Value;
 
         if (fullMatchCity != default)
@@ -208,7 +210,7 @@
                 };
         }
 
-        var partialMatchRegex = new Regex(searchString, RegexOptions);
+        var partialMatchRegex = new Regex(escapedSearchString, RegexOptions);
         var partialMatchCities = CitiesDict.Where(x => partialMatchRegex.Matches(x.Value.SearchTarget).Any()).Select(x => x.Value).OrderBy(x => x.FullName).ToList();
         AllMatchingCityNames = partialMatchCities.Select(x => x.FullName).ToList();
         _ = InvokeAsync(StateHasChanged);
