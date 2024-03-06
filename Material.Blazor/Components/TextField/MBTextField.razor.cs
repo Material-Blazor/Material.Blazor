@@ -83,6 +83,7 @@ public partial class MBTextField : InputComponent<string>
     /// Field label.
     /// </summary>
     [Parameter] public string? Label { get; set; }
+    private string _cachedLabel;
 
 
     /// <summary>
@@ -211,6 +212,8 @@ public partial class MBTextField : InputComponent<string>
                 LabelSuffix = " *";
             }
         }
+
+        _cachedLabel = Label;
     }
 
 
@@ -228,6 +231,12 @@ public partial class MBTextField : InputComponent<string>
             {
                 EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
             }
+        }
+
+        if (_cachedLabel != Label)
+        {
+            _cachedLabel = Label;
+            AllowNextRender(true);
         }
     }
 

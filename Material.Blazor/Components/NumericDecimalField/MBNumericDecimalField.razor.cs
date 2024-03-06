@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Components;
 
 using System;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -96,6 +97,12 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
 
 
     /// <summary>
+    /// The <see cref="CultureInfo"/> that determines the culture-specific format for numbers to the <see cref="NumericFormat"/>.
+    /// </summary>
+    [Parameter] public CultureInfo? CultureInfo { get; set; }
+
+
+    /// <summary>
     /// Alternative format for a singular number if required. An example is "1 month"
     /// vs "3 months".
     /// </summary>
@@ -144,6 +151,7 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
 
 
     private decimal AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
+    private CultureInfo AppliedCultureInfo => CascadingDefaults.AppliedCultureInfo(CultureInfo);
     private decimal FocusedMultiplier { get; set; } = 1;
     private int MyDecimalPlaces { get; set; } = 0;
     private Regex Regex { get; set; }
@@ -246,7 +254,7 @@ public partial class MBNumericDecimalField : InputComponent<decimal>
     }
 
 
-    private string StringValue(decimal? value) => (Convert.ToDecimal(value) * AppliedMultiplier).ToString(AppliedFormat);
+    private string StringValue(decimal? value) => (Convert.ToDecimal(value) * AppliedMultiplier).ToString(AppliedFormat, AppliedCultureInfo);
 
 
     private decimal NumericValue(string displayText)

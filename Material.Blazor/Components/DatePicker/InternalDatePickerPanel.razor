@@ -29,10 +29,13 @@
 
             @if (!ShowYearPad)
             {
+                var backIcon = CultureInfo.TextInfo.IsRightToLeft ? "chevron_right" : "chevron_left";
+                var forwardIcon = CultureInfo.TextInfo.IsRightToLeft ? "chevron_left" : "chevron_right";
+
                 <div class="mb-dp-menu__right">
                     <MBIconButton class="mb-dp-menu__icon-button"
                           Disabled="@PreviousMonthDisabled"
-                          Icon="chevron_left"
+                          Icon="@backIcon"
                           IconFoundry="@foundry"
                           @onclick="@OnPreviousMonthClick"
                           type="button" />
@@ -45,7 +48,7 @@
 
                     <MBIconButton class="mb-dp-menu__icon-button spaced"
                           Disabled="@NextMonthDisabled"
-                          Icon="chevron_right"
+                          Icon="@forwardIcon"
                           IconFoundry="@foundry"
                           @onclick="@OnNextMonthClick"
                           type="button" />
@@ -93,7 +96,7 @@
         {
             <div class="mb-dp-day-pad">
                 <div class="mb-dp-day-pad__weekdays-block">
-                    @foreach (var d in DaysOfWeek)
+                    @foreach (var d in DaysOfWeek())
                     {
                         <span class="mdc-theme--text-disabled-on-background mb-dp-day-pad__weekday">@d</span>
                     }

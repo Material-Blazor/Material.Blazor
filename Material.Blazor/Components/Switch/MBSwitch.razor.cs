@@ -1,5 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+
+using System;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -13,7 +15,7 @@ public partial class MBSwitch : InputComponent<bool>
     /// The switch's label
     /// </summary>
     [Parameter] public string Label { get; set; } = "On/off";
-
+    private string _cachedLabel;
 
     private ElementReference ElementReference { get; set; }
 
@@ -26,6 +28,21 @@ public partial class MBSwitch : InputComponent<bool>
         ConditionalCssClasses
             .AddIf("mdc-switch--unselected", () => !ComponentValue)
             .AddIf("mdc-switch--selected", () => ComponentValue);
+
+        _cachedLabel = Label;
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedLabel != Label)
+        {
+            _cachedLabel = Label;
+            AllowNextRender(true);
+        }
     }
 
 

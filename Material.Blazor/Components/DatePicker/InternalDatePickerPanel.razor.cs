@@ -89,9 +89,13 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     [Parameter] public string DateFormat { get; set; }
 
 
-    private bool ScrollToYear { get; set; } = false;
+    /// <summary>
+    /// The <see cref="CultureInfo"/> that determines the culture-specific format of displaying dates according to the <see cref="DateFormat"/>.
+    /// </summary>
+    [Parameter] public CultureInfo CultureInfo { get; set; }
 
-    private string[] DaysOfWeek { get; set; }
+
+    private bool ScrollToYear { get; set; } = false;
 
     private bool PreviousMonthDisabled => false
         || (StartOfDisplayMonth.Year == DateTime.MinValue.Year && StartOfDisplayMonth.Month == DateTime.MinValue.Month)
@@ -118,9 +122,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
 
     private List<int[]> YearsInGroupsOfFour { get; set; } = new List<int[]>();
 
-    private CultureInfo ApplieCultureInfo => CascadingDefaults.AppliedCultureInfo(null);
-
-    private string ValueText => Utilities.DateToString(Value, DateFormat, ApplieCultureInfo);
+    private string ValueText => Utilities.DateToString(Value, DateFormat, CultureInfo);
 
     private int MonthsOffset { get; set; } = 0;
 
@@ -128,7 +130,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
 
     private bool HasBeenOpened { get; set; } = false;
 
-    private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy", ApplieCultureInfo);
+    private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy", CultureInfo);
 
     private readonly string currentYearId = Utilities.GenerateUniqueElementName();
 
@@ -139,13 +141,6 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-
-        DaysOfWeek = CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.AbbreviatedDayNames.Select(d => d[0..1]).ToArray();
-        var rotate_by = (int)CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.FirstDayOfWeek;
-        if (rotate_by > 0)
-        {
-            DaysOfWeek = DaysOfWeek.Skip(rotate_by).Concat(DaysOfWeek.Take(rotate_by)).ToArray();
-        }
 
         AllowAllRenders();
     }
@@ -246,10 +241,24 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     }
 
 
+    private string[] DaysOfWeek()
+    {
+        var result = CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.AbbreviatedDayNames.Select(d => d[0..1]).ToArray();
+        var rotate_by = (int)CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.FirstDayOfWeek;
+        
+        if (rotate_by > 0)
+        {
+            result = result.Skip(rotate_by).Concat(result.Take(rotate_by)).ToArray();
+        }
+
+        return result;
+    }
+
+
     private async Task OnDayItemClickAsync(DateTime dateTime)
     {
         // Invoke JS first. if ComponentValue is set first we are at risk of this element being re-rendered before this line is run, making ListItemReference stale and causing a JS exception.
-        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat, ApplieCultureInfo));
+        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat, CultureInfo));
         ComponentValue = dateTime;
         MonthsOffset = 0;
         Parent.NotifyValueChanged();

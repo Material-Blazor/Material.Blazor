@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -89,6 +90,12 @@ public partial class MBNumericIntField : InputComponent<int>
     /// Format to apply to the numeric value when the field is not selected.
     /// </summary>
     [Parameter] public string NumericFormat { get; set; }
+
+
+    /// <summary>
+    /// The <see cref="CultureInfo"/> that determines the culture-specific format for numbers to the <see cref="NumericFormat"/>.
+    /// </summary>
+    [Parameter] public CultureInfo? CultureInfo { get; set; }
 
 
     /// <summary>

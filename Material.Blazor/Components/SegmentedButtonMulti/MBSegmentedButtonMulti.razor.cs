@@ -77,6 +77,26 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
         ConditionalCssClasses
             .AddIf("mdc-segmented-button--single-select", () => IsSingleSelect);
 
+        ObjectReference = DotNetObjectReference.Create(this);
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
+        {
+            _cachedBadgeValue = BadgeValue;
+            _cachedBadgeExited = BadgeExited;
+
+            if (Badge is not null)
+            {
+                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
+            }
+        }
+
         ItemsArray = Items.ToArray();
 
         SegmentAttributes = new Dictionary<string, object>[ItemsArray.Length];
@@ -97,26 +117,6 @@ public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem,
             else
             {
                 SegmentAttributes[i].Add("aria-pressed", selected.ToString().ToLower());
-            }
-        }
-
-        ObjectReference = DotNetObjectReference.Create(this);
-    }
-
-
-    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        if (_cachedBadgeValue != BadgeValue || _cachedBadgeExited != BadgeExited)
-        {
-            _cachedBadgeValue = BadgeValue;
-            _cachedBadgeExited = BadgeExited;
-
-            if (Badge is not null)
-            {
-                EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
             }
         }
     }

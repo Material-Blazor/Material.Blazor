@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal;
@@ -22,6 +23,7 @@ public abstract class MultiSelectComponent<T, TListElement> : InputComponent<ILi
     /// The item list to be represented as radio buttons
     /// </summary>
     [Parameter] public IEnumerable<TListElement> Items { get; set; }
+    private IEnumerable<TListElement> _cachedItems;
 
 
     /// <summary>
@@ -48,5 +50,13 @@ public abstract class MultiSelectComponent<T, TListElement> : InputComponent<ILi
         await base.OnParametersSetAsync();
 
         KeyGenerator = GetKeysFunc ?? delegate (T item) { return item; };
+
+        if ((Items == null && _cachedItems != null) || (Items != null && _cachedItems == null) || (Items != null && _cachedItems != null && !Items.SequenceEqual(_cachedItems)))
+        {
+            _cachedItems = Items;
+
+            AllowNextRender(true);
+            await InvokeAsync(StateHasChanged).ConfigureAwait(true);
+        }
     }
 }

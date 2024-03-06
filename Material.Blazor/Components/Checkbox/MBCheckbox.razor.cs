@@ -29,6 +29,7 @@ public partial class MBCheckbox : InputComponent<bool>
     /// The check box label.
     /// </summary>
     [Parameter] public string Label { get; set; }
+    private string _cachedLabel;
 
 
     /// <summary>
@@ -99,6 +100,8 @@ public partial class MBCheckbox : InputComponent<bool>
             .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
             .AddIf("mdc-checkbox--selected", () => Value)
             .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
+
+        _cachedLabel = Label;
     }
 
 
@@ -121,6 +124,12 @@ public partial class MBCheckbox : InputComponent<bool>
         {
             _cachedIsIndeterminate = IsIndeterminate;
             EnqueueJSInteropAction(UpdateIndeterminateStateAsync);
+        }
+
+        if (_cachedLabel != Label)
+        {
+            _cachedLabel = Label;
+            AllowNextRender(true);
         }
     }
 
