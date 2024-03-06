@@ -118,10 +118,13 @@ public partial class MBPagedDataList<TItem> : ComponentFoundation
     [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
 
 
+    private MBPaginator Paginator { get; set; }
+    private ElementReference ElementReference { get; set; }
     private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
     private string ContentClass { get; set; } = "";
     public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
     private bool HasRendered { get; set; } = false;
+    private bool IsRTL { get; set; } = false;
     private bool IsHidden { get; set; } = false;
     private Func<TItem, object> KeyGenerator { get; set; }
 
@@ -131,13 +134,13 @@ public partial class MBPagedDataList<TItem> : ComponentFoundation
         string nextClass;
         if (newPageNumber < oldPageNumber)
         {
-            nextClass = MBSlidingContent<object>.InFromLeft;
-            ContentClass = MBSlidingContent<object>.OutToRight;
+            nextClass = MBSlidingContent<object>.InFromPrevious(IsRTL);
+            ContentClass = MBSlidingContent<object>.OutToNext(IsRTL);
         }
         else
         {
-            nextClass = MBSlidingContent<object>.InFromRight;
-            ContentClass = MBSlidingContent<object>.OutToLeft;
+            nextClass = MBSlidingContent<object>.InFromNext(IsRTL);
+            ContentClass = MBSlidingContent<object>.OutToPrevious(IsRTL);
         }
 
         await Task.Delay(100);

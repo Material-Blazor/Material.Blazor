@@ -4,7 +4,8 @@
 @typeparam TItem
 
 <div class="mb-carousel @(@class)"
-     style="@style">
+     style="@style"
+     @ref="@ElementReference">
 
     <div class="mb-carousel__upper">
         <div class="mb-carousel-nav-panel" style="order: 2;">
@@ -19,11 +20,11 @@
             </InternalCarouselPanel>
         </div>
 
-        <MBFloatingActionButton Icon="navigate_before"
+        <MBFloatingActionButton Icon="@PreviousIcon"
                                 style="order: 1;"
                                 @onclick="NavigatePrevious" />
 
-        <MBFloatingActionButton Icon="navigate_next"
+        <MBFloatingActionButton Icon="@NextIcon"
                                 style="order: 3;"
                                 @onclick="NavigateNext" />
     </div>

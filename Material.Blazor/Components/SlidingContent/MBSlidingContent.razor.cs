@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Material.Blazor;
 
@@ -44,15 +46,22 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
     private bool HideContent { get; set; } = false;
     private string VisibilityClass => HideContent ? Hidden : Visible;
     private TItem CurrentItem { get; set; }
+    private ElementReference ElementReference { get; set; }
+    private bool IsRTL { get; set; } = false;
     private bool HasRendered { get; set; } = false;
 
 
     internal const string Hidden = "mb-visibility-hidden";
     internal const string Visible = "mb-visibility-visible";
-    internal const string InFromLeft = "mb-slide-in-from-left";
-    internal const string InFromRight = "mb-slide-in-from-right";
-    internal const string OutToLeft = "mb-slide-out-to-left";
-    internal const string OutToRight = "mb-slide-out-to-right";
+    private const string InFromLeft = "mb-slide-in-from-left";
+    private const string InFromRight = "mb-slide-in-from-right";
+    private const string OutToLeft = "mb-slide-out-to-left";
+    private const string OutToRight = "mb-slide-out-to-right";
+
+    internal static string InFromPrevious(bool isRTL) => isRTL ? InFromRight : InFromLeft;
+    internal static string InFromNext(bool isRTL) => isRTL ? InFromLeft : InFromRight;
+    internal static string OutToPrevious(bool isRTL) => isRTL ? OutToRight : OutToLeft;
+    internal static string OutToNext(bool isRTL) => isRTL ? OutToLeft : OutToRight;
 
     private enum SlideDirection { Backwards, Forwards }
 
@@ -72,6 +81,8 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
             var direction = (ItemIndex > _cachedItemIndex) ? SlideDirection.Forwards : SlideDirection.Backwards;
             EnqueueJSInteropAction(() => SlideToItem(ItemIndex, direction));
         }
+
+        IsRTL = await ElementIsRTL(ElementReference);
     }
 
 
@@ -85,13 +96,13 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
 
                 if (direction == SlideDirection.Backwards)
                 {
-                    nextClass = InFromLeft;
-                    ContentClass = OutToRight;
+                    nextClass = InFromPrevious(IsRTL);
+                    ContentClass = OutToNext(IsRTL);
                 }
                 else
                 {
-                    nextClass = InFromRight;
-                    ContentClass = OutToLeft;
+                    nextClass = InFromNext(IsRTL);
+                    ContentClass = OutToPrevious(IsRTL);
                 }
 
                 await InvokeAsync(StateHasChanged);
