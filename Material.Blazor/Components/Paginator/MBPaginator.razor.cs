@@ -129,15 +129,9 @@ public partial class MBPaginator : ComponentFoundation
     private bool NextDisabled => PageNumber >= MaxPageNumber;
     private string PositionText => PositionTextString(PageNumber);
     private bool PreviousDisabled => PageNumber <= 0;
-    private string ItemsText => DefaultItemsPerPageFormatter(ItemsPerPage, AppliedCultureInfo);
+    private string ItemsText => AppliedItemsPerPageFormatter(ItemsPerPage, AppliedCultureInfo);
     private string PositionTextString(int pageNumber) => AppliedPositionFormatter(pageNumber * ItemsPerPage + 1, Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage), ItemCount, AppliedCultureInfo);
 
-
-
-    public static string AAA(int pageNumber, int itemsPerPage, int itemCount)
-    {
-        return $"{pageNumber * itemsPerPage + 1:G0}-{Math.Min(itemCount, (pageNumber + 1) * itemsPerPage):G0} of {itemCount:G0}";
-    }
 
 
     private bool IsRTL { get; set; }

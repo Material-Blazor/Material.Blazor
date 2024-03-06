@@ -28,10 +28,20 @@ $icon-button-offset: 4px;
     pointer-events: none;
 }
 
+[dir="rtl"] .mb-badge-container {
+    left: auto;
+    right: 0;
+}
+
 .mdc-icon-button {
     .mb-badge-container {
         top: $icon-button-offset;
         left: -$icon-button-offset;
+    }
+
+    [dir="rtl"] .mb-badge-container {
+        left: auto;
+        right: -$icon-button-offset;
     }
 }
 
@@ -68,6 +78,17 @@ $icon-button-offset: 4px;
         -webkit-transform: scale(0);
         transform: scale(0);
         opacity: 0;
+    }
+}
+
+[dir="rtl"] .mb-badge {
+    float: left;
+    right: auto;
+    left: -$regular-offset;
+
+    &.mb-badge--dot {
+        left: -$dot-offset;
+        right: auto;
     }
 }
 
