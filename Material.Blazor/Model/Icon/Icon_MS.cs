@@ -110,22 +110,18 @@ internal class Icon_MS : IMBIcon
         switch (MsSize)
         {
             case MBIconMSSize.Size20:
-                fontStyle += " font-size: 20px;";
                 fontVariation += " 'opsz' 20,";
                 break;
 
             case MBIconMSSize.Size24:
-                fontStyle += " font-size: 24px;";
                 fontVariation += " 'opsz' 24,";
                 break;
 
             case MBIconMSSize.Size40:
-                fontStyle += " font-size: 40px;";
                 fontVariation += " 'opsz' 40,";
                 break;
 
             case MBIconMSSize.Size48:
-                fontStyle += " font-size: 48px;";
                 fontVariation += " 'opsz' 48,";
                 break;
 
