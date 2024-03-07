@@ -5,7 +5,9 @@
 @inherits ComponentFoundation
 
 <div class="@VisibilityClass @(@class)"
-     style="@style" >
+     style="@style"
+     @ref="ElementReference">
+
     <div class="@ContentClass">
         @if (Content != null && CurrentItem != null)
         {

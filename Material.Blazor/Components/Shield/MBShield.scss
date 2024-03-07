@@ -42,6 +42,10 @@ $shield-icon-right-margin: 3px;
     margin: 0 $shield-icon-right-margin 0 $shield-icon-left-margin;
 }
 
+[dir="rtl"] .mb-shield i {
+    margin: 0 $shield-icon-left-margin 0 $shield-icon-right-margin;
+}
+
 .mb-shield--label {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -55,6 +59,10 @@ $shield-icon-right-margin: 3px;
     border: 0;
 }
 
+[dir="rtl"] .mb-shield--label {
+    padding: 0 $shield-outer-padding 0 $shield-inner-padding;
+}
+
 .mb-shield--value {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -66,4 +74,8 @@ $shield-icon-right-margin: 3px;
     margin: 0;
     padding: 0 $shield-outer-padding 0 $shield-inner-padding;
     border: 0;
+}
+
+[dir="rtl"] .mb-shield--value {
+    padding: 0 $shield-inner-padding 0 $shield-outer-padding;
 }

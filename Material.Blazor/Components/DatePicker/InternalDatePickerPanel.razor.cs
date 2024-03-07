@@ -89,9 +89,13 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     [Parameter] public string DateFormat { get; set; }
 
 
-    private bool ScrollToYear { get; set; } = false;
+    /// <summary>
+    /// The <see cref="CultureInfo"/> that determines the culture-specific format of displaying dates according to the <see cref="DateFormat"/>.
+    /// </summary>
+    [Parameter] public CultureInfo CultureInfo { get; set; }
 
-    private string[] DaysOfWeek { get; set; }
+
+    private bool ScrollToYear { get; set; } = false;
 
     private bool PreviousMonthDisabled => false
         || (StartOfDisplayMonth.Year == DateTime.MinValue.Year && StartOfDisplayMonth.Month == DateTime.MinValue.Month)
@@ -118,7 +122,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
 
     private List<int[]> YearsInGroupsOfFour { get; set; } = new List<int[]>();
 
-    private string ValueText => Utilities.DateToString(Value, DateFormat);
+    private string ValueText => Utilities.DateToString(Value, DateFormat, CultureInfo);
 
     private int MonthsOffset { get; set; } = 0;
 
@@ -126,24 +130,21 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
 
     private bool HasBeenOpened { get; set; } = false;
 
-    private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy");
+    private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy", CultureInfo);
 
     private readonly string currentYearId = Utilities.GenerateUniqueElementName();
 
-    private readonly IMBIconFoundry foundry = MBIconHelper.MIFoundry(MBIconMITheme.Filled);
+    private readonly IMBIconFoundry foundry = MBIconHelper.MSFoundry(fill: true, gradient: MBIconMSGradient.NormalEmphasis, size: MBIconMSSize.Size24, style: MBIconMSStyle.Outlined, weight: MBIconMSWeight.W400);
+    private bool IsRTL { get; set; }
+    private string BackIcon => IsRTL ? "chevron_right" : "chevron_left";
+    private string UndoIcon => IsRTL ? "redo" : "undo";
+    private string ForwardIcon => IsRTL ? "chevron_left" : "chevron_right";
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-
-        DaysOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames.Select(d => d[0..1]).ToArray();
-        var rotate_by = (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-        if (rotate_by > 0)
-        {
-            DaysOfWeek = DaysOfWeek.Skip(rotate_by).Concat(DaysOfWeek.Take(rotate_by)).ToArray();
-        }
 
         AllowAllRenders();
     }
@@ -153,6 +154,8 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
+
+        IsRTL = await IsElementRTL(Parent.ElementReference);
 
         SetParameters();
     }
@@ -192,7 +195,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
         {
             startDate = StartOfDisplayMonth = new DateTime(DateTime.MaxValue.Year, DateTime.MaxValue.Month, 1);
         }
-        while (startDate.Date > DateTime.MinValue.Date && startDate.DayOfWeek != CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
+        while (startDate.Date > DateTime.MinValue.Date && startDate.DayOfWeek != CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.FirstDayOfWeek)
         {
             startDate = startDate.AddDays(-1);
         }
@@ -244,10 +247,24 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     }
 
 
+    private string[] DaysOfWeek()
+    {
+        var result = CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.AbbreviatedDayNames.Select(d => d[0..1]).ToArray();
+        var rotate_by = (int)CascadingDefaults.AppliedCultureInfo(null).DateTimeFormat.FirstDayOfWeek;
+        
+        if (rotate_by > 0)
+        {
+            result = result.Skip(rotate_by).Concat(result.Take(rotate_by)).ToArray();
+        }
+
+        return result;
+    }
+
+
     private async Task OnDayItemClickAsync(DateTime dateTime)
     {
         // Invoke JS first. if ComponentValue is set first we are at risk of this element being re-rendered before this line is run, making ListItemReference stale and causing a JS exception.
-        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat));
+        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat, CultureInfo));
         ComponentValue = dateTime;
         MonthsOffset = 0;
         Parent.NotifyValueChanged();
@@ -295,4 +312,5 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
             await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.scrollToYear", currentYearId);
         }
     }
+
 }

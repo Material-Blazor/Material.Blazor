@@ -75,6 +75,7 @@
                  class="app-bar mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <MBIconButton @onclick="@OpenMenuAsync" Icon="more_vert" />
+
             <div class="mdc-menu-surface--anchor">
                 <MBMenu @ref="Menu" @key="@Theme">
                     <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "material-default-theme")" @onclick="@(() => ThemeSetterAsync("material-default-theme"))" />
@@ -82,6 +83,10 @@
                     <MBListItem Label="Dark Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "dark-square-theme")" @onclick="@(() => ThemeSetterAsync("dark-square-theme"))" />
                     <MBListItem Label="Rounded Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "rounded-theme")" @onclick="@(() => ThemeSetterAsync("rounded-theme"))" />
                     <MBListItem Label="Asymmetric Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "asymmetric-theme")" @onclick="@(() => ThemeSetterAsync("asymmetric-theme"))" />
+
+                    <MBDivider />
+
+                    <MBListItem Label="Right to Left" LeadingIcon="done" IsSelectedMenuItem="@IsRTL" @onclick="@(() => ToggleRTL())" />
                 </MBMenu>
             </div>
         </section>

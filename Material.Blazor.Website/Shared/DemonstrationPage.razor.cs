@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
+using Microsoft.JSInterop;
+
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Website.Shared
@@ -10,6 +11,7 @@ namespace Material.Blazor.Website.Shared
     public partial class DemonstrationPage
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
+
 
         [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
 
@@ -36,11 +38,7 @@ namespace Material.Blazor.Website.Shared
         [Parameter] public string Title { get; set; }
 
 
-        private MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults()
-        {
-            ThemeDensity = MBDensity.Default,
-            Disabled = false
-        };
+        private MBCascadingDefaults CascadingDefaults { get; set; }
 
 
         private class ReferenceItem
@@ -62,6 +60,9 @@ namespace Material.Blazor.Website.Shared
              (MaterialIOPage != null));
 
 
+        private bool IsRTL { get; set; } = false;
+
+
         protected override void OnInitialized()
         {
             Items = new List<ReferenceItem>();
@@ -73,7 +74,7 @@ namespace Material.Blazor.Website.Shared
 
             var baseURI = NavigationManager.BaseUri;
 
-            if ((ComponentAndPageName != null) && SuppressComponentDocumentation)
+            if ((ComponentAndPageName != null) && !SuppressComponentDocumentation)
             {
                 Items.Add(new ReferenceItem
                 {
@@ -90,12 +91,6 @@ namespace Material.Blazor.Website.Shared
                     Content = apiText
                 });
             }
-
-            Items.Add(new ReferenceItem
-            {
-                Title = "Source for This Page",
-                Content = $"<a href=\"https://github.com/Material-Blazor/Material.Blazor/tree/main/Material.Blazor.Website/Pages/{ComponentAndPageName}.razor\" target=\"_blank\">GitHub source page link</a>"
-            });
 
             if (DetailedArticle != null)
             {
@@ -126,15 +121,23 @@ namespace Material.Blazor.Website.Shared
                 });
             }
 
-            Densities = new MBSelectElement<MBDensity>[]
-                {
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
-            new MBSelectElement<MBDensity> {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
-                 }.Where(d => d.Disabled != true);
+            Densities =
+            [
+                new() {SelectedValue = MBDensity.Default, Label = "Default", Disabled = false },
+                new() {SelectedValue = MBDensity.Minus1, Label = "Minus 1", Disabled = MinDensity > MBDensity.Minus1 },
+                new() {SelectedValue = MBDensity.Minus2, Label = "Minus 2", Disabled = MinDensity > MBDensity.Minus2 },
+                new() {SelectedValue = MBDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MBDensity.Minus3 },
+                new() {SelectedValue = MBDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MBDensity.Minus4 },
+                new() {SelectedValue = MBDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MBDensity.Minus5 },
+            ];
+
+            Densities = Densities.Where(d => d.Disabled != true);
+
+            CascadingDefaults = new MBCascadingDefaults()
+            {
+                ThemeDensity = MBDensity.Default,
+                Disabled = false,
+            };
         }
     }
 }

@@ -214,9 +214,12 @@ public partial class MBAutocompleteTextField : InputComponent<string>
 
     private SelectionInfo BuildSelectList(string fieldText)
     {
+
+        var escapedFieldText = Regex.Escape(fieldText ?? "");
+
         var regexOptions = RegexOptions.IgnoreCase | (IgnoreWhitespace ? RegexOptions.IgnorePatternWhitespace : 0);
 
-        var fullMatchRegex = new Regex($"^{fieldText}$", regexOptions);
+        var fullMatchRegex = new Regex($"^{escapedFieldText}$", regexOptions);
         var fullMatches = (from f in DisplaySelectionItems
                            where fullMatchRegex.Matches(f.SearchTarget).Count > 0
                            select f.Item).ToArray();
@@ -231,14 +234,14 @@ public partial class MBAutocompleteTextField : InputComponent<string>
         }
 
         var startMatch = MatchFromItemStart ? "^" : "";
-        var partialMatchRegex = new Regex($"{startMatch}{fieldText}", regexOptions);
+        var partialMatchRegex = new Regex($"{startMatch}{escapedFieldText}", regexOptions);
         var partialMatches = (from f in DisplaySelectionItems
                               where partialMatchRegex.Matches(f.SearchTarget).Count > 0
                               select f.Item).ToArray();
-        var firstValueIsCustomValue = AllowCustomValue && fieldText != null && !partialMatches.Contains(fieldText);
+        var firstValueIsCustomValue = AllowCustomValue && escapedFieldText != null && !partialMatches.Contains(escapedFieldText);
         if (firstValueIsCustomValue)
         {
-            partialMatches = partialMatches.Prepend(fieldText).ToArray();
+            partialMatches = partialMatches.Prepend(escapedFieldText).ToArray();
         }
 
         return new SelectionInfo()

@@ -1,6 +1,8 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Threading.Tasks;
 
@@ -59,11 +61,13 @@ public partial class MBSlider : InputComponent<decimal>
     [Parameter] public string AriaLabel { get; set; } = "Slider";
 
 
-    private ElementReference ElementReference { get; set; }
+    private ElementReference MainReference { get; set; }
+    private ElementReference ThumbReference { get; set; }
     private string Format { get; set; }
     private MarkupString InputMarkup { get; set; }
     private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
     private decimal RangePercentDecimal { get; set; }
+    private string ThumbOffset => $"calc({100 * RangePercentDecimal}% - 24px);";
     private int TabIndex { get; set; }
     private decimal ThumbEndPercent => 100 * RangePercentDecimal;
     private decimal ValueStepIncrement { get; set; }
@@ -92,16 +96,9 @@ public partial class MBSlider : InputComponent<decimal>
         TabIndex = AppliedDisabled ? -1 : 0;
         RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
-        if (SliderType == MBSliderType.Continuous)
-        {
-            ValueStepIncrement = Convert.ToDecimal(Math.Pow(10, -DecimalPlaces));
-        }
-        else
-        {
-            ValueStepIncrement = (ValueMax - ValueMin) / NumSteps;
-        }
+        ValueStepIncrement = SliderType == MBSliderType.Continuous ? Convert.ToDecimal(Math.Pow(10, -DecimalPlaces)) : (ValueMax - ValueMin) / NumSteps;
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-slider--discrete", () => SliderType != MBSliderType.Continuous)
             .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
             .AddIf("mdc-slider--disabled", () => AppliedDisabled);
@@ -118,6 +115,8 @@ public partial class MBSlider : InputComponent<decimal>
     private bool _disposed = false;
     protected override void Dispose(bool disposing)
     {
+        base.Dispose(disposing);
+
         if (_disposed)
         {
             return;
@@ -129,8 +128,6 @@ public partial class MBSlider : InputComponent<decimal>
         }
 
         _disposed = true;
-
-        base.Dispose(disposing);
     }
 
 
@@ -147,20 +144,20 @@ public partial class MBSlider : InputComponent<decimal>
     /// <inheritdoc/>
     private protected override Task SetComponentValueAsync()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", MainReference, Value);
     }
 
 
     /// <inheritdoc/>
     private protected override Task OnDisabledSetAsync()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", MainReference, AppliedDisabled);
     }
 
 
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", MainReference, ThumbReference, ThumbOffset, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
     }
 }

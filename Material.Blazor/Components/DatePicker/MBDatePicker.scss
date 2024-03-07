@@ -27,13 +27,13 @@ $dp-day-pad-bottom-margin: 8px;
 $dp-panel-width: 7 * ($dp-button-size + 2 * $dp-button-margin) + 2 * $dp-day-pad-horizontal-margin;
 
 $dp-year-pad-padding-top: 4px;
-$dp-year-pad-padding-right: 0;
+$dp-year-pad-padding-end: 0px;
 $dp-year-pad-padding-bottom: 8px;
-$dp-year-pad-padding-left: 12px;
+$dp-year-pad-padding-start: 12px;
 $dp-year-pad-clear-space-right: 20px;
 
 $dp-day-button-width: $dp-button-size;
-$dp-year-button-width: math.div(($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right), 4) - 2 * $dp-button-margin;
+$dp-year-button-width: math.div(($dp-panel-width - $dp-year-pad-padding-start - $dp-year-pad-clear-space-right), 4) - 2 * $dp-button-margin;
 
 $dp-blank-filler-height: 7 * $dp-day-button-width;
 
@@ -65,6 +65,7 @@ $dp-blank-filler-height: 7 * $dp-day-button-width;
 
 $dp-menu-height: 52px;
 $dp-menu-padding: 16px 8px 12px 24px;
+$dp-menu-padding-rtl: 16px 24px 12px 8px;
 $dp-menu-icon-button-margin: 4px;
 $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-size + $dp-button-margin) + (2 * $dp-day-pad-bottom-margin) + $dp-menu-height;
 
@@ -72,6 +73,7 @@ $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-si
 .mb-dp-menu {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
     padding: $dp-menu-padding;
@@ -81,12 +83,21 @@ $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-si
     width: $dp-panel-width;
     min-width: $dp-panel-width;
     overflow: visible !important;
+
+    .mdc-touch-target-wrapper {
+        display: inline-flex;
+    }
+}
+
+[dir="rtl"] .mb-dp-menu {
+    padding: $dp-menu-padding-rtl;
 }
 
 
 .mb-dp-menu__left {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     justify-content: flex-start;
 }
 
@@ -94,6 +105,7 @@ $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-si
 .mb-dp-menu__right {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     justify-content: flex-end;
 }
 
@@ -106,13 +118,16 @@ $dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-si
 
 
 .mb-dp-menu__icon-button.spaced {
-    margin-left: $dp-menu-icon-button-margin;
+    margin: 0 0 0 $dp-menu-icon-button-margin;
 }
 
+[dir="rtl"] .mb-dp-menu__icon-button.spaced {
+    margin: 0 $dp-menu-icon-button-margin 0 0;
+}
 
 /*
     Day pad
-*/
+ */
 
 $dp-day-pad-weekdays-margin-bottom: 8px;
 $dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
@@ -171,10 +186,10 @@ $dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
 .mb-dp-day-pad__button_earlier_month {
     visibility: hidden;
 }
+
 .mb-dp-day-pad__button_later_month {
     visibility: hidden;
 }
-
 
 /*
     Year pad
@@ -185,11 +200,16 @@ $dp-year-pad-rows: 7;
 .mb-dp-year-pad {
     display: flex;
     flex-flow: row wrap;
-    padding: $dp-year-pad-padding-top $dp-year-pad-padding-right $dp-year-pad-padding-bottom $dp-year-pad-padding-left;
+    padding: $dp-year-pad-padding-top $dp-year-pad-padding-end $dp-year-pad-padding-bottom $dp-year-pad-padding-start;
     user-select: none;
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: $dp-year-pad-rows * ($dp-button-size + 2 * $dp-button-margin);
+}
+
+[dir="rtl"] .mb-dp-year-pad {
+    padding-right: $dp-year-pad-padding-start;
+    padding-left: $dp-year-pad-padding-end;
 }
 
 .mb-dp-year-pad__button {
@@ -206,12 +226,9 @@ $dp-year-pad-rows: 7;
         border-radius: $dp-button-border-radius;
     }
 }
-
-
 /************************************************
     Applied to MBDatePicker.razor
 ************************************************/
-
 /*$dp-menu-day-menu-height: $dp-menu-height + 7 * ($dp-button-size + 2 * $dp-button-margin) + $dp-button-margin + $dp-day-pad-bottom-margin;
 $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-size + 2 * $dp-button-margin) + $dp-year-pad-padding-top + $dp-year-pad-padding-bottom;*/
 

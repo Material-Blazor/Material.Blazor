@@ -312,6 +312,41 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
         await JsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
     }
+
+
+    /// <summary>
+    /// Wraps calls to <see cref="BatchingJSRuntime.InvokeAsync{Task}"/> adding reference to the batching wrapper (if found). Only
+    /// use for components.
+    /// </summary>
+    /// <param name="identifier"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    private protected async Task<T> InvokeJsAsync<T>(string identifier, params object[] args)
+    {
+        return await JsRuntime.InvokeAsync<T>(identifier, args).ConfigureAwait(false);
+    }
+
+
+    /// <summary>
+    /// Returns true if the HTML document is in RTL mode.
+    /// </summary>
+    /// <returns></returns>
+    private protected async Task<bool> IsHtmlDocumentRTL()
+    {
+        return await InvokeJsAsync<bool>("MaterialBlazor.RTL.isDocumentRTL");
+    }
+    
+    
+    /// <summary>
+    /// Returns true if the supplied element reference or any of its parents (up to and including the document) is in RTL mode.
+    /// If the element reference is null, the method returns true if the HTML document is in RTL mode.
+    /// </summary>
+    /// <param name="elementReference"></param>
+    /// <returns></returns>
+    private protected async Task<bool> IsElementRTL(ElementReference elementReference)
+    {
+        return elementReference.Context is null ? await IsHtmlDocumentRTL() : await InvokeJsAsync<bool>("MaterialBlazor.RTL.isElementRTL", elementReference);
+    }
     #endregion
 
     #region OnAfterRender

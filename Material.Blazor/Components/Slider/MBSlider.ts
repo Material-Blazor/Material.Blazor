@@ -1,33 +1,40 @@
 ﻿import { MDCSlider } from '@material/slider';
 import { debounce, throttle } from '../../Scripts/lodashparts';
+import { isElementRTL } from '../../Scripts/rtl';
 
-export function init(elem, dotNetObject, eventType, delay, disabled) {
-    if (!elem) {
+export function init(mainElem, thumbElem, thumbOffset, dotNetObject, eventType, delay, disabled) {
+    if (!mainElem || !thumbElem) {
         return;
     }
-    elem._slider = MDCSlider.attachTo(elem);
-    elem._eventType = eventType;
+
+    thumbElem.style = (isElementRTL(mainElem) ? "right: " : "left: ") + thumbOffset;
+
+    mainElem._slider = MDCSlider.attachTo(mainElem);
+    mainElem._eventType = eventType;
 
     if (eventType == 0) {
         const thumbUpCallback = () => {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+            dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
         };
-        elem._slider.listen('MDCSlider:change', thumbUpCallback);
+
+        mainElem._slider.listen('MDCSlider:change', thumbUpCallback);
     }
     else if (eventType == 1) {
         const debounceNotify = debounce(function () {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+            dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
         }, delay, {});
-        elem._slider.listen('MDCSlider:input', debounceNotify);
+
+        mainElem._slider.listen('MDCSlider:input', debounceNotify);
     }
     else {
         const throttleNotify = throttle(function () {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+            dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
         }, delay, {});
-        elem._slider.listen('MDCSlider:input', throttleNotify);
+
+        mainElem._slider.listen('MDCSlider:input', throttleNotify);
     }
 
-    elem._slider.setDisabled(disabled);
+    mainElem._slider.setDisabled(disabled);
 }
 
 export function setValue(elem, value) {

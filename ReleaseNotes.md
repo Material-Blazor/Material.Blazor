@@ -4,9 +4,35 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.2.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.0)
+
+Released 2024-03-07
+
+**Updates**
+- MD2/MD3: Dependabot updates.
+- MD2: Repaired DemonstrationPage.razor.cs; adding missing '!'; removing extraneous duplicate source page.
+- Repaired Material Symbols handling through cascading defaults.
+- Repaired autocomplete components to escape input for correct handling with Regex.
+
+**New components**
+
+**New features**
+- Enhancements to enable Right to Left compliance. We believe that all components are now compliant.
+- Added properties to MBCascadingDefaults for `CultureInfo` and function delegates for `MBPaginator` to allow for consumer formatting of the number of items and the page position in whatever language the consumer wishes. If delegates are not supplied, default delegates in English are used.
+- Enhancements to allow component labels and single select item lists to be dynamically updated post-render, for instance when such data require a change of language/locale post-render (note to @stefanloerwald).
+
+**Breaking Changes**
+
+**Deprecated Components**
+- Icon colour for Material Symbols icons wil be removed in the next major release. This is because color should be handled via CSS.
+
+**Known issues**
+
+<br />
+
 #### [5.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4)
 
-Released 2024-03-??
+Released 2024-03-03
 
 **Updates**
 - MD2/MD3: Dependabot updates
@@ -53,7 +79,7 @@ Released 2024-02-21
 Released 2024-02-13
 
 **Updates**
-- MD2/MD3: .Net 8.0.3 updates
+- MD2/MD3: .Net 8.0.2 updates
 - MD2/MD3: Dependabot updates
 
 **New components**
@@ -73,7 +99,7 @@ Released 2024-02-13
 Released 2024-01-10
 
 **Updates**
-- MD2/MD3: .Net 8.0.2 updates
+- MD2/MD3: .Net 8.0.1 updates
 - MD2/MD3: Dependabot updates
 
 **New components**
@@ -99,7 +125,6 @@ Released 2024-01-10
 Released 2023-12-01
 
 **Updates**
-- MD2/MD3: .Net 8.0.1 updates
 - MD2/MD3: Dependabot updates
 - Repaired MD2 theme selection (Replaced hard coded JS with TS)
 

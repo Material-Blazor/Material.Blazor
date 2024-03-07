@@ -13,8 +13,8 @@
                 {
                     <p style="overflow: auto;">
                         <MBDataTable Items="@Items"
-                                 Context="item"
-                                 class="dr-table">
+                                     Context="item"
+                                     class="dr-table">
                             <TableHeader>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Reference</th>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Link Source</th>
@@ -39,7 +39,7 @@
                 {
                     <p>
                         <MBRadioButtonGroup @bind-Value="@CascadingDefaults.ThemeDensity"
-                                        Items="@Densities" />
+                                            Items="@Densities" />
                     </p>
                 }
 
@@ -64,7 +64,3 @@
         </CascadingValue>
     </div>
 </div>
-
-
-@code {
-}

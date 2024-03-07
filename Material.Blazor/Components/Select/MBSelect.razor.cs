@@ -16,6 +16,7 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
     /// The select's label.
     /// </summary>
     [Parameter] public string Label { get; set; }
+    private string _cachedLabel;
 
 
     /// <summary>
@@ -167,6 +168,8 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
         ObjectReference = DotNetObjectReference.Create(this);
+
+        _cachedLabel = Label;
     }
 
 
@@ -184,6 +187,12 @@ public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElem
             {
                 EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
             }
+        }
+
+        if (_cachedLabel != Label)
+        {
+            _cachedLabel = Label;
+            AllowNextRender(true);
         }
 
         KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };

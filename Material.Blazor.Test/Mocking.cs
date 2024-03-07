@@ -1,8 +1,9 @@
 using Bunit;
-using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
+
 using NSubstitute;
 using System.Globalization;
 using Xunit;
@@ -14,6 +15,11 @@ public class Mocking
     private TestContext ctx;
     private void InjectMockedServices()
     {
+        _ = new BunitJSInterop
+        {
+            Mode = JSRuntimeMode.Loose
+        };
+
         var cultureInfo = new CultureInfo("en-US");
 
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -27,8 +33,11 @@ public class Mocking
             .AddSingleton(Substitute.For<IMBSnackbarService>())
             .AddSingleton(Substitute.For<ILogger<ComponentFoundation>>())
             .AddSingleton(Substitute.For<IMBIcon>())
-            .AddSingleton(Substitute.For<IMBIconFoundry>());
+            .AddSingleton(Substitute.For<IMBIconFoundry>())
+            .AddSingleton(Substitute.For<IJSRuntime>());
     }
+
+
     [Fact]
     public void TryRenderMBAnchor()
     {
@@ -286,6 +295,7 @@ public class Mocking
     {
         InjectMockedServices();
         var cut = ctx.RenderComponent<MBDatePicker>();
+
         cut.MarkupMatches(@"
 <div class=""mdc-select   mdc-select--outlined mdc-select--no-label  "" >
   <div class=""mdc-select__anchor"" role=""button"" aria-haspopup:ignore aria-expanded=""false"" aria-labelledby:ignore>
@@ -303,18 +313,17 @@ public class Mocking
       </svg>
     </span>
   </div>
-  <div id:ignore class=""mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust  mb-dp-menu__day-menu"" >
+  <div id:ignore="""" class=""mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust mb-dp-menu__year-menu"">
     <div class=""mdc-typography--body2 mb-dp-container"">
       <ul class=""mdc-deprecated-list mb-dp-list"">
         <li class=""mdc-deprecated-list-item mdc-deprecated-list-item--selected mb-dp-list-item"" data-value=""Monday, January 1, 0001"" aria-selected=""true"" role=""option"">
           <span class=""mdc-deprecated-list-item__ripple""></span>
-          <span class=""mdc-deprecated-list-item__text mb-dp-list-item__text"" >Monday, January 1, 0001</span>
+          <span class=""mdc-deprecated-list-item__text mb-dp-list-item__text"">Monday, January 1, 0001</span>
         </li>
       </ul>
       <div class=""mb-dp-blank-filler""></div>
     </div>
-  </div>
-</div>
+  </div></div>
         ");
     }
 
@@ -561,7 +570,7 @@ public class Mocking
       <div class=""mdc-slider__track--active_fill"" style=""transform: scaleX(0)""></div>
     </div>
   </div>
-  <div class=""mdc-slider__thumb"" style=""left: calc(0% - 24px)"">
+  <div class=""mdc-slider__thumb"" style=""visibility: hidden;"">
     <div class=""mdc-slider__thumb-knob""></div>
   </div>
 </div>

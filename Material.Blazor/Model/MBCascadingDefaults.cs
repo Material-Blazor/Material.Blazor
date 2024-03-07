@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Material.Blazor;
@@ -83,7 +84,7 @@ public class MBCascadingDefaults
     /// The foundry name to apply within a Material.Blazor component.
     /// </summary>
     /// <param name="iconFoundryName">The foundry name parameter passed to the component</param>
-    /// <returns>The <see cref="IconFoundryName"/> to apply.</returns>
+    /// <returns>The <see cref="MBIconFoundryName"/> to apply.</returns>
     internal MBIconFoundryName AppliedIconFoundryName(MBIconFoundryName? iconFoundryName = null) => iconFoundryName ?? IconFoundryName;
 
     #endregion
@@ -100,41 +101,117 @@ public class MBCascadingDefaults
     /// The Material Icons theme to apply within a Material.Blazor component.
     /// </summary>
     /// <param name="iconMITheme">The theme parameter passed to the component</param>
-    /// <returns>The <see cref="IconMITheme"/> to apply.</returns>
+    /// <returns>The <see cref="MBIconMITheme"/> to apply.</returns>
     internal MBIconMITheme AppliedIconMITheme(MBIconMITheme? iconMITheme = null) => iconMITheme ?? IconMITheme;
 
     #endregion
 
     #region MBIconMS
 
-    private string _iconMSColor = "black";
+    private string _iconMSColor = "";
+    /// <summary>
+    /// The default icon color - DEPRECATED.
+    /// </summary>
+    [Obsolete("Use CSS styling instead")]
     public string IconMSColor { get => _iconMSColor; set => SetParameter(ref _iconMSColor, value); }
+
+    /// <summary>
+    /// The icon color to apply within a Material.Blazor component, defaulting to a blank string indicating that no color is to be set - DEPRECATED.
+    /// </summary>
+    /// <param name="iconMSColor">The component's icon color</param>
+    /// <returns>The color to apply.</returns>
+    [Obsolete("Use CSS styling instead")]
     internal string AppliedIconMSColor(string iconMSColor = null) => iconMSColor ?? IconMSColor;
 
+
+
     private bool _iconMSFill = true;
+    /// <summary>
+    /// The default fill setting, initialized to <see cref="true"/> if not explicitly set.
+    /// </summary>
     public bool IconMSFill { get => _iconMSFill; set => SetParameter(ref _iconMSFill, value); }
+
+    /// <summary>
+    /// The Material Symbols fill value to apply within a Material.Blazor component.
+    /// </summary>
+    /// <param name="iconMSFill">The fill value parameter passed to the component</param>
+    /// <returns>The fill value to apply.</returns>
     internal bool AppliedIconMSFill(bool? iconMSFill = null) => iconMSFill ?? IconMSFill;
 
+
+
     private MBIconMSGradient _iconMSGradient = MBIconMSGradient.NormalEmphasis;
+    /// <summary>
+    /// The default gradient setting, initialized to <see cref="MBIconMSGradient.NormalEmphasis"/> if not explicitly set.
+    /// </summary>
     public MBIconMSGradient IconMSGradient { get => _iconMSGradient; set => SetParameter(ref _iconMSGradient, value); }
+
+    /// <summary>
+    /// The Material Symbols gradient to apply within a Material.Blazor component.
+    /// </summary>
+    /// <param name="iconMSGradient">The gradient parameter passed to the component</param>
+    /// <returns>The <see cref="MBIconMSGradient"/> to apply.</returns>
     internal MBIconMSGradient AppliedIconMSGradient(MBIconMSGradient? iconMSGradient = null) => iconMSGradient ?? IconMSGradient;
 
-    private string _iconMSName = "Favorite";
+
+
+    private string _iconMSName = "priority_high";
+    /// <summary>
+    /// The default gradient setting, initialized to "priority_high" if not explicitly set, thus showing a large exclamation mark as a placeholder icon.
+    /// </summary>
     public string IconMSName { get => _iconMSName; set => SetParameter(ref _iconMSName, value); }
+
+    /// <summary>
+    /// The icon name to apply within a Material.Blazor component.
+    /// </summary>
+    /// <param name="iconMSName">The icon name parameter passed to the component</param>
+    /// <returns>The icon name to apply.</returns>
     internal string AppliedIconMSName(string iconMSName = null) => iconMSName ?? IconMSName;
 
+
+
     private MBIconMSStyle _iconMSStyle = MBIconMSStyle.Outlined;
+    /// <summary>
+    /// The default style setting, initialized to <see cref="MBIconMSStyle.Outlined"/> if not explicitly set.
+    /// </summary>
     public MBIconMSStyle IconMSStyle { get => _iconMSStyle; set => SetParameter(ref _iconMSStyle, value); }
+
+    /// <summary>
+    /// The Material Symbols style to apply within a Material.Blazor component.
+    /// </summary>
+    /// <param name="iconMSStyle">The style parameter passed to the component</param>
+    /// <returns>The <see cref="MBIconMSStyle"/> to apply.</returns>
     internal MBIconMSStyle AppliedIconMSStyle(MBIconMSStyle? iconMSStyle = null) => iconMSStyle ?? IconMSStyle;
 
+
+
     private MBIconMSSize _iconMSSize = MBIconMSSize.Size24;
+    /// <summary>
+    /// The default size setting, initialized to <see cref="MBIconMSSize.Size24"/> if not explicitly set.
+    /// </summary>
     public MBIconMSSize IconMSSize { get => _iconMSSize; set => SetParameter(ref _iconMSSize, value); }
+
+    /// <summary>
+    /// The Material Symbols size to apply within a Material.Blazor component.
+    /// </summary>
+    /// <param name="iconMSSize">The size parameter passed to the component</param>
+    /// <returns>The <see cref="MBIconMSSize"/> to apply.</returns>
     internal MBIconMSSize AppliedIconMSSize(MBIconMSSize? iconMSSize = null) => iconMSSize ?? IconMSSize;
 
-    private MBIconMSWeight _iconMSWeight = MBIconMSWeight.W400;
-    public MBIconMSWeight IconMSWeight { get => _iconMSWeight; set => SetParameter(ref _iconMSWeight, value); }
-    internal MBIconMSWeight AppliedIconMSWeight(MBIconMSWeight? iconMSWeight = null) => iconMSWeight ?? IconMSWeight;
 
+
+    private MBIconMSWeight _iconMSWeight = MBIconMSWeight.W400;
+    /// <summary>
+    /// The default weight setting, initialized to <see cref="MBIconMSWeight.W400"/> if not explicitly set.
+    /// </summary>
+    public MBIconMSWeight IconMSWeight { get => _iconMSWeight; set => SetParameter(ref _iconMSWeight, value); }
+
+    /// <summary>
+    /// The Material Symbols weight to apply within a Material.Blazor component.
+    /// </summary>
+    /// <param name="iconMSWeight">The weight parameter passed to the component</param>
+    /// <returns>The <see cref="MBIconMSWeight"/> to apply.</returns>
+    internal MBIconMSWeight AppliedIconMSWeight(MBIconMSWeight? iconMSWeight = null) => iconMSWeight ?? IconMSWeight;
     #endregion
 
     #region MBIconFA
@@ -149,7 +226,7 @@ public class MBCascadingDefaults
     /// The Font Awesome style to apply within a Material.Blazor component.
     /// </summary>
     /// <param name="iconFAStyle">The style parameter passed to the component</param>
-    /// <returns>The <see cref="IconFAStyle"/> to apply.</returns>
+    /// <returns>The <see cref="MBIconFAStyle"/> to apply.</returns>
     internal MBIconFAStyle AppliedIconFAStyle(MBIconFAStyle? iconFAStyle = null) => iconFAStyle ?? IconFAStyle;
 
 
@@ -164,7 +241,7 @@ public class MBCascadingDefaults
     /// The Font Awesome relative size to apply within a Material.Blazor component.
     /// </summary>
     /// <param name="iconFARelativeSize">The relative size parameter passed to the component</param>
-    /// <returns>The <see cref="IconFARelativeSize"/> to apply.</returns>
+    /// <returns>The <see cref="MBIconFARelativeSize"/> to apply.</returns>
     internal MBIconFARelativeSize AppliedIconFARelativeSize(MBIconFARelativeSize? iconFARelativeSize = null) => iconFARelativeSize ?? IconFARelativeSize;
 
     #endregion
@@ -410,6 +487,36 @@ public class MBCascadingDefaults
     /// <param name="criteria">The criteria style parameter passed to the <see cref="MBDatePicker"/></param>
     /// <returns>The <see cref="MBDateSelectionCriteria"/> to apply.</returns>
     internal DateTime AppliedDatePickerDefaultMaxDate(DateTime maxDate) => maxDate == default || maxDate >= MBDatePicker.MaxAllowableDate ? DatePickerDefaultMaxDate : maxDate;
+
+
+
+    private Func<int, CultureInfo, string> _paginatorItemsPerPageFormatter = MBPaginator.DefaultItemsPerPageFormatter;
+    /// <summary>
+    /// The delegate used to format paginator items per page text.
+    /// </summary>
+    public Func<int, CultureInfo, string> PaginatorItemsPerPageFormatter { get => _paginatorItemsPerPageFormatter; set => SetParameter(ref _paginatorItemsPerPageFormatter, value); }
+
+    /// <summary>
+    /// The delegate to apply to format paginator items per page text.
+    /// </summary>
+    /// <param name="paginatorItemsPerPageFormatter"></param>
+    /// <returns>The formatted text.</returns>
+    internal Func<int, CultureInfo, string> AppliedPaginatorItemsPerPageFormatter(Func<int, CultureInfo, string> paginatorItemsPerPageFormatter) => paginatorItemsPerPageFormatter ?? PaginatorItemsPerPageFormatter;
+
+
+
+    private Func<int, int, int, CultureInfo, string> _paginatorPositionFormatter = MBPaginator.DefaultPositionFormatter;
+    /// <summary>
+    /// The delegate used to format paginator position text.
+    /// </summary>
+    public Func<int, int, int, CultureInfo, string> PaginatorPositionFormatter { get => _paginatorPositionFormatter; set => SetParameter(ref _paginatorPositionFormatter, value); }
+
+    /// <summary>
+    /// The delegate to apply to format paginator position text.
+    /// </summary>
+    /// <param name="paginatorPositionFormatter"></param>
+    /// <returns>The formatted text.</returns>
+    internal Func<int, int, int, CultureInfo, string> AppliedPaginatorPositionFormatter(Func<int, int, int, CultureInfo, string> paginatorPositionFormatter) => paginatorPositionFormatter ?? PaginatorPositionFormatter;
 
 
 
@@ -667,6 +774,31 @@ public class MBCascadingDefaults
     /// with the <c>@key</c> attribute.
     /// </summary>
     public int Version { get; private set; } = 0;
+
+    #endregion
+
+    #region CULTURE
+
+    /*************************************************************************************************************
+     * 
+     * 
+     *      CULTURE
+     * 
+     * 
+     ************************************************************************************************************/
+
+    private CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
+    /// <summary>
+    /// The <see cref="CultureInfo"/> to be used by components when formatting values such as numerics or dates. Defaults to <see cref="CultureInfo.CurrentCulture"/>.
+    /// </summary>
+    public CultureInfo CultureInfo { get => _cultureInfo; set => SetParameter(ref _cultureInfo, value); }
+
+    /// <summary>
+    /// The culture info to apply to components requiring culture for formatting, such as <see cref="MBDatePicker"/>, <see cref="MBNumericDecimalField"/> and other numeric fields.
+    /// </summary>
+    /// <param name="style">The style parameter passed to the <see cref="MBCard"/></param>
+    /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
+    internal CultureInfo AppliedCultureInfo(CultureInfo cultureInfo = null) => cultureInfo ?? CultureInfo;
 
     #endregion
 

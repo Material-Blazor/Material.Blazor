@@ -8,13 +8,17 @@
         margin-bottom: 1rem;
     }
 
-    .my-float-right {
+    .my-float-end {
         float: right;
     }
 
-        .my-float-right .mb-paginator {
-            justify-content: flex-end;
-        }
+    [dir="rtl"] .my-float-end {
+        float: left;
+    }
+
+        .my-float-end .mb-paginator {
+        justify-content: flex-end;
+    }
 
     .my-full-width {
         min-width: 100%;
@@ -60,7 +64,7 @@
                                          class="my-container"
                                          Data=@Colors
                                          ItemsPerPageSelection="@ColorsItemsPerPageSelection"
-                                         PaginatorClass="my-float-right"
+                                         PaginatorClass="my-float-end"
                                          @ref="@ColorsPagedDataList">
 
                             <ListTemplate Context="listOfPeople">
@@ -104,7 +108,7 @@
                                          Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
                                          ListTemplateClass="my-container"
-                                         PaginatorClass="my-float-right"
+                                         PaginatorClass="my-float-end"
                                          @ref="TwinListData">
 
                             <ListTemplate Context="listOfPeople">
@@ -168,7 +172,7 @@
                                          class="my-container"
                                          Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         PaginatorClass="my-float-right"
+                                         PaginatorClass="my-float-end"
                                          @ref="DataTableList">
 
                             <ListTemplate Context="listOfPeople">
@@ -215,7 +219,7 @@
                                          class="my-container"
                                          Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         PaginatorClass="my-float-right">
+                                         PaginatorClass="my-float-end">
 
                             <ListTemplate Context="listOfPeople">
                                 <table border=1 cellpadding=4>
@@ -262,7 +266,7 @@
                                          class="my-container"
                                          Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         PaginatorClass="my-float-right">
+                                         PaginatorClass="my-float-end">
 
                             <ItemTemplate Context="person">
                                 <li @key=@person>
@@ -293,7 +297,7 @@
                                          class="my-container"
                                          Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         PaginatorClass="my-float-right">
+                                         PaginatorClass="my-float-end">
                         </MBPagedDataList>
                     </p>
                 </Primary>

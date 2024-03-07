@@ -4,13 +4,17 @@
 
 
 <style>
-    .my-float-right {
+    .my-float {
         float: right;
     }
 
-        .my-float-right .mb-paginator {
-            justify-content: flex-end;
-        }
+    [dir="rtl"] .my-float {
+        float: left;
+    }
+
+        .my-float .mb-paginator {
+        justify-content: flex-end;
+    }
 </style>
 
 <DemonstrationPage ComponentAndPageName="Paginator"
@@ -37,15 +41,15 @@
                     </h3>
 
                     <p>
-                        <MBPaginator @bind-ItemsPerPage="@PaginatorItemsPerPage"
-                                     @bind-PageNumber="@PaginatorPageNumber"
-                                     class="my-float-right"
-                                     ItemCount="@PaginatorItems.Length"
-                                     ItemsPerPageSelection="@PaginatorItemsPerPageSelection" />
+                        Selected items: <span style="color: var(--mb-color-blue-800);">@string.Join(" / ", PaginatorSelection)</span>
                     </p>
 
                     <p>
-                        Selected items: <span style="color: var(--mb-color-blue-800);">@string.Join(" / ", PaginatorSelection)</span>
+                        <MBPaginator @bind-ItemsPerPage="@PaginatorItemsPerPage"
+                                     @bind-PageNumber="@PaginatorPageNumber"
+                                     class="my-float"
+                                     ItemCount="@PaginatorItems.Length"
+                                     ItemsPerPageSelection="@PaginatorItemsPerPageSelection" />
                     </p>
                 </Primary>
             </MBCard>

@@ -17,35 +17,48 @@ internal class Icon_MS : IMBIcon
         {
             return;
         }
-        var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "div");
+        builder.OpenElement(0, "i");
+        builder.AddAttribute(1, "class", string.Join(" ", @class, IconDerivedClass));
+        if (style != null)
         {
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddMultipleAttributes(rendSeq++, attributes);
-
-            builder.OpenElement(rendSeq++, "span");
-            {
-                builder.AddAttribute(rendSeq++, "class", iconDerivedClass);
-                builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
-                builder.AddContent(rendSeq++, IconName.ToLower());
-            }
-            builder.CloseElement();
+            builder.AddAttribute(2, "style", string.Join(" ", style, IconDerivedStyle));
         }
+        if (attributes != null)
+        {
+            builder.AddMultipleAttributes(3, attributes);
+        }
+        builder.AddContent(4, IconName.ToLower());
         builder.CloseElement();
+        //var rendSeq = 0;
+
+        //builder.OpenElement(rendSeq++, "div");
+        //{
+        //    builder.AddAttribute(rendSeq++, "class", @class);
+        //    builder.AddAttribute(rendSeq++, "style", style);
+        //    builder.AddMultipleAttributes(rendSeq++, attributes);
+
+        //    builder.OpenElement(rendSeq++, "span");
+        //    {
+        //        builder.AddAttribute(rendSeq++, "class", iconDerivedClass);
+        //        builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
+        //        builder.AddContent(rendSeq++, IconName.ToLower());
+        //    }
+        //    builder.CloseElement();
+        //}
+        //builder.CloseElement();
     };
 
 
-    private string msColor { get; }
-    private bool msFill { get; }
-    private MBIconMSGradient? msGradient { get; }
-    private MBIconMSSize? msSize { get; }
-    private MBIconMSStyle msStyle { get; }
-    private MBIconMSWeight? msWeight { get; }
+    private string MsColor { get; }
+    private bool MsFill { get; }
+    private MBIconMSGradient? MsGradient { get; }
+    private MBIconMSSize? MsSize { get; }
+    private MBIconMSStyle MsStyle { get; }
+    private MBIconMSWeight? MsWeight { get; }
 
-    private string iconDerivedClass { get; set; }
-    private string iconDerivedStyle { get; set; }
+    private string IconDerivedClass { get; set; }
+    private string IconDerivedStyle { get; set; }
 
 
 
@@ -53,17 +66,17 @@ internal class Icon_MS : IMBIcon
     public Icon_MS(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryMS? foundry = null)
     {
         IconName = iconName;
-        msColor = cascadingDefaults.AppliedIconMSColor(foundry?.Color);
-        msFill = cascadingDefaults.AppliedIconMSFill(foundry.Fill);
-        msGradient = cascadingDefaults.AppliedIconMSGradient(foundry?.Gradient);
-        msSize = cascadingDefaults.AppliedIconMSSize(foundry?.Size);
-        msStyle = cascadingDefaults.AppliedIconMSStyle(foundry?.Style);
-        msWeight = cascadingDefaults.AppliedIconMSWeight(foundry?.Weight);
+        MsColor = cascadingDefaults.AppliedIconMSColor(foundry?.Color);
+        MsFill = cascadingDefaults.AppliedIconMSFill(foundry?.Fill);
+        MsGradient = cascadingDefaults.AppliedIconMSGradient(foundry?.Gradient);
+        MsSize = cascadingDefaults.AppliedIconMSSize(foundry?.Size);
+        MsStyle = cascadingDefaults.AppliedIconMSStyle(foundry?.Style);
+        MsWeight = cascadingDefaults.AppliedIconMSWeight(foundry?.Weight);
 
         // Set the icon class
 
-        iconDerivedClass = "";
-        iconDerivedClass = msStyle switch
+        IconDerivedClass = "";
+        IconDerivedClass = MsStyle switch
         {
             MBIconMSStyle.Outlined => "material-symbols-outlined ",
             MBIconMSStyle.Rounded => "material-symbols-rounded ",
@@ -73,19 +86,19 @@ internal class Icon_MS : IMBIcon
 
         // Set the icon style
 
-        iconDerivedStyle = "";
+        IconDerivedStyle = "";
         var fontStyle = "";
         var fontVariation = " font-variation-settings:";
 
         // Icon color
-        fontStyle += " color: " + msColor + ";";
+        fontStyle += string.IsNullOrWhiteSpace(MsColor) ? "" : " color: " + MsColor + ";";
 
         // Icon fill
-        var fillValue = msFill ? "1" : "0";
+        var fillValue = MsFill ? "1" : "0";
         fontVariation += " 'FILL' " + fillValue + ",";
 
         // Icon gradient
-        _ = msGradient switch
+        _ = MsGradient switch
         {
             MBIconMSGradient.LowEmphasis => fontVariation += " 'GRAD' -25,",
             MBIconMSGradient.NormalEmphasis => fontVariation += " 'GRAD' 0,",
@@ -94,25 +107,21 @@ internal class Icon_MS : IMBIcon
         };
 
         // Icon  size
-        switch (msSize)
+        switch (MsSize)
         {
             case MBIconMSSize.Size20:
-                fontStyle += " font-size: 20px;";
                 fontVariation += " 'opsz' 20,";
                 break;
 
             case MBIconMSSize.Size24:
-                fontStyle += " font-size: 24px;";
                 fontVariation += " 'opsz' 24,";
                 break;
 
             case MBIconMSSize.Size40:
-                fontStyle += " font-size: 40px;";
                 fontVariation += " 'opsz' 40,";
                 break;
 
             case MBIconMSSize.Size48:
-                fontStyle += " font-size: 48px;";
                 fontVariation += " 'opsz' 48,";
                 break;
 
@@ -121,7 +130,7 @@ internal class Icon_MS : IMBIcon
         };
 
         // Icon weight
-        _ = msWeight switch
+        _ = MsWeight switch
         {
             MBIconMSWeight.W100 => fontVariation += " 'wght' 100,",
             MBIconMSWeight.W200 => fontVariation += " 'wght' 200,",
@@ -145,7 +154,7 @@ internal class Icon_MS : IMBIcon
             fontVariation = null;
         }
 
-        iconDerivedStyle = fontStyle + fontVariation;
+        IconDerivedStyle = fontStyle + fontVariation;
     }
 
 #nullable restore annotations

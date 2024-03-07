@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Material.Blazor.Internal;
@@ -80,9 +81,9 @@ internal static class Utilities
     /// <param name="dateTime">The <see cref="DateTime"/> to format.</param>
     /// <param name="format">The format string.</param>
     /// <returns></returns>
-    public static string DateToString(DateTime dateTime, string format)
+    public static string DateToString(DateTime dateTime, string format, CultureInfo cultureInfo)
     {
-        return dateTime.ToString(format);
+        return dateTime.ToString(format, cultureInfo);
     }
 #nullable restore annotations
 

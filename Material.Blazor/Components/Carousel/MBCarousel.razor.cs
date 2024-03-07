@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,13 +34,17 @@ public partial class MBCarousel<TItem> : InputComponent<int>
     [Parameter] public int RolloverInterval { get; set; } = 3000;
 
 
+    private ElementReference ElementReference { get; set; }
     private bool Play { get; set; }
     private string PlayIcon => Play ? "stop" : "play_arrow";
     private CancellationTokenSource TokenSource { get; set; } = new();
-    private InternalCarouselPanel<TItem> ICP { get; set; }
+    internal InternalCarouselPanel<TItem> ICP { get; set; }
     private int ItemIndex { get; set; } = 0;
+    private bool IsRTL { get; set; } = false;
     private int RadioItemIndex { get; set; }
     private List<MBSelectElement<int>> RadioElements { get; set; }
+    private string PreviousIcon => IsRTL ? "navigate_next" : "navigate_before";
+    private string NextIcon => IsRTL ? "navigate_before" : "navigate_next";
 
 
 
@@ -73,6 +78,8 @@ public partial class MBCarousel<TItem> : InputComponent<int>
         {
             RadioElements.Add(new() { SelectedValue = i, Label = $"Image {i}" });
         }
+
+        IsRTL = await IsElementRTL(ElementReference);
     }
 
 

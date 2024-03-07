@@ -6,7 +6,8 @@
 <div class="@ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     @attributes="@AttributesToSplat()">
+     @attributes="@AttributesToSplat()"
+     @ref="@ElementReference">
 
     <div class="@ContentClass @ListTemplateClass">
         @ListTemplate(
@@ -43,5 +44,7 @@
         {
             ListTemplate = (childContent) => @<ul>@childContent</ul>;
         }
+
+        IsRTL = await IsElementRTL(ElementReference);
     }
 }

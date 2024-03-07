@@ -50,6 +50,7 @@ public partial class MBTextArea : InputComponent<string>
     /// Field label.
     /// </summary>
     [Parameter] public string Label { get; set; } = "";
+    private string _cachedLabel;
 
 
     /// <summary>
@@ -125,6 +126,21 @@ public partial class MBTextArea : InputComponent<string>
             {
                 LabelSuffix = " *";
             }
+        }
+
+        _cachedLabel = Label;
+    }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync().ConfigureAwait(false);
+
+        if (_cachedLabel != Label)
+        {
+            _cachedLabel = Label;
+            AllowNextRender(true);
         }
     }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Material.Blazor;
@@ -19,8 +20,9 @@ public partial class MBDatePicker : InputComponent<DateTime>
     private string AdditionalStyle { get; set; } = "";
     private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
     private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
+    private CultureInfo AppliedCultureInfo => CascadingDefaults.AppliedCultureInfo(CultureInfo);
     private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-    private ElementReference ElementReference { get; set; }
+    internal ElementReference ElementReference { get; set; }
     private ElementReference MenuSurfaceElementReference { get; set; }
     private DotNetObjectReference<MBDatePicker> ObjectReference { get; set; }
     private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
@@ -42,6 +44,12 @@ public partial class MBDatePicker : InputComponent<DateTime>
     /// Specification for date format
     /// </summary>
     [Parameter] public string DateFormat { get; set; }
+
+
+    /// <summary>
+    /// The <see cref="CultureInfo"/> that determines the culture-specific format for dates according to the <see cref="DateFormat"/>.
+    /// </summary>
+    [Parameter] public CultureInfo? CultureInfo { get; set; }
 
 
 #nullable enable annotations
@@ -69,6 +77,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
     /// The label.
     /// </summary>
     [Parameter] public string Label { get; set; }
+    private string _cachedLabel;
 
 
     /// <summary>
@@ -205,6 +214,8 @@ public partial class MBDatePicker : InputComponent<DateTime>
         AllowAllRenders();
         
         ObjectReference = DotNetObjectReference.Create(this);
+
+        _cachedLabel = Label;
     }
 
     #endregion
@@ -248,6 +259,12 @@ public partial class MBDatePicker : InputComponent<DateTime>
                 EnqueueJSInteropAction(() => Badge.SetValueAndExited(BadgeValue, BadgeExited));
             }
         }
+
+        if (_cachedLabel != Label)
+        {
+            _cachedLabel = Label;
+            AllowNextRender(true);
+        }
     }
 
 
@@ -266,7 +283,7 @@ public partial class MBDatePicker : InputComponent<DateTime>
             await InvokeAsync(StateHasChanged).ConfigureAwait(false);
         }
 
-        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false);
+        await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat, AppliedCultureInfo)).ConfigureAwait(false);
     }
 
 

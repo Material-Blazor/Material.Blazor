@@ -5,10 +5,12 @@
 <div class="mdc-data-table__pagination @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     @attributes="@AttributesToSplat()">
+     @attributes="@AttributesToSplat()"
+     @ref="@ContainerReference">
+
     <div class="mdc-data-table__pagination-trailing">
         <div class="mdc-data-table__pagination-rows-per-page">
-            <div class="mdc-data-table__pagination-rows-per-page-label">
+            <div class="mdc-data-table__pagination-rows-per-page-label" dir="auto">
                 @ItemsText
             </div>
 
@@ -36,17 +38,17 @@
 
         <div class="mdc-data-table__pagination-navigation">
             @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
-            <div class="mdc-data-table__pagination-total">
+            <div class="mdc-data-table__pagination-total" dir="auto">
                 <span class="hidden" aria-hidden="true">@MaxPositionText</span>
                 <span>@PositionText</span>
             </div>
         </div>
 
         <div class="mdc-data-table__pagination-navigation">
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="first_page" @onclick="@OnFirstClick" Disabled="@PreviousDisabled" data-prev-page="true" />
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" data-prev-page="true" />
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" data-prev-page="true" />
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="last_page" @onclick="@OnLastClick" Disabled="@NextDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="@FirstItemIcon" @onclick="@OnFirstClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="@BackIcon" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="@ForwardIcon" @onclick="@OnNextClick" Disabled="@NextDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="@LastItemIcon" @onclick="@OnLastClick" Disabled="@NextDisabled" data-prev-page="true" />
         </div>
     </div>
 </div>
