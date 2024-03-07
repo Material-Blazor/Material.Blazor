@@ -155,7 +155,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     {
         await base.OnParametersSetAsync();
 
-        IsRTL = await ElementIsRTL(Parent.ElementReference);
+        IsRTL = await IsElementRTL(Parent.ElementReference);
 
         SetParameters();
     }

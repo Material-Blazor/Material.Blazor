@@ -79,7 +79,7 @@ public partial class MBCarousel<TItem> : InputComponent<int>
             RadioElements.Add(new() { SelectedValue = i, Label = $"Image {i}" });
         }
 
-        IsRTL = await ElementIsRTL(ElementReference);
+        IsRTL = await IsElementRTL(ElementReference);
     }
 
 

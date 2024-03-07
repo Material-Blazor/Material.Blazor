@@ -65,8 +65,9 @@ public partial class MBSlider : InputComponent<decimal>
     private MarkupString InputMarkup { get; set; }
     private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
     private decimal RangePercentDecimal { get; set; }
+    private string ThumbPosition => IsRTL ? "right" : "left";
+    private string ThumbOffset => $"calc({100 * RangePercentDecimal}% - 24px);";
     private int TabIndex { get; set; }
-    private string ThumbPostionStyle => $"calc({ThumbEndPercent}% - 24px);";
     private decimal ThumbEndPercent => 100 * RangePercentDecimal;
     private decimal ValueStepIncrement { get; set; }
     private bool IsRTL { get; set; }
@@ -75,6 +76,8 @@ public partial class MBSlider : InputComponent<decimal>
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnInitializedAsync()
     {
+        AllowAllRenders(true);
+
         await base.OnInitializedAsync();
 
         if (ValueMax <= ValueMin)
@@ -95,16 +98,9 @@ public partial class MBSlider : InputComponent<decimal>
         TabIndex = AppliedDisabled ? -1 : 0;
         RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
-        if (SliderType == MBSliderType.Continuous)
-        {
-            ValueStepIncrement = Convert.ToDecimal(Math.Pow(10, -DecimalPlaces));
-        }
-        else
-        {
-            ValueStepIncrement = (ValueMax - ValueMin) / NumSteps;
-        }
+        ValueStepIncrement = SliderType == MBSliderType.Continuous ? Convert.ToDecimal(Math.Pow(10, -DecimalPlaces)) : (ValueMax - ValueMin) / NumSteps;
 
-        ConditionalCssClasses
+        _ = ConditionalCssClasses
             .AddIf("mdc-slider--discrete", () => SliderType != MBSliderType.Continuous)
             .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
             .AddIf("mdc-slider--disabled", () => AppliedDisabled);
@@ -115,20 +111,18 @@ public partial class MBSlider : InputComponent<decimal>
         InputMarkup = new($"<input class=\"mdc-slider__input{disabledClassMarkup}\" type=\"range\" value=\"{Value.ToString(Format)}\" {disabledAttributeMarkup}step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
 
         ObjectReference = DotNetObjectReference.Create(this);
-    }
 
+        IsRTL = await IsHtmlDocumentRTL();
 
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        IsRTL = await ElementIsRTL(MainReference);
+        AllowAllRenders(false);
     }
 
 
     private bool _disposed = false;
     protected override void Dispose(bool disposing)
     {
+        base.Dispose(disposing);
+
         if (_disposed)
         {
             return;
@@ -140,8 +134,6 @@ public partial class MBSlider : InputComponent<decimal>
         }
 
         _disposed = true;
-
-        base.Dispose(disposing);
     }
 
 
@@ -172,6 +164,7 @@ public partial class MBSlider : InputComponent<decimal>
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", MainReference, ThumbReference, ThumbPostionStyle, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
+        return Task.CompletedTask;
+        //return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", MainReference, ThumbReference, ThumbOffset, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
     }
 }

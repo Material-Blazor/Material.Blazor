@@ -98,9 +98,9 @@ public abstract class InputComponent<T> : ComponentFoundation
 
     #region AllowAllRenders
 
-    private protected void AllowAllRenders()
+    private protected void AllowAllRenders(bool allow = true)
     {
-        AllowNextRenderAlways = true;
+        AllowNextRenderAlways = allow;
     }
 
     #endregion

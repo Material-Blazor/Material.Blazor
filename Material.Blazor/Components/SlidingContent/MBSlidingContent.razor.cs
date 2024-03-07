@@ -82,7 +82,7 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
             EnqueueJSInteropAction(() => SlideToItem(ItemIndex, direction));
         }
 
-        IsRTL = await ElementIsRTL(ElementReference);
+        IsRTL = await IsElementRTL(ElementReference);
     }
 
 

@@ -193,7 +193,7 @@ public partial class MBPaginator : ComponentFoundation
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
 
-        IsRTL = await ElementIsRTL(ContainerReference);
+        IsRTL = await IsElementRTL(ContainerReference);
 
         if (_cachedItemCount != ItemCount)
         {

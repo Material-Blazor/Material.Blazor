@@ -328,14 +328,25 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
 
 
     /// <summary>
+    /// Returns true if the HTML document is in RTL mode.
+    /// </summary>
+    /// <returns></returns>
+    private protected async Task<bool> IsHtmlDocumentRTL()
+    {
+        return await InvokeJsAsync<bool>("MaterialBlazor.RTL.isDocumentRTL");
+    }
+    
+    
+    /// <summary>
     /// Returns true if the supplied element reference or any of its parents (up to and including the document) is in RTL mode.
+    /// If the element reference is null, the method returns true if the HTML document is in RTL mode.
     /// </summary>
     /// <param name="elementReference"></param>
     /// <returns></returns>
-    private protected async Task<bool> ElementIsRTL(ElementReference elementReference)
+    private protected async Task<bool> IsElementRTL(ElementReference elementReference)
     {
-        return elementReference.Context is not null && await InvokeJsAsync<bool> ("MaterialBlazor.RTL.isRTL", elementReference);
-    }    
+        return elementReference.Context is null ? await IsHtmlDocumentRTL() : await InvokeJsAsync<bool>("MaterialBlazor.RTL.isElementRTL", elementReference);
+    }
     #endregion
 
     #region OnAfterRender

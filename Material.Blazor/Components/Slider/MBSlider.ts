@@ -1,14 +1,14 @@
 ﻿import { MDCSlider } from '@material/slider';
 import { debounce, throttle } from '../../Scripts/lodashparts';
-import { isRTL } from '../../Scripts/rtl';
+import { isElementRTL } from '../../Scripts/rtl';
 
-export function init(mainElem, thumbElem, thumbStyle, dotNetObject, eventType, delay, disabled) {
-    if (!mainElem || thumbElem) {
+export function init(mainElem, thumbElem, thumbOffset, dotNetObject, eventType, delay, disabled) {
+    if (!mainElem || !thumbElem) {
         return;
     }
 
-    const direction = isRTL(mainElem) ? "right: " : "left: ";
-    thumbElem.style = direction + thumbStyle;
+    const thumbPosition = isElementRTL(mainElem) ? "right: " : "left: ";
+    thumbElem.style = thumbPosition + thumbOffset;
 
     mainElem._slider = MDCSlider.attachTo(mainElem);
     mainElem._eventType = eventType;

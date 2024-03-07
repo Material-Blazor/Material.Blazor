@@ -1,4 +1,8 @@
-﻿export function isRTL(elem): boolean {
+﻿export function isDocumentRTL(): boolean {
+    return true; // document.documentElement.getAttribute("dir") === "rtl";
+}
+
+export function isElementRTL(elem): boolean {
     if (!elem) {
         return false;
     }
@@ -7,8 +11,8 @@
     let dir = null;
 
     for (; dirElem && dirElem !== document && !dir; dirElem = dirElem.parentNode) {
-        dir = dirElem.getAttribute('dir');
+        dir = dirElem.getAttribute("dir");
     }
 
-    return dir === 'rtl';
+    return dir === "rtl";
 }
