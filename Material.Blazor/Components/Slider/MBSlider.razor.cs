@@ -1,6 +1,8 @@
 ﻿using Material.Blazor.Internal;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Threading.Tasks;
 
@@ -65,19 +67,15 @@ public partial class MBSlider : InputComponent<decimal>
     private MarkupString InputMarkup { get; set; }
     private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
     private decimal RangePercentDecimal { get; set; }
-    private string ThumbPosition => IsRTL ? "right" : "left";
     private string ThumbOffset => $"calc({100 * RangePercentDecimal}% - 24px);";
     private int TabIndex { get; set; }
     private decimal ThumbEndPercent => 100 * RangePercentDecimal;
     private decimal ValueStepIncrement { get; set; }
-    private bool IsRTL { get; set; }
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
     protected override async Task OnInitializedAsync()
     {
-        AllowAllRenders(true);
-
         await base.OnInitializedAsync();
 
         if (ValueMax <= ValueMin)
@@ -111,10 +109,6 @@ public partial class MBSlider : InputComponent<decimal>
         InputMarkup = new($"<input class=\"mdc-slider__input{disabledClassMarkup}\" type=\"range\" value=\"{Value.ToString(Format)}\" {disabledAttributeMarkup}step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
 
         ObjectReference = DotNetObjectReference.Create(this);
-
-        IsRTL = await IsHtmlDocumentRTL();
-
-        AllowAllRenders(false);
     }
 
 
@@ -164,7 +158,6 @@ public partial class MBSlider : InputComponent<decimal>
     /// <inheritdoc/>
     internal override Task InstantiateMcwComponent()
     {
-        return Task.CompletedTask;
-        //return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", MainReference, ThumbReference, ThumbOffset, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
+        return InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", MainReference, ThumbReference, ThumbOffset, ObjectReference, EventType, ContinuousInputDelay, AppliedDisabled);
     }
 }

@@ -7,8 +7,7 @@ export function init(mainElem, thumbElem, thumbOffset, dotNetObject, eventType, 
         return;
     }
 
-    const thumbPosition = isElementRTL(mainElem) ? "right: " : "left: ";
-    thumbElem.style = thumbPosition + thumbOffset;
+    thumbElem.style = (isElementRTL(mainElem) ? "right: " : "left: ") + thumbOffset;
 
     mainElem._slider = MDCSlider.attachTo(mainElem);
     mainElem._eventType = eventType;

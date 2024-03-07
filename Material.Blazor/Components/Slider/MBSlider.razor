@@ -1,6 +1,6 @@
 ﻿@namespace Material.Blazor
 @inherits InputComponent<decimal>
-@IsRTL
+
 <div @ref="@MainReference"
      class="mdc-slider @ActiveConditionalClasses @(@class)"
      style="@style"
@@ -52,7 +52,7 @@
         </div>
     }
 
-    <div @ref="@ThumbReference" class="mdc-slider__thumb" style="@ThumbPosition: @ThumbOffset">
+    <div @ref="@ThumbReference" class="mdc-slider__thumb" style="visibility: hidden;">
         @*role="slider"
             tabindex="@TabIndex"
             aria-label="@AriaLabel"
