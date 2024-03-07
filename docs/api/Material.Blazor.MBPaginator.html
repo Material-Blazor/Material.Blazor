@@ -246,6 +246,38 @@ Class MBPaginator  <a class="header-action link-secondary" title="View source" h
 </h2>
 
 
+  <a id="Material_Blazor_MBPaginator_CultureInfo_" data-uid="Material.Blazor.MBPaginator.CultureInfo*"></a>
+
+  <h3 id="Material_Blazor_MBPaginator_CultureInfo" data-uid="Material.Blazor.MBPaginator.CultureInfo">
+  CultureInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Paginator/MBPaginator.razor.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public CultureInfo CultureInfo { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Material_Blazor_MBPaginator_ItemCount_" data-uid="Material.Blazor.MBPaginator.ItemCount*"></a>
 
   <h3 id="Material_Blazor_MBPaginator_ItemCount" data-uid="Material.Blazor.MBPaginator.ItemCount">
@@ -332,6 +364,38 @@ public EventCallback&lt;int&gt; ItemsPerPageChanged { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallback-1">EventCallback</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Material_Blazor_MBPaginator_ItemsPerPageFormatter_" data-uid="Material.Blazor.MBPaginator.ItemsPerPageFormatter*"></a>
+
+  <h3 id="Material_Blazor_MBPaginator_ItemsPerPageFormatter" data-uid="Material.Blazor.MBPaginator.ItemsPerPageFormatter">
+  ItemsPerPageFormatter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Paginator/MBPaginator.razor.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public Func&lt;int, CultureInfo, string&gt; ItemsPerPageFormatter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -438,6 +502,38 @@ public EventCallback&lt;int&gt; PageNumberChanged { get; set; }</code></pre>
 
 
 
+  <a id="Material_Blazor_MBPaginator_PositionFormatter_" data-uid="Material.Blazor.MBPaginator.PositionFormatter*"></a>
+
+  <h3 id="Material_Blazor_MBPaginator_PositionFormatter" data-uid="Material.Blazor.MBPaginator.PositionFormatter">
+  PositionFormatter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Paginator/MBPaginator.razor.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public Func&lt;int, int, int, CultureInfo, string&gt; PositionFormatter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -463,6 +559,86 @@ public EventCallback&lt;int&gt; PageNumberChanged { get; set; }</code></pre>
     <dd></dd>
   </dl>
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Material_Blazor_MBPaginator_DefaultItemsPerPageFormatter_" data-uid="Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter*"></a>
+
+  <h3 id="Material_Blazor_MBPaginator_DefaultItemsPerPageFormatter_System_Int32_System_Globalization_CultureInfo_" data-uid="Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter(System.Int32,System.Globalization.CultureInfo)">
+  DefaultItemsPerPageFormatter(int, CultureInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Paginator/MBPaginator.razor.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string DefaultItemsPerPageFormatter(int itemsPerPage, CultureInfo cultureInfo)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemsPerPage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cultureInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Material_Blazor_MBPaginator_DefaultPositionFormatter_" data-uid="Material.Blazor.MBPaginator.DefaultPositionFormatter*"></a>
+
+  <h3 id="Material_Blazor_MBPaginator_DefaultPositionFormatter_System_Int32_System_Int32_System_Int32_System_Globalization_CultureInfo_" data-uid="Material.Blazor.MBPaginator.DefaultPositionFormatter(System.Int32,System.Int32,System.Int32,System.Globalization.CultureInfo)">
+  DefaultPositionFormatter(int, int, int, CultureInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Paginator/MBPaginator.razor.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string DefaultPositionFormatter(int firstItemNumber, int lastItemNumber, int itemCount, CultureInfo cultureInfo)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>firstItemNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>lastItemNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>itemCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cultureInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

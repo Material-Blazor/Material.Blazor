@@ -1431,6 +1431,18 @@ references:
   commentId: Overload:Material.Blazor.Internal.InternalDatePickerPanel.BuildRenderTree
   fullName: Material.Blazor.Internal.InternalDatePickerPanel.BuildRenderTree
   nameWithType: InternalDatePickerPanel.BuildRenderTree
+- uid: Material.Blazor.Internal.InternalDatePickerPanel.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_CultureInfo
+  commentId: P:Material.Blazor.Internal.InternalDatePickerPanel.CultureInfo
+  fullName: Material.Blazor.Internal.InternalDatePickerPanel.CultureInfo
+  nameWithType: InternalDatePickerPanel.CultureInfo
+- uid: Material.Blazor.Internal.InternalDatePickerPanel.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_CultureInfo_
+  commentId: Overload:Material.Blazor.Internal.InternalDatePickerPanel.CultureInfo
+  fullName: Material.Blazor.Internal.InternalDatePickerPanel.CultureInfo
+  nameWithType: InternalDatePickerPanel.CultureInfo
 - uid: Material.Blazor.Internal.InternalDatePickerPanel.DateFormat
   name: DateFormat
   href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_DateFormat
@@ -4625,6 +4637,18 @@ references:
   commentId: Overload:Material.Blazor.MBCascadingDefaults.ConstrainSplattableAttributes
   fullName: Material.Blazor.MBCascadingDefaults.ConstrainSplattableAttributes
   nameWithType: MBCascadingDefaults.ConstrainSplattableAttributes
+- uid: Material.Blazor.MBCascadingDefaults.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_CultureInfo
+  commentId: P:Material.Blazor.MBCascadingDefaults.CultureInfo
+  fullName: Material.Blazor.MBCascadingDefaults.CultureInfo
+  nameWithType: MBCascadingDefaults.CultureInfo
+- uid: Material.Blazor.MBCascadingDefaults.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_CultureInfo_
+  commentId: Overload:Material.Blazor.MBCascadingDefaults.CultureInfo
+  fullName: Material.Blazor.MBCascadingDefaults.CultureInfo
+  nameWithType: MBCascadingDefaults.CultureInfo
 - uid: Material.Blazor.MBCascadingDefaults.DataTableDensity
   name: DataTableDensity
   href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_DataTableDensity
@@ -4913,6 +4937,30 @@ references:
   commentId: Overload:Material.Blazor.MBCascadingDefaults.ListType
   fullName: Material.Blazor.MBCascadingDefaults.ListType
   nameWithType: MBCascadingDefaults.ListType
+- uid: Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter
+  name: PaginatorItemsPerPageFormatter
+  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_PaginatorItemsPerPageFormatter
+  commentId: P:Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter
+  fullName: Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter
+  nameWithType: MBCascadingDefaults.PaginatorItemsPerPageFormatter
+- uid: Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter*
+  name: PaginatorItemsPerPageFormatter
+  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_PaginatorItemsPerPageFormatter_
+  commentId: Overload:Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter
+  fullName: Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter
+  nameWithType: MBCascadingDefaults.PaginatorItemsPerPageFormatter
+- uid: Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter
+  name: PaginatorPositionFormatter
+  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_PaginatorPositionFormatter
+  commentId: P:Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter
+  fullName: Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter
+  nameWithType: MBCascadingDefaults.PaginatorPositionFormatter
+- uid: Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter*
+  name: PaginatorPositionFormatter
+  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_PaginatorPositionFormatter_
+  commentId: Overload:Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter
+  fullName: Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter
+  nameWithType: MBCascadingDefaults.PaginatorPositionFormatter
 - uid: Material.Blazor.MBCascadingDefaults.RadioButtonDensity
   name: RadioButtonDensity
   href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_RadioButtonDensity
@@ -5828,6 +5876,18 @@ references:
   commentId: Overload:Material.Blazor.MBDatePicker.BuildRenderTree
   fullName: Material.Blazor.MBDatePicker.BuildRenderTree
   nameWithType: MBDatePicker.BuildRenderTree
+- uid: Material.Blazor.MBDatePicker.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_CultureInfo
+  commentId: P:Material.Blazor.MBDatePicker.CultureInfo
+  fullName: Material.Blazor.MBDatePicker.CultureInfo
+  nameWithType: MBDatePicker.CultureInfo
+- uid: Material.Blazor.MBDatePicker.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_CultureInfo_
+  commentId: Overload:Material.Blazor.MBDatePicker.CultureInfo
+  fullName: Material.Blazor.MBDatePicker.CultureInfo
+  nameWithType: MBDatePicker.CultureInfo
 - uid: Material.Blazor.MBDatePicker.DateFormat
   name: DateFormat
   href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_DateFormat
@@ -9813,6 +9873,18 @@ references:
   commentId: Overload:Material.Blazor.MBNumericDecimalField.BuildRenderTree
   fullName: Material.Blazor.MBNumericDecimalField.BuildRenderTree
   nameWithType: MBNumericDecimalField.BuildRenderTree
+- uid: Material.Blazor.MBNumericDecimalField.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.MBNumericDecimalField.html#Material_Blazor_MBNumericDecimalField_CultureInfo
+  commentId: P:Material.Blazor.MBNumericDecimalField.CultureInfo
+  fullName: Material.Blazor.MBNumericDecimalField.CultureInfo
+  nameWithType: MBNumericDecimalField.CultureInfo
+- uid: Material.Blazor.MBNumericDecimalField.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.MBNumericDecimalField.html#Material_Blazor_MBNumericDecimalField_CultureInfo_
+  commentId: Overload:Material.Blazor.MBNumericDecimalField.CultureInfo
+  fullName: Material.Blazor.MBNumericDecimalField.CultureInfo
+  nameWithType: MBNumericDecimalField.CultureInfo
 - uid: Material.Blazor.MBNumericDecimalField.DecimalPlaces
   name: DecimalPlaces
   href: api/Material.Blazor.MBNumericDecimalField.html#Material_Blazor_MBNumericDecimalField_DecimalPlaces
@@ -10089,6 +10161,18 @@ references:
   commentId: Overload:Material.Blazor.MBNumericDoubleField.BuildRenderTree
   fullName: Material.Blazor.MBNumericDoubleField.BuildRenderTree
   nameWithType: MBNumericDoubleField.BuildRenderTree
+- uid: Material.Blazor.MBNumericDoubleField.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_CultureInfo
+  commentId: P:Material.Blazor.MBNumericDoubleField.CultureInfo
+  fullName: Material.Blazor.MBNumericDoubleField.CultureInfo
+  nameWithType: MBNumericDoubleField.CultureInfo
+- uid: Material.Blazor.MBNumericDoubleField.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_CultureInfo_
+  commentId: Overload:Material.Blazor.MBNumericDoubleField.CultureInfo
+  fullName: Material.Blazor.MBNumericDoubleField.CultureInfo
+  nameWithType: MBNumericDoubleField.CultureInfo
 - uid: Material.Blazor.MBNumericDoubleField.DecimalPlaces
   name: DecimalPlaces
   href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_DecimalPlaces
@@ -10389,6 +10473,18 @@ references:
   commentId: Overload:Material.Blazor.MBNumericIntField.BuildRenderTree
   fullName: Material.Blazor.MBNumericIntField.BuildRenderTree
   nameWithType: MBNumericIntField.BuildRenderTree
+- uid: Material.Blazor.MBNumericIntField.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_CultureInfo
+  commentId: P:Material.Blazor.MBNumericIntField.CultureInfo
+  fullName: Material.Blazor.MBNumericIntField.CultureInfo
+  nameWithType: MBNumericIntField.CultureInfo
+- uid: Material.Blazor.MBNumericIntField.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_CultureInfo_
+  commentId: Overload:Material.Blazor.MBNumericIntField.CultureInfo
+  fullName: Material.Blazor.MBNumericIntField.CultureInfo
+  nameWithType: MBNumericIntField.CultureInfo
 - uid: Material.Blazor.MBNumericIntField.Density
   name: Density
   href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_Density
@@ -11060,6 +11156,48 @@ references:
   commentId: Overload:Material.Blazor.MBPaginator.BuildRenderTree
   fullName: Material.Blazor.MBPaginator.BuildRenderTree
   nameWithType: MBPaginator.BuildRenderTree
+- uid: Material.Blazor.MBPaginator.CultureInfo
+  name: CultureInfo
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_CultureInfo
+  commentId: P:Material.Blazor.MBPaginator.CultureInfo
+  fullName: Material.Blazor.MBPaginator.CultureInfo
+  nameWithType: MBPaginator.CultureInfo
+- uid: Material.Blazor.MBPaginator.CultureInfo*
+  name: CultureInfo
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_CultureInfo_
+  commentId: Overload:Material.Blazor.MBPaginator.CultureInfo
+  fullName: Material.Blazor.MBPaginator.CultureInfo
+  nameWithType: MBPaginator.CultureInfo
+- uid: Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter(System.Int32,System.Globalization.CultureInfo)
+  name: DefaultItemsPerPageFormatter(int, CultureInfo)
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_DefaultItemsPerPageFormatter_System_Int32_System_Globalization_CultureInfo_
+  commentId: M:Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter(System.Int32,System.Globalization.CultureInfo)
+  name.vb: DefaultItemsPerPageFormatter(Integer, CultureInfo)
+  fullName: Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter(int, System.Globalization.CultureInfo)
+  fullName.vb: Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter(Integer, System.Globalization.CultureInfo)
+  nameWithType: MBPaginator.DefaultItemsPerPageFormatter(int, CultureInfo)
+  nameWithType.vb: MBPaginator.DefaultItemsPerPageFormatter(Integer, CultureInfo)
+- uid: Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter*
+  name: DefaultItemsPerPageFormatter
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_DefaultItemsPerPageFormatter_
+  commentId: Overload:Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter
+  fullName: Material.Blazor.MBPaginator.DefaultItemsPerPageFormatter
+  nameWithType: MBPaginator.DefaultItemsPerPageFormatter
+- uid: Material.Blazor.MBPaginator.DefaultPositionFormatter(System.Int32,System.Int32,System.Int32,System.Globalization.CultureInfo)
+  name: DefaultPositionFormatter(int, int, int, CultureInfo)
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_DefaultPositionFormatter_System_Int32_System_Int32_System_Int32_System_Globalization_CultureInfo_
+  commentId: M:Material.Blazor.MBPaginator.DefaultPositionFormatter(System.Int32,System.Int32,System.Int32,System.Globalization.CultureInfo)
+  name.vb: DefaultPositionFormatter(Integer, Integer, Integer, CultureInfo)
+  fullName: Material.Blazor.MBPaginator.DefaultPositionFormatter(int, int, int, System.Globalization.CultureInfo)
+  fullName.vb: Material.Blazor.MBPaginator.DefaultPositionFormatter(Integer, Integer, Integer, System.Globalization.CultureInfo)
+  nameWithType: MBPaginator.DefaultPositionFormatter(int, int, int, CultureInfo)
+  nameWithType.vb: MBPaginator.DefaultPositionFormatter(Integer, Integer, Integer, CultureInfo)
+- uid: Material.Blazor.MBPaginator.DefaultPositionFormatter*
+  name: DefaultPositionFormatter
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_DefaultPositionFormatter_
+  commentId: Overload:Material.Blazor.MBPaginator.DefaultPositionFormatter
+  fullName: Material.Blazor.MBPaginator.DefaultPositionFormatter
+  nameWithType: MBPaginator.DefaultPositionFormatter
 - uid: Material.Blazor.MBPaginator.ItemCount
   name: ItemCount
   href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_ItemCount
@@ -11096,6 +11234,18 @@ references:
   commentId: Overload:Material.Blazor.MBPaginator.ItemsPerPageChanged
   fullName: Material.Blazor.MBPaginator.ItemsPerPageChanged
   nameWithType: MBPaginator.ItemsPerPageChanged
+- uid: Material.Blazor.MBPaginator.ItemsPerPageFormatter
+  name: ItemsPerPageFormatter
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_ItemsPerPageFormatter
+  commentId: P:Material.Blazor.MBPaginator.ItemsPerPageFormatter
+  fullName: Material.Blazor.MBPaginator.ItemsPerPageFormatter
+  nameWithType: MBPaginator.ItemsPerPageFormatter
+- uid: Material.Blazor.MBPaginator.ItemsPerPageFormatter*
+  name: ItemsPerPageFormatter
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_ItemsPerPageFormatter_
+  commentId: Overload:Material.Blazor.MBPaginator.ItemsPerPageFormatter
+  fullName: Material.Blazor.MBPaginator.ItemsPerPageFormatter
+  nameWithType: MBPaginator.ItemsPerPageFormatter
 - uid: Material.Blazor.MBPaginator.ItemsPerPageSelection
   name: ItemsPerPageSelection
   href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_ItemsPerPageSelection
@@ -11171,6 +11321,18 @@ references:
   commentId: Overload:Material.Blazor.MBPaginator.PageNumberChanged
   fullName: Material.Blazor.MBPaginator.PageNumberChanged
   nameWithType: MBPaginator.PageNumberChanged
+- uid: Material.Blazor.MBPaginator.PositionFormatter
+  name: PositionFormatter
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_PositionFormatter
+  commentId: P:Material.Blazor.MBPaginator.PositionFormatter
+  fullName: Material.Blazor.MBPaginator.PositionFormatter
+  nameWithType: MBPaginator.PositionFormatter
+- uid: Material.Blazor.MBPaginator.PositionFormatter*
+  name: PositionFormatter
+  href: api/Material.Blazor.MBPaginator.html#Material_Blazor_MBPaginator_PositionFormatter_
+  commentId: Overload:Material.Blazor.MBPaginator.PositionFormatter
+  fullName: Material.Blazor.MBPaginator.PositionFormatter
+  nameWithType: MBPaginator.PositionFormatter
 - uid: Material.Blazor.MBRadioButtonGroup`1
   name: MBRadioButtonGroup<TItem>
   href: api/Material.Blazor.MBRadioButtonGroup-1.html
@@ -13493,6 +13655,18 @@ references:
   commentId: Overload:Material.Blazor.MBSwitch.OnInitializedAsync
   fullName: Material.Blazor.MBSwitch.OnInitializedAsync
   nameWithType: MBSwitch.OnInitializedAsync
+- uid: Material.Blazor.MBSwitch.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBSwitch.html#Material_Blazor_MBSwitch_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBSwitch.OnParametersSetAsync
+  fullName: Material.Blazor.MBSwitch.OnParametersSetAsync()
+  nameWithType: MBSwitch.OnParametersSetAsync()
+- uid: Material.Blazor.MBSwitch.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBSwitch.html#Material_Blazor_MBSwitch_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBSwitch.OnParametersSetAsync
+  fullName: Material.Blazor.MBSwitch.OnParametersSetAsync
+  nameWithType: MBSwitch.OnParametersSetAsync
 - uid: Material.Blazor.MBTabBar`1
   name: MBTabBar<TItem>
   href: api/Material.Blazor.MBTabBar-1.html
@@ -13848,6 +14022,18 @@ references:
   commentId: Overload:Material.Blazor.MBTextArea.OnInitializedAsync
   fullName: Material.Blazor.MBTextArea.OnInitializedAsync
   nameWithType: MBTextArea.OnInitializedAsync
+- uid: Material.Blazor.MBTextArea.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBTextArea.OnParametersSetAsync
+  fullName: Material.Blazor.MBTextArea.OnParametersSetAsync()
+  nameWithType: MBTextArea.OnParametersSetAsync()
+- uid: Material.Blazor.MBTextArea.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBTextArea.OnParametersSetAsync
+  fullName: Material.Blazor.MBTextArea.OnParametersSetAsync
+  nameWithType: MBTextArea.OnParametersSetAsync
 - uid: Material.Blazor.MBTextArea.Rows
   name: Rows
   href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_Rows

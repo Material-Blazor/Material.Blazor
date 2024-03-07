@@ -688,6 +688,14 @@ __webpack_require__.d(MBTopAppBar_namespaceObject, {
   init: () => (MBTopAppBar_init)
 });
 
+// NAMESPACE OBJECT: ./scripts/rtl.ts
+var scripts_rtl_namespaceObject = {};
+__webpack_require__.r(scripts_rtl_namespaceObject);
+__webpack_require__.d(scripts_rtl_namespaceObject, {
+  isDocumentRTL: () => (rtl_isDocumentRTL),
+  isElementRTL: () => (rtl_isElementRTL)
+});
+
 ;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -16691,32 +16699,56 @@ function throttle(func, wait, options) {
 //END https://github.com/lodash/lodash/blob/master/throttle.js
 
 
+;// CONCATENATED MODULE: ./Scripts/rtl.ts
+function isDocumentRTL() {
+  var dir = document.documentElement.getAttribute("dir");
+  return !dir || dir.toLowerCase() === "rtl";
+}
+function isElementRTL(elem) {
+  if (!elem) {
+    return false;
+  }
+  var dirElem = elem;
+  var dir = "";
+  for (; dirElem && dirElem !== document && (!dir || dir === ""); dirElem = dirElem.parentNode) {
+    dir = dirElem.getAttribute("dir");
+    if (dir && dir.length > 0) {
+      dir = dir.toLowerCase();
+      if (dir === "ltr" || dir === "auto") {
+        break;
+      }
+    }
+  }
+  return dir !== null && dir.toLowerCase() === "rtl";
+}
 ;// CONCATENATED MODULE: ./Components/Slider/MBSlider.ts
 
 
-function MBSlider_init(elem, dotNetObject, eventType, delay, disabled) {
-  if (!elem) {
+
+function MBSlider_init(mainElem, thumbElem, thumbOffset, dotNetObject, eventType, delay, disabled) {
+  if (!mainElem || !thumbElem) {
     return;
   }
-  elem._slider = MDCSlider.attachTo(elem);
-  elem._eventType = eventType;
+  thumbElem.style = (isElementRTL(mainElem) ? "right: " : "left: ") + thumbOffset;
+  mainElem._slider = MDCSlider.attachTo(mainElem);
+  mainElem._eventType = eventType;
   if (eventType == 0) {
     var thumbUpCallback = function thumbUpCallback() {
-      dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+      dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
     };
-    elem._slider.listen('MDCSlider:change', thumbUpCallback);
+    mainElem._slider.listen('MDCSlider:change', thumbUpCallback);
   } else if (eventType == 1) {
     var debounceNotify = debounce(function () {
-      dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+      dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
     }, delay, {});
-    elem._slider.listen('MDCSlider:input', debounceNotify);
+    mainElem._slider.listen('MDCSlider:input', debounceNotify);
   } else {
     var throttleNotify = throttle(function () {
-      dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+      dotNetObject.invokeMethodAsync('NotifyChanged', mainElem._slider.getValue());
     }, delay, {});
-    elem._slider.listen('MDCSlider:input', throttleNotify);
+    mainElem._slider.listen('MDCSlider:input', throttleNotify);
   }
-  elem._slider.setDisabled(disabled);
+  mainElem._slider.setDisabled(disabled);
 }
 function MBSlider_setValue(elem, value) {
   if (!elem) {
@@ -22536,7 +22568,30 @@ function MBTopAppBar_init(elem, scrollTarget) {
     elem._topAppBar.setScrollTarget(document.querySelector(scrollTarget));
   }
 }
+;// CONCATENATED MODULE: ./scripts/rtl.ts
+function rtl_isDocumentRTL() {
+  var dir = document.documentElement.getAttribute("dir");
+  return !dir || dir.toLowerCase() === "rtl";
+}
+function rtl_isElementRTL(elem) {
+  if (!elem) {
+    return false;
+  }
+  var dirElem = elem;
+  var dir = "";
+  for (; dirElem && dirElem !== document && (!dir || dir === ""); dirElem = dirElem.parentNode) {
+    dir = dirElem.getAttribute("dir");
+    if (dir && dir.length > 0) {
+      dir = dir.toLowerCase();
+      if (dir === "ltr" || dir === "auto") {
+        break;
+      }
+    }
+  }
+  return dir !== null && dir.toLowerCase() === "rtl";
+}
 ;// CONCATENATED MODULE: ./scripts/material.blazor.ts
+
 
 
 
@@ -22597,7 +22652,8 @@ window.MaterialBlazor = {
   MBTabBar: MBTabBar_namespaceObject,
   MBTextField: MBTextField_namespaceObject,
   MBTooltip: MBTooltip_namespaceObject,
-  MBTopAppBar: MBTopAppBar_namespaceObject
+  MBTopAppBar: MBTopAppBar_namespaceObject,
+  RTL: scripts_rtl_namespaceObject
 };
 })();
 

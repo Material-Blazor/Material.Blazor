@@ -83,8 +83,31 @@
         <article data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
+<h4 id="520"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.2.0">5.2.0</a></h4>
+<p>Released 2024-03-07</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li>MD2/MD3: Dependabot updates.</li>
+<li>MD2: Repaired DemonstrationPage.razor.cs; adding missing '!'; removing extraneous duplicate source page.</li>
+<li>Repaired Material Symbols handling through cascading defaults.</li>
+<li>Repaired autocomplete components to escape input for correct handling with Regex.</li>
+</ul>
+<p><strong>New components</strong></p>
+<p><strong>New features</strong></p>
+<ul>
+<li>Enhancements to enable Right to Left compliance. We believe that all components are now compliant.</li>
+<li>Added properties to MBCascadingDefaults for <code>CultureInfo</code> and function delegates for <code>MBPaginator</code> to allow for consumer formatting of the number of items and the page position in whatever language the consumer wishes. If delegates are not supplied, default delegates in English are used.</li>
+<li>Enhancements to allow component labels and single select item lists to be dynamically updated post-render, for instance when such data require a change of language/locale post-render (note to @stefanloerwald).</li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<p><strong>Deprecated Components</strong></p>
+<ul>
+<li>Icon colour for Material Symbols icons wil be removed in the next major release. This is because color should be handled via CSS.</li>
+</ul>
+<p><strong>Known issues</strong></p>
+<br>
 <h4 id="514"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.1.4">5.1.4</a></h4>
-<p>Released 2024-03-??</p>
+<p>Released 2024-03-03</p>
 <p><strong>Updates</strong></p>
 <ul>
 <li>MD2/MD3: Dependabot updates</li>
@@ -117,7 +140,7 @@
 <p>Released 2024-02-13</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>MD2/MD3: .Net 8.0.3 updates</li>
+<li>MD2/MD3: .Net 8.0.2 updates</li>
 <li>MD2/MD3: Dependabot updates</li>
 </ul>
 <p><strong>New components</strong></p>
@@ -130,7 +153,7 @@
 <p>Released 2024-01-10</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>MD2/MD3: .Net 8.0.2 updates</li>
+<li>MD2/MD3: .Net 8.0.1 updates</li>
 <li>MD2/MD3: Dependabot updates</li>
 </ul>
 <p><strong>New components</strong></p>
@@ -159,7 +182,6 @@
 <p>Released 2023-12-01</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>MD2/MD3: .Net 8.0.1 updates</li>
 <li>MD2/MD3: Dependabot updates</li>
 <li>Repaired MD2 theme selection (Replaced hard coded JS with TS)</li>
 </ul>

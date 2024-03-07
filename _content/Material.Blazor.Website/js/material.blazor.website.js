@@ -39,6 +39,7 @@ var __webpack_exports__ = {};
 var MBTheme_namespaceObject = {};
 __webpack_require__.r(MBTheme_namespaceObject);
 __webpack_require__.d(MBTheme_namespaceObject, {
+  setHtmlBlockTextDirection: () => (setHtmlBlockTextDirection),
   setTheme: () => (setTheme)
 });
 
@@ -50,6 +51,10 @@ function setTheme(sheetName, minify) {
     extension = ".min.css";
   }
   (_document$getElementB = document.getElementById("app-style")) === null || _document$getElementB === void 0 || _document$getElementB.setAttribute("href", "_content/Material.Blazor.Website/css/" + sheetName + extension);
+}
+function setHtmlBlockTextDirection(textDirection) {
+  var htmlElement = document.documentElement;
+  htmlElement.setAttribute("dir", textDirection);
 }
 ;// CONCATENATED MODULE: ./scripts/material.blazor.website.ts
 

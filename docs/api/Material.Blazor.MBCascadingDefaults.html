@@ -395,6 +395,37 @@ Class MBCascadingDefaults  <a class="header-action link-secondary" title="View s
 
 
 
+  <a id="Material_Blazor_MBCascadingDefaults_CultureInfo_" data-uid="Material.Blazor.MBCascadingDefaults.CultureInfo*"></a>
+
+  <h3 id="Material_Blazor_MBCascadingDefaults_CultureInfo" data-uid="Material.Blazor.MBCascadingDefaults.CultureInfo">
+  CultureInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/MBCascadingDefaults.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CultureInfo CultureInfo { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Material_Blazor_MBCascadingDefaults_DataTableDensity_" data-uid="Material.Blazor.MBCascadingDefaults.DataTableDensity*"></a>
 
   <h3 id="Material_Blazor_MBCascadingDefaults_DataTableDensity" data-uid="Material.Blazor.MBCascadingDefaults.DataTableDensity">
@@ -809,7 +840,8 @@ Class MBCascadingDefaults  <a class="header-action link-secondary" title="View s
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string IconMSColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Use CSS styling instead&quot;)]
+public string IconMSColor { get; set; }</code></pre>
   </div>
 
 
@@ -1129,6 +1161,68 @@ Class MBCascadingDefaults  <a class="header-action link-secondary" title="View s
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="Material.Blazor.MBListType.html">MBListType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Material_Blazor_MBCascadingDefaults_PaginatorItemsPerPageFormatter_" data-uid="Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter*"></a>
+
+  <h3 id="Material_Blazor_MBCascadingDefaults_PaginatorItemsPerPageFormatter" data-uid="Material.Blazor.MBCascadingDefaults.PaginatorItemsPerPageFormatter">
+  PaginatorItemsPerPageFormatter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/MBCascadingDefaults.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;int, CultureInfo, string&gt; PaginatorItemsPerPageFormatter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Material_Blazor_MBCascadingDefaults_PaginatorPositionFormatter_" data-uid="Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter*"></a>
+
+  <h3 id="Material_Blazor_MBCascadingDefaults_PaginatorPositionFormatter" data-uid="Material.Blazor.MBCascadingDefaults.PaginatorPositionFormatter">
+  PaginatorPositionFormatter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/MBCascadingDefaults.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;int, int, int, CultureInfo, string&gt; PaginatorPositionFormatter { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
   </dl>
 

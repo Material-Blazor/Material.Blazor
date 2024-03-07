@@ -997,9 +997,18 @@ body {
   pointer-events: none;
 }
 
+[dir=rtl] .mb-badge-container {
+  left: auto;
+  right: 0;
+}
+
 .mdc-icon-button .mb-badge-container {
   top: 4px;
   left: -4px;
+}
+.mdc-icon-button [dir=rtl] .mb-badge-container {
+  left: auto;
+  right: -4px;
 }
 
 .mb-badge {
@@ -1034,6 +1043,16 @@ body {
   -webkit-transform: scale(0);
   transform: scale(0);
   opacity: 0;
+}
+
+[dir=rtl] .mb-badge {
+  float: left;
+  right: auto;
+  left: -10px;
+}
+[dir=rtl] .mb-badge.mb-badge--dot {
+  left: -5px;
+  right: auto;
 }
 
 .mb-badge-value {
@@ -1427,6 +1446,7 @@ s .mb-carousel > .mb-carousel__upper .mb-carousel-nav-panel {
 .mb-dp-menu {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 16px 8px 12px 24px;
@@ -1437,16 +1457,25 @@ s .mb-carousel > .mb-carousel__upper .mb-carousel-nav-panel {
   min-width: 284px;
   overflow: visible !important;
 }
+.mb-dp-menu .mdc-touch-target-wrapper {
+  display: inline-flex;
+}
+
+[dir=rtl] .mb-dp-menu {
+  padding: 16px 24px 12px 8px;
+}
 
 .mb-dp-menu__left {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: flex-start;
 }
 
 .mb-dp-menu__right {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -1457,12 +1486,16 @@ s .mb-carousel > .mb-carousel__upper .mb-carousel-nav-panel {
 }
 
 .mb-dp-menu__icon-button.spaced {
-  margin-left: 4px;
+  margin: 0 0 0 4px;
+}
+
+[dir=rtl] .mb-dp-menu__icon-button.spaced {
+  margin: 0 4px 0 0;
 }
 
 /*
     Day pad
-*/
+ */
 .mb-dp-day-pad {
   display: flex;
   flex-flow: column nowrap;
@@ -1523,11 +1556,16 @@ s .mb-carousel > .mb-carousel__upper .mb-carousel-nav-panel {
 .mb-dp-year-pad {
   display: flex;
   flex-flow: row wrap;
-  padding: 4px 0 8px 12px;
+  padding: 4px 0px 8px 12px;
   user-select: none;
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: 252px;
+}
+
+[dir=rtl] .mb-dp-year-pad {
+  padding-right: 12px;
+  padding-left: 0px;
 }
 
 .mb-dp-year-pad__button {
@@ -1771,10 +1809,21 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   justify-content: center;
 }
 .mb-file-upload--drag-and-drop .mb-file-upload__leading-icon {
-  margin-right: 8px;
+  margin: 0 8px 0 0;
 }
 .mb-file-upload--drag-and-drop .mb-file-upload__trailing-icon {
-  margin-left: 8px;
+  margin: 0 0 0 8px;
+}
+
+[dir=rtl] .mb-file-upload--drag-and-drop .mb-file-upload__card-content .mb-file-upload__filename {
+  left: 6px;
+  right: auto;
+}
+[dir=rtl] .mb-file-upload--drag-and-drop .mb-file-upload__leading-icon {
+  margin: 0 0 0 8px;
+}
+[dir=rtl] .mb-file-upload--drag-and-drop .mb-file-upload__trailing-icon {
+  margin: 0 8px 0 0;
 }
 
 .mdc-icon-button.dense--5 {
@@ -2305,7 +2354,11 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 }
 
 .mdc-data-table__pagination-navigation {
-  margin-left: 12px !important;
+  margin: 0 0 0 12px !important;
+}
+
+[dir=rtl] .mdc-data-table__pagination-navigation {
+  margin: 0 12px 0 0 !important;
 }
 
 .mdc-data-table__pagination-button {
@@ -2412,6 +2465,22 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   width: fit-content;
   height: fit-content;
   overflow: visible;
+}
+
+/*
+    * The following is a workaround for the fact that the MDC SegmentedButton does not support RTL.
+    * It is a copy of the MDC SegmentedButton styles with the addition of the [dir="rtl"] selector.
+*/
+[dir=rtl] .mdc-segmented-button .mdc-touch-target-wrapper .mdc-segmented-button__segment {
+  border-left-width: 0;
+  border-right-width: 1px;
+}
+[dir=rtl] .mdc-segmented-button .mdc-touch-target-wrapper:first-child .mdc-segmented-button__segment {
+  border-radius: 0 4px 4px 0;
+}
+[dir=rtl] .mdc-segmented-button .mdc-touch-target-wrapper:last-child .mdc-segmented-button__segment {
+  border-radius: 4px 0 0 4px;
+  border-left-width: 1px;
 }
 
 .mdc-select.dense--5--filled .mdc-select__anchor, .mdc-select.dense--4--filled .mdc-select__anchor {
@@ -4158,6 +4227,10 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   margin: 0 3px 0 -1px;
 }
 
+[dir=rtl] .mb-shield i {
+  margin: 0 -1px 0 3px;
+}
+
 .mb-shield--label {
   display: inline-flex;
   flex-flow: row nowrap;
@@ -4171,6 +4244,10 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   border: 0;
 }
 
+[dir=rtl] .mb-shield--label {
+  padding: 0 4px 0 4px;
+}
+
 .mb-shield--value {
   display: inline-flex;
   flex-flow: row nowrap;
@@ -4182,6 +4259,10 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   margin: 0;
   padding: 0 4px 0 4px;
   border: 0;
+}
+
+[dir=rtl] .mb-shield--value {
+  padding: 0 4px 0 4px;
 }
 
 .mb-hidden {
@@ -6248,6 +6329,10 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 
 .mb-top-app-bar__title-right {
   padding: 0 20px 0 0 !important;
+}
+
+[dir=rtl] .mb-top-app-bar__title-right {
+  padding: 0 0 0 20px !important;
 }
 
 .mb-align-left {
