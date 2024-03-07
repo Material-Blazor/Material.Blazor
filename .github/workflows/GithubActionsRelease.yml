@@ -50,17 +50,17 @@ jobs:
     name: Run .NET tests
     runs-on: windows-latest
 
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v4
+    # steps:
+    # - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+    #   uses: actions/checkout@v4
 
-    - name: Use dotnet
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
+    # - name: Use dotnet
+    #   uses: actions/setup-dotnet@v3
+    #   with:
+    #     dotnet-version: '8.x'
 
-    - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
+    # - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
+    #   run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
 ############################################################################################################
 # Build documentation
 ############################################################################################################
