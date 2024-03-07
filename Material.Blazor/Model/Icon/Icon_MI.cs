@@ -38,6 +38,7 @@ internal class Icon_MI : IMBIcon
         {
             return;
         }
+
         builder.OpenElement(0, "i");
         builder.AddAttribute(1, "class", string.Join(" ", MaterialIconsTheme, @class));
         if (style != null)
