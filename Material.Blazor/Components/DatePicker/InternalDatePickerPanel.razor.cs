@@ -134,7 +134,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
 
     private readonly string currentYearId = Utilities.GenerateUniqueElementName();
 
-    private readonly IMBIconFoundry foundry = MBIconHelper.MIFoundry(MBIconMITheme.Filled);
+    private readonly IMBIconFoundry foundry = MBIconHelper.MSFoundry(fill: true, gradient: MBIconMSGradient.NormalEmphasis, size: MBIconMSSize.Size24, style: MBIconMSStyle.Outlined, weight: MBIconMSWeight.W400);
     private bool IsRTL { get; set; }
     private string BackIcon => IsRTL ? "chevron_right" : "chevron_left";
     private string UndoIcon => IsRTL ? "redo" : "undo";

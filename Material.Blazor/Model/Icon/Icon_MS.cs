@@ -54,7 +54,7 @@ internal class Icon_MS : IMBIcon
     {
         IconName = iconName;
         msColor = cascadingDefaults.AppliedIconMSColor(foundry?.Color);
-        msFill = cascadingDefaults.AppliedIconMSFill(foundry.Fill);
+        msFill = cascadingDefaults.AppliedIconMSFill(foundry?.Fill);
         msGradient = cascadingDefaults.AppliedIconMSGradient(foundry?.Gradient);
         msSize = cascadingDefaults.AppliedIconMSSize(foundry?.Size);
         msStyle = cascadingDefaults.AppliedIconMSStyle(foundry?.Style);
@@ -78,7 +78,7 @@ internal class Icon_MS : IMBIcon
         var fontVariation = " font-variation-settings:";
 
         // Icon color
-        fontStyle += " color: " + msColor + ";";
+        fontStyle += string.IsNullOrWhiteSpace(msColor) ? "" : " color: " + msColor + ";";
 
         // Icon fill
         var fillValue = msFill ? "1" : "0";

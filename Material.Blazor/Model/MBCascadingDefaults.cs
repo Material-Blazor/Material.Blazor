@@ -108,34 +108,46 @@ public class MBCascadingDefaults
 
     #region MBIconMS
 
-    private string _iconMSColor = "black";
+    private string _iconMSColor = "";
+    [Obsolete("Use CSS styling instead")]
     public string IconMSColor { get => _iconMSColor; set => SetParameter(ref _iconMSColor, value); }
     internal string AppliedIconMSColor(string iconMSColor = null) => iconMSColor ?? IconMSColor;
+
+
 
     private bool _iconMSFill = true;
     public bool IconMSFill { get => _iconMSFill; set => SetParameter(ref _iconMSFill, value); }
     internal bool AppliedIconMSFill(bool? iconMSFill = null) => iconMSFill ?? IconMSFill;
 
+
+
     private MBIconMSGradient _iconMSGradient = MBIconMSGradient.NormalEmphasis;
     public MBIconMSGradient IconMSGradient { get => _iconMSGradient; set => SetParameter(ref _iconMSGradient, value); }
     internal MBIconMSGradient AppliedIconMSGradient(MBIconMSGradient? iconMSGradient = null) => iconMSGradient ?? IconMSGradient;
 
-    private string _iconMSName = "Favorite";
+
+
+    private string _iconMSName = "priority_high";
     public string IconMSName { get => _iconMSName; set => SetParameter(ref _iconMSName, value); }
     internal string AppliedIconMSName(string iconMSName = null) => iconMSName ?? IconMSName;
+
+
 
     private MBIconMSStyle _iconMSStyle = MBIconMSStyle.Outlined;
     public MBIconMSStyle IconMSStyle { get => _iconMSStyle; set => SetParameter(ref _iconMSStyle, value); }
     internal MBIconMSStyle AppliedIconMSStyle(MBIconMSStyle? iconMSStyle = null) => iconMSStyle ?? IconMSStyle;
 
+
+
     private MBIconMSSize _iconMSSize = MBIconMSSize.Size24;
     public MBIconMSSize IconMSSize { get => _iconMSSize; set => SetParameter(ref _iconMSSize, value); }
     internal MBIconMSSize AppliedIconMSSize(MBIconMSSize? iconMSSize = null) => iconMSSize ?? IconMSSize;
 
+
+
     private MBIconMSWeight _iconMSWeight = MBIconMSWeight.W400;
     public MBIconMSWeight IconMSWeight { get => _iconMSWeight; set => SetParameter(ref _iconMSWeight, value); }
     internal MBIconMSWeight AppliedIconMSWeight(MBIconMSWeight? iconMSWeight = null) => iconMSWeight ?? IconMSWeight;
-
     #endregion
 
     #region MBIconFA

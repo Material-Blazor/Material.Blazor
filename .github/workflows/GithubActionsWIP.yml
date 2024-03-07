@@ -80,20 +80,16 @@ jobs:
     needs: [build-allowed]
 
     steps:
-    - name: Tests are disabled pending future design decision
-      run: echo "Tests are disabled pending future design decision"
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v4
 
-    # steps:
-    # - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-    #   uses: actions/checkout@v4
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
 
-    # - name: Setup dotnet
-    #   uses: actions/setup-dotnet@v3
-    #   with:
-    #     dotnet-version: '8.x'
-
-    # - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-    #   run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
+    - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
+      run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
       
 ############################################################################################################
 # Build documentation

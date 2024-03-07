@@ -10,7 +10,7 @@
 
     <div class="mdc-data-table__pagination-trailing">
         <div class="mdc-data-table__pagination-rows-per-page">
-            <div class="mdc-data-table__pagination-rows-per-page-label">
+            <div class="mdc-data-table__pagination-rows-per-page-label" dir="auto">
                 @ItemsText
             </div>
 
@@ -38,7 +38,7 @@
 
         <div class="mdc-data-table__pagination-navigation">
             @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
-            <div class="mdc-data-table__pagination-total">
+            <div class="mdc-data-table__pagination-total" dir="auto">
                 <span class="hidden" aria-hidden="true">@MaxPositionText</span>
                 <span>@PositionText</span>
             </div>
