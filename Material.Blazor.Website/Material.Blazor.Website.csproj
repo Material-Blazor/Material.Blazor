@@ -44,13 +44,17 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
+	<!--
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="scripts\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
-		<!--Keep this Remove/Include pair-->
+	-->
+	<!-- Keep this Remove/Include pair -->
+	<!--
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
 	</ItemGroup>
+	-->
 
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="styles\*.scss;" />
