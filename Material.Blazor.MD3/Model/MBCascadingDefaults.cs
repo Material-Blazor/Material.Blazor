@@ -159,7 +159,7 @@ public class MBCascadingDefaults
     private decimal _iconFill = 1;
     public decimal IconFill { get => _iconFill; set => SetParameter(ref _iconFill, value); }
     internal decimal AppliedIconFill(decimal? iconFill = null) => iconFill ?? IconFill;
-    
+
     private MBIconGradient _iconGradient = MBIconGradient.NormalEmphasis;
     public MBIconGradient IconGradient { get => _iconGradient; set => SetParameter(ref _iconGradient, value); }
     internal MBIconGradient AppliedIconGradient(MBIconGradient? iconGradient = null) => iconGradient ?? IconGradient;
@@ -312,6 +312,21 @@ public class MBCascadingDefaults
 
     #endregion
 
+    /*************************************************************************************************************
+    * 
+    * 
+    *      COMPONENT DENSITY
+    * 
+    * 
+    ************************************************************************************************************/
+
+    private MBDensity _themeDensity = MBDensity.Default;
+    /// <summary>
+    /// The default density for an all components. Any individual component density that is set overrides theme density.
+    /// </summary>
+    public MBDensity ThemeDensity { get => _themeDensity; set => SetParameter(ref _themeDensity, value); }
+
+
     #region SetParameter<T>
 
     private void SetParameter<T>(ref T privateParameter, T value)
@@ -325,3 +340,4 @@ public class MBCascadingDefaults
     }
 
     #endregion
+}
