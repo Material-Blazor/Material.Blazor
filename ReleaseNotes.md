@@ -29,6 +29,7 @@ Released 2024-03-??
 Released 2024-03-07
 
 **Updates**
+- MD2/MD3: .Net 8.0.3 updates
 - MD2/MD3: Dependabot updates.
 - MD2: Repaired DemonstrationPage.razor.cs; adding missing '!'; removing extraneous duplicate source page.
 - MD2: Repaired Material Symbols handling through cascading defaults.
