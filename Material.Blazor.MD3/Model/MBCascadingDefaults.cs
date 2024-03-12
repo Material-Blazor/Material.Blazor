@@ -312,6 +312,7 @@ public class MBCascadingDefaults
 
     #endregion
 
+    #region MD2 ThemeDensity
     /*************************************************************************************************************
     * 
     * 
@@ -325,7 +326,7 @@ public class MBCascadingDefaults
     /// The default density for an all components. Any individual component density that is set overrides theme density.
     /// </summary>
     public MBDensity ThemeDensity { get => _themeDensity; set => SetParameter(ref _themeDensity, value); }
-
+    #endregion
 
     #region SetParameter<T>
 
