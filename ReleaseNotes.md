@@ -4,15 +4,13 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [5.2.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.0)
+#### [5.2.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.1)
 
-Released 2024-03-07
+Released 2024-03-??
 
 **Updates**
 - MD2/MD3: Dependabot updates.
-- MD2: Repaired DemonstrationPage.razor.cs; adding missing '!'; removing extraneous duplicate source page.
-- Repaired Material Symbols handling through cascading defaults.
-- Repaired autocomplete components to escape input for correct handling with Regex.
+- MD2: Enhancements to RTL in switch
 
 **New components**
 
@@ -24,7 +22,32 @@ Released 2024-03-07
 **Breaking Changes**
 
 **Deprecated Components**
-- Icon colour for Material Symbols icons wil be removed in the next major release. This is because color should be handled via CSS.
+
+**Known issues**
+
+<br />
+
+#### [5.2.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.0)
+
+Released 2024-03-07
+
+**Updates**
+- MD2/MD3: Dependabot updates.
+- MD2: Repaired DemonstrationPage.razor.cs; adding missing '!'; removing extraneous duplicate source page.
+- MD2: Repaired Material Symbols handling through cascading defaults.
+- MD2: Repaired autocomplete components to escape input for correct handling with Regex.
+
+**New components**
+
+**New features**
+- Enhancements to enable Right to Left compliance. We believe that all components are now compliant.
+- Added properties to MBCascadingDefaults for `CultureInfo` and function delegates for `MBPaginator` to allow for consumer formatting of the number of items and the page position in whatever language the consumer wishes. If delegates are not supplied, default delegates in English are used.
+- Enhancements to allow component labels and single select item lists to be dynamically updated post-render, for instance when such data require a change of language/locale post-render (note to @stefanloerwald).
+
+**Breaking Changes**
+
+**Deprecated Components**
+- Icon color for Material Symbols icons wil be removed in the next major release. This is because color should be handled via CSS.
 
 **Known issues**
 
