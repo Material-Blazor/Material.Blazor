@@ -890,7 +890,7 @@ body {
   font-family: "Material Symbols Outlined";
   font-style: normal;
   font-weight: 100 700;
-  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v166/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsI.woff2) format("woff2");
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v167/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsI.woff2) format("woff2");
 }
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
@@ -913,7 +913,7 @@ body {
   font-family: "Material Symbols Rounded";
   font-style: normal;
   font-weight: 100 700;
-  src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v164/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2) format("woff2");
+  src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v165/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2) format("woff2");
 }
 .material-symbols-rounded {
   font-family: "Material Symbols Rounded";
@@ -936,7 +936,7 @@ body {
   font-family: "Material Symbols Sharp";
   font-style: normal;
   font-weight: 100 700;
-  src: url(https://fonts.gstatic.com/s/materialsymbolssharp/v162/gNMVW2J8Roq16WD5tFNRaeLQk6-SHQ_R00k4aWE.woff2) format("woff2");
+  src: url(https://fonts.gstatic.com/s/materialsymbolssharp/v163/gNMVW2J8Roq16WD5tFNRaeLQk6-SHQ_R00k4aWE.woff2) format("woff2");
 }
 .material-symbols-sharp {
   font-family: "Material Symbols Sharp";
@@ -4763,6 +4763,15 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   /*rtl:ignore*/
   margin-right: 8px;
   /*rtl:end:ignore*/
+}
+
+.mb-switch-label {
+  margin-left: 1rem;
+}
+
+[dir=rtl] .mb-switch-label {
+  margin-left: 0;
+  margin-right: 1rem;
 }
 
 .mdc-tab-bar.dense--5--unstacked .mdc-tab, .mdc-tab-bar.dense--4--unstacked .mdc-tab {

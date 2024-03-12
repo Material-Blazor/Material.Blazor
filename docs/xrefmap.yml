@@ -4997,18 +4997,6 @@ references:
   commentId: Overload:Material.Blazor.MBCascadingDefaults.SelectInputStyle
   fullName: Material.Blazor.MBCascadingDefaults.SelectInputStyle
   nameWithType: MBCascadingDefaults.SelectInputStyle
-- uid: Material.Blazor.MBCascadingDefaults.ShallowCopy
-  name: ShallowCopy()
-  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ShallowCopy
-  commentId: M:Material.Blazor.MBCascadingDefaults.ShallowCopy
-  fullName: Material.Blazor.MBCascadingDefaults.ShallowCopy()
-  nameWithType: MBCascadingDefaults.ShallowCopy()
-- uid: Material.Blazor.MBCascadingDefaults.ShallowCopy*
-  name: ShallowCopy
-  href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ShallowCopy_
-  commentId: Overload:Material.Blazor.MBCascadingDefaults.ShallowCopy
-  fullName: Material.Blazor.MBCascadingDefaults.ShallowCopy
-  nameWithType: MBCascadingDefaults.ShallowCopy
 - uid: Material.Blazor.MBCascadingDefaults.SwitchDensity
   name: SwitchDensity
   href: api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_SwitchDensity
