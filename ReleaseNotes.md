@@ -4,15 +4,36 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.2.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.1)
+
+Released 2024-03-??
+
+**Updates**
+- MD2/MD3: Dependabot updates.
+- MD2: Enhancements to RTL in switch
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.2.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.0)
 
 Released 2024-03-07
 
 **Updates**
+- MD2/MD3: .Net 8.0.3 updates
 - MD2/MD3: Dependabot updates.
 - MD2: Repaired DemonstrationPage.razor.cs; adding missing '!'; removing extraneous duplicate source page.
-- Repaired Material Symbols handling through cascading defaults.
-- Repaired autocomplete components to escape input for correct handling with Regex.
+- MD2: Repaired Material Symbols handling through cascading defaults.
+- MD2: Repaired autocomplete components to escape input for correct handling with Regex.
 
 **New components**
 
@@ -24,7 +45,7 @@ Released 2024-03-07
 **Breaking Changes**
 
 **Deprecated Components**
-- Icon colour for Material Symbols icons wil be removed in the next major release. This is because color should be handled via CSS.
+- Icon color for Material Symbols icons wil be removed in the next major release. This is because color should be handled via CSS.
 
 **Known issues**
 

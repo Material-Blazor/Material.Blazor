@@ -135,7 +135,7 @@ public abstract class InternalTextFieldBase2 : InputComponent<string>
 
     #region local members
 
-    private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
+//    private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
 
     private string DateFieldErrorMessage { get; set; }
 
