@@ -55,12 +55,9 @@ namespace Material.Blazor.Website.Shared
         private IEnumerable<MBSelectElement<MBDensity>> Densities { get; set; }
 
         private bool NeedsTable =>
-            ((ComponentAndPageName != null) ||
+            (ComponentAndPageName != null) ||
              (DetailedArticle != null) ||
-             (MaterialIOPage != null));
-
-
-        private bool IsRTL { get; set; } = false;
+             (MaterialIOPage != null);
 
 
         protected override void OnInitialized()
