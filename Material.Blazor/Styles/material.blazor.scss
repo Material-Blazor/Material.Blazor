@@ -52,6 +52,10 @@
     width: 100%;
 }
 
+[dir="rtl"] .mb-rtl-reversed-icon i {
+    transform: scaleX(-1);
+}
+
 .loading-progress {
     position: relative;
     display: block;

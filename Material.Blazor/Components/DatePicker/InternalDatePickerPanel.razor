@@ -30,22 +30,22 @@
             @if (!ShowYearPad)
             {
                 <div class="mb-dp-menu__right">
-                    <MBIconButton class="mb-dp-menu__icon-button"
+                    <MBIconButton class="mb-dp-menu__icon-button mb-rtl-reversed-icon"
                                   Disabled="@PreviousMonthDisabled"
-                                  Icon="@BackIcon"
+                                  Icon="chevron_left"
                                   IconFoundry="@foundry"
                                   @onclick="@OnPreviousMonthClick"
                                   type="button" />
 
-                    <MBIconButton class="mb-dp-menu__icon-button spaced"
-                                  Icon="@UndoIcon"
+                    <MBIconButton class="mb-dp-menu__icon-button spaced mb-rtl-reversed-icon"
+                                  Icon="undo"
                                   IconFoundry="@foundry"
                                   @onclick="@OnShowCurrentDateClick"
                                   type="button" />
 
-                    <MBIconButton class="mb-dp-menu__icon-button spaced"
+                    <MBIconButton class="mb-dp-menu__icon-button spaced mb-rtl-reversed-icon"
                                   Disabled="@NextMonthDisabled"
-                                  Icon="@ForwardIcon"
+                                  Icon="chevron_right"
                                   IconFoundry="@foundry"
                                   @onclick="@OnNextMonthClick"
                                   type="button" />

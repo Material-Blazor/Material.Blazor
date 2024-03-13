@@ -47,21 +47,15 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
     private string VisibilityClass => HideContent ? Hidden : Visible;
     private TItem CurrentItem { get; set; }
     private ElementReference ElementReference { get; set; }
-    private bool IsRTL { get; set; } = false;
     private bool HasRendered { get; set; } = false;
 
 
     internal const string Hidden = "mb-visibility-hidden";
     internal const string Visible = "mb-visibility-visible";
-    private const string InFromLeft = "mb-slide-in-from-left";
-    private const string InFromRight = "mb-slide-in-from-right";
-    private const string OutToLeft = "mb-slide-out-to-left";
-    private const string OutToRight = "mb-slide-out-to-right";
-
-    internal static string InFromPrevious(bool isRTL) => isRTL ? InFromRight : InFromLeft;
-    internal static string InFromNext(bool isRTL) => isRTL ? InFromLeft : InFromRight;
-    internal static string OutToPrevious(bool isRTL) => isRTL ? OutToRight : OutToLeft;
-    internal static string OutToNext(bool isRTL) => isRTL ? OutToLeft : OutToRight;
+    internal const string InFromPrevious = "mb-slide-in-from-previous";
+    internal const string InFromNext = "mb-slide-in-from-next";
+    internal const string OutToPrevious = "mb-slide-out-to-previous";
+    internal const string OutToNext = "mb-slide-out-to-next";
 
     private enum SlideDirection { Backwards, Forwards }
 
@@ -81,8 +75,6 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
             var direction = (ItemIndex > _cachedItemIndex) ? SlideDirection.Forwards : SlideDirection.Backwards;
             EnqueueJSInteropAction(() => SlideToItem(ItemIndex, direction));
         }
-
-        IsRTL = await IsElementRTL(ElementReference);
     }
 
 
@@ -96,13 +88,13 @@ public partial class MBSlidingContent<TItem> : ComponentFoundation
 
                 if (direction == SlideDirection.Backwards)
                 {
-                    nextClass = InFromPrevious(IsRTL);
-                    ContentClass = OutToNext(IsRTL);
+                    nextClass = InFromPrevious;
+                    ContentClass = OutToNext;
                 }
                 else
                 {
-                    nextClass = InFromNext(IsRTL);
-                    ContentClass = OutToPrevious(IsRTL);
+                    nextClass = InFromNext;
+                    ContentClass = OutToPrevious;
                 }
 
                 await InvokeAsync(StateHasChanged);

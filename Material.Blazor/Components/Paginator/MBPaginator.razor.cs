@@ -134,13 +134,6 @@ public partial class MBPaginator : ComponentFoundation
 
 
 
-    private bool IsRTL { get; set; }
-    private string FirstItemIcon => IsRTL ? "last_page" : "first_page";
-    private string BackIcon => IsRTL ? "chevron_right" : "chevron_left";
-    private string ForwardIcon => IsRTL ? "chevron_left" : "chevron_right";
-    private string LastItemIcon => IsRTL ? "first_page" : "last_page";
-
-
 
     private bool toggleOn;
     private bool ToggleOn 
@@ -192,8 +185,6 @@ public partial class MBPaginator : ComponentFoundation
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync().ConfigureAwait(false);
-
-        IsRTL = await IsElementRTL(ContainerReference);
 
         if (_cachedItemCount != ItemCount)
         {
