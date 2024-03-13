@@ -4,9 +4,30 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.2.2](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.2)
+
+Released 2024-03-13
+
+**Updates**
+- MD2: RTL implementation refactored from ASP.NET logic to CSS.
+- MD2: `MBTextField` and `MBTextArea` bug fix to allow helper text to be changed dynamically without crashing Blazor javascript.
+- MD2: Reinstate `MBCascadingDefaults.ShallowCopy`.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.2.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.1)
 
-Released 2024-03-??
+Released 2024-03-12
 
 **Updates**
 - MD2/MD3: Dependabot updates.

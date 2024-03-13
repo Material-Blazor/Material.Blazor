@@ -135,10 +135,7 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     private readonly string currentYearId = Utilities.GenerateUniqueElementName();
 
     private readonly IMBIconFoundry foundry = MBIconHelper.MSFoundry(fill: true, gradient: MBIconMSGradient.NormalEmphasis, size: MBIconMSSize.Size24, style: MBIconMSStyle.Outlined, weight: MBIconMSWeight.W400);
-    private bool IsRTL { get; set; }
-    private string BackIcon => IsRTL ? "chevron_right" : "chevron_left";
-    private string UndoIcon => IsRTL ? "redo" : "undo";
-    private string ForwardIcon => IsRTL ? "chevron_left" : "chevron_right";
+
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -154,8 +151,6 @@ public partial class InternalDatePickerPanel : InputComponent<DateTime>
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
-
-        IsRTL = await IsElementRTL(Parent.ElementReference);
 
         SetParameters();
     }

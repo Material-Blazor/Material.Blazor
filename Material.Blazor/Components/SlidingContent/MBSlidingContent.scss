@@ -6,10 +6,60 @@
     visibility: visible;
 }
 
-.mb-slide-in-from-left {
+
+
+
+.mb-slide-in-from-previous {
     animation: slideInFromLeft ease 200ms;
     -webkit-animation: slideInFromLeft ease 200ms;
 }
+
+[dir="rtl"] .mb-slide-in-from-previous {
+    animation: slideInFromRight ease 200ms;
+    -webkit-animation: slideInFromRight ease 200ms;
+}
+
+
+
+
+.mb-slide-in-from-next {
+    animation: slideInFromRight ease 200ms;
+    -webkit-animation: slideInFromRight ease 200ms;
+}
+
+[dir="rtl"] .mb-slide-in-from-next {
+    animation: slideInFromLeft ease 200ms;
+    -webkit-animation: slideInFromLeft ease 200ms;
+}
+
+
+
+
+.mb-slide-out-to-previous {
+    animation: slideOutToLeft ease-out 10000ms;
+    -webkit-animation: slideOutToLeft ease-out 10000ms;
+}
+
+[dir="rtl"] .mb-slide-out-to-previous {
+    animation: slideOutToRight ease-out 10000ms;
+    -webkit-animation: slideOutToRight ease-out 10000ms;
+}
+
+
+
+
+.mb-slide-out-to-next {
+    animation: slideOutToRight ease-out 10000ms;
+    -webkit-animation: slideOutToRight ease-out 10000ms;
+}
+
+[dir="rtl"] .mb-slide-out-to-next {
+    animation: slideOutToLeft ease-out 10000ms;
+    -webkit-animation: slideOutToLeft ease-out 10000ms;
+}
+
+
+
 
 @-webkit-keyframes slideInFromLeft {
     0% {
@@ -36,10 +86,7 @@
 }
 
 
-.mb-slide-in-from-right {
-    animation: slideInFromRight ease 200ms;
-    -webkit-animation: slideInFromRight ease 200ms;
-}
+
 
 @-webkit-keyframes slideInFromRight {
     0% {
@@ -66,10 +113,7 @@
 }
 
 
-.mb-slide-out-to-left {
-    animation: slideOutToLeft ease-out 10000ms;
-    -webkit-animation: slideOutToLeft ease-out 10000ms;
-}
+
 
 @-webkit-keyframes slideOutToLeft {
     0% {
@@ -108,10 +152,7 @@
 }
 
 
-.mb-slide-out-to-right {
-    animation: slideOutToRight ease-out 10000ms;
-    -webkit-animation: slideOutToRight ease-out 10000ms;
-}
+
 
 @-webkit-keyframes slideOutToRight {
     0% {

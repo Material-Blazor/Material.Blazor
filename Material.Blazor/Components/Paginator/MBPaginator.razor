@@ -45,10 +45,10 @@
         </div>
 
         <div class="mdc-data-table__pagination-navigation">
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="@FirstItemIcon" @onclick="@OnFirstClick" Disabled="@PreviousDisabled" data-prev-page="true" />
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="@BackIcon" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" data-prev-page="true" />
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="@ForwardIcon" @onclick="@OnNextClick" Disabled="@NextDisabled" data-prev-page="true" />
-            <MBIconButton class="mdc-data-table__pagination-button" Icon="@LastItemIcon" @onclick="@OnLastClick" Disabled="@NextDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button mb-rtl-reversed-icon" Icon="first_page" @onclick="@OnFirstClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button mb-rtl-reversed-icon" Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button mb-rtl-reversed-icon" Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button mb-rtl-reversed-icon" Icon="last_page" @onclick="@OnLastClick" Disabled="@NextDisabled" data-prev-page="true" />
         </div>
     </div>
 </div>

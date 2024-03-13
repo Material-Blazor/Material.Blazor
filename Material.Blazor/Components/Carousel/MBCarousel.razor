@@ -20,11 +20,13 @@
             </InternalCarouselPanel>
         </div>
 
-        <MBFloatingActionButton Icon="@PreviousIcon"
+        <MBFloatingActionButton Icon="navigate_before"
+                                class="mb-rtl-reversed-icon"
                                 style="order: 1;"
                                 @onclick="NavigatePrevious" />
 
-        <MBFloatingActionButton Icon="@NextIcon"
+        <MBFloatingActionButton Icon="navigate_next"
+                                class="mb-rtl-reversed-icon"
                                 style="order: 3;"
                                 @onclick="NavigateNext" />
     </div>

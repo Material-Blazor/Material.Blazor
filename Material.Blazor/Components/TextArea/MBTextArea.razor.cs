@@ -16,6 +16,7 @@ public partial class MBTextArea : InputComponent<string>
     /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
     /// </summary>
     [Parameter] public string HelperText { get; set; } = "";
+    private string _cachedHelperText;
 
 
     /// <summary>
@@ -129,6 +130,7 @@ public partial class MBTextArea : InputComponent<string>
         }
 
         _cachedLabel = Label;
+        _cachedHelperText = HelperText;
     }
 
 
@@ -140,6 +142,12 @@ public partial class MBTextArea : InputComponent<string>
         if (_cachedLabel != Label)
         {
             _cachedLabel = Label;
+            AllowNextRender(true);
+        }
+
+        if (_cachedHelperText != HelperText)
+        {
+            _cachedHelperText = HelperText;
             AllowNextRender(true);
         }
     }

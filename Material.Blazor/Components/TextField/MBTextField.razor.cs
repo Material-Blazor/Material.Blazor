@@ -55,6 +55,7 @@ public partial class MBTextField : InputComponent<string>
     /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
     /// </summary>
     [Parameter] public string HelperText { get; set; } = "";
+    private string _cachedHelperText;
 
 
     /// <summary>
@@ -148,7 +149,7 @@ public partial class MBTextField : InputComponent<string>
     private string DisplayLabel => Label + LabelSuffix;
     private string FloatingLabelClass { get; set; }
     private ElementReference InputReference { get; set; }
-    private MarkupString HelperTextMarkup => new(HelperText);
+    private MarkupString HelperTextMarkup { get; set; } = new("");
     private ElementReference HelperTextReference { get; set; }
     private ElementReference ErrorTextReference { get; set; }
     private string DateFieldErrorMessage { get; set; }
@@ -214,6 +215,8 @@ public partial class MBTextField : InputComponent<string>
         }
 
         _cachedLabel = Label;
+        _cachedHelperText = HelperText;
+        HelperTextMarkup = new(HelperText);
     }
 
 
@@ -236,6 +239,13 @@ public partial class MBTextField : InputComponent<string>
         if (_cachedLabel != Label)
         {
             _cachedLabel = Label;
+            AllowNextRender(true);
+        }
+
+        if (_cachedHelperText != HelperText)
+        {
+            _cachedHelperText = HelperText;
+            HelperTextMarkup = new(HelperText);
             AllowNextRender(true);
         }
     }

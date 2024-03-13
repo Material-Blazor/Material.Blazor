@@ -803,6 +803,19 @@ public class MBCascadingDefaults
     #endregion
 
 
+    #region ShallowCopy
+
+    /// <summary>
+    /// Returns a shallow copy of the cascading defaults.
+    /// </summary>
+    /// <returns></returns>
+    public MBCascadingDefaults ShallowCopy()
+    {
+        return (MBCascadingDefaults)MemberwiseClone();
+    }
+
+    #endregion
+
     #region SetParameter
 
     private void SetParameter<T>(ref T privateParameter, T value)
