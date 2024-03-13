@@ -86,10 +86,11 @@
     var additionalClass = HasErrorText ? "mb-text-field__helper-text" : "";
 
     <div class="mdc-text-field-helper-line @additionalClass">
-        <div @ref="@HelperTextReference"
-         class="mdc-text-field-helper-text"
-         id="@helperTextId"
-         aria-hidden="true">
+        <div @key="@HelperTextMarkup" 
+             @ref="@HelperTextReference"
+             class="mdc-text-field-helper-text"
+             id="@helperTextId"
+             aria-hidden="true">
             @HelperTextMarkup
         </div>
     </div>
@@ -99,7 +100,7 @@
 {
     <div class="mdc-text-field-helper-line  mb-text-field__helper-invalid-text">
         <div @ref="@ErrorTextReference"
-         aria-hidden="true">
+             aria-hidden="true">
             @DateFieldErrorMessage
         </div>
     </div>
