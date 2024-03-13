@@ -4273,9 +4273,44 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   visibility: visible;
 }
 
-.mb-slide-in-from-left {
+.mb-slide-in-from-previous {
   animation: slideInFromLeft ease 200ms;
   -webkit-animation: slideInFromLeft ease 200ms;
+}
+
+[dir=rtl] .mb-slide-in-from-previous {
+  animation: slideInFromRight ease 200ms;
+  -webkit-animation: slideInFromRight ease 200ms;
+}
+
+.mb-slide-in-from-next {
+  animation: slideInFromRight ease 200ms;
+  -webkit-animation: slideInFromRight ease 200ms;
+}
+
+[dir=rtl] .mb-slide-in-from-next {
+  animation: slideInFromLeft ease 200ms;
+  -webkit-animation: slideInFromLeft ease 200ms;
+}
+
+.mb-slide-out-to-previous {
+  animation: slideOutToLeft ease-out 10000ms;
+  -webkit-animation: slideOutToLeft ease-out 10000ms;
+}
+
+[dir=rtl] .mb-slide-out-to-previous {
+  animation: slideOutToRight ease-out 10000ms;
+  -webkit-animation: slideOutToRight ease-out 10000ms;
+}
+
+.mb-slide-out-to-next {
+  animation: slideOutToRight ease-out 10000ms;
+  -webkit-animation: slideOutToRight ease-out 10000ms;
+}
+
+[dir=rtl] .mb-slide-out-to-next {
+  animation: slideOutToLeft ease-out 10000ms;
+  -webkit-animation: slideOutToLeft ease-out 10000ms;
 }
 
 @-webkit-keyframes slideInFromLeft {
@@ -4298,11 +4333,6 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
     opacity: 1;
   }
 }
-.mb-slide-in-from-right {
-  animation: slideInFromRight ease 200ms;
-  -webkit-animation: slideInFromRight ease 200ms;
-}
-
 @-webkit-keyframes slideInFromRight {
   0% {
     margin-left: 12px;
@@ -4323,11 +4353,6 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
     opacity: 1;
   }
 }
-.mb-slide-out-to-left {
-  animation: slideOutToLeft ease-out 10000ms;
-  -webkit-animation: slideOutToLeft ease-out 10000ms;
-}
-
 @-webkit-keyframes slideOutToLeft {
   0% {
     opacity: 1;
@@ -4358,11 +4383,6 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
     opacity: 0;
   }
 }
-.mb-slide-out-to-right {
-  animation: slideOutToRight ease-out 10000ms;
-  -webkit-animation: slideOutToRight ease-out 10000ms;
-}
-
 @-webkit-keyframes slideOutToRight {
   0% {
     opacity: 1;
@@ -6358,6 +6378,14 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 
 .mb-full-width {
   width: 100%;
+}
+
+[dir=rtl] .mb-rtl-reversed-icon i {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
 }
 
 .loading-progress {
