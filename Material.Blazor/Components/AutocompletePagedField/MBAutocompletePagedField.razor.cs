@@ -51,6 +51,12 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
 
 
     /// <summary>
+    /// Menu surface positioning, defaults to <see cref="MBMenuSurfacePositioning.Fixed"/>.
+    /// </summary>
+    [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Fixed;
+
+
+    /// <summary>
     /// Field label.
     /// </summary>
     [Parameter] public string? Label { get; set; }
@@ -143,6 +149,9 @@ public partial class MBAutocompletePagedField<TItem> : SingleSelectComponent<TIt
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+
+        _ = ConditionalCssClasses
+            .AddIf(MBMenuSurface.GetMenuSurfacePositioningClass(MenuSurfacePositioning), () => MenuSurfacePositioning != MBMenuSurfacePositioning.Regular);
 
         AllowAllRenders();
     }

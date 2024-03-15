@@ -114,7 +114,7 @@ public partial class MBMenuSurface : ComponentFoundation
     /// </summary>
     /// <param name="surfacePositioning"></param>
     /// <returns></returns>
-    private static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
+    internal static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
         surfacePositioning switch
         {
             MBMenuSurfacePositioning.FullWidth => "mdc-menu-surface--fullwidth",
