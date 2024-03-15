@@ -4,6 +4,25 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.2.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.3)
+
+Released 2024-03-15
+
+**Updates**
+- Ad `MenuSurfacePositioning` to `MBAutocompletePagedField`.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.2.2](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.2)
 
 Released 2024-03-13
