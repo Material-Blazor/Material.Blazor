@@ -36,13 +36,17 @@ public sealed class MBChipSet : ComponentFoundation
             builder.AddAttribute(rendSeq++, "id", id);
             if (attributesToSplat.Any())
             {
+                rendSeq = 100;
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
+            rendSeq = 200;
             if (ChipsetItems is not null)
             {
                 foreach (var chip in ChipsetItems)
                 {
+                    rendSeq += 1000;
+                    var rendSeqBase = rendSeq;
                     var componentName = CascadingDefaults.AppliedChipType(chip.ChipType) switch
                     {
                         MBChipType.Assist => "md-assist-chip",
@@ -56,17 +60,17 @@ public sealed class MBChipSet : ComponentFoundation
                     {
                         if (!string.IsNullOrWhiteSpace(chip.Label))
                         {
-                            builder.AddAttribute(rendSeq++, "label", chip.Label);
+                            builder.AddAttribute(rendSeq+10, "label", chip.Label);
                         }
 
                         if (AppliedDisabled || chip.IsDisabled)
                         {
-                            builder.AddAttribute(rendSeq++, "disabled");
+                            builder.AddAttribute(rendSeq+20, "disabled");
                         }
 
                         if (chip.IsElevated)
                         {
-                            builder.AddAttribute(rendSeq++, "elevated");
+                            builder.AddAttribute(rendSeq+30, "elevated");
                         }
 
                         if (!string.IsNullOrWhiteSpace(chip.Link))
@@ -75,7 +79,7 @@ public sealed class MBChipSet : ComponentFoundation
 
                             if (!string.IsNullOrWhiteSpace(chip.LinkTarget))
                             {
-                                builder.AddAttribute(rendSeq++, "target", chip.LinkTarget);
+                                builder.AddAttribute(rendSeq+40, "target", chip.LinkTarget);
                             }
                         }
 
@@ -84,14 +88,15 @@ public sealed class MBChipSet : ComponentFoundation
                             // Only for filter & input chips
                             if (componentName.Equals("md-filter-chip"))
                             {
-                                builder.AddAttribute(rendSeq++, "removable");
+                                builder.AddAttribute(rendSeq+50, "removable");
                             }
                             else if (componentName.Equals("md-input-chip"))
                             {
-                                builder.AddAttribute(rendSeq++, "remove-only");
+                                builder.AddAttribute(rendSeq+60, "remove-only");
                             }
                         }
 
+                        rendSeq = rendSeqBase + 100;
                         if (chip.Icon is not null)
                         {
                             MBIcon.BuildRenderTreeWorker(

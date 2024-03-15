@@ -116,6 +116,7 @@ public sealed class MBIconButton : ComponentFoundation
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
+            rendSeq += 10;
             if ((componentName.StartsWith("md-icon-button")) && (!string.IsNullOrEmpty(iconLink)))
             {
                 builder.AddAttribute(rendSeq++, "href", iconLink);
@@ -126,6 +127,7 @@ public sealed class MBIconButton : ComponentFoundation
                 }
             }
 
+            rendSeq += 10;
             if (toggleIconDescriptor is not null)
             {
                 builder.AddAttribute(rendSeq++, "toggle");
@@ -135,6 +137,7 @@ public sealed class MBIconButton : ComponentFoundation
                 }
             }
 
+            rendSeq += 10;
             builder.AddAttribute(rendSeq++, "class", classString);
             builder.AddAttribute(rendSeq++, "style", styleString);
             builder.AddAttribute(rendSeq++, "id", idString);
@@ -143,11 +146,13 @@ public sealed class MBIconButton : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrEmpty(slot))
             {
                 builder.AddAttribute(rendSeq++, "slot", slot);
             }
 
+            rendSeq += 10;
             if (iconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
@@ -162,6 +167,7 @@ public sealed class MBIconButton : ComponentFoundation
                     "");
             }
 
+            rendSeq += 10;
             if (toggleIconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(

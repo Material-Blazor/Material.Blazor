@@ -57,11 +57,13 @@ public sealed class MBCheckbox : InputComponent<bool>
                 builder.AddAttribute(rendSeq++, "id", id);
                 if (attributesToSplat.Any())
                 {
+                    rendSeq = 100;
                     builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
 
                 if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
                 {
+                    rendSeq = 200;
                     var labelSpan =
                         "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
                         + LeadingLabelPLUS
@@ -70,29 +72,35 @@ public sealed class MBCheckbox : InputComponent<bool>
                     builder.AddMarkupContent(rendSeq++, labelSpan);
                 }
 
+                rendSeq = 300;
                 builder.OpenElement(rendSeq++, "md-checkbox");
                 {
                     if (AppliedDisabled || IsDisabled)
                     {
+                        rendSeq = 400;
                         builder.AddAttribute(rendSeq++, "disabled");
                     }
 
                     if (Value)
                     {
+                        rendSeq = 500;
                         builder.AddAttribute(rendSeq++, "checked");
                     }
 
                     if (IsIndeterminate)
                     {
+                        rendSeq = 600;
                         builder.AddAttribute(rendSeq++, "indeterminate");
                     }
 
+                    rendSeq = 700;
                     builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
                 }
                 builder.CloseElement();
 
                 if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
                 {
+                    rendSeq = 800;
                     var labelSpan =
                         "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
                         + TrailingLabelPLUS

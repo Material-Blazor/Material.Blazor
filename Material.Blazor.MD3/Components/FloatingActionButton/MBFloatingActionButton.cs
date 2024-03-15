@@ -81,42 +81,44 @@ public sealed class MBFloatingActionButton : ComponentFoundation
         {
             if (AppliedDisabled)
             {
-                builder.AddAttribute(rendSeq++, "disabled");
+                builder.AddAttribute(100, "disabled");
             }
 
             if (IsLowered)
             {
-                builder.AddAttribute(rendSeq++, "lowered");
+                builder.AddAttribute(110, "lowered");
             }
 
+            rendSeq = 120;
             builder.AddAttribute(rendSeq++, "class", @class);
             builder.AddAttribute(rendSeq++, "style", style);
             builder.AddAttribute(rendSeq++, "id", id);
             if ((attributesToSplat is not null) && attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(130, attributesToSplat);
             }
 
             if (!string.IsNullOrWhiteSpace(variant))
             {
-                builder.AddAttribute(rendSeq++, "variant", variant);
+                builder.AddAttribute(140, "variant", variant);
             }
 
             if (!string.IsNullOrWhiteSpace(Label))
             {
-                builder.AddAttribute(rendSeq++, "label", Label);
+                builder.AddAttribute(150, "label", Label);
             }
 
             var size = CascadingDefaults.AppliedFloatingActionButtonSize(FloatingActionButtonSize);
             if (size == MBFloatingActionButtonSize.Small)
             {
-                builder.AddAttribute(rendSeq++, "size", "small");
+                builder.AddAttribute(160, "size", "small");
             }
             else if (size == MBFloatingActionButtonSize.Large)
             {
-                builder.AddAttribute(rendSeq++, "size", "large");
+                builder.AddAttribute(160, "size", "large");
             }
 
+            rendSeq = 200;
             if (IconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(

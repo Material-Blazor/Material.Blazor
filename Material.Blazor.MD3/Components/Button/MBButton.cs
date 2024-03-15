@@ -92,16 +92,19 @@ public sealed class MBButton : ComponentFoundation
 
             if (appliedDisabled)
             {
+                rendSeq = 100;
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
             if (iconIsTrailing)
             {
+                rendSeq = 200;
                 builder.AddAttribute(rendSeq++, "trailing-icon");
             }
 
             if (iconDescriptor is not null)
             {
+                rendSeq = 300;
                 MBIcon.BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
@@ -116,16 +119,19 @@ public sealed class MBButton : ComponentFoundation
 
             if (!string.IsNullOrWhiteSpace(formId))
             {
+                rendSeq = 400;
                 builder.AddAttribute(rendSeq++, "form", formId);
             }
 
             if (!string.IsNullOrWhiteSpace(buttonValue))
             {
+                rendSeq = 500;
                 builder.AddAttribute(rendSeq++, "value", buttonValue);
             }
 
             if (!string.IsNullOrWhiteSpace(label))
             {
+                rendSeq = 600;
                 builder.AddContent(rendSeq++, label);
             }
         }

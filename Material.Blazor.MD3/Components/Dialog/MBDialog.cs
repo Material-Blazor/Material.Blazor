@@ -76,6 +76,7 @@ namespace Material.Blazor
 
                 if (IconDescriptor is not null)
                 {
+                    rendSeq = 100;
                     MBIcon.BuildRenderTreeWorker(
                         builder,
                         ref rendSeq,
@@ -90,6 +91,7 @@ namespace Material.Blazor
 
                 if (!string.IsNullOrWhiteSpace(Headline) || CustomHeader is not null)
                 {
+                    rendSeq = 200;
                     builder.OpenElement(rendSeq++, "div");
                     {
                         builder.AddAttribute(rendSeq++, "slot", "headline");

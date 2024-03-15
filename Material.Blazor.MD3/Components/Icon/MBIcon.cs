@@ -193,6 +193,7 @@ public class MBIcon : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
+            rendSeq = 100;
             builder.AddAttribute(rendSeq++, "class", classString);
             builder.AddAttribute(rendSeq++, "style", styleString);
             builder.AddAttribute(rendSeq++, "id", idString);
@@ -201,6 +202,7 @@ public class MBIcon : ComponentFoundation
             {
                 builder.AddAttribute(rendSeq++, "slot", iconSlot);
             }
+            rendSeq = 200;
             builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
             builder.AddContent(rendSeq++, iconName.ToLower());
         }
