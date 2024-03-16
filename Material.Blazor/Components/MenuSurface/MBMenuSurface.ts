@@ -6,6 +6,12 @@ export function init(elem, dotNetObject) {
     }
     elem._menu = MDCMenuSurface.attachTo(elem);
 
+    const openedCallback = () => {
+        dotNetObject.invokeMethodAsync('NotifyOpened');
+    };
+
+    elem._menu.listen('MDCMenuSurface:opened', openedCallback);
+
     const closedCallback = () => {
         dotNetObject.invokeMethodAsync('NotifyClosed');
     };

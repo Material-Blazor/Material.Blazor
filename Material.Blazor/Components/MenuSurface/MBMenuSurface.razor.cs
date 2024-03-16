@@ -24,6 +24,12 @@ public partial class MBMenuSurface : ComponentFoundation
 
 
     /// <summary>
+    /// Called when the menu is opened.
+    /// </summary>
+    [Parameter] public Action OnMenuOpened { get; set; }
+
+
+    /// <summary>
     /// Called when the menu is closed.
     /// </summary>
     [Parameter] public Action OnMenuClosed { get; set; }
@@ -69,14 +75,20 @@ public partial class MBMenuSurface : ComponentFoundation
     /// For Material Theme to notify of menu closure via JS Interop.
     /// </summary>
     [JSInvokable()]
+    public void NotifyOpened()
+    {
+        OnMenuOpened?.Invoke();
+    }
+
+
+    /// <summary>
+    /// For Material Theme to notify of menu closure via JS Interop.
+    /// </summary>
+    [JSInvokable()]
     public void NotifyClosed()
     {
         IsOpen = false;
-
-        if (OnMenuClosed != null)
-        {
-            _ = InvokeAsync(OnMenuClosed);
-        }
+        OnMenuClosed?.Invoke();
     }
 
 
