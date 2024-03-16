@@ -6,10 +6,11 @@ title: ReleaseNotes
 
 #### [5.2.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.2.3)
 
-Released 2024-03-15
+Released 2024-03-16
 
 **Updates**
-- Ad `MenuSurfacePositioning` to `MBAutocompletePagedField`.
+- Add `MenuSurfacePositioning` parameter to `MBAutocompletePagedField`.
+- Add `OnMenuOpened` parameter to `MBMenuSurface`.
 
 **New components**
 
