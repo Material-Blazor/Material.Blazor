@@ -28,7 +28,8 @@
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="@MenuReference"
-             class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
+             class="mdc-menu-surface @ActiveConditionalClasses @(@class)"
+             style="@style"
              @onfocusin="OnMenuFocusIn"
              @onfocusout="OnMenuFocusOut"
              tabindex="-1">

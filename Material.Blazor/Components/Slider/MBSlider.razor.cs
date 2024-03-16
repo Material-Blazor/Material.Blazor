@@ -44,7 +44,7 @@ public partial class MBSlider : InputComponent<decimal>
 
 
     /// <summary>
-    /// For continuous input sets the debounce/throttle delay.
+    /// For continuous input sets the debounce/throttle delay in milliseconds.
     /// </summary>
     [Parameter] public uint ContinuousInputDelay { get; set; } = 300;
 
