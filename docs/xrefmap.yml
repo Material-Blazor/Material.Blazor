@@ -2724,6 +2724,22 @@ references:
   fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).MatchingItemCount
   nameWithType: MBAutocompletePagedField<TItem>.MatchingItemCount
   nameWithType.vb: MBAutocompletePagedField(Of TItem).MatchingItemCount
+- uid: Material.Blazor.MBAutocompletePagedField`1.MenuSurfacePositioning
+  name: MenuSurfacePositioning
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_MenuSurfacePositioning
+  commentId: P:Material.Blazor.MBAutocompletePagedField`1.MenuSurfacePositioning
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.MenuSurfacePositioning
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).MenuSurfacePositioning
+  nameWithType: MBAutocompletePagedField<TItem>.MenuSurfacePositioning
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).MenuSurfacePositioning
+- uid: Material.Blazor.MBAutocompletePagedField`1.MenuSurfacePositioning*
+  name: MenuSurfacePositioning
+  href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_MenuSurfacePositioning_
+  commentId: Overload:Material.Blazor.MBAutocompletePagedField`1.MenuSurfacePositioning
+  fullName: Material.Blazor.MBAutocompletePagedField<TItem>.MenuSurfacePositioning
+  fullName.vb: Material.Blazor.MBAutocompletePagedField(Of TItem).MenuSurfacePositioning
+  nameWithType: MBAutocompletePagedField<TItem>.MenuSurfacePositioning
+  nameWithType.vb: MBAutocompletePagedField(Of TItem).MenuSurfacePositioning
 - uid: Material.Blazor.MBAutocompletePagedField`1.NotifyClosed
   name: NotifyClosed()
   href: api/Material.Blazor.MBAutocompletePagedField-1.html#Material_Blazor_MBAutocompletePagedField_1_NotifyClosed
@@ -9753,6 +9769,18 @@ references:
   commentId: Overload:Material.Blazor.MBMenuSurface.NotifyClosed
   fullName: Material.Blazor.MBMenuSurface.NotifyClosed
   nameWithType: MBMenuSurface.NotifyClosed
+- uid: Material.Blazor.MBMenuSurface.NotifyOpened
+  name: NotifyOpened()
+  href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_NotifyOpened
+  commentId: M:Material.Blazor.MBMenuSurface.NotifyOpened
+  fullName: Material.Blazor.MBMenuSurface.NotifyOpened()
+  nameWithType: MBMenuSurface.NotifyOpened()
+- uid: Material.Blazor.MBMenuSurface.NotifyOpened*
+  name: NotifyOpened
+  href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_NotifyOpened_
+  commentId: Overload:Material.Blazor.MBMenuSurface.NotifyOpened
+  fullName: Material.Blazor.MBMenuSurface.NotifyOpened
+  nameWithType: MBMenuSurface.NotifyOpened
 - uid: Material.Blazor.MBMenuSurface.OnInitializedAsync
   name: OnInitializedAsync()
   href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_OnInitializedAsync
@@ -9777,6 +9805,18 @@ references:
   commentId: Overload:Material.Blazor.MBMenuSurface.OnMenuClosed
   fullName: Material.Blazor.MBMenuSurface.OnMenuClosed
   nameWithType: MBMenuSurface.OnMenuClosed
+- uid: Material.Blazor.MBMenuSurface.OnMenuOpened
+  name: OnMenuOpened
+  href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_OnMenuOpened
+  commentId: P:Material.Blazor.MBMenuSurface.OnMenuOpened
+  fullName: Material.Blazor.MBMenuSurface.OnMenuOpened
+  nameWithType: MBMenuSurface.OnMenuOpened
+- uid: Material.Blazor.MBMenuSurface.OnMenuOpened*
+  name: OnMenuOpened
+  href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_OnMenuOpened_
+  commentId: Overload:Material.Blazor.MBMenuSurface.OnMenuOpened
+  fullName: Material.Blazor.MBMenuSurface.OnMenuOpened
+  nameWithType: MBMenuSurface.OnMenuOpened
 - uid: Material.Blazor.MBMenuSurface.ToggleAsync
   name: ToggleAsync()
   href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_ToggleAsync

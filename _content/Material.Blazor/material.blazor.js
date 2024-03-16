@@ -13755,6 +13755,10 @@ function MBMenuSurface_init(elem, dotNetObject) {
     return;
   }
   elem._menu = MDCMenuSurface.attachTo(elem);
+  var openedCallback = function openedCallback() {
+    dotNetObject.invokeMethodAsync('NotifyOpened');
+  };
+  elem._menu.listen('MDCMenuSurface:opened', openedCallback);
   var closedCallback = function closedCallback() {
     dotNetObject.invokeMethodAsync('NotifyClosed');
   };
