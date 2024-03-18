@@ -21,6 +21,7 @@ Released 2024-03-18
 **Breaking Changes**
 
 **Deprecated Components**
+- `MBMenuSurface` will be deprecated in favour of `MBPopover` in version 6.0.0.
 
 **Known issues**
 
