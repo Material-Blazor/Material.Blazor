@@ -39,10 +39,13 @@ namespace Material.Blazor
                     builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
                 }
 
+                rendSeq = 100;
+
                 if (ListItems is not null)
                 {
                     foreach (var listItem in ListItems)
                     {
+                        rendSeq += 100;
                         switch (listItem.ListItemType)
                         {
                             case MBListItemType.Divider:
@@ -59,6 +62,8 @@ namespace Material.Blazor
                                         builder.AddAttribute(rendSeq++, "disabled");
                                     }
 
+                                    rendSeq += 10;
+                                    var baseRendSeq = rendSeq;
                                     if (!string.IsNullOrWhiteSpace(listItem.Link))
                                     {
                                         builder.AddAttribute(rendSeq++, "interactive");
@@ -71,6 +76,8 @@ namespace Material.Blazor
                                         }
                                     }
 
+                                    rendSeq = baseRendSeq + 10;
+                                    baseRendSeq = rendSeq;
                                     if (!string.IsNullOrWhiteSpace(listItem.Headline))
                                     {
                                         builder.OpenElement(rendSeq++, "div");
@@ -85,6 +92,8 @@ namespace Material.Blazor
                                         builder.CloseElement();
                                     }
 
+                                    rendSeq = baseRendSeq + 10;
+                                    baseRendSeq = rendSeq;
                                     if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupport))
                                     {
                                         builder.OpenElement(rendSeq++, "div");
@@ -99,6 +108,8 @@ namespace Material.Blazor
                                         builder.CloseElement();
                                     }
 
+                                    rendSeq = baseRendSeq + 10;
+                                    baseRendSeq = rendSeq;
                                     // Two users of the "start" slot; image wins
                                     if (!string.IsNullOrWhiteSpace(listItem.ImageSource))
                                     {
@@ -131,6 +142,8 @@ namespace Material.Blazor
                                         }
                                     }
 
+                                    rendSeq = baseRendSeq + 10;
+                                    baseRendSeq = rendSeq;
                                     if (listItem.TrailingIcon is not null)
                                     {
                                         MBIcon.BuildRenderTreeWorker(
