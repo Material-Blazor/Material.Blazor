@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor;
 
 /// <summary>
-/// This is a general purpose Material Theme menu.
+/// This is a general purpose Material Theme menu surface.
 /// </summary>
 public partial class MBMenuSurface : ComponentFoundation
 {
@@ -21,6 +21,12 @@ public partial class MBMenuSurface : ComponentFoundation
     /// Regular, fullwidth or fixed positioning/width.
     /// </summary>
     [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+
+
+    /// <summary>
+    /// Called when the menu is opened.
+    /// </summary>
+    [Parameter] public Action OnMenuOpened { get; set; }
 
 
     /// <summary>
@@ -69,14 +75,20 @@ public partial class MBMenuSurface : ComponentFoundation
     /// For Material Theme to notify of menu closure via JS Interop.
     /// </summary>
     [JSInvokable()]
+    public void NotifyOpened()
+    {
+        OnMenuOpened?.Invoke();
+    }
+
+
+    /// <summary>
+    /// For Material Theme to notify of menu closure via JS Interop.
+    /// </summary>
+    [JSInvokable()]
     public void NotifyClosed()
     {
         IsOpen = false;
-
-        if (OnMenuClosed != null)
-        {
-            _ = InvokeAsync(OnMenuClosed);
-        }
+        OnMenuClosed?.Invoke();
     }
 
 
@@ -114,7 +126,7 @@ public partial class MBMenuSurface : ComponentFoundation
     /// </summary>
     /// <param name="surfacePositioning"></param>
     /// <returns></returns>
-    private static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
+    internal static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
         surfacePositioning switch
         {
             MBMenuSurfacePositioning.FullWidth => "mdc-menu-surface--fullwidth",

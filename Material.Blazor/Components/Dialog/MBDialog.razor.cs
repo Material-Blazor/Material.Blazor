@@ -10,7 +10,7 @@ namespace Material.Blazor;
 /// <summary>
 /// This is a general purpose Material Theme dialog.
 /// </summary>
-public partial class MBDialog : ComponentFoundation, IMBDialog
+public partial class MBDialog : ComponentFoundation, IMBLayoutParent
 {
     /// <summary>
     /// The dialog title.
@@ -76,17 +76,14 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
 
     private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
-
     private TaskCompletionSource OpenedTaskCompletionSource { get; set; } = new();
-
-    internal Task Opened => OpenedTaskCompletionSource.Task;
     private bool AfterDialogInitialization { get; set; } = false;
     private bool IsOpen { get; set; }
     private bool IsOpening { get; set; }
 
 
     private bool _hasInstantiated = false;
-    bool IMBDialog.HasInstantiated => _hasInstantiated;
+    bool IMBLayoutParent.HasInstantiated => _hasInstantiated;
 
 
     // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -118,7 +115,7 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
 
 
     /// <inheritdoc/>
-    void IMBDialog.RegisterLayoutAction(ComponentFoundation child)
+    void IMBLayoutParent.RegisterLayoutAction(ComponentFoundation child)
     {
         LayoutChildren.Add(child);
     }
@@ -225,8 +222,8 @@ public partial class MBDialog : ComponentFoundation, IMBDialog
     {
         _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
         // Allow enough time for the dialog closing animation before re-rendering
-        await Task.Delay(150);
         IsOpen = false;
+        await Task.Delay(150);
         await InvokeAsync(StateHasChanged);
     }
 }

@@ -1,0 +1,17 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+
+<div @ref="ElementReference"
+     class="mdc-menu-surface @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+
+    <CascadingValue Value="@this" IsFixed="true">
+        @if (IsOpen && ChildContent != null)
+        {
+            @ChildContent
+        }
+    </CascadingValue>
+</div>
