@@ -1,10 +1,10 @@
 ﻿namespace Material.Blazor.Internal;
 
 /// <summary>
-/// An interface implemented by <see cref="MBDialog"/> to allow child components to
+/// An interface implemented by <see cref="MBDialog"/> and <see cref="MBPopover"/> to allow child components to
 /// register themselves for Material Theme js instantiation.
 /// </summary>
-internal interface IMBDialog
+internal interface IMBLayoutParent
 {
     /// <summary>
     /// The child component should implement <see cref="IMBDialogChild"/> and call this when running <see cref="Microsoft.AspNetCore.Components.Componentbase.OnInitialized()"/>

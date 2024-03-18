@@ -602,6 +602,14 @@ __webpack_require__.d(MBMenuSurface_namespaceObject, {
   show: () => (MBMenuSurface_show)
 });
 
+// NAMESPACE OBJECT: ./Components/Popover/MBPopover.ts
+var MBPopover_namespaceObject = {};
+__webpack_require__.r(MBPopover_namespaceObject);
+__webpack_require__.d(MBPopover_namespaceObject, {
+  hide: () => (MBPopover_hide),
+  show: () => (MBPopover_show)
+});
+
 // NAMESPACE OBJECT: ./Components/RadioButton/MBRadioButton.ts
 var MBRadioButton_namespaceObject = {};
 __webpack_require__.r(MBRadioButton_namespaceObject);
@@ -12842,20 +12850,19 @@ function show(elem, dotNetObject, escapeKeyAction, scrimClickAction) {
   }
   elem._dialog = elem._dialog || MDCDialog.attachTo(elem);
   elem._dotNetObject = dotNetObject;
-  var dialog = elem._dialog;
   var openedCallback = function openedCallback() {
-    dialog.unlisten('MDCDialog:opened', openedCallback);
+    elem._dialog.unlisten('MDCDialog:opened', openedCallback);
     dotNetObject.invokeMethodAsync('NotifyOpened');
   };
-  dialog.listen('MDCDialog:opened', openedCallback);
-  dialog.escapeKeyAction = escapeKeyAction;
-  dialog.scrimClickAction = scrimClickAction;
+  elem._dialog.listen('MDCDialog:opened', openedCallback);
+  elem._dialog.escapeKeyAction = escapeKeyAction;
+  elem._dialog.scrimClickAction = scrimClickAction;
   var closingCallback = function closingCallback(event) {
-    dialog.unlisten('MDCDialog:closing', closingCallback);
+    elem._dialog.unlisten('MDCDialog:closing', closingCallback);
     dotNetObject.invokeMethodAsync('NotifyClosed', event.detail.action);
   };
-  dialog.listen('MDCDialog:closing', closingCallback);
-  dialog.open();
+  elem._dialog.listen('MDCDialog:closing', closingCallback);
+  elem._dialog.open();
 }
 function hide(elem, dialogAction) {
   if (!elem) {
@@ -13778,6 +13785,34 @@ function MBMenuSurface_hide(elem) {
   }
   if (elem._menu) {
     elem._menu.close();
+  }
+}
+;// CONCATENATED MODULE: ./Components/Popover/MBPopover.ts
+
+function MBPopover_show(elem, dotNetObject) {
+  if (!elem) {
+    return;
+  }
+  elem._popover = elem._popover || MDCMenuSurface.attachTo(elem);
+  elem._dotNetObject = dotNetObject;
+  var openedCallback = function openedCallback() {
+    elem._dialog.unlisten('MDCMenuSurface:opened', openedCallback);
+    dotNetObject.invokeMethodAsync('NotifyOpened');
+  };
+  elem._popover.listen('MDCMenuSurface:opened', openedCallback);
+  var closedCallback = function closedCallback() {
+    elem._dialog.unlisten('MDCDialog:closing', closedCallback);
+    dotNetObject.invokeMethodAsync('NotifyClosed');
+  };
+  elem._popover.listen('MDCMenuSurface:closed', closedCallback);
+  elem._popover.open();
+}
+function MBPopover_hide(elem) {
+  if (!elem) {
+    return;
+  }
+  if (elem._popover) {
+    elem._popover.close();
   }
 }
 ;// CONCATENATED MODULE: ./node_modules/@material/radio/constants.js
@@ -22626,6 +22661,7 @@ function rtl_isElementRTL(elem) {
 
 
 
+
 window.MaterialBlazor = {
   MBAutocompletePagedField: MBAutocompletePagedField_namespaceObject,
   MBAutocompleteTextField: MBAutocompleteTextField_namespaceObject,
@@ -22647,6 +22683,7 @@ window.MaterialBlazor = {
   MBList: MBList_namespaceObject,
   MBMenu: MBMenu_namespaceObject,
   MBMenuSurface: MBMenuSurface_namespaceObject,
+  MBPopover: MBPopover_namespaceObject,
   MBRadioButton: MBRadioButton_namespaceObject,
   MBSegmentedButtonMulti: MBSegmentedButtonMulti_namespaceObject,
   MBSelect: MBSelect_namespaceObject,

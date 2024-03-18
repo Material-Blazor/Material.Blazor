@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor;
 
 /// <summary>
-/// This is a general purpose Material Theme menu.
+/// This is a general purpose Material Theme menu surface.
 /// </summary>
 public partial class MBMenuSurface : ComponentFoundation
 {

@@ -32,6 +32,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBNumericDoubleField](xref:C.MBNumericDoubleField) | A wrapper for `MBNumericDecimalField` for `double` variables. |
 | [MBNumericIntField](xref:C.MBNumericIntField) | A wrapper for `MBNumericDecimalField` for `int` variables. |
 | [MBPagedDataList](xref:C.MBPagedDataList) | A templated component for paging generic data lists using [MBPaginator](xref:C.MBPaginator) and applying transitions with [MBSlidingContent](xref:C.MBSlidingContent). |
+| [MBPopover](xref:C.MBPopover) | A [Material Menu Surface](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-menu-surface#menu-surface). Renders content in a render fragment with lazy content rendering for improved page load performance, and late instantiation of contained components to ensure correct rendering. This is a prefered component over [MBMenuSurface](xref:C.MBMenuSurface). |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | A group of [MBRadioButtons](xref:C.MBRadioButton). |
 | [MBShield](xref:C.MBShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | [MBSlidingContent](xref:C.MBSlidingContent) | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |

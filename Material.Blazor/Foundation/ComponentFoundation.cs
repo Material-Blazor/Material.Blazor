@@ -29,7 +29,7 @@ public abstract class ComponentFoundation : ComponentBase, IDisposable
     private bool? disabled = null;
 
     [Inject] private IJSRuntime JsRuntime { get; set; }
-    [CascadingParameter] private IMBDialog ParentDialog { get; set; }
+    [CascadingParameter] private IMBLayoutParent ParentDialog { get; set; }
     [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
     [Inject] private protected IMBTooltipService TooltipService { get; set; }
     [Inject] private protected IMBLoggingService LoggingService { get; set; }

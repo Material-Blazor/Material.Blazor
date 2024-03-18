@@ -4,6 +4,7 @@ export function init(elem, dotNetObject) {
     if (!elem) {
         return;
     }
+
     elem._menu = MDCMenuSurface.attachTo(elem);
 
     const openedCallback = () => {
@@ -32,6 +33,7 @@ export function hide(elem) {
     if (!elem) {
         return;
     }
+
     if (elem._menu) {
         elem._menu.close();
     }
