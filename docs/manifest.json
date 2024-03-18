@@ -717,6 +717,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/Components/Popover/MBPopover.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/Components/Popover/MBPopover.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/RadioButton/MBRadioButton.md",
       "output": {
         ".html": {
@@ -2284,6 +2294,16 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBPaginator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBPopover.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBPopover.html"
         }
       },
       "version": ""

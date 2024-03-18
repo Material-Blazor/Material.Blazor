@@ -83,6 +83,27 @@
         <article data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
+<h4 id="530"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.3.0">5.3.0</a></h4>
+<p>Released 2024-03-18</p>
+<p><strong>Updates</strong></p>
+<p><strong>New components</strong></p>
+<ul>
+<li>New <code>MBPopover</code> has the same styling and UX experience as <code>MBMenuSurface</code>, with the following engineering differences:
+<ul>
+<li>Performs lazy rendering of child content to improve page load performance, copied from <code>MBDialog</code>.</li>
+<li>Also like <code>MBDialog</code>, <code>MBPopover</code> performs late instantiation of child compoenents to ensure correct styling after opening.</li>
+<li><code>MBPopover</code> has <code>ShowAsync()</code> and <code>HideAsync()</code> like <code>MBDialog</code>, unlike the <code>ToggleAsync()</code> method of <code>MBMenuSurface</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>New features</strong></p>
+<p><strong>Breaking Changes</strong></p>
+<p><strong>Deprecated Components</strong></p>
+<ul>
+<li><code>MBMenuSurface</code> will be deprecated in favour of <code>MBPopover</code> in version 6.0.0.</li>
+</ul>
+<p><strong>Known issues</strong></p>
+<br>
 <h4 id="523"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.2.3">5.2.3</a></h4>
 <p>Released 2024-03-16</p>
 <p><strong>Updates</strong></p>
