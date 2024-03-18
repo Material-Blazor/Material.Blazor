@@ -18,6 +18,7 @@ import * as MBLinearProgress from '../Components/LinearProgress/MBLinearProgress
 import * as MBList from '../Components/List/MBList';
 import * as MBMenu from '../Components/Menu/MBMenu';
 import * as MBMenuSurface from '../Components/MenuSurface/MBMenuSurface';
+import * as MBPopover from '../Components/Popover/MBPopover';
 import * as MBRadioButton from '../Components/RadioButton/MBRadioButton';
 import * as MBSegmentedButtonMulti from '../Components/SegmentedButtonMulti/MBSegmentedButtonMulti';
 import * as MBSelect from '../Components/Select/MBSelect';
@@ -51,6 +52,7 @@ import * as RTL from './rtl';
     MBList,
     MBMenu,
     MBMenuSurface,
+    MBPopover,
     MBRadioButton,
     MBSegmentedButtonMulti,
     MBSelect,

@@ -1,0 +1,94 @@
+﻿@page "/popover"
+
+@inject IMBToastService ToastService
+
+<DemonstrationPage ComponentAndPageName="Popover"
+                   MaterialIOPage="mdc-menu-surface#menu-surface"
+                   Title="Popover Demonstration">
+    <Description>
+        <p>
+            Demonstrates a popover. Popovers have the same styling and UX as menu surfaces, but with control similar to dialogs. This
+            means lazy content rendering (for substantially improved page load speed) and late instantiation of components to ensure
+            correct dimensions after opening, which is also similar to dialogs. You can observe this in action via the slider in this
+            demonstration, which would fail to render correctly within a menu surface.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Popover Example
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Allows the definition of freeform menus. Click the button to open the menu.
+                    </h3>
+
+                    <p>
+                        <MBIconButton @onclick="@OpenMenuSurfaceAsync" Icon="account_circle" />
+                        <div class="mdc-menu-surface--anchor">
+                            <MBPopover @ref="PopoverElement">
+                                <div class="mdc-layout-grid__inner" style="padding: 20px; width: 600px;">
+                                    <div class="mdc-layout-grid__cell--span-12 mdc-typography mdc-typography--headline6">
+                                        Alice Smith
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell--span-12 mdc-typography mdc-typography--subtitle1">
+                                        alice.smith@domain.com
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell--span-12">
+                                        <MBIconButton Icon="logout" @onclick="@(() => OnClick("logout"))" />
+                                        <MBIconButton Icon="settings" @onclick="@(() => OnClick("settings"))" />
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell--span-12" style="margin-top: 24px;">
+                                        <p class="mdc-typography mdc-typography--subtitle1">Take Alice's dog for a walk</p>
+                                        <p class="mdc-typography mdc-typography--caption">This slider will not render correctly in an <code>MBMenuSurface</code></p>
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell--span-12">
+                                        <MBSlider style="margin-left: 0px; margin-right: 0px;"
+                                                  AriaLabel="The dog's lead'"
+                                                  @bind-Value="@SliderValue"
+                                                  DecimalPlaces="0"
+                                                  SliderType="@MBSliderType.Continuous"
+                                                  EventType="@MBInputEventType.OnInputThrottled"
+                                                  ContinuousInputDelay="10"
+                                                  ValueMin="0"
+                                                  ValueMax="100" />
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell--span-12">
+                                        <span style="position: relative; width: 0px; display: inline-flex; flex-flow: row nowrap; justify-content: center; left: @Left;">
+                                            <MBIcon IconName="pets" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </MBPopover>
+                        </div>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+
+</DemonstrationPage>
+
+@code {
+    private MBPopover PopoverElement { get; set; }
+    private decimal SliderValue { get; set; } = 0;
+    private string Left => $"{Math.Round(SliderValue, 0)}%";
+
+    private async Task OpenMenuSurfaceAsync()
+    {
+        await PopoverElement.ShowAsync();
+    }
+
+    private void OnClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}
