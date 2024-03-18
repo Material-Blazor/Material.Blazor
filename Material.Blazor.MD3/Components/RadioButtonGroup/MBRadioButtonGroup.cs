@@ -39,48 +39,48 @@ public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MB
     {
         var attributesToSplat = AttributesToSplat().ToArray();
 
-        var rendSeq = 0;
-
-        builder.OpenElement(rendSeq++, "div");
+        builder.OpenElement(0, "div");
         {
-            builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
+            builder.AddAttribute(1, "class", @ActiveConditionalClasses + @class);
             var additionalStyle = IsHorizontal switch
             {
                 true => "display: flex; flex-direction: row; flex-grow: 0; align-items: flex-start; ",
                 false => "display: flex; flex-direction: column; flex-grow: 0; align-items: flex-start;"
             };
-            builder.AddAttribute(rendSeq++, "style", additionalStyle + @style);
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(2, "style", additionalStyle + @style);
+            builder.AddAttribute(3, "id", id);
             if (attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(4, attributesToSplat);
             }
 
+            var baseRendSeq = 100;
             foreach (var sse in Items)
             {
-                builder.OpenComponent(rendSeq++, typeof(MBRadioButton<TItem>));
+                builder.OpenComponent(baseRendSeq, typeof(MBRadioButton<TItem>));
                 {
-                    builder.AddComponentParameter(rendSeq++, "Density", Density);
-                    builder.AddComponentParameter(rendSeq++, "Disabled", sse.Disabled);
-                    builder.AddComponentParameter(rendSeq++, "LeadingLabelPLUS", sse.LeadingLabel);
-                    builder.AddComponentParameter(rendSeq++, "RadioGroupName", RadioGroupName);
+                    builder.AddComponentParameter(baseRendSeq + 1, "Density", Density);
+                    builder.AddComponentParameter(baseRendSeq + 2, "Disabled", sse.Disabled);
+                    builder.AddComponentParameter(baseRendSeq + 3, "LeadingLabelPLUS", sse.LeadingLabel);
+                    builder.AddComponentParameter(baseRendSeq + 4, "RadioGroupName", RadioGroupName);
                     if (IsHorizontal)
                     {
-                        builder.AddAttribute(rendSeq++, "style", "margin-right: 1em; ");
+                        builder.AddAttribute(baseRendSeq + 5, "style", "margin-right: 1em; ");
                     }
                     else
                     {
-                        builder.AddAttribute(rendSeq++, "style", "margin-bottom: 1em; ");
+                        builder.AddAttribute(baseRendSeq + 5, "style", "margin-bottom: 1em; ");
                     }
-                    builder.AddComponentParameter(rendSeq++, "TargetCheckedValue", sse.SelectedValue);
-                    builder.AddComponentParameter(rendSeq++, "TrailingLabelPLUS", sse.TrailingLabel);
-                    builder.AddComponentParameter(rendSeq++, "Value", ComponentValue);
-                    builder.AddComponentParameter(rendSeq++, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
-                    builder.AddComponentParameter(rendSeq++, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
+                    builder.AddComponentParameter(baseRendSeq + 6, "TargetCheckedValue", sse.SelectedValue);
+                    builder.AddComponentParameter(baseRendSeq + 7, "TrailingLabelPLUS", sse.TrailingLabel);
+                    builder.AddComponentParameter(baseRendSeq + 8, "Value", ComponentValue);
+                    builder.AddComponentParameter(baseRendSeq + 9, "ValueChanged", RuntimeHelpers.TypeCheck(EventCallback.Factory.Create<TItem>(this, RuntimeHelpers.CreateInferredEventCallback(this, __value => ComponentValue = __value, ComponentValue))));
+                    builder.AddComponentParameter(baseRendSeq + 10, "ValueExpression", RuntimeHelpers.TypeCheck<Expression<Func<TItem>>>(() => ComponentValue));
                     builder.SetKey(KeyGenerator(sse.SelectedValue));
                 }
                 builder.CloseComponent();
             }
+            baseRendSeq += 100;
         }
         builder.CloseElement();
 

@@ -79,6 +79,7 @@ public class MBMenu : ComponentFoundation
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
             }
 
+            rendSeq = 100;
             if (AnchorType == MBMenuAnchorType.Button)
             {
                 builder.OpenComponent(rendSeq++, typeof(MBButton));
@@ -107,6 +108,8 @@ public class MBMenu : ComponentFoundation
                 builder.CloseComponent();
             }
 
+            rendSeq = 200;
+            var baseRendSeq = rendSeq;
             builder.OpenElement(rendSeq++, "md-menu");
             {
                 builder.AddAttribute(rendSeq++, "anchor", AnchorId);
@@ -117,6 +120,8 @@ public class MBMenu : ComponentFoundation
                 {
                     foreach (var menuItem in MenuItems)
                     {
+                        rendSeq = baseRendSeq + 100;
+                        baseRendSeq = rendSeq;
                         switch (menuItem.MenuItemType)
                         {
                             case MBMenuItemType.BeginSubMenu:
@@ -139,22 +144,26 @@ public class MBMenu : ComponentFoundation
                                         builder.AddAttribute(rendSeq++, "disabled");
                                     }
 
+                                    rendSeq = baseRendSeq + 10;
                                     if (menuItem.Headline.Length > 0)
                                     {
                                         builder.AddAttribute(rendSeq++, "id", menuItem.Identifier);
 
+                                        rendSeq = baseRendSeq + 12;
                                         builder.OpenElement(rendSeq++, "div");
                                         {
                                             if (menuItem.HeadlineColor.Length > 0)
                                             {
                                                 builder.AddAttribute(rendSeq++, "style", "color: " + menuItem.HeadlineColor + "; ");
                                             }
+                                            rendSeq = baseRendSeq + 15;
                                             builder.AddAttribute(rendSeq++, "slot", "headline");
                                             builder.AddContent(rendSeq++, menuItem.Headline);
                                         }
                                         builder.CloseElement();
                                     }
 
+                                    rendSeq = baseRendSeq + 20;
                                     if (menuItem.LeadingIcon is not null && !menuItem.SuppressLeadingIcon)
                                     {
                                         MBIcon.BuildRenderTreeWorker(
@@ -169,6 +178,7 @@ public class MBMenu : ComponentFoundation
                                             "start");
                                     }
 
+                                    rendSeq = baseRendSeq + 30;
                                     if (menuItem.TrailingIcon is not null)
                                     {
                                         MBIcon.BuildRenderTreeWorker(
@@ -190,6 +200,7 @@ public class MBMenu : ComponentFoundation
                 }
             }
             builder.CloseElement();
+            rendSeq = 100000; // Only an issue if there are over 1,000 menu items
             builder.OpenElement(rendSeq++, "pre");
             {
                 builder.AddAttribute(rendSeq++, "class", "output");
