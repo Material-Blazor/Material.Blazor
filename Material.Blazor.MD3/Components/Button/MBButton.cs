@@ -30,7 +30,6 @@ public sealed class MBButton : ComponentFoundation
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var buttonID = "Button-" + Guid.NewGuid().ToString();
         var rendSeq = 0;
 
         BuildRenderTreeWorker(
@@ -40,7 +39,6 @@ public sealed class MBButton : ComponentFoundation
             attributesToSplat,
             @class,
             style,
-            buttonID,
             AppliedDisabled,
             ButtonStyle,
             IconDescriptor,
@@ -61,7 +59,6 @@ public sealed class MBButton : ComponentFoundation
         KeyValuePair<string, object>[] attributesToSplat,
         string classString,
         string styleString,
-        string idString,
         bool appliedDisabled,
         MBButtonStyle? buttonStyle,
         MBIconDescriptor iconDescriptor,
@@ -84,7 +81,6 @@ public sealed class MBButton : ComponentFoundation
         {
             builder.AddAttribute(rendSeq++, "class", classString);
             builder.AddAttribute(rendSeq++, "style", styleString);
-            builder.AddAttribute(rendSeq++, "id", idString);
             if (attributesToSplat.Any())
             {
                 builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
