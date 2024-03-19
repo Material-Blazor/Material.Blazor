@@ -74,18 +74,17 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "div");
+        builder.OpenElement(0, "div");
         {
-            builder.OpenElement(rendSeq++, "div");
+            builder.OpenElement(1, "div");
             {
-                builder.AddAttribute(rendSeq++, "class", @class);
-                builder.AddAttribute(rendSeq++, "style", radioStyle + style);
-                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddAttribute(2, "class", @class);
+                builder.AddAttribute(3, "style", radioStyle + style);
+                builder.AddAttribute(4, "id", id);
                 if (attributesToSplat.Any())
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(5, attributesToSplat);
                 }
 
                 if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
@@ -94,26 +93,26 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
                         "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
                         + LeadingLabelPLUS
                         + "</Span>";
-                    builder.AddMarkupContent(rendSeq++, "\r\n");
-                    builder.AddMarkupContent(rendSeq++, labelSpan);
+                    builder.AddMarkupContent(6, "\r\n");
+                    builder.AddMarkupContent(7, labelSpan);
                 }
 
-                builder.OpenElement(rendSeq++, "md-radio");
+                builder.OpenElement(8, "md-radio");
                 {
                     if (AppliedDisabled || IsDisabled)
                     {
-                        builder.AddAttribute(rendSeq++, "disabled");
+                        builder.AddAttribute(9, "disabled");
                     }
 
                     if (Value != null)
                     {
                         if (Value.Equals(TargetCheckedValue))
                         {
-                            builder.AddAttribute(rendSeq++, "checked");
+                            builder.AddAttribute(10, "checked");
                         }
                     }
 
-                    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+                    builder.AddAttribute(11, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
                 }
                 builder.CloseElement();
 
@@ -123,8 +122,8 @@ public partial class MBRadioButton<TItem> : InputComponent<TItem>
                         "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
                         + TrailingLabelPLUS
                         + "</Span>";
-                    builder.AddMarkupContent(rendSeq++, "\r\n");
-                    builder.AddMarkupContent(rendSeq++, labelSpan);
+                    builder.AddMarkupContent(12, "\r\n");
+                    builder.AddMarkupContent(13, labelSpan);
                 }
 
             }

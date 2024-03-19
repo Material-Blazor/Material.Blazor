@@ -30,7 +30,6 @@ public sealed class MBButton : ComponentFoundation
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var buttonID = "Button-" + Guid.NewGuid().ToString();
         var rendSeq = 0;
 
         BuildRenderTreeWorker(
@@ -40,7 +39,7 @@ public sealed class MBButton : ComponentFoundation
             attributesToSplat,
             @class,
             style,
-            buttonID,
+            id,
             AppliedDisabled,
             ButtonStyle,
             IconDescriptor,
@@ -80,26 +79,28 @@ public sealed class MBButton : ComponentFoundation
             _ => throw new System.Exception("Unknown ButtonStyle")
         };
 
-        builder.OpenElement(rendSeq++, componentName);
+        builder.OpenElement(rendSeq, componentName);
         {
-            builder.AddAttribute(rendSeq++, "class", classString);
-            builder.AddAttribute(rendSeq++, "style", styleString);
-            builder.AddAttribute(rendSeq++, "id", idString);
+            builder.AddAttribute(rendSeq + 1, "class", classString);
+            builder.AddAttribute(rendSeq + 2, "style", styleString);
+            builder.AddAttribute(rendSeq + 3, "id", idString);
             if (attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(rendSeq + 4, attributesToSplat);
             }
 
             if (appliedDisabled)
             {
-                builder.AddAttribute(rendSeq++, "disabled");
+                rendSeq = 100;
+                builder.AddAttribute(rendSeq + 5, "disabled");
             }
 
             if (iconIsTrailing)
             {
-                builder.AddAttribute(rendSeq++, "trailing-icon");
+                builder.AddAttribute(rendSeq + 6, "trailing-icon");
             }
 
+            rendSeq += 10;
             if (iconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
@@ -114,20 +115,24 @@ public sealed class MBButton : ComponentFoundation
                     "icon");
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrWhiteSpace(formId))
             {
-                builder.AddAttribute(rendSeq++, "form", formId);
+                builder.AddAttribute(rendSeq, "form", formId);
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrWhiteSpace(buttonValue))
             {
-                builder.AddAttribute(rendSeq++, "value", buttonValue);
+                builder.AddAttribute(rendSeq, "value", buttonValue);
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrWhiteSpace(label))
             {
                 builder.AddContent(rendSeq++, label);
             }
+            rendSeq += 10;
         }
         builder.CloseElement();
 

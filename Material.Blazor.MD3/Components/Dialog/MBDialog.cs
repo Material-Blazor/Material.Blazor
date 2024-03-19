@@ -62,20 +62,20 @@ namespace Material.Blazor
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             var attributesToSplat = AttributesToSplat().ToArray();
-            var rendSeq = 0;
 
-            builder.OpenElement(rendSeq++, "md-dialog");
+            builder.OpenElement(0, "md-dialog");
             {
-                builder.AddAttribute(rendSeq++, "class", @class);
-                builder.AddAttribute(rendSeq++, "style", style);
-                builder.AddAttribute(rendSeq++, "id", DialogId);
+                builder.AddAttribute(1, "class", @class);
+                builder.AddAttribute(2, "style", style);
+                builder.AddAttribute(3, "id", DialogId);
                 if (attributesToSplat.Any())
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(4, attributesToSplat);
                 }
 
                 if (IconDescriptor is not null)
                 {
+                    var rendSeq = 10;
                     MBIcon.BuildRenderTreeWorker(
                         builder,
                         ref rendSeq,
@@ -90,12 +90,12 @@ namespace Material.Blazor
 
                 if (!string.IsNullOrWhiteSpace(Headline) || CustomHeader is not null)
                 {
-                    builder.OpenElement(rendSeq++, "div");
+                    builder.OpenElement(200, "div");
                     {
-                        builder.AddAttribute(rendSeq++, "slot", "headline");
+                        builder.AddAttribute(201, "slot", "headline");
                         if (CustomHeader is not null)
                         {
-                            builder.AddContent(rendSeq++, CustomHeader);
+                            builder.AddContent(202, CustomHeader);
 
                             if (!string.IsNullOrWhiteSpace(Headline))
                             {
@@ -104,7 +104,7 @@ namespace Material.Blazor
                         }
                         else
                         {
-                            builder.AddContent(rendSeq++, Headline);
+                            builder.AddContent(203, Headline);
                         }
                     }
                     builder.CloseElement();
@@ -112,25 +112,26 @@ namespace Material.Blazor
 
                 if (Body is not null)
                 {
-                    builder.OpenElement(rendSeq++, "form");
+                    builder.OpenElement(300, "form");
                     {
-                        builder.AddAttribute(rendSeq++, "id", FormId);
-                        builder.AddAttribute(rendSeq++, "slot", "content");
-                        builder.AddAttribute(rendSeq++, "method", "dialog");
+                        builder.AddAttribute(301, "id", FormId);
+                        builder.AddAttribute(302, "slot", "content");
+                        builder.AddAttribute(303, "method", "dialog");
 
-                        builder.AddContent(rendSeq++, Body);
+                        builder.AddContent(304, Body);
                     }
                     builder.CloseElement();
                 }
 
                 if (ButtonItems is not null)
                 {
-                    builder.OpenElement(rendSeq++, "div");
+                    builder.OpenElement(305, "div");
                     {
-                        builder.AddAttribute(rendSeq++, "slot", "actions");
+                        builder.AddAttribute(306, "slot", "actions");
 
                         foreach (var button in ButtonItems)
                         {
+                            var rendSeq = 400;
                             MBButton.BuildRenderTreeWorker(
                                 builder,
                                 ref rendSeq,

@@ -73,47 +73,46 @@ public class MBSlider<TItem> : InputComponent<TItem>
         lock (LifecycleGate)
         {
             var attributesToSplat = AttributesToSplat().ToArray();
-            var rendSeq = 0;
 
-            builder.OpenElement(rendSeq++, "md-slider");
+            builder.OpenElement(0, "md-slider");
             {
                 if (attributesToSplat.Any())
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(1, attributesToSplat);
                 }
 
-                builder.AddAttribute(rendSeq++, "class", @class);
-                builder.AddAttribute(rendSeq++, "style", style);
-                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddAttribute(2, "class", @class);
+                builder.AddAttribute(3, "style", style);
+                builder.AddAttribute(4, "id", id);
 
                 if (AppliedDisabled)
                 {
-                    builder.AddAttribute(rendSeq++, "disabled");
+                    builder.AddAttribute(5, "disabled");
                 }
 
-                builder.AddAttribute(rendSeq++, "value", Value.ToString());
+                builder.AddAttribute(6, "value", Value.ToString());
                 if (SliderMax is not null)
                 {
-                    builder.AddAttribute(rendSeq++, "max", SliderMax.ToString());
+                    builder.AddAttribute(7, "max", SliderMax.ToString());
                 }
                 if (SliderMin is not null)
                 {
-                    builder.AddAttribute(rendSeq++, "min", SliderMin.ToString());
+                    builder.AddAttribute(8, "min", SliderMin.ToString());
                 }
                 if (SliderStep is not null)
                 {
-                    builder.AddAttribute(rendSeq++, "step", SliderStep.ToString());
+                    builder.AddAttribute(9, "step", SliderStep.ToString());
                     if (SliderTicks)
                     {
-                        builder.AddAttribute(rendSeq++, "ticks");
+                        builder.AddAttribute(10, "ticks");
                     }
                 }
                 if (SliderIsLabeled)
                 {
-                    builder.AddAttribute(rendSeq++, "labeled");
+                    builder.AddAttribute(11, "labeled");
                 }
                 ///todo -- figure out how to notify of changed value
-                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
+                builder.AddAttribute(12, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
                 //builder.SetUpdatesAttributeName("StringValue");
 
 

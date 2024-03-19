@@ -46,13 +46,12 @@ public sealed class MBSwitch : InputComponent<bool>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "div");
+        builder.OpenElement(0, "div");
         {
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", switchStyle + style);
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(1, "class", @class);
+            builder.AddAttribute(2, "style", switchStyle + style);
+            builder.AddAttribute(3, "id", id);
 
             if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
             {
@@ -60,26 +59,26 @@ public sealed class MBSwitch : InputComponent<bool>
                     "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
                     + LeadingLabelPLUS
                     + "</Span>";
-                builder.AddMarkupContent(rendSeq++, "\r\n");
-                builder.AddMarkupContent(rendSeq++, labelSpan);
+                builder.AddMarkupContent(4, "\r\n");
+                builder.AddMarkupContent(5, labelSpan);
             }
 
-            builder.OpenElement(rendSeq++, "md-switch");
+            builder.OpenElement(6, "md-switch");
             {
                 if (attributesToSplat.Any())
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(7, attributesToSplat);
                 }
 
                 if (AppliedDisabled)
                 {
-                    builder.AddAttribute(rendSeq++, "disabled");
+                    builder.AddAttribute(8, "disabled");
                 }
 
-                builder.AddAttribute(rendSeq++, "selected", BindConverter.FormatValue(Value));
-                builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
-                builder.AddAttribute(rendSeq++, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
-                builder.AddAttribute(rendSeq++, "show-only-selected-icon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
+                builder.AddAttribute(9, "selected", BindConverter.FormatValue(Value));
+                builder.AddAttribute(10, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+                builder.AddAttribute(11, "icons", CascadingDefaults.AppliedSwitchIcons(Icons));
+                builder.AddAttribute(12, "show-only-selected-icon", CascadingDefaults.AppliedSwitchSwitchShowOnlySelectedIcon(ShowOnlySelectedIcon));
             }
             builder.CloseElement();
 
@@ -89,8 +88,8 @@ public sealed class MBSwitch : InputComponent<bool>
                     "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
                     + TrailingLabelPLUS
                     + "</Span>";
-                builder.AddMarkupContent(rendSeq++, "\r\n");
-                builder.AddMarkupContent(rendSeq++, labelSpan);
+                builder.AddMarkupContent(13, "\r\n");
+                builder.AddMarkupContent(14, labelSpan);
             }
         }
         builder.CloseElement();

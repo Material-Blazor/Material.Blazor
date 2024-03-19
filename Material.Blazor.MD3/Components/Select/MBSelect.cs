@@ -71,7 +71,6 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
             ConsoleLog("   BRT - StringValue: " + StringValue);
 
             var attributesToSplat = AttributesToSplat().ToArray();
-            var rendSeq = 0;
 
             var componentName = CascadingDefaults.AppliedStyle(SelectInputStyle) switch
             {
@@ -80,63 +79,65 @@ public class MBSelect<TItem> : SingleSelectComponent<TItem, MBSingleSelectElemen
                 _ => throw new System.Exception("Unknown SelectInputStyle")
             };
 
-            builder.OpenElement(rendSeq++, componentName);
+            builder.OpenElement(0, componentName);
             {
                 if (attributesToSplat.Any())
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(1, attributesToSplat);
                 }
 
-                builder.AddAttribute(rendSeq++, "class", @class);
-                builder.AddAttribute(rendSeq++, "style", style);
-                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddAttribute(2, "class", @class);
+                builder.AddAttribute(3, "style", style);
+                builder.AddAttribute(4, "id", id);
 
                 if (AppliedDisabled)
                 {
-                    builder.AddAttribute(rendSeq++, "disabled");
+                    builder.AddAttribute(5, "disabled");
                 }
 
                 if (!string.IsNullOrWhiteSpace(Label))
                 {
-                    builder.AddAttribute(rendSeq++, "label", Label);
+                    builder.AddAttribute(6, "label", Label);
                 }
 
                 if (Required)
                 {
-                    builder.AddAttribute(rendSeq++, "required");
+                    builder.AddAttribute(7, "required");
                 }
 
-                builder.AddAttribute(rendSeq++, "value", StringValue);
-                builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
+                builder.AddAttribute(8, "value", StringValue);
+                builder.AddAttribute(9, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, HandleChange));
                 //builder.SetUpdatesAttributeName("StringValue");
 
+                var baseRendSeq = 100;
                 foreach (var sse in Items)
                 {
                     if (sse is not null)
                     {
-                        builder.OpenElement(rendSeq++, "md-select-option");
+                        builder.OpenElement(baseRendSeq + 1, "md-select-option");
                         {
                             if (sse.SelectedValue is not null)
                             {
-                                builder.AddAttribute(rendSeq++, "value", sse.SelectedValue.ToString());
+                                builder.AddAttribute(baseRendSeq + 2, "value", sse.SelectedValue.ToString());
                                 if (sse.SelectedValue.ToString().ToLower().Equals(StringValue.ToLower()))
                                 {
-                                    builder.AddAttribute(rendSeq++, "selected");
+                                    builder.AddAttribute(baseRendSeq + 3, "selected");
                                 }
                             }
 
                             if (sse.TrailingLabel is not null)
                             {
-                                builder.OpenElement(rendSeq++, "div");
+                                builder.OpenElement(baseRendSeq + 4, "div");
                                 {
-                                    builder.AddAttribute(rendSeq++, "slot", "headline");
-                                    builder.AddContent(rendSeq++, sse.TrailingLabel);
+                                    builder.AddAttribute(baseRendSeq + 5, "slot", "headline");
+                                    builder.AddContent(baseRendSeq + 6, sse.TrailingLabel);
                                 }
                                 builder.CloseElement();
                             }
                         }
                         builder.CloseElement();
                     }
+                    baseRendSeq += 100;
                 }
 
             }

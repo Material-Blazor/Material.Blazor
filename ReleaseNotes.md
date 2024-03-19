@@ -11,7 +11,7 @@ Released 2024-03-18
 **Updates**
 
 **New components**
-- New `MBPopover` has the same styling and UX experience as `MBMenuSurface`, with the following engineering differences:
+- MD2: `MBPopover` has the same styling and UX experience as `MBMenuSurface`, with the following engineering differences:
     - Performs lazy rendering of child content to improve page load performance, copied from `MBDialog`.
 	- Also like `MBDialog`, `MBPopover` performs late instantiation of child compoenents to ensure correct styling after opening.
 	- `MBPopover` has `ShowAsync()` and `HideAsync()` like `MBDialog`, unlike the `ToggleAsync()` method of `MBMenuSurface`.
@@ -21,7 +21,7 @@ Released 2024-03-18
 **Breaking Changes**
 
 **Deprecated Components**
-- `MBMenuSurface` will be deprecated in favour of `MBPopover` in version 6.0.0.
+- MD2: `MBMenuSurface` will be deprecated in favour of `MBPopover` in version 6.0.0.
 
 **Known issues**
 
@@ -32,8 +32,8 @@ Released 2024-03-18
 Released 2024-03-16
 
 **Updates**
-- Add `MenuSurfacePositioning` parameter to `MBAutocompletePagedField`.
-- Add `OnMenuOpened` parameter to `MBMenuSurface`.
+- MD2: Add `MenuSurfacePositioning` parameter to `MBAutocompletePagedField`.
+- MD2: Add `OnMenuOpened` parameter to `MBMenuSurface`.
 
 **New components**
 

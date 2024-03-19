@@ -1,4 +1,4 @@
-﻿@page "/menu"
+@page "/menu"
 
 @inject IMBToastService ToastService
 
@@ -143,7 +143,7 @@
 
     protected void OnMenuSelectionReportHandler(MenuSelectionReportEventArgs args)
     {
-        ToastService.ShowToast(heading: "MW3 menu close", message: $"ID: '{args.menuID}'", level: MBToastLevel.Success, showIcon: false);
+        ToastService.ShowToast(heading: "MW3 menu close", message: $"ID: '{args.menuID}' Headline:  '{args.menuHeadline}'", level: MBToastLevel.Success, showIcon: false);
 
         SevenSelected = (args.menuHeadline == "Seven") ? !SevenSelected : SevenSelected;
         menuItems[Convert.ToInt32(args.menuID)].SuppressLeadingIcon = !SevenSelected;

@@ -67,28 +67,26 @@ public class MBMenu : ComponentFoundation
     {
         var attributesToSplat = AttributesToSplat().ToArray();
 
-        var rendSeq = 0;
-
-        builder.OpenElement(rendSeq++, "span");
+        builder.OpenElement(0, "span");
         {
-            builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
-            builder.AddAttribute(rendSeq++, "style", @style + " position: relative; ");
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(1, "class", @ActiveConditionalClasses + @class);
+            builder.AddAttribute(2, "style", @style + " position: relative; ");
+            builder.AddAttribute(3, "id", id);
             if (attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(4, attributesToSplat);
             }
 
             if (AnchorType == MBMenuAnchorType.Button)
             {
-                builder.OpenComponent(rendSeq++, typeof(MBButton));
+                builder.OpenComponent(5, typeof(MBButton));
                 {
-                    builder.AddComponentParameter(rendSeq++, "Label", ButtonLabel);
-                    builder.AddComponentParameter(rendSeq++, "ButtonStyle", ButtonStyle);
-                    builder.AddComponentParameter(rendSeq++, "IconDescriptor", IconDescriptor);
-                    builder.AddComponentParameter(rendSeq++, "IconIsTrailing", ButtonIconIsTrailing);
-                    builder.AddAttribute(rendSeq++, "id", AnchorId);
-                    builder.AddAttribute(rendSeq++, "style", "color: " + ButtonLabelColor + ";");
+                    builder.AddComponentParameter(6, "Label", ButtonLabel);
+                    builder.AddComponentParameter(7, "ButtonStyle", ButtonStyle);
+                    builder.AddComponentParameter(8, "IconDescriptor", IconDescriptor);
+                    builder.AddComponentParameter(9, "IconIsTrailing", ButtonIconIsTrailing);
+                    builder.AddAttribute(10, "id", AnchorId);
+                    builder.AddAttribute(11, "style", "color: " + ButtonLabelColor + ";");
                 }
                 builder.CloseComponent();
             }
@@ -98,23 +96,24 @@ public class MBMenu : ComponentFoundation
                 // Type is "Icon", we fake it by doing an IconButton with a style of Icon
                 // because adding an "onclick" to a raw icon does not work
                 //
-                builder.OpenComponent(rendSeq++, typeof(MBIconButton));
+                builder.OpenComponent(5, typeof(MBIconButton));
                 {
-                    builder.AddComponentParameter(rendSeq++, "ButtonStyle", MBIconButtonStyle.Icon);
-                    builder.AddComponentParameter(rendSeq++, "IconDescriptor", IconDescriptor);
-                    builder.AddAttribute(rendSeq++, "id", AnchorId);
+                    builder.AddComponentParameter(6, "ButtonStyle", MBIconButtonStyle.Icon);
+                    builder.AddComponentParameter(7, "IconDescriptor", IconDescriptor);
+                    builder.AddAttribute(8, "id", AnchorId);
                 }
                 builder.CloseComponent();
             }
 
-            builder.OpenElement(rendSeq++, "md-menu");
+            builder.OpenElement(12, "md-menu");
             {
-                builder.AddAttribute(rendSeq++, "anchor", AnchorId);
-                builder.AddAttribute(rendSeq++, "id", MenuId);
-                builder.AddAttribute(rendSeq++, "positioning", MenuPositioning.ToString().ToLower());
+                builder.AddAttribute(13, "anchor", AnchorId);
+                builder.AddAttribute(14, "id", MenuId);
+                builder.AddAttribute(15, "positioning", MenuPositioning.ToString().ToLower());
 
                 if (MenuItems is not null)
                 {
+                    var rendSeq = 20;
                     foreach (var menuItem in MenuItems)
                     {
                         switch (menuItem.MenuItemType)
@@ -123,7 +122,7 @@ public class MBMenu : ComponentFoundation
                                 break;
 
                             case MBMenuItemType.Divider:
-                                builder.OpenElement(rendSeq++, "md-divider");
+                                builder.OpenElement(rendSeq + 1, "md-divider");
                                 builder.CloseElement();
                                 break;
 
@@ -136,25 +135,26 @@ public class MBMenu : ComponentFoundation
                                 {
                                     if (menuItem.IsDisabled)
                                     {
-                                        builder.AddAttribute(rendSeq++, "disabled");
+                                        builder.AddAttribute(rendSeq + 1, "disabled");
                                     }
 
                                     if (menuItem.Headline.Length > 0)
                                     {
-                                        builder.AddAttribute(rendSeq++, "id", menuItem.Identifier);
+                                        builder.AddAttribute(rendSeq + 2, "id", menuItem.Identifier);
 
-                                        builder.OpenElement(rendSeq++, "div");
+                                        builder.OpenElement(rendSeq + 3, "div");
                                         {
                                             if (menuItem.HeadlineColor.Length > 0)
                                             {
-                                                builder.AddAttribute(rendSeq++, "style", "color: " + menuItem.HeadlineColor + "; ");
+                                                builder.AddAttribute(rendSeq + 4, "style", "color: " + menuItem.HeadlineColor + "; ");
                                             }
-                                            builder.AddAttribute(rendSeq++, "slot", "headline");
-                                            builder.AddContent(rendSeq++, menuItem.Headline);
+                                            builder.AddAttribute(rendSeq + 5, "slot", "headline");
+                                            builder.AddContent(rendSeq + 6, menuItem.Headline);
                                         }
                                         builder.CloseElement();
                                     }
 
+                                    rendSeq += 10;
                                     if (menuItem.LeadingIcon is not null && !menuItem.SuppressLeadingIcon)
                                     {
                                         MBIcon.BuildRenderTreeWorker(
@@ -169,6 +169,7 @@ public class MBMenu : ComponentFoundation
                                             "start");
                                     }
 
+                                    rendSeq += 10;
                                     if (menuItem.TrailingIcon is not null)
                                     {
                                         MBIcon.BuildRenderTreeWorker(
@@ -186,13 +187,14 @@ public class MBMenu : ComponentFoundation
                                 builder.CloseComponent();
                                 break;
                         }
+                        rendSeq += 100;
                     }
                 }
             }
             builder.CloseElement();
-            builder.OpenElement(rendSeq++, "pre");
+            builder.OpenElement(20000, "pre");
             {
-                builder.AddAttribute(rendSeq++, "class", "output");
+                builder.AddAttribute(20001, "class", "output");
             }
             builder.CloseElement();
         }

@@ -79,18 +79,18 @@ public sealed class MBProgress : ComponentFoundation
 
             if ((ProgressStyle == MBProgressStyle.Linear) && ProgressBufferLevel is not null)
             {
-                builder.AddAttribute(5, "buffer", ProgressBufferLevel.ToString());
+                builder.AddAttribute(6, "buffer", ProgressBufferLevel.ToString());
             }
         }
 
         if (AppliedDisabled)
         {
-            builder.AddAttribute(6, "disabled");
+            builder.AddAttribute(7, "disabled");
         }
 
-        builder.AddAttribute(7, "class", @class);
-        builder.AddAttribute(8, "style", style);
-        builder.AddAttribute(9, "id", id);
+        builder.AddAttribute(8, "class", @class);
+        builder.AddAttribute(9, "style", style);
+        builder.AddAttribute(10, "id", id);
 
         builder.CloseElement();
     }

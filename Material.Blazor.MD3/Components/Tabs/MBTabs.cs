@@ -37,18 +37,17 @@ namespace Material.Blazor
 
             var attributesToSplat = AttributesToSplat().ToArray();
 
-            var rendSeq = 0;
-
-            builder.OpenElement(rendSeq++, "md-tabs");
+            builder.OpenElement(0, "md-tabs");
             {
-                builder.AddAttribute(rendSeq++, "class", @ActiveConditionalClasses + @class);
-                builder.AddAttribute(rendSeq++, "style", @style + " position: relative; ");
-                builder.AddAttribute(rendSeq++, "id", TabsId);
+                builder.AddAttribute(1, "class", @ActiveConditionalClasses + @class);
+                builder.AddAttribute(2, "style", @style + " position: relative; ");
+                builder.AddAttribute(3, "id", TabsId);
                 if (attributesToSplat.Any())
                 {
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(4, attributesToSplat);
                 }
 
+                var baseRendSeq = 10;
                 if (TabItems is not null)
                 {
                     foreach (var tabItem in TabItems)
@@ -59,38 +58,39 @@ namespace Material.Blazor
                             _ => "md-secondary-tab"
                         };
 
-                        builder.OpenElement(rendSeq++, componentName);
+                        builder.OpenElement(baseRendSeq, componentName);
                         {
                             if (!string.IsNullOrEmpty(tabItem.TabId))
                             {
-                                builder.AddAttribute(rendSeq++, "id", tabItem.TabId);
+                                builder.AddAttribute(baseRendSeq + 1, "id", tabItem.TabId);
                             }
 
                             if (!string.IsNullOrEmpty(tabItem.TabAriaControls))
                             {
-                                builder.AddAttribute(rendSeq++, "aria-controls", tabItem.TabAriaControls);
+                                builder.AddAttribute(baseRendSeq + 2, "aria-controls", tabItem.TabAriaControls);
                             }
 
                             if (tabItem.IsActive)
                             {
-                                builder.AddAttribute(rendSeq++, "active");
+                                builder.AddAttribute(baseRendSeq + 3, "active");
                             }
 
                             if (tabItem.IconIsInline)
                             {
-                                builder.AddAttribute(rendSeq++, "inline-icon");
+                                builder.AddAttribute(baseRendSeq + 4, "inline-icon");
                             }
 
                             if (tabItem.Headline.Length > 0)
                             {
-                                builder.AddContent(rendSeq++, tabItem.Headline);
+                                builder.AddContent(baseRendSeq + 5, tabItem.Headline);
                             }
 
+                            baseRendSeq += 6;
                             if (tabItem.Icon is not null)
                             {
                                 MBIcon.BuildRenderTreeWorker(
                                     builder,
-                                    ref rendSeq,
+                                    ref baseRendSeq,
                                     CascadingDefaults,
                                     null,
                                     null,
@@ -102,6 +102,8 @@ namespace Material.Blazor
                         }
                         builder.CloseElement();
                     }
+
+                    baseRendSeq += 100;
                 }
             }
             builder.CloseElement();

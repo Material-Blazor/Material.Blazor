@@ -27,18 +27,18 @@ public sealed class MBChipSet : ComponentFoundation
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var rendSeq = 0;
 
-        builder.OpenElement(rendSeq++, "md-chip-set");
+        builder.OpenElement(0, "md-chip-set");
         {
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(1, "class", @class);
+            builder.AddAttribute(2, "style", style);
+            builder.AddAttribute(3, "id", id);
             if (attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(4, attributesToSplat);
             }
 
+            var rendSeq = 10;
             if (ChipsetItems is not null)
             {
                 foreach (var chip in ChipsetItems)
@@ -52,30 +52,30 @@ public sealed class MBChipSet : ComponentFoundation
                         _ => throw new System.Exception("Unknown ChipType")
                     };
 
-                    builder.OpenElement(rendSeq++, componentName);
+                    builder.OpenElement(rendSeq, componentName);
                     {
                         if (!string.IsNullOrWhiteSpace(chip.Label))
                         {
-                            builder.AddAttribute(rendSeq++, "label", chip.Label);
+                            builder.AddAttribute(rendSeq + 1, "label", chip.Label);
                         }
 
                         if (AppliedDisabled || chip.IsDisabled)
                         {
-                            builder.AddAttribute(rendSeq++, "disabled");
+                            builder.AddAttribute(rendSeq + 2, "disabled");
                         }
 
                         if (chip.IsElevated)
                         {
-                            builder.AddAttribute(rendSeq++, "elevated");
+                            builder.AddAttribute(rendSeq + 3, "elevated");
                         }
 
                         if (!string.IsNullOrWhiteSpace(chip.Link))
                         {
-                            builder.AddAttribute(rendSeq++, "href", chip.Link);
+                            builder.AddAttribute(rendSeq + 4, "href", chip.Link);
 
                             if (!string.IsNullOrWhiteSpace(chip.LinkTarget))
                             {
-                                builder.AddAttribute(rendSeq++, "target", chip.LinkTarget);
+                                builder.AddAttribute(rendSeq + 5, "target", chip.LinkTarget);
                             }
                         }
 
@@ -84,14 +84,15 @@ public sealed class MBChipSet : ComponentFoundation
                             // Only for filter & input chips
                             if (componentName.Equals("md-filter-chip"))
                             {
-                                builder.AddAttribute(rendSeq++, "removable");
+                                builder.AddAttribute(rendSeq + 6, "removable");
                             }
                             else if (componentName.Equals("md-input-chip"))
                             {
-                                builder.AddAttribute(rendSeq++, "remove-only");
+                                builder.AddAttribute(rendSeq + 7, "remove-only");
                             }
                         }
 
+                        rendSeq += 10;
                         if (chip.Icon is not null)
                         {
                             MBIcon.BuildRenderTreeWorker(
@@ -107,6 +108,7 @@ public sealed class MBChipSet : ComponentFoundation
                         }
                     }
                     builder.CloseElement();
+                    rendSeq += 100;
                 }
             }
         }

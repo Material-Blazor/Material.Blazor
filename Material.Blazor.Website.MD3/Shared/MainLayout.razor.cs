@@ -110,13 +110,6 @@ namespace Material.Blazor.Website.Shared
                                     color: "darkgreen"),
                 MenuItemType=MBMenuItemType.Regular },
              new MBMenuItem {
-                Headline="Grid",
-                HeadlineColor="darkblue",
-                LeadingIcon=MBIcon.IconDescriptorConstructor(
-                                    name: "table_chart",
-                                    color: "darkblue"),
-                MenuItemType=MBMenuItemType.Regular },
-             new MBMenuItem {
                 Headline="Icon",
                 HeadlineColor="darkgreen",
                 LeadingIcon=MBIcon.IconDescriptorConstructor(

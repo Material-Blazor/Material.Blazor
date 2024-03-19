@@ -109,45 +109,46 @@ public sealed class MBIconButton : ComponentFoundation
             _ => throw new System.Exception("Unknown IconButtonStyle")
         };
 
-        builder.OpenElement(rendSeq++, componentName);
+        builder.OpenElement(rendSeq, componentName);
         {
             if (appliedDisabled)
             {
-                builder.AddAttribute(rendSeq++, "disabled");
+                builder.AddAttribute(rendSeq + 1, "disabled");
             }
 
             if ((componentName.StartsWith("md-icon-button")) && (!string.IsNullOrEmpty(iconLink)))
             {
-                builder.AddAttribute(rendSeq++, "href", iconLink);
+                builder.AddAttribute(rendSeq + 2, "href", iconLink);
 
                 if (!string.IsNullOrEmpty(iconLinkTarget))
                 {
-                    builder.AddAttribute(rendSeq++, "target", iconLinkTarget);
+                    builder.AddAttribute(rendSeq + 3, "target", iconLinkTarget);
                 }
             }
 
             if (toggleIconDescriptor is not null)
             {
-                builder.AddAttribute(rendSeq++, "toggle");
+                builder.AddAttribute(rendSeq + 4, "toggle");
                 if (toggleIconSelected)
                 {
-                    builder.AddAttribute(rendSeq++, "selected");
+                    builder.AddAttribute(rendSeq + 5, "selected");
                 }
             }
 
-            builder.AddAttribute(rendSeq++, "class", classString);
-            builder.AddAttribute(rendSeq++, "style", styleString);
-            builder.AddAttribute(rendSeq++, "id", idString);
+            builder.AddAttribute(rendSeq + 6, "class", classString);
+            builder.AddAttribute(rendSeq + 7, "style", styleString);
+            builder.AddAttribute(rendSeq + 8, "id", idString);
             if ((attributesToSplat is not null) && attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(rendSeq + 9, attributesToSplat);
             }
 
             if (!string.IsNullOrEmpty(slot))
             {
-                builder.AddAttribute(rendSeq++, "slot", slot);
+                builder.AddAttribute(rendSeq + 10, "slot", slot);
             }
 
+            rendSeq += 15;
             if (iconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
@@ -162,6 +163,7 @@ public sealed class MBIconButton : ComponentFoundation
                     "");
             }
 
+            rendSeq += 15;
             if (toggleIconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(
