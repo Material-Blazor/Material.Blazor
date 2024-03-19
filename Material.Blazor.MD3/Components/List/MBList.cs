@@ -55,71 +55,63 @@ namespace Material.Blazor
 
                             case MBListItemType.Regular:
                             default:
-                                builder.OpenElement(rendSeq++, "md-list-item");
+                                builder.OpenElement(rendSeq + 1, "md-list-item");
                                 {
                                     if (listItem.IsDisabled)
                                     {
-                                        builder.AddAttribute(rendSeq++, "disabled");
+                                        builder.AddAttribute(rendSeq + 2, "disabled");
                                     }
 
-                                    rendSeq += 10;
-                                    var baseRendSeq = rendSeq;
                                     if (!string.IsNullOrWhiteSpace(listItem.Link))
                                     {
-                                        builder.AddAttribute(rendSeq++, "interactive");
+                                        builder.AddAttribute(rendSeq + 3, "interactive");
 
-                                        builder.AddAttribute(rendSeq++, "href", listItem.Link);
+                                        builder.AddAttribute(rendSeq + 4, "href", listItem.Link);
 
                                         if (!string.IsNullOrWhiteSpace(listItem.LinkTarget))
                                         {
-                                            builder.AddAttribute(rendSeq++, "target", listItem.LinkTarget);
+                                            builder.AddAttribute(rendSeq + 5, "target", listItem.LinkTarget);
                                         }
                                     }
 
-                                    rendSeq = baseRendSeq + 10;
-                                    baseRendSeq = rendSeq;
                                     if (!string.IsNullOrWhiteSpace(listItem.Headline))
                                     {
-                                        builder.OpenElement(rendSeq++, "div");
+                                        builder.OpenElement(rendSeq + 6, "div");
                                         {
                                             if (!string.IsNullOrWhiteSpace(listItem.HeadlineColor))
                                             {
-                                                builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineColor + "; ");
+                                                builder.AddAttribute(rendSeq + 7, "style", "color: " + listItem.HeadlineColor + "; ");
                                             }
-                                            builder.AddAttribute(rendSeq++, "slot", "headline");
-                                            builder.AddContent(rendSeq++, listItem.Headline);
+                                            builder.AddAttribute(rendSeq + 8, "slot", "headline");
+                                            builder.AddContent(rendSeq + 9, listItem.Headline);
                                         }
                                         builder.CloseElement();
                                     }
 
-                                    rendSeq = baseRendSeq + 10;
-                                    baseRendSeq = rendSeq;
                                     if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupport))
                                     {
-                                        builder.OpenElement(rendSeq++, "div");
+                                        builder.OpenElement(rendSeq + 10, "div");
                                         {
                                             if (!string.IsNullOrWhiteSpace(listItem.HeadlineSupportColor))
                                             {
-                                                builder.AddAttribute(rendSeq++, "style", "color: " + listItem.HeadlineSupportColor + "; ");
+                                                builder.AddAttribute(rendSeq + 11, "style", "color: " + listItem.HeadlineSupportColor + "; ");
                                             }
-                                            builder.AddAttribute(rendSeq++, "slot", "supporting-text");
-                                            builder.AddContent(rendSeq++, listItem.HeadlineSupport);
+                                            builder.AddAttribute(rendSeq + 12, "slot", "supporting-text");
+                                            builder.AddContent(rendSeq + 13, listItem.HeadlineSupport);
                                         }
                                         builder.CloseElement();
                                     }
 
-                                    rendSeq = baseRendSeq + 10;
-                                    baseRendSeq = rendSeq;
                                     // Two users of the "start" slot; image wins
                                     if (!string.IsNullOrWhiteSpace(listItem.ImageSource))
                                     {
-                                        builder.OpenElement(rendSeq++, "img");
+                                        builder.OpenElement(rendSeq + 14, "img");
                                         {
-                                            builder.AddAttribute(rendSeq++, "slot", "start");
-                                            builder.AddAttribute(rendSeq++, "src", listItem.ImageSource);
+                                            builder.AddAttribute(rendSeq + 15, "slot", "start");
+                                            builder.AddAttribute(rendSeq + 16, "src", listItem.ImageSource);
                                             if (!string.IsNullOrWhiteSpace(listItem.ImageStyle))
                                             {
-                                                builder.AddAttribute(rendSeq++, "style", listItem.ImageStyle);
+                                                builder.AddAttribute(rendSeq + 17, "style", listItem.ImageStyle);
                                             }
 
                                         }
@@ -129,6 +121,7 @@ namespace Material.Blazor
                                     {
                                         if (listItem.LeadingIcon is not null)
                                         {
+                                            rendSeq += 20;
                                             MBIcon.BuildRenderTreeWorker(
                                                 builder,
                                                 ref rendSeq,
@@ -142,8 +135,7 @@ namespace Material.Blazor
                                         }
                                     }
 
-                                    rendSeq = baseRendSeq + 10;
-                                    baseRendSeq = rendSeq;
+                                    rendSeq += 20;
                                     if (listItem.TrailingIcon is not null)
                                     {
                                         MBIcon.BuildRenderTreeWorker(

@@ -55,7 +55,6 @@ public sealed class MBFloatingActionButton : ComponentFoundation
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var rendSeq = 0;
 
         var componentName = CascadingDefaults.AppliedFloatingActionButtonStyle(FloatingActionButtonStyle) switch
         {
@@ -77,48 +76,47 @@ public sealed class MBFloatingActionButton : ComponentFoundation
             _ => throw new System.Exception("Unknown FloatingActionButtonStyle")
         };
 
-        builder.OpenElement(rendSeq++, componentName);
+        builder.OpenElement(0, componentName);
         {
             if (AppliedDisabled)
             {
-                builder.AddAttribute(100, "disabled");
+                builder.AddAttribute(1, "disabled");
             }
 
             if (IsLowered)
             {
-                builder.AddAttribute(110, "lowered");
+                builder.AddAttribute(2, "lowered");
             }
 
-            rendSeq = 120;
-            builder.AddAttribute(rendSeq++, "class", @class);
-            builder.AddAttribute(rendSeq++, "style", style);
-            builder.AddAttribute(rendSeq++, "id", id);
+            builder.AddAttribute(3, "class", @class);
+            builder.AddAttribute(4, "style", style);
+            builder.AddAttribute(5, "id", id);
             if ((attributesToSplat is not null) && attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(130, attributesToSplat);
+                builder.AddMultipleAttributes(6, attributesToSplat);
             }
 
             if (!string.IsNullOrWhiteSpace(variant))
             {
-                builder.AddAttribute(140, "variant", variant);
+                builder.AddAttribute(7, "variant", variant);
             }
 
             if (!string.IsNullOrWhiteSpace(Label))
             {
-                builder.AddAttribute(150, "label", Label);
+                builder.AddAttribute(8, "label", Label);
             }
 
             var size = CascadingDefaults.AppliedFloatingActionButtonSize(FloatingActionButtonSize);
             if (size == MBFloatingActionButtonSize.Small)
             {
-                builder.AddAttribute(160, "size", "small");
+                builder.AddAttribute(9, "size", "small");
             }
             else if (size == MBFloatingActionButtonSize.Large)
             {
-                builder.AddAttribute(160, "size", "large");
+                builder.AddAttribute(9, "size", "large");
             }
 
-            rendSeq = 200;
+            var rendSeq = 10;
             if (IconDescriptor is not null)
             {
                 MBIcon.BuildRenderTreeWorker(

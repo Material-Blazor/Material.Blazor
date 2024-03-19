@@ -47,66 +47,58 @@ public sealed class MBCheckbox : InputComponent<bool>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var attributesToSplat = AttributesToSplat().ToArray();
-        var rendSeq = 0;
-        builder.OpenElement(rendSeq++, "div");
+        
+        builder.OpenElement(0, "div");
         {
-            builder.OpenElement(rendSeq++, "div");
+            builder.OpenElement(1, "div");
             {
-                builder.AddAttribute(rendSeq++, "class", @class);
-                builder.AddAttribute(rendSeq++, "style", checkboxStyle + style);
-                builder.AddAttribute(rendSeq++, "id", id);
+                builder.AddAttribute(2, "class", @class);
+                builder.AddAttribute(3, "style", checkboxStyle + style);
+                builder.AddAttribute(4, "id", id);
                 if (attributesToSplat.Any())
                 {
-                    rendSeq = 100;
-                    builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                    builder.AddMultipleAttributes(5, attributesToSplat);
                 }
 
                 if (!string.IsNullOrWhiteSpace(LeadingLabelPLUS))
                 {
-                    rendSeq = 200;
                     var labelSpan =
                         "<span class=\"mdc-typography--body1\" style=\"margin-right: 1em;\">"
                         + LeadingLabelPLUS
                         + "</Span>";
-                    builder.AddMarkupContent(rendSeq++, "\r\n");
-                    builder.AddMarkupContent(rendSeq++, labelSpan);
+                    builder.AddMarkupContent(6, "\r\n");
+                    builder.AddMarkupContent(7, labelSpan);
                 }
 
-                rendSeq = 300;
-                builder.OpenElement(rendSeq++, "md-checkbox");
+                builder.OpenElement(8, "md-checkbox");
                 {
                     if (AppliedDisabled || IsDisabled)
                     {
-                        rendSeq = 400;
-                        builder.AddAttribute(rendSeq++, "disabled");
+                        builder.AddAttribute(9, "disabled");
                     }
 
                     if (Value)
                     {
-                        rendSeq = 500;
-                        builder.AddAttribute(rendSeq++, "checked");
+                        builder.AddAttribute(10, "checked");
                     }
 
                     if (IsIndeterminate)
                     {
-                        rendSeq = 600;
-                        builder.AddAttribute(rendSeq++, "indeterminate");
+                        builder.AddAttribute(11, "indeterminate");
                     }
 
-                    rendSeq = 700;
-                    builder.AddAttribute(rendSeq++, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
+                    builder.AddAttribute(12, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClickInternal));
                 }
                 builder.CloseElement();
 
                 if (!string.IsNullOrWhiteSpace(TrailingLabelPLUS))
                 {
-                    rendSeq = 800;
                     var labelSpan =
                         "<span class=\"mdc-typography--body1\" style=\"margin-left: 1em;\">"
                         + TrailingLabelPLUS
                         + "</Span>";
-                    builder.AddMarkupContent(rendSeq++, "\r\n");
-                    builder.AddMarkupContent(rendSeq++, labelSpan);
+                    builder.AddMarkupContent(13, "\r\n");
+                    builder.AddMarkupContent(14, labelSpan);
                 }
             }
             builder.CloseElement();

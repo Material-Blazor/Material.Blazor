@@ -79,31 +79,30 @@ public sealed class MBButton : ComponentFoundation
             _ => throw new System.Exception("Unknown ButtonStyle")
         };
 
-        builder.OpenElement(rendSeq++, componentName);
+        builder.OpenElement(rendSeq, componentName);
         {
-            builder.AddAttribute(rendSeq++, "class", classString);
-            builder.AddAttribute(rendSeq++, "style", styleString);
-            builder.AddAttribute(rendSeq++, "id", idString);
+            builder.AddAttribute(rendSeq + 1, "class", classString);
+            builder.AddAttribute(rendSeq + 2, "style", styleString);
+            builder.AddAttribute(rendSeq + 3, "id", idString);
             if (attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(rendSeq + 4, attributesToSplat);
             }
 
             if (appliedDisabled)
             {
                 rendSeq = 100;
-                builder.AddAttribute(rendSeq++, "disabled");
+                builder.AddAttribute(rendSeq + 5, "disabled");
             }
 
             if (iconIsTrailing)
             {
-                rendSeq = 200;
-                builder.AddAttribute(rendSeq++, "trailing-icon");
+                builder.AddAttribute(rendSeq + 6, "trailing-icon");
             }
 
+            rendSeq += 10;
             if (iconDescriptor is not null)
             {
-                rendSeq = 300;
                 MBIcon.BuildRenderTreeWorker(
                     builder,
                     ref rendSeq,
@@ -116,23 +115,24 @@ public sealed class MBButton : ComponentFoundation
                     "icon");
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrWhiteSpace(formId))
             {
-                rendSeq = 400;
-                builder.AddAttribute(rendSeq++, "form", formId);
+                builder.AddAttribute(rendSeq, "form", formId);
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrWhiteSpace(buttonValue))
             {
-                rendSeq = 500;
-                builder.AddAttribute(rendSeq++, "value", buttonValue);
+                builder.AddAttribute(rendSeq, "value", buttonValue);
             }
 
+            rendSeq += 10;
             if (!string.IsNullOrWhiteSpace(label))
             {
-                rendSeq = 600;
                 builder.AddContent(rendSeq++, label);
             }
+            rendSeq += 10;
         }
         builder.CloseElement();
 

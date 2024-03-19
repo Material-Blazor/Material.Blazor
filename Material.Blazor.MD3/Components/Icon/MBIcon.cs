@@ -186,25 +186,23 @@ public class MBIcon : ComponentFoundation
 
         var iconDerivedStyle = fontStyle + fontVariation;
 
-        builder.OpenElement(rendSeq++, "md-icon");
+        builder.OpenElement(rendSeq, "md-icon");
         {
             if ((attributesToSplat is not null) && attributesToSplat.Any())
             {
-                builder.AddMultipleAttributes(rendSeq++, attributesToSplat);
+                builder.AddMultipleAttributes(rendSeq + 1, attributesToSplat);
             }
 
-            rendSeq = 100;
-            builder.AddAttribute(rendSeq++, "class", classString);
-            builder.AddAttribute(rendSeq++, "style", styleString);
-            builder.AddAttribute(rendSeq++, "id", idString);
+            builder.AddAttribute(rendSeq + 2, "class", classString);
+            builder.AddAttribute(rendSeq + 3, "style", styleString);
+            builder.AddAttribute(rendSeq + 4, "id", idString);
 
             if (!string.IsNullOrWhiteSpace(iconSlot))
             {
-                builder.AddAttribute(rendSeq++, "slot", iconSlot);
+                builder.AddAttribute(rendSeq + 5, "slot", iconSlot);
             }
-            rendSeq = 200;
-            builder.AddAttribute(rendSeq++, "style", iconDerivedStyle);
-            builder.AddContent(rendSeq++, iconName.ToLower());
+            builder.AddAttribute(rendSeq + 6, "style", iconDerivedStyle);
+            builder.AddContent(rendSeq + 7, iconName.ToLower());
         }
         builder.CloseElement();
     }
