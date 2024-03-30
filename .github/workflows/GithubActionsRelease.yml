@@ -168,12 +168,12 @@ jobs:
         mv siteWeb/wwwroot deployroot
         mv siteDocFx deployroot/docs
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        token: ${{secrets.GH_PAT}}
-        branch: gh-pages
-        folder: 'deployroot'
+#    - name: Deploy 🚀
+#      uses: JamesIves/github-pages-deploy-action@v4
+#      with:
+#        token: ${{secrets.GH_PAT}}
+#        branch: gh-pages
+#        folder: 'deployroot'
 
 ############################################################################################################
 # Build package and deploy
@@ -209,11 +209,11 @@ jobs:
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
 
-    - name: Upload Package 🚀
-      run: >
-        dotnet nuget push ${{env.outputMB}}\*.nupkg
-        -k ${{secrets.NUGET_API_KEY}}
-        -s https://api.nuget.org/v3/index.json
+#    - name: Upload Package 🚀
+#      run: >
+#        dotnet nuget push ${{env.outputMB}}\*.nupkg
+#        -k ${{secrets.NUGET_API_KEY}}
+#        -s https://api.nuget.org/v3/index.json
 
 ############################################################################################################
 # Create release
@@ -229,11 +229,11 @@ jobs:
       run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       shell: bash
 
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        name: Release ${{ env.version }}
-        tag: ${{ env.version }}
+#    - name: Create Release
+#      uses: ncipollo/release-action@v1
+#      with:
+#        name: Release ${{ env.version }}
+#        tag: ${{ env.version }}
 
 ############################################################################################################
 ############################################################################################################
@@ -399,11 +399,11 @@ jobs:
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMBMD3}}
 
-    - name: Upload Package 🚀
-      run: >
-        dotnet nuget push ${{env.outputMBMD3}}\*.nupkg
-        -k ${{secrets.NUGET_API_KEY}}
-        -s https://api.nuget.org/v3/index.json
+#    - name: Upload Package 🚀
+#      run: >
+#        dotnet nuget push ${{env.outputMBMD3}}\*.nupkg
+#        -k ${{secrets.NUGET_API_KEY}}
+#        -s https://api.nuget.org/v3/index.json
 
     - name: Compute the SHA256 hash of material.blazor.md3.lib.module.js
       shell: pwsh
