@@ -225,8 +225,6 @@ public sealed class MBTextField : InputComponent<string>
                 builder.AddAttribute(rendSeq++, "disabled");
             }
 
-            builder.AddAttribute(rendSeq++, "id", TextFieldId);
-
             builder.AddAttribute(rendSeq++, "value", BindConverter.FormatValue(Value));
             builder.AddAttribute(rendSeq++, "onchange", EventCallback.Factory.CreateBinder(this, ValueChanged.InvokeAsync, Value));
             builder.SetUpdatesAttributeName("value");

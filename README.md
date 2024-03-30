@@ -1,4 +1,4 @@
-﻿# Material.Blazor
+﻿# Material.Blazor & Material.Blazor.MD3
 
 ---
 
