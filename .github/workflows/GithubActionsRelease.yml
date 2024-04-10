@@ -23,13 +23,6 @@ env:
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
-  materialBlazorMD3LibModule: 'Material.Blazor.MD3/wwwroot/Material.Blazor.MD3.lib.module.js'
-  outputDocFxMD3: ${{github.workspace}}\siteDocFxMD3
-  outputMBMD3: ${{github.workspace}}\siteMBMD3
-  outputWebMD3: ${{github.workspace}}\siteWebMD3
-  projectMBMD3: 'Material.Blazor.MD3/Material.Blazor.MD3.csproj'
-  projectWebMD3: 'Material.Blazor.Website.WebAssembly.MD3/Material.Blazor.Website.WebAssembly.MD3.csproj'
-
 jobs:
 
 ############################################################################################################
@@ -55,7 +48,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Use dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
 
@@ -73,7 +66,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
 
@@ -114,7 +107,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
 
@@ -147,7 +140,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
 
@@ -168,19 +161,19 @@ jobs:
         mv siteWeb/wwwroot deployroot
         mv siteDocFx deployroot/docs
 
-#    - name: Deploy 🚀
-#      uses: JamesIves/github-pages-deploy-action@v4
-#      with:
-#        token: ${{secrets.GH_PAT}}
-#        branch: gh-pages
-#        folder: 'deployroot'
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
 
 ############################################################################################################
 # Build package and deploy
 ############################################################################################################
   build-and-deploy-package:
     name: Build nuget package & deploy to nuget
-    needs: [test, deployment-allowed-mb, deployghpages, deployghpages-MD3]
+    needs: [test, deployment-allowed-mb, deployghpages]
 
     runs-on: windows-latest
 
@@ -193,7 +186,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
 
@@ -209,11 +202,11 @@ jobs:
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${{env.outputMB}}
 
-#    - name: Upload Package 🚀
-#      run: >
-#        dotnet nuget push ${{env.outputMB}}\*.nupkg
-#        -k ${{secrets.NUGET_API_KEY}}
-#        -s https://api.nuget.org/v3/index.json
+    - name: Upload Package 🚀
+      run: >
+        dotnet nuget push ${{env.outputMB}}\*.nupkg
+        -k ${{secrets.NUGET_API_KEY}}
+        -s https://api.nuget.org/v3/index.json
 
 ############################################################################################################
 # Create release
@@ -229,184 +222,8 @@ jobs:
       run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       shell: bash
 
-#    - name: Create Release
-#      uses: ncipollo/release-action@v1
-#      with:
-#        name: Release ${{ env.version }}
-#        tag: ${{ env.version }}
-
-############################################################################################################
-############################################################################################################
-############################################################################################################
-# MD3 jobs
-############################################################################################################
-############################################################################################################
-############################################################################################################
-
-############################################################################################################
-# Build documentation
-############################################################################################################
-  build-documentation-MD3:
-    name: Build documentation MD3
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v4
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+    - name: Create Release
+      uses: ncipollo/release-action@v1
       with:
-        dotnet-version: '8.x'
-
-    - name: Setup docfx
-      run: |
-          copy Material.Blazor.MD3\docfx.json.MD3 docfx.json
-          copy Material.Blazor.MD3\index.md.MD3 index.md
-          copy Material.Blazor.MD3\toc.yml.MD3 toc.yml
-          dotnet tool update -g docfx
-
-    - name: Build Material.Blazor
-      run: dotnet build ${{env.projectMBMD3}} --configuration ${{env.buildConfiguration}}
-
-    - name: Create documentation 🔧
-      run: docfx docfx.json
-      env:
-        DOCFX_SOURCE_BRANCH_NAME: main   
-
-    - name: Upload Documentation Artifacts 🔺
-      uses: actions/upload-artifact@v4
-      with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3       
-
-############################################################################################################
-# Build website MD3
-############################################################################################################
-  build-website-MD3:
-    needs: [test]
-    name: Build website MD3
-    runs-on: windows-latest
-
-    steps:
-    - name: Get the version
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v4
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
-
-    - name: Build and Publish Website 🔧
-      run: >
-        dotnet publish ${{env.projectWebMD3}}
-        --configuration ${{env.buildConfiguration}}
-        --output ${{env.outputWebMD3}}
-        -p:Version=${{env.version}}
-        -p:BlazorEnableCompression=false
-        --framework net8.0
-
-    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v4
-      with:
-        name: siteWebMD3
-        path: siteWebMD3
-        
-############################################################################################################
-# deployghpages MD3
-############################################################################################################
-  deployghpages-MD3:
-    name: Deploy to material.blazor.MD3.com
-    needs: [test, build-documentation, build-website-MD3, deployment-allowed-mb]
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v4
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v4
-      with:
-        name: siteDocFxMD3
-        path: siteDocFxMD3
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v4
-      with:
-        name: siteWebMD3
-        path: siteWebMD3
-
-    - name: Configure deployment directory structure Ꙫ
-      run: |
-        mv siteWebMD3/wwwroot deployroot; mv siteDocFxMD3 deployroot/docs
-
-    # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
-    - name: Base Href Rewrite 👉
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-      with:
-        html_path: 'deployroot/index.html'
-        base_href: '/Material.Blazor.MD3/'
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        token: ${{secrets.GH_PAT}}
-        branch: gh-pages
-        folder: 'deployroot'
-        repository-name: Material-Blazor/Material.Blazor.MD3
-
-############################################################################################################
-# Build package and deploy MD3
-############################################################################################################
-  build-and-deploy-package-MD3:
-    name: Build nuget package & deploy to nuget
-    needs: [test, deployment-allowed-mb, deployghpages, deployghpages-MD3]
-
-    runs-on: windows-latest
-
-    steps:
-    - name: Get the version
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v4
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
-
-    - name: Build Material.Blazor.MD3 & Generate the NuGet package 🔧
-      run: >
-        dotnet pack ${{env.projectMBMD3}}
-        --configuration ${{env.buildConfiguration}}
-        --output ${{env.outputMBMD3}}
-        -p:IncludeSymbols=true
-        -p:SymbolPackageFormat=snupkg
-        -p:Version=${{env.version}}
-
-    - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env.outputMBMD3}}
-
-#    - name: Upload Package 🚀
-#      run: >
-#        dotnet nuget push ${{env.outputMBMD3}}\*.nupkg
-#        -k ${{secrets.NUGET_API_KEY}}
-#        -s https://api.nuget.org/v3/index.json
-
-    - name: Compute the SHA256 hash of material.blazor.md3.lib.module.js
-      shell: pwsh
-      run: |
-          .\computesha.ps1 ${{env.materialBlazorMD3LibModule}}
-
+        name: Release ${{ env.version }}
+        tag: ${{ env.version }}

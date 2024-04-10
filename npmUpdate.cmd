@@ -11,19 +11,6 @@ echo ... Updating Material.Blazor.Website
 echo ...
 call npm update -S
 rem ***
-echo ...
-echo ... Updating Material.Blazor.MD3
-echo ...
-cd ..\material.blazor.md3
-call npm install @material/web@nightly
-call npm update -S
-rem ***
-echo ...
-echo ... Updating Material.Blazor.Website.MD3
-echo ...
-cd ..\material.blazor.website.MD3
-call npm update -S
-rem ***
 cd ..
 echo ...
 echo ... Updating docfx
