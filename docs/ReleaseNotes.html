@@ -29,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
@@ -83,12 +83,16 @@
         <article data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
-<h4 id="530"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.3.0">5.3.0</a></h4>
-<p>Released 2024-03-18</p>
+<h4 id="531"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.3.1">5.3.1</a></h4>
+<p>Released 2024-04-??</p>
 <p><strong>Updates</strong></p>
+<ul>
+<li>.Net 8.0.4 updates</li>
+<li>Dependabot updates.</li>
+</ul>
 <p><strong>New components</strong></p>
 <ul>
-<li>New <code>MBPopover</code> has the same styling and UX experience as <code>MBMenuSurface</code>, with the following engineering differences:
+<li><code>MBPopover</code> has the same styling and UX experience as <code>MBMenuSurface</code>, with the following engineering differences:
 <ul>
 <li>Performs lazy rendering of child content to improve page load performance, copied from <code>MBDialog</code>.</li>
 <li>Also like <code>MBDialog</code>, <code>MBPopover</code> performs late instantiation of child compoenents to ensure correct styling after opening.</li>
@@ -100,7 +104,28 @@
 <p><strong>Breaking Changes</strong></p>
 <p><strong>Deprecated Components</strong></p>
 <ul>
-<li><code>MBMenuSurface</code> will be deprecated in favour of <code>MBPopover</code> in version 6.0.0.</li>
+<li>MD3: Entire MD3 'experiment' removed as Google has effectively abandoned the development of Material Web Components 3.</li>
+</ul>
+<p><strong>Known issues</strong></p>
+<br>
+<h4 id="530"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.3.0">5.3.0</a></h4>
+<p>Released 2024-03-18</p>
+<p><strong>Updates</strong></p>
+<p><strong>New components</strong></p>
+<ul>
+<li>MD2: <code>MBPopover</code> has the same styling and UX experience as <code>MBMenuSurface</code>, with the following engineering differences:
+<ul>
+<li>Performs lazy rendering of child content to improve page load performance, copied from <code>MBDialog</code>.</li>
+<li>Also like <code>MBDialog</code>, <code>MBPopover</code> performs late instantiation of child compoenents to ensure correct styling after opening.</li>
+<li><code>MBPopover</code> has <code>ShowAsync()</code> and <code>HideAsync()</code> like <code>MBDialog</code>, unlike the <code>ToggleAsync()</code> method of <code>MBMenuSurface</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>New features</strong></p>
+<p><strong>Breaking Changes</strong></p>
+<p><strong>Deprecated Components</strong></p>
+<ul>
+<li>MD2: <code>MBMenuSurface</code> will be deprecated in favour of <code>MBPopover</code> in version 6.0.0.</li>
 </ul>
 <p><strong>Known issues</strong></p>
 <br>
@@ -108,8 +133,8 @@
 <p>Released 2024-03-16</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>Add <code>MenuSurfacePositioning</code> parameter to <code>MBAutocompletePagedField</code>.</li>
-<li>Add <code>OnMenuOpened</code> parameter to <code>MBMenuSurface</code>.</li>
+<li>MD2: Add <code>MenuSurfacePositioning</code> parameter to <code>MBAutocompletePagedField</code>.</li>
+<li>MD2: Add <code>OnMenuOpened</code> parameter to <code>MBMenuSurface</code>.</li>
 </ul>
 <p><strong>New components</strong></p>
 <p><strong>New features</strong></p>
