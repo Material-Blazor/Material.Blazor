@@ -6,7 +6,7 @@ title: ReleaseNotes
 
 #### [5.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.1)
 
-Released 2024-04-??
+Released 2024-04-10
 
 **Updates**
 - .Net 8.0.4 updates
