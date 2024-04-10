@@ -14,28 +14,14 @@ updates:
 
 
   - package-ecosystem: "npm"
-    directory: "/Material.Blazor"
+    directory: "/materia.blazor"
     schedule:
       interval: "weekly"
     ignore:
       - dependency-name: "sass"
 
   - package-ecosystem: "npm"
-    directory: "/Material.Blazor.MD3"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "sass"
-
-  - package-ecosystem: "npm"
-    directory: "/Material.Blazor.Website"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "sass"
-
-  - package-ecosystem: "npm"
-    directory: "/Material.Blazor.Website.MD3"
+    directory: "/materia.blazor.website"
     schedule:
       interval: "weekly"
     ignore:
@@ -44,75 +30,28 @@ updates:
 
 
   - package-ecosystem: "nuget"
-    directory: "/Material.Blazor"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "Microsoft.*"
-        versions: ["8.x"]
-      - dependency-name: "Nager.Date"
-
-  - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Test"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "Microsoft.*"
-        versions: ["8.x"]
-      - dependency-name: "Nager.Date"
-
-  - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Website"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "Microsoft.*"
-        versions: ["8.x"]
-      - dependency-name: "Nager.Date"
-
-  - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Website.Server"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "Microsoft.*"
-        versions: ["8.x"]
-      - dependency-name: "Nager.Date"
-
-  - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Website.WebAssembly"
-    schedule:
-      interval: "weekly"
-    ignore:
-      - dependency-name: "Microsoft.*"
-        versions: ["8.x"]
-      - dependency-name: "Nager.Date"
-
-
-
-  - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.MD3"
+    directory: "/materia.blazor"
     schedule:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
 
   - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Website.MD3"
+    directory: "/materia.blazor.website"
     schedule:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
 
   - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Website.Server.MD3"
+    directory: "/materia.blazor.website.server"
     schedule:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
 
   - package-ecosystem: "nuget"
-    directory: "/Material.Blazor.Website.WebAssembly.MD3"
+    directory: "/materia.blazor.website.webassembly"
     schedule:
       interval: "weekly"
     ignore:

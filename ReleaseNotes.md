@@ -4,6 +4,31 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.1)
+
+Released 2024-04-??
+
+**Updates**
+- .Net 8.0.4 updates
+- Dependabot updates.
+
+**New components**
+- `MBPopover` has the same styling and UX experience as `MBMenuSurface`, with the following engineering differences:
+    - Performs lazy rendering of child content to improve page load performance, copied from `MBDialog`.
+	- Also like `MBDialog`, `MBPopover` performs late instantiation of child compoenents to ensure correct styling after opening.
+	- `MBPopover` has `ShowAsync()` and `HideAsync()` like `MBDialog`, unlike the `ToggleAsync()` method of `MBMenuSurface`.
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+- MD3: Entire MD3 'experiment' removed as Google has effectively abandoned the development of Material Web Components 3.
+
+**Known issues**
+
+<br />
+
 #### [5.3.0](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.0)
 
 Released 2024-03-18
