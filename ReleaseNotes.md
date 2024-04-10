@@ -9,9 +9,11 @@ title: ReleaseNotes
 Released 2024-04-??
 
 **Updates**
+- .Net 8.0.4 updates
+- Dependabot updates.
 
 **New components**
-- MD2: `MBPopover` has the same styling and UX experience as `MBMenuSurface`, with the following engineering differences:
+- `MBPopover` has the same styling and UX experience as `MBMenuSurface`, with the following engineering differences:
     - Performs lazy rendering of child content to improve page load performance, copied from `MBDialog`.
 	- Also like `MBDialog`, `MBPopover` performs late instantiation of child compoenents to ensure correct styling after opening.
 	- `MBPopover` has `ShowAsync()` and `HideAsync()` like `MBDialog`, unlike the `ToggleAsync()` method of `MBMenuSurface`.
