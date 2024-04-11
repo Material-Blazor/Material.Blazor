@@ -95,11 +95,7 @@ public partial class MBPopover : ComponentFoundation, IMBLayoutParent
     /// <returns>The action string resulting from dialog closure</returns>
     public async Task ShowAsync()
     {
-        if (IsOpen)
-        {
-            throw new InvalidOperationException("Cannot show MBPopover that is already open");
-        }
-        else
+        if (!IsOpen)
         {
             LayoutChildren.Clear();
             _hasInstantiated = false;
@@ -158,10 +154,6 @@ public partial class MBPopover : ComponentFoundation, IMBLayoutParent
         if (IsOpen)
         {
             await InvokeJsVoidAsync("MaterialBlazor.MBPopover.hide", ElementReference);
-        }
-        else
-        {
-            throw new InvalidOperationException("Cannot hide MBPopover that is not already open");
         }
     }
 
