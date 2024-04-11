@@ -4,6 +4,25 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.2](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.2)
+
+Released 2024-04-11
+
+**Updates**
+- `MBPopover` no longer throws exceptions when you try to show a popover that is already open, or hide one that is hidden. This was an unnecessary exception.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.1)
 
 Released 2024-04-10
