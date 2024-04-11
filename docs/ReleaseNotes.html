@@ -83,23 +83,26 @@
         <article data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
+<h4 id="532"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.3.2">5.3.2</a></h4>
+<p>Released 2024-04-11</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li><code>MBPopover</code> no longer throws exceptions when you try to show a popover that is already open, or hide one that is hidden. This was an unnecessary exception.</li>
+</ul>
+<p><strong>New components</strong></p>
+<p><strong>New features</strong></p>
+<p><strong>Breaking Changes</strong></p>
+<p><strong>Deprecated Components</strong></p>
+<p><strong>Known issues</strong></p>
+<br>
 <h4 id="531"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/5.3.1">5.3.1</a></h4>
-<p>Released 2024-04-??</p>
+<p>Released 2024-04-10</p>
 <p><strong>Updates</strong></p>
 <ul>
 <li>.Net 8.0.4 updates</li>
 <li>Dependabot updates.</li>
 </ul>
 <p><strong>New components</strong></p>
-<ul>
-<li><code>MBPopover</code> has the same styling and UX experience as <code>MBMenuSurface</code>, with the following engineering differences:
-<ul>
-<li>Performs lazy rendering of child content to improve page load performance, copied from <code>MBDialog</code>.</li>
-<li>Also like <code>MBDialog</code>, <code>MBPopover</code> performs late instantiation of child compoenents to ensure correct styling after opening.</li>
-<li><code>MBPopover</code> has <code>ShowAsync()</code> and <code>HideAsync()</code> like <code>MBDialog</code>, unlike the <code>ToggleAsync()</code> method of <code>MBMenuSurface</code>.</li>
-</ul>
-</li>
-</ul>
 <p><strong>New features</strong></p>
 <p><strong>Breaking Changes</strong></p>
 <p><strong>Deprecated Components</strong></p>
