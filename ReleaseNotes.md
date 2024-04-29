@@ -4,6 +4,25 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.3)
+
+Released 2024-04-29
+
+**Updates**
+- Fixes and `MBAutocompletePagedField` styling bug.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.2](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.2)
 
 Released 2024-04-11
