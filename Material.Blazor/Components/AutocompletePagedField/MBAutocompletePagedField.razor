@@ -4,7 +4,7 @@
 @typeparam TItem
 
 
-<div class="mb-autocomplete @ActiveConditionalClasses @(@class)"
+<div class="mb-autocomplete @(@class)"
      style="@style"
      id="@id">
     <MBTextField @attributes="@AttributesToSplat()"
@@ -28,7 +28,7 @@
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="@MenuReference"
-             class="mdc-menu-surface @ActiveConditionalClasses @(@class)"
+             class="mdc-menu-surface @ActiveConditionalClasses"
              style="@style"
              @onfocusin="OnMenuFocusIn"
              @onfocusout="OnMenuFocusOut"
