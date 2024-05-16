@@ -4,6 +4,27 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.4)
+
+Released 2024-05-16
+
+**Updates**
+- .Net 8.0.5 updates
+- Dependabot updates.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+- MD3: Entire MD3 'experiment' removed as Google has effectively abandoned the development of Material Web Components 3.
+
+**Known issues**
+
+<br />
+
 #### [5.3.3](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.3)
 
 Released 2024-04-29
