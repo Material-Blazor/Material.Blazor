@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.5](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.5)
+
+Released 2024-05-29
+
+**Updates**
+- Fix `MBPopover` javascript bug.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+- MD3: Entire MD3 'experiment' removed as Google has effectively abandoned the development of Material Web Components 3.
+
+**Known issues**
+
+<br />
+
 #### [5.3.4](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.4)
 
 Released 2024-05-16
