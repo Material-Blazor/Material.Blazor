@@ -13796,12 +13796,12 @@ function MBPopover_show(elem, dotNetObject) {
   elem._popover = elem._popover || MDCMenuSurface.attachTo(elem);
   elem._dotNetObject = dotNetObject;
   var openedCallback = function openedCallback() {
-    elem._dialog.unlisten('MDCMenuSurface:opened', openedCallback);
+    elem._popover.unlisten('MDCMenuSurface:opened', openedCallback);
     dotNetObject.invokeMethodAsync('NotifyOpened');
   };
   elem._popover.listen('MDCMenuSurface:opened', openedCallback);
   var closedCallback = function closedCallback() {
-    elem._dialog.unlisten('MDCDialog:closing', closedCallback);
+    elem._popover.unlisten('MDCDialog:closing', closedCallback);
     dotNetObject.invokeMethodAsync('NotifyClosed');
   };
   elem._popover.listen('MDCMenuSurface:closed', closedCallback);
