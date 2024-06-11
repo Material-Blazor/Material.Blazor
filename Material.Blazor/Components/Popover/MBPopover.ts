@@ -9,14 +9,14 @@ export function show(elem, dotNetObject) {
     elem._dotNetObject = dotNetObject;
 
     const openedCallback = () => {
-        elem._dialog.unlisten('MDCMenuSurface:opened', openedCallback);
+        elem._popover.unlisten('MDCMenuSurface:opened', openedCallback);
         dotNetObject.invokeMethodAsync('NotifyOpened');
     };
 
     elem._popover.listen('MDCMenuSurface:opened', openedCallback);
 
     const closedCallback = () => {
-        elem._dialog.unlisten('MDCDialog:closing', closedCallback);
+        elem._popover.unlisten('MDCDialog:closing', closedCallback);
         dotNetObject.invokeMethodAsync('NotifyClosed');
     };
 
