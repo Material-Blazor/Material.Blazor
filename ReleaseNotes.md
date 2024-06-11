@@ -4,13 +4,32 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [5.3.5](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.4)
+#### [5.3.6](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.4)
 
 Released 2024-06-11
 
 **Updates**
 - .Net 8.0.6 updates
 - Dependabot updates.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
+#### [5.3.5](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.5)
+
+Released 2024-05-29
+
+**Updates**
+- Fix `MBPopover` javascript bug.
 
 **New components**
 
