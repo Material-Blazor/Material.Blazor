@@ -7807,22 +7807,6 @@ references:
   fullName.vb: Material.Blazor.MBIconBearingSelectElement(Of T).<>
   nameWithType: MBIconBearingSelectElement<T>.operator !=
   nameWithType.vb: MBIconBearingSelectElement(Of T).<>
-- uid: Material.Blazor.MBIconBearingSelectElement`1.{Clone}$
-  name: <Clone>$()
-  href: api/Material.Blazor.MBIconBearingSelectElement-1.html#Material_Blazor_MBIconBearingSelectElement_1__Clone__
-  commentId: M:Material.Blazor.MBIconBearingSelectElement`1.{Clone}$
-  fullName: Material.Blazor.MBIconBearingSelectElement<T>.<Clone>$()
-  fullName.vb: Material.Blazor.MBIconBearingSelectElement(Of T).<Clone>$()
-  nameWithType: MBIconBearingSelectElement<T>.<Clone>$()
-  nameWithType.vb: MBIconBearingSelectElement(Of T).<Clone>$()
-- uid: Material.Blazor.MBIconBearingSelectElement`1.{Clone}$*
-  name: <Clone>$
-  href: api/Material.Blazor.MBIconBearingSelectElement-1.html#Material_Blazor_MBIconBearingSelectElement_1__Clone___
-  commentId: Overload:Material.Blazor.MBIconBearingSelectElement`1.{Clone}$
-  fullName: Material.Blazor.MBIconBearingSelectElement<T>.<Clone>$
-  fullName.vb: Material.Blazor.MBIconBearingSelectElement(Of T).<Clone>$
-  nameWithType: MBIconBearingSelectElement<T>.<Clone>$
-  nameWithType.vb: MBIconBearingSelectElement(Of T).<Clone>$
 - uid: Material.Blazor.MBIconButton
   name: MBIconButton
   href: api/Material.Blazor.MBIconButton.html
@@ -12488,22 +12472,6 @@ references:
   fullName.vb: Material.Blazor.MBSelectElement(Of T).<>
   nameWithType: MBSelectElement<T>.operator !=
   nameWithType.vb: MBSelectElement(Of T).<>
-- uid: Material.Blazor.MBSelectElement`1.{Clone}$
-  name: <Clone>$()
-  href: api/Material.Blazor.MBSelectElement-1.html#Material_Blazor_MBSelectElement_1__Clone__
-  commentId: M:Material.Blazor.MBSelectElement`1.{Clone}$
-  fullName: Material.Blazor.MBSelectElement<T>.<Clone>$()
-  fullName.vb: Material.Blazor.MBSelectElement(Of T).<Clone>$()
-  nameWithType: MBSelectElement<T>.<Clone>$()
-  nameWithType.vb: MBSelectElement(Of T).<Clone>$()
-- uid: Material.Blazor.MBSelectElement`1.{Clone}$*
-  name: <Clone>$
-  href: api/Material.Blazor.MBSelectElement-1.html#Material_Blazor_MBSelectElement_1__Clone___
-  commentId: Overload:Material.Blazor.MBSelectElement`1.{Clone}$
-  fullName: Material.Blazor.MBSelectElement<T>.<Clone>$
-  fullName.vb: Material.Blazor.MBSelectElement(Of T).<Clone>$
-  nameWithType: MBSelectElement<T>.<Clone>$
-  nameWithType.vb: MBSelectElement(Of T).<Clone>$
 - uid: Material.Blazor.MBSelectInputStyle
   name: MBSelectInputStyle
   href: api/Material.Blazor.MBSelectInputStyle.html
