@@ -4,9 +4,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="bunit" Version="1.29.5" />
-		<PackageReference Include="bunit.core" Version="1.29.5" />
-		<PackageReference Include="bunit.web" Version="1.29.5" />
+		<PackageReference Include="bunit" Version="1.30.3" />
+		<PackageReference Include="bunit.core" Version="1.30.3" />
+		<PackageReference Include="bunit.web" Version="1.30.3" />
 		<PackageReference Include="NSubstitute" Version="5.1.0" />
 		<PackageReference Include="xunit" Version="2.9.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">

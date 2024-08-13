@@ -5,8 +5,6 @@ name: GithubActionsRelease
 # The publishing actions in forked repositories were handled by the WIP workflow
 # An 'ExitWorkflow' action is sorely needed
 ############################################################################################################
-# NUGET_API_KEY is valid through 9/11/2022
-############################################################################################################
 
 on:
   push:
