@@ -113,13 +113,13 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: main
 
     - name: Show the documentation artifacts
-      run: dir siteDocFx
+      run: dir .artifacts/siteDocFx
 
     - name: Upload Documentation Artifacts 🔺 # The documentation site is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v4
       with:
         name: siteDocFx
-        path: siteDocFx
+        path: .artifacts/siteDocFx
 
 ############################################################################################################
 # Build website
