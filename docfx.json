@@ -1,0 +1,79 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": ".artifacts/bin/Material.Blazor/**/*.dll",
+          "filter": "filterConfig.yml"
+        }
+      ],
+      "allowCompilationErrors": true,
+      "dest": ".artifacts/api",
+      "disableDefaultFilter": false,
+      "disableGitFeatures": false,
+      "includePrivateMembers": false,
+      "namespaceLayout": "flattened",
+      "noRestore": false,
+      "memberLayout": "samePage"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          ".artifacts/api/**.yml",
+
+          "articles/**/**.md",
+          "articles/toc.yml",
+          "toc.yml",
+          "*.md",
+
+          "Material.Blazor/**/**.md",
+          "Material.Blazor/**/**/**.md",
+          "Material.Blazor/**/toc.yml"
+        ],
+        "exclude": [
+          "Material.Blazor/node_modules/**/**.md",
+          "Material.Blazor/node_modules/**/**.toc"
+        ]
+      }
+    ],
+
+    "resource": [
+      {
+        "files": [
+          "Material.Blazor/**/images/**.png",
+          "Material.Blazor/**/images/**.jpg",
+          "Material.Blazor/.nojekyll",
+          "Material.Blazor/404.html",
+          "Material.Blazor/*html.txt"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          ".artifacts/api/**.md"
+        ]
+      }
+    ],
+    "output": ".artifacts/siteDocFx",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default",
+      "modern"
+    ],
+    "allowcompilationerrors": true,
+    "cleanupCacheHistory": false,
+    "disableContribution": true,
+    "disableGitFeatures": false,
+    "keepFileLink": false,
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "postProcessors": [],
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
+  }
+}
