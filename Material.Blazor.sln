@@ -13,17 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		ctag.cmd = ctag.cmd
 		.github\dependabot.yml = .github\dependabot.yml
 		Directory.Build.props = Directory.Build.props
+		docfx.json = docfx.json
 		filterConfig.yml = filterConfig.yml
 		.github\workflows\GithubActionsRelease.yml = .github\workflows\GithubActionsRelease.yml
 		.github\workflows\GithubActionsWIP.yml = .github\workflows\GithubActionsWIP.yml
+		index.md = index.md
 		LICENSE.md = LICENSE.md
 		LocalBuild.cmd = LocalBuild.cmd
+		LocalPublish.cmd = LocalPublish.cmd
 		LocalTest.bat = LocalTest.bat
 		npmUpdate.cmd = npmUpdate.cmd
 		README.md = README.md
 		ReleaseNotes.md = ReleaseNotes.md
 		ServeDocs.cmd = ServeDocs.cmd
 		SuperClean.cmd = SuperClean.cmd
+		toc.yml = toc.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guidelines", "guidelines", "{86740746-C4E6-45DF-BA84-8FB1C1200DD9}"

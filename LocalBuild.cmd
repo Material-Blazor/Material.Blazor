@@ -2,7 +2,7 @@
 set argVersion=%1
 if "%1" == "" set argVersion=5.0.104
 set argDestination=%2
-if "%2" == "" set argDestination="c:\solutions\local nuget packages"
+if "%2" == "" set argDestination="d:\local nuget packages"
 
 echo Version is %argVersion%
 echo Destination is %argDestination%
