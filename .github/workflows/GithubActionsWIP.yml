@@ -102,11 +102,7 @@ jobs:
         dotnet-version: '8.x'
 
     - name: Setup docfx
-      run: |
-          copy Material.Blazor\docfx.json.MD2 docfx.json
-          copy Material.Blazor\index.md.MD2 index.md
-          copy Material.Blazor\toc.yml.MD2 toc.yml
-          dotnet tool update -g docfx
+      run: dotnet tool update -g docfx
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
