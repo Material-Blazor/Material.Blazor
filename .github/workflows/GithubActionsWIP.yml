@@ -122,6 +122,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: siteDocFx
+        include-hidden-files: true
         path: .artifacts/siteDocFx
 
 ############################################################################################################
@@ -232,13 +233,19 @@ jobs:
       with:
         persist-credentials: false
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+    - name: Download Artifacts siteDocFx🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v4
       with:
         name: siteDocFx
         path: siteDocFx
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+    - name: Show the documentation site artifacts
+      run: dir siteDocFx
+
+    - name: Show the documentation site api artifacts
+      run: dir siteDocFx/.artifacts/api
+
+    - name: Download Artifacts siteWeb🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v4
       with:
         name: siteWeb
@@ -246,6 +253,9 @@ jobs:
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
+
+    - name: Show the documentation site api artifacts on deployroot
+      run: dir deployroot/docs
 
     # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
     - name: Base Href Rewrite 👉
