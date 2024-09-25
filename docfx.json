@@ -22,11 +22,8 @@
       {
         "files": [
           ".artifacts/api/**.yml",
-
-          "articles/**/**.md",
-          "articles/toc.yml",
           "toc.yml",
-          "*.md",
+          "index.md",
 
           "Material.Blazor/**/**.md",
           "Material.Blazor/**/**/**.md",
