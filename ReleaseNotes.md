@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.9](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.9)
+
+Released 2024-09-25
+
+**Updates**
+- Dependabot updates.
+- DocFx updates.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.8](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.8)
 
 Released 2024-08-13

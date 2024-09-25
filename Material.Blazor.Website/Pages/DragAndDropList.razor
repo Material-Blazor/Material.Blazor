@@ -1,6 +1,5 @@
 ﻿@page "/draganddroplist"
 
-@using Humanizer
 @inject IMBToastService ToastService
 
 
@@ -27,7 +26,7 @@
                         <Content>
                             <div class="mdc-layout-grid__inner" style="width: 100%;">
                                 <div class="mdc-layout-grid__cell--span-12 mdc-typography--headline6">
-                                    @(GetText(amount))
+                                    @amount.ToString()
                                 </div>
                                 <div class="mdc-layout-grid__cell--span-3">
                                     <MBButton Label="Button" ButtonStyle="@MBButtonStyle.ContainedUnelevated" />
@@ -51,7 +50,7 @@
 
                         @foreach (var amount in Amounts)
                         {
-                            <span>@dash @(GetText(amount))</span>
+                            <span>@dash @amount.ToString()</span>
                             dash = " - ";
                         }
                     </div>
@@ -99,8 +98,8 @@
 
 
 @code {
-    private List<decimal> amounts = new();
-    private List<decimal> Amounts
+    private List<int> amounts = new();
+    private List<int> Amounts
     {
         get => amounts;
         set
@@ -131,11 +130,5 @@
         {
             amounts.Add(i);
         }
-    }
-
-
-    string GetText(decimal amount)
-    {
-        return Convert.ToInt32(amount).ToWords().Titleize();
     }
 }

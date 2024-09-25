@@ -102,11 +102,7 @@ jobs:
         dotnet-version: '8.x'
 
     - name: Setup docfx
-      run: |
-          copy Material.Blazor\docfx.json.MD2 docfx.json
-          copy Material.Blazor\index.md.MD2 index.md
-          copy Material.Blazor\toc.yml.MD2 toc.yml
-          dotnet tool update -g docfx
+      run: dotnet tool update -g docfx
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
@@ -116,14 +112,17 @@ jobs:
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
-    - name: Show the documentation artifacts
-      run: dir siteDocFx
+    - name: Show the documentation site artifacts
+      run: dir .artifacts/siteDocFx
+
+    - name: Show the documentation site api artifacts
+      run: dir .artifacts/siteDocFx/.artifacts/api
 
     - name: Upload Documentation Artifacts 🔺 # The documentation site is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v4
       with:
         name: siteDocFx
-        path: siteDocFx
+        path: .artifacts/siteDocFx
 
 ############################################################################################################
 # Build website

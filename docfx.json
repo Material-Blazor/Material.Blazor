@@ -3,12 +3,12 @@
     {
       "src": [
         {
-          "files": ".artifacts/bin/Material.Blazor/**/*.dll",
+          "files": ".artifacts/bin/**/Material.Blazor.dll",
           "filter": "filterConfig.yml"
         }
       ],
       "allowCompilationErrors": true,
-      "dest": "api",
+      "dest": ".artifacts/api",
       "disableDefaultFilter": false,
       "disableGitFeatures": false,
       "includePrivateMembers": false,
@@ -21,20 +21,13 @@
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
-        ]
-      },
-      {
-        "files": [
+          ".artifacts/api/**.yml",
+
           "articles/**/**.md",
           "articles/toc.yml",
           "toc.yml",
-          "*.md"
-        ]
-      },
-      {
-        "files": [
+          "*.md",
+
           "Material.Blazor/**/**.md",
           "Material.Blazor/**/**/**.md",
           "Material.Blazor/**/toc.yml"
@@ -44,8 +37,8 @@
           "Material.Blazor/node_modules/**/**.toc"
         ]
       }
-
     ],
+
     "resource": [
       {
         "files": [
@@ -60,11 +53,11 @@
     "overwrite": [
       {
         "files": [
-          "api/**.md"
+          ".artifacts/api/**.md"
         ]
       }
     ],
-    "output": "siteDocFx",
+    "output": ".artifacts/siteDocFx",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
