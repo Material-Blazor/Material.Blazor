@@ -112,11 +112,11 @@ jobs:
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
 
-    - name: Show the documentation api artifacts
-      run: dir .artifacts/api /s
-
     - name: Show the documentation site artifacts
-      run: dir .artifacts/siteDocFx /s
+      run: dir .artifacts/siteDocFx
+
+    - name: Show the documentation site api artifacts
+      run: dir .artifacts/siteDocFx/.artifacts/api
 
     - name: Upload Documentation Artifacts 🔺 # The documentation site is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v4
