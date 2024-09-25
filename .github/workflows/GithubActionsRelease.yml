@@ -83,6 +83,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: siteDocFx
+        include-hidden-files: true
         path: .artifacts/siteDocFx       
 ############################################################################################################
 # Build website

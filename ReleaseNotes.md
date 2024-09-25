@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.10](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.10)
+
+Released 2024-09-25
+
+**Updates**
+- Updated upload-artifact to have "include-hidden-files: true" so that the api
+was included in the documentation.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.9](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.9)
 
 Released 2024-09-25
