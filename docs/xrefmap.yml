@@ -4,9 +4,6 @@ references:
 - uid: A.CascadingDefaults
   name: CascadingDefaults
   href: Material.Blazor/Articles/CascadingDefaults.html
-- uid: A.CodeOfConduct
-  name: CodeOfConduct
-  href: CODE_OF_CONDUCT.html
 - uid: A.CoreComponents
   name: CoreComponents
   href: Material.Blazor/Articles/CoreComponents.html
@@ -31,9 +28,6 @@ references:
 - uid: A.Introduction
   name: Introduction
   href: Material.Blazor/Articles/Introduction.html
-- uid: A.License
-  name: License
-  href: LICENSE.html
 - uid: A.MenuOverflow
   name: MenuOverflow
   href: Material.Blazor/Articles/MenuOverflow.html
@@ -43,9 +37,6 @@ references:
 - uid: A.Principles
   name: Principles
   href: Material.Blazor/Articles/Principles.html
-- uid: A.ReleaseNotes
-  name: ReleaseNotes
-  href: ReleaseNotes.html
 - uid: A.Services
   name: Services
   href: Material.Blazor/Articles/Services.html

@@ -1337,26 +1337,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "CODE_OF_CONDUCT.md",
-      "output": {
-        ".html": {
-          "relative_path": "CODE_OF_CONDUCT.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "LICENSE.md",
-      "output": {
-        ".html": {
-          "relative_path": "LICENSE.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Articles/CascadingDefaults.md",
       "output": {
         ".html": {
@@ -2657,26 +2637,6 @@
       "output": {
         "resource": {
           "relative_path": "Material.Blazor/node_modules/@material/top-app-bar/images/regular-app-bar.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "ReleaseNotes.md",
-      "output": {
-        ".html": {
-          "relative_path": "ReleaseNotes.html"
         }
       },
       "version": ""

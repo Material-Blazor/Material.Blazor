@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IMBSnackbarService </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IMBSnackbarService ">
+      
+      <meta name="description" content="Interface for the Material.Blazor snackbar service, developed from the code base of Blazored Snackbar by Chris Sainty. Works in conjunction with a  that must be placed in either App.razor or MainLayout.razor to avoid an exception being thrown when you first attempt to show a snackbar notification.  Throws a  if  is called without an  component used in the app. You can optionally add configuration when you add this to the service collection:services.AddMBServices(snackbarServiceConfiguration: new MBSnackbarServiceConfiguration()                                                                                                      {                                                                                                          Timeout = 4000,                                                                                                          CloseMethod = MBSnackbarCloseMethod.Timeout,                                                                                                          ... etc                                                                                                      });">
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Material.Blazor.IMBSnackbarService">
+
+
+
+  <h1 id="Material_Blazor_IMBSnackbarService" data-uid="Material.Blazor.IMBSnackbarService" class="text-break">
+Interface IMBSnackbarService  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Material.html">Material</a>.<a class="xref" href="Material.Blazor.html">Blazor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Material.Blazor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Interface for the Material.Blazor snackbar service, developed from the code base of Blazored Snackbar by Chris Sainty.
+Works in conjunction with a <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> that must be placed in either App.razor or
+MainLayout.razor to avoid an exception being thrown when you first attempt to show a snackbar notification.</p>
+<p>
+Throws a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> if
+<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(string, Action, string, string, MBNotifierCloseMethod?, bool, bool, int?, bool)</a>
+is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> component used in the app.
+</p><example><p>You can optionally add configuration when you add this to the service collection:</p><pre><code class="lang-csharp">services.AddMBServices(snackbarServiceConfiguration: new MBSnackbarServiceConfiguration()
+                                                                                                     {
+                                                                                                         Timeout = 4000,
+                                                                                                         CloseMethod = MBSnackbarCloseMethod.Timeout,
+                                                                                                         ... etc
+                                                                                                     });</code></pre></example>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMBSnackbarService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Material_Blazor_IMBSnackbarService_Configuration_" data-uid="Material.Blazor.IMBSnackbarService.Configuration*"></a>
+
+  <h3 id="Material_Blazor_IMBSnackbarService_Configuration" data-uid="Material.Blazor.IMBSnackbarService.Configuration">
+  Configuration
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Snackbar service configuration</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">MBSnackbarServiceConfiguration Configuration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Material_Blazor_IMBSnackbarService_ShowSnackbar_" data-uid="Material.Blazor.IMBSnackbarService.ShowSnackbar*"></a>
+
+  <h3 id="Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_" data-uid="Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)">
+  ShowSnackbar(string, Action, string, string, MBNotifierCloseMethod?, bool, bool, int?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shows a snackbar using the supplied settings. Only the level and message parameters are required, with
+the remainder haveing defaults specified by the <a class="xref" href="Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a> that you can supply
+when registering services. Failing that Material.Blazor provides defaults.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ShowSnackbar(string message, Action action = null, string actionText = null, string additionalClass = null, MBNotifierCloseMethod? closeMethod = null, bool leading = false, bool stacked = false, int? timeout = null, bool debug = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Body text in the snackbar</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>The action that is performed when the button in the snackbar is clicked (optional. if set, 'actionText' must also be set)</p>
+</dd>
+    <dt><code>actionText</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The text to display in the action button in the snackbar (optional. if set, 'action' must also be set)</p>
+</dd>
+    <dt><code>additionalClass</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of a class to be added to the snackbar surface</p>
+</dd>
+    <dt><code>closeMethod</code> <a class="xref" href="Material.Blazor.MBNotifierCloseMethod.html">MBNotifierCloseMethod</a>?</dt>
+    <dd><p>Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes</p>
+</dd>
+    <dt><code>leading</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>By default, snackbars are centered horizontally within the viewport. On larger screens, they can optionally be displayed on the leading edge of the screen (the left side in LTR, or the right side in RTL)</p>
+</dd>
+    <dt><code>stacked</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Action buttons with long text should be positioned below the label instead of alongside it</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>Length of time before autodismiss</p>
+</dd>
+    <dt><code>debug</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true only shows snackbars when compiling in DEBUG mode</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="Material_Blazor_IMBSnackbarService_OnAdd" data-uid="Material.Blazor.IMBSnackbarService.OnAdd">
+  OnAdd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A event that will be invoked when showing a snackbar</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;MBSnackbarSettings&gt; OnAdd</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="Material.Blazor.MBSnackbarSettings.html">MBSnackbarSettings</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="Material_Blazor_IMBSnackbarService_OnTriggerStateHasChanged" data-uid="Material.Blazor.IMBSnackbarService.OnTriggerStateHasChanged">
+  OnTriggerStateHasChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A event that will be invoked when snackbars should call StateHasChanged. This will
+be when the configuration is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action OnTriggerStateHasChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
