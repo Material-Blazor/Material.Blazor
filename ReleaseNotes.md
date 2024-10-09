@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.11](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.8)
+
+Released 2024-10-09
+
+**Updates**
+- .Net 8.0.10 updates
+- Dependabot updates.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.10](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.10)
 
 Released 2024-09-25
@@ -41,6 +61,7 @@ Released 2024-09-25
 **Deprecated Components**
 
 **Known issues**
+- There was no .Net 8.0.9 update. This is because the .Net 8.0.9 update was never made available to the general public. The next update will be .Net 8.0.10.
 
 <br />
 
