@@ -404,6 +404,11 @@ jobs:
       with:
         dotnet-version: '8.x'
 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.12.2
+
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >
         dotnet pack ${{env.projectMB}}
