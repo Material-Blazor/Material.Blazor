@@ -81,6 +81,11 @@ jobs:
       with:
         dotnet-version: '8.x'
 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.12.2
+
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
       
@@ -103,6 +108,11 @@ jobs:
 
     - name: Setup docfx
       run: dotnet tool update -g docfx
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.12.2
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
@@ -145,6 +155,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.12.2
 
     - name: Build & Publish Website 🔧
       run: >
@@ -204,6 +219,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.12.2
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >
