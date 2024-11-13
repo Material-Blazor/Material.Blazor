@@ -20,19 +20,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="package-lock.json" />
 		<None Include="package.json" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.10" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.11" />
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
 	</ItemGroup>
 
@@ -43,17 +41,17 @@
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
 	</ItemGroup>
 
-	<!--
+	
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="scripts\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\js\material.blazor.website.js;wwwroot\js\material.blazor.website.min.js" />
-	-->
+	
 	<!-- Keep this Remove/Include pair -->
-	<!--
+	
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
 	</ItemGroup>
-	-->
+	
 
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="styles\*.scss;" />
@@ -67,59 +65,59 @@
 		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
 	</ItemGroup>
 
-	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+	<Target Name="CheckIfpnpmExists" BeforeTargets="PreBuildEvent">
 		<Message Importance="high" Text="***** Building M.B.W" />
-		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
+		<Exec Command="pnpm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+			<Output TaskParameter="ExitCode" PropertyName="pnpmReturnCode" />
 		</Exec>
 	</Target>
 
-	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
+	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfpnpmExists" Condition=" '$(pnpmReturnCode)' != '0' ">
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
+		<Message Importance="high" Text="***** 'pnpm --version' return code was $(pnpmReturnCode)" />
 		<Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
 		<Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
 		<Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
-		<Message Importance="high" Text="If the return code is 9009, npm is not present" />
-		<Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
+		<Message Importance="high" Text="If the return code is 9009, pnpm is not present" />
+		<Message Importance="high" Text="For other non-zero return codes, check pnpm documentation" />
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
 	</Target>
 
-	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfpnpmExists" Condition=" '$(pnpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
 
-		<Message Importance="high" Text="***** npm run build-js (M.B.W Scripts)" />
-		<Exec Command="npm run build-js" />
+		<Message Importance="high" Text="***** pnpm run build-js (M.B.W Scripts)" />
+		<Exec Command="pnpm run build-js" />
 
-		<Message Importance="high" Text="***** npm run build-js-minify (M.B.W Scripts)" />
-		<Exec Command="npm run build-js-minify" />
+		<Message Importance="high" Text="***** pnpm run build-js-minify (M.B.W Scripts)" />
+		<Exec Command="pnpm run build-js-minify" />
 
 	</Target>
 
-	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfpnpmExists" Condition=" '$(pnpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
 		<!-- Build minified themes -->
 		<Message Importance="high" Text="***** build material default theme (M.B.W Styles)" />
-		<Exec Command="npm run build-min-material-default" />
+		<Exec Command="pnpm run build-min-material-default" />
 
 		<Message Importance="high" Text="***** build light square theme (M.B.W Styles)" />
-		<Exec Command="npm run build-min-light-square" />
+		<Exec Command="pnpm run build-min-light-square" />
 
 		<Message Importance="high" Text="***** build dark square theme (M.B.W Styles)" />
-		<Exec Command="npm run build-min-dark-square" />
+		<Exec Command="pnpm run build-min-dark-square" />
 
 		<Message Importance="high" Text="***** build rounded theme (M.B.W Styles)" />
-		<Exec Command="npm run build-min-rounded" />
+		<Exec Command="pnpm run build-min-rounded" />
 
 		<Message Importance="high" Text="***** build asymmetric theme (M.B.W Styles)" />
-		<Exec Command="npm run build-min-asymmetric" />
+		<Exec Command="pnpm run build-min-asymmetric" />
 
 	</Target>
 

@@ -3,13 +3,15 @@ echo ...
 echo ... Updating Material.Blazor
 echo ...
 cd material.blazor
-call npm update -S
+call pnpm update
+call pnpm outdated
 rem ***
 cd ..\material.blazor.website
 echo ...
 echo ... Updating Material.Blazor.Website
 echo ...
-call npm update -S
+call pnpm update
+call pnpm outdated
 rem ***
 cd ..
 rem echo ...
