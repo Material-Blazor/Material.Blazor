@@ -3,6 +3,12 @@
   "version": "4.0.0",
   "description": "NPM build steps for Material.Blazor",
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
+  "engines": {
+    "npm": "Please use pnpm to install this package",
+    "pnpm": ">=9.12.2",
+    "yarn": "Please use pnpm to install this package"
+  },
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "scripts": {
     "build-acquire-font-MI": "curl \"https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp\" --output styles\\_material-icons.scss --user-agent \"Mozilla/5.0,(Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\" --no-progress-meter",
     "build-acquire-font-MSO": "curl \"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\" --output styles\\_material-symbols-outlined.scss --user-agent \"Mozilla/5.0,(Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\" --no-progress-meter",
@@ -21,22 +27,22 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.25.7",
-    "@babel/core": "^7.25.7",
-    "@babel/plugin-transform-class-properties": "^7.25.7",
-    "@babel/plugin-transform-object-rest-spread": "^7.25.7",
-    "@babel/plugin-transform-runtime": "^7.25.7",
-    "@babel/preset-env": "^7.25.7",
-    "@babel/preset-typescript": "^7.25.7",
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-transform-class-properties": "^7.25.9",
+    "@babel/plugin-transform-object-rest-spread": "^7.25.9",
+    "@babel/plugin-transform-runtime": "^7.25.9",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
     "babel-loader": "^9.2.1",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "material-components-web": "14.0.0",
     "regexp": "^1.0.0",
     "sass": "1.39.2",
-    "terser": "^5.34.1",
+    "terser": "^5.36.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.6.3",
-    "webpack": "^5.95.0",
+    "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"
   }
 }

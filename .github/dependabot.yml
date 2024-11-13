@@ -10,6 +10,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"  
+    open-pull-requests-limit: 0
 
 
 
@@ -19,6 +20,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "sass"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "npm"
     directory: "/materia.blazor.website"
@@ -26,6 +28,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "sass"
+    open-pull-requests-limit: 0
 
 
 
@@ -35,6 +38,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "nuget"
     directory: "/materia.blazor.website"
@@ -42,6 +46,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "nuget"
     directory: "/materia.blazor.website.server"
@@ -49,6 +54,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "nuget"
     directory: "/materia.blazor.website.webassembly"
@@ -56,3 +62,4 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "Nager.Date"
+    open-pull-requests-limit: 0

@@ -33,7 +33,6 @@
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
 
 // NAMESPACE OBJECT: ./Scripts/MBTheme.ts
 var MBTheme_namespaceObject = {};
@@ -43,7 +42,7 @@ __webpack_require__.d(MBTheme_namespaceObject, {
   setTheme: () => (setTheme)
 });
 
-;// CONCATENATED MODULE: ./Scripts/MBTheme.ts
+;// ./Scripts/MBTheme.ts
 function setTheme(sheetName, minify) {
   var _document$getElementB;
   var extension = ".css";
@@ -56,7 +55,7 @@ function setHtmlBlockTextDirection(textDirection) {
   var htmlElement = document.documentElement;
   htmlElement.setAttribute("dir", textDirection);
 }
-;// CONCATENATED MODULE: ./scripts/material.blazor.website.ts
+;// ./scripts/material.blazor.website.ts
 
 window.MaterialBlazorWebsite = {
   MBTheme: MBTheme_namespaceObject
