@@ -46,9 +46,9 @@ try
     // Option 1: add options to services, which are then accessed by the Material Blazor services.
     builder.Services.AddOptions<MBServicesOptions>().Configure(options =>
     {
-        options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
-        options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
-        options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
+        options.LoggingServiceConfiguration = new MBLoggingServiceConfiguration();
+        options.SnackbarServiceConfiguration = new MBSnackbarServiceConfiguration();
+        options.ToastServiceConfiguration = new MBToastServiceConfiguration();
     });
 
     builder.Services.AddMBServices();
@@ -56,9 +56,9 @@ try
     // Option 2: add options within the call to add the Material.Blazor services.
     //builder.Services.AddMBServices(options =>
     //{
-    //    options.LoggingServiceConfiguration = Utilities.GetDefaultLoggingServiceConfiguration();
-    //    options.SnackbarServiceConfiguration = Utilities.GetDefaultSnackbarServiceConfiguration();
-    //    options.ToastServiceConfiguration = Utilities.GetDefaultToastServiceConfiguration();
+    //    options.LoggingServiceConfiguration = new MBLoggingServiceConfiguration();
+    //    options.SnackbarServiceConfiguration = new MBSnackbarServiceConfiguration();
+    //    options.ToastServiceConfiguration = new MBToastServiceConfiguration();
     //});
 
     builder.Services.AddGBService(options =>

@@ -330,7 +330,7 @@
         {
             if (disposing)
             {
-                ToastService.Configuration = Utilities.GetDefaultToastServiceConfiguration();
+                ToastService.Configuration = new MBToastServiceConfiguration();
             }
 
             // O: free unmanaged resources (unmanaged objects) and override finalizer
