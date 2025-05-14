@@ -1,3 +1,5 @@
+#define Logging
+
 using GoogleAnalytics.Blazor;
 using Material.Blazor;
 using Material.Blazor.Website;

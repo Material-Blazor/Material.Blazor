@@ -34,8 +34,8 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 - Material.Blazor is available at https://www.nuget.org/packages/Material.Blazor.
 - If you intend to submit pull requests please note that we use a gitub repository with a `main` branch upon which pull requests can be made. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
 
-Material.Blazor has two release trains available via NuGet. The trains are MD2 and MD3 based.
-The MD2 NuGet packages are available in V3, V4, and V5. The MD3 NuGet packages are available in V5.
+Material.Blazor has one release train available via NuGet. The train is MD2 based.
+The MD2 NuGet packages are available in V3, V4, and V5.
 - V3.x is a DotNet 6 LTS stable version using Material Design 2 and is the version used in some production settings. This version will be deprecated on November 12, 2024 (Corresponding to the DN6 EOL). No updates to Material.Blazor in this version are expected.
 - V4.x is a DotNet 7 STS stable version using Material Design 2 and is the version used in some production settings. This version was deprecated on May 14, 2024 (Corresponding to the DN7 EOL).
 - V5.x is a DotNet 8 LTS stable version. We encourage adoption of this version for existing and new production settings.

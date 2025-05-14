@@ -51,8 +51,8 @@
 	</ItemGroup>-->
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.15" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.15" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.16" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.16" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
 	</ItemGroup>
