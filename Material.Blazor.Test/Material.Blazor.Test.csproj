@@ -4,10 +4,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="bunit" Version="1.39.5" />
-		<PackageReference Include="bunit.core" Version="1.39.5" />
-		<PackageReference Include="bunit.web" Version="1.39.5" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.17" />
+		<PackageReference Include="bunit" Version="1.40.0" />
+		<PackageReference Include="bunit.core" Version="1.40.0" />
+		<PackageReference Include="bunit.web" Version="1.40.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.18" />
 		<PackageReference Include="NSubstitute" Version="5.3.0" />
 		<PackageReference Include="xunit" Version="2.9.3" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.1">
