@@ -1,0 +1,48 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Server" />
+    <BuildType Name="WebAssembly" />
+  </Configurations>
+  <Folder Name="/.Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".github/dependabot.yml" />
+    <File Path=".github/workflows/GithubActionsRelease.yml" />
+    <File Path=".github/workflows/GithubActionsWIP.yml" />
+    <File Path=".gitignore" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="ComputeSHA.ps1" />
+    <File Path="ctag.cmd" />
+    <File Path="Directory.Build.props" />
+    <File Path="docfx.json" />
+    <File Path="filterConfig.yml" />
+    <File Path="global.json" />
+    <File Path="index.md" />
+    <File Path="LICENSE.md" />
+    <File Path="LocalBuild.cmd" />
+    <File Path="LocalPublish.cmd" />
+    <File Path="LocalTest.bat" />
+    <File Path="pnpmUpdate.cmd" />
+    <File Path="README.md" />
+    <File Path="ReleaseNotes.md" />
+    <File Path="ServeDocs.cmd" />
+    <File Path="SuperClean.cmd" />
+    <File Path="toc.yml" />
+  </Folder>
+  <Folder Name="/guidelines/">
+    <File Path="guidelines/ProjectGuidelines.md" />
+    <File Path="guidelines/StylingGuidelines.md" />
+  </Folder>
+  <Folder Name="/guidelines/images/">
+    <File Path="guidelines/images/screenshot-branch-protection.png" />
+    <File Path="guidelines/images/screenshot-chart-complex.png" />
+    <File Path="guidelines/images/screenshot-chart-simple.png" />
+    <File Path="guidelines/images/screenshot-merge-button.png" />
+    <File Path="guidelines/images/screenshot-update-branch.png" />
+  </Folder>
+  <Project Path="Material.Blazor.Test/Material.Blazor.Test.csproj" />
+  <Project Path="Material.Blazor.Website.Server/Material.Blazor.Website.Server.csproj" />
+  <Project Path="Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj" />
+  <Project Path="Material.Blazor.Website/Material.Blazor.Website.csproj" />
+  <Project Path="Material.Blazor/Material.Blazor.csproj" />
+</Solution>
