@@ -4,6 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.23](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.23)
+
+Released 2025-12-??
+
+**Updates**
+- .Net 8.0.23 updates
+- Dependabot updates.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.22](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.22)
 
 Released 2025-11-11
