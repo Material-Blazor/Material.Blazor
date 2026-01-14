@@ -239,12 +239,6 @@ jobs:
         --api-key ${{steps.login.outputs.NUGET_API_KEY}}
         --source https://api.nuget.org/v3/index.json
 
-    # - name: Upload Package 🚀
-    #   run: >
-    #     dotnet nuget push ${{env.outputMB}}\*.nupkg
-    #     -k ${{secrets.NUGET_API_KEY}}
-    #     -s https://api.nuget.org/v3/index.json
-
 ############################################################################################################
 # Create release
 ############################################################################################################
