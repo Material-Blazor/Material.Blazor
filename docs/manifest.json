@@ -784,7 +784,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Material.Blazor.MBFileUploadDragAndDrop",
-      "Summary": "<p sourcefile=\".artifacts/api/Material.Blazor.MBFileUploadDragAndDrop.yml\" sourcestartlinenumber=\"1\">A material card styled wrapper for the <pre><code class=\"lang-csharp\">InputFile</code></pre> component that can load files either by drag and drop or clicking the card area\n"
+      "Summary": "<pre><code sourcefile=\".artifacts/api/Material.Blazor.MBFileUploadDragAndDrop.yml\" sourcestartlinenumber=\"1\">        A material card styled wrapper for the \n</code></pre>\n<pre><code class=\"lang-csharp\">InputFile</code></pre>\n<p sourcefile=\".artifacts/api/Material.Blazor.MBFileUploadDragAndDrop.yml\" sourcestartlinenumber=\"3\">component that can load files either by drag and drop or clicking the card area</p>\n"
     },
     {
       "type": "ManagedReference",
