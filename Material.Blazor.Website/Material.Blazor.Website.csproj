@@ -29,8 +29,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.27" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.27" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.29" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -90,11 +90,11 @@
 		<Message Importance="high" Text="***** MakeDir wwwroot and wwwroot\js  (M.B.W Scripts)" />
 		<Exec Command="mkdir wwwroot\js" IgnoreExitCode="true" />
 
+		<Message Importance="high" Text="***** pnpm run typecheck-js (M.B.W Scripts)" />
+		<Exec Command="pnpm run typecheck-js" />
+
 		<Message Importance="high" Text="***** pnpm run build-js (M.B.W Scripts)" />
 		<Exec Command="pnpm run build-js" />
-
-		<Message Importance="high" Text="***** pnpm run build-js-minify (M.B.W Scripts)" />
-		<Exec Command="pnpm run build-js-minify" />
 
 	</Target>
 

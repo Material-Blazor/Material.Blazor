@@ -4,10 +4,9 @@
   "description": "NPM build steps for Material.Blazor.Website",
   "engines": {
     "npm": "Please use pnpm to install this package",
-    "pnpm": ">=9.12.2",
+    "pnpm": ">=11.12.0",
     "yarn": "Please use pnpm to install this package"
   },
-  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "scripts": {
     "build-material-default": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.css",
     "build-min-material-default": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.min.css",
@@ -19,29 +18,17 @@
     "build-min-rounded": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.min.css",
     "build-asymmetric": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.css",
     "build-min-asymmetric": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.min.css",
-    "build-js": "webpack --config webpack.config.js",
-    "build-js-minify": "terser wwwroot/js/material.blazor.website.js --compress --mangle --ecma 2016 --output wwwroot/js/material.blazor.website.min.js"
+    "build-js": "rolldown --config rolldown.config.mjs",
+    "typecheck-js": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.28.6",
-    "@babel/core": "^7.29.0",
-    "@babel/plugin-transform-class-properties": "^7.28.6",
-    "@babel/plugin-transform-object-rest-spread": "^7.28.6",
-    "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.0",
-    "@babel/preset-typescript": "^7.28.5",
-    "babel-loader": "^9.2.1",
-    "fork-ts-checker-webpack-plugin": "^9.1.0",
     "material-components-web": "14.0.0",
     "regexp": "^1.0.0",
+    "rolldown": "^1.2.0",
     "sass": "1.39.2",
-    "terser": "^5.46.0",
-    "ts-loader": "^9.5.4",
-    "typescript": "^5.9.3",
-    "webpack": "^5.105.2",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^7.0.2"
   }
 }
