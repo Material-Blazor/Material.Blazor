@@ -87,6 +87,8 @@ function isObject(value) {
 //END https://github.com/lodash/lodash/blob/master/isObject.js
 
 //BEGIN https://github.com/lodash/lodash/blob/master/.internal/freeGlobal.js
+// 'global' only exists in Node; declared here so the browser-targeted compilation can type-check the runtime probe
+declare const global: any;
 const freeGlobal = typeof global === 'object' && global !== null && global.Object === Object && global
 //END https://github.com/lodash/lodash/blob/master/.internal/freeGlobal.js
 

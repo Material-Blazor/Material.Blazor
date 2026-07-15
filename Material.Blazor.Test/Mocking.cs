@@ -12,7 +12,7 @@ namespace Material.Blazor.Test;
 
 public class Mocking
 {
-    private TestContext ctx;
+    private BunitContext ctx;
     private void InjectMockedServices()
     {
         _ = new BunitJSInterop
@@ -42,7 +42,7 @@ public class Mocking
     public void TryRenderMBAnchor()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBAnchor>();
+        var cut = ctx.Render<MBAnchor>();
         cut.MarkupMatches("");
     }
 
@@ -51,13 +51,12 @@ public class Mocking
     {
         InjectMockedServices();
         string[] fruits = { "Avocado", "Banana", "Blackberry" };
-        var cut = ctx.RenderComponent<MBAutocompleteTextField>
-            ((nameof(MBAutocompleteTextField.AllowBlankResult), false),
-             (nameof(MBAutocompleteTextField.Label), "Hello button"),
-             (nameof(MBAutocompleteTextField.LeadingIcon), "alarm"),
-             (nameof(MBAutocompleteTextField.SelectItems), @fruits),
-             (nameof(MBAutocompleteTextField.TextInputStyle), MBTextInputStyle.Filled)
-             );
+        var cut = ctx.Render<MBAutocompleteTextField>(parameters => parameters
+            .Add(p => p.AllowBlankResult, false)
+            .Add(p => p.Label, "Hello button")
+            .Add(p => p.LeadingIcon, "alarm")
+            .Add(p => p.SelectItems, fruits)
+            .Add(p => p.TextInputStyle, MBTextInputStyle.Filled));
         cut.MarkupMatches(@"
 <div class=""mb-autocomplete  "">
   <label class=""mdc-text-field   mdc-text-field--filled    mdc-text-field--with-leading-icon  "" >
@@ -93,7 +92,7 @@ public class Mocking
     public void TryRenderMBBadge()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBBadge>();
+        var cut = ctx.Render<MBBadge>();
         cut.MarkupMatches(@"
 <span class=""mb-badge"">
   <span class=""mb-badge-value mdc-typography--caption""></span>
@@ -104,7 +103,7 @@ public class Mocking
     public void TryRenderMBBladeSet()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBBladeSet>();
+        var cut = ctx.Render<MBBladeSet>();
         cut.MarkupMatches(@"
 <mb-bladeset>
   <mb-bladeset-main-content></mb-bladeset-main-content>
@@ -116,9 +115,9 @@ public class Mocking
     public void TryRenderMBButton()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBButton>
-            ((nameof(MBButton.Label), "Hello button"),
-             (nameof(MBButton.ButtonStyle), MBButtonStyle.ContainedRaised));
+        var cut = ctx.Render<MBButton>(parameters => parameters
+            .Add(p => p.Label, "Hello button")
+            .Add(p => p.ButtonStyle, MBButtonStyle.ContainedRaised));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
     <button class=""mdc-button mdc-button--raised  mdc-button--touch"" type=""button"">
@@ -134,7 +133,7 @@ public class Mocking
     public void TryRenderMBCard()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBCard>();
+        var cut = ctx.Render<MBCard>();
         cut.MarkupMatches("<div class=\"mdc-card\"></div>");
     }
 
@@ -143,9 +142,9 @@ public class Mocking
     {
         InjectMockedServices();
         var isChecked = true;
-        var cut = ctx.RenderComponent<MBCheckbox>(
-            (nameof(MBCheckbox.Label), "Checkbox"),
-            (nameof(MBCheckbox.Value), @isChecked));
+        var cut = ctx.Render<MBCheckbox>(parameters => parameters
+            .Add(p => p.Label, "Checkbox")
+            .Add(p => p.Value, isChecked));
         cut.MarkupMatches(@"
 <div class=""mdc-form-field "" >
   <div class=""mdc-touch-target-wrapper"">
@@ -191,7 +190,7 @@ public class Mocking
     //                }
     //            }
 
-    //            var cut = ctx.RenderComponent<MBChipsSelectMulti<string>>(
+    //            var cut = ctx.Render<MBChipsSelectMulti<string>>(
     //                (nameof(MBChipsSelectMulti<string>.Items), @KittenBreeds),
     //                ("bind-Values", @SBValues));
     //            cut.MarkupMatches(@"
@@ -215,7 +214,7 @@ public class Mocking
 
     //    string selectedKitten = "russ-blue";
 
-    //    var cut = ctx.RenderComponent<MBChipsSelectSingle<string>>(
+    //    var cut = ctx.Render<MBChipsSelectSingle<string>>(
     //        (nameof(MBChipsSelectSingle<string>.Items), @KittenBreeds));
     //    cut.MarkupMatches(@"
     //<div class=""mdc-dialog"">
@@ -229,7 +228,7 @@ public class Mocking
     public void TryRenderMBCircularProgress()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBCircularProgress>();
+        var cut = ctx.Render<MBCircularProgress>();
         cut.MarkupMatches(@"
 <div class=""mdc-circular-progress mdc-circular-progress--indeterminate"" style="" height: 48px; width: 48px; "" role=""progressbar"" aria-label="""" aria-valuemin=""0"" aria-valuemax=""1"" aria-valuenow=""0"" >
           <div class=""mdc-circular-progress__determinate-container"">
@@ -265,7 +264,7 @@ public class Mocking
     public void TryRenderMBConfirmationDialog()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBConfirmationDialog>();
+        var cut = ctx.Render<MBConfirmationDialog>();
         cut.MarkupMatches(@"
 <div class=""mdc-dialog"">
     <div class=""mdc-dialog__container""></div>
@@ -278,7 +277,7 @@ public class Mocking
     public void TryRenderMBDataTable()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBDataTable<string>>();
+        var cut = ctx.Render<MBDataTable<string>>();
         cut.MarkupMatches(@"
 <div class=""mdc-data-table"" >
   <div class=""mdc-data-table__table-container"">
@@ -294,7 +293,7 @@ public class Mocking
     public void TryRenderMBDatePicker()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBDatePicker>();
+        var cut = ctx.Render<MBDatePicker>();
 
         cut.MarkupMatches(@"
 <div class=""mdc-select   mdc-select--outlined mdc-select--no-label  "" >
@@ -331,7 +330,7 @@ public class Mocking
     public void TryRenderMBDebouncedTextField()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBDebouncedTextField>();
+        var cut = ctx.Render<MBDebouncedTextField>();
         cut.MarkupMatches(@"
 <label class=""mdc-text-field    mdc-text-field--outlined mdc-text-field--no-label     "" >
   <span class=""mdc-notched-outline"">
@@ -347,7 +346,7 @@ public class Mocking
     public void TryRenderMBDialog()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBDialog>();
+        var cut = ctx.Render<MBDialog>();
         cut.MarkupMatches(@"
 <div class=""mdc-dialog"">
     <div class=""mdc-dialog__container""></div>
@@ -360,7 +359,7 @@ public class Mocking
     public void TryRenderMBDrawer()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBDrawer>();
+        var cut = ctx.Render<MBDrawer>();
         cut.MarkupMatches(@"
 <aside class=""mdc-drawer mdc-drawer--dismissible"" >
   <div class=""mdc-drawer__content""></div>
@@ -372,7 +371,7 @@ public class Mocking
     public void TryRenderMBFloatingActionButton()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBFloatingActionButton>();
+        var cut = ctx.Render<MBFloatingActionButton>();
         cut.MarkupMatches(@"
 <button class=""mdc-fab"" >
   <div class=""mdc-fab__ripple""></div>
@@ -384,7 +383,8 @@ public class Mocking
     public void TryRenderMBIcon()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBIcon>((nameof(MBIcon.IconName), "alarm"));
+        var cut = ctx.Render<MBIcon>(parameters => parameters
+            .Add(p => p.IconName, "alarm"));
         cut.MarkupMatches(@"
 <i class=""material-icons"">alarm</i>
             ");
@@ -394,7 +394,9 @@ public class Mocking
     public void TryRenderMBIconButton()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBIconButton>((nameof(MBIcon.IconName), "alarm"));
+        // MBIconButton has no IconName parameter; this splats to an unmatched html attribute as before
+        var cut = ctx.Render<MBIconButton>(parameters => parameters
+            .AddUnmatched(nameof(MBIcon.IconName), "alarm"));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
   <button class=""mdc-icon-button  mdc-button--touch  "" iconname=""alarm"" type=""button"">
@@ -408,9 +410,9 @@ public class Mocking
     public void TryRenderMBIconButtonToggle()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBIconButtonToggle>(
-            (nameof(MBIconButtonToggle.IconOn), "alarm"),
-            (nameof(MBIconButtonToggle.IconOff), "touch_app"));
+        var cut = ctx.Render<MBIconButtonToggle>(parameters => parameters
+            .Add(p => p.IconOn, "alarm")
+            .Add(p => p.IconOff, "touch_app"));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
   <button class=""mdc-icon-button    mdc-button--touch "" type=""button"">
@@ -426,7 +428,7 @@ public class Mocking
     public void TryRenderMBLinearProgress()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBLinearProgress>();
+        var cut = ctx.Render<MBLinearProgress>();
         cut.MarkupMatches(@"
 <div class=""mdc-linear-progress mdc-linear-progress--indeterminate   "" role=""progressbar"" aria-label="""" aria-valuemin=""0"" aria-valuemax=""1"" aria-valuenow=""0"" >
   <div class=""mdc-linear-progress__buffer"">
@@ -447,7 +449,7 @@ public class Mocking
     public void TryRenderMBNumericDecimalField()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBNumericDecimalField>();
+        var cut = ctx.Render<MBNumericDecimalField>();
         cut.MarkupMatches(@"
 <label class=""mdc-text-field    mdc-text-field--outlined mdc-text-field--no-label     "" >
   <span class=""mdc-notched-outline"">
@@ -463,7 +465,8 @@ public class Mocking
     public void TryRenderMBRadioButton()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBRadioButton<bool>>((nameof(MBRadioButton<bool>.RadioGroupName),"group"));
+        var cut = ctx.Render<MBRadioButton<bool>>(parameters => parameters
+            .Add(p => p.RadioGroupName, "group"));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
   <div class=""mdc-form-field"" >
@@ -492,9 +495,9 @@ public class Mocking
             new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
         };
 
-        var cut = ctx.RenderComponent<MBSelect<string>>(
-            (nameof(MBSelect<string>.Items),@KittenBreeds),
-            (nameof(MBSelect<string>.ItemValidation), MBItemValidation.NoSelection));
+        var cut = ctx.Render<MBSelect<string>>(parameters => parameters
+            .Add(p => p.Items, KittenBreeds)
+            .Add(p => p.ItemValidation, MBItemValidation.NoSelection));
         cut.MarkupMatches(@"
 <div class=""mdc-select   mdc-select--outlined mdc-select--no-label   "" >
   <div class=""mdc-select__anchor"" role=""button"" aria-haspopup:ignore aria-expanded=""false"" aria-labelledby:ignore>
@@ -536,11 +539,11 @@ public class Mocking
     public void TryRenderMBShield()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBShield>(
-            (nameof(MBShield.Label),"label"),
-            (nameof(MBShield.Tooltip), "tooltip"),
-            (nameof(MBShield.Value), "value"),
-            (nameof(MBShield.ValueIcon), "edit"));
+        var cut = ctx.Render<MBShield>(parameters => parameters
+            .Add(p => p.Label, "label")
+            .Add(p => p.Tooltip, "tooltip")
+            .Add(p => p.Value, "value")
+            .Add(p => p.ValueIcon, "edit"));
         cut.MarkupMatches(@"
 <span class=""mb-shield"" aria-describedby=""mb-tooltip-1"">
   <span class=""mb-shield--label "" style="""">
@@ -560,7 +563,7 @@ public class Mocking
     public void TryRenderMBSlider()
     {
         InjectMockedServices();
-        var cut = ctx.RenderComponent<MBSlider>();
+        var cut = ctx.Render<MBSlider>();
         cut.MarkupMatches(@"
 <div class=""mdc-slider"" >
   <input class=""mdc-slider__input"" type=""range"" value=""0"" step=""1"" min=""0"" max=""100"" name=""volume"" aria-label=""Slider"">

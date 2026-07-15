@@ -4,6 +4,30 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.28](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.28)
+
+Released 2026-07-15
+
+**Updates**
+- .Net 8.0.29 updates
+- Dependabot updates.
+- Replaced webpack, babel & terser with rolldown for the javascript build.
+- Upgraded TypeScript to 7.0 (native compiler); type checking now runs as a separate `tsc --noEmit` build step.
+- pnpm updated to 11.x in the GitHub actions; pnpm settings now live in pnpm-workspace.yaml (.npmrc retains only engine-strict, which guards against accidental use of npm).
+- bunit updated to 2.7.2 with the associated test API migration (BunitContext/Render/parameter builder).
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.27](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.27)
 
 Released 2026-05-15

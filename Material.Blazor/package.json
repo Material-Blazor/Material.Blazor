@@ -5,7 +5,7 @@
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
   "engines": {
     "npm": "Please use pnpm to install this package",
-    "pnpm": ">=9.12.2",
+    "pnpm": ">=11.12.0",
     "yarn": "Please use pnpm to install this package"
   },
   "scripts": {
@@ -17,31 +17,17 @@
     "build-css-minify": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.min.css",
     "build-material-css": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-components-web.scss wwwroot/material-components-web.css",
     "build-material-min-css": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-components-web.scss wwwroot/material-components-web.min.css",
-    "build-js": "webpack --config webpack.config.js",
-    "build-js-minify": "terser wwwroot/material.blazor.js --compress --mangle --ecma 2016 --output wwwroot/material.blazor.min.js",
-    "build-js-Comment1": "https://github.com/microsoft/TypeScript-Babel-Starter",
-    "build-js-Comment2": "https://github.com/a-tarasyuk/webpack-typescript-babel"
+    "build-js": "rolldown --config rolldown.config.mjs",
+    "typecheck-js": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.28.6",
-    "@babel/core": "^7.29.0",
-    "@babel/plugin-transform-class-properties": "^7.28.6",
-    "@babel/plugin-transform-object-rest-spread": "^7.28.6",
-    "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
-    "@babel/preset-typescript": "^7.28.5",
-    "babel-loader": "^9.2.1",
-    "fork-ts-checker-webpack-plugin": "^9.1.0",
     "material-components-web": "14.0.0",
     "regexp": "^1.0.0",
+    "rolldown": "^1.2.0",
     "sass": "1.39.2",
-    "terser": "^5.46.1",
-    "ts-loader": "^9.5.7",
-    "typescript": "^5.9.3",
-    "webpack": "^5.106.2",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^7.0.2"
   }
 }

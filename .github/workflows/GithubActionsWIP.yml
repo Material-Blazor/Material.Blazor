@@ -84,7 +84,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9.12.2
+        version: 11.12.0
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
@@ -112,7 +112,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9.12.2
+        version: 11.12.0
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
@@ -159,7 +159,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9.12.2
+        version: 11.12.0
 
     - name: Build & Publish Website 🔧
       run: >
@@ -223,7 +223,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9.12.2
+        version: 11.12.0
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >
@@ -407,7 +407,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9.12.2
+        version: 11.12.0
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >
