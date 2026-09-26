@@ -4,6 +4,29 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [5.3.29](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.29)
+
+Released 2026-09-26
+
+**Updates**
+- .Net 8.0.31 updates
+- Dependabot updates.
+- Test project migrated from xunit (v2, now deprecated) to xunit.v3; the test project now builds as an executable (`OutputType` Exe). No test code changes were required.
+- This is the last .Net 8 based release of Material.Blazor
+- The next release is 6.0.0 which is based upon .Net 10
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.28](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.28)
 
 Released 2026-07-15
