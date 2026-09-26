@@ -17,6 +17,7 @@ Released 2026-10-01
 - Website: the server uses MapStaticAssets with fingerprinted, versioned script and stylesheet URLs, and the WebAssembly site uses .Net 10 index.html asset fingerprinting (OverrideHtmlAssetPlaceholders), so browsers no longer run stale cached scripts after an upgrade.
 - Website: the startup files are renamed program_server.cs and program_wasm.cs, and the home page reports the hosting mode at runtime rather than from the build configuration.
 - Tests: the .Net 10 SDK no longer runs xunit.v3 through VSTest, so global.json opts `dotnet test` in to Microsoft.Testing.Platform; run the tests with `dotnet test --project Material.Blazor.Test/Material.Blazor.Test.csproj`.
+- Website: the home page Demonstration card now opens the Button demo page as its text says; since 2023 it had opened the Anchor page.
 
 **New components**
 
