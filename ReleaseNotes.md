@@ -6,7 +6,7 @@ title: ReleaseNotes
 
 #### [6.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/6.0.0)
 
-Released 2026-09-26
+Released 2026-10-01
 
 > **From the Material.Blazor team:** we formed [Materia Technologies](https://chameleonui.io) to keep working on Material, and Materia Technologies now supports Material.Blazor's continued maintenance. Our new library, [Chameleon](https://chameleonui.io), is built on Material 3 Expressive and brings 55 components to Blazor, React and plain web components from one source — one color in, a whole theme out. If you're starting something new, we'd love for you to take a look at [ChameleonUI.io](https://chameleonui.io).
 
