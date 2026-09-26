@@ -61,7 +61,7 @@ jobs:
 
     steps:
     - id: setVersion
-      run: echo "version=5.0.0-wip.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
+      run: echo "version=6.0.0-wip.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_OUTPUT
       shell: bash
 
 ############################################################################################################

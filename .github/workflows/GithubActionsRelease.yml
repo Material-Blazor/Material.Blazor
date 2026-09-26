@@ -9,7 +9,7 @@ name: GithubActionsRelease
 on:
   push:
     tags:
-      - 5.** # Push events to matching pattern, i.e. 5.0.0, 5.1.0
+      - 6.** # Push events to matching pattern, i.e. 6.0.0, 6.1.0
 
 env:
   buildPlatform: 'Any CPU'
