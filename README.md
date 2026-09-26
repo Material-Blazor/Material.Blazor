@@ -27,6 +27,8 @@
 
 Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor). It is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since  Blazor is not directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor.
 
+> **From the Material.Blazor team:** we formed [Materia Technologies](https://chameleonui.io) to keep working on Material, and Materia Technologies now supports Material.Blazor's continued maintenance. Our new library, [Chameleon](https://chameleonui.io), is built on Material 3 Expressive and brings 55 components to Blazor, React and plain web components from one source — one color in, a whole theme out. If you're starting something new, we'd love for you to take a look at [ChameleonUI.io](https://chameleonui.io).
+
 - Material.Blazor is implemented using Material Theme version 14.0.0
 - Visit our website at https://material-blazor.com;
 - See release notes at https://material-blazor.com/docs/ReleaseNotes.html;
@@ -35,10 +37,13 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 - If you intend to submit pull requests please note that we use a gitub repository with a `main` branch upon which pull requests can be made. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
 
 Material.Blazor has one release train available via NuGet. The train is MD2 based.
-The MD2 NuGet packages are available in V3, V4, and V5.
+The MD2 NuGet packages are available in V3, V4, V5, and V6.
 - V3.x is a DotNet 6 LTS stable version using Material Design 2 and is the version used in some production settings. This version will be deprecated on November 12, 2024 (Corresponding to the DN6 EOL). No updates to Material.Blazor in this version are expected.
 - V4.x is a DotNet 7 STS stable version using Material Design 2 and is the version used in some production settings. This version was deprecated on May 14, 2024 (Corresponding to the DN7 EOL).
-- V5.x is a DotNet 8 LTS stable version. We encourage adoption of this version for existing and new production settings.
+- V5.x is a DotNet 8 LTS stable version using Material Design 2 and is the version used in some production settings. 5.3.29 is the final V5.x release; no further updates to Material.Blazor in this version are expected.
   - V5.x releases are published as a NuGet package - Material.Blazor
-  - This version will be deprecated on November 10, 2026.
+  - This version will be deprecated on November 10, 2026 (Corresponding to the DN8 EOL).
+- V6.x is a DotNet 10 LTS stable version. We encourage adoption of this version for existing and new production settings.
+  - V6.x releases are published as a NuGet package - Material.Blazor
+  - This version will be deprecated on November 14, 2028 (Corresponding to the DN10 EOL).
   

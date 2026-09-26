@@ -9,7 +9,7 @@ name: GithubActionsRelease
 on:
   push:
     tags:
-      - 5.** # Push events to matching pattern, i.e. 5.0.0, 5.1.0
+      - 6.** # Push events to matching pattern, i.e. 6.0.0, 6.1.0
 
 env:
   buildPlatform: 'Any CPU'
@@ -48,15 +48,15 @@ jobs:
     - name: Use dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
+      run: dotnet test --project ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
 ############################################################################################################
 # Build documentation
 ############################################################################################################
@@ -71,7 +71,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Setup docfx
       run: dotnet tool update -g docfx
@@ -79,7 +79,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
@@ -114,12 +114,12 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build and Publish Website 🔧
       run: >
@@ -128,7 +128,7 @@ jobs:
         --output ${{env.outputWeb}}
         -p:Version=${{env.version}}
         -p:BlazorEnableCompression=false
-        --framework net8.0
+        --framework net10.0
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v4
@@ -152,12 +152,12 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
       uses: actions/download-artifact@v4
@@ -207,12 +207,12 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >
