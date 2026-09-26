@@ -33,6 +33,6 @@ public partial class Index
     }
     private void NavigateToButton()
     {
-        NavigationManager.NavigateTo("anchor");
+        NavigationManager.NavigateTo("button");
     }
 }

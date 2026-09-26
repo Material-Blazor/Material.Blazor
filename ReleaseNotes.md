@@ -6,7 +6,7 @@ title: ReleaseNotes
 
 #### [6.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/6.0.0)
 
-Released 2026-10-01
+Released 2026-10-24
 
 > **From the Material.Blazor team:** we formed [Materia Technologies](https://chameleonui.io) to keep working on Material, and Materia Technologies now supports Material.Blazor's continued maintenance. Our new library, [Chameleon](https://chameleonui.io), is built on Material 3 Expressive and brings 55 components to Blazor, React and plain web components from one source — one color in, a whole theme out. If you're starting something new, we'd love for you to take a look at [ChameleonUI.io](https://chameleonui.io).
 
@@ -17,6 +17,7 @@ Released 2026-10-01
 - Website: the server uses MapStaticAssets with fingerprinted, versioned script and stylesheet URLs, and the WebAssembly site uses .Net 10 index.html asset fingerprinting (OverrideHtmlAssetPlaceholders), so browsers no longer run stale cached scripts after an upgrade.
 - Website: the startup files are renamed program_server.cs and program_wasm.cs, and the home page reports the hosting mode at runtime rather than from the build configuration.
 - Tests: the .Net 10 SDK no longer runs xunit.v3 through VSTest, so global.json opts `dotnet test` in to Microsoft.Testing.Platform; run the tests with `dotnet test --project Material.Blazor.Test/Material.Blazor.Test.csproj`.
+- Website: the home page Demonstration card now opens the Button demo page as its text says; since 2023 it had opened the Anchor page.
 
 **New components**
 
