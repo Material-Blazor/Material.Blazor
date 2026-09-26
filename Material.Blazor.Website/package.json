@@ -27,7 +27,7 @@
   "devDependencies": {
     "material-components-web": "14.0.0",
     "regexp": "^1.0.0",
-    "rolldown": "^1.2.0",
+    "rolldown": "^1.2.11",
     "sass": "1.39.2",
     "typescript": "^7.0.2"
   }
