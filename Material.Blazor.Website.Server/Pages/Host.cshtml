@@ -5,12 +5,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @using Material.Blazor.Website
-@using Material.Blazor.Website.Server
 @using Microsoft.AspNetCore.Components.Web
-
-@{
-    Microsoft.AspNetCore.Mvc.Rendering.RenderMode renderMode = PlatformDetermination.IsBlazorServer ? Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server : Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly;
-}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -21,12 +16,15 @@
     <title>Material.Blazor</title>
     <base href="/" />
 
-    <link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet">
+    @* Maps JS module paths to their fingerprinted URLs from MapStaticAssets *@
+    <script type="importmap"></script>
+
+    <link href="~/_content/Material.Blazor/material.blazor.min.css" asp-append-version="true" rel="stylesheet">
 
     <link href="_content/Material.Blazor.Website/icons/icon-512.png" rel="apple-touch-icon" sizes="512x512">
     <link href="_content/Material.Blazor.Website/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
     <link href="_content/Material.Blazor.Website/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-    <link href="_content/Material.Blazor.Website/css/material-default-theme.min.css" rel="stylesheet" id="app-style">
+    <link href="~/_content/Material.Blazor.Website/css/material-default-theme.min.css" asp-append-version="true" rel="stylesheet" id="app-style">
  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,28 +39,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />    <!-- Global site tag (gtag.js) - Google Analytics -->
 
-    @if (PlatformDetermination.IsBlazorServer)
-    {
-        <component type="typeof(HeadOutlet)" render-mode="@renderMode" />
-    }
+    <component type="typeof(HeadOutlet)" render-mode="Server" />
 
 </head>
 
 <body class="mdc-typography mb-custom-scrollbars">
-    @if (PlatformDetermination.IsBlazorServer)
-    {
-        <component type="typeof(AppMD2)" render-mode="@renderMode" />
-    }
-    else
-    {
-        <div id="app">
-            <svg class="loading-progress">
-                <circle r="40%" cx="50%" cy="50%" />
-                <circle r="40%" cx="50%" cy="50%" />
-            </svg>
-            <div class="loading-progress-text"></div>
-        </div>
-    }
+    <component type="typeof(AppMD2)" render-mode="Server" />
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
@@ -75,18 +57,11 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="_content/Material.Blazor/material.blazor.js"></script>
-    <script src="_content/Material.Blazor.Website/js/material.blazor.website.js"></script>
-    <script src="_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js"></script>
+    <script src="~/_content/Material.Blazor/material.blazor.js" asp-append-version="true"></script>
+    <script src="~/_content/Material.Blazor.Website/js/material.blazor.website.js" asp-append-version="true"></script>
+    <script src="~/_content/GoogleAnalytics.Blazor/googleanalytics.blazor.js" asp-append-version="true"></script>
 
-    @if (PlatformDetermination.IsBlazorServer)
-    {
-        <script src="_framework/blazor.server.js"></script>
-    }
-    else
-    {
-        <script src="_framework/blazor.webassembly.js"></script>
-    }
+    <script src="~/_framework/blazor.server.js" asp-append-version="true"></script>
 
 </body>
 </html>

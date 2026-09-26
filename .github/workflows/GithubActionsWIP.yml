@@ -79,15 +79,15 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
+      run: dotnet test --project ${{env.projectTest}} --configuration ${{env.buildConfiguration}}
       
 ############################################################################################################
 # Build documentation
@@ -104,7 +104,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Setup docfx
       run: dotnet tool update -g docfx
@@ -112,7 +112,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build Material.Blazor
       run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}}
@@ -154,12 +154,12 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build & Publish Website 🔧
       run: >
@@ -168,7 +168,7 @@ jobs:
         --output ${{env.outputWeb}}
         -p:Version=${{env.ciVersion}}
         -p:BlazorEnableCompression=false
-        --framework net8.0
+        --framework net10.0
 
     # All of the trace was added to show that .js & .min.js files were getting created but not
     # being included in the published content. This was a result of VS 'helpfully' adding some
@@ -218,12 +218,12 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >
@@ -402,12 +402,12 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '10.x'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 11.12.0
+        version: 12.6.0
 
     - name: Build Material.Blazor & Generate the NuGet package 🔧
       run: >

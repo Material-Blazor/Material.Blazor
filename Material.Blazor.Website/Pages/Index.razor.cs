@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -10,11 +11,8 @@ public partial class Index
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; }
 
-#if BLAZOR_SERVER
-    private string BuildMode { get; set; } = "Server";
-#else
-    private string BuildMode { get; set; } = "WebAssembly";
-#endif
+    // Determined at runtime: the same assembly is hosted by both the Server and WebAssembly launch projects
+    private string BuildMode { get; set; } = OperatingSystem.IsBrowser() ? "WebAssembly" : "Server";
 
     private string OSArchitecture { get; set; }
     private string OSDescription { get; set; }

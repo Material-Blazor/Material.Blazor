@@ -4,6 +4,33 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [6.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/6.0.0)
+
+Released 2026-09-26
+
+> **From the Material.Blazor team:** we formed [Materia Technologies](https://chameleonui.io) to keep working on Material, and Materia Technologies now supports Material.Blazor's continued maintenance. Our new library, [Chameleon](https://chameleonui.io), is built on Material 3 Expressive and brings 55 components to Blazor, React and plain web components from one source — one color in, a whole theme out. If you're starting something new, we'd love for you to take a look at [ChameleonUI.io](https://chameleonui.io).
+
+**Updates**
+- Dependabot updates.
+- .Net 10.0.12 updates; package references that .Net 10 provides implicitly have been removed from the website server project.
+- Website: Material.Blazor.Website.Server now always runs as Blazor Server (previously it hosted the WebAssembly app unless built in the Server configuration, where the Blazor hub was never mapped). Material.Blazor.Website.WebAssembly is the standalone WebAssembly site, as published to GitHub Pages.
+- Website: the server uses MapStaticAssets with fingerprinted, versioned script and stylesheet URLs, and the WebAssembly site uses .Net 10 index.html asset fingerprinting (OverrideHtmlAssetPlaceholders), so browsers no longer run stale cached scripts after an upgrade.
+- Website: the startup files are renamed program_server.cs and program_wasm.cs, and the home page reports the hosting mode at runtime rather than from the build configuration.
+- Tests: the .Net 10 SDK no longer runs xunit.v3 through VSTest, so global.json opts `dotnet test` in to Microsoft.Testing.Platform; run the tests with `dotnet test --project Material.Blazor.Test/Material.Blazor.Test.csproj`.
+
+**New components**
+
+**New features**
+
+**Breaking Changes**
+- Material.Blazor now targets .Net 10. .Net 8 is no longer supported; 5.3.29 was the last .Net 8 based release.
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [5.3.29](https://github.com/Material-Blazor/Material.Blazor/tree/5.3.29)
 
 Released 2026-09-26
