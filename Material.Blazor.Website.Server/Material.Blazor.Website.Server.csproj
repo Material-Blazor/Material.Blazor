@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<!-- This project has no .razor files, so opt in to the .NET 10 Blazor script (blazor.server.js) static web asset -->
+		<RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -13,26 +15,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.31" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.31" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.31" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+		<PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
 		<PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--<ProjectReference Include="..\Material.Blazor.Website.WebAssembly\Material.Blazor.Website.WebAssembly.csproj" />-->
-		<ProjectReference Include="..\Material.Blazor.Website.WebAssembly\Material.Blazor.Website.WebAssembly.csproj" />
 		<ProjectReference Include="..\Material.Blazor.Website\Material.Blazor.Website.csproj" />
 	</ItemGroup>
 
 	<!--Compression directives (Note that the patterns are relative to wwwroot)-->
 	<PropertyGroup>
 		<CompressionIncludePatterns>$(CompressionIncludePatterns);**/*.css;**/*.js</CompressionIncludePatterns>
-		<BuildCompressionFormats>gzip;brotli</BuildCompressionFormats>
+		<!--
+		Build (development) stays gzip-only, the SDK default. With MapStaticAssets the .NET 10 development
+		runtime handler re-compresses assets on the fly as gzip but keeps the endpoint's Content-Encoding,
+		so build-time brotli endpoints send gzip bytes labelled 'br' and the browser fails to load them.
+		-->
+		<BuildCompressionFormats>gzip</BuildCompressionFormats>
 		<PublishCompressionFormats>gzip;brotli</PublishCompressionFormats>
 	</PropertyGroup>
 

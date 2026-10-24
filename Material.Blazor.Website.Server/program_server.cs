@@ -36,13 +36,7 @@ try
 
     // Add services to the container.
     builder.Services.AddRazorPages();
-
-#if SERVER
-
     builder.Services.AddServerSideBlazor();
-    builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
-
-#endif
 
 
     // Option 1: add options to services, which are then accessed by the Material Blazor services.
@@ -72,11 +66,7 @@ try
 
     if (app.Environment.IsDevelopment())
     {
-#if SERVER
         app.UseDeveloperExceptionPage();
-#else
-        app.UseWebAssemblyDebugging();
-#endif
     }
     else
     {
@@ -89,16 +79,17 @@ try
     app.UseSerilogRequestLogging();
 #endif
     app.UseHttpsRedirection();
-    app.UseStaticFiles();
 
     app.UseRouting();
 
-#if SERVER
-    app.MapBlazorHub();
-#else
-    app.UseBlazorFrameworkFiles();
-#endif
+    // MapStaticAssets serves every build-time static web asset (including the .NET 10 Blazor
+    // script) with content-based ETags and fingerprinted URLs, so browsers never run stale
+    // scripts after an upgrade.
+    app.MapStaticAssets();
 
+    app.MapBlazorHub();
+
+    app.MapRazorPages().WithStaticAssets();
     app.MapFallbackToPage("/Host");
 
     app.Run();

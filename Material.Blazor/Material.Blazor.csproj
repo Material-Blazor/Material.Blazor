@@ -1,22 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
-	<!--
-	Attempting to multi-target .Net 6/7/8 fails for multiple reasons:
-		.Net 6 - Several components use features that were not available until .Net 7
-		.Net 7/8 - Parallel execution of 'pnpm install' fail
-	The only possible work-around is to have two projects, the first being Material.Blazor
-	which would be the referenced project from the other projects and targeting only .Net 8
-	and the second a .Net7/8 multi-targeted csproj that did not build scripts/styles. Both 
-	would need to be executed during the GHA step which builds the NuGet package.
-	
-	At the moment, this is deemed too expensive in support time and M.B is built with
-	a target framework of net8.0
-	-->
 
 	<PropertyGroup>
-		<!--<TargetFrameworks>net7.0;net8.0</TargetFrameworks>-->
-		<TargetFrameworks>net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Version>5.0.0-preview.WIP</Version>
+		<Version>6.0.0-preview.WIP</Version>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>Material.Blazor</Company>
@@ -51,10 +37,10 @@
 	</ItemGroup>-->
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.31" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.31" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.12" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.12" />
 	</ItemGroup>
 	
 	<PropertyGroup>
