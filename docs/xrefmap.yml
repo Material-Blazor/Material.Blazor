@@ -15419,18 +15419,18 @@ references:
   fullName.vb: Material.Blazor._Imports.New
   nameWithType: _Imports._Imports
   nameWithType.vb: _Imports.New
-- uid: Material.Blazor._Imports.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  name: BuildRenderTree(RenderTreeBuilder)
-  href: .artifacts/api/Material.Blazor._Imports.html#Material_Blazor__Imports_BuildRenderTree_Microsoft_AspNetCore_Components_Rendering_RenderTreeBuilder_
-  commentId: M:Material.Blazor._Imports.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  fullName: Material.Blazor._Imports.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)
-  nameWithType: _Imports.BuildRenderTree(RenderTreeBuilder)
-- uid: Material.Blazor._Imports.BuildRenderTree*
-  name: BuildRenderTree
-  href: .artifacts/api/Material.Blazor._Imports.html#Material_Blazor__Imports_BuildRenderTree_
-  commentId: Overload:Material.Blazor._Imports.BuildRenderTree
-  fullName: Material.Blazor._Imports.BuildRenderTree
-  nameWithType: _Imports.BuildRenderTree
+- uid: Material.Blazor._Imports.Execute
+  name: Execute()
+  href: .artifacts/api/Material.Blazor._Imports.html#Material_Blazor__Imports_Execute
+  commentId: M:Material.Blazor._Imports.Execute
+  fullName: Material.Blazor._Imports.Execute()
+  nameWithType: _Imports.Execute()
+- uid: Material.Blazor._Imports.Execute*
+  name: Execute
+  href: .artifacts/api/Material.Blazor._Imports.html#Material_Blazor__Imports_Execute_
+  commentId: Overload:Material.Blazor._Imports.Execute
+  fullName: Material.Blazor._Imports.Execute
+  nameWithType: _Imports.Execute
 - uid: S.IMBSnackbarService
   name: IMBSnackbarService
   href: Material.Blazor/Model/Snackbar/IMBSnackbarService.html
